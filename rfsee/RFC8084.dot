@@ -1,0 +1,169 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8084 [label="RFC8084
+Network Transport Circuit Breakers
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document explains what is meant by the term network transport Circuit Breaker.  It describes the need for Circuit Breakers (CBs) for network tunnels and applications when using non-congestion- controlled traffic and explains where CBs are, and are not, needed.  It also defines requirements for building a CB and the expected outcomes of using a CB within the Internet."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8084;
+
+  obs [label="obsoletes", shape=box];
+  RFC8084 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8084 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8084;
+
+  cites [label="cites", shape=box];
+  RFC8084 -> cites;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC1112 [label="RFC1112
+Host extensions for IP multicasting
+1989", shape=ellipse, URL="RFC1112.html", target="_top", tooltip="This memo specifies the extensions required of a host implementation of the Internet Protocol (IP) to support multicasting.  Recommended procedure for IP multicasting in the Internet.  This RFC obsoletes RFCs 998 and 1054. [STANDARDS-TRACK]"];
+  cites -> RFC1112;
+  RFC7761 [label="RFC7761
+Protocol Independent Multicast - Sparse
+Mode (PIM-SM): Protocol Specification
+(Revised)
+2016", shape=ellipse, URL="RFC7761.html", target="_top", tooltip="This document specifies Protocol Independent Multicast - Sparse Mode (PIM-SM). PIM-SM is a multicast routing protocol that can use the underlying unicast routing information base or a separate multicast-capable routing information base. It builds unidirectional shared trees rooted at a Rendezvous Point (RP) per group, and it optionally creates shortest-path trees per source. This document obsoletes RFC 4601 by replacing it, addresses the errata filed against it, removes the optional (*,*,RP), PIM Multicast Border Router features and authentication using IPsec that lack sufficient deployment experience (see Appendix A), and moves the PIM specification to Internet Standard."];
+  cites -> RFC7761;
+  RFC5348 [label="RFC5348
+TCP Friendly Rate Control (TFRC):
+Protocol Specification
+2008", shape=ellipse, URL="RFC5348.html", target="_top", tooltip="This document specifies TCP Friendly Rate Control (TFRC). TFRC is a congestion control mechanism for unicast flows operating in a best-effort Internet environment. It is reasonably fair when competing for bandwidth with TCP flows, but has a much lower variation of throughput over time compared with TCP, making it more suitable for applications such as streaming media where a relatively smooth sending rate is of importance. This document obsoletes RFC 3448 and updates RFC 4342. [STANDARDS-TRACK]"];
+  cites -> RFC5348;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  cites -> RFC8085;
+  RFC2309 [label="RFC2309
+Recommendations on Queue Management and
+Congestion Avoidance in the Internet
+1998", shape=ellipse, URL="RFC2309.html", target="_top", tooltip="This memo presents two recommendations to the Internet community concerning measures to improve and preserve Internet performance.  It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management in routers, to improve the performance of today's Internet.  It also urges a concerted effort of research, measurement, and ultimate deployment of router mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  cites -> RFC2309;
+  RFC8083 [label="RFC8083
+Multimedia Congestion Control: Circuit
+Breakers for Unicast RTP Sessions
+2017", shape=ellipse, URL="RFC8083.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is widely used in telephony, video conferencing, and telepresence applications. Such applications are often run on best-effort UDP/IP networks. If congestion control is not implemented in these applications, then network congestion can lead to uncontrolled packet loss and a resulting deterioration of the user's multimedia experience. The congestion control algorithm acts as a safety measure by stopping RTP flows from using excessive resources and protecting the network from overload. At the time of this writing, however, while there are several proprietary solutions, there is no standard algorithm for congestion control of interactive RTP flows. This document does not propose a congestion control algorithm. It instead defines a minimal set of RTP circuit breakers: conditions under which an RTP sender needs to stop transmitting media data to protect the network from excessive congestion. It is expected that, in the absence of long-lived excessive congestion, RTP applications running on best-effort IP networks will be able to operate without triggering these circuit breakers. To avoid triggering the RTP circuit breaker, any Standards Track congestion control algorithms defined for RTP will need to operate within the envelope set by these RTP circuit breaker algorithms."];
+  cites -> RFC8083;
+  RFC6679 [label="RFC6679
+Explicit Congestion Notification (ECN)
+for RTP over UDP
+2012", shape=ellipse, URL="RFC6679.html", target="_top", tooltip="This memo specifies how Explicit Congestion Notification (ECN) can be used with the Real-time Transport Protocol (RTP) running over UDP, using the RTP Control Protocol (RTCP) as a feedback mechanism.  It defines a new RTCP Extended Report (XR) block for periodic ECN feedback, a new RTCP transport feedback message for timely reporting of congestion events, and a Session Traversal Utilities for NAT (STUN) extension used in the optional initialisation method using Interactive Connectivity Establishment (ICE).  Signalling and procedures for negotiation of capabilities and initialisation methods are also defined. [STANDARDS-TRACK]"];
+  cites -> RFC6679;
+  RFC4553 [label="RFC4553
+Structure-Agnostic Time Division
+Multiplexing (TDM) over Packet (SAToP)
+2006", shape=ellipse, URL="RFC4553.html", target="_top", tooltip="This document describes a pseudowire encapsulation for Time Division Multiplexing (TDM) bit-streams (T1, E1, T3, E3) that disregards any structure that may be imposed on these streams, in particular the structure imposed by the standard TDM framing. [STANDARDS-TRACK]"];
+  cites -> RFC4553;
+  RFC3985 [label="RFC3985
+Pseudo Wire Emulation Edge-to-Edge
+(PWE3) Architecture
+2005", shape=ellipse, URL="RFC3985.html", target="_top", tooltip="This document describes an architecture for Pseudo Wire Emulation Edge-to-Edge (PWE3).  It discusses the emulation of services such as Frame Relay, ATM, Ethernet, TDM, and SONET/SDH over packet switched networks (PSNs) using IP or MPLS.  It presents the architectural framework for pseudo wires (PWs), defines terminology, and specifies the various protocol elements and their functions.  This memo provides information for the Internet community."];
+  cites -> RFC3985;
+  RFC7893 [label="RFC7893
+Pseudowire Congestion Considerations
+2016", shape=ellipse, URL="RFC7893.html", target="_top", tooltip="Pseudowires (PWs) have become a common mechanism for tunneling traffic and may be found in unmanaged scenarios competing for network resources both with other PWs and with non-PW traffic, such as TCP/IP flows.  Thus, it is worthwhile specifying under what conditions such competition is acceptable, i.e., the PW traffic does not significantly harm other traffic or contribute more than it should to congestion.  We conclude that PWs transporting responsive traffic behave as desired without the need for additional mechanisms.  For inelastic PWs (such as Time Division Multiplexing (TDM) PWs), we derive a bound under which such PWs consume no more network capacity than a TCP flow.  For TDM PWs, we find that the level of congestion at which the PW can no longer deliver acceptable TDM service is never significantly greater, and is typically much lower, than this bound.  Therefore, as long as the PW is shut down when it can no longer deliver acceptable TDM service, it will never do significantly more harm than even a single TCP flow.  If the TDM service does not automatically shut down, a mechanism to block persistently unacceptable TDM pseudowires is required."];
+  cites -> RFC7893;
+  RFC4448 [label="RFC4448
+Encapsulation Methods for Transport of
+Ethernet over MPLS Networks
+2006", shape=ellipse, URL="RFC4448.html", target="_top", tooltip="An Ethernet pseudowire (PW) is used to carry Ethernet/802.3 Protocol Data Units (PDUs) over an MPLS network.  This enables service providers to offer emulated Ethernet services over existing MPLS networks.  This document specifies the encapsulation of Ethernet/802.3 PDUs within a pseudowire.  It also specifies the procedures for using a PW to provide a point-to-point Ethernet service. [STANDARDS-TRACK]"];
+  cites -> RFC4448;
+  RFC5086 [label="RFC5086
+Structure-Aware Time Division
+Multiplexed (TDM) Circuit Emulation
+Service over Packet Switched Network
+(CESoPSN)
+2007", shape=ellipse, URL="RFC5086.html", target="_top", tooltip="This document describes a method for encapsulating structured (NxDS0) Time Division Multiplexed (TDM) signals as pseudowires over packet-switching networks (PSNs).  In this regard, it complements similar work for structure-agnostic emulation of TDM bit-streams (see RFC 4553).  This memo provides information for the Internet community."];
+  cites -> RFC5086;
+  RFC5087 [label="RFC5087
+Time Division Multiplexing over IP
+(TDMoIP)
+2007", shape=ellipse, URL="RFC5087.html", target="_top", tooltip="Time Division Multiplexing over IP (TDMoIP) is a structure-aware method for transporting Time Division Multiplexed (TDM) signals using pseudowires (PWs).  Being structure-aware, TDMoIP is able to ensure TDM structure integrity, and thus withstand network degradations better than structure-agnostic transport.  Structure-aware methods can distinguish individual channels, enabling packet loss concealment and bandwidth conservation.  Accessibility of TDM signaling facilitates mechanisms that exploit or manipulate signaling.  This memo provides information for the Internet community."];
+  cites -> RFC5087;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8084;
+  RFC8083 [label="RFC8083
+Multimedia Congestion Control: Circuit
+Breakers for Unicast RTP Sessions
+2017", shape=ellipse, URL="RFC8083.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is widely used in telephony, video conferencing, and telepresence applications. Such applications are often run on best-effort UDP/IP networks. If congestion control is not implemented in these applications, then network congestion can lead to uncontrolled packet loss and a resulting deterioration of the user's multimedia experience. The congestion control algorithm acts as a safety measure by stopping RTP flows from using excessive resources and protecting the network from overload. At the time of this writing, however, while there are several proprietary solutions, there is no standard algorithm for congestion control of interactive RTP flows. This document does not propose a congestion control algorithm. It instead defines a minimal set of RTP circuit breakers: conditions under which an RTP sender needs to stop transmitting media data to protect the network from excessive congestion. It is expected that, in the absence of long-lived excessive congestion, RTP applications running on best-effort IP networks will be able to operate without triggering these circuit breakers. To avoid triggering the RTP circuit breaker, any Standards Track congestion control algorithms defined for RTP will need to operate within the envelope set by these RTP circuit breaker algorithms."];
+  RFC8083 -> rev_cites;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  RFC8085 -> rev_cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  RFC8402 -> rev_cites;
+  RFC8517 [label="RFC8517
+An Inventory of Transport-Centric
+Functions Provided by Middleboxes: An
+Operator Perspective
+2019", shape=ellipse, URL="RFC8517.html", target="_top", tooltip="This document summarizes an operator's perception of the benefits that may be provided by intermediary devices that execute functions beyond normal IP forwarding. Such intermediary devices are often called middleboxes. RFC 3234 defines a taxonomy of middleboxes and issues in the Internet. Most of those middleboxes utilize or modify application- layer data. This document primarily focuses on devices that observe and act on information carried in the transport layer, and especially information carried in TCP packets."];
+  RFC8517 -> rev_cites;
+  RFC9065 [label="RFC9065
+Considerations around Transport Header
+Confidentiality, Network Operations, and
+the Evolution of Internet Transport
+Protocols
+2021", shape=ellipse, URL="RFC9065.html", target="_top", tooltip="To protect user data and privacy, Internet transport protocols have supported payload encryption and authentication for some time. Such encryption and authentication are now also starting to be applied to the transport protocol headers. This helps avoid transport protocol ossification by middleboxes, mitigate attacks against the transport protocol, and protect metadata about the communication. Current operational practice in some networks inspect transport header information within the network, but this is no longer possible when those transport headers are encrypted. This document discusses the possible impact when network traffic uses a protocol with an encrypted transport header. It suggests issues to consider when designing new transport protocols or features."];
+  RFC9065 -> rev_cites;
+  RFC9232 [label="RFC9232
+Network Telemetry Framework
+2022", shape=ellipse, URL="RFC9232.html", target="_top", tooltip="Network telemetry is a technology for gaining network insight and facilitating efficient and automated network management.  It encompasses various techniques for remote data generation, collection, correlation, and consumption.  This document describes an architectural framework for network telemetry, motivated by challenges that are encountered as part of the operation of networks and by the requirements that ensue.  This document clarifies the terminology and classifies the modules and components of a network telemetry system from different perspectives.  The framework and taxonomy help to set a common ground for the collection of related work and provide guidance for related technique and standard developments."];
+  RFC9232 -> rev_cites;
+  RFC9317 [label="RFC9317
+Operational Considerations for Streaming
+Media
+2022", shape=ellipse, URL="RFC9317.html", target="_top", tooltip="This document provides an overview of operational networking and transport protocol issues that pertain to the quality of experience (QoE) when streaming video and other high-bitrate media over the Internet. This document explains the characteristics of streaming media delivery that have surprised network designers or transport experts who lack specific media expertise, since streaming media highlights key differences between common assumptions in existing networking practices and observations of media delivery issues encountered when streaming media over those existing networks."];
+  RFC9317 -> rev_cites;
+  RFC9347 [label="RFC9347
+Aggregation and Fragmentation Mode for
+Encapsulating Security Payload (ESP) and
+Its Use for IP Traffic Flow Security
+(IP-TFS)
+2023", shape=ellipse, URL="RFC9347.html", target="_top", tooltip="This document describes a mechanism for aggregation and fragmentation of IP packets when they are being encapsulated in Encapsulating Security Payload (ESP).  This new payload type can be used for various purposes, such as decreasing encapsulation overhead for small IP packets; however, the focus in this document is to enhance IP Traffic Flow Security (IP-TFS) by adding Traffic Flow Confidentiality (TFC) to encrypted IP-encapsulated traffic.  TFC is provided by obscuring the size and frequency of IP traffic using a fixed-size, constant-send-rate IPsec tunnel.  The solution allows for congestion control, as well as nonconstant send-rate usage."];
+  RFC9347 -> rev_cites;
+  RFC9599 [label="RFC9599
+Guidelines for Adding Congestion
+Notification to Protocols that
+Encapsulate IP
+2024", shape=ellipse, URL="RFC9599.html", target="_top", tooltip="The purpose of this document is to guide the design of congestion notification in any lower-layer or tunnelling protocol that encapsulates IP.  The aim is for explicit congestion signals to propagate consistently from lower-layer protocols into IP.  Then, the IP internetwork layer can act as a portability layer to carry congestion notification from non-IP-aware congested nodes up to the transport layer (L4).  Specifications that follow these guidelines, whether produced by the IETF or other standards bodies, should assure interworking among IP-layer and lower-layer congestion notification mechanisms.  This document is included in BCP 89 and updates the single paragraph of advice to subnetwork designers about Explicit Congestion Notification (ECN) in Section 13 of RFC 3819 by replacing it with a reference to this document."];
+  RFC9599 -> rev_cites;
+  RFC9622 [label="RFC9622
+An Abstract Application Programming
+Interface (API) for Transport Services
+2025", shape=ellipse, URL="RFC9622.html", target="_top", tooltip="This document describes an abstract Application Programming Interface (API) to the transport layer that enables the selection of transport protocols and network paths dynamically at runtime.  This API enables faster deployment of new protocols and protocol features without requiring changes to the applications.  The specified API follows the Transport Services Architecture by providing asynchronous, atomic transmission of Messages.  It is intended to replace the BSD Socket API as the common interface to the transport layer, in an environment where endpoints could select from multiple network paths and potential transport protocols."];
+  RFC9622 -> rev_cites;
+  RFC9743 [label="RFC9743
+Specifying New Congestion Control
+Algorithms
+2025", shape=ellipse, URL="RFC9743.html", target="_top", tooltip="RFC 5033 discusses the principles and guidelines for standardizing new congestion control algorithms.  This document obsoletes RFC 5033 to reflect changes in the congestion control landscape by providing a framework for the development and assessment of congestion control mechanisms, promoting stability across diverse network paths.  This document seeks to ensure that proposed congestion control algorithms operate efficiently and without harm when used in the global Internet.  It emphasizes the need for comprehensive testing and validation to prevent adverse interactions with existing flows."];
+  RFC9743 -> rev_cites;
+}

@@ -1,0 +1,256 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8664 [label="RFC8664
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Segment
+Routing
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="Segment Routing (SR) enables any head-end node to select any path without relying on a hop-by-hop signaling technique (e.g., LDP or RSVP-TE). It depends only on segments that are advertised by link-state Interior Gateway Protocols (IGPs). An SR path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), an explicit configuration, or a Path Computation Element (PCE). This document specifies extensions to the Path Computation Element Communication Protocol (PCEP) that allow a stateful PCE to compute and initiate Traffic-Engineering (TE) paths, as well as a Path Computation Client (PCC) to request a path subject to certain constraints and optimization criteria in SR networks. This document updates RFC 8408."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8664;
+
+  obs [label="obsoletes", shape=box];
+  RFC8664 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8664 -> updates;
+  RFC8408 [label="RFC8408
+Conveying Path Setup Type in PCE
+Communication Protocol (PCEP) Messages
+2018", shape=ellipse, URL="RFC8408.html", target="_top", tooltip="A Path Computation Element (PCE) can compute Traffic Engineering (TE) paths through a network; these paths are subject to various constraints.  Currently, TE paths are Label Switched Paths (LSPs) that are set up using the RSVP-TE signaling protocol.  However, other TE path setup methods are possible within the PCE architecture.  This document proposes an extension to the PCE Communication Protocol (PCEP) to allow support for different path setup methods over a given PCEP session."];
+  updates -> RFC8408;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8664;
+  RFC9756 [label="RFC9756
+Update to the IANA Path Communication
+Element Protocol (PCEP) Numbers
+Registration Procedures and the
+Allowance of Experimental Error Codes
+2025", shape=ellipse, URL="RFC9756.html", target="_top", tooltip="This document updates the registration procedure within the IANA Path Computation Element Protocol (PCEP) Numbers registry group. This specification changes some of the registries with Standards Action to IETF Review as defined in RFC 8126 and thus updates RFCs 8231, 8233, 8281, 8623, 8664, 8685, 8697, 8733, 8745, 8779, 8780, 8800, 8934, 9050, 9059, 9168, 9357, 9504, 9603, and 9604. Designating experimental use sub-ranges within codepoint registries is often beneficial for protocol experimentation in controlled environments. Although the registries for PCEP messages, objects, and TLV types have sub-ranges assigned for Experimental Use, the registry for PCEP Error-Types and Error-values currently does not. This document updates RFC 5440 by designating a specific range of PCEP Error-Types for Experimental Use."];
+  RFC9756 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC8664 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8667 [label="RFC8667
+IS-IS Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8667.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological sub-paths, called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the IS-IS extensions that need to be introduced for Segment Routing operating on an MPLS data plane."];
+  cites -> RFC8667;
+  RFC8665 [label="RFC8665
+OSPF Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8665.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv2 extensions required for Segment Routing."];
+  cites -> RFC8665;
+  RFC8660 [label="RFC8660
+Segment Routing with the MPLS Data Plane
+2019", shape=ellipse, URL="RFC8660.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm.  A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header.  In the MPLS data plane, the SR header is instantiated through a label stack.  This document specifies the forwarding behavior to allow instantiating SR over the MPLS data plane (SR-MPLS)."];
+  cites -> RFC8660;
+  RFC5440 [label="RFC5440
+Path Computation Element (PCE)
+Communication Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5440.html", target="_top", tooltip="This document specifies the Path Computation Element (PCE) Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a PCE, or between two PCEs.  Such interactions include path computation requests and path computation replies as well as notifications of specific states related to the use of a PCE in the context of Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering.  PCEP is designed to be flexible and extensible so as to easily allow for the addition of further messages and objects, should further requirements be expressed in the future. [STANDARDS-TRACK]"];
+  cites -> RFC5440;
+  RFC8231 [label="RFC8231
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Stateful
+PCE
+2017", shape=ellipse, URL="RFC8231.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) provides mechanisms for Path Computation Elements (PCEs) to perform path computations in response to Path Computation Client (PCC) requests. Although PCEP explicitly makes no assumptions regarding the information available to the PCE, it also makes no provisions for PCE control of timing and sequence of path computations within and across PCEP sessions. This document describes a set of extensions to PCEP to enable stateful control of MPLS-TE and GMPLS Label Switched Paths (LSPs) via PCEP."];
+  cites -> RFC8231;
+  RFC4657 [label="RFC4657
+Path Computation Element (PCE)
+Communication Protocol Generic
+Requirements
+2006", shape=ellipse, URL="RFC4657.html", target="_top", tooltip="The PCE model is described in the PCE Architecture document and facilitates path computation requests from Path Computation Clients (PCCs) to Path Computation Elements (PCEs).  This document specifies generic requirements for a communication protocol between PCCs and PCEs, and also between PCEs where cooperation between PCEs is desirable.  Subsequent documents will specify application-specific requirements for the PCE communication protocol.  This memo provides information for the Internet community."];
+  cites -> RFC4657;
+  RFC8281 [label="RFC8281
+Path Computation Element Communication
+Protocol (PCEP) Extensions for PCE-
+Initiated LSP Setup in a Stateful PCE
+Model
+2017", shape=ellipse, URL="RFC8281.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) provides mechanisms for Path Computation Elements (PCEs) to perform path computations in response to Path Computation Client (PCC) requests. The extensions for stateful PCE provide active control of Multiprotocol Label Switching (MPLS) Traffic Engineering Label Switched Paths (TE LSPs) via PCEP, for a model where the PCC delegates control over one or more locally configured LSPs to the PCE. This document describes the creation and deletion of PCE-initiated LSPs under the stateful PCE model."];
+  cites -> RFC8281;
+  RFC8413 [label="RFC8413
+Framework for Scheduled Use of Resources
+2018", shape=ellipse, URL="RFC8413.html", target="_top", tooltip="Time-Scheduled (TS) reservation of Traffic Engineering (TE) resources can be used to provide resource booking for TE Label Switched Paths so as to better guarantee services for customers and to improve the efficiency of network resource usage at any moment in time, including network usage that is planned for the future.  This document provides a framework that describes and discusses the architecture for supporting scheduled reservation of TE resources.  This document does not describe specific protocols or protocol extensions needed to realize this service."];
+  cites -> RFC8413;
+  RFC8408 [label="RFC8408
+Conveying Path Setup Type in PCE
+Communication Protocol (PCEP) Messages
+2018", shape=ellipse, URL="RFC8408.html", target="_top", tooltip="A Path Computation Element (PCE) can compute Traffic Engineering (TE) paths through a network; these paths are subject to various constraints.  Currently, TE paths are Label Switched Paths (LSPs) that are set up using the RSVP-TE signaling protocol.  However, other TE path setup methods are possible within the PCE architecture.  This document proposes an extension to the PCE Communication Protocol (PCEP) to allow support for different path setup methods over a given PCEP session."];
+  cites -> RFC8408;
+  RFC8491 [label="RFC8491
+Signaling Maximum SID Depth (MSD) Using
+IS-IS
+2018", shape=ellipse, URL="RFC8491.html", target="_top", tooltip="This document defines a way for an Intermediate System to Intermediate System (IS-IS) router to advertise multiple types of supported Maximum SID Depths (MSDs) at node and/or link granularity.  Such advertisements allow entities (e.g., centralized controllers) to determine whether a particular Segment ID (SID) stack can be supported in a given network.  This document only defines one type of MSD: Base MPLS Imposition.  However, it defines an encoding that can support other MSD types.  This document focuses on MSD use in a network that is Segment Routing (SR) enabled, but MSD may also be useful when SR is not enabled."];
+  cites -> RFC8491;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC3032 [label="RFC3032
+MPLS Label Stack Encoding
+2001", shape=ellipse, URL="RFC3032.html", target="_top", tooltip="This document specifies the encoding to be used by an LSR in order to transmit labeled packets on Point-to-Point Protocol (PPP) data links, on LAN data links, and possibly on other data links as well.  This document also specifies rules and procedures for processing the various fields of the label stack encoding. [STANDARDS-TRACK]"];
+  cites -> RFC3032;
+  RFC8476 [label="RFC8476
+Signaling Maximum SID Depth (MSD) Using
+OSPF
+2018", shape=ellipse, URL="RFC8476.html", target="_top", tooltip="This document defines a way for an Open Shortest Path First (OSPF) router to advertise multiple types of supported Maximum SID Depths (MSDs) at node and/or link granularity.  Such advertisements allow entities (e.g., centralized controllers) to determine whether a particular Segment Identifier (SID) stack can be supported in a given network.  This document only refers to the Signaling MSD as defined in RFC 8491, but it defines an encoding that can support other MSD types.  Here, the term OSPF means both OSPFv2 and OSPFv3."];
+  cites -> RFC8476;
+  RFC7420 [label="RFC7420
+Path Computation Element Communication
+Protocol (PCEP) Management Information
+Base (MIB) Module
+2014", shape=ellipse, URL="RFC7420.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects for modeling of the Path Computation Element Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a Path Computation Element (PCE), or between two PCEs."];
+  cites -> RFC7420;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8664;
+  RFC8745 [label="RFC8745
+Path Computation Element Communication
+Protocol (PCEP) Extensions for
+Associating Working and Protection Label
+Switched Paths (LSPs) with Stateful PCE
+2020", shape=ellipse, URL="RFC8745.html", target="_top", tooltip="An active stateful Path Computation Element (PCE) is capable of computing as well as controlling via Path Computation Element Communication Protocol (PCEP) Multiprotocol Label Switching Traffic Engineering (MPLS-TE) Label Switched Paths (LSPs).  Furthermore, it is also possible for an active stateful PCE to create, maintain, and delete LSPs.  This document defines the PCEP extension to associate two or more LSPs to provide end-to-end path protection."];
+  RFC8745 -> rev_cites;
+  RFC8814 [label="RFC8814
+Signaling Maximum SID Depth (MSD) Using
+the Border Gateway Protocol - Link State
+2020", shape=ellipse, URL="RFC8814.html", target="_top", tooltip="This document defines a way for a Border Gateway Protocol - Link
+State (BGP-LS) speaker to advertise multiple types of supported
+Maximum SID Depths (MSDs) at node and/or link granularity. Such advertisements allow entities (e.g., centralized controllers) to
+determine whether a particular Segment Identifier (SID) stack can be
+supported in a given network."];
+  RFC8814 -> rev_cites;
+  RFC9005 [label="RFC9005
+Path Computation Element Communication
+Protocol (PCEP) Extension for
+Associating Policies and Label Switched
+Paths (LSPs)
+2021", shape=ellipse, URL="RFC9005.html", target="_top", tooltip="This document introduces a simple mechanism to associate policies with a group of Label Switched Paths (LSPs) via an extension to the Path Computation Element Communication Protocol (PCEP).  The extension allows a PCEP speaker to advertise to a PCEP peer that a particular LSP belongs to a particular Policy Association Group (PAG)."];
+  RFC9005 -> rev_cites;
+  RFC9050 [label="RFC9050
+Path Computation Element Communication
+Protocol (PCEP) Procedures and
+Extensions for Using the PCE as a
+Central Controller (PCECC) of LSPs
+2021", shape=ellipse, URL="RFC9050.html", target="_top", tooltip="The Path Computation Element (PCE) is a core component of Software-Defined Networking (SDN) systems. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN and without necessarily completely replacing it. Thus, the Label Switched Path (LSP) can be calculated/set up/initiated and the label-forwarding entries can also be downloaded through a centralized PCE server to each network device along the path while leveraging the existing PCE technologies as much as possible. This document specifies the procedures and Path Computation Element Communication Protocol (PCEP) extensions for using the PCE as the central controller for provisioning labels along the path of the static LSP."];
+  RFC9050 -> rev_cites;
+  RFC9087 [label="RFC9087
+Segment Routing Centralized BGP Egress
+Peer Engineering
+2021", shape=ellipse, URL="RFC9087.html", target="_top", tooltip="Segment Routing (SR) leverages source routing. A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows for the enforcement of a flow through any topological path while maintaining per-flow state only at the ingress node of the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change on the forwarding plane. It requires a minor extension to the existing link-state routing protocols. This document illustrates the application of Segment Routing to solve the BGP Egress Peer Engineering (BGP-EPE) requirement. The SR-based BGP-EPE solution allows a centralized (Software-Defined Networking, or SDN) controller to program any egress peer policy at ingress border routers or at hosts within the domain."];
+  RFC9087 -> rev_cites;
+  RFC9160 [label="RFC9160
+Export of MPLS Segment Routing Label
+Type Information in IP Flow Information
+Export (IPFIX)
+2021", shape=ellipse, URL="RFC9160.html", target="_top", tooltip="This document introduces new IP Flow Information Export (IPFIX) code points to identify which traffic is being forwarded based on which MPLS control plane protocol is used within a Segment Routing domain.  In particular, this document defines five code points for the IPFIX mplsTopLabelType Information Element for Path Computation Element (PCE), IS-IS, OSPFv2, OSPFv3, and BGP MPLS Segment Routing extensions."];
+  RFC9160 -> rev_cites;
+  RFC9168 [label="RFC9168
+Path Computation Element Communication
+Protocol (PCEP) Extension for Flow
+Specification
+2022", shape=ellipse, URL="RFC9168.html", target="_top", tooltip="The Path Computation Element (PCE) is a functional component capable of selecting paths through a traffic engineering (TE) network. These paths may be supplied in response to requests for computation or may be unsolicited requests issued by the PCE to network elements. Both approaches use the PCE Communication Protocol (PCEP) to convey the details of the computed path. Traffic flows may be categorized and described using Flow Specifications. RFC 8955 defines the Flow Specification and describes how Flow Specification components are used to describe traffic flows. RFC 8955 also defines how Flow Specifications may be distributed in BGP to allow specific traffic flows to be associated with routes. This document specifies a set of extensions to PCEP to support dissemination of Flow Specifications. This allows a PCE to indicate what traffic should be placed on each path that it is aware of. The extensions defined in this document include the creation, update, and withdrawal of Flow Specifications via PCEP and can be applied to tunnels initiated by the PCE or to tunnels where control is delegated to the PCE by the Path Computation Client (PCC). Furthermore, a PCC requesting a new path can include Flow Specifications in the request to indicate the purpose of the tunnel allowing the PCE to factor this into the path computation."];
+  RFC9168 -> rev_cites;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  RFC9256 -> rev_cites;
+  RFC9488 [label="RFC9488
+Local Protection Enforcement in the Path
+Computation Element Communication
+Protocol (PCEP)
+2023", shape=ellipse, URL="RFC9488.html", target="_top", tooltip="This document updates RFC 5440 to clarify usage of the Local Protection Desired bit signaled in the Path Computation Element Communication Protocol (PCEP).  This document also introduces a new flag for signaling protection enforcement in PCEP."];
+  RFC9488 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+  RFC9545 [label="RFC9545
+Path Segment Identifier in MPLS-Based
+Segment Routing Networks
+2024", shape=ellipse, URL="RFC9545.html", target="_top", tooltip="A Segment Routing (SR) path is identified by an SR segment list. A subset of segments from the segment list cannot be leveraged to distinguish one SR path from another as they may be partially congruent. SR path identification is a prerequisite for various use cases such as performance measurement and end-to-end 1+1 path protection. In an SR over MPLS (SR-MPLS) data plane, an egress node cannot determine on which SR path a packet traversed the network from the label stack because the segment identifiers are removed from the label stack as the packet transits the network. This document defines a Path Segment Identifier (PSID) to identify an SR path on the egress node of the path."];
+  RFC9545 -> rev_cites;
+  RFC9603 [label="RFC9603
+Path Computation Element Communication
+Protocol (PCEP) Extensions for IPv6
+Segment Routing
+2024", shape=ellipse, URL="RFC9603.html", target="_top", tooltip="Segment Routing (SR) can be used to steer packets through a network using the IPv6 or MPLS data plane, employing the source routing paradigm. An SR Path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), explicit configuration, or a Path Computation Element (PCE). Since SR can be applied to both MPLS and IPv6 data planes, a PCE should be able to compute an SR Path for both MPLS and IPv6 data planes. The Path Computation Element Communication Protocol (PCEP) extension and mechanisms to support SR-MPLS have been defined. This document outlines the necessary extensions to support SR for the IPv6 data plane within PCEP."];
+  RFC9603 -> rev_cites;
+  RFC9604 [label="RFC9604
+Carrying Binding Label/SID in PCE-Based
+Networks
+2024", shape=ellipse, URL="RFC9604.html", target="_top", tooltip="In order to provide greater scalability, network confidentiality, and service independence, Segment Routing (SR) utilizes a Binding Segment Identifier (BSID), as described in RFC 8402.  It is possible to associate a BSID to an RSVP-TE-signaled Traffic Engineering (TE) Label Switched Path (LSP) or an SR TE path.  The BSID can be used by an upstream node for steering traffic into the appropriate TE path to enforce SR policies.  This document specifies the concept of binding value, which can be either an MPLS label or a Segment Identifier (SID).  It further specifies an extension to Path Computation Element Communication Protocol (PCEP) for reporting the binding value by a Path Computation Client (PCC) to the Path Computation Element (PCE) to support PCE-based TE policies."];
+  RFC9604 -> rev_cites;
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, URL="RFC9689.html", target="_top", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."];
+  RFC9689 -> rev_cites;
+  RFC9702 [label="RFC9702
+YANG Data Model for Maximum Segment
+Identifier (SID) Depth (MSD) Types and
+MPLS MSD
+2025", shape=ellipse, URL="RFC9702.html", target="_top", tooltip="This document defines two YANG modules.  The first module is the initial version of the IANA-maintained YANG module for Maximum Segment Identifier (SID) Depth (MSD) Types, which includes identities for both the MPLS data plane and Segment Routing over IPv6 (SRv6) data plane.  The second module augments the IETF MPLS YANG data model to provide support for MPLS MSDs as defined in RFCs 8476 and 8491."];
+  RFC9702 -> rev_cites;
+  RFC9703 [label="RFC9703
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+Egress Peer Engineering (EPE) Segment
+Identifiers (SIDs) with MPLS Data Plane
+2024", shape=ellipse, URL="RFC9703.html", target="_top", tooltip="Egress Peer Engineering (EPE) is an application of Segment Routing (SR) that solves the problem of egress peer selection.  The SR-based BGP-EPE solution allows a centralized controller, e.g., a Software-Defined Network (SDN) controller, to program any egress peer.  The EPE solution requires the node or the SDN controller to program 1) the PeerNode Segment Identifier (SID) describing a session between two nodes, 2) the PeerAdj SID describing the link or links that are used by the sessions between peer nodes, and 3) the PeerSet SID describing any connected interface to any peer in the related group.  This document provides new sub-TLVs for EPE-SIDs that are used in the Target FEC Stack TLV (Type 1) in MPLS Ping and Traceroute procedures."];
+  RFC9703 -> rev_cites;
+  RFC9756 [label="RFC9756
+Update to the IANA Path Communication
+Element Protocol (PCEP) Numbers
+Registration Procedures and the
+Allowance of Experimental Error Codes
+2025", shape=ellipse, URL="RFC9756.html", target="_top", tooltip="This document updates the registration procedure within the IANA Path Computation Element Protocol (PCEP) Numbers registry group. This specification changes some of the registries with Standards Action to IETF Review as defined in RFC 8126 and thus updates RFCs 8231, 8233, 8281, 8623, 8664, 8685, 8697, 8733, 8745, 8779, 8780, 8800, 8934, 9050, 9059, 9168, 9357, 9504, 9603, and 9604. Designating experimental use sub-ranges within codepoint registries is often beneficial for protocol experimentation in controlled environments. Although the registries for PCEP messages, objects, and TLV types have sub-ranges assigned for Experimental Use, the registry for PCEP Error-Types and Error-values currently does not. This document updates RFC 5440 by designating a specific range of PCEP Error-Types for Experimental Use."];
+  RFC9756 -> rev_cites;
+  RFC9826 [label="RFC9826
+A YANG Data Model for the Path
+Computation Element Communication
+Protocol (PCEP)
+2025", shape=ellipse, URL="RFC9826.html", target="_top", tooltip="This document defines a YANG data model for the management of the Path Computation Element Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a Path Computation Element (PCE), or between two PCEs."];
+  RFC9826 -> rev_cites;
+  RFC9857 [label="RFC9857
+Advertisement of Segment Routing
+Policies Using BGP - Link State
+2025", shape=ellipse, URL="RFC9857.html", target="_top", tooltip="This document describes a mechanism used to collect Segment Routing (SR) Policy information that is locally available in a node and advertise it into BGP - Link State (BGP-LS) updates.  Such information can be used by external components for path computation, reoptimization, service placement, network visualization, etc."];
+  RFC9857 -> rev_cites;
+  RFC9862 [label="RFC9862
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Segment
+Routing (SR) Policy Candidate Paths
+2025", shape=ellipse, URL="RFC9862.html", target="_top", tooltip="A Segment Routing (SR) Policy is an ordered list of instructions called segments that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated. An SR Policy is made of one or more Candidate Paths. This document specifies the Path Computation Element Communication Protocol (PCEP) extension to signal Candidate Paths of an SR Policy. Additionally, this document updates RFC 8231 to allow delegation and setup of an SR Label Switched Path (LSP) without using the path computation request and reply messages. This document is applicable to both Segment Routing over MPLS (SR-MPLS) and Segment Routing over IPv6 (SRv6)."];
+  RFC9862 -> rev_cites;
+  RFC9863 [label="RFC9863
+Path Computation Element Protocol (PCEP)
+Extension for Color
+2025", shape=ellipse, URL="RFC9863.html", target="_top", tooltip="Color is a 32-bit numerical (unsigned integer) attribute used to associate a Traffic Engineering (TE) tunnel or policy with an intent or objective.  For example, a TE Tunnel constructed to deliver low latency services and whose path is optimized for delay can be tagged with a color that represents low latency. This document specifies extensions to the Path Computation Element Protocol (PCEP) to carry the color attribute."];
+  RFC9863 -> rev_cites;
+}

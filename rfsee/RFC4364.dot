@@ -1,0 +1,695 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4364;
+
+  obs [label="obsoletes", shape=box];
+  RFC4364 -> obs;
+  RFC2547 [label="RFC2547
+BGP/MPLS VPNs
+1999", shape=ellipse, URL="RFC2547.html", target="_top", tooltip="This document describes a method by which a Service Provider with an IP backbone may provide VPNs (Virtual Private Networks) for its customers.  This memo provides information for the Internet community."];
+  obs -> RFC2547;
+
+  updates [label="updates", shape=box];
+  RFC4364 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4364;
+  RFC4577 [label="RFC4577
+OSPF as the Provider/Customer Edge
+Protocol for BGP/MPLS IP Virtual Private
+Networks (VPNs)
+2006", shape=ellipse, URL="RFC4577.html", target="_top", tooltip="Many Service Providers offer Virtual Private Network (VPN) services to their customers, using a technique in which customer edge routers (CE routers) are routing peers of provider edge routers (PE routers). The Border Gateway Protocol (BGP) is used to distribute the customer's routes across the provider's IP backbone network, and Multiprotocol Label Switching (MPLS) is used to tunnel customer packets across the provider's backbone. This is known as a BGP/MPLS IP VPN. The base specification for BGP/MPLS IP VPNs presumes that the routing protocol on the interface between a PE router and a CE router is BGP. This document extends that specification by allowing the routing protocol on the PE/CE interface to be the Open Shortest Path First (OSPF) protocol. This document updates RFC 4364. [STANDARDS-TRACK]"];
+  RFC4577 -> updated_by;
+  RFC4684 [label="RFC4684
+Constrained Route Distribution for
+Border Gateway Protocol/MultiProtocol
+Label Switching (BGP/MPLS) Internet
+Protocol (IP) Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4684.html", target="_top", tooltip="This document defines Multi-Protocol BGP (MP-BGP) procedures that allow BGP speakers to exchange Route Target reachability information.  This information can be used to build a route distribution graph in order to limit the propagation of Virtual Private Network (VPN) Network Layer Reachability Information (NLRI) between different autonomous systems or distinct clusters of the same autonomous system.  This document updates RFC 4364. [STANDARDS-TRACK]"];
+  RFC4684 -> updated_by;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  RFC5462 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4364 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4364;
+  RFC4360 [label="RFC4360
+BGP Extended Communities Attribute
+2006", shape=ellipse, URL="RFC4360.html", target="_top", tooltip="This document describes the extended community BGP-4 attribute.  This attribute provides a mechanism for labeling information carried in BGP-4.  These labels can be used to control the distribution of this information, or for other applications. [STANDARDS-TRACK]"];
+  RFC4360 -> rev_cites;
+  RFC4382 [label="RFC4382
+MPLS/BGP Layer 3 Virtual Private Network
+(VPN) Management Information Base
+2006", shape=ellipse, URL="RFC4382.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects to configure and/or monitor Multiprotocol Label Switching Layer-3 Virtual Private Networks on a Multiprotocol Label Switching (MPLS) Label Switching Router (LSR) supporting this feature. [STANDARDS-TRACK]"];
+  RFC4382 -> rev_cites;
+  RFC4655 [label="RFC4655
+A Path Computation Element (PCE)-Based
+Architecture
+2006", shape=ellipse, URL="RFC4655.html", target="_top", tooltip="Constraint-based path computation is a fundamental building block for traffic engineering systems such as Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) networks. Path computation in large, multi-domain, multi-region, or multi-layer networks is complex and may require special computational components and cooperation between the different network domains. This document specifies the architecture for a Path Computation Element (PCE)-based model to address this problem space. This document does not attempt to provide a detailed description of all the architectural components, but rather it describes a set of building blocks for the PCE architecture from which solutions may be constructed. This memo provides information for the Internet community."];
+  RFC4655 -> rev_cites;
+  RFC4762 [label="RFC4762
+Virtual Private LAN Service (VPLS) Using
+Label Distribution Protocol (LDP)
+Signaling
+2007", shape=ellipse, URL="RFC4762.html", target="_top", tooltip="This document describes a Virtual Private LAN Service (VPLS) solution using pseudowires, a service previously implemented over other tunneling technologies and known as Transparent LAN Services (TLS). A VPLS creates an emulated LAN segment for a given set of users; i.e., it creates a Layer 2 broadcast domain that is fully capable of learning and forwarding on Ethernet MAC addresses and that is closed to a given set of users. Multiple VPLS services can be supported from a single Provider Edge (PE) node. This document describes the control plane functions of signaling pseudowire labels using Label Distribution Protocol (LDP), extending RFC 4447. It is agnostic to discovery protocols. The data plane functions of forwarding are also described, focusing in particular on the learning of MAC addresses. The encapsulation of VPLS packets is described by RFC 4448. [STANDARDS-TRACK]"];
+  RFC4762 -> rev_cites;
+  RFC4798 [label="RFC4798
+Connecting IPv6 Islands over IPv4 MPLS
+Using IPv6 Provider Edge Routers (6PE)
+2007", shape=ellipse, URL="RFC4798.html", target="_top", tooltip="This document explains how to interconnect IPv6 islands over a Multiprotocol Label Switching (MPLS)-enabled IPv4 cloud.  This approach relies on IPv6 Provider Edge routers (6PE), which are Dual Stack in order to connect to IPv6 islands and to the MPLS core, which is only required to run IPv4 MPLS.  The 6PE routers exchange the IPv6 reachability information transparently over the core using the Multiprotocol Border Gateway Protocol (MP-BGP) over IPv4.  In doing so, the BGP Next Hop field is used to convey the IPv4 address of the 6PE router so that dynamically established IPv4-signaled MPLS Label Switched Paths (LSPs) can be used without explicit tunnel configuration. [STANDARDS-TRACK]"];
+  RFC4798 -> rev_cites;
+  RFC4834 [label="RFC4834
+Requirements for Multicast in Layer 3
+Provider-Provisioned Virtual Private
+Networks (PPVPNs)
+2007", shape=ellipse, URL="RFC4834.html", target="_top", tooltip="This document presents a set of functional requirements for network solutions that allow the deployment of IP multicast within Layer 3 (L3) Provider-Provisioned Virtual Private Networks (PPVPNs).  It specifies requirements both from the end user and service provider standpoints.  It is intended that potential solutions specifying the support of IP multicast within such VPNs will use these requirements as guidelines.  This memo provides information for the Internet community."];
+  RFC4834 -> rev_cites;
+  RFC4901 [label="RFC4901
+Protocol Extensions for Header
+Compression over MPLS
+2007", shape=ellipse, URL="RFC4901.html", target="_top", tooltip="This specification defines how to use Multi-Protocol Label Switching (MPLS) to route Header-Compressed (HC) packets over an MPLS label switched path.  HC can significantly reduce packet-header overhead and, in combination with MPLS, can also increases bandwidth efficiency and processing scalability in terms of the maximum number of simultaneous compressed flows that use HC at each router).  Here we define how MPLS pseudowires are used to transport the HC context and control messages between the ingress and egress MPLS label switching routers.  This is defined for a specific set of existing HC mechanisms that might be used, for example, to support voice over IP.  This specification also describes extension mechanisms to allow support for future, as yet to be defined, HC protocols.  In this specification, each HC protocol operates independently over a single pseudowire instance, very much as it would over a single point-to-point link. [STANDARDS-TRACK]"];
+  RFC4901 -> rev_cites;
+  RFC4925 [label="RFC4925
+Softwire Problem Statement
+2007", shape=ellipse, URL="RFC4925.html", target="_top", tooltip="This document captures the problem statement for the Softwires Working Group, which is developing standards for the discovery, control, and encapsulation methods for connecting IPv4 networks across IPv6-only networks as well as IPv6 networks across IPv4-only networks.  The standards will encourage multiple, inter-operable vendor implementations by identifying, and extending where necessary, existing standard protocols to resolve a selected set of IPv4/IPv6 and IPv6/IPv4 transition problems.  This document describes the specific problems (Hubs and Spokes and Mesh) that will be solved by the standards developed by the Softwires Working Group.  Some requirements (and non-requirements) are also identified to better describe the specific problem scope.  This memo provides information for the Internet community."];
+  RFC4925 -> rev_cites;
+  RFC5102 [label="RFC5102
+Information Model for IP Flow
+Information Export
+2008", shape=ellipse, URL="RFC5102.html", target="_top", tooltip="This memo defines an information model for the IP Flow Information eXport (IPFIX) protocol.  It is used by the IPFIX protocol for encoding measured traffic information and information related to the traffic Observation Point, the traffic Metering Process, and the Exporting Process.  Although developed for the IPFIX protocol, the model is defined in an open way that easily allows using it in other protocols, interfaces, and applications. [STANDARDS-TRACK]"];
+  RFC5102 -> rev_cites;
+  RFC5254 [label="RFC5254
+Requirements for Multi-Segment
+Pseudowire Emulation Edge-to-Edge (PWE3)
+2008", shape=ellipse, URL="RFC5254.html", target="_top", tooltip="This document describes the necessary requirements to allow a service provider to extend the reach of pseudowires across multiple domains.  These domains can be autonomous systems under one provider administrative control, IGP areas in one autonomous system, different autonomous systems under the administrative control of two or more service providers, or administratively established pseudowire domains.  This memo provides information for the Internet community."];
+  RFC5254 -> rev_cites;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  RFC5462 -> rev_cites;
+  RFC5549 [label="RFC5549
+Advertising IPv4 Network Layer
+Reachability Information with an IPv6
+Next Hop
+2009", shape=ellipse, URL="RFC5549.html", target="_top", tooltip="Multiprotocol BGP (MP-BGP) specifies that the set of network-layer protocols to which the address carried in the Next Hop field may belong is determined by the Address Family Identifier (AFI) and the Subsequent Address Family Identifier (SAFI).  The current AFI/SAFI definitions for the IPv4 address family only have provisions for advertising a Next Hop address that belongs to the IPv4 protocol when advertising IPv4 Network Layer Reachability Information (NLRI) or VPN-IPv4 NLRI.  This document specifies the extensions necessary to allow advertising IPv4 NLRI or VPN-IPv4 NLRI with a Next Hop address that belongs to the IPv6 protocol.  This comprises an extension of the AFI/SAFI definitions to allow the address of the Next Hop for IPv4 NLRI or VPN-IPv4 NLRI to also belong to the IPv6 protocol, the encoding of the Next Hop in order to determine which of the protocols the address actually belongs to, and a new BGP Capability allowing MP-BGP Peers to dynamically discover whether they can exchange IPv4 NLRI and VPN-IPv4 NLRI with an IPv6 Next Hop. [STANDARDS-TRACK]"];
+  RFC5549 -> rev_cites;
+  RFC5565 [label="RFC5565
+Softwire Mesh Framework
+2009", shape=ellipse, URL="RFC5565.html", target="_top", tooltip="The Internet needs to be able to handle both IPv4 and IPv6 packets.  However, it is expected that some constituent networks of the Internet will be single-protocol networks.  One kind of single-protocol network can parse only IPv4 packets and can process only IPv4 routing information; another kind can parse only IPv6 packets and can process only IPv6 routing information.  It is nevertheless required that either kind of single-protocol network be able to provide transit service for the other protocol.  This is done by passing the other kind of routing information from one edge of the single-protocol network to the other, and by tunneling the other kind of data packet from one edge to the other.  The tunnels are known as softwires.  This framework document explains how the routing information and the data packets of one protocol are passed through a single-protocol network of the other protocol.  The document is careful to specify when this can be done with existing technology and when it requires the development of new or modified technology. [STANDARDS-TRACK]"];
+  RFC5565 -> rev_cites;
+  RFC5566 [label="RFC5566
+BGP IPsec Tunnel Encapsulation Attribute
+2009", shape=ellipse, URL="RFC5566.html", target="_top", tooltip="The BGP Encapsulation Subsequent Address Family Identifier (SAFI) provides a method for the dynamic exchange of encapsulation information and for the indication of encapsulation protocol types to be used for different next hops.  Currently, support for Generic Routing Encapsulation (GRE), Layer 2 Tunneling Protocol (L2TPv3), and IP in IP tunnel types are defined.  This document defines support for IPsec tunnel types. [STANDARDS-TRACK]"];
+  RFC5566 -> rev_cites;
+  RFC5575 [label="RFC5575
+Dissemination of Flow Specification
+Rules
+2009", shape=ellipse, URL="RFC5575.html", target="_top", tooltip="This document defines a new Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute traffic flow specifications. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. Additionally, it defines two applications of that encoding format: one that can be used to automate inter-domain coordination of traffic filtering, such as what is required in order to mitigate (distributed) denial-of-service attacks, and a second application to provide traffic filtering in the context of a BGP/MPLS VPN service. The information is carried via the BGP, thereby reusing protocol algorithms, operational experience, and administrative processes such as inter-provider peering agreements. [STANDARDS-TRACK]"];
+  RFC5575 -> rev_cites;
+  RFC5619 [label="RFC5619
+Softwire Security Analysis and
+Requirements
+2009", shape=ellipse, URL="RFC5619.html", target="_top", tooltip="This document describes security guidelines for the softwire Hubs and Spokes and Mesh solutions.  Together with discussion of the softwire deployment scenarios, the vulnerability to security attacks is analyzed to provide security protection mechanisms such as authentication, integrity, and confidentiality to the softwire control and data packets. [STANDARDS-TRACK]"];
+  RFC5619 -> rev_cites;
+  RFC5695 [label="RFC5695
+MPLS Forwarding Benchmarking Methodology
+for IP Flows
+2009", shape=ellipse, URL="RFC5695.html", target="_top", tooltip="This document describes a methodology specific to the benchmarking of Multiprotocol Label Switching (MPLS) forwarding devices, limited to the most common MPLS packet forwarding scenarios and delay measurements for each, considering IP flows.  It builds upon the tenets set forth in RFC 2544, RFC 1242, and other IETF Benchmarking Methodology Working Group (BMWG) efforts.  This document seeks to extend these efforts to the MPLS paradigm.  This memo provides information for the Internet community."];
+  RFC5695 -> rev_cites;
+  RFC5772 [label="RFC5772
+A Set of Possible Requirements for a
+Future Routing Architecture
+2010", shape=ellipse, URL="RFC5772.html", target="_top", tooltip="The requirements for routing architectures described in this document were produced by two sub-groups under the IRTF Routing Research Group (RRG) in 2001, with some editorial updates up to 2006. The two sub- groups worked independently, and the resulting requirements represent two separate views of the problem and of what is required to fix the problem. This document may usefully serve as part of the recommended reading for anyone who works on routing architecture designs for the Internet in the future. The document is published with the support of the IRTF RRG as a record of the work completed at that time, but with the understanding that it does not necessarily represent either the latest technical understanding or the technical consensus of the research group at the date of publication. This document defines a Historic Document for the Internet community."];
+  RFC5772 -> rev_cites;
+  RFC5773 [label="RFC5773
+Analysis of Inter-Domain Routing
+Requirements and History
+2010", shape=ellipse, URL="RFC5773.html", target="_top", tooltip="This document analyzes the state of the Internet domain-based routing system, concentrating on Inter-Domain Routing (IDR) and also considering the relationship between inter-domain and intra-domain routing.  The analysis is carried out with respect to RFC 1126 and other IDR requirements and design efforts looking at the routing system as it appeared to be in 2001 with editorial additions reflecting developments up to 2006.  It is the companion document to A Set of Possible Requirements for a Future Routing Architecture (RFC 5772), which is a discussion of requirements for the future routing architecture, addressing systems developments and future routing protocols.  This document summarizes discussions held several years ago by members of the IRTF Routing Research Group (IRTF RRG) and other interested parties.  The document is published with the support of the IRTF RRG as a record of the work completed at that time, but with the understanding that it does not necessarily represent either the latest technical understanding or the technical consensus of the research group at the date of publication.  This document defines a Historic Document for the Internet community."];
+  RFC5773 -> rev_cites;
+  RFC5824 [label="RFC5824
+Requirements for Supporting Customer
+Resource ReSerVation Protocol (RSVP) and
+RSVP Traffic Engineering (RSVP-TE) over
+a BGP/MPLS IP-VPN
+2010", shape=ellipse, URL="RFC5824.html", target="_top", tooltip="Today, customers expect to run triple-play services through BGP/MPLS IP-VPNs. Some service providers will deploy services that request Quality of Service (QoS) guarantees from a local Customer Edge (CE) to a remote CE across the network. As a result, the application (e.g., voice, video, bandwidth-guaranteed data pipe, etc.) requirements for an end-to-end QoS and reserving an adequate bandwidth continue to increase. Service providers can use both an MPLS and an MPLS Traffic Engineering (MPLS-TE) Label Switched Path (LSP) to meet their service objectives. This document describes service-provider requirements for supporting a customer Resource ReSerVation Protocol (RSVP) and RSVP-TE over a BGP/MPLS IP-VPN. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5824 -> rev_cites;
+  RFC5884 [label="RFC5884
+Bidirectional Forwarding Detection (BFD)
+for MPLS Label Switched Paths (LSPs)
+2010", shape=ellipse, URL="RFC5884.html", target="_top", tooltip="One desirable application of Bidirectional Forwarding Detection (BFD) is to detect a Multiprotocol Label Switching (MPLS) Label Switched Path (LSP) data plane failure.  LSP Ping is an existing mechanism for detecting MPLS data plane failures and for verifying the MPLS LSP data plane against the control plane.  BFD can be used for the former, but not for the latter.  However, the control plane processing required for BFD Control packets is relatively smaller than the processing required for LSP Ping messages.  A combination of LSP Ping and BFD can be used to provide faster data plane failure detection and/or make it possible to provide such detection on a greater number of LSPs.  This document describes the applicability of BFD in relation to LSP Ping for this application.  It also describes procedures for using BFD in this environment. [STANDARDS-TRACK]"];
+  RFC5884 -> rev_cites;
+  RFC5920 [label="RFC5920
+Security Framework for MPLS and GMPLS
+Networks
+2010", shape=ellipse, URL="RFC5920.html", target="_top", tooltip="This document provides a security framework for Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) Networks.  This document addresses the security aspects that are relevant in the context of MPLS and GMPLS.  It describes the security threats, the related defensive techniques, and the mechanisms for detection and reporting.  This document emphasizes RSVP-TE and LDP security considerations, as well as inter-AS and inter-provider security considerations for building and maintaining MPLS and GMPLS networks across different domains or different Service Providers.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5920 -> rev_cites;
+  RFC5921 [label="RFC5921
+A Framework for MPLS in Transport
+Networks
+2010", shape=ellipse, URL="RFC5921.html", target="_top", tooltip="This document specifies an architectural framework for the application of Multiprotocol Label Switching (MPLS) to the construction of packet-switched transport networks. It describes a common set of protocol functions -- the MPLS Transport Profile (MPLS-TP) -- that supports the operational models and capabilities typical of such networks, including signaled or explicitly provisioned bidirectional connection-oriented paths, protection and restoration mechanisms, comprehensive Operations, Administration, and Maintenance (OAM) functions, and network operation in the absence of a dynamic control plane or IP forwarding support. Some of these functions are defined in existing MPLS specifications, while others require extensions to existing specifications to meet the requirements of the MPLS-TP. This document defines the subset of the MPLS-TP applicable in general and to point-to-point transport paths. The remaining subset, applicable specifically to point-to-multipoint transport paths, is outside the scope of this document. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network as defined by the ITU-T. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5921 -> rev_cites;
+  RFC6016 [label="RFC6016
+Support for the Resource Reservation
+Protocol (RSVP) in Layer 3 VPNs
+2010", shape=ellipse, URL="RFC6016.html", target="_top", tooltip="RFC 4364 and RFC 4659 define an approach to building provider-provisioned Layer 3 VPNs (L3VPNs) for IPv4 and IPv6.  It may be desirable to use Resource Reservation Protocol (RSVP) to perform admission control on the links between Customer Edge (CE) routers and Provider Edge (PE) routers.  This document specifies procedures by which RSVP messages traveling from CE to CE across an L3VPN may be appropriately handled by PE routers so that admission control can be performed on PE-CE links.  Optionally, admission control across the provider's backbone may also be supported. [STANDARDS-TRACK]"];
+  RFC6016 -> rev_cites;
+  RFC6037 [label="RFC6037
+Cisco Systems' Solution for Multicast in
+BGP/MPLS IP VPNs
+2010", shape=ellipse, URL="RFC6037.html", target="_top", tooltip="This document describes the MVPN (Multicast in BGP/MPLS IP VPNs) solution designed and deployed by Cisco Systems.  The procedures specified in this document are largely a subset of the generalized MVPN framework recently standardized by the IETF.  However, as the deployment of the procedures specified herein predates the publication of IETF standards (in some cases by over five years), an implementation based on these procedures differs in some respects from a fully standards-compliant implementation.  These differences are pointed out in the document.  This document defines a Historic Document for the Internet community."];
+  RFC6037 -> rev_cites;
+  RFC6073 [label="RFC6073
+Segmented Pseudowire
+2011", shape=ellipse, URL="RFC6073.html", target="_top", tooltip="This document describes how to connect pseudowires (PWs) between different Packet Switched Network (PSN) domains or between two or more distinct PW control plane domains, where a control plane domain uses a common control plane protocol or instance of that protocol for a given PW.  The different PW control plane domains may belong to independent autonomous systems, or the PSN technology is heterogeneous, or a PW might need to be aggregated at a specific PSN point.  The PW packet data units are simply switched from one PW to another without changing the PW payload. [STANDARDS-TRACK]"];
+  RFC6073 -> rev_cites;
+  RFC6074 [label="RFC6074
+Provisioning, Auto-Discovery, and
+Signaling in Layer 2 Virtual Private
+Networks (L2VPNs)
+2011", shape=ellipse, URL="RFC6074.html", target="_top", tooltip="Provider Provisioned Layer 2 Virtual Private Networks (L2VPNs) may have different provisioning models, i.e., models for what information needs to be configured in what entities.  Once configured, the provisioning information is distributed by a discovery process.  When the discovery process is complete, a signaling protocol is automatically invoked to set up the mesh of pseudowires (PWs) that form the (virtual) backbone of the L2VPN.  This document specifies a number of L2VPN provisioning models, and further specifies the semantic structure of the endpoint identifiers required by each model.  It discusses the distribution of these identifiers by the discovery process, especially when discovery is based on the Border Gateway Protocol (BGP).  It then specifies how the endpoint identifiers are carried in the two signaling protocols that are used to set up PWs, the Label Distribution Protocol (LDP), and the Layer 2 Tunneling Protocol version 3 (L2TPv3). [STANDARDS- TRACK]"];
+  RFC6074 -> rev_cites;
+  RFC6178 [label="RFC6178
+Label Edge Router Forwarding of IPv4
+Option Packets
+2011", shape=ellipse, URL="RFC6178.html", target="_top", tooltip="This document specifies how Label Edge Routers (LERs) should behave when determining whether to MPLS encapsulate an IPv4 packet with header options.  Lack of a formal standard has resulted in different LER forwarding behaviors for IPv4 packets with header options despite being associated with a prefix-based Forwarding Equivalence Class (FEC).  IPv4 option packets that belong to a prefix-based FEC, yet are forwarded into an IPv4/MPLS network without being MPLS- encapsulated, present a security risk against the MPLS infrastructure.  Further, LERs that are unable to MPLS encapsulate IPv4 packets with header options cannot operate in certain MPLS environments.  While this newly defined LER behavior is mandatory to implement, it is optional to invoke. [STANDARDS-TRACK]"];
+  RFC6178 -> rev_cites;
+  RFC6198 [label="RFC6198
+Requirements for the Graceful Shutdown
+of BGP Sessions
+2011", shape=ellipse, URL="RFC6198.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is heavily used in Service Provider networks for both Internet and BGP/MPLS VPN services.  For resiliency purposes, redundant routers and BGP sessions can be deployed to reduce the consequences of an Autonomous System Border Router (ASBR) or BGP session breakdown on customers' or peers' traffic.  However, simply taking down or even bringing up a BGP session for maintenance purposes may still induce connectivity losses during the BGP convergence.  This is no longer satisfactory for new applications (e.g., voice over IP, online gaming, VPN).  Therefore, a solution is required for the graceful shutdown of a (set of) BGP session(s) in order to limit the amount of traffic loss during a planned shutdown.  This document expresses requirements for such a solution.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6198 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6368 [label="RFC6368
+Internal BGP as the Provider/Customer
+Edge Protocol for BGP/MPLS IP Virtual
+Private Networks (VPNs)
+2011", shape=ellipse, URL="RFC6368.html", target="_top", tooltip="This document defines protocol extensions and procedures for BGP Provider/Customer Edge router iteration in BGP/MPLS IP VPNs.  These extensions and procedures have the objective of making the usage of the BGP/MPLS IP VPN transparent to the customer network, as far as routing information is concerned. [STANDARDS-TRACK]"];
+  RFC6368 -> rev_cites;
+  RFC6513 [label="RFC6513
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6513.html", target="_top", tooltip="In order for IP multicast traffic within a BGP/MPLS IP VPN (Virtual Private Network) to travel from one VPN site to another, special protocols and procedures must be implemented by the VPN Service Provider.  These protocols and procedures are specified in this document. [STANDARDS-TRACK]"];
+  RFC6513 -> rev_cites;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  RFC6514 -> rev_cites;
+  RFC6515 [label="RFC6515
+IPv4 and IPv6 Infrastructure Addresses
+in BGP Updates for Multicast VPN
+2012", shape=ellipse, URL="RFC6515.html", target="_top", tooltip="To provide Multicast VPN (MVPN) service, Provider Edge routers originate BGP Update messages that carry Multicast-VPN (MCAST-VPN) BGP routes; they also originate unicast VPN routes that carry MVPN-specific attributes.  These routes encode addresses from the customer's address space, as well as addresses from the provider's address space.  These two address spaces are independent, and the address family (IPv4 or IPv6) of the two spaces may or may not be the same.  These routes always contain an address family field that specifies whether the customer addresses are IPv4 addresses or whether they are IPv6 addresses.  However, there is no field that explicitly specifies the address family of the provider addresses.  To ensure interoperability, this document specifies that provider IPv4 addresses are always encoded in these update messages as 4-octet addresses, and that the distinction between IPv4 and IPv6 is signaled solely by the length of the address field.  Specific cases are explained in detail.  This document updates RFC 6514. [STANDARDS-TRACK]"];
+  RFC6515 -> rev_cites;
+  RFC6517 [label="RFC6517
+Mandatory Features in a Layer 3
+Multicast BGP/MPLS VPN Solution
+2012", shape=ellipse, URL="RFC6517.html", target="_top", tooltip="More that one set of mechanisms to support multicast in a layer 3 BGP/MPLS VPN has been defined. These are presented in the documents that define them as optional building blocks. To enable interoperability between implementations, this document defines a subset of features that is considered mandatory for a multicast BGP/MPLS VPN implementation. This will help implementers and deployers understand which L3VPN multicast requirements are best satisfied by each option. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6517 -> rev_cites;
+  RFC6565 [label="RFC6565
+OSPFv3 as a Provider Edge to Customer
+Edge (PE-CE) Routing Protocol
+2012", shape=ellipse, URL="RFC6565.html", target="_top", tooltip="Many Service Providers (SPs) offer Virtual Private Network (VPN) services to their customers using a technique in which Customer Edge (CE) routers are routing peers of Provider Edge (PE) routers.  The Border Gateway Protocol (BGP) is used to distribute the customer's routes across the provider's IP backbone network, and Multiprotocol Label Switching (MPLS) is used to tunnel customer packets across the provider's backbone.  Support currently exists for both IPv4 and IPv6 VPNs; however, only Open Shortest Path First version 2 (OSPFv2) as PE-CE protocol is specified.  This document extends those specifications to support OSPF version 3 (OSPFv3) as a PE-CE routing protocol.  The OSPFv3 PE-CE functionality is identical to that of OSPFv2 except for the differences described in this document. [STANDARDS-TRACK]"];
+  RFC6565 -> rev_cites;
+  RFC6624 [label="RFC6624
+Layer 2 Virtual Private Networks Using
+BGP for Auto-Discovery and Signaling
+2012", shape=ellipse, URL="RFC6624.html", target="_top", tooltip="Layer 2 Virtual Private Networks (L2VPNs) based on Frame Relay or ATM circuits have been around a long time; more recently, Ethernet VPNs, including Virtual Private LAN Service, have become popular.  Traditional L2VPNs often required a separate Service Provider infrastructure for each type and yet another for the Internet and IP VPNs.  In addition, L2VPN provisioning was cumbersome.  This document presents a new approach to the problem of offering L2VPN services where the L2VPN customer's experience is virtually identical to that offered by traditional L2VPNs, but such that a Service Provider can maintain a single network for L2VPNs, IP VPNs, and the Internet, as well as a common provisioning methodology for all services.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6624 -> rev_cites;
+  RFC6674 [label="RFC6674
+Gateway-Initiated Dual-Stack Lite
+Deployment
+2012", shape=ellipse, URL="RFC6674.html", target="_top", tooltip="Gateway-Initiated Dual-Stack Lite (GI-DS-Lite) is a variant of Dual- Stack Lite (DS-Lite) applicable to certain tunnel-based access architectures.  GI-DS-Lite extends existing access tunnels beyond the access gateway to an IPv4-IPv4 NAT using softwires with an embedded Context Identifier that uniquely identifies the end-system to which the tunneled packets belong.  The access gateway determines which portion of the traffic requires NAT using local policies and sends/ receives this portion to/from this softwire. [STANDARDS-TRACK]"];
+  RFC6674 -> rev_cites;
+  RFC6882 [label="RFC6882
+Support for Resource Reservation
+Protocol Traffic Engineering (RSVP-TE)
+in Layer 3 Virtual Private Networks
+(L3VPNs)
+2013", shape=ellipse, URL="RFC6882.html", target="_top", tooltip="IP Virtual Private Networks (VPNs) provide connectivity between sites across an IP/MPLS backbone. These VPNs can be operated using BGP/MPLS, and a single Provider Edge (PE) node may provide access to multiple customer sites belonging to different VPNs. The VPNs may support a number of customer services, including RSVP and Resource Reservation Protocol Traffic Engineering (RSVP-TE) traffic. This document describes how to support RSVP-TE between customer sites when a single PE supports multiple VPNs and labels are not used to identify VPNs between PEs."];
+  RFC6882 -> rev_cites;
+  RFC7024 [label="RFC7024
+Virtual Hub-and-Spoke in BGP/MPLS VPNs
+2013", shape=ellipse, URL="RFC7024.html", target="_top", tooltip="With BGP/MPLS Virtual Private Networks (VPNs), providing any-to-any connectivity among sites of a given VPN would require each Provider Edge (PE) router connected to one or more of these sites to hold all the routes of that VPN. The approach described in this document allows the VPN service provider to reduce the number of PE routers that have to maintain all these routes by requiring only a subset of these routers to maintain all these routes. Furthermore, when PE routers use ingress replication to carry the multicast traffic of VPN customers, the approach described in this document may, under certain circumstances, reduce bandwidth inefficiency associated with ingress replication and redistribute the replication load among PE routers."];
+  RFC7024 -> rev_cites;
+  RFC7032 [label="RFC7032
+LDP Downstream-on-Demand in Seamless
+MPLS
+2013", shape=ellipse, URL="RFC7032.html", target="_top", tooltip="Seamless MPLS design enables a single IP/MPLS network to scale over core, metro, and access parts of a large packet network infrastructure using standardized IP/MPLS protocols. One of the key goals of Seamless MPLS is to meet requirements specific to access networks including high number of devices, device position in network topology, and compute and memory constraints that limit the amount of state access devices can hold. This can be achieved with LDP Downstream-on-Demand (DoD) label advertisement. This document describes LDP DoD use cases and lists required LDP DoD procedures in the context of Seamless MPLS design. In addition, a new optional TLV type in the LDP Label Request message is defined for fast-up convergence."];
+  RFC7032 -> rev_cites;
+  RFC7117 [label="RFC7117
+Multicast in Virtual Private LAN Service
+(VPLS)
+2014", shape=ellipse, URL="RFC7117.html", target="_top", tooltip="RFCs 4761 and 4762 describe a solution for Virtual Private LAN Service (VPLS) multicast that relies on the use of point-to-point or multipoint-to-point unicast Label Switched Paths (LSPs) for carrying multicast traffic. This solution has certain limitations for certain VPLS multicast traffic profiles. For example, it may result in highly non-optimal bandwidth utilization when a large amount of multicast traffic is to be transported. This document describes solutions for overcoming a subset of the limitations of the existing VPLS multicast solution. It describes procedures for VPLS multicast that utilize multicast trees in the service provider (SP) network. The solution described in this document allows sharing of one such multicast tree among multiple VPLS instances. Furthermore, the solution described in this document allows a single multicast tree in the SP network to carry traffic belonging only to a specified set of one or more IP multicast streams from one or more VPLS instances."];
+  RFC7117 -> rev_cites;
+  RFC7209 [label="RFC7209
+Requirements for Ethernet VPN (EVPN)
+2014", shape=ellipse, URL="RFC7209.html", target="_top", tooltip="The widespread adoption of Ethernet L2VPN services and the advent of new applications for the technology (e.g., data center interconnect) have culminated in a new set of requirements that are not readily addressable by the current Virtual Private LAN Service (VPLS) solution.  In particular, multihoming with all-active forwarding is not supported, and there's no existing solution to leverage Multipoint-to-Multipoint (MP2MP) Label Switched Paths (LSPs) for optimizing the delivery of multi-destination frames.  Furthermore, the provisioning of VPLS, even in the context of BGP-based auto-discovery, requires network operators to specify various network parameters on top of the access configuration.  This document specifies the requirements for an Ethernet VPN (EVPN) solution, which addresses the above issues."];
+  RFC7209 -> rev_cites;
+  RFC7246 [label="RFC7246
+Multipoint Label Distribution Protocol
+In-Band Signaling in a Virtual Routing
+and Forwarding (VRF) Table Context
+2014", shape=ellipse, URL="RFC7246.html", target="_top", tooltip="An IP Multicast Distribution Tree (MDT) may traverse both label switching (i.e., Multiprotocol Label Switching, or MPLS) and non-label switching regions of a network.  Typically, the MDT begins and ends in non-MPLS regions, but travels through an MPLS region.  In such cases, it can be useful to begin building the MDT as a pure IP MDT, then convert it to an MPLS Multipoint Label Switched Path (MP-LSP) when it enters an MPLS-enabled region, and then convert it back to a pure IP MDT when it enters a non-MPLS-enabled region.  Other documents specify the procedures for building such a hybrid MDT, using Protocol Independent Multicast (PIM) in the non-MPLS region of the network, and using Multipoint Label Distribution Protocol (mLDP) in the MPLS region.  This document extends those procedures to handle the case where the link connecting the two regions is a Virtual Routing and Forwarding (VRF) table link, as defined in the BGP IP/MPLS VPN specification.  However, this document is primarily aimed at particular use cases where VRFs are used to support multicast applications other than multicast VPN."];
+  RFC7246 -> rev_cites;
+  RFC7257 [label="RFC7257
+Virtual Private LAN Service (VPLS)
+Management Information Base
+2014", shape=ellipse, URL="RFC7257.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects to configure and/or monitor Virtual Private LAN services.  It needs to be used in conjunction with the Pseudowire (PW) Management Information Base (PW-STD-MIB from RFC 5601)."];
+  RFC7257 -> rev_cites;
+  RFC7289 [label="RFC7289
+Carrier-Grade NAT (CGN) Deployment with
+BGP/MPLS IP VPNs
+2014", shape=ellipse, URL="RFC7289.html", target="_top", tooltip="This document specifies a framework to integrate a Network Address Translation (NAT) layer into an operator's network to function as a Carrier-Grade NAT (also known as CGN or Large-Scale NAT).  The CGN infrastructure will often form a NAT444 environment as the subscriber home network will likely also maintain a subscriber-side NAT function.  Exhaustion of the IPv4 address pool is a major driver compelling some operators to implement CGN.  Although operators may wish to deploy IPv6 to strategically overcome IPv4 exhaustion, near- term needs may not be satisfied with an IPv6 deployment alone.  This document provides a practical integration model that allows the CGN platform to be integrated into the network, meeting the connectivity needs of the subscriber while being mindful of not disrupting existing services and meeting the technical challenges that CGN brings.  The model included in this document utilizes BGP/MPLS IP VPNs, which allow for virtual routing separation, helping ease the CGN's impact on the network.  This document does not intend to defend the merits of CGN."];
+  RFC7289 -> rev_cites;
+  RFC7297 [label="RFC7297
+IP Connectivity Provisioning Profile
+(CPP)
+2014", shape=ellipse, URL="RFC7297.html", target="_top", tooltip="This document describes the Connectivity Provisioning Profile (CPP) and proposes a CPP template to capture IP/MPLS connectivity requirements to be met within a service delivery context (e.g., Voice over IP or IP TV). The CPP defines the set of IP transfer parameters to be supported by the underlying transport network together with a reachability scope and bandwidth/capacity needs. Appropriate performance metrics, such as one-way delay or one-way delay variation, are used to characterize an IP transfer service. Both global and restricted reachability scopes can be captured in the CPP. Such a generic CPP template is meant to (1) facilitate the automation of the service negotiation and activation procedures, thus accelerating service provisioning, (2) set (traffic) objectives of Traffic Engineering functions and service management functions, and (3) improve service and network management systems with 'decision- making' capabilities based upon negotiated/offered CPPs."];
+  RFC7297 -> rev_cites;
+  RFC7309 [label="RFC7309
+Redundancy Mechanism for Inter-domain
+VPLS Service
+2014", shape=ellipse, URL="RFC7309.html", target="_top", tooltip="In many existing Virtual Private LAN Service (VPLS) inter-domain deployments (based on RFC 4762), pseudowire (PW) connectivity offers no Provider Edge (PE) node redundancy, or offers PE node redundancy with only a single domain.  This deployment approach incurs a high risk of service interruption, since at least one domain will not offer PE node redundancy.  This document describes an inter-domain VPLS solution that provides PE node redundancy across domains."];
+  RFC7309 -> rev_cites;
+  RFC7325 [label="RFC7325
+MPLS Forwarding Compliance and
+Performance Requirements
+2014", shape=ellipse, URL="RFC7325.html", target="_top", tooltip="This document provides guidelines for implementers regarding MPLS forwarding and a basis for evaluations of forwarding implementations.  Guidelines cover many aspects of MPLS forwarding.  Topics are highlighted where implementers might otherwise overlook practical requirements which are unstated or under emphasized or are optional for conformance to RFCs but are often considered mandatory by providers."];
+  RFC7325 -> rev_cites;
+  RFC7364 [label="RFC7364
+Problem Statement: Overlays for Network
+Virtualization
+2014", shape=ellipse, URL="RFC7364.html", target="_top", tooltip="This document describes issues associated with providing multi-tenancy in large data center networks and how these issues may be addressed using an overlay-based network virtualization approach.  A key multi-tenancy requirement is traffic isolation so that one tenant's traffic is not visible to any other tenant.  Another requirement is address space isolation so that different tenants can use the same address space within different virtual networks.  Traffic and address space isolation is achieved by assigning one or more virtual networks to each tenant, where traffic within a virtual network can only cross into another virtual network in a controlled fashion (e.g., via a configured router and/or a security gateway).  Additional functionality is required to provision virtual networks, associating a virtual machine's network interface(s) with the appropriate virtual network and maintaining that association as the virtual machine is activated, migrated, and/or deactivated.  Use of an overlay-based approach enables scalable deployment on large network infrastructures."];
+  RFC7364 -> rev_cites;
+  RFC7365 [label="RFC7365
+Framework for Data Center (DC) Network
+Virtualization
+2014", shape=ellipse, URL="RFC7365.html", target="_top", tooltip="This document provides a framework for Data Center (DC) Network Virtualization over Layer 3 (NVO3) and defines a reference model along with logical components required to design a solution."];
+  RFC7365 -> rev_cites;
+  RFC7381 [label="RFC7381
+Enterprise IPv6 Deployment Guidelines
+2014", shape=ellipse, URL="RFC7381.html", target="_top", tooltip="Enterprise network administrators worldwide are in various stages of preparing for or deploying IPv6 into their networks.  The administrators face different challenges than operators of Internet access providers and have reasons for different priorities.  The overall problem for many administrators will be to offer Internet- facing services over IPv6 while continuing to support IPv4, and while introducing IPv6 access within the enterprise IT network.  The overall transition will take most networks from an IPv4-only environment to a dual-stack network environment and eventually an IPv6-only operating mode.  This document helps provide a framework for enterprise network architects or administrators who may be faced with many of these challenges as they consider their IPv6 support strategies."];
+  RFC7381 -> rev_cites;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  RFC7432 -> rev_cites;
+  RFC7436 [label="RFC7436
+IP-Only LAN Service (IPLS)
+2015", shape=ellipse, URL="RFC7436.html", target="_top", tooltip="A Virtual Private LAN Service (VPLS) is used to interconnect systems across a wide-area or metropolitan-area network, making it appear that they are on a private LAN. The systems that are interconnected may themselves be LAN switches. If, however, they are IP hosts or IP routers, certain simplifications to the operation of the VPLS are possible. We call this simplified type of VPLS an IP-only LAN Service (IPLS). In an IPLS, as in a VPLS, LAN interfaces are run in promiscuous mode, and frames are forwarded based on their destination Media Access Control (MAC) addresses. However, the maintenance of the MAC forwarding tables is done via signaling, rather than via the MAC address learning procedures specified in the IEEE's Media Access Control (MAC) Bridges. This document specifies the protocol extensions and procedures for support of the IPLS service. The original intent was to provide an alternate solution to VPLS for those Provider Edge (PE) routers that were not capable of learning MAC addresses through data plane. This became a non-issue with newer hardware. The concepts put forth by this document are still valuable and are adopted in one form or other by newer work such as Ethernet VPN in L2VPN working group and possible data center applications. At this point, no further action is planned to update this document and it is published simply as a historic record of the ideas."];
+  RFC7436 -> rev_cites;
+  RFC7439 [label="RFC7439
+Gap Analysis for Operating IPv6-Only
+MPLS Networks
+2015", shape=ellipse, URL="RFC7439.html", target="_top", tooltip="This document reviews the Multiprotocol Label Switching (MPLS) protocol suite in the context of IPv6 and identifies gaps that must be addressed in order to allow MPLS-related protocols and applications to be used with IPv6-only networks. This document is intended to focus on gaps in the standards defining the MPLS suite, and is not intended to highlight particular vendor implementations (or lack thereof) in the context of IPv6-only MPLS functionality. In the data plane, MPLS fully supports IPv6, and MPLS labeled packets can be carried over IPv6 packets in a variety of encapsulations. However, support for IPv6 among MPLS control-plane protocols, MPLS applications, MPLS Operations, Administration, and Maintenance (OAM), and MIB modules is mixed, with some protocols having major gaps. For most major gaps, work is in progress to upgrade the relevant protocols."];
+  RFC7439 -> rev_cites;
+  RFC7543 [label="RFC7543
+Covering Prefixes Outbound Route Filter
+for BGP-4
+2015", shape=ellipse, URL="RFC7543.html", target="_top", tooltip="This document defines a new Outbound Route Filter (ORF) type, called the Covering Prefixes ORF (CP-ORF).  CP-ORF is applicable in Virtual Hub-and-Spoke VPNs.  It also is applicable in BGP/MPLS Ethernet VPN (EVPN) networks."];
+  RFC7543 -> rev_cites;
+  RFC7582 [label="RFC7582
+Multicast Virtual Private Network
+(MVPN): Using Bidirectional P-Tunnels
+2015", shape=ellipse, URL="RFC7582.html", target="_top", tooltip="A set of prior RFCs specify procedures for supporting multicast in BGP/MPLS IP VPNs.  These procedures allow customer multicast data to travel across a service provider's backbone network through a set of multicast tunnels.  The tunnels are advertised in certain BGP multicast auto-discovery routes, by means of a BGP attribute known as the Provider Multicast Service Interface (PMSI) Tunnel attribute.  Encodings have been defined that allow the PMSI Tunnel attribute to identify bidirectional (multipoint-to-multipoint) multicast distribution trees.  However, the prior RFCs do not provide all the necessary procedures for using bidirectional tunnels to support multicast VPNs.  This document updates RFCs 6513, 6514, and 6625 by specifying those procedures.  In particular, it specifies the procedures for assigning customer multicast flows (unidirectional or bidirectional) to specific bidirectional tunnels in the provider backbone, for advertising such assignments, and for determining which flows have been assigned to which tunnels."];
+  RFC7582 -> rev_cites;
+  RFC7611 [label="RFC7611
+BGP ACCEPT_OWN Community Attribute
+2015", shape=ellipse, URL="RFC7611.html", target="_top", tooltip="Under certain conditions, it is desirable for a Border Gateway Protocol (BGP) route reflector to be able to modify the Route Target (RT) list of a Virtual Private Network (VPN) route that the route reflector distributes, enabling the route reflector to control how a route originated within one VPN Routing and Forwarding table (VRF) is imported into other VRFs.  This technique works effectively as long as the VRF that exports the route is not on the same Provider Edge (PE) router as the VRF(s) that imports the route.  However, due to the constraints of BGP, it does not work if the two are on the same PE.  This document describes a modification to BGP allowing this technique to work when the VRFs are on the same PE and to be used in a standard manner throughout an autonomous system."];
+  RFC7611 -> rev_cites;
+  RFC7625 [label="RFC7625
+Architecture of an IP/MPLS Network with
+Hardened Pipes
+2015", shape=ellipse, URL="RFC7625.html", target="_top", tooltip="This document describes an IP/MPLS network that has an infrastructure that can be separated into two or more strata. For the implementation described in this document, the infrastructure has been separated into two strata: one for the Hard Pipes, called the Hard Pipe Stratum, and one for the normal IP/MPLS traffic, called the Normal IP/MPLS Stratum. This document introduces the concept of a Hard Pipe -- an MPLS Label Switched Path (LSP) or a pseudowire (PW) with a bandwidth that is guaranteed and can neither be exceeded nor infringed upon. The Hard Pipe stratum does not use statistical multiplexing; for the LSPs and PWs set up within this stratum, the bandwidth is guaranteed end to end. The document does not specify any new protocol or procedures. It does explain how the MPLS standards implementation has been deployed and operated to meet the requirements from operators that offer traditional Virtual Leased Line (VLL) services."];
+  RFC7625 -> rev_cites;
+  RFC7716 [label="RFC7716
+Global Table Multicast with BGP
+Multicast VPN (BGP-MVPN) Procedures
+2015", shape=ellipse, URL="RFC7716.html", target="_top", tooltip="RFCs 6513, 6514, and others describe protocols and procedures that a Service Provider (SP) may deploy in order to offer Multicast Virtual Private Network (Multicast VPN or MVPN) service to its customers.  Some of these procedures use BGP to distribute VPN-specific multicast routing information across a backbone network.  With a small number of relatively minor modifications, the same BGP procedures can also be used to distribute multicast routing information that is not specific to any VPN.  Multicast that is outside the context of a VPN is known as Global Table Multicast, or sometimes simply as Internet multicast.  In this document, we describe the modifications that are needed to use the BGP-MVPN procedures for Global Table Multicast."];
+  RFC7716 -> rev_cites;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  RFC7752 -> rev_cites;
+  RFC7789 [label="RFC7789
+Impact of BGP Filtering on Inter-Domain
+Routing Policies
+2016", shape=ellipse, URL="RFC7789.html", target="_top", tooltip="This document describes how unexpected traffic flows can emerge across an autonomous system as the result of other autonomous systems filtering or restricting the propagation of more-specific prefixes.  We provide a review of the techniques to detect the occurrence of this issue and defend against it."];
+  RFC7789 -> rev_cites;
+  RFC7814 [label="RFC7814
+Virtual Subnet: A BGP/MPLS IP VPN-Based
+Subnet Extension Solution
+2016", shape=ellipse, URL="RFC7814.html", target="_top", tooltip="This document describes a BGP/MPLS IP VPN-based subnet extension solution referred to as Virtual Subnet, which can be used for building Layer 3 network virtualization overlays within and/or between data centers."];
+  RFC7814 -> rev_cites;
+  RFC7854 [label="RFC7854
+BGP Monitoring Protocol (BMP)
+2016", shape=ellipse, URL="RFC7854.html", target="_top", tooltip="This document defines the BGP Monitoring Protocol (BMP), which can be used to monitor BGP sessions.  BMP is intended to provide a convenient interface for obtaining route views.  Prior to the introduction of BMP, screen scraping was the most commonly used approach to obtaining such views.  The design goals are to keep BMP simple, useful, easily implemented, and minimally service affecting.  BMP is not suitable for use as a routing protocol."];
+  RFC7854 -> rev_cites;
+  RFC7855 [label="RFC7855
+Source Packet Routing in Networking
+(SPRING) Problem Statement and
+Requirements
+2016", shape=ellipse, URL="RFC7855.html", target="_top", tooltip="The ability for a node to specify a forwarding path, other than the normal shortest path, that a particular packet will traverse, benefits a number of network functions. Source-based routing mechanisms have previously been specified for network protocols but have not seen widespread adoption. In this context, the term source means the point at which the explicit route is imposed; therefore, it is not limited to the originator of the packet (i.e., the node imposing the explicit route may be the ingress node of an operator's network). This document outlines various use cases, with their requirements, that need to be taken into account by the Source Packet Routing in Networking (SPRING) architecture for unicast traffic. Multicast use cases and requirements are out of scope for this document."];
+  RFC7855 -> rev_cites;
+  RFC7900 [label="RFC7900
+Extranet Multicast in BGP/IP MPLS VPNs
+2016", shape=ellipse, URL="RFC7900.html", target="_top", tooltip="Previous RFCs specify the procedures necessary to allow IP multicast traffic to travel from one site to another within a BGP/MPLS IP VPN (Virtual Private Network).  However, it is sometimes desirable to allow multicast traffic whose source is in one VPN to be received by systems that are in another VPN.  This is known as a Multicast VPN (MVPN) extranet.  This document updates RFCs 6513, 6514, and 6625 by specifying the procedures that are necessary in order to provide extranet MVPN service."];
+  RFC7900 -> rev_cites;
+  RFC7926 [label="RFC7926
+Problem Statement and Architecture for
+Information Exchange between
+Interconnected Traffic-Engineered
+Networks
+2016", shape=ellipse, URL="RFC7926.html", target="_top", tooltip="In Traffic-Engineered (TE) systems, it is sometimes desirable to establish an end-to-end TE path with a set of constraints (such as bandwidth) across one or more networks from a source to a destination. TE information is the data relating to nodes and TE links that is used in the process of selecting a TE path. TE information is usually only available within a network. We call such a zone of visibility of TE information a domain. An example of a domain may be an IGP area or an Autonomous System. In order to determine the potential to establish a TE path through a series of connected networks, it is necessary to have available a certain amount of TE information about each network. This need not be the full set of TE information available within each network but does need to express the potential of providing TE connectivity. This subset of TE information is called TE reachability information. This document sets out the problem statement for the exchange of TE information between interconnected TE networks in support of end-to-end TE path establishment and describes the best current practice architecture to meet this problem statement. For reasons that are explained in this document, this work is limited to simple TE constraints and information that determine TE reachability."];
+  RFC7926 -> rev_cites;
+  RFC8014 [label="RFC8014
+An Architecture for Data-Center Network
+Virtualization over Layer 3 (NVO3)
+2016", shape=ellipse, URL="RFC8014.html", target="_top", tooltip="This document presents a high-level overview architecture for building data-center Network Virtualization over Layer 3 (NVO3) networks.  The architecture is given at a high level, showing the major components of an overall system.  An important goal is to divide the space into individual smaller components that can be implemented independently with clear inter-component interfaces and interactions.  It should be possible to build and implement individual components in isolation and have them interoperate with other independently implemented components.  That way, implementers have flexibility in implementing individual components and can optimize and innovate within their respective components without requiring changes to other components."];
+  RFC8014 -> rev_cites;
+  RFC8049 [label="RFC8049
+YANG Data Model for L3VPN Service
+Delivery
+2017", shape=ellipse, URL="RFC8049.html", target="_top", tooltip="This document defines a YANG data model that can be used for communication between customers and network operators and to deliver a Layer 3 provider-provisioned VPN service.  This document is limited to BGP PE-based VPNs as described in RFCs 4026, 4110, and 4364.  This model is intended to be instantiated at the management system to deliver the overall service.  It is not a configuration model to be used directly on network elements.  This model provides an abstracted view of the Layer 3 IP VPN service configuration components.  It will be up to the management system to take this model as input and use specific configuration models to configure the different network elements to deliver the service.  How the configuration of network elements is done is out of scope for this document."];
+  RFC8049 -> rev_cites;
+  RFC8151 [label="RFC8151
+Use Cases for Data Center Network
+Virtualization Overlay Networks
+2017", shape=ellipse, URL="RFC8151.html", target="_top", tooltip="This document describes Network Virtualization over Layer 3 (NVO3) use cases that can be deployed in various data centers and serve different data-center applications."];
+  RFC8151 -> rev_cites;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  RFC8277 -> rev_cites;
+  RFC8283 [label="RFC8283
+An Architecture for Use of PCE and the
+PCE Communication Protocol (PCEP) in a
+Network with Central Control
+2017", shape=ellipse, URL="RFC8283.html", target="_top", tooltip="The Path Computation Element (PCE) is a core component of Software- Defined Networking (SDN) systems. It can compute optimal paths for traffic across a network and can also update the paths to reflect changes in the network or traffic demands. PCE was developed to derive paths for MPLS Label Switched Paths (LSPs), which are supplied to the head end of the LSP using the Path Computation Element Communication Protocol (PCEP). SDN has a broader applicability than signaled MPLS traffic-engineered (TE) networks, and the PCE may be used to determine paths in a range of use cases including static LSPs, segment routing, Service Function Chaining (SFC), and most forms of a routed or switched network. It is, therefore, reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. This document briefly introduces the architecture for PCE as a central controller, examines the motivations and applicability for PCEP as a control protocol in this environment, and introduces the implications for the protocol. A PCE-based central controller can simplify the processing of a distributed control plane by blending it with elements of SDN and without necessarily completely replacing it. This document does not describe use cases in detail and does not define protocol extensions: that work is left for other documents."];
+  RFC8283 -> rev_cites;
+  RFC8294 [label="RFC8294
+Common YANG Data Types for the Routing
+Area
+2017", shape=ellipse, URL="RFC8294.html", target="_top", tooltip="This document defines a collection of common data types using the YANG data modeling language.  These derived common types are designed to be imported by other modules defined in the routing area."];
+  RFC8294 -> rev_cites;
+  RFC8299 [label="RFC8299
+YANG Data Model for L3VPN Service
+Delivery
+2018", shape=ellipse, URL="RFC8299.html", target="_top", tooltip="This document defines a YANG data model that can be used for communication between customers and network operators and to deliver a Layer 3 provider-provisioned VPN service. This document is limited to BGP PE-based VPNs as described in RFCs 4026, 4110, and 4364. This model is intended to be instantiated at the management system to deliver the overall service. It is not a configuration model to be used directly on network elements. This model provides an abstracted view of the Layer 3 IP VPN service configuration components. It will be up to the management system to take this model as input and use specific configuration models to configure the different network elements to deliver the service. How the configuration of network elements is done is out of scope for this document. This document obsoletes RFC 8049; it replaces the unimplementable module in that RFC with a new module with the same name that is not backward compatible. The changes are a series of small fixes to the YANG module and some clarifications to the text."];
+  RFC8299 -> rev_cites;
+  RFC8365 [label="RFC8365
+A Network Virtualization Overlay
+Solution Using Ethernet VPN (EVPN)
+2018", shape=ellipse, URL="RFC8365.html", target="_top", tooltip="This document specifies how Ethernet VPN (EVPN) can be used as a Network Virtualization Overlay (NVO) solution and explores the various tunnel encapsulation options over IP and their impact on the EVPN control plane and procedures.  In particular, the following encapsulation options are analyzed: Virtual Extensible LAN (VXLAN), Network Virtualization using Generic Routing Encapsulation (NVGRE), and MPLS over GRE.  This specification is also applicable to Generic Network Virtualization Encapsulation (GENEVE); however, some incremental work is required, which will be covered in a separate document.  This document also specifies new multihoming procedures for split-horizon filtering and mass withdrawal.  It also specifies EVPN route constructions for VXLAN/NVGRE encapsulations and Autonomous System Border Router (ASBR) procedures for multihoming of Network Virtualization Edge (NVE) devices."];
+  RFC8365 -> rev_cites;
+  RFC8466 [label="RFC8466
+A YANG Data Model for Layer 2 Virtual
+Private Network (L2VPN) Service Delivery
+2018", shape=ellipse, URL="RFC8466.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure a Layer 2 provider-provisioned VPN service. It is up to a management system to take this as an input and generate specific configuration models to configure the different network elements to deliver the service. How this configuration of network elements is done is out of scope for this document. The YANG data model defined in this document includes support for point-to-point Virtual Private Wire Services (VPWSs) and multipoint Virtual Private LAN Services (VPLSs) that use Pseudowires signaled using the Label Distribution Protocol (LDP) and the Border Gateway Protocol (BGP) as described in RFCs 4761 and 6624. The YANG data model defined in this document conforms to the Network Management Datastore Architecture defined in RFC 8342."];
+  RFC8466 -> rev_cites;
+  RFC8503 [label="RFC8503
+BGP/MPLS Layer 3 VPN Multicast
+Management Information Base
+2018", shape=ellipse, URL="RFC8503.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects to configure and/or monitor Multicast communication over IP Virtual Private Networks (VPNs) supported by the Multiprotocol Label Switching/Border Gateway Protocol (MPLS/BGP) on a Provider Edge (PE) router."];
+  RFC8503 -> rev_cites;
+  RFC8529 [label="RFC8529
+YANG Data Model for Network Instances
+2019", shape=ellipse, URL="RFC8529.html", target="_top", tooltip="This document defines a network instance module. This module can be used to manage the virtual resource partitioning that may be present on a network device. Examples of common industry terms for virtual resource partitioning are VPN Routing and Forwarding (VRF) instances and Virtual Switch Instances (VSIs). The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in RFC 8342."];
+  RFC8529 -> rev_cites;
+  RFC8556 [label="RFC8556
+Multicast VPN Using Bit Index Explicit
+Replication (BIER)
+2019", shape=ellipse, URL="RFC8556.html", target="_top", tooltip="The Multicast Virtual Private Network (MVPN) specifications require the use of multicast tunnels (P-tunnels) that traverse a service provider's backbone network.  The P-tunnels are used for carrying multicast traffic across the backbone.  A variety of P-tunnel types are supported.  Bit Index Explicit Replication (BIER) is a new architecture that provides optimal multicast forwarding through a multicast domain, without requiring intermediate routers to maintain any per-flow state or to engage in an explicit tree-building protocol.  This document specifies the protocol and procedures that allow MVPN to use BIER as the method of carrying multicast traffic over a service provider's backbone network."];
+  RFC8556 -> rev_cites;
+  RFC8595 [label="RFC8595
+An MPLS-Based Forwarding Plane for
+Service Function Chaining
+2019", shape=ellipse, URL="RFC8595.html", target="_top", tooltip="This document describes how Service Function Chaining (SFC) can be achieved in an MPLS network by means of a logical representation of the Network Service Header (NSH) in an MPLS label stack.  That is, the NSH is not used, but the fields of the NSH are mapped to fields in the MPLS label stack.  This approach does not deprecate or replace the NSH, but it acknowledges that there may be a need for an interim deployment of SFC functionality in brownfield networks."];
+  RFC8595 -> rev_cites;
+  RFC8661 [label="RFC8661
+Segment Routing MPLS Interworking with
+LDP
+2019", shape=ellipse, URL="RFC8661.html", target="_top", tooltip="A Segment Routing (SR) node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows enforcing a flow through any topological path while maintaining per-flow state only at the ingress node to the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change in the forwarding plane. This document describes how Segment Routing MPLS operates in a network where LDP is deployed and in the case where SR-capable and non-SR-capable nodes coexist."];
+  RFC8661 -> rev_cites;
+  RFC8669 [label="RFC8669
+Segment Routing Prefix Segment
+Identifier Extensions for BGP
+2019", shape=ellipse, URL="RFC8669.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm. A node steers a packet through an ordered list of instructions called segments. A segment can represent any instruction, topological or service based. The ingress node prepends an SR header to a packet containing a set of segment identifiers (SIDs). Each SID represents a topological or service-based instruction. Per-flow state is maintained only on the ingress node of the SR domain. An SR domain is defined as a single administrative domain for global SID assignment. This document defines an optional, transitive BGP attribute for announcing information about BGP Prefix Segment Identifiers (BGP Prefix-SIDs) and the specification for SR-MPLS SIDs."];
+  RFC8669 -> rev_cites;
+  RFC8704 [label="RFC8704
+Enhanced Feasible-Path Unicast Reverse
+Path Forwarding
+2020", shape=ellipse, URL="RFC8704.html", target="_top", tooltip="This document identifies a need for and proposes improvement of the unicast Reverse Path Forwarding (uRPF) techniques (see RFC 3704) for detection and mitigation of source address spoofing (see BCP 38).  Strict uRPF is inflexible about directionality, the loose uRPF is oblivious to directionality, and the current feasible-path uRPF attempts to strike a balance between the two (see RFC 3704).  However, as shown in this document, the existing feasible-path uRPF still has shortcomings.  This document describes enhanced feasible-path uRPF (EFP-uRPF) techniques that are more flexible (in a meaningful way) about directionality than the feasible-path uRPF (RFC 3704).  The proposed EFP-uRPF methods aim to significantly reduce false positives regarding invalid detection in source address validation (SAV).  Hence, they can potentially alleviate ISPs' concerns about the possibility of disrupting service for their customers and encourage greater deployment of uRPF techniques.  This document updates RFC 3704."];
+  RFC8704 -> rev_cites;
+  RFC8950 [label="RFC8950
+Advertising IPv4 Network Layer
+Reachability Information (NLRI) with an
+IPv6 Next Hop
+2020", shape=ellipse, URL="RFC8950.html", target="_top", tooltip="Multiprotocol BGP (MP-BGP) specifies that the set of usable next-hop address families is determined by the Address Family Identifier (AFI) and the Subsequent Address Family Identifier (SAFI). The AFI/SAFI definitions for the IPv4 address family only have provisions for advertising a next-hop address that belongs to the IPv4 protocol when advertising IPv4 Network Layer Reachability Information (NLRI) or VPN-IPv4 NLRI. This document specifies the extensions necessary to allow the advertising of IPv4 NLRI or VPN-IPv4 NLRI with a next-hop address that belongs to the IPv6 protocol. This comprises an extension of the AFI/SAFI definitions to allow the address of the next hop for IPv4 NLRI or VPN-IPv4 NLRI to also belong to the IPv6 protocol, the encoding of the next hop to determine which of the protocols the address actually belongs to, and a BGP Capability allowing MP-BGP peers to dynamically discover whether they can exchange IPv4 NLRI and VPN-IPv4 NLRI with an IPv6 next hop. This document obsoletes RFC 5549."];
+  RFC8950 -> rev_cites;
+  RFC8955 [label="RFC8955
+Dissemination of Flow Specification
+Rules
+2020", shape=ellipse, URL="RFC8955.html", target="_top", tooltip="This document defines a Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute (intra-domain and inter-domain) traffic Flow Specifications for IPv4 unicast and IPv4 BGP/MPLS VPN services. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. It also specifies BGP Extended Community encoding formats, which can be used to propagate Traffic Filtering Actions along with the Flow Specification NLRI. Those Traffic Filtering Actions encode actions a routing system can take if the packet matches the Flow Specification. This document obsoletes both RFC 5575 and RFC 7674."];
+  RFC8955 -> rev_cites;
+  RFC8969 [label="RFC8969
+A Framework for Automating Service and
+Network Management with YANG
+2021", shape=ellipse, URL="RFC8969.html", target="_top", tooltip="Data models provide a programmatic approach to represent services and networks. Concretely, they can be used to derive configuration information for network and service components, and state information that will be monitored and tracked. Data models can be used during the service and network management life cycle (e.g., service instantiation, service provisioning, service optimization, service monitoring, service diagnosing, and service assurance). Data models are also instrumental in the automation of network management, and they can provide closed-loop control for adaptive and deterministic service creation, delivery, and maintenance. This document describes a framework for service and network management automation that takes advantage of YANG modeling technologies. This framework is drawn from a network operator perspective irrespective of the origin of a data model; thus, it can accommodate YANG modules that are developed outside the IETF."];
+  RFC8969 -> rev_cites;
+  RFC8986 [label="RFC8986
+Segment Routing over IPv6 (SRv6) Network
+Programming
+2021", shape=ellipse, URL="RFC8986.html", target="_top", tooltip="The Segment Routing over IPv6 (SRv6) Network Programming framework enables a network operator or an application to specify a packet processing program by encoding a sequence of instructions in the IPv6 packet header. Each instruction is implemented on one or several nodes in the network and identified by an SRv6 Segment Identifier in the packet. This document defines the SRv6 Network Programming concept and specifies the base set of SRv6 behaviors that enables the creation of interoperable overlays with underlay optimization."];
+  RFC8986 -> rev_cites;
+  RFC8994 [label="RFC8994
+An Autonomic Control Plane (ACP)
+2021", shape=ellipse, URL="RFC8994.html", target="_top", tooltip="Autonomic functions need a control plane to communicate, which depends on some addressing and routing.  This Autonomic Control Plane should ideally be self-managing and be as independent as possible of configuration.  This document defines such a plane and calls it the Autonomic Control Plane, with the primary use as a control plane for autonomic functions.  It also serves as a virtual out-of-band channel for Operations, Administration, and Management (OAM) communications over a network that provides automatically configured, hop-by-hop authenticated and encrypted communications via automatically configured IPv6 even when the network is not configured or is misconfigured."];
+  RFC8994 -> rev_cites;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  RFC9012 -> rev_cites;
+  RFC9015 [label="RFC9015
+BGP Control Plane for the Network
+Service Header in Service Function
+Chaining
+2021", shape=ellipse, URL="RFC9015.html", target="_top", tooltip="This document describes the use of BGP as a control plane for networks that support service function chaining. The document introduces a new BGP address family called the Service Function Chain (SFC) Address Family Identifier / Subsequent Address Family Identifier (SFC AFI/SAFI) with two Route Types. One Route Type is originated by a node to advertise that it hosts a particular instance of a specified service function. This Route Type also provides instructions on how to send a packet to the hosting node in a way that indicates that the service function has to be applied to the packet. The other Route Type is used by a controller to advertise the paths of chains of service functions and give a unique designator to each such path so that they can be used in conjunction with the Network Service Header (NSH) defined in RFC 8300. This document adopts the service function chaining architecture described in RFC 7665."];
+  RFC9015 -> rev_cites;
+  RFC9070 [label="RFC9070
+YANG Data Model for MPLS LDP
+2022", shape=ellipse, URL="RFC9070.html", target="_top", tooltip="This document describes a YANG data model for the Multiprotocol Label Switching (MPLS) Label Distribution Protocol (LDP). The model also serves as the base model to define the Multipoint LDP (mLDP) model. The YANG modules in this document conform to the Network Management Datastore Architecture (NMDA)."];
+  RFC9070 -> rev_cites;
+  RFC9099 [label="RFC9099
+Operational Security Considerations for
+IPv6 Networks
+2021", shape=ellipse, URL="RFC9099.html", target="_top", tooltip="Knowledge and experience on how to operate IPv4 networks securely is available, whether the operator is an Internet Service Provider (ISP) or an enterprise internal network. However, IPv6 presents some new security challenges. RFC 4942 describes security issues in the protocol, but network managers also need a more practical, operations-minded document to enumerate advantages and/or disadvantages of certain choices. This document analyzes the operational security issues associated with several types of networks and proposes technical and procedural mitigation techniques. This document is only applicable to managed networks, such as enterprise networks, service provider networks, or managed residential networks."];
+  RFC9099 -> rev_cites;
+  RFC9107 [label="RFC9107
+BGP Optimal Route Reflection (BGP ORR)
+2021", shape=ellipse, URL="RFC9107.html", target="_top", tooltip="This document defines an extension to BGP route reflectors. On route reflectors, BGP route selection is modified in order to choose the best route from the standpoint of their clients, rather than from the standpoint of the route reflectors themselves. Depending on the scaling and precision requirements, route selection can be specific for one client, common for a set of clients, or common for all clients of a route reflector. This solution is particularly applicable in deployments using centralized route reflectors, where choosing the best route based on the route reflector's IGP location is suboptimal. This facilitates, for example, a best exit point policy (hot potato routing). The solution relies upon all route reflectors learning all paths that are eligible for consideration. BGP route selection is performed in the route reflectors based on the IGP cost from configured locations in the link-state IGP."];
+  RFC9107 -> rev_cites;
+  RFC9125 [label="RFC9125
+Gateway Auto-Discovery and Route
+Advertisement for Site Interconnection
+Using Segment Routing
+2021", shape=ellipse, URL="RFC9125.html", target="_top", tooltip="Data centers are attached to the Internet or a backbone network by gateway routers. One data center typically has more than one gateway for commercial, load-balancing, and resiliency reasons. Other sites, such as access networks, also need to be connected across backbone networks through gateways. This document defines a mechanism using the BGP Tunnel Encapsulation attribute to allow data center gateway routers to advertise routes to the prefixes reachable in the site, including advertising them on behalf of other gateways at the same site. This allows segment routing to be used to identify multiple paths across the Internet or backbone network between different gateways. The paths can be selected for load-balancing, resilience, and quality purposes."];
+  RFC9125 -> rev_cites;
+  RFC9135 [label="RFC9135
+Integrated Routing and Bridging in
+Ethernet VPN (EVPN)
+2021", shape=ellipse, URL="RFC9135.html", target="_top", tooltip="Ethernet VPN (EVPN) provides an extensible and flexible multihoming VPN solution over an MPLS/IP network for intra-subnet connectivity among Tenant Systems and end devices that can be physical or virtual.  However, there are scenarios for which there is a need for a dynamic and efficient inter-subnet connectivity among these Tenant Systems and end devices while maintaining the multihoming capabilities of EVPN.  This document describes an Integrated Routing and Bridging (IRB) solution based on EVPN to address such requirements."];
+  RFC9135 -> rev_cites;
+  RFC9136 [label="RFC9136
+IP Prefix Advertisement in Ethernet VPN
+(EVPN)
+2021", shape=ellipse, URL="RFC9136.html", target="_top", tooltip="The BGP MPLS-based Ethernet VPN (EVPN) (RFC 7432) mechanism provides a flexible control plane that allows intra-subnet connectivity in an MPLS and/or Network Virtualization Overlay (NVO) (RFC 7365) network.  In some networks, there is also a need for dynamic and efficient inter-subnet connectivity across Tenant Systems and end devices that can be physical or virtual and do not necessarily participate in dynamic routing protocols.  This document defines a new EVPN route type for the advertisement of IP prefixes and explains some use-case examples where this new route type is used."];
+  RFC9136 -> rev_cites;
+  RFC9168 [label="RFC9168
+Path Computation Element Communication
+Protocol (PCEP) Extension for Flow
+Specification
+2022", shape=ellipse, URL="RFC9168.html", target="_top", tooltip="The Path Computation Element (PCE) is a functional component capable of selecting paths through a traffic engineering (TE) network. These paths may be supplied in response to requests for computation or may be unsolicited requests issued by the PCE to network elements. Both approaches use the PCE Communication Protocol (PCEP) to convey the details of the computed path. Traffic flows may be categorized and described using Flow Specifications. RFC 8955 defines the Flow Specification and describes how Flow Specification components are used to describe traffic flows. RFC 8955 also defines how Flow Specifications may be distributed in BGP to allow specific traffic flows to be associated with routes. This document specifies a set of extensions to PCEP to support dissemination of Flow Specifications. This allows a PCE to indicate what traffic should be placed on each path that it is aware of. The extensions defined in this document include the creation, update, and withdrawal of Flow Specifications via PCEP and can be applied to tunnels initiated by the PCE or to tunnels where control is delegated to the PCE by the Path Computation Client (PCC). Furthermore, a PCC requesting a new path can include Flow Specifications in the request to indicate the purpose of the tunnel allowing the PCE to factor this into the path computation."];
+  RFC9168 -> rev_cites;
+  RFC9181 [label="RFC9181
+A Common YANG Data Model for Layer 2 and
+Layer 3 VPNs
+2022", shape=ellipse, URL="RFC9181.html", target="_top", tooltip="This document defines a common YANG module that is meant to be reused by various VPN-related modules such as Layer 3 VPN and Layer 2 VPN network models."];
+  RFC9181 -> rev_cites;
+  RFC9182 [label="RFC9182
+A YANG Network Data Model for Layer 3
+VPNs
+2022", shape=ellipse, URL="RFC9182.html", target="_top", tooltip="As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), which is used for communication between customers and service providers, this document defines an L3VPN Network Model (L3NM) that can be used for the provisioning of Layer 3 Virtual Private Network (L3VPN) services within a service provider network. The model provides a network-centric view of L3VPN services. The L3NM is meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. The model can also facilitate communication between a service orchestrator and a network controller/orchestrator."];
+  RFC9182 -> rev_cites;
+  RFC9251 [label="RFC9251
+Internet Group Management Protocol
+(IGMP) and Multicast Listener Discovery
+(MLD) Proxies for Ethernet VPN (EVPN)
+2022", shape=ellipse, URL="RFC9251.html", target="_top", tooltip="This document describes how to support endpoints running the Internet Group Management Protocol (IGMP) or Multicast Listener Discovery (MLD) efficiently for the multicast services over an Ethernet VPN (EVPN) network by incorporating IGMP/MLD Proxy procedures on EVPN Provider Edges (PEs)."];
+  RFC9251 -> rev_cites;
+  RFC9252 [label="RFC9252
+BGP Overlay Services Based on Segment
+Routing over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9252.html", target="_top", tooltip="This document defines procedures and messages for SRv6-based BGP services, including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and Internet services.  It builds on BGP/MPLS IP Virtual Private Networks (VPNs) (RFC 4364) and BGP MPLS-Based Ethernet VPN (RFC 7432)."];
+  RFC9252 -> rev_cites;
+  RFC9263 [label="RFC9263
+Network Service Header (NSH) Metadata
+Type 2 Variable-Length Context Headers
+2022", shape=ellipse, URL="RFC9263.html", target="_top", tooltip="Service Function Chaining (SFC) uses the Network Service Header (NSH) (RFC 8300) to steer and provide context metadata (MD) with each packet.  Such metadata can be of various types, including MD Type 2, consisting of Variable-Length Context Headers.  This document specifies several such Context Headers that can be used within a Service Function Path (SFP)."];
+  RFC9263 -> rev_cites;
+  RFC9375 [label="RFC9375
+A YANG Data Model for Network and VPN
+Service Performance Monitoring
+2023", shape=ellipse, URL="RFC9375.html", target="_top", tooltip="The data model for network topologies defined in RFC 8345 introduces vertical layering relationships between networks that can be augmented to cover network and service topologies.  This document defines a YANG module for performance monitoring (PM) of both underlay networks and overlay VPN services that can be used to monitor and manage network performance on the topology of both layers."];
+  RFC9375 -> rev_cites;
+  RFC9408 [label="RFC9408
+A YANG Network Data Model for Service
+Attachment Points (SAPs)
+2023", shape=ellipse, URL="RFC9408.html", target="_top", tooltip="This document defines a YANG data model for representing an abstract view of the provider network topology that contains the points from which its services can be attached (e.g., basic connectivity, VPN, network slices). Also, the model can be used to retrieve the points where the services are actually being delivered to customers (including peer networks). This document augments the 'ietf-network' data model defined in RFC 8345 by adding the concept of Service Attachment Points (SAPs). The SAPs are the network reference points to which network services, such as Layer 3 Virtual Private Network (L3VPN) or Layer 2 Virtual Private Network (L2VPN), can be attached. One or multiple services can be bound to the same SAP. Both User-to-Network Interface (UNI) and Network-to-Network Interface (NNI) are supported in the SAP data model."];
+  RFC9408 -> rev_cites;
+  RFC9469 [label="RFC9469
+Applicability of Ethernet Virtual
+Private Network (EVPN) to Network
+Virtualization over Layer 3 (NVO3)
+Networks
+2023", shape=ellipse, URL="RFC9469.html", target="_top", tooltip="An Ethernet Virtual Private Network (EVPN) provides a unified control plane that solves the issues of Network Virtualization Edge (NVE) auto-discovery, tenant Media Access Control (MAC) / IP dissemination, and advanced features in a scablable way as required by Network Virtualization over Layer 3 (NVO3) networks.  EVPN is a scalable solution for NVO3 networks and keeps the independence of the underlay IP Fabric, i.e., there is no need to enable Protocol Independent Multicast (PIM) in the underlay network and maintain multicast states for tenant Broadcast Domains.  This document describes the use of EVPN for NVO3 networks and discusses its applicability to basic Layer 2 and Layer 3 connectivity requirements and to advanced features such as MAC Mobility, MAC Protection and Loop Protection, multihoming, Data Center Interconnect (DCI), and much more.  No new EVPN procedures are introduced."];
+  RFC9469 -> rev_cites;
+  RFC9494 [label="RFC9494
+Long-Lived Graceful Restart for BGP
+2023", shape=ellipse, URL="RFC9494.html", target="_top", tooltip="This document introduces a BGP capability called the Long-Lived Graceful Restart Capability (or LLGR Capability). The benefit of this capability is that stale routes can be retained for a longer time upon session failure than is provided for by BGP Graceful Restart (as described in RFC 4724). A well-known BGP community called LLGR_STALE is introduced for marking stale routes retained for a longer time. A second well-known BGP community called NO_LLGR is introduced for marking routes for which these procedures should not be applied. We also specify that such long-lived stale routes be treated as the least preferred and that their advertisements be limited to BGP speakers that have advertised the capability. Use of this extension is not advisable in all cases, and we provide guidelines to help determine if it is. This memo updates RFC 6368 by specifying that the LLGR_STALE community must be propagated into, or out of, the path attributes exchanged between the Provider Edge (PE) and Customer Edge (CE) routers."];
+  RFC9494 -> rev_cites;
+  RFC9543 [label="RFC9543
+A Framework for Network Slices in
+Networks Built from IETF Technologies
+2024", shape=ellipse, URL="RFC9543.html", target="_top", tooltip="This document describes network slicing in the context of networks built from IETF technologies. It defines the term IETF Network Slice to describe this type of network slice and establishes the general principles of network slicing in the IETF context. The document discusses the general framework for requesting and operating IETF Network Slices, the characteristics of an IETF Network Slice, the necessary system components and interfaces, and the mapping of abstract requests to more specific technologies. The document also discusses related considerations with monitoring and security. This document also provides definitions of related terms to enable consistent usage in other IETF documents that describe or use aspects of IETF Network Slices."];
+  RFC9543 -> rev_cites;
+  RFC9552 [label="RFC9552
+Distribution of Link-State and Traffic
+Engineering Information Using BGP
+2023", shape=ellipse, URL="RFC9552.html", target="_top", tooltip="In many environments, a component external to a network is called upon to perform computations based on the network topology and the current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism applies to physical and virtual (e.g., tunnel) IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs). This document obsoletes RFC 7752 by completely replacing that document. It makes some small changes and clarifications to the previous specification. This document also obsoletes RFC 9029 by incorporating the updates that it made to RFC 7752."];
+  RFC9552 -> rev_cites;
+  RFC9573 [label="RFC9573
+MVPN/EVPN Tunnel Aggregation with Common
+Labels
+2024", shape=ellipse, URL="RFC9573.html", target="_top", tooltip="The Multicast VPN (MVPN) specifications allow a single Point-to-Multipoint (P2MP) tunnel to carry traffic of multiple IP VPNs (referred to as VPNs in this document).  The EVPN specifications allow a single P2MP tunnel to carry traffic of multiple Broadcast Domains (BDs).  These features require the ingress router of the P2MP tunnel to allocate an upstream-assigned MPLS label for each VPN or for each BD.  A packet sent on a P2MP tunnel then carries the label that is mapped to its VPN or BD (in some cases, a distinct upstream-assigned label is needed for each flow.) Since each ingress router allocates labels independently, with no coordination among the ingress routers, the egress routers may need to keep track of a large number of labels.  The number of labels may need to be as large as, or larger than, the product of the number of ingress routers times the number of VPNs or BDs.  However, the number of labels can be greatly reduced if the association between a label and a VPN or BD is made by provisioning, so that all ingress routers assign the same label to a particular VPN or BD.  New procedures are needed in order to take advantage of such provisioned labels.  These new procedures also apply to Multipoint-to-Multipoint (MP2MP) tunnels.  This document updates RFCs 6514, 7432, and 7582 by specifying the necessary procedures."];
+  RFC9573 -> rev_cites;
+  RFC9625 [label="RFC9625
+EVPN Optimized Inter-Subnet Multicast
+(OISM) Forwarding
+2024", shape=ellipse, URL="RFC9625.html", target="_top", tooltip="Ethernet VPN (EVPN) provides a service that allows a single Local Area Network (LAN), comprising a single IP subnet, to be divided into multiple segments.  Each segment may be located at a different site, and the segments are interconnected by an IP or MPLS backbone.  Intra-subnet traffic (either unicast or multicast) always appears to the end users to be bridged, even when it is actually carried over the IP or MPLS backbone.  When a single tenant owns multiple such LANs, EVPN also allows IP unicast traffic to be routed between those LANs.  This document specifies new procedures that allow inter-subnet IP multicast traffic to be routed among the LANs of a given tenant while still making intra-subnet IP multicast traffic appear to be bridged.  These procedures can provide optimal routing of the inter-subnet multicast traffic and do not require any such traffic to egress a given router and then ingress that same router.  These procedures also accommodate IP multicast traffic that originates or is destined to be external to the EVPN domain."];
+  RFC9625 -> rev_cites;
+  RFC9648 [label="RFC9648
+YANG Data Model for TCP
+2024", shape=ellipse, URL="RFC9648.html", target="_top", tooltip="This document specifies a minimal YANG data model for TCP on devices that are configured and managed by network management protocols.  The YANG data model defines a container for all TCP connections and groupings of authentication parameters that can be imported and used in TCP implementations or by other models that need to configure TCP parameters.  The model also includes basic TCP statistics.  The model is compliant with Network Management Datastore Architecture (NMDA) (RFC 8342)."];
+  RFC9648 -> rev_cites;
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, URL="RFC9689.html", target="_top", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."];
+  RFC9689 -> rev_cites;
+  RFC9732 [label="RFC9732
+A Framework for NRP-Based Enhanced
+Virtual Private Networks
+2025", shape=ellipse, URL="RFC9732.html", target="_top", tooltip="This document describes a framework for Enhanced Virtual Private Networks (VPNs) based on Network Resource Partitions (NRPs) in order to support the needs of applications with specific traffic performance requirements (e.g., low latency, bounded jitter).  NRP-based enhanced VPNs leverage the VPN and Traffic Engineering (TE) technologies and add characteristics that specific services require beyond those provided by conventional VPNs.  Typically, an NRP-based enhanced VPN will be used to underpin network slicing, but it could also be of use in its own right providing enhanced connectivity services between customer sites.  This document also provides an overview of relevant technologies in different network layers and identifies some areas for potential new work."];
+  RFC9732 -> rev_cites;
+  RFC9786 [label="RFC9786
+EVPN Port-Active Redundancy Mode
+2025", shape=ellipse, URL="RFC9786.html", target="_top", tooltip="The Multi-Chassis Link Aggregation (MC-LAG) group technology enables establishing a logical link-aggregation connection with a redundant group of independent nodes.  The objective of MC-LAG is to enhance both network availability and bandwidth utilization through various modes of traffic load balancing.  RFC 7432 defines an EVPN-based MC-LAG with Single-Active and All-Active multihoming redundancy modes.  This document builds on the existing redundancy mechanisms supported by EVPN and introduces a new active/standby redundancy mode, called 'Port-Active'."];
+  RFC9786 -> rev_cites;
+  RFC9816 [label="RFC9816
+Usage and Applicability of BGP Link
+State (BGP-LS) Shortest Path First (SPF)
+Routing in Data Centers
+2025", shape=ellipse, URL="RFC9816.html", target="_top", tooltip="This document discusses the usage and applicability of BGP Link State (BGP-LS) Shortest Path First (SPF) extensions in data center networks utilizing Clos or Fat Tree topologies.  The document is intended to provide simplified guidance for the deployment of BGP-LS SPF extensions."];
+  RFC9816 -> rev_cites;
+  RFC9832 [label="RFC9832
+BGP Classful Transport Planes
+2025", shape=ellipse, URL="RFC9832.html", target="_top", tooltip="This document specifies a mechanism referred to as Intent-Driven Service Mapping. The mechanism uses BGP to express Intent-based association of overlay routes with underlay routes having specific Traffic Engineering (TE) characteristics satisfying a certain Service Level Agreement (SLA). This is achieved by defining new constructs to group underlay routes with sufficiently similar TE characteristics into identifiable classes (called Transport Classes or TCs), that overlay routes use as an ordered set to resolve reachability (Resolution Schemes) towards service endpoints. These constructs can be used, for example, to realize the IETF Network Slice defined in the TEAS Network Slices framework (RFC 9543). Additionally, this document specifies protocol procedures for BGP that enable dissemination of service mapping information in a network that may span multiple cooperating administrative domains. These domains may be administered either by the same provider or by closely coordinating providers. A new BGP address family that leverages the procedures described in RFC 4364 (BGP/MPLS IP Virtual Private Networks (VPNs)) and follows the NLRI encoding described in RFC 8277 (Using BGP to Bind MPLS Labels to Address Prefixes) is defined to enable each advertised underlay route to be identified by its class. This new address family is called BGP Classful Transport (or BGP CT)."];
+  RFC9832 -> rev_cites;
+  RFC9833 [label="RFC9833
+A Common YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9833.html", target="_top", tooltip="The document specifies a common attachment circuits (ACs) YANG data
+model, which is designed to be reusable by other models.  This design
+is meant to ensure consistent AC structures among models that
+manipulate ACs.  For example, this common model can be reused by
+service models to expose ACs as a service, service models that
+require binding a service to a set of ACs, network and device models
+to provision ACs, etc."];
+  RFC9833 -> rev_cites;
+  RFC9834 [label="RFC9834
+YANG Data Models for Bearers and
+Attachment Circuits as a Service (ACaaS)
+2025", shape=ellipse, URL="RFC9834.html", target="_top", tooltip="Delivery of network services assumes that appropriate setup is
+provisioned over the links that connect customer termination points
+and a provider network. The required setup to allow successful data
+exchange over these links is referred to as an attachment circuit
+(AC), while the underlying link is referred to as a bearer. This document specifies a YANG service data model for ACs. This model
+can be used for the provisioning of ACs before or during service
+provisioning (e.g., RFC 9543 Network Slice Service). The document also specifies a YANG service data model for managing
+bearers over which ACs are established."];
+  RFC9834 -> rev_cites;
+  RFC9835 [label="RFC9835
+A Network YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9835.html", target="_top", tooltip="This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in the YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf- opsawg-teas-attachment-circuit). The module augments the base network ('ietf-network') and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs)."];
+  RFC9835 -> rev_cites;
+  RFC9836 [label="RFC9836
+A YANG Data Model for Augmenting VPN
+Service and Network Models with
+Attachment Circuits
+2025", shape=ellipse, URL="RFC9836.html", target="_top", tooltip="This document defines a YANG data model, referred to as the AC Glue
+model, to augment the LxVPN Service Model (LxSM) and LxVPN Network
+Model (LxNM) with references to attachment circuits (ACs).  The AC
+Glue model enables a provider to associate Layer 2/3 VPN (LxVPN)
+services with the underlying AC infrastructure, thereby facilitating
+consistent provisioning and management of new or existing ACs in
+conjunction with LxVPN services.  Specifically, by introducing an
+integrated approach to AC and LxVPN management, this model supports
+Attachment Circuit as a Service (ACaaS) and provides a standardized
+mechanism for aligning AC/VPN requests with the network
+configurations required to deliver them."];
+  RFC9836 -> rev_cites;
+  RFC9837 [label="RFC9837
+The IPv6 VPN Service Destination Option
+2025", shape=ellipse, URL="RFC9837.html", target="_top", tooltip="This document describes an experiment in which VPN service information is encoded in an experimental IPv6 Destination Option. The experimental IPv6 Destination Option is called the VPN Service Option. One purpose of this experiment is to demonstrate that the VPN Service Option can be deployed in a production network. Another purpose is to demonstrate that the security measures described in this document are sufficient to protect a VPN. Finally, this document encourages replication of the experiment."];
+  RFC9837 -> rev_cites;
+  RFC9856 [label="RFC9856
+Multicast Source Redundancy in EVPNs
+2025", shape=ellipse, URL="RFC9856.html", target="_top", tooltip="In Ethernet Virtual Private Networks (EVPNs), IP multicast traffic replication and delivery play a crucial role in enabling efficient and scalable Layer 2 and Layer 3 services.  A common deployment scenario involves redundant multicast sources that ensure high availability and resiliency.  However, the presence of redundant sources can lead to duplicate IP multicast traffic in the network, causing inefficiencies and increased overhead.  This document specifies extensions to the EVPN multicast procedures that allow for the suppression of duplicate IP multicast traffic from redundant sources.  The proposed mechanisms enhance the EVPN's capability to deliver multicast traffic efficiently while maintaining high availability.  These extensions are applicable to various EVPN deployment scenarios and provide guidelines to ensure consistent and predictable behavior across diverse network topologies."];
+  RFC9856 -> rev_cites;
+  RFC9871 [label="RFC9871
+BGP Color-Aware Routing (CAR)
+2025", shape=ellipse, URL="RFC9871.html", target="_top", tooltip="This document describes a BGP-based routing solution to establish end-to-end intent-aware paths across a multi-domain transport network. The transport network can span multiple service provider and customer network domains. The BGP intent-aware paths can be used to steer traffic flows for service routes that need a specific intent. This solution is called BGP Color-Aware Routing (BGP CAR). This document describes the routing framework and BGP extensions to enable intent-aware routing using the BGP CAR solution. The solution defines two new BGP SAFIs (BGP CAR SAFI and BGP VPN CAR SAFI) for IPv4 and IPv6. It also defines an extensible Network Layer Reachability Information (NLRI) model for both SAFIs that allows multiple NLRI types to be defined for different use cases. Each type of NLRI contains key and TLV-based non-key fields for efficient encoding of different per-prefix information. This specification defines two NLRI types: Color-Aware Route NLRI and IP Prefix NLRI. It defines non-key TLV types for the MPLS label stack, SR-MPLS label index, and Segment Routing over IPv6 (SRv6) Segment Identifiers (SIDs). This solution also defines a new Local Color Mapping (LCM) Extended Community."];
+  RFC9871 -> rev_cites;
+  RFC9889 [label="RFC9889
+A Realization of Network Slices for 5G
+Networks Using Current IP/MPLS
+Technologies
+2025", shape=ellipse, URL="RFC9889.html", target="_top", tooltip="Network slicing is a feature that was introduced by the 3rd Generation Partnership Project (3GPP) in Mobile Networks. Realization of 5G slicing implies requirements for all mobile domains, including the Radio Access Network (RAN), Core Network (CN), and Transport Network (TN). This document describes a network slice realization model for IP/MPLS networks with a focus on the Transport Network fulfilling the service objectives for 5G slicing connectivity. The realization model reuses many building blocks commonly used in service provider networks at the current time."];
+  RFC9889 -> rev_cites;
+}

@@ -1,0 +1,146 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8362 [label="RFC8362
+OSPFv3 Link State Advertisement (LSA)
+Extensibility
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="OSPFv3 requires functional extension beyond what can readily be done with the fixed-format Link State Advertisement (LSA) as described in RFC 5340. Without LSA extension, attributes associated with OSPFv3 links and advertised IPv6 prefixes must be advertised in separate LSAs and correlated to the fixed-format LSAs. This document extends the LSA format by encoding the existing OSPFv3 LSA information in Type-Length-Value (TLV) tuples and allowing advertisement of additional information with additional TLVs. Backward-compatibility mechanisms are also described. This document updates RFC 5340, OSPF for IPv6, and RFC 5838, Support of Address Families in OSPFv3, by providing TLV-based encodings for the base OSPFv3 unicast support and OSPFv3 address family support."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8362;
+
+  obs [label="obsoletes", shape=box];
+  RFC8362 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8362 -> updates;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  updates -> RFC5340;
+  RFC5838 [label="RFC5838
+Support of Address Families in OSPFv3
+2010", shape=ellipse, URL="RFC5838.html", target="_top", tooltip="This document describes a mechanism for supporting multiple address families (AFs) in OSPFv3 using multiple instances.  It maps an AF to an OSPFv3 instance using the Instance ID field in the OSPFv3 packet header.  This approach is fairly simple and minimizes extensions to OSPFv3 for supporting multiple AFs. [STANDARDS-TRACK]"];
+  updates -> RFC5838;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8362;
+
+  cites [label="cites", shape=box];
+  RFC8362 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8362;
+  RFC8379 [label="RFC8379
+OSPF Graceful Link Shutdown
+2018", shape=ellipse, URL="RFC8379.html", target="_top", tooltip="When a link is being prepared to be taken out of service, the traffic needs to be diverted from both ends of the link. Increasing the metric to the highest value on one side of the link is not sufficient to divert the traffic flowing in the other direction. It is useful for the routers in an OSPFv2 or OSPFv3 routing domain to be able to advertise a link as being in a graceful-shutdown state to indicate impending maintenance activity on the link. This information can be used by the network devices to reroute the traffic effectively. This document describes the protocol extensions to disseminate graceful-link-shutdown information in OSPFv2 and OSPFv3."];
+  RFC8379 -> rev_cites;
+  RFC8476 [label="RFC8476
+Signaling Maximum SID Depth (MSD) Using
+OSPF
+2018", shape=ellipse, URL="RFC8476.html", target="_top", tooltip="This document defines a way for an Open Shortest Path First (OSPF) router to advertise multiple types of supported Maximum SID Depths (MSDs) at node and/or link granularity.  Such advertisements allow entities (e.g., centralized controllers) to determine whether a particular Segment Identifier (SID) stack can be supported in a given network.  This document only refers to the Signaling MSD as defined in RFC 8491, but it defines an encoding that can support other MSD types.  Here, the term OSPF means both OSPFv2 and OSPFv3."];
+  RFC8476 -> rev_cites;
+  RFC8666 [label="RFC8666
+OSPFv3 Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8666.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv3 extensions required for Segment Routing with the MPLS data plane."];
+  RFC8666 -> rev_cites;
+  RFC8920 [label="RFC8920
+OSPF Application-Specific Link
+Attributes
+2020", shape=ellipse, URL="RFC8920.html", target="_top", tooltip="Existing traffic-engineering-related link attribute advertisements have been defined and are used in RSVP-TE deployments.  Since the original RSVP-TE use case was defined, additional applications (e.g., Segment Routing Policy and Loop-Free Alternates) that also make use of the link attribute advertisements have been defined.  In cases where multiple applications wish to make use of these link attributes, the current advertisements do not support application-specific values for a given attribute, nor do they support indication of which applications are using the advertised value for a given link.  This document introduces new link attribute advertisements in OSPFv2 and OSPFv3 that address both of these shortcomings."];
+  RFC8920 -> rev_cites;
+  RFC8963 [label="RFC8963
+Evaluation of a Sample of RFCs Produced
+in 2018
+2021", shape=ellipse, URL="RFC8963.html", target="_top", tooltip="This document presents the author's effort to understand the delays involved in publishing an idea in the IETF or through the Independent Stream, from the first individual draft to the publication of the RFC. We analyze a set of randomly chosen RFCs approved in 2018, looking for history and delays. We also use two randomly chosen sets of RFCs published in 2008 and 1998 for comparing delays seen in 2018 to those observed 10 or 20 years ago. The average RFC in the 2018 sample was produced in 3 years and 4 months, of which 2 years and 10 months were spent in the working group, 3 to 4 months for IETF consensus and IESG review, and 3 to 4 months in RFC production. The main variation in RFC production delays comes from the AUTH48 phase. We also measure the number of citations of the chosen RFC using Semantic Scholar, and compare citation counts with what we know about deployment. We show that citation counts indicate academic interest, but correlate only loosely with deployment or usage of the specifications. Counting web references could complement that."];
+  RFC8963 -> rev_cites;
+  RFC9084 [label="RFC9084
+OSPF Prefix Originator Extensions
+2021", shape=ellipse, URL="RFC9084.html", target="_top", tooltip="This document defines OSPF extensions to include information associated with the node originating a prefix along with the prefix advertisement.  These extensions do not change the core OSPF route computation functionality but provide useful information for network analysis, troubleshooting, and use cases like traffic engineering."];
+  RFC9084 -> rev_cites;
+  RFC9085 [label="RFC9085
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+2021", shape=ellipse, URL="RFC9085.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths by encoding paths as sequences of topological subpaths, called segments. These segments are advertised by routing protocols, e.g., by the link-state routing protocols (IS-IS, OSPFv2, and OSPFv3) within IGP topologies. This document defines extensions to the Border Gateway Protocol - Link State (BGP-LS) address family in order to carry SR information via BGP."];
+  RFC9085 -> rev_cites;
+  RFC9089 [label="RFC9089
+Signaling Entropy Label Capability and
+Entropy Readable Label Depth Using OSPF
+2021", shape=ellipse, URL="RFC9089.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) has defined a mechanism to load-balance traffic flows using Entropy Labels (EL).  An ingress Label Switching Router (LSR) cannot insert ELs for packets going into a given Label Switched Path (LSP) unless an egress LSR has indicated via signaling that it has the capability to process ELs, referred to as the Entropy Label Capability (ELC), on that LSP.  In addition, it would be useful for ingress LSRs to know each LSR's capability for reading the maximum label stack depth and performing EL-based load-balancing, referred to as Entropy Readable Label Depth (ERLD).  This document defines a mechanism to signal these two capabilities using OSPFv2 and OSPFv3, and Border Gateway Protocol - Link State (BGP-LS)."];
+  RFC9089 -> rev_cites;
+  RFC9350 [label="RFC9350
+IGP Flexible Algorithm
+2023", shape=ellipse, URL="RFC9350.html", target="_top", tooltip="IGP protocols historically compute the best paths over the network based on the IGP metric assigned to the links.  Many network deployments use RSVP-TE or Segment Routing - Traffic Engineering (SR-TE) to steer traffic over a path that is computed using different metrics or constraints than the shortest IGP path.  This document specifies a solution that allows IGPs themselves to compute constraint-based paths over the network.  This document also specifies a way of using Segment Routing (SR) Prefix-SIDs and SRv6 locators to steer packets along the constraint-based paths."];
+  RFC9350 -> rev_cites;
+  RFC9356 [label="RFC9356
+Advertising Layer 2 Bundle Member Link
+Attributes in OSPF
+2023", shape=ellipse, URL="RFC9356.html", target="_top", tooltip="There are deployments where the Layer 3 (L3) interface on which OSPF operates is a Layer 2 (L2) interface bundle. Existing OSPF advertisements only support advertising link attributes of the L3 interface. If entities external to OSPF wish to control traffic flows on the individual physical links that comprise the L2 interface bundle, link attribute information for the bundle members is required. This document defines the protocol extensions for OSPF to advertise the link attributes of L2 bundle members. The document also specifies the advertisement of these OSPF extensions via the Border Gateway Protocol - Link State (BGP-LS) and thereby updates RFC 9085."];
+  RFC9356 -> rev_cites;
+  RFC9492 [label="RFC9492
+OSPF Application-Specific Link
+Attributes
+2023", shape=ellipse, URL="RFC9492.html", target="_top", tooltip="Existing traffic-engineering-related link attribute advertisements have been defined and are used in RSVP-TE deployments. Since the original RSVP-TE use case was defined, additional applications such as Segment Routing (SR) Policy and Loop-Free Alternates (LFAs) that also make use of the link attribute advertisements have been defined. In cases where multiple applications wish to make use of these link attributes, the current advertisements do not support application-specific values for a given attribute, nor do they support indication of which applications are using the advertised value for a given link. This document introduces link attribute advertisements in OSPFv2 and OSPFv3 that address both of these shortcomings. This document obsoletes RFC 8920."];
+  RFC9492 -> rev_cites;
+  RFC9502 [label="RFC9502
+IGP Flexible Algorithm in IP Networks
+2023", shape=ellipse, URL="RFC9502.html", target="_top", tooltip="This document extends IGP Flexible Algorithm so that it can be used with regular IPv4 and IPv6 forwarding."];
+  RFC9502 -> rev_cites;
+  RFC9513 [label="RFC9513
+OSPFv3 Extensions for Segment Routing
+over IPv6 (SRv6)
+2023", shape=ellipse, URL="RFC9513.html", target="_top", tooltip="The Segment Routing (SR) architecture allows a flexible definition of the end-to-end path by encoding it as a sequence of topological elements called segments.  It can be implemented over an MPLS or IPv6 data plane.  This document describes the OSPFv3 extensions required to support SR over the IPv6 data plane."];
+  RFC9513 -> rev_cites;
+  RFC9552 [label="RFC9552
+Distribution of Link-State and Traffic
+Engineering Information Using BGP
+2023", shape=ellipse, URL="RFC9552.html", target="_top", tooltip="In many environments, a component external to a network is called upon to perform computations based on the network topology and the current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism applies to physical and virtual (e.g., tunnel) IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs). This document obsoletes RFC 7752 by completely replacing that document. It makes some small changes and clarifications to the previous specification. This document also obsoletes RFC 9029 by incorporating the updates that it made to RFC 7752."];
+  RFC9552 -> rev_cites;
+  RFC9587 [label="RFC9587
+YANG Data Model for OSPFv3 Extended Link
+State Advertisements (LSAs)
+2024", shape=ellipse, URL="RFC9587.html", target="_top", tooltip="This document defines a YANG data model augmenting the IETF OSPF YANG data model (RFC 9129) to provide support for OSPFv3 Link State Advertisement (LSA) Extensibility as defined in RFC 8362.  OSPFv3 Extended LSAs provide extensible TLV-based LSAs for the base LSA types defined in RFC 5340."];
+  RFC9587 -> rev_cites;
+  RFC9667 [label="RFC9667
+Dynamic Flooding on Dense Graphs
+2024", shape=ellipse, URL="RFC9667.html", target="_top", tooltip="Routing with link-state protocols in dense network topologies can result in suboptimal convergence times due to the overhead associated with flooding. This can be addressed by decreasing the flooding topology so that it is less dense. This document discusses the problem in some depth and an architectural solution. Specific protocol changes for IS-IS, OSPFv2, and OSPFv3 are described in this document."];
+  RFC9667 -> rev_cites;
+  RFC9792 [label="RFC9792
+Prefix Flag Extension for OSPFv2 and
+OSPFv3
+2025", shape=ellipse, URL="RFC9792.html", target="_top", tooltip="Each OSPF prefix can be advertised with an 8-bit field to indicate specific properties of that prefix. However, all the OSPFv3 Prefix Options bits have already been assigned, and only a few bits remain unassigned in the Flags field of the OSPFv2 Extended Prefix TLV. This document solves this problem by defining a variable-length Prefix Extended Flags sub-TLV for OSPF. This sub-TLV is applicable to OSPFv2 and OSPFv3."];
+  RFC9792 -> rev_cites;
+  RFC9825 [label="RFC9825
+Extensions to OSPF for Advertising
+Prefix Administrative Tags
+2025", shape=ellipse, URL="RFC9825.html", target="_top", tooltip="It is useful for routers in OSPFv2 and OSPFv3 routing domains to be able to associate tags with prefixes.  Previously, OSPFv2 and OSPFv3 were relegated to a single tag and only for Autonomous System (AS) External and Not-So-Stubby-Area (NSSA) prefixes.  With the flexible encodings provided by OSPFv2 Prefix/Link Attribute Advertisement and OSPFv3 Extended Link State Advertisements (LSAs), multiple administrative tags may be advertised for all types of prefixes.  These administrative tags can be used for many applications including route redistribution policy, selective prefix prioritization, selective IP Fast Reroute (IPFRR) prefix protection, and many others."];
+  RFC9825 -> rev_cites;
+  RFC9843 [label="RFC9843
+IGP Flexible Algorithms: Bandwidth,
+Delay, Metrics, and Constraints
+2025", shape=ellipse, URL="RFC9843.html", target="_top", tooltip="Many networks configure the IGP link metric relative to the link capacity, and high bandwidth traffic gets routed per the link capacity. Flexible Algorithms provide mechanisms to create constraint-based paths in an IGP. This specification documents a generic metric-type and a set of bandwidth-related constraints to be used in Flexible Algorithms. This document updates RFC 9350."];
+  RFC9843 -> rev_cites;
+  RFC9903 [label="RFC9903
+A YANG Data Model for OSPF Segment
+Routing over the MPLS Data Plane
+2025", shape=ellipse, URL="RFC9903.html", target="_top", tooltip="This document defines a YANG data model that can be used to manage OSPF extensions for Segment Routing over the MPLS data plane."];
+  RFC9903 -> rev_cites;
+}

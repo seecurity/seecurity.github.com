@@ -1,0 +1,59 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6473 [label="RFC6473
+vCard KIND:application
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a value of application for the vCard KIND property so that vCards can be used to represent software applications. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6473;
+
+  obs [label="obsoletes", shape=box];
+  RFC6473 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6473 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6473;
+
+  cites [label="cites", shape=box];
+  RFC6473 -> cites;
+  RFC6350 [label="RFC6350
+vCard Format Specification
+2011", shape=ellipse, URL="RFC6350.html", target="_top", tooltip="This document defines the vCard data format for representing and exchanging a variety of information about individuals and other entities (e.g., formatted and structured name and delivery addresses, email address, multiple telephone numbers, photograph, logo, audio clips, etc.).  This document obsoletes RFCs 2425, 2426, and 4770, and updates RFC 2739. [STANDARDS-TRACK]"];
+  cites -> RFC6350;
+  RFC4519 [label="RFC4519
+Lightweight Directory Access Protocol
+(LDAP): Schema for User Applications
+2006", shape=ellipse, URL="RFC4519.html", target="_top", tooltip="This document is an integral part of the Lightweight Directory Access Protocol (LDAP) technical specification.  It provides a technical specification of attribute types and object classes intended for use by LDAP directory clients for many directory services, such as White Pages.  These objects are widely used as a basis for the schema in many LDAP directories.  This document does not cover attributes used for the administration of directory servers, nor does it include directory objects defined for specific uses in other documents. [STANDARDS-TRACK]"];
+  cites -> RFC4519;
+  RFC6120 [label="RFC6120
+Extensible Messaging and Presence
+Protocol (XMPP): Core
+2011", shape=ellipse, URL="RFC6120.html", target="_top", tooltip="The Extensible Messaging and Presence Protocol (XMPP) is an application profile of the Extensible Markup Language (XML) that enables the near-real-time exchange of structured yet extensible data between any two or more network entities.  This document defines XMPP's core protocol methods: setup and teardown of XML streams, channel encryption, authentication, error handling, and communication primitives for messaging, network availability (presence), and request-response interactions.  This document obsoletes RFC 3920. [STANDARDS-TRACK]"];
+  cites -> RFC6120;
+  RFC6351 [label="RFC6351
+xCard: vCard XML Representation
+2011", shape=ellipse, URL="RFC6351.html", target="_top", tooltip="This document defines the XML schema of the vCard data format. [STANDARDS-TRACK]"];
+  cites -> RFC6351;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6473;
+  RFC6869 [label="RFC6869
+vCard KIND:device
+2013", shape=ellipse, URL="RFC6869.html", target="_top", tooltip="This document defines a value of device for the vCard KIND property so that the vCard format can be used to represent computing devices such as appliances, computers, or network elements (e.g., a server, router, switch, printer, sensor, or phone). [STANDARDS-TRACK]"];
+  RFC6869 -> rev_cites;
+  RFC9553 [label="RFC9553
+JSContact: A JSON Representation of
+Contact Data
+2024", shape=ellipse, URL="RFC9553.html", target="_top", tooltip="This specification defines a data model and JavaScript Object Notation (JSON) representation of contact card information that can be used for data storage and exchange in address book or directory applications.  It aims to be an alternative to the vCard data format and to be unambiguous, extendable, and simple to process.  In contrast to the JSON-based jCard format, it is not a direct mapping from the vCard data model and expands semantics where appropriate.  Two additional specifications define new vCard elements and how to convert between JSContact and vCard."];
+  RFC9553 -> rev_cites;
+  RFC9555 [label="RFC9555
+JSContact: Converting from and to vCard
+2024", shape=ellipse, URL="RFC9555.html", target="_top", tooltip="This document defines how to convert contact information between the JSContact and vCard data formats.  It defines conversion rules for every JSContact and vCard element registered at IANA at the time of publication.  It also defines new JSContact properties as well as vCard properties and parameters, to support converting arbitrary or unknown JSContact and vCard elements."];
+  RFC9555 -> rev_cites;
+}

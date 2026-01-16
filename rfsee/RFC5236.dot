@@ -1,0 +1,59 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5236 [label="RFC5236
+Improved Packet Reordering Metrics
+2008", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document presents two improved metrics for packet reordering, namely, Reorder Density (RD) and Reorder Buffer-occupancy Density (RBD). A threshold is used to clearly define when a packet is considered lost, to bound computational complexity at O(N), and to keep the memory requirement for evaluation independent of N, where N is the length of the packet sequence. RD is a comprehensive metric that captures the characteristics of reordering, while RBD evaluates the sequences from the point of view of recovery from reordering. These metrics are simple to compute yet comprehensive in their characterization of packet reordering. The measures are robust and orthogonal to packet loss and duplication. This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5236;
+
+  obs [label="obsoletes", shape=box];
+  RFC5236 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5236 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5236;
+
+  cites [label="cites", shape=box];
+  RFC5236 -> cites;
+  RFC4737 [label="RFC4737
+Packet Reordering Metrics
+2006", shape=ellipse, URL="RFC4737.html", target="_top", tooltip="This memo defines metrics to evaluate whether a network has maintained packet order on a packet-by-packet basis.  It provides motivations for the new metrics and discusses the measurement issues, including the context information required for all metrics.  The memo first defines a reordered singleton, and then uses it as the basis for sample metrics to quantify the extent of reordering in several useful dimensions for network characterization or receiver design.  Additional metrics quantify the frequency of reordering and the distance between separate occurrences.  We then define a metric oriented toward assessment of reordering effects on TCP.  Several examples of evaluation using the various sample metrics are included.  An appendix gives extended definitions for evaluating order with packet fragmentation. [STANDARDS-TRACK]"];
+  cites -> RFC4737;
+  RFC2330 [label="RFC2330
+Framework for IP Performance Metrics
+1998", shape=ellipse, URL="RFC2330.html", target="_top", tooltip="The purpose of this memo is to define a general framework for particular metrics to be developed by the IETF's IP Performance Metrics effort.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  cites -> RFC2330;
+  RFC3763 [label="RFC3763
+One-way Active Measurement Protocol
+(OWAMP) Requirements
+2004", shape=ellipse, URL="RFC3763.html", target="_top", tooltip="With growing availability of good time sources to network nodes, it becomes increasingly possible to measure one-way IP performance metrics with high precision.  To do so in an interoperable manner, a common protocol for such measurements is required.  This document specifies requirements for a one-way active measurement protocol (OWAMP) standard.  The protocol can measure one-way delay, as well as other unidirectional characteristics, such as one-way loss.  This memo provides information for the Internet community."];
+  cites -> RFC3763;
+  RFC4656 [label="RFC4656
+A One-way Active Measurement Protocol
+(OWAMP)
+2006", shape=ellipse, URL="RFC4656.html", target="_top", tooltip="The One-Way Active Measurement Protocol (OWAMP) measures unidirectional characteristics such as one-way delay and one-way loss.  High-precision measurement of these one-way IP performance metrics became possible with wider availability of good time sources (such as GPS and CDMA).  OWAMP enables the interoperability of these measurements. [STANDARDS-TRACK]"];
+  cites -> RFC4656;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5236;
+  RFC8517 [label="RFC8517
+An Inventory of Transport-Centric
+Functions Provided by Middleboxes: An
+Operator Perspective
+2019", shape=ellipse, URL="RFC8517.html", target="_top", tooltip="This document summarizes an operator's perception of the benefits that may be provided by intermediary devices that execute functions beyond normal IP forwarding. Such intermediary devices are often called middleboxes. RFC 3234 defines a taxonomy of middleboxes and issues in the Internet. Most of those middleboxes utilize or modify application- layer data. This document primarily focuses on devices that observe and act on information carried in the transport layer, and especially information carried in TCP packets."];
+  RFC8517 -> rev_cites;
+  RFC9065 [label="RFC9065
+Considerations around Transport Header
+Confidentiality, Network Operations, and
+the Evolution of Internet Transport
+Protocols
+2021", shape=ellipse, URL="RFC9065.html", target="_top", tooltip="To protect user data and privacy, Internet transport protocols have supported payload encryption and authentication for some time. Such encryption and authentication are now also starting to be applied to the transport protocol headers. This helps avoid transport protocol ossification by middleboxes, mitigate attacks against the transport protocol, and protect metadata about the communication. Current operational practice in some networks inspect transport header information within the network, but this is no longer possible when those transport headers are encrypted. This document discusses the possible impact when network traffic uses a protocol with an encrypted transport header. It suggests issues to consider when designing new transport protocols or features."];
+  RFC9065 -> rev_cites;
+}

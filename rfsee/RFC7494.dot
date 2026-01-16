@@ -1,0 +1,53 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7494 [label="RFC7494
+IEEE 802.11 Medium Access Control (MAC)
+Profile for Control and Provisioning of
+Wireless Access Points (CAPWAP)
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Control and Provisioning of Wireless Access Points (CAPWAP) protocol binding for IEEE 802.11 defines two Medium Access Control (MAC) modes for IEEE 802.11 Wireless Transmission Points (WTPs): Split and Local MAC.  In the Split MAC mode, the partitioning of encryption/decryption functions is not clearly defined.  In the Split MAC mode description, IEEE 802.11 encryption is specified as located in either the Access Controller (AC) or the WTP, with no clear way for the AC to inform the WTP of where the encryption functionality should be located.  This leads to interoperability issues, especially when the AC and WTP come from different vendors.  To prevent interoperability issues, this specification defines an IEEE 802.11 MAC Profile message element in which each profile specifies an unambiguous division of encryption functionality between the WTP and AC."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7494;
+
+  obs [label="obsoletes", shape=box];
+  RFC7494 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7494 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7494;
+
+  cites [label="cites", shape=box];
+  RFC7494 -> cites;
+  RFC5415 [label="RFC5415
+Control And Provisioning of Wireless
+Access Points (CAPWAP) Protocol
+Specification
+2009", shape=ellipse, URL="RFC5415.html", target="_top", tooltip="This specification defines the Control And Provisioning of Wireless Access Points (CAPWAP) Protocol, meeting the objectives defined by the CAPWAP Working Group in RFC 4564.  The CAPWAP protocol is designed to be flexible, allowing it to be used for a variety of wireless technologies.  This document describes the base CAPWAP protocol, while separate binding extensions will enable its use with additional wireless technologies. [STANDARDS-TRACK]"];
+  cites -> RFC5415;
+  RFC5416 [label="RFC5416
+Control and Provisioning of Wireless
+Access Points (CAPWAP) Protocol Binding
+for IEEE 802.11
+2009", shape=ellipse, URL="RFC5416.html", target="_top", tooltip="Wireless LAN product architectures have evolved from single autonomous access points to systems consisting of a centralized Access Controller (AC) and Wireless Termination Points (WTPs). The general goal of centralized control architectures is to move access control, including user authentication and authorization, mobility management, and radio management from the single access point to a centralized controller. This specification defines the Control And Provisioning of Wireless Access Points (CAPWAP) Protocol Binding Specification for use with the IEEE 802.11 Wireless Local Area Network protocol. [STANDARDS-TRACK]"];
+  cites -> RFC5416;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7494;
+  RFC8350 [label="RFC8350
+Alternate Tunnel Encapsulation for Data
+Frames in Control and Provisioning of
+Wireless Access Points (CAPWAP)
+2018", shape=ellipse, URL="RFC8350.html", target="_top", tooltip="Control and Provisioning of Wireless Access Points (CAPWAP) is a protocol for encapsulating a station's data frames between the Wireless Transmission Point (WTP) and Access Controller (AC).  Specifically, the station's IEEE 802.11 data frames can be either locally bridged or tunneled to the AC.  When tunneled, a CAPWAP Data Channel is used for tunneling.  In many deployments, encapsulating data frames to an entity other than the AC (for example, to an Access Router (AR)) is desirable.  Furthermore, it may also be desirable to use different tunnel encapsulation modes between the WTP and the Access Router.  This document defines an extension to the CAPWAP protocol that supports this capability and refers to it as alternate tunnel encapsulation.  The alternate tunnel encapsulation allows 1) the WTP to tunnel non-management data frames to an endpoint different from the AC and 2) the WTP to tunnel using one of many known encapsulation types, such as IP-IP, IP-GRE, or CAPWAP.  The WTP may advertise support for alternate tunnel encapsulation during the discovery and join process, and the AC may select one of the supported alternate tunnel encapsulation types while configuring the WTP."];
+  RFC8350 -> rev_cites;
+}

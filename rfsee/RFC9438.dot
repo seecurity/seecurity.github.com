@@ -1,0 +1,201 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9438 [label="RFC9438
+CUBIC for Fast and Long-Distance
+Networks
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="CUBIC is a standard TCP congestion control algorithm that uses a cubic function instead of a linear congestion window increase function to improve scalability and stability over fast and long-distance networks. CUBIC has been adopted as the default TCP congestion control algorithm by the Linux, Windows, and Apple stacks. This document updates the specification of CUBIC to include algorithmic improvements based on these implementations and recent academic work. Based on the extensive deployment experience with CUBIC, this document also moves the specification to the Standards Track and obsoletes RFC 8312. This document also updates RFC 5681, to allow for CUBIC's occasionally more aggressive sending behavior."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9438;
+
+  obs [label="obsoletes", shape=box];
+  RFC9438 -> obs;
+  RFC8312 [label="RFC8312
+CUBIC for Fast Long-Distance Networks
+2018", shape=ellipse, URL="RFC8312.html", target="_top", tooltip="CUBIC is an extension to the current TCP standards.  It differs from the current TCP standards only in the congestion control algorithm on the sender side.  In particular, it uses a cubic function instead of a linear window increase function of the current TCP standards to improve scalability and stability under fast and long-distance networks.  CUBIC and its predecessor algorithm have been adopted as defaults by Linux and have been used for many years.  This document provides a specification of CUBIC to enable third-party implementations and to solicit community feedback through experimentation on the performance of CUBIC."];
+  obs -> RFC8312;
+
+  updates [label="updates", shape=box];
+  RFC9438 -> updates;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  updates -> RFC5681;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9438;
+
+  cites [label="cites", shape=box];
+  RFC9438 -> cites;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC9000 [label="RFC9000
+QUIC: A UDP-Based Multiplexed and Secure
+Transport
+2021", shape=ellipse, URL="RFC9000.html", target="_top", tooltip="This document defines the core of the QUIC transport protocol.  QUIC provides applications with flow-controlled streams for structured communication, low-latency connection establishment, and network path migration.  QUIC includes security measures that ensure confidentiality, integrity, and availability in a range of deployment circumstances.  Accompanying documents describe the integration of TLS for key negotiation, loss detection, and an exemplary congestion control algorithm."];
+  cites -> RFC9000;
+  RFC9260 [label="RFC9260
+Stream Control Transmission Protocol
+2022", shape=ellipse, URL="RFC9260.html", target="_top", tooltip="This document describes the Stream Control Transmission Protocol (SCTP) and obsoletes RFC 4960. It incorporates the specification of the chunk flags registry from RFC 6096 and the specification of the I bit of DATA chunks from RFC 7053. Therefore, RFCs 6096 and 7053 are also obsoleted by this document. In addition, RFCs 4460 and 8540, which describe errata for SCTP, are obsoleted by this document. SCTP was originally designed to transport Public Switched Telephone Network (PSTN) signaling messages over IP networks. It is also suited to be used for other applications, for example, WebRTC. SCTP is a reliable transport protocol operating on top of a connectionless packet network, such as IP. It offers the following services to its users: The design of SCTP includes appropriate congestion avoidance behavior and resistance to flooding and masquerade attacks."];
+  cites -> RFC9260;
+  RFC3649 [label="RFC3649
+HighSpeed TCP for Large Congestion
+Windows
+2003", shape=ellipse, URL="RFC3649.html", target="_top", tooltip="The proposals in this document are experimental.  While they may be deployed in the current Internet, they do not represent a consensus that this is the best method for high-speed congestion control.  In particular, we note that alternative experimental proposals are likely to be forthcoming, and it is not well understood how the proposals in this document will interact with such alternative proposals.  This document proposes HighSpeed TCP, a modification to TCP's congestion control mechanism for use with TCP connections with large congestion windows.  The congestion control mechanisms of the current Standard TCP constrains the congestion windows that can be achieved by TCP in realistic environments.  For example, for a Standard TCP connection with 1500-byte packets and a 100 ms round-trip time, achieving a steady-state throughput of 10 Gbps would require an average congestion window of 83,333 segments, and a packet drop rate of at most one congestion event every 5,000,000,000 packets (or equivalently, at most one congestion event every 1 2/3 hours).  This is widely acknowledged as an unrealistic constraint.  To address his limitation of TCP, this document proposes HighSpeed TCP, and solicits experimentation and feedback from the wider community."];
+  cites -> RFC3649;
+  RFC6582 [label="RFC6582
+The NewReno Modification to TCP's Fast
+Recovery Algorithm
+2012", shape=ellipse, URL="RFC6582.html", target="_top", tooltip="RFC 5681 documents the following four intertwined TCP congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  RFC 5681 explicitly allows certain modifications of these algorithms, including modifications that use the TCP Selective Acknowledgment (SACK) option (RFC 2883), and modifications that respond to partial acknowledgments (ACKs that cover new data, but not all the data outstanding when loss was detected) in the absence of SACK.  This document describes a specific algorithm for responding to partial acknowledgments, referred to as NewReno.  This response to partial acknowledgments was first proposed by Janey Hoe.  This document obsoletes RFC 3782. [STANDARDS-TRACK]"];
+  cites -> RFC6582;
+  RFC6675 [label="RFC6675
+A Conservative Loss Recovery Algorithm
+Based on Selective Acknowledgment (SACK)
+for TCP
+2012", shape=ellipse, URL="RFC6675.html", target="_top", tooltip="This document presents a conservative loss recovery algorithm for TCP that is based on the use of the selective acknowledgment (SACK) TCP option.  The algorithm presented in this document conforms to the spirit of the current congestion control specification (RFC 5681), but allows TCP senders to recover more effectively when multiple segments are lost from a single flight of data.  This document obsoletes RFC 3517 and describes changes from it. [STANDARDS-TRACK]"];
+  cites -> RFC6675;
+  RFC5348 [label="RFC5348
+TCP Friendly Rate Control (TFRC):
+Protocol Specification
+2008", shape=ellipse, URL="RFC5348.html", target="_top", tooltip="This document specifies TCP Friendly Rate Control (TFRC). TFRC is a congestion control mechanism for unicast flows operating in a best-effort Internet environment. It is reasonably fair when competing for bandwidth with TCP flows, but has a much lower variation of throughput over time compared with TCP, making it more suitable for applications such as streaming media where a relatively smooth sending rate is of importance. This document obsoletes RFC 3448 and updates RFC 4342. [STANDARDS-TRACK]"];
+  cites -> RFC5348;
+  RFC9002 [label="RFC9002
+QUIC Loss Detection and Congestion
+Control
+2021", shape=ellipse, URL="RFC9002.html", target="_top", tooltip="This document describes loss detection and congestion control mechanisms for QUIC."];
+  cites -> RFC9002;
+  RFC8312 [label="RFC8312
+CUBIC for Fast Long-Distance Networks
+2018", shape=ellipse, URL="RFC8312.html", target="_top", tooltip="CUBIC is an extension to the current TCP standards.  It differs from the current TCP standards only in the congestion control algorithm on the sender side.  In particular, it uses a cubic function instead of a linear window increase function of the current TCP standards to improve scalability and stability under fast and long-distance networks.  CUBIC and its predecessor algorithm have been adopted as defaults by Linux and have been used for many years.  This document provides a specification of CUBIC to enable third-party implementations and to solicit community feedback through experimentation on the performance of CUBIC."];
+  cites -> RFC8312;
+  RFC5033 [label="RFC5033
+Specifying New Congestion Control
+Algorithms
+2007", shape=ellipse, URL="RFC5033.html", target="_top", tooltip="The IETF's standard congestion control schemes have been widely shown to be inadequate for various environments (e.g., high-speed networks).  Recent research has yielded many alternate congestion control schemes that significantly differ from the IETF's congestion control principles.  Using these new congestion control schemes in the global Internet has possible ramifications to both the traffic using the new congestion control and to traffic using the currently standardized congestion control.  Therefore, the IETF must proceed with caution when dealing with alternate congestion control proposals.  The goal of this document is to provide guidance for considering alternate congestion control algorithms within the IETF.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5033;
+  RFC9406 [label="RFC9406
+HyStart++: Modified Slow Start for TCP
+2023", shape=ellipse, URL="RFC9406.html", target="_top", tooltip="This document describes HyStart++, a simple modification to the slow start phase of congestion control algorithms.  Slow start can overshoot the ideal send rate in many cases, causing high packet loss and poor performance.  HyStart++ uses increase in round-trip delay as a heuristic to find an exit point before possible overshoot.  It also adds a mitigation to prevent jitter from causing premature slow start exit."];
+  cites -> RFC9406;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC8985 [label="RFC8985
+The RACK-TLP Loss Detection Algorithm
+for TCP
+2021", shape=ellipse, URL="RFC8985.html", target="_top", tooltip="This document presents the RACK-TLP loss detection algorithm for TCP.  RACK-TLP uses per-segment transmit timestamps and selective acknowledgments (SACKs) and has two parts.  Recent Acknowledgment (RACK) starts fast recovery quickly using time-based inferences derived from acknowledgment (ACK) feedback, and Tail Loss Probe (TLP) leverages RACK and sends a probe packet to trigger ACK feedback to avoid retransmission timeout (RTO) events.  Compared to the widely used duplicate acknowledgment (DupAck) threshold approach, RACK-TLP detects losses more efficiently when there are application-limited flights of data, lost retransmissions, or data packet reordering events.  It is intended to be an alternative to the DupAck threshold approach."];
+  cites -> RFC8985;
+  RFC6298 [label="RFC6298
+Computing TCP's Retransmission Timer
+2011", shape=ellipse, URL="RFC6298.html", target="_top", tooltip="This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer.  It expands on the discussion in Section 4.2.3.1 of RFC 1122 and upgrades the requirement of supporting the algorithm from a SHOULD to a MUST.  This document obsoletes RFC 2988. [STANDARDS-TRACK]"];
+  cites -> RFC6298;
+  RFC6937 [label="RFC6937
+Proportional Rate Reduction for TCP
+2013", shape=ellipse, URL="RFC6937.html", target="_top", tooltip="This document describes an experimental Proportional Rate Reduction (PRR) algorithm as an alternative to the widely deployed Fast Recovery and Rate-Halving algorithms.  These algorithms determine the amount of data sent by TCP during loss recovery.  PRR minimizes excess window adjustments, and the actual window size at the end of recovery will be as close as possible to the ssthresh, as determined by the congestion control algorithm."];
+  cites -> RFC6937;
+  RFC7661 [label="RFC7661
+Updating TCP to Support Rate-Limited
+Traffic
+2015", shape=ellipse, URL="RFC7661.html", target="_top", tooltip="This document provides a mechanism to address issues that arise when TCP is used for traffic that exhibits periods where the sending rate is limited by the application rather than the congestion window. It provides an experimental update to TCP that allows a TCP sender to restart quickly following a rate-limited interval. This method is expected to benefit applications that send rate-limited traffic using TCP while also providing an appropriate response if congestion is experienced. This document also evaluates the Experimental specification of TCP Congestion Window Validation (CWV) defined in RFC 2861 and concludes that RFC 2861 sought to address important issues but failed to deliver a widely used solution. This document therefore reclassifies the status of RFC 2861 from Experimental to Historic. This document obsoletes RFC 2861."];
+  cites -> RFC7661;
+  RFC5682 [label="RFC5682
+Forward RTO-Recovery (F-RTO): An
+Algorithm for Detecting Spurious
+Retransmission Timeouts with TCP
+2009", shape=ellipse, URL="RFC5682.html", target="_top", tooltip="The purpose of this document is to move the F-RTO (Forward RTO-Recovery) functionality for TCP in RFC 4138 from Experimental to Standards Track status. The F-RTO support for Stream Control Transmission Protocol (SCTP) in RFC 4138 remains with Experimental status. See Appendix B for the differences between this document and RFC 4138. Spurious retransmission timeouts cause suboptimal TCP performance because they often result in unnecessary retransmission of the last window of data. This document describes the F-RTO detection algorithm for detecting spurious TCP retransmission timeouts. F-RTO is a TCP sender-only algorithm that does not require any TCP options to operate. After retransmitting the first unacknowledged segment triggered by a timeout, the F-RTO algorithm of the TCP sender monitors the incoming acknowledgments to determine whether the timeout was spurious. It then decides whether to send new segments or retransmit unacknowledged segments. The algorithm effectively helps to avoid additional unnecessary retransmissions and thereby improves TCP performance in the case of a spurious timeout. [STANDARDS-TRACK]"];
+  cites -> RFC5682;
+  RFC3522 [label="RFC3522
+The Eifel Detection Algorithm for TCP
+2003", shape=ellipse, URL="RFC3522.html", target="_top", tooltip="The Eifel detection algorithm allows a TCP sender to detect a posteriori whether it has entered loss recovery unnecessarily.  It requires that the TCP Timestamps option defined in RFC 1323 be enabled for a connection.  The Eifel detection algorithm makes use of the fact that the TCP Timestamps option eliminates the retransmission ambiguity in TCP.  Based on the timestamp of the first acceptable ACK that arrives during loss recovery, it decides whether loss recovery was entered unnecessarily.  The Eifel detection algorithm provides a basis for future TCP enhancements.  This includes response algorithms to back out of loss recovery by restoring a TCP sender's congestion control state.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3522;
+  RFC4015 [label="RFC4015
+The Eifel Response Algorithm for TCP
+2005", shape=ellipse, URL="RFC4015.html", target="_top", tooltip="Based on an appropriate detection algorithm, the Eifel response algorithm provides a way for a TCP sender to respond to a detected spurious timeout.  It adapts the retransmission timer to avoid further spurious timeouts and (depending on the detection algorithm) can avoid the often unnecessary go-back-N retransmits that would otherwise be sent.  In addition, the Eifel response algorithm restores the congestion control state in such a way that packet bursts are avoided. [STANDARDS-TRACK]"];
+  cites -> RFC4015;
+  RFC2883 [label="RFC2883
+An Extension to the Selective
+Acknowledgement (SACK) Option for TCP
+2000", shape=ellipse, URL="RFC2883.html", target="_top", tooltip="This note defines an extension of the Selective Acknowledgement (SACK) Option for TCP. [STANDARDS-TRACK]"];
+  cites -> RFC2883;
+  RFC3708 [label="RFC3708
+Using TCP Duplicate Selective
+Acknowledgement (DSACKs) and Stream
+Control Transmission Protocol (SCTP)
+Duplicate Transmission Sequence Numbers
+(TSNs) to Detect Spurious
+Retransmissions
+2004", shape=ellipse, URL="RFC3708.html", target="_top", tooltip="TCP and Stream Control Transmission Protocol (SCTP) provide notification of duplicate segment receipt through Duplicate Selective Acknowledgement (DSACKs) and Duplicate Transmission Sequence Number (TSN) notification, respectively.  This document presents conservative methods of using this information to identify unnecessary retransmissions for various applications.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3708;
+  RFC3742 [label="RFC3742
+Limited Slow-Start for TCP with Large
+Congestion Windows
+2004", shape=ellipse, URL="RFC3742.html", target="_top", tooltip="This document describes an optional modification for TCP's slow-start for use with TCP connections with large congestion windows.  For TCP connections that are able to use congestion windows of thousands (or tens of thousands) of MSS-sized segments (for MSS the sender's MAXIMUM SEGMENT SIZE), the current slow-start procedure can result in increasing the congestion window by thousands of segments in a single round-trip time.  Such an increase can easily result in thousands of packets being dropped in one round-trip time.  This is often counter-productive for the TCP flow itself, and is also hard on the rest of the traffic sharing the congested link.  This note describes Limited Slow-Start as an optional mechanism for limiting the number of segments by which the congestion window is increased for one window of data during slow-start, in order to improve performance for TCP connections with large congestion windows.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3742;
+  RFC8511 [label="RFC8511
+TCP Alternative Backoff with ECN (ABE)
+2018", shape=ellipse, URL="RFC8511.html", target="_top", tooltip="Active Queue Management (AQM) mechanisms allow for burst tolerance while enforcing short queues to minimise the time that packets spend enqueued at a bottleneck.  This can cause noticeable performance degradation for TCP connections traversing such a bottleneck, especially if there are only a few flows or their bandwidth-delay product (BDP) is large.  The reception of a Congestion Experienced (CE) Explicit Congestion Notification (ECN) mark indicates that an AQM mechanism is used at the bottleneck, and the bottleneck network queue is therefore likely to be short.  Feedback of this signal allows the TCP sender-side ECN reaction in congestion avoidance to reduce the Congestion Window (cwnd) by a smaller amount than the congestion control algorithm's reaction to inferred packet loss.  Therefore, this specification defines an experimental change to the TCP reaction specified in RFC 3168, as permitted by RFC 8311."];
+  cites -> RFC8511;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  cites -> RFC7567;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9438;
+  RFC9439 [label="RFC9439
+Application-Layer Traffic Optimization
+(ALTO) Performance Cost Metrics
+2023", shape=ellipse, URL="RFC9439.html", target="_top", tooltip="The cost metric is a basic concept in Application-Layer Traffic
+Optimization (ALTO), and different applications may use different
+types of cost metrics. Since the ALTO base protocol (RFC 7285)
+defines only a single cost metric (namely, the generic routingcost
+metric), if an application wants to issue a cost map or an endpoint
+cost request in order to identify a resource provider that offers
+better performance metrics (e.g., lower delay or loss rate), the base
+protocol does not define the cost metric to be used. This document addresses this issue by extending the specification to
+provide a variety of network performance metrics, including network
+delay, delay variation (a.k.a. jitter), packet loss rate, hop count,
+and bandwidth. There are multiple sources (e.g., estimations based on measurements
+or a Service Level Agreement) available for deriving a performance
+metric. This document introduces an additional cost-context field
+to the ALTO cost-type field to convey the source of a performance
+metric."];
+  RFC9439 -> rev_cites;
+  RFC9743 [label="RFC9743
+Specifying New Congestion Control
+Algorithms
+2025", shape=ellipse, URL="RFC9743.html", target="_top", tooltip="RFC 5033 discusses the principles and guidelines for standardizing new congestion control algorithms.  This document obsoletes RFC 5033 to reflect changes in the congestion control landscape by providing a framework for the development and assessment of congestion control mechanisms, promoting stability across diverse network paths.  This document seeks to ensure that proposed congestion control algorithms operate efficiently and without harm when used in the global Internet.  It emphasizes the need for comprehensive testing and validation to prevent adverse interactions with existing flows."];
+  RFC9743 -> rev_cites;
+  RFC9840 [label="RFC9840
+rLEDBAT: Receiver-Driven Low Extra Delay
+Background Transport for TCP
+2025", shape=ellipse, URL="RFC9840.html", target="_top", tooltip="This document specifies receiver-driven Low Extra Delay Background Transport (rLEDBAT) -- a set of mechanisms that enable the execution of a less-than-best-effort congestion control algorithm for TCP at the receiver end.  This document is a product of the Internet Congestion Control Research Group (ICCRG) of the Internet Research Task Force (IRTF)."];
+  RFC9840 -> rev_cites;
+  RFC9937 [label="RFC9937
+Proportional Rate Reduction (PRR)
+2025", shape=ellipse, URL="RFC9937.html", target="_top", tooltip="This document specifies a Standards Track version of the Proportional Rate Reduction (PRR) algorithm that obsoletes the Experimental version described in RFC 6937.  PRR regulates the amount of data sent by TCP or other transport protocols during fast recovery.  PRR accurately regulates the actual flight size through recovery such that at the end of recovery it will be as close as possible to the slow start threshold (ssthresh), as determined by the congestion control algorithm."];
+  RFC9937 -> rev_cites;
+}

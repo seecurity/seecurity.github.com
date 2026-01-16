@@ -1,0 +1,125 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4953 [label="RFC4953
+Defending TCP Against Spoofing Attacks
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="Recent analysis of potential attacks on core Internet infrastructure indicates an increased vulnerability of TCP connections to spurious resets (RSTs), sent with forged IP source addresses (spoofing).  TCP has always been susceptible to such RST spoofing attacks, which were indirectly protected by checking that the RST sequence number was inside the current receive window, as well as via the obfuscation of TCP endpoint and port numbers.  For pairs of well-known endpoints often over predictable port pairs, such as BGP or between web servers and well-known large-scale caches, increases in the path bandwidth-delay product of a connection have sufficiently increased the receive window space that off-path third parties can brute-force generate a viable RST sequence number.  The susceptibility to attack increases with the square of the bandwidth, and thus presents a significant vulnerability for recent high-speed networks.  This document addresses this vulnerability, discussing proposed solutions at the transport level and their inherent challenges, as well as existing network level solutions and the feasibility of their deployment.  This document focuses on vulnerabilities due to spoofed TCP segments, and includes a discussion of related ICMP spoofing attacks on TCP connections.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4953;
+
+  obs [label="obsoletes", shape=box];
+  RFC4953 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4953 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4953;
+
+  cites [label="cites", shape=box];
+  RFC4953 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4953;
+  RFC5382 [label="RFC5382
+NAT Behavioral Requirements for TCP
+2008", shape=ellipse, URL="RFC5382.html", target="_top", tooltip="This document defines a set of requirements for NATs that handle TCP that would allow many applications, such as peer-to-peer applications and online games to work consistently.  Developing NATs that meet this set of requirements will greatly increase the likelihood that these applications will function properly.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC5382 -> rev_cites;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  RFC5925 -> rev_cites;
+  RFC5927 [label="RFC5927
+ICMP Attacks against TCP
+2010", shape=ellipse, URL="RFC5927.html", target="_top", tooltip="This document discusses the use of the Internet Control Message Protocol (ICMP) to perform a variety of attacks against the Transmission Control Protocol (TCP).  Additionally, this document describes a number of widely implemented modifications to TCP's handling of ICMP error messages that help to mitigate these issues.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5927 -> rev_cites;
+  RFC5961 [label="RFC5961
+Improving TCP's Robustness to Blind In-
+Window Attacks
+2010", shape=ellipse, URL="RFC5961.html", target="_top", tooltip="TCP has historically been considered to be protected against spoofed off-path packet injection attacks by relying on the fact that it is difficult to guess the 4-tuple (the source and destination IP addresses and the source and destination ports) in combination with the 32-bit sequence number(s).  A combination of increasing window sizes and applications using longer-term connections (e.g., H-323 or Border Gateway Protocol (BGP) [STANDARDS-TRACK]"];
+  RFC5961 -> rev_cites;
+  RFC6013 [label="RFC6013
+TCP Cookie Transactions (TCPCT)
+2011", shape=ellipse, URL="RFC6013.html", target="_top", tooltip="TCP Cookie Transactions (TCPCT) deter spoofing of connections and prevent resource exhaustion, eliminating Responder (server) state during the initial handshake.  The Initiator (client) has sole responsibility for ensuring required delays between connections.  The cookie exchange may carry data, limited to inhibit amplification and reflection denial of service attacks.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6013 -> rev_cites;
+  RFC6056 [label="RFC6056
+Recommendations for Transport-Protocol
+Port Randomization
+2011", shape=ellipse, URL="RFC6056.html", target="_top", tooltip="During the last few years, awareness has been raised about a number of blind attacks that can be performed against the Transmission Control Protocol (TCP) and similar protocols.  The consequences of these attacks range from throughput reduction to broken connections or data corruption.  These attacks rely on the attacker's ability to guess or know the five-tuple (Protocol, Source Address, Destination Address, Source Port, Destination Port) that identifies the transport protocol instance to be attacked.  This document describes a number of simple and efficient methods for the selection of the client port number, such that the possibility of an attacker guessing the exact value is reduced.  While this is not a replacement for cryptographic methods for protecting the transport-protocol instance, the aforementioned port selection algorithms provide improved security with very little effort and without any key management overhead.  The algorithms described in this document are local policies that may be incrementally deployed and that do not violate the specifications of any of the transport protocols that may benefit from them, such as TCP, UDP, UDP-lite, Stream Control Transmission Protocol (SCTP), Datagram Congestion Control Protocol (DCCP), and RTP (provided that the RTP application explicitly signals the RTP and RTCP port numbers).  This memo documents an Internet Best Current Practice."];
+  RFC6056 -> rev_cites;
+  RFC6614 [label="RFC6614
+Transport Layer Security (TLS)
+Encryption for RADIUS
+2012", shape=ellipse, URL="RFC6614.html", target="_top", tooltip="This document specifies a transport profile for RADIUS using Transport Layer Security (TLS) over TCP as the transport protocol.  This enables dynamic trust relationships between RADIUS servers. [STANDARDS-TRACK]"];
+  RFC6614 -> rev_cites;
+  RFC6952 [label="RFC6952
+Analysis of BGP, LDP, PCEP, and MSDP
+Issues According to the Keying and
+Authentication for Routing Protocols
+(KARP) Design Guide
+2013", shape=ellipse, URL="RFC6952.html", target="_top", tooltip="This document analyzes TCP-based routing protocols, the Border Gateway Protocol (BGP), the Label Distribution Protocol (LDP), the Path Computation Element Communication Protocol (PCEP), and the Multicast Source Distribution Protocol (MSDP), according to guidelines set forth in Section 4.2 of Keying and Authentication for Routing Protocols Design Guidelines, RFC 6518."];
+  RFC6952 -> rev_cites;
+  RFC6959 [label="RFC6959
+Source Address Validation Improvement
+(SAVI) Threat Scope
+2013", shape=ellipse, URL="RFC6959.html", target="_top", tooltip="The Source Address Validation Improvement (SAVI) effort aims to complement ingress filtering with finer-grained, standardized IP source address validation.  This document describes threats enabled by IP source address spoofing both in the global and finer-grained context, describes currently available solutions and challenges, and provides a starting point analysis for finer-grained (host granularity) anti-spoofing work."];
+  RFC6959 -> rev_cites;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+  RFC7597 [label="RFC7597
+Mapping of Address and Port with
+Encapsulation (MAP-E)
+2015", shape=ellipse, URL="RFC7597.html", target="_top", tooltip="This document describes a mechanism for transporting IPv4 packets across an IPv6 network using IP encapsulation.  It also describes a generic mechanism for mapping between IPv6 addresses and IPv4 addresses as well as transport-layer ports."];
+  RFC7597 -> rev_cites;
+  RFC7599 [label="RFC7599
+Mapping of Address and Port using
+Translation (MAP-T)
+2015", shape=ellipse, URL="RFC7599.html", target="_top", tooltip="This document specifies the solution architecture based on Mapping of Address and Port stateless IPv6-IPv4 Network Address Translation (NAT64) for providing shared or non-shared IPv4 address connectivity to and across an IPv6 network."];
+  RFC7599 -> rev_cites;
+  RFC7675 [label="RFC7675
+Session Traversal Utilities for NAT
+(STUN) Usage for Consent Freshness
+2015", shape=ellipse, URL="RFC7675.html", target="_top", tooltip="To prevent WebRTC applications, such as browsers, from launching attacks by sending traffic to unwilling victims, periodic consent to send needs to be obtained from remote endpoints. This document describes a consent mechanism using a new Session Traversal Utilities for NAT (STUN) usage."];
+  RFC7675 -> rev_cites;
+  RFC8764 [label="RFC8764
+Apple's DNS Long-Lived Queries Protocol
+2020", shape=ellipse, URL="RFC8764.html", target="_top", tooltip="Apple's DNS Long-Lived Queries (LLQ) is a mechanism for extending the DNS protocol to support change notification, thus allowing clients to learn about changes to DNS data without polling the server. From 2005 onwards, LLQ was implemented in Apple products including Mac OS X, Bonjour for Windows, and AirPort wireless base stations. In 2020, the LLQ protocol was superseded by the IETF Standards Track RFC 8765, DNS Push Notifications, which builds on experience gained with the LLQ protocol to create a superior replacement. The existing LLQ protocol deployed and used from 2005 to 2020 is documented here to give background regarding the operational experience that informed the development of DNS Push Notifications, and to help facilitate a smooth transition from LLQ to DNS Push Notifications."];
+  RFC8764 -> rev_cites;
+  RFC8765 [label="RFC8765
+DNS Push Notifications
+2020", shape=ellipse, URL="RFC8765.html", target="_top", tooltip="The Domain Name System (DNS) was designed to return matching records efficiently for queries for data that are relatively static.  When those records change frequently, DNS is still efficient at returning the updated results when polled, as long as the polling rate is not too high.  But, there exists no mechanism for a client to be asynchronously notified when these changes occur.  This document defines a mechanism for a client to be notified of such changes to DNS records, called DNS Push Notifications."];
+  RFC8765 -> rev_cites;
+  RFC9109 [label="RFC9109
+Network Time Protocol Version 4: Port
+Randomization
+2021", shape=ellipse, URL="RFC9109.html", target="_top", tooltip="The Network Time Protocol (NTP) can operate in several modes.  Some of these modes are based on the receipt of unsolicited packets and therefore require the use of a well-known port as the local port.  However, in the case of NTP modes where the use of a well-known port is not required, employing such a well-known port unnecessarily facilitates the ability of attackers to perform blind/off-path attacks.  This document formally updates RFC 5905, recommending the use of transport-protocol ephemeral port randomization for those modes where use of the NTP well-known port is not required."];
+  RFC9109 -> rev_cites;
+  RFC9210 [label="RFC9210
+DNS Transport over TCP - Operational
+Requirements
+2022", shape=ellipse, URL="RFC9210.html", target="_top", tooltip="This document updates RFCs 1123 and 1536.  This document requires the operational practice of permitting DNS messages to be carried over TCP on the Internet as a Best Current Practice.  This operational requirement is aligned with the implementation requirements in RFC 7766.  The use of TCP includes both DNS over unencrypted TCP as well as over an encrypted TLS session.  The document also considers the consequences of this form of DNS communication and the potential operational issues that can arise when this Best Current Practice is not upheld."];
+  RFC9210 -> rev_cites;
+  RFC9329 [label="RFC9329
+TCP Encapsulation of Internet Key
+Exchange Protocol (IKE) and IPsec
+Packets
+2022", shape=ellipse, URL="RFC9329.html", target="_top", tooltip="This document describes a method to transport Internet Key Exchange Protocol (IKE) and IPsec packets over a TCP connection for traversing network middleboxes that may block IKE negotiation over UDP. This method, referred to as TCP encapsulation, involves sending both IKE packets for Security Association (SA) establishment and Encapsulating Security Payload (ESP) packets over a TCP connection. This method is intended to be used as a fallback option when IKE cannot be negotiated over UDP. TCP encapsulation for IKE and IPsec was defined in RFC 8229. This document clarifies the specification for TCP encapsulation by including additional clarifications obtained during implementation and deployment of this method. This documents obsoletes RFC 8229."];
+  RFC9329 -> rev_cites;
+  RFC9415 [label="RFC9415
+On the Generation of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9415.html", target="_top", tooltip="This document performs an analysis of the security and privacy implications of different types of transient numeric identifiers used in IETF protocols and tries to categorize them based on their interoperability requirements and their associated failure severity when such requirements are not met.  Subsequently, it provides advice on possible algorithms that could be employed to satisfy the interoperability requirements of each identifier category while minimizing the negative security and privacy implications, thus providing guidance to protocol designers and protocol implementers.  Finally, it describes a number of algorithms that have been employed in real implementations to generate transient numeric identifiers and analyzes their security and privacy properties.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9415 -> rev_cites;
+  RFC9664 [label="RFC9664
+An EDNS(0) Option to Negotiate Leases on
+DNS Updates
+2025", shape=ellipse, URL="RFC9664.html", target="_top", tooltip="This document describes an EDNS(0) option that can be used between DNS Update Requesters and authoritative DNS servers to include a lifetime (lease duration) in a DNS Update or DNS Update Response, allowing a server to garbage collect stale Resource Records that have been added by DNS Updates if they are not renewed."];
+  RFC9664 -> rev_cites;
+}

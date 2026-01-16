@@ -1,0 +1,237 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9006 [label="RFC9006
+TCP Usage Guidance in the Internet of
+Things (IoT)
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides guidance on how to implement and use the Transmission Control Protocol (TCP) in Constrained-Node Networks (CNNs), which are a characteristic of the Internet of Things (IoT).  Such environments require a lightweight TCP implementation and may not make use of optional functionality.  This document explains a number of known and deployed techniques to simplify a TCP stack as well as corresponding trade-offs.  The objective is to help embedded developers with decisions on which TCP features to use."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9006;
+
+  obs [label="obsoletes", shape=box];
+  RFC9006 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9006 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9006;
+
+  cites [label="cites", shape=box];
+  RFC9006 -> cites;
+  RFC7228 [label="RFC7228
+Terminology for Constrained-Node
+Networks
+2014", shape=ellipse, URL="RFC7228.html", target="_top", tooltip="The Internet Protocol Suite is increasingly used on small devices with severe constraints on power, memory, and processing resources, creating constrained-node networks.  This document provides a number of basic terms that have been useful in the standardization work for constrained-node networks."];
+  cites -> RFC7228;
+  RFC8352 [label="RFC8352
+Energy-Efficient Features of Internet of
+Things Protocols
+2018", shape=ellipse, URL="RFC8352.html", target="_top", tooltip="This document describes the challenges for energy-efficient protocol operation on constrained devices and the current practices used to overcome those challenges.  It summarizes the main link-layer techniques used for energy-efficient networking, and it highlights the impact of such techniques on the upper-layer protocols so that they can together achieve an energy-efficient behavior.  The document also provides an overview of energy-efficient mechanisms available at each layer of the IETF protocol suite specified for constrained-node networks."];
+  cites -> RFC8352;
+  RFC4944 [label="RFC4944
+Transmission of IPv6 Packets over IEEE
+802.15.4 Networks
+2007", shape=ellipse, URL="RFC4944.html", target="_top", tooltip="This document describes the frame format for transmission of IPv6 packets and the method of forming IPv6 link-local addresses and statelessly autoconfigured addresses on IEEE 802.15.4 networks.  Additional specifications include a simple header compression scheme using shared context and provisions for packet delivery in IEEE 802.15.4 meshes. [STANDARDS-TRACK]"];
+  cites -> RFC4944;
+  RFC6282 [label="RFC6282
+Compression Format for IPv6 Datagrams
+over IEEE 802.15.4-Based Networks
+2011", shape=ellipse, URL="RFC6282.html", target="_top", tooltip="This document updates RFC 4944, Transmission of IPv6 Packets over IEEE 802.15.4 Networks.  This document specifies an IPv6 header compression format for IPv6 packet delivery in Low Power Wireless Personal Area Networks (6LoWPANs).  The compression format relies on shared context to allow compression of arbitrary prefixes.  How the information is maintained in that shared context is out of scope.  This document specifies compression of multicast addresses and a framework for compressing next headers.  UDP header compression is specified within this framework. [STANDARDS-TRACK]"];
+  cites -> RFC6282;
+  RFC6775 [label="RFC6775
+Neighbor Discovery Optimization for IPv6
+over Low-Power Wireless Personal Area
+Networks (6LoWPANs)
+2012", shape=ellipse, URL="RFC6775.html", target="_top", tooltip="The IETF work in IPv6 over Low-power Wireless Personal Area Network (6LoWPAN) defines 6LoWPANs such as IEEE 802.15.4.  This and other similar link technologies have limited or no usage of multicast signaling due to energy conservation.  In addition, the wireless network may not strictly follow the traditional concept of IP subnets and IP links.  IPv6 Neighbor Discovery was not designed for non- transitive wireless links, as its reliance on the traditional IPv6 link concept and its heavy use of multicast make it inefficient and sometimes impractical in a low-power and lossy network.  This document describes simple optimizations to IPv6 Neighbor Discovery, its addressing mechanisms, and duplicate address detection for Low- power Wireless Personal Area Networks and similar networks.  The document thus updates RFC 4944 to specify the use of the optimizations defined here. [STANDARDS-TRACK]"];
+  cites -> RFC6775;
+  RFC6550 [label="RFC6550
+RPL: IPv6 Routing Protocol for Low-Power
+and Lossy Networks
+2012", shape=ellipse, URL="RFC6550.html", target="_top", tooltip="Low-Power and Lossy Networks (LLNs) are a class of network in which both the routers and their interconnect are constrained.  LLN routers typically operate with constraints on processing power, memory, and energy (battery power).  Their interconnects are characterized by high loss rates, low data rates, and instability.  LLNs are comprised of anything from a few dozen to thousands of routers.  Supported traffic flows include point-to-point (between devices inside the LLN), point-to-multipoint (from a central control point to a subset of devices inside the LLN), and multipoint-to-point (from devices inside the LLN towards a central control point).  This document specifies the IPv6 Routing Protocol for Low-Power and Lossy Networks (RPL), which provides a mechanism whereby multipoint-to-point traffic from devices inside the LLN towards a central control point as well as point-to-multipoint traffic from the central control point to the devices inside the LLN are supported.  Support for point-to-point traffic is also available. [STANDARDS-TRACK]"];
+  cites -> RFC6550;
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, URL="RFC7252.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."];
+  cites -> RFC7252;
+  RFC8323 [label="RFC8323
+CoAP (Constrained Application Protocol)
+over TCP, TLS, and WebSockets
+2018", shape=ellipse, URL="RFC8323.html", target="_top", tooltip="The Constrained Application Protocol (CoAP), although inspired by HTTP, was designed to use UDP instead of TCP. The message layer of CoAP over UDP includes support for reliable delivery, simple congestion control, and flow control. Some environments benefit from the availability of CoAP carried over reliable transports such as TCP or Transport Layer Security (TLS). This document outlines the changes required to use CoAP over TCP, TLS, and WebSockets transports. It also formally updates RFC 7641 for use with these transports and RFC 7959 to enable the use of larger messages over a reliable transport."];
+  cites -> RFC8323;
+  RFC7230 [label="RFC7230
+Hypertext Transfer Protocol (HTTP/1.1):
+Message Syntax and Routing
+2014", shape=ellipse, URL="RFC7230.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems.  This document provides an overview of HTTP architecture and its associated terminology, defines the http and https Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations."];
+  cites -> RFC7230;
+  RFC7540 [label="RFC7540
+Hypertext Transfer Protocol Version 2
+(HTTP/2)
+2015", shape=ellipse, URL="RFC7540.html", target="_top", tooltip="This specification describes an optimized expression of the semantics of the Hypertext Transfer Protocol (HTTP), referred to as HTTP version 2 (HTTP/2). HTTP/2 enables a more efficient use of network resources and a reduced perception of latency by introducing header field compression and allowing multiple concurrent exchanges on the same connection. It also introduces unsolicited push of representations from servers to clients. This specification is an alternative to, but does not obsolete, the HTTP/1.1 message syntax. HTTP's existing semantics remain unchanged."];
+  cites -> RFC7540;
+  RFC6120 [label="RFC6120
+Extensible Messaging and Presence
+Protocol (XMPP): Core
+2011", shape=ellipse, URL="RFC6120.html", target="_top", tooltip="The Extensible Messaging and Presence Protocol (XMPP) is an application profile of the Extensible Markup Language (XML) that enables the near-real-time exchange of structured yet extensible data between any two or more network entities.  This document defines XMPP's core protocol methods: setup and teardown of XML streams, channel encryption, authentication, error handling, and communication primitives for messaging, network availability (presence), and request-response interactions.  This document obsoletes RFC 3920. [STANDARDS-TRACK]"];
+  cites -> RFC6120;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  cites -> RFC7414;
+  RFC3481 [label="RFC3481
+TCP over Second (2.5G) and Third (3G)
+Generation Wireless Networks
+2003", shape=ellipse, URL="RFC3481.html", target="_top", tooltip="This document describes a profile for optimizing TCP to adapt so that it handles paths including second (2.5G) and third (3G) generation wireless networks.  It describes the relevant characteristics of 2.5G and 3G networks, and specific features of example deployments of such networks.  It then recommends TCP algorithm choices for nodes known to be starting or ending on such paths, and it also discusses open issues.  The configuration options recommended in this document are commonly found in modern TCP stacks, and are widely available standards-track mechanisms that the community considers safe for use on the general Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3481;
+  RFC3819 [label="RFC3819
+Advice for Internet Subnetwork Designers
+2004", shape=ellipse, URL="RFC3819.html", target="_top", tooltip="This document provides advice to the designers of digital communication equipment, link-layer protocols, and packet-switched local networks (collectively referred to as subnetworks), who wish to support the Internet protocols but may be unfamiliar with the Internet architecture and the implications of their design choices on the performance and efficiency of the Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3819;
+  RFC6077 [label="RFC6077
+Open Research Issues in Internet
+Congestion Control
+2011", shape=ellipse, URL="RFC6077.html", target="_top", tooltip="This document describes some of the open problems in Internet congestion control that are known today.  This includes several new challenges that are becoming important as the network grows, as well as some issues that have been known for many years.  These challenges are generally considered to be open research topics that may require more study or application of innovative techniques before Internet-scale solutions can be confidently engineered and deployed.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6077;
+  RFC6606 [label="RFC6606
+Problem Statement and Requirements for
+IPv6 over Low-Power Wireless Personal
+Area Network (6LoWPAN) Routing
+2012", shape=ellipse, URL="RFC6606.html", target="_top", tooltip="IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) are formed by devices that are compatible with the IEEE 802.15.4 standard. However, neither the IEEE 802.15.4 standard nor the 6LoWPAN format specification defines how mesh topologies could be obtained and maintained. Thus, it should be considered how 6LoWPAN formation and multi-hop routing could be supported. This document provides the problem statement and design space for 6LoWPAN routing. It defines the routing requirements for 6LoWPANs, considering the low-power and other particular characteristics of the devices and links. The purpose of this document is not to recommend specific solutions but to provide general, layer-agnostic guidelines about the design of 6LoWPAN routing that can lead to further analysis and protocol design. This document is intended as input to groups working on routing protocols relevant to 6LoWPANs, such as the IETF ROLL WG. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6606;
+  RFC8201 [label="RFC8201
+Path MTU Discovery for IP version 6
+2017", shape=ellipse, URL="RFC8201.html", target="_top", tooltip="This document describes Path MTU Discovery (PMTUD) for IP version 6.  It is largely derived from RFC 1191, which describes Path MTU Discovery for IP version 4.  It obsoletes RFC 1981."];
+  cites -> RFC8201;
+  RFC8900 [label="RFC8900
+IP Fragmentation Considered Fragile
+2020", shape=ellipse, URL="RFC8900.html", target="_top", tooltip="This document describes IP fragmentation and explains how it introduces fragility to Internet communication. This document also proposes alternatives to IP fragmentation and provides recommendations for developers and network operators."];
+  cites -> RFC8900;
+  RFC6691 [label="RFC6691
+TCP Options and Maximum Segment Size
+(MSS)
+2012", shape=ellipse, URL="RFC6691.html", target="_top", tooltip="This memo discusses what value to use with the TCP Maximum Segment Size (MSS) option, and updates RFC 879 and RFC 2385.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6691;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  cites -> RFC8200;
+  RFC7668 [label="RFC7668
+IPv6 over BLUETOOTH(R) Low Energy
+2015", shape=ellipse, URL="RFC7668.html", target="_top", tooltip="Bluetooth Smart is the brand name for the Bluetooth low energy feature in the Bluetooth specification defined by the Bluetooth Special Interest Group.  The standard Bluetooth radio has been widely implemented and available in mobile phones, notebook computers, audio headsets, and many other devices.  The low-power version of Bluetooth is a specification that enables the use of this air interface with devices such as sensors, smart meters, appliances, etc.  The low-power variant of Bluetooth has been standardized since revision 4.0 of the Bluetooth specifications, although version 4.1 or newer is required for IPv6.  This document describes how IPv6 is transported over Bluetooth low energy using IPv6 over Low-power Wireless Personal Area Network (6LoWPAN) techniques."];
+  cites -> RFC7668;
+  RFC7428 [label="RFC7428
+Transmission of IPv6 Packets over ITU-T
+G.9959 Networks
+2015", shape=ellipse, URL="RFC7428.html", target="_top", tooltip="This document describes the frame format for transmission of IPv6 packets as well as a method of forming IPv6 link-local addresses and statelessly autoconfigured IPv6 addresses on ITU-T G.9959 networks."];
+  cites -> RFC7428;
+  RFC8105 [label="RFC8105
+Transmission of IPv6 Packets over
+Digital Enhanced Cordless
+Telecommunications (DECT) Ultra Low
+Energy (ULE)
+2017", shape=ellipse, URL="RFC8105.html", target="_top", tooltip="Digital Enhanced Cordless Telecommunications (DECT) Ultra Low Energy (ULE) is a low-power air interface technology that is proposed by the DECT Forum and is defined and specified by ETSI. The DECT air interface technology has been used worldwide in communication devices for more than 20 years. It has primarily been used to carry voice for cordless telephony but has also been deployed for data-centric services. DECT ULE is a recent addition to the DECT interface primarily intended for low-bandwidth, low-power applications such as sensor devices, smart meters, home automation, etc. As the DECT ULE interface inherits many of the capabilities from DECT, it benefits from operation that is long-range and interference-free, worldwide- reserved frequency band, low silicon prices, and maturity. There is an added value in the ability to communicate with IPv6 over DECT ULE, such as for Internet of Things applications. This document describes how IPv6 is transported over DECT ULE using IPv6 over Low-Power Wireless Personal Area Network (6LoWPAN) techniques."];
+  cites -> RFC8105;
+  RFC8163 [label="RFC8163
+Transmission of IPv6 over Master-
+Slave/Token-Passing (MS/TP) Networks
+2017", shape=ellipse, URL="RFC8163.html", target="_top", tooltip="Master-Slave/Token-Passing (MS/TP) is a medium access control method for the RS-485 physical layer and is used primarily in building automation networks.  This specification defines the frame format for transmission of IPv6 packets and the method of forming link-local and statelessly autoconfigured IPv6 addresses on MS/TP networks."];
+  cites -> RFC8163;
+  RFC8376 [label="RFC8376
+Low-Power Wide Area Network (LPWAN)
+Overview
+2018", shape=ellipse, URL="RFC8376.html", target="_top", tooltip="Low-Power Wide Area Networks (LPWANs) are wireless technologies with characteristics such as large coverage areas, low bandwidth, possibly very small packet and application-layer data sizes, and long battery life operation.  This memo is an informational overview of the set of LPWAN technologies being considered in the IETF and of the gaps that exist between the needs of those technologies and the goal of running IP in LPWANs."];
+  cites -> RFC8376;
+  RFC8931 [label="RFC8931
+IPv6 over Low-Power Wireless Personal
+Area Network (6LoWPAN) Selective
+Fragment Recovery
+2020", shape=ellipse, URL="RFC8931.html", target="_top", tooltip="This document updates RFC 4944 with a protocol that forwards individual fragments across a route-over mesh and recovers them end to end, with congestion control capabilities to protect the network."];
+  cites -> RFC8931;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC8087 [label="RFC8087
+The Benefits of Using Explicit
+Congestion Notification (ECN)
+2017", shape=ellipse, URL="RFC8087.html", target="_top", tooltip="The goal of this document is to describe the potential benefits of applications using a transport that enables Explicit Congestion Notification (ECN).  The document outlines the principal gains in terms of increased throughput, reduced delay, and other benefits when ECN is used over a network path that includes equipment that supports Congestion Experienced (CE) marking.  It also discusses challenges for successful deployment of ECN.  It does not propose new algorithms to use ECN nor does it describe the details of implementation of ECN in endpoint devices (Internet hosts), routers, or other network devices."];
+  cites -> RFC8087;
+  RFC2884 [label="RFC2884
+Performance Evaluation of Explicit
+Congestion Notification (ECN) in IP
+Networks
+2000", shape=ellipse, URL="RFC2884.html", target="_top", tooltip="This memo presents a performance study of the Explicit Congestion Notification (ECN) mechanism in the TCP/IP protocol using our implementation on the Linux Operating System.  This memo provides information for the Internet community."];
+  cites -> RFC2884;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  cites -> RFC7567;
+  RFC2757 [label="RFC2757
+Long Thin Networks
+2000", shape=ellipse, URL="RFC2757.html", target="_top", tooltip="Our goal is to identify a TCP that works for all users, including users of long thin networks.  This memo provides information for the Internet community."];
+  cites -> RFC2757;
+  RFC7323 [label="RFC7323
+TCP Extensions for High Performance
+2014", shape=ellipse, URL="RFC7323.html", target="_top", tooltip="This document specifies a set of TCP extensions to improve performance over paths with a large bandwidth * delay product and to provide reliable operation over very high-speed paths. It defines the TCP Window Scale (WS) option and the TCP Timestamps (TS) option and their semantics. The Window Scale option is used to support larger receive windows, while the Timestamps option can be used for at least two distinct mechanisms, Protection Against Wrapped Sequences (PAWS) and Round-Trip Time Measurement (RTTM), that are also described herein. This document obsoletes RFC 1323 and describes changes from it."];
+  cites -> RFC7323;
+  RFC2018 [label="RFC2018
+TCP Selective Acknowledgment Options
+1996", shape=ellipse, URL="RFC2018.html", target="_top", tooltip="This memo proposes an implementation of SACK and discusses its performance and related issues. [STANDARDS-TRACK]"];
+  cites -> RFC2018;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC6298 [label="RFC6298
+Computing TCP's Retransmission Timer
+2011", shape=ellipse, URL="RFC6298.html", target="_top", tooltip="This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer.  It expands on the discussion in Section 4.2.3.1 of RFC 1122 and upgrades the requirement of supporting the algorithm from a SHOULD to a MUST.  This document obsoletes RFC 2988. [STANDARDS-TRACK]"];
+  cites -> RFC6298;
+  RFC8961 [label="RFC8961
+Requirements for Time-Based Loss
+Detection
+2020", shape=ellipse, URL="RFC8961.html", target="_top", tooltip="Many protocols must detect packet loss for various reasons (e.g., to ensure reliability using retransmissions or to understand the level of congestion along a network path).  While many mechanisms have been designed to detect loss, ultimately, protocols can only count on the passage of time without delivery confirmation to declare a packet lost.  Each implementation of a time-based loss detection mechanism represents a balance between correctness and timeliness; therefore, no implementation suits all situations.  This document provides high-level requirements for time-based loss detectors appropriate for general use in unicast communication across the Internet.  Within the requirements, implementations have latitude to define particulars that best address each situation."];
+  cites -> RFC8961;
+  RFC3042 [label="RFC3042
+Enhancing TCP's Loss Recovery Using
+Limited Transmit
+2001", shape=ellipse, URL="RFC3042.html", target="_top", tooltip="This document proposes a new Transmission Control Protocol (TCP) mechanism that can be used to more effectively recover lost segments when a connection's congestion window is small, or when a large number of segments are lost in a single transmission window. [STANDARDS-TRACK]"];
+  cites -> RFC3042;
+  RFC6928 [label="RFC6928
+Increasing TCP's Initial Window
+2013", shape=ellipse, URL="RFC6928.html", target="_top", tooltip="This document proposes an experiment to increase the permitted TCP initial window (IW) from between 2 and 4 segments, as specified in RFC 3390, to 10 segments with a fallback to the existing recommendation when performance issues are detected.  It discusses the motivation behind the increase, the advantages and disadvantages of the higher initial window, and presents results from several large-scale experiments showing that the higher initial window improves the overall performance of many web services without resulting in a congestion collapse.  The document closes with a discussion of usage and deployment for further experimental purposes recommended by the IETF TCP Maintenance and Minor Extensions (TCPM) working group."];
+  cites -> RFC6928;
+  RFC5382 [label="RFC5382
+NAT Behavioral Requirements for TCP
+2008", shape=ellipse, URL="RFC5382.html", target="_top", tooltip="This document defines a set of requirements for NATs that handle TCP that would allow many applications, such as peer-to-peer applications and online games to work consistently.  Developing NATs that meet this set of requirements will greatly increase the likelihood that these applications will function properly.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5382;
+  RFC7413 [label="RFC7413
+TCP Fast Open
+2014", shape=ellipse, URL="RFC7413.html", target="_top", tooltip="This document describes an experimental TCP mechanism called TCP Fast Open (TFO).  TFO allows data to be carried in the SYN and SYN-ACK packets and consumed by the receiving end during the initial connection handshake, and saves up to one full round-trip time (RTT) compared to the standard TCP, which requires a three-way handshake (3WHS) to complete before data can be exchanged.  However, TFO deviates from the standard TCP semantics, since the data in the SYN could be replayed to an application in some rare circumstances.  Applications should not use TFO unless they can tolerate this issue, as detailed in the Applicability section."];
+  cites -> RFC7413;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC8446 [label="RFC8446
+The Transport Layer Security (TLS)
+Protocol Version 1.3
+2018", shape=ellipse, URL="RFC8446.html", target="_top", tooltip="This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery. This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations."];
+  cites -> RFC8446;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  cites -> RFC5925;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9006;
+}

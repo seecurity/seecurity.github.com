@@ -1,0 +1,99 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9471 [label="RFC9471
+DNS Glue Requirements in Referral
+Responses
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="The DNS uses glue records to allow iterative clients to find the addresses of name servers that are contained within a delegated zone.  Authoritative servers are expected to return all available glue records for in-domain name servers in a referral response.  If message size constraints prevent the inclusion of all glue records for in-domain name servers, the server must set the TC (Truncated) flag to inform the client that the response is incomplete and that the client should use another transport to retrieve the full response.  This document updates RFC 1034 to clarify correct server behavior."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9471;
+
+  obs [label="obsoletes", shape=box];
+  RFC9471 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9471 -> updates;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  updates -> RFC1034;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9471;
+
+  cites [label="cites", shape=box];
+  RFC9471 -> cites;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC8945 [label="RFC8945
+Secret Key Transaction Authentication
+for DNS (TSIG)
+2020", shape=ellipse, URL="RFC8945.html", target="_top", tooltip="This document describes a protocol for transaction-level authentication using shared secrets and one-way hashing. It can be used to authenticate dynamic updates to a DNS zone as coming from an approved client or to authenticate responses as coming from an approved name server. No recommendation is made here for distributing the shared secrets; it is expected that a network administrator will statically configure name servers and clients using some out-of-band mechanism. This document obsoletes RFCs 2845 and 4635."];
+  cites -> RFC8945;
+  RFC6891 [label="RFC6891
+Extension Mechanisms for DNS (EDNS(0))
+2013", shape=ellipse, URL="RFC6891.html", target="_top", tooltip="The Domain Name System's wire protocol includes a number of fixed fields whose range has been or soon will be exhausted and does not allow requestors to advertise their capabilities to responders. This document describes backward-compatible mechanisms for allowing the protocol to grow. This document updates the Extension Mechanisms for DNS (EDNS(0)) specification (and obsoletes RFC 2671) based on feedback from deployment experience in several implementations. It also obsoletes RFC 2673 (Binary Labels in the Domain Name System) and adds considerations on the use of extended labels in the DNS."];
+  cites -> RFC6891;
+  RFC2931 [label="RFC2931
+DNS Request and Transaction Signatures (
+SIG(0)s )
+2000", shape=ellipse, URL="RFC2931.html", target="_top", tooltip="This document describes the minor but non-interoperable changes in Request and Transaction signature resource records ( SIG(0)s ) that implementation experience has deemed necessary. [STANDARDS-TRACK]"];
+  cites -> RFC2931;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  cites -> RFC8499;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  cites -> RFC4034;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  cites -> RFC4035;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9471;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+  RFC9609 [label="RFC9609
+Initializing a DNS Resolver with Priming
+Queries
+2025", shape=ellipse, URL="RFC9609.html", target="_top", tooltip="This document describes the queries that a DNS resolver should emit to initialize its cache. The result is that the resolver gets both a current NS resource record set (RRset) for the root zone and the necessary address information for reaching the root servers. This document obsoletes RFC 8109."];
+  RFC9609 -> rev_cites;
+  RFC9715 [label="RFC9715
+IP Fragmentation Avoidance in DNS over
+UDP
+2025", shape=ellipse, URL="RFC9715.html", target="_top", tooltip="The widely deployed Extension Mechanisms for DNS (EDNS(0)) feature in the DNS enables a DNS receiver to indicate its received UDP message size capacity, which supports the sending of large UDP responses by a DNS server.  Large DNS/UDP messages are more likely to be fragmented, and IP fragmentation has exposed weaknesses in application protocols.  It is possible to avoid IP fragmentation in DNS by limiting the response size where possible and signaling the need to upgrade from UDP to TCP transport where necessary.  This document describes techniques to avoid IP fragmentation in DNS."];
+  RFC9715 -> rev_cites;
+}

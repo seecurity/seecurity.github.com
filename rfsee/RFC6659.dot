@@ -1,0 +1,75 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6659 [label="RFC6659
+Considerations for Deploying the Rapid
+Acquisition of Multicast RTP Sessions
+(RAMS) Method
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Rapid Acquisition of Multicast RTP Sessions (RAMS) solution is a method based on RTP and the RTP Control Protocol (RTCP) that enables an RTP receiver to rapidly acquire and start consuming the RTP multicast data.  Upon a request from the RTP receiver, an auxiliary unicast RTP retransmission session is set up between a retransmission server and the RTP receiver, over which the reference information about the new multicast stream the RTP receiver is about to join is transmitted at an accelerated rate.  This often precedes, but may also accompany, the multicast stream itself.  When there is only one multicast stream to be acquired, the RAMS solution works in a straightforward manner.  However, when there are two or more multicast streams to be acquired from the same or different multicast RTP sessions, care should be taken to configure each RAMS session appropriately.  This document provides example scenarios and discusses how the RAMS solution could be used in such scenarios.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6659;
+
+  obs [label="obsoletes", shape=box];
+  RFC6659 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6659 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6659;
+
+  cites [label="cites", shape=box];
+  RFC6659 -> cites;
+  RFC4588 [label="RFC4588
+RTP Retransmission Payload Format
+2006", shape=ellipse, URL="RFC4588.html", target="_top", tooltip="RTP retransmission is an effective packet loss recovery technique for real-time applications with relaxed delay bounds.  This document describes an RTP payload format for performing retransmissions.  Retransmitted RTP packets are sent in a separate stream from the original RTP stream.  It is assumed that feedback from receivers to senders is available.  In particular, it is assumed that Real-time Transport Control Protocol (RTCP) feedback as defined in the extended RTP profile for RTCP-based feedback (denoted RTP/AVPF) is available in this memo. [STANDARDS-TRACK]"];
+  cites -> RFC4588;
+  RFC6285 [label="RFC6285
+Unicast-Based Rapid Acquisition of
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6285.html", target="_top", tooltip="When an RTP receiver joins a multicast session, it may need to acquire and parse certain Reference Information before it can process any data sent in the multicast session. Depending on the join time, length of the Reference Information repetition (or appearance) interval, size of the Reference Information, and the application and transport properties, the time lag before an RTP receiver can usefully consume the multicast data, which we refer to as the Acquisition Delay, varies and can be large. This is an undesirable phenomenon for receivers that frequently switch among different multicast sessions, such as video broadcasts. In this document, we describe a method using the existing RTP and RTP Control Protocol (RTCP) machinery that reduces the acquisition delay. In this method, an auxiliary unicast RTP session carrying the Reference Information to the receiver precedes or accompanies the multicast stream. This unicast RTP flow can be transmitted at a faster than natural bitrate to further accelerate the acquisition. The motivating use case for this capability is multicast applications that carry real-time compressed audio and video. However, this method can also be used in other types of multicast applications where the acquisition delay is long enough to be a problem. [STANDARDS-TRACK]"];
+  cites -> RFC6285;
+  RFC5760 [label="RFC5760
+RTP Control Protocol (RTCP) Extensions
+for Single-Source Multicast Sessions
+with Unicast Feedback
+2010", shape=ellipse, URL="RFC5760.html", target="_top", tooltip="This document specifies an extension to the Real-time Transport Control Protocol (RTCP) to use unicast feedback to a multicast sender.  The proposed extension is useful for single-source multicast sessions such as Source-Specific Multicast (SSM) communication where the traditional model of many-to-many group communication is either not available or not desired.  In addition, it can be applied to any group that might benefit from a sender-controlled summarized reporting mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC5760;
+  RFC4566 [label="RFC4566
+SDP: Session Description Protocol
+2006", shape=ellipse, URL="RFC4566.html", target="_top", tooltip="This memo defines the Session Description Protocol (SDP).  SDP is intended for describing multimedia sessions for the purposes of session announcement, session invitation, and other forms of multimedia session initiation. [STANDARDS-TRACK]"];
+  cites -> RFC4566;
+  RFC5956 [label="RFC5956
+Forward Error Correction Grouping
+Semantics in the Session Description
+Protocol
+2010", shape=ellipse, URL="RFC5956.html", target="_top", tooltip="This document defines the semantics for grouping the associated source and FEC-based (Forward Error Correction) repair flows in the Session Description Protocol (SDP).  The semantics defined in this document are to be used with the SDP Grouping Framework (RFC 5888).  These semantics allow the description of grouping relationships between the source and repair flows when one or more source and/or repair flows are associated in the same group, and they provide support for additive repair flows.  SSRC-level (Synchronization Source) grouping semantics are also defined in this document for Real-time Transport Protocol (RTP) streams using SSRC multiplexing. [STANDARDS-TRACK]"];
+  cites -> RFC5956;
+  RFC5888 [label="RFC5888
+The Session Description Protocol (SDP)
+Grouping Framework
+2010", shape=ellipse, URL="RFC5888.html", target="_top", tooltip="In this specification, we define a framework to group m lines in the Session Description Protocol (SDP) for different purposes.  This framework uses the group and mid SDP attributes, both of which are defined in this specification.  Additionally, we specify how to use the framework for two different purposes: for lip synchronization and for receiving a media flow consisting of several media streams on different transport addresses.  This document obsoletes RFC 3388. [STANDARDS-TRACK]"];
+  cites -> RFC5888;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC4585 [label="RFC4585
+Extended RTP Profile for Real-time
+Transport Control Protocol (RTCP)-Based
+Feedback (RTP/AVPF)
+2006", shape=ellipse, URL="RFC4585.html", target="_top", tooltip="Real-time media streams that use RTP are, to some degree, resilient against packet losses.  Receivers may use the base mechanisms of the Real-time Transport Control Protocol (RTCP) to report packet reception statistics and thus allow a sender to adapt its transmission behavior in the mid-term.  This is the sole means for feedback and feedback-based error repair (besides a few codec-specific mechanisms).  This document defines an extension to the Audio-visual Profile (AVP) that enables receivers to provide, statistically, more immediate feedback to the senders and thus allows for short-term adaptation and efficient feedback-based repair mechanisms to be implemented.  This early feedback profile (AVPF) maintains the AVP bandwidth constraints for RTCP and preserves scalability to large groups. [STANDARDS-TRACK]"];
+  cites -> RFC4585;
+  RFC6363 [label="RFC6363
+Forward Error Correction (FEC) Framework
+2011", shape=ellipse, URL="RFC6363.html", target="_top", tooltip="This document describes a framework for using Forward Error Correction (FEC) codes with applications in public and private IP networks to provide protection against packet loss.  The framework supports applying FEC to arbitrary packet flows over unreliable transport and is primarily intended for real-time, or streaming, media.  This framework can be used to define Content Delivery Protocols that provide FEC for streaming media delivery or other packet flows.  Content Delivery Protocols defined using this framework can support any FEC scheme (and associated FEC codes) that is compliant with various requirements defined in this document.  Thus, Content Delivery Protocols can be defined that are not specific to a particular FEC scheme, and FEC schemes can be defined that are not specific to a particular Content Delivery Protocol. [STANDARDS-TRACK]"];
+  cites -> RFC6363;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6659;
+}

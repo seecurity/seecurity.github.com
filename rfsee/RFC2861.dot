@@ -1,0 +1,101 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2861 [label="RFC2861
+TCP Congestion Window Validation
+2000", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a simple modification to TCP's congestion control algorithms to decay the congestion window cwnd after the transition from a sufficiently-long application-limited period, while using the slow-start threshold ssthresh to save information about the previous value of the congestion window.  This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2861;
+  RFC7661 [label="RFC7661
+Updating TCP to Support Rate-Limited
+Traffic
+2015", shape=ellipse, URL="RFC7661.html", target="_top", tooltip="This document provides a mechanism to address issues that arise when TCP is used for traffic that exhibits periods where the sending rate is limited by the application rather than the congestion window. It provides an experimental update to TCP that allows a TCP sender to restart quickly following a rate-limited interval. This method is expected to benefit applications that send rate-limited traffic using TCP while also providing an appropriate response if congestion is experienced. This document also evaluates the Experimental specification of TCP Congestion Window Validation (CWV) defined in RFC 2861 and concludes that RFC 2861 sought to address important issues but failed to deliver a widely used solution. This document therefore reclassifies the status of RFC 2861 from Experimental to Historic. This document obsoletes RFC 2861."];
+  RFC7661 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC2861 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2861 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2861;
+
+  cites [label="cites", shape=box];
+  RFC2861 -> cites;
+  RFC2581 [label="RFC2581
+TCP Congestion Control
+1999", shape=ellipse, URL="RFC2581.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods. [STANDARDS-TRACK]"];
+  cites -> RFC2581;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2861;
+  RFC3155 [label="RFC3155
+End-to-end Performance Implications of
+Links with Errors
+2001", shape=ellipse, URL="RFC3155.html", target="_top", tooltip="This document discusses the specific TCP mechanisms that are problematic in environments with high uncorrected error rates, and discusses what can be done to mitigate the problems without introducing intermediate devices into the connection.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC3155 -> rev_cites;
+  RFC3465 [label="RFC3465
+TCP Congestion Control with Appropriate
+Byte Counting (ABC)
+2003", shape=ellipse, URL="RFC3465.html", target="_top", tooltip="This document proposes a small modification to the way TCP increases its congestion window.  Rather than the traditional method of increasing the congestion window by a constant amount for each arriving acknowledgment, the document suggests basing the increase on the number of previously unacknowledged bytes each ACK covers.  This change improves the performance of TCP, as well as closes a security hole TCP receivers can use to induce the sender into increasing the sending rate too rapidly.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC3465 -> rev_cites;
+  RFC3539 [label="RFC3539
+Authentication, Authorization and
+Accounting (AAA) Transport Profile
+2003", shape=ellipse, URL="RFC3539.html", target="_top", tooltip="This document discusses transport issues that arise within protocols for Authentication, Authorization and Accounting (AAA).  It also provides recommendations on the use of transport by AAA protocols.  This includes usage of standards-track RFCs as well as experimental proposals. [STANDARDS-TRACK]"];
+  RFC3539 -> rev_cites;
+  RFC4015 [label="RFC4015
+The Eifel Response Algorithm for TCP
+2005", shape=ellipse, URL="RFC4015.html", target="_top", tooltip="Based on an appropriate detection algorithm, the Eifel response algorithm provides a way for a TCP sender to respond to a detected spurious timeout.  It adapts the retransmission timer to avoid further spurious timeouts and (depending on the detection algorithm) can avoid the often unnecessary go-back-N retransmits that would otherwise be sent.  In addition, the Eifel response algorithm restores the congestion control state in such a way that packet bursts are avoided. [STANDARDS-TRACK]"];
+  RFC4015 -> rev_cites;
+  RFC4341 [label="RFC4341
+Profile for Datagram Congestion Control
+Protocol (DCCP) Congestion Control ID 2:
+TCP-like Congestion Control
+2006", shape=ellipse, URL="RFC4341.html", target="_top", tooltip="This document contains the profile for Congestion Control Identifier 2 (CCID 2), TCP-like Congestion Control, in the Datagram Congestion Control Protocol (DCCP).  CCID 2 should be used by senders who would like to take advantage of the available bandwidth in an environment with rapidly changing conditions, and who are able to adapt to the abrupt changes in the congestion window typical of TCP's Additive Increase Multiplicative Decrease (AIMD) congestion control. [STANDARDS-TRACK]"];
+  RFC4341 -> rev_cites;
+  RFC4614 [label="RFC4614
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2006", shape=ellipse, URL="RFC4614.html", target="_top", tooltip="This document contains a roadmap to the Requests for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP).  This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series.  This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs.  This memo provides information for the Internet community."];
+  RFC4614 -> rev_cites;
+  RFC4898 [label="RFC4898
+TCP Extended Statistics MIB
+2007", shape=ellipse, URL="RFC4898.html", target="_top", tooltip="This document describes extended performance statistics for TCP.  They are designed to use TCP's ideal vantage point to diagnose performance problems in both the network and the application.  If a network-based application is performing poorly, TCP can determine if the bottleneck is in the sender, the receiver, or the network itself.  If the bottleneck is in the network, TCP can provide specific information about its nature. [STANDARDS-TRACK]"];
+  RFC4898 -> rev_cites;
+  RFC4907 [label="RFC4907
+Architectural Implications of Link
+Indications
+2007", shape=ellipse, URL="RFC4907.html", target="_top", tooltip="A link indication represents information provided by the link layer to higher layers regarding the state of the link.  This document describes the role of link indications within the Internet architecture.  While the judicious use of link indications can provide performance benefits, inappropriate use can degrade both robustness and performance.  This document summarizes current proposals, describes the architectural issues, and provides examples of appropriate and inappropriate uses of link indications.  This memo provides information for the Internet community."];
+  RFC4907 -> rev_cites;
+  RFC5348 [label="RFC5348
+TCP Friendly Rate Control (TFRC):
+Protocol Specification
+2008", shape=ellipse, URL="RFC5348.html", target="_top", tooltip="This document specifies TCP Friendly Rate Control (TFRC). TFRC is a congestion control mechanism for unicast flows operating in a best-effort Internet environment. It is reasonably fair when competing for bandwidth with TCP flows, but has a much lower variation of throughput over time compared with TCP, making it more suitable for applications such as streaming media where a relatively smooth sending rate is of importance. This document obsoletes RFC 3448 and updates RFC 4342. [STANDARDS-TRACK]"];
+  RFC5348 -> rev_cites;
+  RFC6077 [label="RFC6077
+Open Research Issues in Internet
+Congestion Control
+2011", shape=ellipse, URL="RFC6077.html", target="_top", tooltip="This document describes some of the open problems in Internet congestion control that are known today.  This includes several new challenges that are becoming important as the network grows, as well as some issues that have been known for many years.  These challenges are generally considered to be open research topics that may require more study or application of innovative techniques before Internet-scale solutions can be confidently engineered and deployed.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6077 -> rev_cites;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+  RFC7661 [label="RFC7661
+Updating TCP to Support Rate-Limited
+Traffic
+2015", shape=ellipse, URL="RFC7661.html", target="_top", tooltip="This document provides a mechanism to address issues that arise when TCP is used for traffic that exhibits periods where the sending rate is limited by the application rather than the congestion window. It provides an experimental update to TCP that allows a TCP sender to restart quickly following a rate-limited interval. This method is expected to benefit applications that send rate-limited traffic using TCP while also providing an appropriate response if congestion is experienced. This document also evaluates the Experimental specification of TCP Congestion Window Validation (CWV) defined in RFC 2861 and concludes that RFC 2861 sought to address important issues but failed to deliver a widely used solution. This document therefore reclassifies the status of RFC 2861 from Experimental to Historic. This document obsoletes RFC 2861."];
+  RFC7661 -> rev_cites;
+  RFC8337 [label="RFC8337
+Model-Based Metrics for Bulk Transport
+Capacity
+2018", shape=ellipse, URL="RFC8337.html", target="_top", tooltip="This document introduces a new class of Model-Based Metrics designed to assess if a complete Internet path can be expected to meet a predefined Target Transport Performance by applying a suite of IP diagnostic tests to successive subpaths. The subpath-at-a-time tests can be robustly applied to critical infrastructure, such as network interconnections or even individual devices, to accurately detect if any part of the infrastructure will prevent paths traversing it from meeting the Target Transport Performance. Model-Based Metrics rely on mathematical models to specify a Targeted IP Diagnostic Suite, a set of IP diagnostic tests designed to assess whether common transport protocols can be expected to meet a predetermined Target Transport Performance over an Internet path. For Bulk Transport Capacity, the IP diagnostics are built using test streams and statistical criteria for evaluating the packet transfer that mimic TCP over the complete path. The temporal structure of the test stream (e.g., bursts) mimics TCP or other transport protocols carrying bulk data over a long path. However, they are constructed to be independent of the details of the subpath under test, end systems, or applications. Likewise, the success criteria evaluates the packet transfer statistics of the subpath against criteria determined by protocol performance models applied to the Target Transport Performance of the complete path. The success criteria also does not depend on the details of the subpath, end systems, or applications."];
+  RFC8337 -> rev_cites;
+}

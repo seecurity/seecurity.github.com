@@ -1,0 +1,53 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC1723 [label="RFC1723
+RIP Version 2 - Carrying Additional
+Information
+1994", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies an extension of the Routing Information Protocol (RIP), o expand the amount of useful information carried in RIP messages and to add a measure of security.  This memo obsoletes RFC 1388, which specifies an update to the Routing Information Protocol STD 34, RFC 1058. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC1723;
+  RFC2453 [label="RFC2453
+RIP Version 2
+1998", shape=ellipse, URL="RFC2453.html", target="_top", tooltip="This document specifies an extension of the Routing Information Protocol (RIP) to expand the amount of useful information carried in RIP messages and to add a measure of security. [STANDARDS-TRACK]"];
+  RFC2453 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC1723 -> obs;
+  RFC1388 [label="RFC1388
+RIP Version 2 Carrying Additional
+Information
+1993", shape=ellipse, URL="RFC1388.html", target="_top", tooltip="This document specifies an extension of the Routing Information Protocol (RIP), as defined in [STANDARDS-TRACK]"];
+  obs -> RFC1388;
+
+  updates [label="updates", shape=box];
+  RFC1723 -> updates;
+  RFC1058 [label="RFC1058
+Routing Information Protocol
+1988", shape=ellipse, URL="RFC1058.html", target="_top", tooltip="This RFC describes an existing protocol for exchanging routing information among gateways and other hosts.  It is intended to be used as a basis for developing gateway software for use in the Internet community."];
+  updates -> RFC1058;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC1723;
+
+  cites [label="cites", shape=box];
+  RFC1723 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC1723;
+  RFC6039 [label="RFC6039
+Issues with Existing Cryptographic
+Protection Methods for Routing Protocols
+2010", shape=ellipse, URL="RFC6039.html", target="_top", tooltip="Routing protocols have been extended over time to use cryptographic mechanisms to ensure that data received from a neighboring router has not been modified in transit and actually originated from an authorized neighboring router. The cryptographic mechanisms defined to date and described in this document rely on a digest produced with a hash algorithm applied to the payload encapsulated in the routing protocol packet. This document outlines some of the limitations of the current mechanism, problems with manual keying of these cryptographic algorithms, and possible vectors for the exploitation of these limitations. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6039 -> rev_cites;
+  RFC6094 [label="RFC6094
+Summary of Cryptographic Authentication
+Algorithm Implementation Requirements
+for Routing Protocols
+2011", shape=ellipse, URL="RFC6094.html", target="_top", tooltip="The routing protocols Open Shortest Path First version 2 (OSPFv2), Intermediate System to Intermediate System (IS-IS), and Routing Information Protocol (RIP) currently define cleartext and MD5 (Message Digest 5) methods for authenticating protocol packets. Recently, effort has been made to add support for the SHA (Secure Hash Algorithm) family of hash functions for the purpose of authenticating routing protocol packets for RIP, IS-IS, and OSPF. To encourage interoperability between disparate implementations, it is imperative that we specify the expected minimal set of algorithms, thereby ensuring that there is at least one algorithm that all implementations will have in common. Similarly, RIP for IPv6 (RIPng) and OSPFv3 support IPsec algorithms for authenticating their protocol packets. This document examines the current set of available algorithms, with interoperability and effective cryptographic authentication protection being the principal considerations. Cryptographic authentication of these routing protocols requires the availability of the same algorithms in disparate implementations. It is desirable that newly specified algorithms should be implemented and available in routing protocol implementations because they may be promoted to requirements at some future time. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6094 -> rev_cites;
+}

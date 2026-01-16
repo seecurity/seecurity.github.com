@@ -1,0 +1,77 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8679 [label="RFC8679
+MPLS Egress Protection Framework
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies a fast reroute framework for protecting IP/MPLS services and MPLS transport tunnels against egress node and egress link failures.  For each type of egress failure, it defines the roles of Point of Local Repair (PLR), protector, and backup egress router and the procedures of establishing a bypass tunnel from a PLR to a protector.  It describes the behaviors of these routers in handling an egress failure, including local repair on the PLR and context-based forwarding on the protector.  The framework can be used to develop egress protection mechanisms to reduce traffic loss before global repair reacts to an egress failure and control-plane protocols converge on the topology changes due to the egress failure."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8679;
+
+  obs [label="obsoletes", shape=box];
+  RFC8679 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8679 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8679;
+
+  cites [label="cites", shape=box];
+  RFC8679 -> cites;
+  RFC4090 [label="RFC4090
+Fast Reroute Extensions to RSVP-TE for
+LSP Tunnels
+2005", shape=ellipse, URL="RFC4090.html", target="_top", tooltip="This document defines RSVP-TE extensions to establish backup label-switched path (LSP) tunnels for local repair of LSP tunnels. These mechanisms enable the re-direction of traffic onto backup LSP tunnels in 10s of milliseconds, in the event of a failure. Two methods are defined here. The one-to-one backup method creates detour LSPs for each protected LSP at each potential point of local repair. The facility backup method creates a bypass tunnel to protect a potential failure point; by taking advantage of MPLS label stacking, this bypass tunnel can protect a set of LSPs that have similar backup constraints. Both methods can be used to protect links and nodes during network failure. The described behavior and extensions to RSVP allow nodes to implement either method or both and to interoperate in a mixed network. [STANDARDS-TRACK]"];
+  cites -> RFC4090;
+  RFC5286 [label="RFC5286
+Basic Specification for IP Fast Reroute:
+Loop-Free Alternates
+2008", shape=ellipse, URL="RFC5286.html", target="_top", tooltip="This document describes the use of loop-free alternates to provide local protection for unicast traffic in pure IP and MPLS/LDP networks in the event of a single failure, whether link, node, or shared risk link group (SRLG).  The goal of this technology is to reduce the packet loss that happens while routers converge after a topology change due to a failure.  Rapid failure repair is achieved through use of precalculated backup next-hops that are loop-free and safe to use until the distributed network convergence process completes.  This simple approach does not require any support from other routers.  The extent to which this goal can be met by this specification is dependent on the topology of the network. [STANDARDS-TRACK]"];
+  cites -> RFC5286;
+  RFC7490 [label="RFC7490
+Remote Loop-Free Alternate (LFA) Fast
+Reroute (FRR)
+2015", shape=ellipse, URL="RFC7490.html", target="_top", tooltip="This document describes an extension to the basic IP fast reroute mechanism, described in RFC 5286, that provides additional backup connectivity for point-to-point link failures when none can be provided by the basic mechanisms."];
+  cites -> RFC7490;
+  RFC7812 [label="RFC7812
+An Architecture for IP/LDP Fast Reroute
+Using Maximally Redundant Trees (MRT-
+FRR)
+2016", shape=ellipse, URL="RFC7812.html", target="_top", tooltip="This document defines the architecture for IP and LDP Fast Reroute using Maximally Redundant Trees (MRT-FRR).  MRT-FRR is a technology that gives link-protection and node-protection with 100% coverage in any network topology that is still connected after the failure."];
+  cites -> RFC7812;
+  RFC8400 [label="RFC8400
+Extensions to RSVP-TE for Label Switched
+Path (LSP) Egress Protection
+2018", shape=ellipse, URL="RFC8400.html", target="_top", tooltip="This document describes extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for locally protecting the egress node(s) of a Point-to-Point (P2P) or Point-to-Multipoint (P2MP) Traffic Engineered (TE) Label Switched Path (LSP)."];
+  cites -> RFC8400;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8667 [label="RFC8667
+IS-IS Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8667.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological sub-paths, called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the IS-IS extensions that need to be introduced for Segment Routing operating on an MPLS data plane."];
+  cites -> RFC8667;
+  RFC8104 [label="RFC8104
+Pseudowire (PW) Endpoint Fast Failure
+Protection
+2017", shape=ellipse, URL="RFC8104.html", target="_top", tooltip="This document specifies a fast mechanism for protecting pseudowires (PWs) transported by IP/MPLS tunnels against egress endpoint failures, including egress attachment circuit (AC) failure, egress provider edge (PE) failure, multi-segment PW terminating PE failure, and multi-segment PW switching PE failure.  Operating on the basis of multihomed customer edge (CE), redundant PWs, upstream label assignment, and context-specific label switching, the mechanism enables local repair to be performed by the router upstream adjacent to a failure.  The router can restore a PW in the order of tens of milliseconds, by rerouting traffic around the failure to a protector through a pre-established bypass tunnel.  Therefore, the mechanism can be used to reduce traffic loss before global repair reacts to the failure and the network converges on the topology changes due to the failure."];
+  cites -> RFC8104;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8679;
+}

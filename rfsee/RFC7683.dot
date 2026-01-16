@@ -1,0 +1,72 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7683 [label="RFC7683
+Diameter Overload Indication Conveyance
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="This specification defines a base solution for Diameter overload control, referred to as Diameter Overload Indication Conveyance (DOIC)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7683;
+
+  obs [label="obsoletes", shape=box];
+  RFC7683 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7683 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7683;
+  RFC8581 [label="RFC8581
+Diameter Agent Overload and the Peer
+Overload Report
+2019", shape=ellipse, URL="RFC8581.html", target="_top", tooltip="This specification documents an extension to the Diameter Overload Indication Conveyance (DOIC), a base solution for Diameter overload defined in RFC 7683.  The extension defines the Peer Overload report type.  The initial use case for the peer report is the handling of occurrences of overload of a Diameter Agent."];
+  RFC8581 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC7683 -> cites;
+  RFC7068 [label="RFC7068
+Diameter Overload Control Requirements
+2013", shape=ellipse, URL="RFC7068.html", target="_top", tooltip="When a Diameter server or agent becomes overloaded, it needs to be able to gracefully reduce its load, typically by advising clients to reduce traffic for some period of time.  Otherwise, it must continue to expend resources parsing and responding to Diameter messages, possibly resulting in a progressively severe overload condition.  The existing Diameter mechanisms are not sufficient for managing overload conditions.  This document describes the limitations of the existing mechanisms.  Requirements for new overload management mechanisms are also provided."];
+  cites -> RFC7068;
+  RFC6733 [label="RFC6733
+Diameter Base Protocol
+2012", shape=ellipse, URL="RFC6733.html", target="_top", tooltip="The Diameter base protocol is intended to provide an Authentication, Authorization, and Accounting (AAA) framework for applications such as network access or IP mobility in both local and roaming situations.  This document specifies the message format, transport, error reporting, accounting, and security services used by all Diameter applications.  The Diameter base protocol as defined in this document obsoletes RFC 3588 and RFC 5719, and it must be supported by all new Diameter implementations. [STANDARDS-TRACK]"];
+  cites -> RFC6733;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+  RFC4006 [label="RFC4006
+Diameter Credit-Control Application
+2005", shape=ellipse, URL="RFC4006.html", target="_top", tooltip="This document specifies a Diameter application that can be used to implement real-time credit-control for a variety of end user services such as network access, Session Initiation Protocol (SIP) services, messaging services, and download services. [STANDARDS-TRACK]"];
+  cites -> RFC4006;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7683;
+  RFC7944 [label="RFC7944
+Diameter Routing Message Priority
+2016", shape=ellipse, URL="RFC7944.html", target="_top", tooltip="When making routing and resource allocation decisions, Diameter nodes currently have no generic mechanism to determine the relative priority of Diameter messages.  This document addresses this by defining a mechanism to allow Diameter endpoints to indicate the relative priority of Diameter transactions.  With this information, Diameter nodes can factor that priority into routing, resource allocation, and overload abatement decisions."];
+  RFC7944 -> rev_cites;
+  RFC8581 [label="RFC8581
+Diameter Agent Overload and the Peer
+Overload Report
+2019", shape=ellipse, URL="RFC8581.html", target="_top", tooltip="This specification documents an extension to the Diameter Overload Indication Conveyance (DOIC), a base solution for Diameter overload defined in RFC 7683.  The extension defines the Peer Overload report type.  The initial use case for the peer report is the handling of occurrences of overload of a Diameter Agent."];
+  RFC8581 -> rev_cites;
+  RFC8582 [label="RFC8582
+Diameter Overload Rate Control
+2019", shape=ellipse, URL="RFC8582.html", target="_top", tooltip="This specification documents an extension to the Diameter Overload Indication Conveyance (DOIC) base solution, which is defined in RFC 7683.  This extension adds a new overload-control abatement algorithm.  This abatement algorithm allows for a DOIC reporting node to specify a maximum rate at which a DOIC reacting node sends Diameter requests to the DOIC reporting node."];
+  RFC8582 -> rev_cites;
+  RFC8583 [label="RFC8583
+Diameter Load Information Conveyance
+2019", shape=ellipse, URL="RFC8583.html", target="_top", tooltip="RFC 7068 describes requirements for Overload Control in Diameter.  This includes a requirement to allow Diameter nodes to send load information, even when the node is not overloaded.  The base solution defined in RFC 7683 (Diameter Overload Information Conveyance (DOIC)) describes a mechanism meeting most of the requirements but does not currently include the ability to send load information.  This document defines a mechanism for the conveying of Diameter load information."];
+  RFC8583 -> rev_cites;
+}

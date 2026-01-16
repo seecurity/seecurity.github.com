@@ -1,0 +1,50 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7196 [label="RFC7196
+Making Route Flap Damping Usable
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="Route Flap Damping (RFD) was first proposed to reduce BGP churn in routers.  Unfortunately, RFD was found to severely penalize sites for being well connected because topological richness amplifies the number of update messages exchanged.  Many operators have turned RFD off.  Based on experimental measurement, this document recommends adjusting a few RFD algorithmic constants and limits in order to reduce the high risks with RFD.  The result is damping a non-trivial amount of long-term churn without penalizing well-behaved prefixes' normal convergence process."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7196;
+
+  obs [label="obsoletes", shape=box];
+  RFC7196 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7196 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7196;
+
+  cites [label="cites", shape=box];
+  RFC7196 -> cites;
+  RFC2439 [label="RFC2439
+BGP Route Flap Damping
+1998", shape=ellipse, URL="RFC2439.html", target="_top", tooltip="A usage of the BGP routing protocol is described which is capable of reducing the routing traffic passed on to routing peers and therefore the load on these peers without adversely affecting route convergence time for relatively stable routes. [STANDARDS-TRACK]"];
+  cites -> RFC2439;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7196;
+  RFC7899 [label="RFC7899
+Multicast VPN State Damping
+2016", shape=ellipse, URL="RFC7899.html", target="_top", tooltip="This document describes procedures to damp Multicast VPN (MVPN) routing state changes and control the effect of the churn due to the multicast dynamicity in customer sites.  The procedures described in this document are applicable to BGP-based multicast VPN and help avoid uncontrolled control-plane load increase in the core routing infrastructure.  The new procedures proposed were inspired by BGP unicast route damping principles that have been adapted to multicast."];
+  RFC7899 -> rev_cites;
+  RFC7938 [label="RFC7938
+Use of BGP for Routing in Large-Scale
+Data Centers
+2016", shape=ellipse, URL="RFC7938.html", target="_top", tooltip="Some network operators build and operate data centers that support over one hundred thousand servers.  In this document, such data centers are referred to as large-scale to differentiate them from smaller infrastructures.  Environments of this scale have a unique set of network requirements with an emphasis on operational simplicity and network stability.  This document summarizes operational experience in designing and operating large-scale data centers using BGP as the only routing protocol.  The intent is to report on a proven and stable routing design that could be leveraged by others in the industry."];
+  RFC7938 -> rev_cites;
+}

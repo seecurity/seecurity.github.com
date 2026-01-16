@@ -1,0 +1,120 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6069 [label="RFC6069
+Making TCP More Robust to Long
+Connectivity Disruptions (TCP-LCD)
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="Disruptions in end-to-end path connectivity, which last longer than one retransmission timeout, cause suboptimal TCP performance. The reason for this performance degradation is that TCP interprets segment loss induced by long connectivity disruptions as a sign of congestion, resulting in repeated retransmission timer backoffs. This, in turn, leads to a delayed detection of the re-establishment of the connection since TCP waits for the next retransmission timeout before it attempts a retransmission. This document proposes an algorithm to make TCP more robust to long connectivity disruptions (TCP-LCD). It describes how standard ICMP messages can be exploited during timeout-based loss recovery to disambiguate true congestion loss from non-congestion loss caused by connectivity disruptions. Moreover, a reversion strategy of the retransmission timer is specified that enables a more prompt detection of whether or not the connectivity to a previously disconnected peer node has been restored. TCP-LCD is a TCP sender- only modification that effectively improves TCP performance in the case of connectivity disruptions. This document defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6069;
+
+  obs [label="obsoletes", shape=box];
+  RFC6069 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6069 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6069;
+
+  cites [label="cites", shape=box];
+  RFC6069 -> cites;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC2988 [label="RFC2988
+Computing TCP's Retransmission Timer
+2000", shape=ellipse, URL="RFC2988.html", target="_top", tooltip="This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer. [STANDARDS-TRACK]"];
+  cites -> RFC2988;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3782 [label="RFC3782
+The NewReno Modification to TCP's Fast
+Recovery Algorithm
+2004", shape=ellipse, URL="RFC3782.html", target="_top", tooltip="The purpose of this document is to advance NewReno TCP's Fast Retransmit and Fast Recovery algorithms in RFC 2582 from Experimental to Standards Track status.  The main change in this document relative to RFC 2582 is to specify the Careful variant of NewReno's Fast Retransmit and Fast Recovery algorithms.  The base algorithm described in RFC 2582 did not attempt to avoid unnecessary multiple Fast Retransmits that can occur after a timeout.  However, RFC 2582 also defined Careful and Less Careful variants that avoid these unnecessary Fast Retransmits, and recommended the Careful variant.  This document specifies the previously-named Careful variant as the basic version of NewReno TCP. [STANDARDS-TRACK]"];
+  cites -> RFC3782;
+  RFC3522 [label="RFC3522
+The Eifel Detection Algorithm for TCP
+2003", shape=ellipse, URL="RFC3522.html", target="_top", tooltip="The Eifel detection algorithm allows a TCP sender to detect a posteriori whether it has entered loss recovery unnecessarily.  It requires that the TCP Timestamps option defined in RFC 1323 be enabled for a connection.  The Eifel detection algorithm makes use of the fact that the TCP Timestamps option eliminates the retransmission ambiguity in TCP.  Based on the timestamp of the first acceptable ACK that arrives during loss recovery, it decides whether loss recovery was entered unnecessarily.  The Eifel detection algorithm provides a basis for future TCP enhancements.  This includes response algorithms to back out of loss recovery by restoring a TCP sender's congestion control state.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3522;
+  RFC4015 [label="RFC4015
+The Eifel Response Algorithm for TCP
+2005", shape=ellipse, URL="RFC4015.html", target="_top", tooltip="Based on an appropriate detection algorithm, the Eifel response algorithm provides a way for a TCP sender to respond to a detected spurious timeout.  It adapts the retransmission timer to avoid further spurious timeouts and (depending on the detection algorithm) can avoid the often unnecessary go-back-N retransmits that would otherwise be sent.  In addition, the Eifel response algorithm restores the congestion control state in such a way that packet bursts are avoided. [STANDARDS-TRACK]"];
+  cites -> RFC4015;
+  RFC5682 [label="RFC5682
+Forward RTO-Recovery (F-RTO): An
+Algorithm for Detecting Spurious
+Retransmission Timeouts with TCP
+2009", shape=ellipse, URL="RFC5682.html", target="_top", tooltip="The purpose of this document is to move the F-RTO (Forward RTO-Recovery) functionality for TCP in RFC 4138 from Experimental to Standards Track status. The F-RTO support for Stream Control Transmission Protocol (SCTP) in RFC 4138 remains with Experimental status. See Appendix B for the differences between this document and RFC 4138. Spurious retransmission timeouts cause suboptimal TCP performance because they often result in unnecessary retransmission of the last window of data. This document describes the F-RTO detection algorithm for detecting spurious TCP retransmission timeouts. F-RTO is a TCP sender-only algorithm that does not require any TCP options to operate. After retransmitting the first unacknowledged segment triggered by a timeout, the F-RTO algorithm of the TCP sender monitors the incoming acknowledgments to determine whether the timeout was spurious. It then decides whether to send new segments or retransmit unacknowledged segments. The algorithm effectively helps to avoid additional unnecessary retransmissions and thereby improves TCP performance in the case of a spurious timeout. [STANDARDS-TRACK]"];
+  cites -> RFC5682;
+  RFC1812 [label="RFC1812
+Requirements for IP Version 4 Routers
+1995", shape=ellipse, URL="RFC1812.html", target="_top", tooltip="This memo defines and discusses requirements for devices that perform the network layer forwarding function of the Internet protocol suite. [STANDARDS-TRACK]"];
+  cites -> RFC1812;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC4443 [label="RFC4443
+Internet Control Message Protocol
+(ICMPv6) for the Internet Protocol
+Version 6 (IPv6) Specification
+2006", shape=ellipse, URL="RFC4443.html", target="_top", tooltip="This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC4443;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC5461 [label="RFC5461
+TCP's Reaction to Soft Errors
+2009", shape=ellipse, URL="RFC5461.html", target="_top", tooltip="This document describes a non-standard, but widely implemented, modification to TCP's handling of ICMP soft error messages that rejects pending connection-requests when those error messages are received.  This behavior reduces the likelihood of long delays between connection-establishment attempts that may arise in a number of scenarios, including one in which dual-stack nodes that have IPv6 enabled by default are deployed in IPv4 or mixed IPv4 and IPv6 environments.  This memo provides information for the Internet community."];
+  cites -> RFC5461;
+  RFC5927 [label="RFC5927
+ICMP Attacks against TCP
+2010", shape=ellipse, URL="RFC5927.html", target="_top", tooltip="This document discusses the use of the Internet Control Message Protocol (ICMP) to perform a variety of attacks against the Transmission Control Protocol (TCP).  Additionally, this document describes a number of widely implemented modifications to TCP's handling of ICMP error messages that help to mitigate these issues.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5927;
+  RFC1323 [label="RFC1323
+TCP Extensions for High Performance
+1992", shape=ellipse, URL="RFC1323.html", target="_top", tooltip="This memo presents a set of TCP extensions to improve performance over large bandwidth*delay product paths and to provide reliable operation over very high-speed paths.  It defines new TCP options for scaled windows and timestamps, which are designed to provide compatible interworking with TCP's that do not implement the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC1323;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC2003 [label="RFC2003
+IP Encapsulation within IP
+1996", shape=ellipse, URL="RFC2003.html", target="_top", tooltip="This document specifies a method by which an IP datagram may be encapsulated (carried as payload) within an IP datagram. [STANDARDS-TRACK]"];
+  cites -> RFC2003;
+  RFC2784 [label="RFC2784
+Generic Routing Encapsulation (GRE)
+2000", shape=ellipse, URL="RFC2784.html", target="_top", tooltip="This document specifies a protocol for encapsulation of an arbitrary network layer protocol over another arbitrary network layer protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2784;
+  RFC3819 [label="RFC3819
+Advice for Internet Subnetwork Designers
+2004", shape=ellipse, URL="RFC3819.html", target="_top", tooltip="This document provides advice to the designers of digital communication equipment, link-layer protocols, and packet-switched local networks (collectively referred to as subnetworks), who wish to support the Internet protocols but may be unfamiliar with the Internet architecture and the implications of their design choices on the performance and efficiency of the Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3819;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6069;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+}

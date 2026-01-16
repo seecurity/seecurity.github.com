@@ -1,0 +1,62 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7375 [label="RFC7375
+Secure Telephone Identity Threat Model
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="As the Internet and the telephone network have become increasingly interconnected and interdependent, attackers can impersonate or obscure calling party numbers when orchestrating bulk commercial calling schemes, hacking voicemail boxes, or even circumventing multi-factor authentication systems trusted by banks.  This document analyzes threats in the resulting system, enumerating actors, reviewing the capabilities available to and used by attackers, and describing scenarios in which attacks are launched."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7375;
+
+  obs [label="obsoletes", shape=box];
+  RFC7375 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7375 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7375;
+
+  cites [label="cites", shape=box];
+  RFC7375 -> cites;
+  RFC7340 [label="RFC7340
+Secure Telephone Identity Problem
+Statement and Requirements
+2014", shape=ellipse, URL="RFC7340.html", target="_top", tooltip="Over the past decade, Voice over IP (VoIP) systems based on SIP have replaced many traditional telephony deployments.  Interworking VoIP systems with the traditional telephone network has reduced the overall level of calling party number and Caller ID assurances by granting attackers new and inexpensive tools to impersonate or obscure calling party numbers when orchestrating bulk commercial calling schemes, hacking voicemail boxes, or even circumventing multi-factor authentication systems trusted by banks.  Despite previous attempts to provide a secure assurance of the origin of SIP communications, we still lack effective standards for identifying the calling party in a VoIP session.  This document examines the reasons why providing identity for telephone numbers on the Internet has proven so difficult and shows how changes in the last decade may provide us with new strategies for attaching a secure identity to SIP sessions.  It also gives high-level requirements for a solution in this space."];
+  cites -> RFC7340;
+  RFC3261 [label="RFC3261
+SIP: Session Initiation Protocol
+2002", shape=ellipse, URL="RFC3261.html", target="_top", tooltip="This document describes Session Initiation Protocol (SIP), an application-layer control (signaling) protocol for creating, modifying, and terminating sessions with one or more participants.  These sessions include Internet telephone calls, multimedia distribution, and multimedia conferences. [STANDARDS-TRACK]"];
+  cites -> RFC3261;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7375;
+  RFC7378 [label="RFC7378
+Trustworthy Location
+2014", shape=ellipse, URL="RFC7378.html", target="_top", tooltip="The trustworthiness of location information is critically important for some location-based applications, such as emergency calling or roadside assistance. This document describes threats to conveying location, particularly for emergency calls, and describes techniques that improve the reliability and security of location information. It also provides guidelines for assessing the trustworthiness of location information."];
+  RFC7378 -> rev_cites;
+  RFC8224 [label="RFC8224
+Authenticated Identity Management in the
+Session Initiation Protocol (SIP)
+2018", shape=ellipse, URL="RFC8224.html", target="_top", tooltip="The baseline security mechanisms in the Session Initiation Protocol (SIP) are inadequate for cryptographically assuring the identity of the end users that originate SIP requests, especially in an interdomain context. This document defines a mechanism for securely identifying originators of SIP requests. It does so by defining a SIP header field for conveying a signature used for validating the identity and for conveying a reference to the credentials of the signer. This document obsoletes RFC 4474."];
+  RFC8224 -> rev_cites;
+  RFC8226 [label="RFC8226
+Secure Telephone Identity Credentials:
+Certificates
+2018", shape=ellipse, URL="RFC8226.html", target="_top", tooltip="In order to prevent the impersonation of telephone numbers on the Internet, some kind of credential system needs to exist that cryptographically asserts authority over telephone numbers.  This document describes the use of certificates in establishing authority over telephone numbers, as a component of a broader architecture for managing telephone numbers as identities in protocols like SIP."];
+  RFC8226 -> rev_cites;
+  RFC8443 [label="RFC8443
+Personal Assertion Token (PASSporT)
+Extension for Resource Priority
+Authorization
+2018", shape=ellipse, URL="RFC8443.html", target="_top", tooltip="This document extends the Personal Assertion Token (PASSporT) specification defined in RFC 8225 to allow the inclusion of cryptographically signed assertions of authorization for the values populated in the Session Initiation Protocol (SIP) 'Resource-Priority' header field, which is used for communications resource prioritization."];
+  RFC8443 -> rev_cites;
+  RFC9060 [label="RFC9060
+Secure Telephone Identity Revisited
+(STIR) Certificate Delegation
+2021", shape=ellipse, URL="RFC9060.html", target="_top", tooltip="The Secure Telephone Identity Revisited (STIR) certificate profile provides a way to attest authority over telephone numbers and related identifiers for the purpose of preventing telephone number spoofing.  This specification details how that authority can be delegated from a parent certificate to a subordinate certificate.  This supports a number of use cases, including those where service providers grant credentials to enterprises or other customers capable of signing calls with STIR."];
+  RFC9060 -> rev_cites;
+}

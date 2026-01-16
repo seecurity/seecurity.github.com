@@ -1,0 +1,89 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9351 [label="RFC9351
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Flexible
+Algorithm Advertisement
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="Flexible Algorithm is a solution that allows some routing protocols (e.g., OSPF and IS-IS) to compute paths over a network based on user-defined (and hence, flexible) constraints and metrics. The computation is performed by routers participating in the specific network in a distributed manner using a Flexible Algorithm Definition (FAD). This definition is provisioned on one or more routers and propagated through the network by OSPF and IS-IS flooding. Border Gateway Protocol - Link State (BGP-LS) enables the collection of various topology information from the network. This document defines extensions to the BGP-LS address family to advertise the FAD as a part of the topology information from the network."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9351;
+
+  obs [label="obsoletes", shape=box];
+  RFC9351 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9351 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9351;
+
+  cites [label="cites", shape=box];
+  RFC9351 -> cites;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC9350 [label="RFC9350
+IGP Flexible Algorithm
+2023", shape=ellipse, URL="RFC9350.html", target="_top", tooltip="IGP protocols historically compute the best paths over the network based on the IGP metric assigned to the links.  Many network deployments use RSVP-TE or Segment Routing - Traffic Engineering (SR-TE) to steer traffic over a path that is computed using different metrics or constraints than the shortest IGP path.  This document specifies a solution that allows IGPs themselves to compute constraint-based paths over the network.  This document also specifies a way of using Segment Routing (SR) Prefix-SIDs and SRv6 locators to steer packets along the constraint-based paths."];
+  cites -> RFC9350;
+  RFC9085 [label="RFC9085
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+2021", shape=ellipse, URL="RFC9085.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths by encoding paths as sequences of topological subpaths, called segments. These segments are advertised by routing protocols, e.g., by the link-state routing protocols (IS-IS, OSPFv2, and OSPFv3) within IGP topologies. This document defines extensions to the Border Gateway Protocol - Link State (BGP-LS) address family in order to carry SR information via BGP."];
+  cites -> RFC9085;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  cites -> RFC9256;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  cites -> RFC7752;
+  RFC8919 [label="RFC8919
+IS-IS Application-Specific Link
+Attributes
+2020", shape=ellipse, URL="RFC8919.html", target="_top", tooltip="Existing traffic-engineering-related link attribute advertisements have been defined and are used in RSVP-TE deployments.  Since the original RSVP-TE use case was defined, additional applications (e.g., Segment Routing Policy and Loop-Free Alternates) that also make use of the link attribute advertisements have been defined.  In cases where multiple applications wish to make use of these link attributes, the current advertisements do not support application-specific values for a given attribute, nor do they support indication of which applications are using the advertised value for a given link.  This document introduces new link attribute advertisements that address both of these shortcomings."];
+  cites -> RFC8919;
+  RFC8920 [label="RFC8920
+OSPF Application-Specific Link
+Attributes
+2020", shape=ellipse, URL="RFC8920.html", target="_top", tooltip="Existing traffic-engineering-related link attribute advertisements have been defined and are used in RSVP-TE deployments.  Since the original RSVP-TE use case was defined, additional applications (e.g., Segment Routing Policy and Loop-Free Alternates) that also make use of the link attribute advertisements have been defined.  In cases where multiple applications wish to make use of these link attributes, the current advertisements do not support application-specific values for a given attribute, nor do they support indication of which applications are using the advertised value for a given link.  This document introduces new link attribute advertisements in OSPFv2 and OSPFv3 that address both of these shortcomings."];
+  cites -> RFC8920;
+  RFC9294 [label="RFC9294
+Application-Specific Link Attributes
+Advertisement Using the Border Gateway
+Protocol - Link State (BGP-LS)
+2022", shape=ellipse, URL="RFC9294.html", target="_top", tooltip="Extensions have been defined for link-state routing protocols that enable distribution of application-specific link attributes for existing as well as newer applications such as Segment Routing (SR).  This document defines extensions to the Border Gateway Protocol - Link State (BGP-LS) to enable the advertisement of these application-specific attributes as a part of the topology information from the network."];
+  cites -> RFC9294;
+  RFC7308 [label="RFC7308
+Extended Administrative Groups in MPLS
+Traffic Engineering (MPLS-TE)
+2014", shape=ellipse, URL="RFC7308.html", target="_top", tooltip="MPLS Traffic Engineering (MPLS-TE) advertises 32 administrative groups (commonly referred to as colors or link colors) using the Administrative Group sub-TLV. This is defined for OSPFv2 (RFC 3630), OSPFv3 (RFC 5329) and IS-IS (RFC 5305). This document adds a sub-TLV to the IGP TE extensions, Extended Administrative Group. This sub-TLV provides for additional administrative groups (link colors) beyond the current limit of 32."];
+  cites -> RFC7308;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9351;
+}

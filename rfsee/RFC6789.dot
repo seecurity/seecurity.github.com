@@ -1,0 +1,79 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6789 [label="RFC6789
+Congestion Exposure (ConEx) Concepts and
+Use Cases
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides the entry point to the set of documentation about the Congestion Exposure (ConEx) protocol.  It explains the motivation for including a ConEx marking at the IP layer: to expose information about congestion to network nodes.  Although such information may have a number of uses, this document focuses on how the information communicated by the ConEx marking can serve as the basis for significantly more efficient and effective traffic management than what exists on the Internet today.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6789;
+
+  obs [label="obsoletes", shape=box];
+  RFC6789 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6789 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6789;
+
+  cites [label="cites", shape=box];
+  RFC6789 -> cites;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC6057 [label="RFC6057
+Comcast's Protocol-Agnostic Congestion
+Management System
+2010", shape=ellipse, URL="RFC6057.html", target="_top", tooltip="This document describes the congestion management system of Comcast Cable, a large cable broadband Internet Service Provider (ISP) in the U.S.  Comcast completed deployment of this congestion management system on December 31, 2008.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6057;
+  RFC2475 [label="RFC2475
+An Architecture for Differentiated
+Services
+1998", shape=ellipse, URL="RFC2475.html", target="_top", tooltip="This document defines an architecture for implementing scalable service differentiation in the Internet.  This memo provides information for the Internet community."];
+  cites -> RFC2475;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6789;
+  RFC7141 [label="RFC7141
+Byte and Packet Congestion Notification
+2014", shape=ellipse, URL="RFC7141.html", target="_top", tooltip="This document provides recommendations of best current practice for dropping or marking packets using any active queue management (AQM) algorithm, including Random Early Detection (RED), BLUE, Pre- Congestion Notification (PCN), and newer schemes such as CoDel (Controlled Delay) and PIE (Proportional Integral controller Enhanced).  We give three strong recommendations: (1) packet size should be taken into account when transports detect and respond to congestion indications, (2) packet size should not be taken into account when network equipment creates congestion signals (marking, dropping), and therefore (3) in the specific case of RED, the byte- mode packet drop variant that drops fewer small packets should not be used.  This memo updates RFC 2309 to deprecate deliberate preferential treatment of small packets in AQM algorithms."];
+  RFC7141 -> rev_cites;
+  RFC7560 [label="RFC7560
+Problem Statement and Requirements for
+Increased Accuracy in Explicit
+Congestion Notification (ECN) Feedback
+2015", shape=ellipse, URL="RFC7560.html", target="_top", tooltip="Explicit Congestion Notification (ECN) is a mechanism where network nodes can mark IP packets, instead of dropping them, to indicate congestion to the endpoints.  An ECN-capable receiver will feed this information back to the sender.  ECN is specified for TCP in such a way that it can only feed back one congestion signal per Round-Trip Time (RTT).  In contrast, ECN for other transport protocols, such as RTP/UDP and SCTP, is specified with more accurate ECN feedback.  Recent new TCP mechanisms (like Congestion Exposure (ConEx) or Data Center TCP (DCTCP)) need more accurate ECN feedback in the case where more than one marking is received in one RTT.  This document specifies requirements for an update to the TCP protocol to provide more accurate ECN feedback."];
+  RFC7560 -> rev_cites;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  RFC7567 -> rev_cites;
+  RFC7713 [label="RFC7713
+Congestion Exposure (ConEx) Concepts,
+Abstract Mechanism, and Requirements
+2015", shape=ellipse, URL="RFC7713.html", target="_top", tooltip="This document describes an abstract mechanism by which senders inform the network about the congestion recently encountered by packets in the same flow.  Today, network elements at any layer may signal congestion to the receiver by dropping packets or by Explicit Congestion Notification (ECN) markings, and the receiver passes this information back to the sender in transport-layer feedback.  The mechanism described here enables the sender to also relay this congestion information back into the network in-band at the IP layer, such that the total amount of congestion from all elements on the path is revealed to all IP elements along the path, where it could, for example, be used to provide input to traffic management.  This mechanism is called Congestion Exposure, or ConEx.  The companion document, Congestion Exposure (ConEx) Concepts and Use Cases (RFC 6789), provides the entry point to the set of ConEx documentation."];
+  RFC7713 -> rev_cites;
+  RFC7778 [label="RFC7778
+Mobile Communication Congestion Exposure
+Scenario
+2016", shape=ellipse, URL="RFC7778.html", target="_top", tooltip="This memo describes a mobile communications use case for congestion exposure (ConEx) with a particular focus on those mobile communication networks that are architecturally similar to the 3GPP Evolved Packet System (EPS).  This memo provides a brief overview of the architecture of these networks (both access and core networks) and current QoS mechanisms and then discusses how congestion exposure concepts could be applied.  Based on this discussion, this memo suggests a set of requirements for ConEx mechanisms that particularly apply to these mobile networks."];
+  RFC7778 -> rev_cites;
+  RFC7786 [label="RFC7786
+TCP Modifications for Congestion
+Exposure (ConEx)
+2016", shape=ellipse, URL="RFC7786.html", target="_top", tooltip="Congestion Exposure (ConEx) is a mechanism by which senders inform the network about expected congestion based on congestion feedback from previous packets in the same flow.  This document describes the necessary modifications to use ConEx with the Transmission Control Protocol (TCP)."];
+  RFC7786 -> rev_cites;
+  RFC8087 [label="RFC8087
+The Benefits of Using Explicit
+Congestion Notification (ECN)
+2017", shape=ellipse, URL="RFC8087.html", target="_top", tooltip="The goal of this document is to describe the potential benefits of applications using a transport that enables Explicit Congestion Notification (ECN).  The document outlines the principal gains in terms of increased throughput, reduced delay, and other benefits when ECN is used over a network path that includes equipment that supports Congestion Experienced (CE) marking.  It also discusses challenges for successful deployment of ECN.  It does not propose new algorithms to use ECN nor does it describe the details of implementation of ECN in endpoint devices (Internet hosts), routers, or other network devices."];
+  RFC8087 -> rev_cites;
+}

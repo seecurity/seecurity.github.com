@@ -1,0 +1,207 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8365 [label="RFC8365
+A Network Virtualization Overlay
+Solution Using Ethernet VPN (EVPN)
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies how Ethernet VPN (EVPN) can be used as a Network Virtualization Overlay (NVO) solution and explores the various tunnel encapsulation options over IP and their impact on the EVPN control plane and procedures.  In particular, the following encapsulation options are analyzed: Virtual Extensible LAN (VXLAN), Network Virtualization using Generic Routing Encapsulation (NVGRE), and MPLS over GRE.  This specification is also applicable to Generic Network Virtualization Encapsulation (GENEVE); however, some incremental work is required, which will be covered in a separate document.  This document also specifies new multihoming procedures for split-horizon filtering and mass withdrawal.  It also specifies EVPN route constructions for VXLAN/NVGRE encapsulations and Autonomous System Border Router (ASBR) procedures for multihoming of Network Virtualization Edge (NVE) devices."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8365;
+
+  obs [label="obsoletes", shape=box];
+  RFC8365 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8365 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8365;
+  RFC9746 [label="RFC9746
+BGP EVPN Multihoming Extensions for
+Split-Horizon Filtering
+2025", shape=ellipse, URL="RFC9746.html", target="_top", tooltip="An Ethernet Virtual Private Network (EVPN) is commonly used with Network Virtualization Overlay (NVO) tunnels as well as with MPLS and Segment Routing (SR) tunnels. The multihoming procedures in EVPN may vary based on the type of tunnel used within the EVPN Broadcast Domain. Specifically, there are two multihoming split-horizon procedures designed to prevent looped frames on multihomed Customer Edge (CE) devices: the Ethernet Segment Identifier (ESI) Label-based procedure and the local-bias procedure. The ESI Label-based split-horizon procedure is applied to MPLS-based tunnels such as MPLS over UDP (MPLSoUDP), while the local-bias procedure is used for other tunnels such as Virtual eXtensible Local Area Network (VXLAN) tunnels. Current specifications do not allow operators to choose which split-horizon procedure to use for tunnel encapsulations that support both methods. Examples of tunnels that may support both procedures include MPLSoUDP, MPLS over GRE (MPLSoGRE), Generic Network Virtualization Encapsulation (Geneve), and Segment Routing over IPv6 (SRv6) tunnels. This document updates the EVPN multihoming procedures described in RFCs 7432 and 8365, enabling operators to select the split-horizon procedure that meets their specific requirements."];
+  RFC9746 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC8365 -> cites;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  cites -> RFC7432;
+  RFC7348 [label="RFC7348
+Virtual eXtensible Local Area Network
+(VXLAN): A Framework for Overlaying
+Virtualized Layer 2 Networks over Layer
+3 Networks
+2014", shape=ellipse, URL="RFC7348.html", target="_top", tooltip="This document describes Virtual eXtensible Local Area Network (VXLAN), which is used to address the need for overlay networks within virtualized data centers accommodating multiple tenants.  The scheme and the related protocols can be used in networks for cloud service providers and enterprise data centers.  This memo documents the deployed VXLAN protocol for the benefit of the Internet community."];
+  cites -> RFC7348;
+  RFC7637 [label="RFC7637
+NVGRE: Network Virtualization Using
+Generic Routing Encapsulation
+2015", shape=ellipse, URL="RFC7637.html", target="_top", tooltip="This document describes the usage of the Generic Routing Encapsulation (GRE) header for Network Virtualization (NVGRE) in multi-tenant data centers.  Network Virtualization decouples virtual networks and addresses from physical network infrastructure, providing isolation and concurrency between multiple virtual networks on the same physical network infrastructure.  This document also introduces a Network Virtualization framework to illustrate the use cases, but the focus is on specifying the data-plane aspect of NVGRE."];
+  cites -> RFC7637;
+  RFC4023 [label="RFC4023
+Encapsulating MPLS in IP or Generic
+Routing Encapsulation (GRE)
+2005", shape=ellipse, URL="RFC4023.html", target="_top", tooltip="Various applications of MPLS make use of label stacks with multiple entries.  In some cases, it is possible to replace the top label of the stack with an IP-based encapsulation, thereby enabling the application to run over networks that do not have MPLS enabled in their core routers.  This document specifies two IP-based encapsulations: MPLS-in-IP and MPLS-in-GRE (Generic Routing Encapsulation).  Each of these is applicable in some circumstances. [STANDARDS-TRACK]"];
+  cites -> RFC4023;
+  RFC7364 [label="RFC7364
+Problem Statement: Overlays for Network
+Virtualization
+2014", shape=ellipse, URL="RFC7364.html", target="_top", tooltip="This document describes issues associated with providing multi-tenancy in large data center networks and how these issues may be addressed using an overlay-based network virtualization approach.  A key multi-tenancy requirement is traffic isolation so that one tenant's traffic is not visible to any other tenant.  Another requirement is address space isolation so that different tenants can use the same address space within different virtual networks.  Traffic and address space isolation is achieved by assigning one or more virtual networks to each tenant, where traffic within a virtual network can only cross into another virtual network in a controlled fashion (e.g., via a configured router and/or a security gateway).  Additional functionality is required to provision virtual networks, associating a virtual machine's network interface(s) with the appropriate virtual network and maintaining that association as the virtual machine is activated, migrated, and/or deactivated.  Use of an overlay-based approach enables scalable deployment on large network infrastructures."];
+  cites -> RFC7364;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7365 [label="RFC7365
+Framework for Data Center (DC) Network
+Virtualization
+2014", shape=ellipse, URL="RFC7365.html", target="_top", tooltip="This document provides a framework for Data Center (DC) Network Virtualization over Layer 3 (NVO3) and defines a reference model along with logical components required to design a solution."];
+  cites -> RFC7365;
+  RFC7209 [label="RFC7209
+Requirements for Ethernet VPN (EVPN)
+2014", shape=ellipse, URL="RFC7209.html", target="_top", tooltip="The widespread adoption of Ethernet L2VPN services and the advent of new applications for the technology (e.g., data center interconnect) have culminated in a new set of requirements that are not readily addressable by the current Virtual Private LAN Service (VPLS) solution.  In particular, multihoming with all-active forwarding is not supported, and there's no existing solution to leverage Multipoint-to-Multipoint (MP2MP) Label Switched Paths (LSPs) for optimizing the delivery of multi-destination frames.  Furthermore, the provisioning of VPLS, even in the context of BGP-based auto-discovery, requires network operators to specify various network parameters on top of the access configuration.  This document specifies the requirements for an Ethernet VPN (EVPN) solution, which addresses the above issues."];
+  cites -> RFC7209;
+  RFC5512 [label="RFC5512
+The BGP Encapsulation Subsequent Address
+Family Identifier (SAFI) and the BGP
+Tunnel Encapsulation Attribute
+2009", shape=ellipse, URL="RFC5512.html", target="_top", tooltip="In certain situations, transporting a packet from one Border Gateway Protocol (BGP) speaker to another (the BGP next hop) requires that the packet be encapsulated by the first BGP speaker and decapsulated by the second. To support these situations, there needs to be some agreement between the two BGP speakers with regard to the encapsulation information, i.e., the format of the encapsulation header as well as the contents of various fields of the header. The encapsulation information need not be signaled for all encapsulation types. In cases where signaling is required (such as Layer Two Tunneling Protocol - Version 3 (L2TPv3) or Generic Routing Encapsulation (GRE) with key), this document specifies a method by which BGP speakers can signal encapsulation information to each other. The signaling is done by sending BGP updates using the Encapsulation Subsequent Address Family Identifier (SAFI) and the IPv4 or IPv6 Address Family Identifier (AFI). In cases where no encapsulation information needs to be signaled (such as GRE without key), this document specifies a BGP extended community that can be attached to BGP UPDATE messages that carry payload prefixes in order to indicate the encapsulation protocol type to be used. [STANDARDS-TRACK]"];
+  cites -> RFC5512;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  cites -> RFC6514;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC4272 [label="RFC4272
+BGP Security Vulnerabilities Analysis
+2006", shape=ellipse, URL="RFC4272.html", target="_top", tooltip="Border Gateway Protocol 4 (BGP-4), along with a host of other infrastructure protocols designed before the Internet environment became perilous, was originally designed with little consideration for protection of the information it carries. There are no mechanisms internal to BGP that protect against attacks that modify, delete, forge, or replay data, any of which has the potential to disrupt overall network routing behavior. This document discusses some of the security issues with BGP routing data dissemination. This document does not discuss security issues with forwarding of packets. This memo provides information for the Internet community."];
+  cites -> RFC4272;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8365;
+  RFC8971 [label="RFC8971
+Bidirectional Forwarding Detection (BFD)
+for Virtual eXtensible Local Area
+Network (VXLAN)
+2020", shape=ellipse, URL="RFC8971.html", target="_top", tooltip="This document describes the use of the Bidirectional Forwarding Detection (BFD) protocol in point-to-point Virtual eXtensible Local Area Network (VXLAN) tunnels used to form an overlay network."];
+  RFC8971 -> rev_cites;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  RFC9012 -> rev_cites;
+  RFC9014 [label="RFC9014
+Interconnect Solution for Ethernet VPN
+(EVPN) Overlay Networks
+2021", shape=ellipse, URL="RFC9014.html", target="_top", tooltip="This document describes how Network Virtualization Overlays (NVOs) can be connected to a Wide Area Network (WAN) in order to extend the Layer 2 connectivity required for some tenants.  The solution analyzes the interaction between NVO networks running Ethernet Virtual Private Networks (EVPNs) and other Layer 2 VPN (L2VPN) technologies used in the WAN, such as Virtual Private LAN Services (VPLSs), VPLS extensions for Provider Backbone Bridging (PBB-VPLS), EVPN, or PBB-EVPN.  It also describes how the existing technical specifications apply to the interconnection and extends the EVPN procedures needed in some cases.  In particular, this document describes how EVPN routes are processed on Gateways (GWs) that interconnect EVPN-Overlay and EVPN-MPLS networks, as well as the Interconnect Ethernet Segment (I-ES), to provide multihoming.  This document also describes the use of the Unknown MAC Route (UMR) to avoid issues of a Media Access Control (MAC) scale on Data Center Network Virtualization Edge (NVE) devices."];
+  RFC9014 -> rev_cites;
+  RFC9135 [label="RFC9135
+Integrated Routing and Bridging in
+Ethernet VPN (EVPN)
+2021", shape=ellipse, URL="RFC9135.html", target="_top", tooltip="Ethernet VPN (EVPN) provides an extensible and flexible multihoming VPN solution over an MPLS/IP network for intra-subnet connectivity among Tenant Systems and end devices that can be physical or virtual.  However, there are scenarios for which there is a need for a dynamic and efficient inter-subnet connectivity among these Tenant Systems and end devices while maintaining the multihoming capabilities of EVPN.  This document describes an Integrated Routing and Bridging (IRB) solution based on EVPN to address such requirements."];
+  RFC9135 -> rev_cites;
+  RFC9136 [label="RFC9136
+IP Prefix Advertisement in Ethernet VPN
+(EVPN)
+2021", shape=ellipse, URL="RFC9136.html", target="_top", tooltip="The BGP MPLS-based Ethernet VPN (EVPN) (RFC 7432) mechanism provides a flexible control plane that allows intra-subnet connectivity in an MPLS and/or Network Virtualization Overlay (NVO) (RFC 7365) network.  In some networks, there is also a need for dynamic and efficient inter-subnet connectivity across Tenant Systems and end devices that can be physical or virtual and do not necessarily participate in dynamic routing protocols.  This document defines a new EVPN route type for the advertisement of IP prefixes and explains some use-case examples where this new route type is used."];
+  RFC9136 -> rev_cites;
+  RFC9181 [label="RFC9181
+A Common YANG Data Model for Layer 2 and
+Layer 3 VPNs
+2022", shape=ellipse, URL="RFC9181.html", target="_top", tooltip="This document defines a common YANG module that is meant to be reused by various VPN-related modules such as Layer 3 VPN and Layer 2 VPN network models."];
+  RFC9181 -> rev_cites;
+  RFC9252 [label="RFC9252
+BGP Overlay Services Based on Segment
+Routing over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9252.html", target="_top", tooltip="This document defines procedures and messages for SRv6-based BGP services, including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and Internet services.  It builds on BGP/MPLS IP Virtual Private Networks (VPNs) (RFC 4364) and BGP MPLS-Based Ethernet VPN (RFC 7432)."];
+  RFC9252 -> rev_cites;
+  RFC9291 [label="RFC9291
+A YANG Network Data Model for Layer 2
+VPNs
+2022", shape=ellipse, URL="RFC9291.html", target="_top", tooltip="This document defines an L2VPN Network Model (L2NM) that can be used to manage the provisioning of Layer 2 Virtual Private Network (L2VPN) services within a network (e.g., a service provider network). The L2NM complements the L2VPN Service Model (L2SM) by providing a network-centric view of the service that is internal to a service provider. The L2NM is particularly meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. Also, this document defines a YANG module to manage Ethernet segments and the initial versions of two IANA-maintained modules that include a set of identities of BGP Layer 2 encapsulation types and pseudowire types."];
+  RFC9291 -> rev_cites;
+  RFC9408 [label="RFC9408
+A YANG Network Data Model for Service
+Attachment Points (SAPs)
+2023", shape=ellipse, URL="RFC9408.html", target="_top", tooltip="This document defines a YANG data model for representing an abstract view of the provider network topology that contains the points from which its services can be attached (e.g., basic connectivity, VPN, network slices). Also, the model can be used to retrieve the points where the services are actually being delivered to customers (including peer networks). This document augments the 'ietf-network' data model defined in RFC 8345 by adding the concept of Service Attachment Points (SAPs). The SAPs are the network reference points to which network services, such as Layer 3 Virtual Private Network (L3VPN) or Layer 2 Virtual Private Network (L2VPN), can be attached. One or multiple services can be bound to the same SAP. Both User-to-Network Interface (UNI) and Network-to-Network Interface (NNI) are supported in the SAP data model."];
+  RFC9408 -> rev_cites;
+  RFC9469 [label="RFC9469
+Applicability of Ethernet Virtual
+Private Network (EVPN) to Network
+Virtualization over Layer 3 (NVO3)
+Networks
+2023", shape=ellipse, URL="RFC9469.html", target="_top", tooltip="An Ethernet Virtual Private Network (EVPN) provides a unified control plane that solves the issues of Network Virtualization Edge (NVE) auto-discovery, tenant Media Access Control (MAC) / IP dissemination, and advanced features in a scablable way as required by Network Virtualization over Layer 3 (NVO3) networks.  EVPN is a scalable solution for NVO3 networks and keeps the independence of the underlay IP Fabric, i.e., there is no need to enable Protocol Independent Multicast (PIM) in the underlay network and maintain multicast states for tenant Broadcast Domains.  This document describes the use of EVPN for NVO3 networks and discusses its applicability to basic Layer 2 and Layer 3 connectivity requirements and to advanced features such as MAC Mobility, MAC Protection and Loop Protection, multihoming, Data Center Interconnect (DCI), and much more.  No new EVPN procedures are introduced."];
+  RFC9469 -> rev_cites;
+  RFC9574 [label="RFC9574
+Optimized Ingress Replication Solution
+for Ethernet VPNs (EVPNs)
+2024", shape=ellipse, URL="RFC9574.html", target="_top", tooltip="Network Virtualization Overlay (NVO) networks using Ethernet VPNs (EVPNs) as their control plane may use trees based on ingress replication or Protocol Independent Multicast (PIM) to convey the overlay Broadcast, Unknown Unicast, or Multicast (BUM) traffic.  PIM provides an efficient solution that prevents sending multiple copies of the same packet over the same physical link; however, it may not always be deployed in the NVO network core.  Ingress replication avoids the dependency on PIM in the NVO network core.  While ingress replication provides a simple multicast transport, some NVO networks with demanding multicast applications require a more efficient solution without PIM in the core.  This document describes a solution to optimize the efficiency of ingress replication trees."];
+  RFC9574 -> rev_cites;
+  RFC9624 [label="RFC9624
+EVPN Broadcast, Unknown Unicast, or
+Multicast (BUM) Using Bit Index Explicit
+Replication (BIER)
+2024", shape=ellipse, URL="RFC9624.html", target="_top", tooltip="This document specifies protocols and procedures for forwarding Broadcast, Unknown Unicast, or Multicast (BUM) traffic of Ethernet VPNs (EVPNs) using Bit Index Explicit Replication (BIER)."];
+  RFC9624 -> rev_cites;
+  RFC9638 [label="RFC9638
+Network Virtualization over Layer 3
+(NVO3) Encapsulation Considerations
+2024", shape=ellipse, URL="RFC9638.html", target="_top", tooltip="The IETF Network Virtualization Overlays (NVO3) Working Group developed considerations for a common encapsulation that addresses various network virtualization overlay technical concerns. This document provides a record, for the benefit of the IETF community, of the considerations arrived at by the NVO3 Working Group starting from the output of the NVO3 encapsulation Design Team. These considerations may be helpful with future deliberations by working groups over the choice of encapsulation formats. There are implications of having different encapsulations in real environments consisting of both software and hardware implementations and within and spanning multiple data centers. For example, Operations, Administration, and Maintenance (OAM) functions such as path MTU discovery become challenging with multiple encapsulations along the data path. Based on these considerations, the NVO3 Working Group determined that Generic Network Virtualization Encapsulation (Geneve) with a few modifications is the common encapsulation. This document provides more details, particularly in Section 7."];
+  RFC9638 -> rev_cites;
+  RFC9722 [label="RFC9722
+Fast Recovery for EVPN Designated
+Forwarder Election
+2025", shape=ellipse, URL="RFC9722.html", target="_top", tooltip="The Ethernet Virtual Private Network (EVPN) solution in RFC 7432 provides Designated Forwarder (DF) election procedures for multihomed Ethernet Segments. These procedures have been enhanced further by applying the Highest Random Weight (HRW) algorithm for DF election to avoid unnecessary DF status changes upon a failure. This document improves these procedures by providing a fast DF election upon recovery of the failed link or node associated with the multihomed Ethernet Segment. This document updates RFC 8584 by optionally introducing delays between some of the events therein. The solution is independent of the number of EVPN Instances (EVIs) associated with that Ethernet Segment, and it is performed via a simple signaling in BGP between the recovered node and each of the other nodes in the multihoming group."];
+  RFC9722 -> rev_cites;
+  RFC9744 [label="RFC9744
+EVPN Virtual Private Wire Service (VPWS)
+Flexible Cross-Connect (FXC) Service
+2025", shape=ellipse, URL="RFC9744.html", target="_top", tooltip="This document describes a new EVPN Virtual Private Wire Service (VPWS) service type specifically for multiplexing multiple attachment circuits across different Ethernet Segments (ESs) and physical interfaces into a single EVPN-VPWS service tunnel and still providing Single-Active and All-Active multi-homing.  This new service is referred to as the EVPN-VPWS Flexible Cross-Connect (FXC) service.  This document specifies a solution based on extensions to EVPN-VPWS (RFC 8214), which in turn is based on extensions to EVPN (RFC 7432).  Therefore, a thorough understanding of RFCs 7432 and 8214 are prerequisites for this document."];
+  RFC9744 -> rev_cites;
+  RFC9746 [label="RFC9746
+BGP EVPN Multihoming Extensions for
+Split-Horizon Filtering
+2025", shape=ellipse, URL="RFC9746.html", target="_top", tooltip="An Ethernet Virtual Private Network (EVPN) is commonly used with Network Virtualization Overlay (NVO) tunnels as well as with MPLS and Segment Routing (SR) tunnels. The multihoming procedures in EVPN may vary based on the type of tunnel used within the EVPN Broadcast Domain. Specifically, there are two multihoming split-horizon procedures designed to prevent looped frames on multihomed Customer Edge (CE) devices: the Ethernet Segment Identifier (ESI) Label-based procedure and the local-bias procedure. The ESI Label-based split-horizon procedure is applied to MPLS-based tunnels such as MPLS over UDP (MPLSoUDP), while the local-bias procedure is used for other tunnels such as Virtual eXtensible Local Area Network (VXLAN) tunnels. Current specifications do not allow operators to choose which split-horizon procedure to use for tunnel encapsulations that support both methods. Examples of tunnels that may support both procedures include MPLSoUDP, MPLS over GRE (MPLSoGRE), Generic Network Virtualization Encapsulation (Geneve), and Segment Routing over IPv6 (SRv6) tunnels. This document updates the EVPN multihoming procedures described in RFCs 7432 and 8365, enabling operators to select the split-horizon procedure that meets their specific requirements."];
+  RFC9746 -> rev_cites;
+  RFC9784 [label="RFC9784
+Virtual Ethernet Segments for EVPN and
+Provider Backbone Bridge EVPN
+2025", shape=ellipse, URL="RFC9784.html", target="_top", tooltip="Ethernet VPN (EVPN) and Provider Backbone Bridge EVPN (PBB-EVPN) introduce a comprehensive suite of solutions for delivering Ethernet services over MPLS/IP networks.  These solutions offer advanced multihoming capabilities.  Specifically, they support Single-Active and All-Active redundancy modes for an Ethernet Segment (ES), which is defined as a collection of physical links connecting a multihomed device or network to a set of Provider Edge (PE) devices.  This document extends the concept of an ES by allowing an ES to be associated with a set of Ethernet Virtual Circuits (EVCs), such as VLANs, or other entities, including MPLS Label Switched Paths (LSPs) or pseudowires (PWs).  This extended concept is referred to as virtual Ethernet Segments (vESes).  This document lists the requirements and specifies the necessary extensions to support vES in both EVPN and PBB-EVPN."];
+  RFC9784 -> rev_cites;
+  RFC9785 [label="RFC9785
+Preference-Based EVPN Designated
+Forwarder (DF) Election
+2025", shape=ellipse, URL="RFC9785.html", target="_top", tooltip="The Designated Forwarder (DF) in Ethernet Virtual Private Networks (EVPNs) is defined as the Provider Edge (PE) router responsible for sending Broadcast, Unknown Unicast, and Multicast (BUM) traffic to a multihomed device/network in the case of an All-Active multihoming Ethernet Segment (ES) or BUM and unicast in the case of Single-Active multihoming. The Designated Forwarder is selected out of a candidate list of PEs that advertise the same Ethernet Segment Identifier (ESI) to the EVPN network, according to the default DF election algorithm. While the default algorithm provides an efficient and automated way of selecting the Designated Forwarder across different Ethernet Tags in the Ethernet Segment, there are some use cases where a more deterministic and user-controlled method is required. At the same time, Network Operators require an easy way to force an on-demand Designated Forwarder switchover in order to carry out some maintenance tasks on the existing Designated Forwarder or control whether a new active PE can preempt the existing Designated Forwarder PE. This document proposes use of a DF election algorithm that meets the requirements of determinism and operation control. This document updates RFC 8584 by modifying the definition of the DF Election Extended Community."];
+  RFC9785 -> rev_cites;
+  RFC9819 [label="RFC9819
+Argument Signaling for BGP Services in
+Segment Routing over IPv6 (SRv6)
+2025", shape=ellipse, URL="RFC9819.html", target="_top", tooltip="RFC 9252 defines procedures and messages for BGP overlay services for Segment Routing over IPv6 (SRv6), including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and global Internet routing.  This document updates RFC 9252 and provides more detailed specifications for the signaling and processing of SRv6 Segment Identifier advertisements for BGP overlay service routes associated with SRv6 Endpoint Behaviors that support arguments."];
+  RFC9819 -> rev_cites;
+  RFC9889 [label="RFC9889
+A Realization of Network Slices for 5G
+Networks Using Current IP/MPLS
+Technologies
+2025", shape=ellipse, URL="RFC9889.html", target="_top", tooltip="Network slicing is a feature that was introduced by the 3rd Generation Partnership Project (3GPP) in Mobile Networks. Realization of 5G slicing implies requirements for all mobile domains, including the Radio Access Network (RAN), Core Network (CN), and Transport Network (TN). This document describes a network slice realization model for IP/MPLS networks with a focus on the Transport Network fulfilling the service objectives for 5G slicing connectivity. The realization model reuses many building blocks commonly used in service provider networks at the current time."];
+  RFC9889 -> rev_cites;
+}

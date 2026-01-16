@@ -1,0 +1,51 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6596 [label="RFC6596
+The Canonical Link Relation
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC 5988 specifies a way to define relationships between links on the web.  This document describes a new type of such a relationship, canonical, to designate an Internationalized Resource Identifier (IRI) as preferred over resources with duplicative content.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6596;
+
+  obs [label="obsoletes", shape=box];
+  RFC6596 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6596 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6596;
+
+  cites [label="cites", shape=box];
+  RFC6596 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3986 [label="RFC3986
+Uniform Resource Identifier (URI):
+Generic Syntax
+2005", shape=ellipse, URL="RFC3986.html", target="_top", tooltip="A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource.  This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet.  The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier.  This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme. [STANDARDS-TRACK]"];
+  cites -> RFC3986;
+  RFC2616 [label="RFC2616
+Hypertext Transfer Protocol -- HTTP/1.1
+1999", shape=ellipse, URL="RFC2616.html", target="_top", tooltip="HTTP has been in use by the World-Wide Web global information initiative since 1990.  This specification defines the protocol referred to as HTTP/1.1, and is an update to RFC 2068. [STANDARDS-TRACK]"];
+  cites -> RFC2616;
+  RFC5988 [label="RFC5988
+Web Linking
+2010", shape=ellipse, URL="RFC5988.html", target="_top", tooltip="This document specifies relation types for Web links, and defines a registry for them.  It also defines the use of such links in HTTP headers with the Link header field. [STANDARDS-TRACK]"];
+  cites -> RFC5988;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6596;
+  RFC8574 [label="RFC8574
+cite-as: A Link Relation to Convey a
+Preferred URI for Referencing
+2019", shape=ellipse, URL="RFC8574.html", target="_top", tooltip="A web resource is routinely referenced by means of the URI with which it is directly accessed.  But cases exist where referencing a resource by means of a different URI is preferred.  This specification defines a link relation type that can be used to convey such a preference."];
+  RFC8574 -> rev_cites;
+}

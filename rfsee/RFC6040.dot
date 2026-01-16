@@ -1,0 +1,275 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6040 [label="RFC6040
+Tunnelling of Explicit Congestion
+Notification
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document redefines how the explicit congestion notification (ECN) field of the IP header should be constructed on entry to and exit from any IP-in-IP tunnel.  On encapsulation, it updates RFC 3168 to bring all IP-in-IP tunnels (v4 or v6) into line with RFC 4301 IPsec ECN processing.  On decapsulation, it updates both RFC 3168 and RFC 4301 to add new behaviours for previously unused combinations of inner and outer headers.  The new rules ensure the ECN field is correctly propagated across a tunnel whether it is used to signal one or two severity levels of congestion; whereas before, only one severity level was supported.  Tunnel endpoints can be updated in any order without affecting pre-existing uses of the ECN field, thus ensuring backward compatibility.  Nonetheless, operators wanting to support two severity levels (e.g., for pre-congestion notification -- PCN) can require compliance with this new specification.  A thorough analysis of the reasoning for these changes and the implications is included.  In the unlikely event that the new rules do not meet a specific need, RFC 4774 gives guidance on designing alternate ECN semantics, and this document extends that to include tunnelling issues. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6040;
+
+  obs [label="obsoletes", shape=box];
+  RFC6040 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6040 -> updates;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  updates -> RFC3168;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  updates -> RFC4301;
+  RFC4774 [label="RFC4774
+Specifying Alternate Semantics for the
+Explicit Congestion Notification (ECN)
+Field
+2006", shape=ellipse, URL="RFC4774.html", target="_top", tooltip="There have been a number of proposals for alternate semantics for the Explicit Congestion Notification (ECN) field in the IP header RFC 3168.  This document discusses some of the issues in defining alternate semantics for the ECN field, and specifies requirements for a safe coexistence in an Internet that could include routers that do not understand the defined alternate semantics.  This document evolved as a result of discussions with the authors of one recent proposal for such alternate semantics.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  updates -> RFC4774;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6040;
+  RFC9601 [label="RFC9601
+Propagating Explicit Congestion
+Notification across IP Tunnel Headers
+Separated by a Shim
+2024", shape=ellipse, URL="RFC9601.html", target="_top", tooltip="RFC 6040 on Tunnelling of Explicit Congestion Notification made the rules for propagation of Explicit Congestion Notification (ECN) consistent for all forms of IP-in-IP tunnel.  This specification updates RFC 6040 to clarify that its scope includes tunnels where two IP headers are separated by at least one shim header that is not sufficient on its own for wide-area packet forwarding.  It surveys widely deployed IP tunnelling protocols that use such shim headers and updates the specifications of those that do not mention ECN propagation (including RFCs 2661, 3931, 2784, 4380 and 7450, which specify L2TPv2, L2TPv3, Generic Routing Encapsulation (GRE), Teredo, and Automatic Multicast Tunneling (AMT), respectively).  This specification also updates RFC 6040 with configuration requirements needed to make any legacy tunnel ingress safe."];
+  RFC9601 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC6040 -> cites;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC5670 [label="RFC5670
+Metering and Marking Behaviour of PCN-
+Nodes
+2009", shape=ellipse, URL="RFC5670.html", target="_top", tooltip="The objective of Pre-Congestion Notification (PCN) is to protect the quality of service (QoS) of inelastic flows within a Diffserv domain in a simple, scalable, and robust fashion.  This document defines the two metering and marking behaviours of PCN-nodes.  Threshold-metering and -marking marks all PCN-packets if the rate of PCN-traffic is greater than a configured rate (PCN-threshold-rate).  Excess- traffic-metering and -marking marks a proportion of PCN-packets, such that the amount marked equals the rate of PCN-traffic in excess of a configured rate (PCN-excess-rate).  The level of marking allows PCN-boundary-nodes to make decisions about whether to admit or terminate PCN-flows. [STANDARDS-TRACK]"];
+  cites -> RFC5670;
+  RFC2983 [label="RFC2983
+Differentiated Services and Tunnels
+2000", shape=ellipse, URL="RFC2983.html", target="_top", tooltip="This document considers the interaction of Differentiated Services (diffserv) with IP tunnels of various forms.  This memo provides information for the Internet community."];
+  cites -> RFC2983;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2481 [label="RFC2481
+A Proposal to add Explicit Congestion
+Notification (ECN) to IP
+1999", shape=ellipse, URL="RFC2481.html", target="_top", tooltip="This note describes a proposed addition of ECN (Explicit Congestion Notification) to IP.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC2481;
+  RFC2401 [label="RFC2401
+Security Architecture for the Internet
+Protocol
+1998", shape=ellipse, URL="RFC2401.html", target="_top", tooltip="This memo specifies the base architecture for IPsec compliant systems. [STANDARDS-TRACK]"];
+  cites -> RFC2401;
+  RFC2003 [label="RFC2003
+IP Encapsulation within IP
+1996", shape=ellipse, URL="RFC2003.html", target="_top", tooltip="This document specifies a method by which an IP datagram may be encapsulated (carried as payload) within an IP datagram. [STANDARDS-TRACK]"];
+  cites -> RFC2003;
+  RFC4774 [label="RFC4774
+Specifying Alternate Semantics for the
+Explicit Congestion Notification (ECN)
+Field
+2006", shape=ellipse, URL="RFC4774.html", target="_top", tooltip="There have been a number of proposals for alternate semantics for the Explicit Congestion Notification (ECN) field in the IP header RFC 3168.  This document discusses some of the issues in defining alternate semantics for the ECN field, and specifies requirements for a safe coexistence in an Internet that could include routers that do not understand the defined alternate semantics.  This document evolved as a result of discussions with the authors of one recent proposal for such alternate semantics.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4774;
+  RFC3540 [label="RFC3540
+Robust Explicit Congestion Notification
+(ECN) Signaling with Nonces
+2003", shape=ellipse, URL="RFC3540.html", target="_top", tooltip="This note describes the Explicit Congestion Notification (ECN)-nonce, an optional addition to ECN that protects against accidental or malicious concealment of marked packets from the TCP sender.  It improves the robustness of congestion control by preventing receivers from exploiting ECN to gain an unfair share of network bandwidth.  The ECN-nonce uses the two ECN-Capable Transport (ECT)codepoints in the ECN field of the IP header, and requires a flag in the TCP header.  It is computationally efficient for both routers and hosts.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3540;
+  RFC5996 [label="RFC5996
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2010", shape=ellipse, URL="RFC5996.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document replaces and updates RFC 4306, and includes all of the clarifications from RFC 4718. [STANDARDS-TRACK]"];
+  cites -> RFC5996;
+  RFC5129 [label="RFC5129
+Explicit Congestion Marking in MPLS
+2008", shape=ellipse, URL="RFC5129.html", target="_top", tooltip="RFC 3270 defines how to support the Diffserv architecture in MPLS networks, including how to encode Diffserv Code Points (DSCPs) in an MPLS header.  DSCPs may be encoded in the EXP field, while other uses of that field are not precluded.  RFC 3270 makes no statement about how Explicit Congestion Notification (ECN) marking might be encoded in the MPLS header.  This document defines how an operator might define some of the EXP codepoints for explicit congestion notification, without precluding other uses. [STANDARDS-TRACK]"];
+  cites -> RFC5129;
+  RFC5559 [label="RFC5559
+Pre-Congestion Notification (PCN)
+Architecture
+2009", shape=ellipse, URL="RFC5559.html", target="_top", tooltip="This document describes a general architecture for flow admission and termination based on pre-congestion information in order to protect the quality of service of established, inelastic flows within a single Diffserv domain.  This memo provides information for the Internet community."];
+  cites -> RFC5559;
+  RFC5696 [label="RFC5696
+Baseline Encoding and Transport of Pre-
+Congestion Information
+2009", shape=ellipse, URL="RFC5696.html", target="_top", tooltip="The objective of the Pre-Congestion Notification (PCN) architecture is to protect the quality of service (QoS) of inelastic flows within a Diffserv domain.  It achieves this by marking packets belonging to PCN-flows when the rate of traffic exceeds certain configured thresholds on links in the domain.  These marks can then be evaluated to determine how close the domain is to being congested.  This document specifies how such marks are encoded into the IP header by redefining the Explicit Congestion Notification (ECN) codepoints within such domains.  The baseline encoding described here provides only two PCN encoding states: Not-marked and PCN-marked.  Future extensions to this encoding may be needed in order to provide more than one level of marking severity. [STANDARDS-TRACK]"];
+  cites -> RFC5696;
+  RFC2474 [label="RFC2474
+Definition of the Differentiated
+Services Field (DS Field) in the IPv4
+and IPv6 Headers
+1998", shape=ellipse, URL="RFC2474.html", target="_top", tooltip="This document defines the IP header field, called the DS (for differentiated services) field. [STANDARDS-TRACK]"];
+  cites -> RFC2474;
+  RFC5659 [label="RFC5659
+An Architecture for Multi-Segment
+Pseudowire Emulation Edge-to-Edge
+2009", shape=ellipse, URL="RFC5659.html", target="_top", tooltip="This document describes an architecture for extending pseudowire emulation across multiple packet switched network (PSN) segments.  Scenarios are discussed where each segment of a given edge-to-edge emulated service spans a different provider's PSN, as are other scenarios where the emulated service originates and terminates on the same provider's PSN, but may pass through several PSN tunnel segments in that PSN.  It presents an architectural framework for such multi-segment pseudowires, defines terminology, and specifies the various protocol elements and their functions.  This memo provides information for the Internet community."];
+  cites -> RFC5659;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6040;
+  RFC6077 [label="RFC6077
+Open Research Issues in Internet
+Congestion Control
+2011", shape=ellipse, URL="RFC6077.html", target="_top", tooltip="This document describes some of the open problems in Internet congestion control that are known today.  This includes several new challenges that are becoming important as the network grows, as well as some issues that have been known for many years.  These challenges are generally considered to be open research topics that may require more study or application of innovative techniques before Internet-scale solutions can be confidently engineered and deployed.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6077 -> rev_cites;
+  RFC6274 [label="RFC6274
+Security Assessment of the Internet
+Protocol Version 4
+2011", shape=ellipse, URL="RFC6274.html", target="_top", tooltip="This document contains a security assessment of the IETF specifications of the Internet Protocol version 4 and of a number of mechanisms and policies in use by popular IPv4 implementations.  It is based on the results of a project carried out by the UK's Centre for the Protection of National Infrastructure (CPNI).  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6274 -> rev_cites;
+  RFC6627 [label="RFC6627
+Overview of Pre-Congestion Notification
+Encoding
+2012", shape=ellipse, URL="RFC6627.html", target="_top", tooltip="The objective of Pre-Congestion Notification (PCN) is to protect the quality of service (QoS) of inelastic flows within a Diffserv domain. On every link in the PCN-domain, the overall rate of PCN-traffic is metered, and PCN-packets are appropriately marked when certain configured rates are exceeded. Egress nodes provide decision points with information about the PCN-marks of PCN-packets that allows them to take decisions about whether to admit or block a new flow request, and to terminate some already admitted flows during serious \%pre-congestion. The PCN working group explored a number of approaches for encoding this pre-congestion information into the IP header. This document provides details of those approaches along with an explanation of the constraints that apply to any solution. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6627 -> rev_cites;
+  RFC6660 [label="RFC6660
+Encoding Three Pre-Congestion
+Notification (PCN) States in the IP
+Header Using a Single Diffserv Codepoint
+(DSCP)
+2012", shape=ellipse, URL="RFC6660.html", target="_top", tooltip="The objective of Pre-Congestion Notification (PCN) is to protect the quality of service (QoS) of inelastic flows within a Diffserv domain. The overall rate of PCN-traffic is metered on every link in the PCN- domain, and PCN-packets are appropriately marked when certain configured rates are exceeded. Egress nodes pass information about these PCN-marks to Decision Points that then decide whether to admit or block new flow requests or to terminate some already admitted flows during serious pre-congestion. This document specifies how PCN-marks are to be encoded into the IP header by reusing the Explicit Congestion Notification (ECN) codepoints within a PCN-domain. The PCN wire protocol for non-IP protocol headers will need to be defined elsewhere. Nonetheless, this document clarifies the PCN encoding for MPLS in an informational appendix. The encoding for IP provides for up to three different PCN marking states using a single Diffserv codepoint (DSCP): not-marked (NM), threshold-marked (ThM), and excess-traffic-marked (ETM). Hence, it is called the 3-in-1 PCN encoding. This document obsoletes RFC 5696. [STANDARDS-TRACK]"];
+  RFC6660 -> rev_cites;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  RFC7567 -> rev_cites;
+  RFC7600 [label="RFC7600
+IPv4 Residual Deployment via IPv6 - A
+Stateless Solution (4rd)
+2015", shape=ellipse, URL="RFC7600.html", target="_top", tooltip="This document specifies a stateless solution for service providers to progressively deploy IPv6-only network domains while still offering IPv4 service to customers.  The solution's distinctive properties are that TCP/UDP IPv4 packets are valid TCP/UDP IPv6 packets during domain traversal and that IPv4 fragmentation rules are fully preserved end to end.  Each customer can be assigned one public IPv4 address, several public IPv4 addresses, or a shared address with a restricted port set."];
+  RFC7600 -> rev_cites;
+  RFC7713 [label="RFC7713
+Congestion Exposure (ConEx) Concepts,
+Abstract Mechanism, and Requirements
+2015", shape=ellipse, URL="RFC7713.html", target="_top", tooltip="This document describes an abstract mechanism by which senders inform the network about the congestion recently encountered by packets in the same flow.  Today, network elements at any layer may signal congestion to the receiver by dropping packets or by Explicit Congestion Notification (ECN) markings, and the receiver passes this information back to the sender in transport-layer feedback.  The mechanism described here enables the sender to also relay this congestion information back into the network in-band at the IP layer, such that the total amount of congestion from all elements on the path is revealed to all IP elements along the path, where it could, for example, be used to provide input to traffic management.  This mechanism is called Congestion Exposure, or ConEx.  The companion document, Congestion Exposure (ConEx) Concepts and Use Cases (RFC 6789), provides the entry point to the set of ConEx documentation."];
+  RFC7713 -> rev_cites;
+  RFC7778 [label="RFC7778
+Mobile Communication Congestion Exposure
+Scenario
+2016", shape=ellipse, URL="RFC7778.html", target="_top", tooltip="This memo describes a mobile communications use case for congestion exposure (ConEx) with a particular focus on those mobile communication networks that are architecturally similar to the 3GPP Evolved Packet System (EPS).  This memo provides a brief overview of the architecture of these networks (both access and core networks) and current QoS mechanisms and then discusses how congestion exposure concepts could be applied.  Based on this discussion, this memo suggests a set of requirements for ConEx mechanisms that particularly apply to these mobile networks."];
+  RFC7778 -> rev_cites;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  RFC8085 -> rev_cites;
+  RFC8086 [label="RFC8086
+GRE-in-UDP Encapsulation
+2017", shape=ellipse, URL="RFC8086.html", target="_top", tooltip="This document specifies a method of encapsulating network protocol packets within GRE and UDP headers.  This GRE-in-UDP encapsulation allows the UDP source port field to be used as an entropy field.  This may be used for load-balancing of GRE traffic in transit networks using existing Equal-Cost Multipath (ECMP) mechanisms.  There are two applicability scenarios for GRE-in-UDP with different requirements: (1) general Internet and (2) a traffic-managed controlled environment.  The controlled environment has less restrictive requirements than the general Internet."];
+  RFC8086 -> rev_cites;
+  RFC8087 [label="RFC8087
+The Benefits of Using Explicit
+Congestion Notification (ECN)
+2017", shape=ellipse, URL="RFC8087.html", target="_top", tooltip="The goal of this document is to describe the potential benefits of applications using a transport that enables Explicit Congestion Notification (ECN).  The document outlines the principal gains in terms of increased throughput, reduced delay, and other benefits when ECN is used over a network path that includes equipment that supports Congestion Experienced (CE) marking.  It also discusses challenges for successful deployment of ECN.  It does not propose new algorithms to use ECN nor does it describe the details of implementation of ECN in endpoint devices (Internet hosts), routers, or other network devices."];
+  RFC8087 -> rev_cites;
+  RFC8229 [label="RFC8229
+TCP Encapsulation of IKE and IPsec
+Packets
+2017", shape=ellipse, URL="RFC8229.html", target="_top", tooltip="This document describes a method to transport Internet Key Exchange Protocol (IKE) and IPsec packets over a TCP connection for traversing network middleboxes that may block IKE negotiation over UDP.  This method, referred to as TCP encapsulation, involves sending both IKE packets for Security Association establishment and Encapsulating Security Payload (ESP) packets over a TCP connection.  This method is intended to be used as a fallback option when IKE cannot be negotiated over UDP."];
+  RFC8229 -> rev_cites;
+  RFC8293 [label="RFC8293
+A Framework for Multicast in Network
+Virtualization over Layer 3
+2018", shape=ellipse, URL="RFC8293.html", target="_top", tooltip="This document provides a framework for supporting multicast traffic in a network that uses Network Virtualization over Layer 3 (NVO3).  Both infrastructure multicast and application-specific multicast are discussed.  It describes the various mechanisms that can be used for delivering such traffic as well as the data plane and control plane considerations for each of the mechanisms."];
+  RFC8293 -> rev_cites;
+  RFC8311 [label="RFC8311
+Relaxing Restrictions on Explicit
+Congestion Notification (ECN)
+Experimentation
+2018", shape=ellipse, URL="RFC8311.html", target="_top", tooltip="This memo updates RFC 3168, which specifies Explicit Congestion Notification (ECN) as an alternative to packet drops for indicating network congestion to endpoints.  It relaxes restrictions in RFC 3168 that hinder experimentation towards benefits beyond just removal of loss.  This memo summarizes the anticipated areas of experimentation and updates RFC 3168 to enable experimentation in these areas.  An Experimental RFC in the IETF document stream is required to take advantage of any of these enabling updates.  In addition, this memo makes related updates to the ECN specifications for RTP in RFC 6679 and for the Datagram Congestion Control Protocol (DCCP) in RFCs 4341, 4342, and 5622.  This memo also records the conclusion of the ECN nonce experiment in RFC 3540 and provides the rationale for reclassification of RFC 3540 from Experimental to Historic; this reclassification enables new experimental use of the ECT(1) codepoint."];
+  RFC8311 -> rev_cites;
+  RFC8663 [label="RFC8663
+MPLS Segment Routing over IP
+2019", shape=ellipse, URL="RFC8663.html", target="_top", tooltip="MPLS Segment Routing (SR-MPLS) is a method of source routing a packet through an MPLS data plane by imposing a stack of MPLS labels on the packet to specify the path together with any packet-specific instructions to be executed on it. SR-MPLS can be leveraged to realize a source-routing mechanism across MPLS, IPv4, and IPv6 data planes by using an MPLS label stack as a source-routing instruction set while making no changes to SR-MPLS specifications and interworking with SR-MPLS implementations. This document describes how SR-MPLS-capable routers and IP-only routers can seamlessly coexist and interoperate through the use of SR-MPLS label stacks and IP encapsulation/tunneling such as MPLS-over-UDP as defined in RFC 7510."];
+  RFC8663 -> rev_cites;
+  RFC8926 [label="RFC8926
+Geneve: Generic Network Virtualization
+Encapsulation
+2020", shape=ellipse, URL="RFC8926.html", target="_top", tooltip="Network virtualization involves the cooperation of devices with a wide variety of capabilities such as software and hardware tunnel endpoints, transit fabrics, and centralized control clusters.  As a result of their role in tying together different elements of the system, the requirements on tunnels are influenced by all of these components.  Therefore, flexibility is the most important aspect of a tunneling protocol if it is to keep pace with the evolution of technology.  This document describes Geneve, an encapsulation protocol designed to recognize and accommodate these changing capabilities and needs."];
+  RFC8926 -> rev_cites;
+  RFC9008 [label="RFC9008
+Using RPI Option Type, Routing Header
+for Source Routes, and IPv6-in-IPv6
+Encapsulation in the RPL Data Plane
+2021", shape=ellipse, URL="RFC9008.html", target="_top", tooltip="This document looks at different data flows through Low-Power and Lossy Networks (LLN) where RPL (IPv6 Routing Protocol for Low-Power and Lossy Networks) is used to establish routing.  The document enumerates the cases where RPL Packet Information (RPI) Option Type (RFC 6553), RPL Source Route Header (RFC 6554), and IPv6-in-IPv6 encapsulation are required in the data plane.  This analysis provides the basis upon which to design efficient compression of these headers.  This document updates RFC 6553 by adding a change to the RPI Option Type.  Additionally, this document updates RFC 6550 by defining a flag in the DODAG Information Object (DIO) Configuration option to indicate this change and updates RFC 8138 as well to consider the new Option Type when the RPL Option is decompressed."];
+  RFC9008 -> rev_cites;
+  RFC9061 [label="RFC9061
+A YANG Data Model for IPsec Flow
+Protection Based on Software-Defined
+Networking (SDN)
+2021", shape=ellipse, URL="RFC9061.html", target="_top", tooltip="This document describes how to provide IPsec-based flow protection (integrity and confidentiality) by means of an Interface to Network Security Function (I2NSF) Controller. It considers two main well-known scenarios in IPsec: gateway-to-gateway and host-to-host. The service described in this document allows the configuration and monitoring of IPsec Security Associations (IPsec SAs) from an I2NSF Controller to one or several flow-based Network Security Functions (NSFs) that rely on IPsec to protect data traffic. This document focuses on the I2NSF NSF-Facing Interface by providing YANG data models for configuring the IPsec databases, namely Security Policy Database (SPD), Security Association Database (SAD), Peer Authorization Database (PAD), and Internet Key Exchange Version 2 (IKEv2). This allows IPsec SA establishment with minimal intervention by the network administrator. This document defines three YANG modules, but it does not define any new protocol."];
+  RFC9061 -> rev_cites;
+  RFC9300 [label="RFC9300
+The Locator/ID Separation Protocol
+(LISP)
+2022", shape=ellipse, URL="RFC9300.html", target="_top", tooltip="This document describes the data plane protocol for the Locator/ID Separation Protocol (LISP). LISP defines two namespaces: Endpoint Identifiers (EIDs), which identify end hosts; and Routing Locators (RLOCs), which identify network attachment points. With this, LISP effectively separates control from data and allows routers to create overlay networks. LISP-capable routers exchange encapsulated packets according to EID-to-RLOC mappings stored in a local Map-Cache. LISP requires no change to either host protocol stacks or underlay routers and offers Traffic Engineering (TE), multihoming, and mobility, among other features. This document obsoletes RFC 6830."];
+  RFC9300 -> rev_cites;
+  RFC9305 [label="RFC9305
+Locator/ID Separation Protocol (LISP)
+Generic Protocol Extension
+2022", shape=ellipse, URL="RFC9305.html", target="_top", tooltip="This document describes extensions to the Locator/ID Separation Protocol (LISP) data plane, via changes to the LISP header, to support multiprotocol encapsulation and allow the introduction of new protocol capabilities."];
+  RFC9305 -> rev_cites;
+  RFC9329 [label="RFC9329
+TCP Encapsulation of Internet Key
+Exchange Protocol (IKE) and IPsec
+Packets
+2022", shape=ellipse, URL="RFC9329.html", target="_top", tooltip="This document describes a method to transport Internet Key Exchange Protocol (IKE) and IPsec packets over a TCP connection for traversing network middleboxes that may block IKE negotiation over UDP. This method, referred to as TCP encapsulation, involves sending both IKE packets for Security Association (SA) establishment and Encapsulating Security Payload (ESP) packets over a TCP connection. This method is intended to be used as a fallback option when IKE cannot be negotiated over UDP. TCP encapsulation for IKE and IPsec was defined in RFC 8229. This document clarifies the specification for TCP encapsulation by including additional clarifications obtained during implementation and deployment of this method. This documents obsoletes RFC 8229."];
+  RFC9329 -> rev_cites;
+  RFC9330 [label="RFC9330
+Low Latency, Low Loss, and Scalable
+Throughput (L4S) Internet Service:
+Architecture
+2023", shape=ellipse, URL="RFC9330.html", target="_top", tooltip="This document describes the L4S architecture, which enables Internet applications to achieve low queuing latency, low congestion loss, and scalable throughput control. L4S is based on the insight that the root cause of queuing delay is in the capacity-seeking congestion controllers of senders, not in the queue itself. With the L4S architecture, all Internet applications could (but do not have to) transition away from congestion control algorithms that cause substantial queuing delay and instead adopt a new class of congestion controls that can seek capacity with very little queuing. These are aided by a modified form of Explicit Congestion Notification (ECN) from the network. With this new architecture, applications can have both low latency and high throughput. The architecture primarily concerns incremental deployment. It defines mechanisms that allow the new class of L4S congestion controls to coexist with 'Classic' congestion controls in a shared network. The aim is for L4S latency and throughput to be usually much better (and rarely worse) while typically not impacting Classic performance."];
+  RFC9330 -> rev_cites;
+  RFC9331 [label="RFC9331
+The Explicit Congestion Notification
+(ECN) Protocol for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, URL="RFC9331.html", target="_top", tooltip="This specification defines the protocol to be used for a new network service called Low Latency, Low Loss, and Scalable throughput (L4S). L4S uses an Explicit Congestion Notification (ECN) scheme at the IP layer that is similar to the original (or 'Classic') ECN approach, except as specified within. L4S uses 'Scalable' congestion control, which induces much more frequent control signals from the network, and it responds to them with much more fine-grained adjustments so that very low (typically sub-millisecond on average) and consistently low queuing delay becomes possible for L4S traffic without compromising link utilization. Thus, even capacity-seeking (TCP-like) traffic can have high bandwidth and very low delay at the same time, even during periods of high traffic load. The L4S identifier defined in this document distinguishes L4S from 'Classic' (e.g., TCP-Reno-friendly) traffic. Then, network bottlenecks can be incrementally modified to distinguish and isolate existing traffic that still follows the Classic behaviour, to prevent it from degrading the low queuing delay and low loss of L4S traffic. This Experimental specification defines the rules that L4S transports and network elements need to follow, with the intention that L4S flows neither harm each other's performance nor that of Classic traffic. It also suggests open questions to be investigated during experimentation. Examples of new Active Queue Management (AQM) marking algorithms and new transports (whether TCP-like or real time) are specified separately."];
+  RFC9331 -> rev_cites;
+  RFC9347 [label="RFC9347
+Aggregation and Fragmentation Mode for
+Encapsulating Security Payload (ESP) and
+Its Use for IP Traffic Flow Security
+(IP-TFS)
+2023", shape=ellipse, URL="RFC9347.html", target="_top", tooltip="This document describes a mechanism for aggregation and fragmentation of IP packets when they are being encapsulated in Encapsulating Security Payload (ESP).  This new payload type can be used for various purposes, such as decreasing encapsulation overhead for small IP packets; however, the focus in this document is to enhance IP Traffic Flow Security (IP-TFS) by adding Traffic Flow Confidentiality (TFC) to encrypted IP-encapsulated traffic.  TFC is provided by obscuring the size and frequency of IP traffic using a fixed-size, constant-send-rate IPsec tunnel.  The solution allows for congestion control, as well as nonconstant send-rate usage."];
+  RFC9347 -> rev_cites;
+  RFC9599 [label="RFC9599
+Guidelines for Adding Congestion
+Notification to Protocols that
+Encapsulate IP
+2024", shape=ellipse, URL="RFC9599.html", target="_top", tooltip="The purpose of this document is to guide the design of congestion notification in any lower-layer or tunnelling protocol that encapsulates IP.  The aim is for explicit congestion signals to propagate consistently from lower-layer protocols into IP.  Then, the IP internetwork layer can act as a portability layer to carry congestion notification from non-IP-aware congested nodes up to the transport layer (L4).  Specifications that follow these guidelines, whether produced by the IETF or other standards bodies, should assure interworking among IP-layer and lower-layer congestion notification mechanisms.  This document is included in BCP 89 and updates the single paragraph of advice to subnetwork designers about Explicit Congestion Notification (ECN) in Section 13 of RFC 3819 by replacing it with a reference to this document."];
+  RFC9599 -> rev_cites;
+  RFC9600 [label="RFC9600
+TRansparent Interconnection of Lots of
+Links (TRILL): Explicit Congestion
+Notification (ECN) Support
+2024", shape=ellipse, URL="RFC9600.html", target="_top", tooltip="Explicit Congestion Notification (ECN) allows a forwarding element to notify downstream devices, including the destination, of the onset of congestion without having to drop packets.  This can improve network efficiency through better congestion control without packet drops.  This document extends ECN to TRansparent Interconnection of Lots of Links (TRILL) switches, including integration with IP ECN, and provides for ECN marking in the TRILL header extension flags word (RFC 7179)."];
+  RFC9600 -> rev_cites;
+  RFC9601 [label="RFC9601
+Propagating Explicit Congestion
+Notification across IP Tunnel Headers
+Separated by a Shim
+2024", shape=ellipse, URL="RFC9601.html", target="_top", tooltip="RFC 6040 on Tunnelling of Explicit Congestion Notification made the rules for propagation of Explicit Congestion Notification (ECN) consistent for all forms of IP-in-IP tunnel.  This specification updates RFC 6040 to clarify that its scope includes tunnels where two IP headers are separated by at least one shim header that is not sufficient on its own for wide-area packet forwarding.  It surveys widely deployed IP tunnelling protocols that use such shim headers and updates the specifications of those that do not mention ECN propagation (including RFCs 2661, 3931, 2784, 4380 and 7450, which specify L2TPv2, L2TPv3, Generic Routing Encapsulation (GRE), Teredo, and Automatic Multicast Tunneling (AMT), respectively).  This specification also updates RFC 6040 with configuration requirements needed to make any legacy tunnel ingress safe."];
+  RFC9601 -> rev_cites;
+}

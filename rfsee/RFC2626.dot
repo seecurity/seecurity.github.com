@@ -1,0 +1,58 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2626 [label="RFC2626
+The Internet and the Millennium Problem
+(Year 2000)
+1999", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Year 2000 Working Group (WG) has conducted an investigation into the millennium problem as it regards Internet related protocols.  This investigation only targeted the protocols as documented in the Request For Comments Series (RFCs).  This investigation discovered little reason for concern with regards to the functionality of the protocols.  A few minor cases of older implementations still using two digit years (ala RFC 850) were discovered, but almost all Internet protocols were given a clean bill of health.  Several cases of period problems were discovered, where a time field would roll over as the size of field was reached.  In particular, there are several protocols, which have 32 bit, signed integer representations of the number of seconds since January 1, 1970 which will turn negative at Tue Jan 19 03:14:07 GMT 2038.  Areas whose protocols will be effected by such problems have been notified so that new revisions will remove this limitation.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2626;
+
+  obs [label="obsoletes", shape=box];
+  RFC2626 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2626 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2626;
+
+  cites [label="cites", shape=box];
+  RFC2626 -> cites;
+  RFC1814 [label="RFC1814
+Unique Addresses are Good
+1995", shape=ellipse, URL="RFC1814.html", target="_top", tooltip="The IAB suggests that while RFC 1597 establishes reserved IP address space for the use of private networks which are isolated and will remain isolated from the Internet, any enterprise which anticipates external connectivity to the Internet should apply for a globally unique address from an Internet registry or service provider.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1814;
+  RFC1900 [label="RFC1900
+Renumbering Needs Work
+1996", shape=ellipse, URL="RFC1900.html", target="_top", tooltip="Hosts in an IP network are identified by IP addresses, and the IP address prefixes of subnets are advertised by routing protocols.  A change in such IP addressing information associated with a host or subnet is known as renumbering.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1900;
+  RFC1831 [label="RFC1831
+RPC: Remote Procedure Call Protocol
+Specification Version 2
+1995", shape=ellipse, URL="RFC1831.html", target="_top", tooltip="This document describes the ONC Remote Procedure Call (ONC RPC Version 2) protocol as it is currently deployed and accepted. [STANDARDS-TRACK]"];
+  cites -> RFC1831;
+  RFC1541 [label="RFC1541
+Dynamic Host Configuration Protocol
+1993", shape=ellipse, URL="RFC1541.html", target="_top", tooltip="The Dynamic Host Configuration Protocol (DHCP) provides a framework for passing configuration information to hosts on a TCP/IP network.  DHCP is based on the Bootstrap Protocol (BOOTP) adding the capability of automatic allocation of reusable network addresses and additional configuration options. [STANDARDS-TRACK]"];
+  cites -> RFC1541;
+  RFC1918 [label="RFC1918
+Address Allocation for Private Internets
+1996", shape=ellipse, URL="RFC1918.html", target="_top", tooltip="This document describes address allocation for private internets.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC1918;
+  RFC1982 [label="RFC1982
+Serial Number Arithmetic
+1996", shape=ellipse, URL="RFC1982.html", target="_top", tooltip="The DNS has long relied upon serial number arithmetic, a concept which has never really been defined, certainly not in an IETF document, though which has been widely understood.  This memo supplies the missing definition.  It is intended to update RFC1034 and RFC1035. [STANDARDS-TRACK]"];
+  cites -> RFC1982;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2626;
+  RFC8774 [label="RFC8774
+The Quantum Bug
+2020", shape=ellipse, URL="RFC8774.html", target="_top", tooltip="The age of quantum networking is upon us, and with it comes entanglement: a procedure in which a state (i.e., a bit) can be transferred instantly, with no measurable delay between peers.  This will lead to a perceived round-trip time of zero seconds on some Internet paths, a capability which was not predicted and so not included as a possibility in many protocol specifications.  Worse than the millennium bug, this unexpected value is bound to cause serious Internet failures unless the specifications are fixed in time."];
+  RFC8774 -> rev_cites;
+}

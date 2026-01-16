@@ -1,0 +1,67 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8657 [label="RFC8657
+Certification Authority Authorization
+(CAA) Record Extensions for Account URI
+and Automatic Certificate Management
+Environment (ACME) Method Binding
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Certification Authority Authorization (CAA) DNS record allows a domain to communicate an issuance policy to Certification Authorities (CAs) but only allows a domain to define a policy with CA-level granularity.  However, the CAA specification (RFC 8659) also provides facilities for an extension to admit a more granular, CA-specific policy.  This specification defines two such parameters: one allowing specific accounts of a CA to be identified by URIs and one allowing specific methods of domain control validation as defined by the Automatic Certificate Management Environment (ACME) protocol to be required."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8657;
+
+  obs [label="obsoletes", shape=box];
+  RFC8657 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8657 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8657;
+
+  cites [label="cites", shape=box];
+  RFC8657 -> cites;
+  RFC8659 [label="RFC8659
+DNS Certification Authority
+Authorization (CAA) Resource Record
+2019", shape=ellipse, URL="RFC8659.html", target="_top", tooltip="The Certification Authority Authorization (CAA) DNS Resource Record allows a DNS domain name holder to specify one or more Certification Authorities (CAs) authorized to issue certificates for that domain name. CAA Resource Records allow a public CA to implement additional controls to reduce the risk of unintended certificate mis-issue. This document defines the syntax of the CAA record and rules for processing CAA records by CAs. This document obsoletes RFC 6844."];
+  cites -> RFC8659;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC3986 [label="RFC3986
+Uniform Resource Identifier (URI):
+Generic Syntax
+2005", shape=ellipse, URL="RFC3986.html", target="_top", tooltip="A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource.  This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet.  The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier.  This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme. [STANDARDS-TRACK]"];
+  cites -> RFC3986;
+  RFC8555 [label="RFC8555
+Automatic Certificate Management
+Environment (ACME)
+2019", shape=ellipse, URL="RFC8555.html", target="_top", tooltip="Public Key Infrastructure using X.509 (PKIX) certificates are used for a number of purposes, the most significant of which is the authentication of domain names.  Thus, certification authorities (CAs) in the Web PKI are trusted to verify that an applicant for a certificate legitimately represents the domain name(s) in the certificate.  As of this writing, this verification is done through a collection of ad hoc mechanisms.  This document describes a protocol that a CA and an applicant can use to automate the process of verification and certificate issuance.  The protocol also provides facilities for other certificate management functions, such as certificate revocation."];
+  cites -> RFC8555;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8657;
+  RFC9115 [label="RFC9115
+An Automatic Certificate Management
+Environment (ACME) Profile for
+Generating Delegated Certificates
+2021", shape=ellipse, URL="RFC9115.html", target="_top", tooltip="This document defines a profile of the Automatic Certificate Management Environment (ACME) protocol by which the holder of an identifier (e.g., a domain name) can allow a third party to obtain an X.509 certificate such that the certificate subject is the delegated identifier while the certified public key corresponds to a private key controlled by the third party.  A primary use case is that of a Content Delivery Network (CDN), the third party, terminating TLS sessions on behalf of a content provider (the holder of a domain name).  The presented mechanism allows the holder of the identifier to retain control over the delegation and revoke it at any time.  Importantly, this mechanism does not require any modification to the deployed TLS clients and servers."];
+  RFC9115 -> rev_cites;
+}

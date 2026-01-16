@@ -1,0 +1,253 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9898 [label="RFC9898
+Neighbor Discovery Considerations in
+IPv6 Deployments
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Neighbor Discovery (ND) protocol is a critical component of the
+IPv6 architecture. The protocol uses multicast in many messages. It
+also assumes a security model where all nodes on a link are trusted.
+Such a design might be inefficient in some scenarios (e.g., use of
+multicast in wireless networks) or when nodes are not trustworthy
+(e.g., public access networks). These security and operational issues
+and the associated mitigation solutions are documented in more than
+twenty RFCs. There is a need to track these issues and solutions in a
+single document. To that aim, this document summarizes the published ND issues and
+then describes how all these issues originate from three causes.
+Addressing the issues is made simpler by addressing the causes. This
+document also analyzes the mitigation solutions and demonstrates that
+isolating hosts into different subnets and links can help to address
+the three causes. Guidance is provided for selecting a suitable
+isolation method to prevent potential ND issues."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9898;
+
+  obs [label="obsoletes", shape=box];
+  RFC9898 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9898 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9898;
+
+  cites [label="cites", shape=box];
+  RFC9898 -> cites;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC4862 [label="RFC4862
+IPv6 Stateless Address Autoconfiguration
+2007", shape=ellipse, URL="RFC4862.html", target="_top", tooltip="This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6.  The autoconfiguration process includes generating a link-local address, generating global addresses via stateless address autoconfiguration, and the Duplicate Address Detection procedure to verify the uniqueness of the addresses on a link. [STANDARDS-TRACK]"];
+  cites -> RFC4862;
+  RFC3587 [label="RFC3587
+IPv6 Global Unicast Address Format
+2003", shape=ellipse, URL="RFC3587.html", target="_top", tooltip="This document obsoletes RFC 2374, An IPv6 Aggregatable Global Unicast Address Format.  It defined an IPv6 address allocation structure that includes Top Level Aggregator (TLA) and Next Level Aggregator (NLA).  This document makes RFC 2374 and the TLA/NLA structure historic.  This memo provides information for the Internet community."];
+  cites -> RFC3587;
+  RFC4193 [label="RFC4193
+Unique Local IPv6 Unicast Addresses
+2005", shape=ellipse, URL="RFC4193.html", target="_top", tooltip="This document defines an IPv6 unicast address format that is globally unique and is intended for local communications, usually inside of a site.  These addresses are not expected to be routable on the global Internet. [STANDARDS-TRACK]"];
+  cites -> RFC4193;
+  RFC3756 [label="RFC3756
+IPv6 Neighbor Discovery (ND) Trust
+Models and Threats
+2004", shape=ellipse, URL="RFC3756.html", target="_top", tooltip="The existing IETF standards specify that IPv6 Neighbor Discovery (ND) and Address Autoconfiguration mechanisms may be protected with IPsec Authentication Header (AH).  However, the current specifications limit the security solutions to manual keying due to practical problems faced with automatic key management.  This document specifies three different trust models and discusses the threats pertinent to IPv6 Neighbor Discovery.  The purpose of this discussion is to define the requirements for Securing IPv6 Neighbor Discovery.  This memo provides information for the Internet community."];
+  cites -> RFC3756;
+  RFC3971 [label="RFC3971
+SEcure Neighbor Discovery (SEND)
+2005", shape=ellipse, URL="RFC3971.html", target="_top", tooltip="IPv6 nodes use the Neighbor Discovery Protocol (NDP) to discover other nodes on the link, to determine their link-layer addresses to find routers, and to maintain reachability information about the paths to active neighbors.  If not secured, NDP is vulnerable to various attacks.  This document specifies security mechanisms for NDP.  Unlike those in the original NDP specifications, these mechanisms do not use IPsec. [STANDARDS-TRACK]"];
+  cites -> RFC3971;
+  RFC3972 [label="RFC3972
+Cryptographically Generated Addresses
+(CGA)
+2005", shape=ellipse, URL="RFC3972.html", target="_top", tooltip="This document describes a method for binding a public signature key to an IPv6 address in the Secure Neighbor Discovery (SEND) protocol.  Cryptographically Generated Addresses (CGA) are IPv6 addresses for which the interface identifier is generated by computing a cryptographic one-way hash function from a public key and auxiliary parameters.  The binding between the public key and the address can be verified by re-computing the hash value and by comparing the hash with the interface identifier.  Messages sent from an IPv6 address can be protected by attaching the public key and auxiliary parameters and by signing the message with the corresponding private key.  The protection works without a certification authority or any security infrastructure. [STANDARDS-TRACK]"];
+  cites -> RFC3972;
+  RFC4389 [label="RFC4389
+Neighbor Discovery Proxies (ND Proxy)
+2006", shape=ellipse, URL="RFC4389.html", target="_top", tooltip="Bridging multiple links into a single entity has several operational advantages.  A single subnet prefix is sufficient to support multiple physical links.  There is no need to allocate subnet numbers to the different networks, simplifying management.  Bridging some types of media requires network-layer support, however.  This document describes these cases and specifies the IP-layer support that enables bridging under these circumstances.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4389;
+  RFC4429 [label="RFC4429
+Optimistic Duplicate Address Detection
+(DAD) for IPv6
+2006", shape=ellipse, URL="RFC4429.html", target="_top", tooltip="Optimistic Duplicate Address Detection is an interoperable modification of the existing IPv6 Neighbor Discovery (RFC 2461) and Stateless Address Autoconfiguration (RFC 2462) processes.  The intention is to minimize address configuration delays in the successful case, to reduce disruption as far as possible in the failure case, and to remain interoperable with unmodified hosts and routers. [STANDARDS-TRACK]"];
+  cites -> RFC4429;
+  RFC6459 [label="RFC6459
+IPv6 in 3rd Generation Partnership
+Project (3GPP) Evolved Packet System
+(EPS)
+2012", shape=ellipse, URL="RFC6459.html", target="_top", tooltip="The use of cellular broadband for accessing the Internet and other data services via smartphones, tablets, and notebook/netbook computers has increased rapidly as a result of high-speed packet data networks such as HSPA, HSPA+, and now Long-Term Evolution (LTE) being deployed.  Operators that have deployed networks based on 3rd Generation Partnership Project (3GPP) network architectures are facing IPv4 address shortages at the Internet registries and are feeling pressure to migrate to IPv6.  This document describes the support for IPv6 in 3GPP network architectures.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6459;
+  RFC7066 [label="RFC7066
+IPv6 for Third Generation Partnership
+Project (3GPP) Cellular Hosts
+2013", shape=ellipse, URL="RFC7066.html", target="_top", tooltip="As the deployment of third and fourth generation cellular networks progresses, a large number of cellular hosts are being connected to the Internet.  Standardization organizations have made the Internet Protocol version 6 (IPv6) mandatory in their specifications.  However, the concept of IPv6 covers many aspects and numerous specifications.  In addition, the characteristics of cellular links in terms of bandwidth, cost, and delay put special requirements on how IPv6 is used.  This document considers IPv6 for cellular hosts that attach to the General Packet Radio Service (GPRS), Universal Mobile Telecommunications System (UMTS), or Evolved Packet System (EPS) networks (hereafter collectively referred to as Third Generation Partnership Project (3GPP) networks).  This document also lists specific IPv6 functionalities that need to be implemented in addition to what is already prescribed in the IPv6 Node Requirements document (RFC 6434).  It also discusses some issues related to the use of these components when operating in these networks.  This document obsoletes RFC 3316."];
+  cites -> RFC7066;
+  RFC6575 [label="RFC6575
+Address Resolution Protocol (ARP)
+Mediation for IP Interworking of Layer 2
+VPNs
+2012", shape=ellipse, URL="RFC6575.html", target="_top", tooltip="The Virtual Private Wire Service (VPWS), detailed in RFC 4664, provides point-to-point connections between pairs of Customer Edge (CE) devices.  It does so by binding two Attachment Circuits (each connecting a CE device with a Provider Edge (PE) device) to a pseudowire (connecting the two PEs).  In general, the Attachment Circuits must be of the same technology (e.g., both Ethernet or both ATM), and the pseudowire must carry the frames of that technology.  However, if it is known that the frames' payload consists solely of IP datagrams, it is possible to provide a point-to-point connection in which the pseudowire connects Attachment Circuits of different technologies.  This requires the PEs to perform a function known as Address Resolution Protocol (ARP) Mediation.  ARP Mediation refers to the process of resolving Layer 2 addresses when different resolution protocols are used on either Attachment Circuit.  The methods described in this document are applicable even when the CEs run a routing protocol between them, as long as the routing protocol runs over IP. [STANDARDS-TRACK]"];
+  cites -> RFC6575;
+  RFC6583 [label="RFC6583
+Operational Neighbor Discovery Problems
+2012", shape=ellipse, URL="RFC6583.html", target="_top", tooltip="In IPv4, subnets are generally small, made just large enough to cover the actual number of machines on the subnet. In contrast, the default IPv6 subnet size is a /64, a number so large it covers trillions of addresses, the overwhelming number of which will be unassigned. Consequently, simplistic implementations of Neighbor Discovery (ND) can be vulnerable to deliberate or accidental denial of service (DoS), whereby they attempt to perform address resolution for large numbers of unassigned addresses. Such denial-of-service attacks can be launched intentionally (by an attacker) or result from legitimate operational tools or accident conditions. As a result of these vulnerabilities, new devices may not be able to join a network, it may be impossible to establish new IPv6 flows, and existing IPv6 transported flows may be interrupted. This document describes the potential for DoS in detail and suggests possible implementation improvements as well as operational mitigation techniques that can, in some cases, be used to protect against or at least alleviate the impact of such attacks. [STANDARDS-TRACK]"];
+  cites -> RFC6583;
+  RFC6775 [label="RFC6775
+Neighbor Discovery Optimization for IPv6
+over Low-Power Wireless Personal Area
+Networks (6LoWPANs)
+2012", shape=ellipse, URL="RFC6775.html", target="_top", tooltip="The IETF work in IPv6 over Low-power Wireless Personal Area Network (6LoWPAN) defines 6LoWPANs such as IEEE 802.15.4.  This and other similar link technologies have limited or no usage of multicast signaling due to energy conservation.  In addition, the wireless network may not strictly follow the traditional concept of IP subnets and IP links.  IPv6 Neighbor Discovery was not designed for non- transitive wireless links, as its reliance on the traditional IPv6 link concept and its heavy use of multicast make it inefficient and sometimes impractical in a low-power and lossy network.  This document describes simple optimizations to IPv6 Neighbor Discovery, its addressing mechanisms, and duplicate address detection for Low- power Wireless Personal Area Networks and similar networks.  The document thus updates RFC 4944 to specify the use of the optimizations defined here. [STANDARDS-TRACK]"];
+  cites -> RFC6775;
+  RFC8505 [label="RFC8505
+Registration Extensions for IPv6 over
+Low-Power Wireless Personal Area Network
+(6LoWPAN) Neighbor Discovery
+2018", shape=ellipse, URL="RFC8505.html", target="_top", tooltip="This specification updates RFC 6775 -- the Low-Power Wireless Personal Area Network (6LoWPAN) Neighbor Discovery specification -- to clarify the role of the protocol as a registration technique and simplify the registration operation in 6LoWPAN routers, as well as to provide enhancements to the registration capabilities and mobility detection for different network topologies, including the Routing Registrars performing routing for host routes and/or proxy Neighbor Discovery in a low-power network."];
+  cites -> RFC8505;
+  RFC8928 [label="RFC8928
+Address-Protected Neighbor Discovery for
+Low-Power and Lossy Networks
+2020", shape=ellipse, URL="RFC8928.html", target="_top", tooltip="This document updates the IPv6 over Low-Power Wireless Personal Area Network (6LoWPAN) Neighbor Discovery (ND) protocol defined in RFCs 6775 and 8505.  The new extension is called Address-Protected Neighbor Discovery (AP-ND), and it protects the owner of an address against address theft and impersonation attacks in a Low-Power and Lossy Network (LLN).  Nodes supporting this extension compute a cryptographic identifier (Crypto-ID), and use it with one or more of their Registered Addresses.  The Crypto-ID identifies the owner of the Registered Address and can be used to provide proof of ownership of the Registered Addresses.  Once an address is registered with the Crypto-ID and a proof of ownership is provided, only the owner of that address can modify the registration information, thereby enforcing Source Address Validation."];
+  cites -> RFC8928;
+  RFC8929 [label="RFC8929
+IPv6 Backbone Router
+2020", shape=ellipse, URL="RFC8929.html", target="_top", tooltip="This document updates RFCs 6775 and 8505 in order to enable proxy services for IPv6 Neighbor Discovery by Routing Registrars called Backbone Routers.  Backbone Routers are placed along the wireless edge of a backbone and federate multiple wireless links to form a single Multi-Link Subnet (MLSN)."];
+  cites -> RFC8929;
+  RFC6957 [label="RFC6957
+Duplicate Address Detection Proxy
+2013", shape=ellipse, URL="RFC6957.html", target="_top", tooltip="The document describes a proxy-based mechanism allowing the use of Duplicate Address Detection (DAD) by IPv6 nodes in a point-to-multipoint architecture with a split-horizon forwarding scheme, primarily deployed for Digital Subscriber Line (DSL) and Fiber access architectures.  Based on the DAD signaling, the first-hop router stores in a Binding Table all known IPv6 addresses used on a point-to-multipoint domain (e.g., VLAN).  When a node performs DAD for an address already used by another node, the first-hop router defends the address rather than the device using the address."];
+  cites -> RFC6957;
+  RFC7039 [label="RFC7039
+Source Address Validation Improvement
+(SAVI) Framework
+2013", shape=ellipse, URL="RFC7039.html", target="_top", tooltip="Source Address Validation Improvement (SAVI) methods were developed to prevent nodes attached to the same IP link from spoofing each other's IP addresses, so as to complement ingress filtering with finer-grained, standardized IP source address validation.  This document is a framework document that describes and motivates the design of the SAVI methods.  Particular SAVI methods are described in other documents."];
+  cites -> RFC7039;
+  RFC6105 [label="RFC6105
+IPv6 Router Advertisement Guard
+2011", shape=ellipse, URL="RFC6105.html", target="_top", tooltip="Routed protocols are often susceptible to spoof attacks.  The canonical solution for IPv6 is Secure Neighbor Discovery (SEND), a solution that is non-trivial to deploy.  This document proposes a light-weight alternative and complement to SEND based on filtering in the layer-2 network fabric, using a variety of filtering criteria, including, for example, SEND status.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6105;
+  RFC7113 [label="RFC7113
+Implementation Advice for IPv6 Router
+Advertisement Guard (RA-Guard)
+2014", shape=ellipse, URL="RFC7113.html", target="_top", tooltip="The IPv6 Router Advertisement Guard (RA-Guard) mechanism is commonly employed to mitigate attack vectors based on forged ICMPv6 Router Advertisement messages.  Many existing IPv6 deployments rely on RA-Guard as the first line of defense against the aforementioned attack vectors.  However, some implementations of RA-Guard have been found to be prone to circumvention by employing IPv6 Extension Headers.  This document describes the evasion techniques that affect the aforementioned implementations and formally updates RFC 6105, such that the aforementioned RA-Guard evasion vectors are eliminated."];
+  cites -> RFC7113;
+  RFC7527 [label="RFC7527
+Enhanced Duplicate Address Detection
+2015", shape=ellipse, URL="RFC7527.html", target="_top", tooltip="IPv6 Loopback Suppression and Duplicate Address Detection (DAD) are discussed in Appendix A of RFC 4862.  That specification mentions a hardware-assisted mechanism to detect looped back DAD messages.  If hardware cannot suppress looped back DAD messages, a software solution is required.  Several service provider communities have expressed a need for automated detection of looped back Neighbor Discovery (ND) messages used by DAD.  This document includes mitigation techniques and outlines the Enhanced DAD algorithm to automate the detection of looped back IPv6 ND messages used by DAD.  For network loopback tests, the Enhanced DAD algorithm allows IPv6 to self-heal after a loopback is placed and removed.  Further, for certain access networks, this document automates resolving a specific duplicate address conflict.  This document updates RFCs 4429, 4861, and 4862."];
+  cites -> RFC7527;
+  RFC7586 [label="RFC7586
+The Scalable Address Resolution Protocol
+(SARP) for Large Data Centers
+2015", shape=ellipse, URL="RFC7586.html", target="_top", tooltip="This document introduces the Scalable Address Resolution Protocol (SARP), an architecture that uses proxy gateways to scale large data center networks.  SARP is based on fast proxies that significantly reduce switches' Filtering Database (FDB) table sizes and reduce impact of ARP and Neighbor Discovery (ND) on network elements in an environment where hosts within one subnet (or VLAN) can spread over various locations.  SARP is targeted for massive data centers with a significant number of Virtual Machines (VMs) that can move across various physical locations."];
+  cites -> RFC7586;
+  RFC7772 [label="RFC7772
+Reducing Energy Consumption of Router
+Advertisements
+2016", shape=ellipse, URL="RFC7772.html", target="_top", tooltip="Frequent Router Advertisement messages can severely impact host power consumption.  This document recommends operational practices to avoid such impact."];
+  cites -> RFC7772;
+  RFC8273 [label="RFC8273
+Unique IPv6 Prefix per Host
+2017", shape=ellipse, URL="RFC8273.html", target="_top", tooltip="This document outlines an approach utilizing existing IPv6 protocols to allow hosts to be assigned a unique IPv6 prefix (instead of a unique IPv6 address from a shared IPv6 prefix).  Benefits of using a unique IPv6 prefix over a unique service-provider IPv6 address include improved host isolation and enhanced subscriber management on shared network segments."];
+  cites -> RFC8273;
+  RFC8302 [label="RFC8302
+Transparent Interconnection of Lots of
+Links (TRILL): ARP and Neighbor
+Discovery (ND) Optimization
+2018", shape=ellipse, URL="RFC8302.html", target="_top", tooltip="This document describes mechanisms to optimize the Address Resolution Protocol (ARP) and Neighbor Discovery (ND) traffic in a Transparent Interconnection of Lots of Links (TRILL) campus.  TRILL switches maintain a cache of IP / Media Access Control (MAC) address / Data Label bindings that are learned from ARP/ND requests and responses that pass through them.  In many cases, this cache allows an edge Routing Bridge (RBridge) to avoid flooding an ARP/ND request by either responding to it directly or encapsulating it and unicasting it.  Such optimization reduces packet flooding over a TRILL campus."];
+  cites -> RFC8302;
+  RFC9131 [label="RFC9131
+Gratuitous Neighbor Discovery: Creating
+Neighbor Cache Entries on First-Hop
+Routers
+2021", shape=ellipse, URL="RFC9131.html", target="_top", tooltip="Neighbor Discovery (RFC 4861) is used by IPv6 nodes to determine the link-layer addresses of neighboring nodes as well as to discover and maintain reachability information.  This document updates RFC 4861 to allow routers to proactively create a Neighbor Cache entry when a new IPv6 address is assigned to a node.  It also updates RFC 4861 and recommends that nodes send unsolicited Neighbor Advertisements upon assigning a new IPv6 address.  These changes will minimize the delay and packet loss when a node initiates connections to an off-link destination from a new IPv6 address."];
+  cites -> RFC9131;
+  RFC9161 [label="RFC9161
+Operational Aspects of Proxy ARP/ND in
+Ethernet Virtual Private Networks
+2022", shape=ellipse, URL="RFC9161.html", target="_top", tooltip="This document describes the Ethernet Virtual Private Network (EVPN) Proxy ARP/ND function augmented by the capability of the ARP/ND Extended Community.  From that perspective, this document updates the EVPN specification to provide more comprehensive documentation of the operation of the Proxy ARP/ND function.  The EVPN Proxy ARP/ND function and the ARP/ND Extended Community help operators of Internet Exchange Points, Data Centers, and other networks deal with IPv4 and IPv6 address resolution issues associated with large Broadcast Domains by reducing and even suppressing the flooding produced by address resolution in the EVPN network."];
+  cites -> RFC9161;
+  RFC9663 [label="RFC9663
+Using DHCPv6 Prefix Delegation
+(DHCPv6-PD) to Allocate Unique IPv6
+Prefixes per Client in Large Broadcast
+Networks
+2024", shape=ellipse, URL="RFC9663.html", target="_top", tooltip="This document discusses an IPv6 deployment scenario when individual nodes connected to large broadcast networks (such as enterprise networks or public Wi-Fi networks) are allocated unique prefixes via DHCPv6 Prefix Delegation (DHCPv6-PD), as specified in RFC 8415."];
+  cites -> RFC9663;
+  RFC4903 [label="RFC4903
+Multi-Link Subnet Issues
+2007", shape=ellipse, URL="RFC4903.html", target="_top", tooltip="There have been several proposals around the notion that a subnet may span multiple links connected by routers.  This memo documents the issues and potential problems that have been raised with such an approach.  This memo provides information for the Internet community."];
+  cites -> RFC4903;
+  RFC7342 [label="RFC7342
+Practices for Scaling ARP and Neighbor
+Discovery (ND) in Large Data Centers
+2014", shape=ellipse, URL="RFC7342.html", target="_top", tooltip="This memo documents some operational practices that allow ARP and Neighbor Discovery (ND) to scale in data center environments."];
+  cites -> RFC7342;
+  RFC9119 [label="RFC9119
+Multicast Considerations over IEEE 802
+Wireless Media
+2021", shape=ellipse, URL="RFC9119.html", target="_top", tooltip="Well-known issues with multicast have prevented the deployment of multicast in 802.11 (Wi-Fi) and other local-area wireless environments.  This document describes the known limitations of wireless (primarily 802.11) Layer 2 multicast.  Also described are certain multicast enhancement features that have been specified by the IETF and by IEEE 802 for wireless media, as well as some operational choices that can be made to improve the performance of the network.  Finally, some recommendations are provided about the usage and combination of these features and operational choices."];
+  cites -> RFC9119;
+  RFC9099 [label="RFC9099
+Operational Security Considerations for
+IPv6 Networks
+2021", shape=ellipse, URL="RFC9099.html", target="_top", tooltip="Knowledge and experience on how to operate IPv4 networks securely is available, whether the operator is an Internet Service Provider (ISP) or an enterprise internal network. However, IPv6 presents some new security challenges. RFC 4942 describes security issues in the protocol, but network managers also need a more practical, operations-minded document to enumerate advantages and/or disadvantages of certain choices. This document analyzes the operational security issues associated with several types of networks and proposes technical and procedural mitigation techniques. This document is only applicable to managed networks, such as enterprise networks, service provider networks, or managed residential networks."];
+  cites -> RFC9099;
+  RFC8415 [label="RFC8415
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2018", shape=ellipse, URL="RFC8415.html", target="_top", tooltip="This document describes the Dynamic Host Configuration Protocol for IPv6 (DHCPv6): an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly, or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC). This document updates the text from RFC 3315 (the original DHCPv6 specification) and incorporates prefix delegation (RFC 3633), stateless DHCPv6 (RFC 3736), an option to specify an upper bound for how long a client should wait before refreshing information (RFC 4242), a mechanism for throttling DHCPv6 clients when DHCPv6 service is not available (RFC 7083), and relay agent handling of unknown messages (RFC 7283). In addition, this document clarifies the interactions between models of operation (RFC 7550). As such, this document obsoletes RFC 3315, RFC 3633, RFC 3736, RFC 4242, RFC 7083, RFC 7283, and RFC 7550."];
+  cites -> RFC8415;
+  RFC2026 [label="RFC2026
+The Internet Standards Process --
+Revision 3
+1996", shape=ellipse, URL="RFC2026.html", target="_top", tooltip="This memo documents the process used by the Internet community for the standardization of protocols and procedures.  It defines the stages in the standardization process, the requirements for moving a document between stages and the types of documents used during this process.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2026;
+  RFC7278 [label="RFC7278
+Extending an IPv6 /64 Prefix from a
+Third Generation Partnership Project
+(3GPP) Mobile Interface to a LAN Link
+2014", shape=ellipse, URL="RFC7278.html", target="_top", tooltip="This document describes requirements for extending an IPv6 /64 prefix from a User Equipment Third Generation Partnership Project (3GPP) radio interface to a LAN link and describes two implementation examples."];
+  cites -> RFC7278;
+  RFC6085 [label="RFC6085
+Address Mapping of IPv6 Multicast
+Packets on Ethernet
+2011", shape=ellipse, URL="RFC6085.html", target="_top", tooltip="When transmitting an IPv6 packet with a multicast destination address, the IPv6 destination address is mapped to an Ethernet link-layer multicast address.  This document clarifies that a mapping of an IPv6 packet with a multicast destination address may in some circumstances map to an Ethernet link-layer unicast address. [STANDARDS-TRACK]"];
+  cites -> RFC6085;
+  RFC5517 [label="RFC5517
+Cisco Systems' Private VLANs: Scalable
+Security in a Multi-Client Environment
+2010", shape=ellipse, URL="RFC5517.html", target="_top", tooltip="This document describes a mechanism to achieve device isolation through the application of special Layer 2 forwarding constraints. Such a mechanism allows end devices to share the same IP subnet while being Layer 2 isolated, which in turn allows network designers to employ larger subnets and so reduce the address management overhead. Some of the numerous deployment scenarios of the aforementioned mechanism (which range from data center designs to Ethernet-to-the-home-basement networks) are mentioned in the following text to exemplify the mechanism's possible usages; however, this document is not intended to cover all such deployment scenarios nor delve into their details. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5517;
+  RFC7102 [label="RFC7102
+Terms Used in Routing for Low-Power and
+Lossy Networks
+2014", shape=ellipse, URL="RFC7102.html", target="_top", tooltip="This document provides a glossary of terminology used in routing requirements and solutions for networks referred to as Low-Power and Lossy Networks (LLNs).  An LLN is typically composed of many embedded devices with limited power, memory, and processing resources interconnected by a variety of links.  There is a wide scope of application areas for LLNs, including industrial monitoring, building automation (e.g., heating, ventilation, air conditioning, lighting, access control, fire), connected home, health care, environmental monitoring, urban sensor networks, energy management, assets tracking, and refrigeration."];
+  cites -> RFC7102;
+  RFC9686 [label="RFC9686
+Registering Self-Generated IPv6
+Addresses Using DHCPv6
+2024", shape=ellipse, URL="RFC9686.html", target="_top", tooltip="This document defines a method to inform a DHCPv6 server that a device has one or more self-generated or statically configured addresses."];
+  cites -> RFC9686;
+  RFC2461 [label="RFC2461
+Neighbor Discovery for IP Version 6
+(IPv6)
+1998", shape=ellipse, URL="RFC2461.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6. [STANDARDS-TRACK]"];
+  cites -> RFC2461;
+  RFC2462 [label="RFC2462
+IPv6 Stateless Address Autoconfiguration
+1998", shape=ellipse, URL="RFC2462.html", target="_top", tooltip="This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6. [STANDARDS-TRACK]"];
+  cites -> RFC2462;
+  RFC6762 [label="RFC6762
+Multicast DNS
+2013", shape=ellipse, URL="RFC6762.html", target="_top", tooltip="As networked devices become smaller, more portable, and more ubiquitous, the ability to operate with less configured infrastructure is increasingly important. In particular, the ability to look up DNS resource record data types (including, but not limited to, host names) in the absence of a conventional managed DNS server is useful. Multicast DNS (mDNS) provides the ability to perform DNS-like operations on the local link in the absence of any conventional Unicast DNS server. In addition, Multicast DNS designates a portion of the DNS namespace to be free for local use, without the need to pay any annual fee, and without the need to set up delegations or otherwise configure a conventional DNS server to answer for those names. The primary benefits of Multicast DNS names are that (i) they require little or no administration or configuration to set them up, (ii) they work when no infrastructure is present, and (iii) they work during infrastructure failures."];
+  cites -> RFC6762;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9898;
+}

@@ -1,0 +1,74 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7431 [label="RFC7431
+Multicast-Only Fast Reroute
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="As IPTV deployments grow in number and size, service providers are looking for solutions that minimize the service disruption due to faults in the IP network carrying the packets for these services.  This document describes a mechanism for minimizing packet loss in a network when node or link failures occur.  Multicast-only Fast Reroute (MoFRR) works by making simple enhancements to multicast routing protocols such as Protocol Independent Multicast (PIM) and Multipoint LDP (mLDP)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7431;
+
+  obs [label="obsoletes", shape=box];
+  RFC7431 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7431 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7431;
+
+  cites [label="cites", shape=box];
+  RFC7431 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5286 [label="RFC5286
+Basic Specification for IP Fast Reroute:
+Loop-Free Alternates
+2008", shape=ellipse, URL="RFC5286.html", target="_top", tooltip="This document describes the use of loop-free alternates to provide local protection for unicast traffic in pure IP and MPLS/LDP networks in the event of a single failure, whether link, node, or shared risk link group (SRLG).  The goal of this technology is to reduce the packet loss that happens while routers converge after a topology change due to a failure.  Rapid failure repair is achieved through use of precalculated backup next-hops that are loop-free and safe to use until the distributed network convergence process completes.  This simple approach does not require any support from other routers.  The extent to which this goal can be met by this specification is dependent on the topology of the network. [STANDARDS-TRACK]"];
+  cites -> RFC5286;
+  RFC4601 [label="RFC4601
+Protocol Independent Multicast - Sparse
+Mode (PIM-SM): Protocol Specification
+(Revised)
+2006", shape=ellipse, URL="RFC4601.html", target="_top", tooltip="This document specifies Protocol Independent Multicast - Sparse Mode (PIM-SM). PIM-SM is a multicast routing protocol that can use the underlying unicast routing information base or a separate multicast-capable routing information base. It builds unidirectional shared trees rooted at a Rendezvous Point (RP) per group, and optionally creates shortest-path trees per source. This document obsoletes RFC 2362, an Experimental version of PIM-SM. [STANDARDS-TRACK]"];
+  cites -> RFC4601;
+  RFC6388 [label="RFC6388
+Label Distribution Protocol Extensions
+for Point-to-Multipoint and Multipoint-
+to-Multipoint Label Switched Paths
+2011", shape=ellipse, URL="RFC6388.html", target="_top", tooltip="This document describes extensions to the Label Distribution Protocol (LDP) for the setup of point-to-multipoint (P2MP) and multipoint-to-multipoint (MP2MP) Label Switched Paths (LSPs) in MPLS networks.  These extensions are also referred to as multipoint LDP.  Multipoint LDP constructs the P2MP or MP2MP LSPs without interacting with or relying upon any other multicast tree construction protocol.  Protocol elements and procedures for this solution are described for building such LSPs in a receiver-initiated manner.  There can be various applications for multipoint LSPs, for example IP multicast or support for multicast in BGP/MPLS Layer 3 Virtual Private Networks (L3VPNs).  Specification of how such applications can use an LDP signaled multipoint LSP is outside the scope of this document. [STANDARDS-TRACK]"];
+  cites -> RFC6388;
+  RFC6571 [label="RFC6571
+Loop-Free Alternate (LFA) Applicability
+in Service Provider (SP) Networks
+2012", shape=ellipse, URL="RFC6571.html", target="_top", tooltip="In this document, we analyze the applicability of the Loop-Free Alternate (LFA) method of providing IP fast reroute in both the core and access parts of Service Provider networks.  We consider both the link and node failure cases, and provide guidance on the applicability of LFAs to different network topologies, with special emphasis on the access parts of the network.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6571;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7431;
+  RFC7891 [label="RFC7891
+Explicit Reverse Path Forwarding (RPF)
+Vector
+2016", shape=ellipse, URL="RFC7891.html", target="_top", tooltip="The PIM Reverse Path Forwarding (RPF) Vector TLV defined in RFC 5496 can be included in a PIM Join Attribute such that the RPF neighbor is selected based on the unicast reachability of the RPF Vector instead of the source or Rendezvous Point associated with the multicast tree. This document defines a new RPF Vector Attribute type such that an explicit RPF neighbor list can be encoded in the PIM Join Attribute, thus bypassing the unicast route lookup."];
+  RFC7891 -> rev_cites;
+  RFC9026 [label="RFC9026
+Multicast VPN Fast Upstream Failover
+2021", shape=ellipse, URL="RFC9026.html", target="_top", tooltip="This document defines Multicast Virtual Private Network (VPN) extensions and procedures that allow fast failover for upstream failures by allowing downstream Provider Edges (PEs) to consider the status of Provider-Tunnels (P-tunnels) when selecting the Upstream PE for a VPN multicast flow.  The fast failover is enabled by using Bidirectional Forwarding Detection (BFD) for Multipoint Networks (RFC 8562) and the new BGP Attribute, BFD Discriminator.  Also, this document introduces a new BGP Community, Standby PE, extending BGP Multicast VPN (MVPN) routing so that a C-multicast route can be advertised toward a Standby Upstream PE."];
+  RFC9026 -> rev_cites;
+  RFC9466 [label="RFC9466
+PIM Assert Message Packing
+2023", shape=ellipse, URL="RFC9466.html", target="_top", tooltip="When PIM Sparse Mode (PIM-SM), including PIM Source-Specific Multicast (PIM-SSM), is used in shared LAN networks, there is often more than one upstream router. This can lead to duplicate IP multicast packets being forwarded by these PIM routers. PIM Assert messages are used to elect a single forwarder for each IP multicast traffic flow between these routers. This document defines a mechanism to send and receive information for multiple IP multicast flows in a single PackedAssert message. This optimization reduces the total number of PIM packets on the LAN and can therefore speed up the election of the single forwarder, reducing the number of duplicate IP multicast packets incurred."];
+  RFC9466 -> rev_cites;
+  RFC9860 [label="RFC9860
+Multicast-Only Fast Reroute (MoFRR)
+Based on Topology Independent Loop-Free
+Alternate (TI-LFA) Fast Reroute
+2025", shape=ellipse, URL="RFC9860.html", target="_top", tooltip="This document specifies the use of Topology Independent Loop-Free Alternate (TI-LFA) mechanisms with Multicast-only Fast Reroute (MoFRR) for Protocol Independent Multicast (PIM).  The TI-LFA provides Fast Reroute (FRR) protection for unicast traffic in IP networks by precomputing backup paths that avoid potential failures.  By integrating TI-LFA with MoFRR, this document extends the benefits of FRR mechanisms to multicast traffic, enabling enhanced resilience and minimized packet loss in multicast networks.  The document outlines an optional approach to implement TI-LFA in conjunction with MoFRR for PIM, ensuring that multicast traffic is rapidly rerouted in the event of a failure."];
+  RFC9860 -> rev_cites;
+}

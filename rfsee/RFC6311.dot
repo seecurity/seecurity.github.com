@@ -1,0 +1,46 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6311 [label="RFC6311
+Protocol Support for High Availability
+of IKEv2/IPsec
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IPsec protocol suite is widely used for business-critical network traffic. In order to make IPsec deployments highly available, more scalable, and failure-resistant, they are often implemented as IPsec High Availability (HA) clusters. However, there are many issues in IPsec HA clustering, and in particular in Internet Key Exchange Protocol version 2 (IKEv2) clustering. An earlier document, IPsec Cluster Problem Statement, enumerates the issues encountered in the IKEv2/IPsec HA cluster environment. This document resolves these issues with the least possible change to the protocol. This document defines an extension to the IKEv2 protocol to solve the main issues of IPsec Cluster Problem Statement in the commonly deployed hot standby cluster, and provides implementation advice for other issues. The main issues solved are the synchronization of IKEv2 Message ID counters, and of IPsec replay counters. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6311;
+
+  obs [label="obsoletes", shape=box];
+  RFC6311 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6311 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6311;
+
+  cites [label="cites", shape=box];
+  RFC6311 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6311;
+  RFC7383 [label="RFC7383
+Internet Key Exchange Protocol Version 2
+(IKEv2) Message Fragmentation
+2014", shape=ellipse, URL="RFC7383.html", target="_top", tooltip="This document describes a way to avoid IP fragmentation of large Internet Key Exchange Protocol version 2 (IKEv2) messages.  This allows IKEv2 messages to traverse network devices that do not allow IP fragments to pass through."];
+  RFC7383 -> rev_cites;
+  RFC8750 [label="RFC8750
+Implicit Initialization Vector (IV) for
+Counter-Based Ciphers in Encapsulating
+Security Payload (ESP)
+2020", shape=ellipse, URL="RFC8750.html", target="_top", tooltip="Encapsulating Security Payload (ESP) sends an initialization vector (IV) in each packet.  The size of the IV depends on the applied transform and is usually 8 or 16 octets for the transforms defined at the time this document was written.  When used with IPsec, some algorithms, such as AES-GCM, AES-CCM, and ChaCha20-Poly1305, take the IV to generate a nonce that is used as an input parameter for encrypting and decrypting.  This IV must be unique but can be predictable.  As a result, the value provided in the ESP Sequence Number (SN) can be used instead to generate the nonce.  This avoids sending the IV itself and saves 8 octets per packet in the case of AES-GCM, AES-CCM, and ChaCha20-Poly1305.  This document describes how to do this."];
+  RFC8750 -> rev_cites;
+  RFC9329 [label="RFC9329
+TCP Encapsulation of Internet Key
+Exchange Protocol (IKE) and IPsec
+Packets
+2022", shape=ellipse, URL="RFC9329.html", target="_top", tooltip="This document describes a method to transport Internet Key Exchange Protocol (IKE) and IPsec packets over a TCP connection for traversing network middleboxes that may block IKE negotiation over UDP. This method, referred to as TCP encapsulation, involves sending both IKE packets for Security Association (SA) establishment and Encapsulating Security Payload (ESP) packets over a TCP connection. This method is intended to be used as a fallback option when IKE cannot be negotiated over UDP. TCP encapsulation for IKE and IPsec was defined in RFC 8229. This document clarifies the specification for TCP encapsulation by including additional clarifications obtained during implementation and deployment of this method. This documents obsoletes RFC 8229."];
+  RFC9329 -> rev_cites;
+}

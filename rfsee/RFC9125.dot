@@ -1,0 +1,126 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9125 [label="RFC9125
+Gateway Auto-Discovery and Route
+Advertisement for Site Interconnection
+Using Segment Routing
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="Data centers are attached to the Internet or a backbone network by gateway routers. One data center typically has more than one gateway for commercial, load-balancing, and resiliency reasons. Other sites, such as access networks, also need to be connected across backbone networks through gateways. This document defines a mechanism using the BGP Tunnel Encapsulation attribute to allow data center gateway routers to advertise routes to the prefixes reachable in the site, including advertising them on behalf of other gateways at the same site. This allows segment routing to be used to identify multiple paths across the Internet or backbone network between different gateways. The paths can be selected for load-balancing, resilience, and quality purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9125;
+
+  obs [label="obsoletes", shape=box];
+  RFC9125 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9125 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9125;
+
+  cites [label="cites", shape=box];
+  RFC9125 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  cites -> RFC7752;
+  RFC9086 [label="RFC9086
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+BGP Egress Peer Engineering
+2021", shape=ellipse, URL="RFC9086.html", target="_top", tooltip="A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with a list of segment identifiers (SIDs). A segment can represent any instruction, topological or service based. SR segments allow steering a flow through any topological path and service chain while maintaining per-flow state only at the ingress node of the SR domain. This document describes an extension to Border Gateway Protocol - Link State (BGP-LS) for advertisement of BGP Peering Segments along with their BGP peering node information so that efficient BGP Egress Peer Engineering (EPE) policies and strategies can be computed based on Segment Routing."];
+  cites -> RFC9086;
+  RFC7911 [label="RFC7911
+Advertisement of Multiple Paths in BGP
+2016", shape=ellipse, URL="RFC7911.html", target="_top", tooltip="This document defines a BGP extension that allows the advertisement of multiple paths for the same address prefix without the new paths implicitly replacing any previous ones.  The essence of the extension is that each path is identified by a Path Identifier in addition to the address prefix."];
+  cites -> RFC7911;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  cites -> RFC9012;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC4360 [label="RFC4360
+BGP Extended Communities Attribute
+2006", shape=ellipse, URL="RFC4360.html", target="_top", tooltip="This document describes the extended community BGP-4 attribute.  This attribute provides a mechanism for labeling information carried in BGP-4.  These labels can be used to control the distribution of this information, or for other applications. [STANDARDS-TRACK]"];
+  cites -> RFC4360;
+  RFC4760 [label="RFC4760
+Multiprotocol Extensions for BGP-4
+2007", shape=ellipse, URL="RFC4760.html", target="_top", tooltip="This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, L3VPN, etc.).  The extensions are backward compatible - a router that supports the extensions can interoperate with a router that doesn't support the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC4760;
+  RFC9085 [label="RFC9085
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+2021", shape=ellipse, URL="RFC9085.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths by encoding paths as sequences of topological subpaths, called segments. These segments are advertised by routing protocols, e.g., by the link-state routing protocols (IS-IS, OSPFv2, and OSPFv3) within IGP topologies. This document defines extensions to the Border Gateway Protocol - Link State (BGP-LS) address family in order to carry SR information via BGP."];
+  cites -> RFC9085;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC4272 [label="RFC4272
+BGP Security Vulnerabilities Analysis
+2006", shape=ellipse, URL="RFC4272.html", target="_top", tooltip="Border Gateway Protocol 4 (BGP-4), along with a host of other infrastructure protocols designed before the Internet environment became perilous, was originally designed with little consideration for protection of the information it carries. There are no mechanisms internal to BGP that protect against attacks that modify, delete, forge, or replay data, any of which has the potential to disrupt overall network routing behavior. This document discusses some of the security issues with BGP routing data dissemination. This document does not discuss security issues with forwarding of packets. This memo provides information for the Internet community."];
+  cites -> RFC4272;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  cites -> RFC5925;
+  RFC6952 [label="RFC6952
+Analysis of BGP, LDP, PCEP, and MSDP
+Issues According to the Keying and
+Authentication for Routing Protocols
+(KARP) Design Guide
+2013", shape=ellipse, URL="RFC6952.html", target="_top", tooltip="This document analyzes TCP-based routing protocols, the Border Gateway Protocol (BGP), the Label Distribution Protocol (LDP), the Path Computation Element Communication Protocol (PCEP), and the Multicast Source Distribution Protocol (MSDP), according to guidelines set forth in Section 4.2 of Keying and Authentication for Routing Protocols Design Guidelines, RFC 6518."];
+  cites -> RFC6952;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC7926 [label="RFC7926
+Problem Statement and Architecture for
+Information Exchange between
+Interconnected Traffic-Engineered
+Networks
+2016", shape=ellipse, URL="RFC7926.html", target="_top", tooltip="In Traffic-Engineered (TE) systems, it is sometimes desirable to establish an end-to-end TE path with a set of constraints (such as bandwidth) across one or more networks from a source to a destination. TE information is the data relating to nodes and TE links that is used in the process of selecting a TE path. TE information is usually only available within a network. We call such a zone of visibility of TE information a domain. An example of a domain may be an IGP area or an Autonomous System. In order to determine the potential to establish a TE path through a series of connected networks, it is necessary to have available a certain amount of TE information about each network. This need not be the full set of TE information available within each network but does need to express the potential of providing TE connectivity. This subset of TE information is called TE reachability information. This document sets out the problem statement for the exchange of TE information between interconnected TE networks in support of end-to-end TE path establishment and describes the best current practice architecture to meet this problem statement. For reasons that are explained in this document, this work is limited to simple TE constraints and information that determine TE reachability."];
+  cites -> RFC7926;
+  RFC5291 [label="RFC5291
+Outbound Route Filtering Capability for
+BGP-4
+2008", shape=ellipse, URL="RFC5291.html", target="_top", tooltip="This document defines a BGP-based mechanism that allows a BGP speaker to send to its BGP peer a set of Outbound Route Filters (ORFs) that the peer would use to constrain/filter its outbound routing updates to the speaker. [STANDARDS-TRACK]"];
+  cites -> RFC5291;
+  RFC4684 [label="RFC4684
+Constrained Route Distribution for
+Border Gateway Protocol/MultiProtocol
+Label Switching (BGP/MPLS) Internet
+Protocol (IP) Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4684.html", target="_top", tooltip="This document defines Multi-Protocol BGP (MP-BGP) procedures that allow BGP speakers to exchange Route Target reachability information.  This information can be used to build a route distribution graph in order to limit the propagation of Virtual Private Network (VPN) Network Layer Reachability Information (NLRI) between different autonomous systems or distinct clusters of the same autonomous system.  This document updates RFC 4364. [STANDARDS-TRACK]"];
+  cites -> RFC4684;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9125;
+}

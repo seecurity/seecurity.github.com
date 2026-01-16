@@ -1,0 +1,65 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8102 [label="RFC8102
+Remote-LFA Node Protection and
+Manageability
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="The loop-free alternates (LFAs) computed following the current remote-LFA specification guarantees only link protection. The resulting remote-LFA next hops (also called PQ-nodes) may not guarantee node protection for all destinations being protected by it. This document describes an extension to the remote-loop-free-based IP fast reroute mechanisms that specifies procedures for determining whether or not a given PQ-node provides node protection for a specific destination. The document also shows how the same procedure can be utilized for the collection of complete characteristics for alternate paths. Knowledge about the characteristics of all alternate paths is a precursor to applying the operator-defined policy for eliminating paths not fitting the constraints."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8102;
+
+  obs [label="obsoletes", shape=box];
+  RFC8102 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8102 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8102;
+
+  cites [label="cites", shape=box];
+  RFC8102 -> cites;
+  RFC7490 [label="RFC7490
+Remote Loop-Free Alternate (LFA) Fast
+Reroute (FRR)
+2015", shape=ellipse, URL="RFC7490.html", target="_top", tooltip="This document describes an extension to the basic IP fast reroute mechanism, described in RFC 5286, that provides additional backup connectivity for point-to-point link failures when none can be provided by the basic mechanisms."];
+  cites -> RFC7490;
+  RFC7916 [label="RFC7916
+Operational Management of Loop-Free
+Alternates
+2016", shape=ellipse, URL="RFC7916.html", target="_top", tooltip="Loop-Free Alternates (LFAs), as defined in RFC 5286, constitute an IP Fast Reroute (IP FRR) mechanism enabling traffic protection for IP traffic (and, by extension, MPLS LDP traffic). Following early deployment experiences, this document provides operational feedback on LFAs, highlights some limitations, and proposes a set of refinements to address those limitations. It also proposes required management specifications. This proposal is also applicable to remote-LFA solutions."];
+  cites -> RFC7916;
+  RFC5286 [label="RFC5286
+Basic Specification for IP Fast Reroute:
+Loop-Free Alternates
+2008", shape=ellipse, URL="RFC5286.html", target="_top", tooltip="This document describes the use of loop-free alternates to provide local protection for unicast traffic in pure IP and MPLS/LDP networks in the event of a single failure, whether link, node, or shared risk link group (SRLG).  The goal of this technology is to reduce the packet loss that happens while routers converge after a topology change due to a failure.  Rapid failure repair is achieved through use of precalculated backup next-hops that are loop-free and safe to use until the distributed network convergence process completes.  This simple approach does not require any support from other routers.  The extent to which this goal can be met by this specification is dependent on the topology of the network. [STANDARDS-TRACK]"];
+  cites -> RFC5286;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8102;
+  RFC9860 [label="RFC9860
+Multicast-Only Fast Reroute (MoFRR)
+Based on Topology Independent Loop-Free
+Alternate (TI-LFA) Fast Reroute
+2025", shape=ellipse, URL="RFC9860.html", target="_top", tooltip="This document specifies the use of Topology Independent Loop-Free Alternate (TI-LFA) mechanisms with Multicast-only Fast Reroute (MoFRR) for Protocol Independent Multicast (PIM).  The TI-LFA provides Fast Reroute (FRR) protection for unicast traffic in IP networks by precomputing backup paths that avoid potential failures.  By integrating TI-LFA with MoFRR, this document extends the benefits of FRR mechanisms to multicast traffic, enabling enhanced resilience and minimized packet loss in multicast networks.  The document outlines an optional approach to implement TI-LFA in conjunction with MoFRR for PIM, ensuring that multicast traffic is rapidly rerouted in the event of a failure."];
+  RFC9860 -> rev_cites;
+  RFC9902 [label="RFC9902
+A YANG Data Model for IS-IS Segment
+Routing over the MPLS Data Plane
+2025", shape=ellipse, URL="RFC9902.html", target="_top", tooltip="This document defines a YANG data model that can be used to manage IS-IS extensions for Segment Routing (SR) over the MPLS data plane."];
+  RFC9902 -> rev_cites;
+  RFC9903 [label="RFC9903
+A YANG Data Model for OSPF Segment
+Routing over the MPLS Data Plane
+2025", shape=ellipse, URL="RFC9903.html", target="_top", tooltip="This document defines a YANG data model that can be used to manage OSPF extensions for Segment Routing over the MPLS data plane."];
+  RFC9903 -> rev_cites;
+}

@@ -1,0 +1,117 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9800 [label="RFC9800
+Compressed SRv6 Segment List Encoding
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="Segment Routing over IPv6 (SRv6) is the instantiation of Segment Routing (SR) on the IPv6 data plane. This document specifies new flavors for the SRv6 endpoint behaviors defined in RFC 8986, which enable the compression of an SRv6 segment list. Such compression significantly reduces the size of the SRv6 encapsulation needed to steer packets over long segment lists. This document updates RFC 8754 by allowing a Segment List entry in the Segment Routing Header (SRH) to be either an IPv6 address, as specified in RFC 8754, or a REPLACE-CSID container in packed format, as specified in this document."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9800;
+
+  obs [label="obsoletes", shape=box];
+  RFC9800 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9800 -> updates;
+  RFC8754 [label="RFC8754
+IPv6 Segment Routing Header (SRH)
+2020", shape=ellipse, URL="RFC8754.html", target="_top", tooltip="Segment Routing can be applied to the IPv6 data plane using a new type of Routing Extension Header called the Segment Routing Header (SRH).  This document describes the SRH and how it is used by nodes that are Segment Routing (SR) capable."];
+  updates -> RFC8754;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9800;
+
+  cites [label="cites", shape=box];
+  RFC9800 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8986 [label="RFC8986
+Segment Routing over IPv6 (SRv6) Network
+Programming
+2021", shape=ellipse, URL="RFC8986.html", target="_top", tooltip="The Segment Routing over IPv6 (SRv6) Network Programming framework enables a network operator or an application to specify a packet processing program by encoding a sequence of instructions in the IPv6 packet header. Each instruction is implemented on one or several nodes in the network and identified by an SRv6 Segment Identifier in the packet. This document defines the SRv6 Network Programming concept and specifies the base set of SRv6 behaviors that enables the creation of interoperable overlays with underlay optimization."];
+  cites -> RFC8986;
+  RFC8754 [label="RFC8754
+IPv6 Segment Routing Header (SRH)
+2020", shape=ellipse, URL="RFC8754.html", target="_top", tooltip="Segment Routing can be applied to the IPv6 data plane using a new type of Routing Extension Header called the Segment Routing Header (SRH).  This document describes the SRH and how it is used by nodes that are Segment Routing (SR) capable."];
+  cites -> RFC8754;
+  RFC9352 [label="RFC9352
+IS-IS Extensions to Support Segment
+Routing over the IPv6 Data Plane
+2023", shape=ellipse, URL="RFC9352.html", target="_top", tooltip="The Segment Routing (SR) architecture allows a flexible definition of the end-to-end path by encoding it as a sequence of topological elements called segments. It can be implemented over the MPLS or the IPv6 data plane. This document describes the IS-IS extensions required to support SR over the IPv6 data plane. This document updates RFC 7370 by modifying an existing registry."];
+  cites -> RFC9352;
+  RFC9513 [label="RFC9513
+OSPFv3 Extensions for Segment Routing
+over IPv6 (SRv6)
+2023", shape=ellipse, URL="RFC9513.html", target="_top", tooltip="The Segment Routing (SR) architecture allows a flexible definition of the end-to-end path by encoding it as a sequence of topological elements called segments.  It can be implemented over an MPLS or IPv6 data plane.  This document describes the OSPFv3 extensions required to support SR over the IPv6 data plane."];
+  cites -> RFC9513;
+  RFC9252 [label="RFC9252
+BGP Overlay Services Based on Segment
+Routing over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9252.html", target="_top", tooltip="This document defines procedures and messages for SRv6-based BGP services, including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and Internet services.  It builds on BGP/MPLS IP Virtual Private Networks (VPNs) (RFC 4364) and BGP MPLS-Based Ethernet VPN (RFC 7432)."];
+  cites -> RFC9252;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC9602 [label="RFC9602
+Segment Routing over IPv6 (SRv6) Segment
+Identifiers in the IPv6 Addressing
+Architecture
+2024", shape=ellipse, URL="RFC9602.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) uses IPv6 as the underlying data plane.  Thus, Segment Identifiers (SIDs) used by SRv6 can resemble IPv6 addresses and behave like them while exhibiting slightly different behaviors in some situations.  This document explores the characteristics of SRv6 SIDs and focuses on the relationship of SRv6 SIDs to the IPv6 Addressing Architecture.  This document allocates and makes a dedicated prefix available for SRv6 SIDs."];
+  cites -> RFC9602;
+  RFC9350 [label="RFC9350
+IGP Flexible Algorithm
+2023", shape=ellipse, URL="RFC9350.html", target="_top", tooltip="IGP protocols historically compute the best paths over the network based on the IGP metric assigned to the links.  Many network deployments use RSVP-TE or Segment Routing - Traffic Engineering (SR-TE) to steer traffic over a path that is computed using different metrics or constraints than the shortest IGP path.  This document specifies a solution that allows IGPs themselves to compute constraint-based paths over the network.  This document also specifies a way of using Segment Routing (SR) Prefix-SIDs and SRv6 locators to steer packets along the constraint-based paths."];
+  cites -> RFC9350;
+  RFC4786 [label="RFC4786
+Operation of Anycast Services
+2006", shape=ellipse, URL="RFC4786.html", target="_top", tooltip="As the Internet has grown, and as systems and networked services within enterprises have become more pervasive, many services with high availability requirements have emerged. These requirements have increased the demands on the reliability of the infrastructure on which those services rely. Various techniques have been employed to increase the availability of services deployed on the Internet. This document presents commentary and recommendations for distribution of services using anycast. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4786;
+  RFC9603 [label="RFC9603
+Path Computation Element Communication
+Protocol (PCEP) Extensions for IPv6
+Segment Routing
+2024", shape=ellipse, URL="RFC9603.html", target="_top", tooltip="Segment Routing (SR) can be used to steer packets through a network using the IPv6 or MPLS data plane, employing the source routing paradigm. An SR Path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), explicit configuration, or a Path Computation Element (PCE). Since SR can be applied to both MPLS and IPv6 data planes, a PCE should be able to compute an SR Path for both MPLS and IPv6 data planes. The Path Computation Element Communication Protocol (PCEP) extension and mechanisms to support SR-MPLS have been defined. This document outlines the necessary extensions to support SR for the IPv6 data plane within PCEP."];
+  cites -> RFC9603;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  cites -> RFC8200;
+  RFC9514 [label="RFC9514
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+over IPv6 (SRv6)
+2023", shape=ellipse, URL="RFC9514.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) allows for a flexible definition of end-to-end paths within various topologies by encoding paths as sequences of topological or functional sub-paths called segments. These segments are advertised by various protocols such as BGP, IS-IS, and OSPFv3. This document defines extensions to BGP - Link State (BGP-LS) to advertise SRv6 segments along with their behaviors and other attributes via BGP. The BGP-LS address-family solution for SRv6 described in this document is similar to BGP-LS for SR for the MPLS data plane, which is defined in RFC 9085."];
+  cites -> RFC9514;
+  RFC9259 [label="RFC9259
+Operations, Administration, and
+Maintenance (OAM) in Segment Routing
+over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9259.html", target="_top", tooltip="This document describes how the existing IPv6 mechanisms for ping and traceroute can be used in a Segment Routing over IPv6 (SRv6) network.  The document also specifies the OAM flag (O-flag) in the Segment Routing Header (SRH) for performing controllable and predictable flow sampling from segment endpoints.  In addition, the document describes how a centralized monitoring system performs a path continuity check between any nodes within an SRv6 domain."];
+  cites -> RFC9259;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9800;
+  RFC9801 [label="RFC9801
+Private Line Emulation over Packet
+Switched Networks
+2025", shape=ellipse, URL="RFC9801.html", target="_top", tooltip="This document expands the applicability of Virtual Private Wire Service (VPWS) bit-stream payloads beyond Time Division Multiplexing (TDM) signals and provides pseudowire transport with complete signal transparency over Packet Switched Networks (PSNs)."];
+  RFC9801 -> rev_cites;
+  RFC9819 [label="RFC9819
+Argument Signaling for BGP Services in
+Segment Routing over IPv6 (SRv6)
+2025", shape=ellipse, URL="RFC9819.html", target="_top", tooltip="RFC 9252 defines procedures and messages for BGP overlay services for Segment Routing over IPv6 (SRv6), including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and global Internet routing.  This document updates RFC 9252 and provides more detailed specifications for the signaling and processing of SRv6 Segment Identifier advertisements for BGP overlay service routes associated with SRv6 Endpoint Behaviors that support arguments."];
+  RFC9819 -> rev_cites;
+}

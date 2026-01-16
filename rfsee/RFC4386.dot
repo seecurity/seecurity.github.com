@@ -1,0 +1,78 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4386 [label="RFC4386
+Internet X.509 Public Key Infrastructure
+Repository Locator Service
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a Public Key Infrastructure (PKI) repository locator service.  The service makes use of DNS SRV records defined in accordance with RFC 2782.  The service enables certificate-using systems to locate PKI repositories.This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4386;
+
+  obs [label="obsoletes", shape=box];
+  RFC4386 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4386 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4386;
+  RFC8553 [label="RFC8553
+DNS Attrleaf Changes: Fixing
+Specifications That Use Underscored Node
+Names
+2019", shape=ellipse, URL="RFC8553.html", target="_top", tooltip="Using an underscore for a prefix creates a space for constrained interoperation of resource records.  Original uses of an underscore character as a domain node name prefix were specified without the benefit of an IANA registry.  This produced an entirely uncoordinated set of name-creation activities, all drawing from the same namespace.  A registry for these names has now been defined by RFC 8552.  However, the existing specifications that use underscored naming need to be modified in order to be in line with the new registry.  This document specifies those changes.  The changes preserve existing software and operational practice, while adapting the specifications for those practices to the newer underscore registry model."];
+  RFC8553 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4386 -> cites;
+  RFC2559 [label="RFC2559
+Internet X.509 Public Key Infrastructure
+Operational Protocols - LDAPv2
+1999", shape=ellipse, URL="RFC2559.html", target="_top", tooltip="Specifically, this document addresses requirements to provide access to Public Key Infrastructure (PKI) repositories for the purposes of retrieving PKI information and managing that same information. [STANDARDS-TRACK]"];
+  cites -> RFC2559;
+  RFC2560 [label="RFC2560
+X.509 Internet Public Key Infrastructure
+Online Certificate Status Protocol -
+OCSP
+1999", shape=ellipse, URL="RFC2560.html", target="_top", tooltip="This document specifies a protocol useful in determining the current status of a digital certificate without requiring CRLs. [STANDARDS-TRACK]"];
+  cites -> RFC2560;
+  RFC2585 [label="RFC2585
+Internet X.509 Public Key Infrastructure
+Operational Protocols: FTP and HTTP
+1999", shape=ellipse, URL="RFC2585.html", target="_top", tooltip="The protocol conventions described in this document satisfy some of the operational requirements of the Internet Public Key Infrastructure (PKI).  This document specifies the conventions for using the File Transfer Protocol (FTP) and the Hypertext Transfer Protocol (HTTP) to obtain certificates and certificate revocation lists (CRLs) from PKI repositories. [STANDARDS-TRACK]"];
+  cites -> RFC2585;
+  RFC2782 [label="RFC2782
+A DNS RR for specifying the location of
+services (DNS SRV)
+2000", shape=ellipse, URL="RFC2782.html", target="_top", tooltip="This document describes a DNS RR which specifies the location of the server(s) for a specific protocol and domain. [STANDARDS-TRACK]"];
+  cites -> RFC2782;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2434 [label="RFC2434
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+1998", shape=ellipse, URL="RFC2434.html", target="_top", tooltip="This document discusses issues that should be considered in formulating a policy for assigning values to a name space and provides guidelines to document authors on the specific text that must be included in documents that place demands on the IANA.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2434;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4386;
+  RFC8552 [label="RFC8552
+Scoped Interpretation of DNS Resource
+Records through Underscored Naming of
+Attribute Leaves
+2019", shape=ellipse, URL="RFC8552.html", target="_top", tooltip="Formally, any DNS Resource Record (RR) may occur under any domain name.  However, some services use an operational convention for defining specific interpretations of an RRset by locating the records in a DNS branch under the parent domain to which the RRset actually applies.  The top of this subordinate branch is defined by a naming convention that uses a reserved node name, which begins with the underscore character (e.g., _name).  The underscored naming construct defines a semantic scope for DNS record types that are associated with the parent domain above the underscored branch.  This specification explores the nature of this DNS usage and defines the Underscored and Globally Scoped DNS Node Names registry with IANA.  The purpose of this registry is to avoid collisions resulting from the use of the same underscored name for different services."];
+  RFC8552 -> rev_cites;
+  RFC8553 [label="RFC8553
+DNS Attrleaf Changes: Fixing
+Specifications That Use Underscored Node
+Names
+2019", shape=ellipse, URL="RFC8553.html", target="_top", tooltip="Using an underscore for a prefix creates a space for constrained interoperation of resource records.  Original uses of an underscore character as a domain node name prefix were specified without the benefit of an IANA registry.  This produced an entirely uncoordinated set of name-creation activities, all drawing from the same namespace.  A registry for these names has now been defined by RFC 8552.  However, the existing specifications that use underscored naming need to be modified in order to be in line with the new registry.  This document specifies those changes.  The changes preserve existing software and operational practice, while adapting the specifications for those practices to the newer underscore registry model."];
+  RFC8553 -> rev_cites;
+}

@@ -1,0 +1,103 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9265 [label="RFC9265
+Forward Erasure Correction (FEC) Coding
+and Congestion Control in Transport
+2022", shape=ellipse, fillcolor="#e8f0ff", tooltip="Forward Erasure Correction (FEC) is a reliability mechanism that is distinct and separate from the retransmission logic in reliable transfer protocols such as TCP. FEC coding can help deal with losses at the end of transfers or with networks having non-congestion losses. However, FEC coding mechanisms should not hide congestion signals. This memo offers a discussion of how FEC coding and congestion control can coexist. Another objective is to encourage the research community to also consider congestion control aspects when proposing and comparing FEC coding solutions in communication systems. This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). The scope of the document is end-to-end communications; FEC coding for tunnels is out of the scope of the document."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9265;
+
+  obs [label="obsoletes", shape=box];
+  RFC9265 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9265 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9265;
+
+  cites [label="cites", shape=box];
+  RFC9265 -> cites;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC8406 [label="RFC8406
+Taxonomy of Coding Techniques for
+Efficient Network Communications
+2018", shape=ellipse, URL="RFC8406.html", target="_top", tooltip="This document summarizes recommended terminology for Network Coding concepts and constructs.  It provides a comprehensive set of terms in order to avoid ambiguities in future IRTF and IETF documents on Network Coding.  This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG), and it is in line with the terminology used by the RFCs produced by the Reliable Multicast Transport (RMT) and FEC Framework (FECFRAME) IETF working groups."];
+  cites -> RFC8406;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC8095 [label="RFC8095
+Services Provided by IETF Transport
+Protocols and Congestion Control
+Mechanisms
+2017", shape=ellipse, URL="RFC8095.html", target="_top", tooltip="This document describes, surveys, and classifies the protocol mechanisms provided by existing IETF protocols, as background for determining a common set of transport services.  It examines the Transmission Control Protocol (TCP), Multipath TCP, the Stream Control Transmission Protocol (SCTP), the User Datagram Protocol (UDP), UDP-Lite, the Datagram Congestion Control Protocol (DCCP), the Internet Control Message Protocol (ICMP), the Real-Time Transport Protocol (RTP), File Delivery over Unidirectional Transport / Asynchronous Layered Coding (FLUTE/ALC) for Reliable Multicast, NACK- Oriented Reliable Multicast (NORM), Transport Layer Security (TLS), Datagram TLS (DTLS), and the Hypertext Transport Protocol (HTTP), when HTTP is used as a pseudotransport.  This survey provides background for the definition of transport services within the TAPS working group."];
+  cites -> RFC8095;
+  RFC4340 [label="RFC4340
+Datagram Congestion Control Protocol
+(DCCP)
+2006", shape=ellipse, URL="RFC4340.html", target="_top", tooltip="The Datagram Congestion Control Protocol (DCCP) is a transport protocol that provides bidirectional unicast connections of congestion-controlled unreliable datagrams.  DCCP is suitable for applications that transfer fairly large amounts of data and that can benefit from control over the tradeoff between timeliness and reliability. [STANDARDS-TRACK]"];
+  cites -> RFC4340;
+  RFC3758 [label="RFC3758
+Stream Control Transmission Protocol
+(SCTP) Partial Reliability Extension
+2004", shape=ellipse, URL="RFC3758.html", target="_top", tooltip="This memo describes an extension to the Stream Control Transmission Protocol (SCTP) that allows an SCTP endpoint to signal to its peer that it should move the cumulative ack point forward.  When both sides of an SCTP association support this extension, it can be used by an SCTP implementation to provide partially reliable data transmission service to an upper layer protocol.  This memo describes the protocol extensions, which consist of a new parameter for INIT and INIT ACK, and a new FORWARD TSN chunk type, and provides one example of a partially reliable service that can be provided to the upper layer via this mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC3758;
+  RFC9221 [label="RFC9221
+An Unreliable Datagram Extension to QUIC
+2022", shape=ellipse, URL="RFC9221.html", target="_top", tooltip="This document defines an extension to the QUIC transport protocol to add support for sending and receiving unreliable datagrams over a QUIC connection."];
+  cites -> RFC9221;
+  RFC8699 [label="RFC8699
+Coupled Congestion Control for RTP Media
+2020", shape=ellipse, URL="RFC8699.html", target="_top", tooltip="When multiple congestion-controlled Real-time Transport Protocol (RTP) sessions traverse the same network bottleneck, combining their controls can improve the total on-the-wire behavior in terms of delay, loss, and fairness.  This document describes such a method for flows that have the same sender, in a way that is as flexible and simple as possible while minimizing the number of changes needed to existing RTP applications.  This document also specifies how to apply the method for the Network-Assisted Dynamic Adaptation (NADA) congestion control algorithm and provides suggestions on how to apply it to other congestion control algorithms."];
+  cites -> RFC8699;
+  RFC6356 [label="RFC6356
+Coupled Congestion Control for Multipath
+Transport Protocols
+2011", shape=ellipse, URL="RFC6356.html", target="_top", tooltip="Often endpoints are connected by multiple paths, but communications are usually restricted to a single path per connection. Resource usage within the network would be more efficient were it possible for these multiple paths to be used concurrently. Multipath TCP is a proposal to achieve multipath transport in TCP. New congestion control algorithms are needed for multipath transport protocols such as Multipath TCP, as single path algorithms have a series of issues in the multipath context. One of the prominent problems is that running existing algorithms such as standard TCP independently on each path would give the multipath flow more than its fair share at a bottleneck link traversed by more than one of its subflows. Further, it is desirable that a source with multiple paths available will transfer more traffic using the least congested of the paths, achieving a property called resource pooling where a bundle of links effectively behaves like one shared link with bigger capacity. This would increase the overall efficiency of the network and also its robustness to failure. This document presents a congestion control algorithm that couples the congestion control algorithms running on different subflows by linking their increase functions, and dynamically controls the overall aggressiveness of the multipath flow. The result is a practical algorithm that is fair to TCP at bottlenecks while moving traffic away from congested links. This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6356;
+  RFC6297 [label="RFC6297
+A Survey of Lower-than-Best-Effort
+Transport Protocols
+2011", shape=ellipse, URL="RFC6297.html", target="_top", tooltip="This document provides a survey of transport protocols that are designed to have a smaller bandwidth and/or delay impact on standard TCP than standard TCP itself when they share a bottleneck with it.  Such protocols could be used for delay-insensitive background traffic, as they provide what is sometimes called a less than (or lower than) best-effort service.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6297;
+  RFC8680 [label="RFC8680
+Forward Error Correction (FEC) Framework
+Extension to Sliding Window Codes
+2020", shape=ellipse, URL="RFC8680.html", target="_top", tooltip="RFC 6363 describes a framework for using Forward Error Correction (FEC) codes to provide protection against packet loss.  The framework supports applying FEC to arbitrary packet flows over unreliable transport and is primarily intended for real-time, or streaming, media.  However, FECFRAME as per RFC 6363 is restricted to block FEC codes.  This document updates RFC 6363 to support FEC codes based on a sliding encoding window, in addition to block FEC codes, in a backward-compatible way.  During multicast/broadcast real-time content delivery, the use of sliding window codes significantly improves robustness in harsh environments, with less repair traffic and lower FEC-related added latency."];
+  cites -> RFC8680;
+  RFC5109 [label="RFC5109
+RTP Payload Format for Generic Forward
+Error Correction
+2007", shape=ellipse, URL="RFC5109.html", target="_top", tooltip="This document specifies a payload format for generic Forward Error Correction (FEC) for media data encapsulated in RTP.  It is based on the exclusive-or (parity) operation.  The payload format described in this document allows end systems to apply protection using various protection lengths and levels, in addition to using various protection group sizes to adapt to different media and channel characteristics.  It enables complete recovery of the protected packets or partial recovery of the critical parts of the payload depending on the packet loss situation.  This scheme is completely compatible with non-FEC-capable hosts, so the receivers in a multicast group that do not implement FEC can still work by simply ignoring the protection data.  This specification obsoletes RFC 2733 and RFC 3009.  The FEC specified in this document is not backward compatible with RFC 2733 and RFC 3009. [STANDARDS-TRACK]"];
+  cites -> RFC5109;
+  RFC8681 [label="RFC8681
+Sliding Window Random Linear Code (RLC)
+Forward Erasure Correction (FEC) Schemes
+for FECFRAME
+2020", shape=ellipse, URL="RFC8681.html", target="_top", tooltip="This document describes two fully specified Forward Erasure Correction (FEC) Schemes for Sliding Window Random Linear Codes (RLC), one for RLC over the Galois Field (a.k.a., Finite Field) GF(2), a second one for RLC over the Galois Field GF(2^8), each time with the possibility of controlling the code density.  They can protect arbitrary media streams along the lines defined by FECFRAME extended to Sliding Window FEC Codes.  These Sliding Window FEC Codes rely on an encoding window that slides over the source symbols, generating new repair symbols whenever needed.  Compared to block FEC codes, these Sliding Window FEC Codes offer key advantages with real-time flows in terms of reduced FEC-related latency while often providing improved packet erasure recovery capabilities."];
+  cites -> RFC8681;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9265;
+  RFC9407 [label="RFC9407
+Tetrys: An On-the-Fly Network Coding
+Protocol
+2023", shape=ellipse, URL="RFC9407.html", target="_top", tooltip="This document describes Tetrys, which is an on-the-fly network coding protocol that can be used to transport delay-sensitive and loss-sensitive data over a lossy network. Tetrys may recover from erasures within an RTT-independent delay thanks to the transmission of coded packets. This document is a record of the experience gained by the authors while developing and testing the Tetrys protocol in real conditions. This document is a product of the Coding for Efficient NetWork Communications Research Group (NWCRG). It conforms to the NWCRG taxonomy described in RFC 8406."];
+  RFC9407 -> rev_cites;
+  RFC9426 [label="RFC9426
+BATched Sparse (BATS) Coding Scheme for
+Multi-hop Data Transport
+2023", shape=ellipse, URL="RFC9426.html", target="_top", tooltip="In general, linear network coding can improve the network communication performance in terms of throughput, latency, and reliability.  BATched Sparse (BATS) code is a class of efficient linear network coding scheme with a matrix generalization of fountain codes as the outer code and batch-based linear network coding as the inner code.  This document describes a baseline BATS coding scheme for communication through multi-hop networks and discusses the related research issues towards a more sophisticated BATS coding scheme.  This document is a product of the Coding for Efficient Network Communications Research Group (NWCRG)."];
+  RFC9426 -> rev_cites;
+}

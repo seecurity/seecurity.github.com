@@ -1,0 +1,596 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5925;
+
+  obs [label="obsoletes", shape=box];
+  RFC5925 -> obs;
+  RFC2385 [label="RFC2385
+Protection of BGP Sessions via the TCP
+MD5 Signature Option
+1998", shape=ellipse, URL="RFC2385.html", target="_top", tooltip="This memo describes a TCP extension to enhance security for BGP. [STANDARDS-TRACK]"];
+  obs -> RFC2385;
+
+  updates [label="updates", shape=box];
+  RFC5925 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5925;
+
+  cites [label="cites", shape=box];
+  RFC5925 -> cites;
+  RFC2385 [label="RFC2385
+Protection of BGP Sessions via the TCP
+MD5 Signature Option
+1998", shape=ellipse, URL="RFC2385.html", target="_top", tooltip="This memo describes a TCP extension to enhance security for BGP. [STANDARDS-TRACK]"];
+  cites -> RFC2385;
+  RFC4953 [label="RFC4953
+Defending TCP Against Spoofing Attacks
+2007", shape=ellipse, URL="RFC4953.html", target="_top", tooltip="Recent analysis of potential attacks on core Internet infrastructure indicates an increased vulnerability of TCP connections to spurious resets (RSTs), sent with forged IP source addresses (spoofing).  TCP has always been susceptible to such RST spoofing attacks, which were indirectly protected by checking that the RST sequence number was inside the current receive window, as well as via the obfuscation of TCP endpoint and port numbers.  For pairs of well-known endpoints often over predictable port pairs, such as BGP or between web servers and well-known large-scale caches, increases in the path bandwidth-delay product of a connection have sufficiently increased the receive window space that off-path third parties can brute-force generate a viable RST sequence number.  The susceptibility to attack increases with the square of the bandwidth, and thus presents a significant vulnerability for recent high-speed networks.  This document addresses this vulnerability, discussing proposed solutions at the transport level and their inherent challenges, as well as existing network level solutions and the feasibility of their deployment.  This document focuses on vulnerabilities due to spoofed TCP segments, and includes a discussion of related ICMP spoofing attacks on TCP connections.  This memo provides information for the Internet community."];
+  cites -> RFC4953;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC4306 [label="RFC4306
+Internet Key Exchange (IKEv2) Protocol
+2005", shape=ellipse, URL="RFC4306.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol. IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining security associations (SAs). This version of the IKE specification combines the contents of what were previously separate documents, including Internet Security Association and Key Management Protocol (ISAKMP, RFC 2408), IKE (RFC 2409), the Internet Domain of Interpretation (DOI, RFC 2407), Network Address Translation (NAT) Traversal, Legacy authentication, and remote address acquisition. Version 2 of IKE does not interoperate with version 1, but it has enough of the header format in common that both versions can unambiguously run over the same UDP port. [STANDARDS-TRACK]"];
+  cites -> RFC4306;
+  RFC5246 [label="RFC5246
+The Transport Layer Security (TLS)
+Protocol Version 1.2
+2008", shape=ellipse, URL="RFC5246.html", target="_top", tooltip="This document specifies Version 1.2 of the Transport Layer Security (TLS) protocol.  The TLS protocol provides communications security over the Internet.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery. [STANDARDS-TRACK]"];
+  cites -> RFC5246;
+  RFC1321 [label="RFC1321
+The MD5 Message-Digest Algorithm
+1992", shape=ellipse, URL="RFC1321.html", target="_top", tooltip="This document describes the MD5 message-digest algorithm.  The algorithm takes as input a message of arbitrary length and produces as output a 128-bit fingerprint or message digest of the input.  This memo provides information for the Internet community.  It does not specify an Internet standard."];
+  cites -> RFC1321;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC5926 [label="RFC5926
+Cryptographic Algorithms for the TCP
+Authentication Option (TCP-AO)
+2010", shape=ellipse, URL="RFC5926.html", target="_top", tooltip="The TCP Authentication Option (TCP-AO) relies on security algorithms to provide authentication between two end-points.  There are many such algorithms available, and two TCP-AO systems cannot interoperate unless they are using the same algorithms.  This document specifies the algorithms and attributes that can be used in TCP-AO's current manual keying mechanism and provides the interface for future message authentication codes (MACs). [STANDARDS-TRACK]"];
+  cites -> RFC5926;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC2104 [label="RFC2104
+HMAC: Keyed-Hashing for Message
+Authentication
+1997", shape=ellipse, URL="RFC2104.html", target="_top", tooltip="This document describes HMAC, a mechanism for message authentication using cryptographic hash functions.  HMAC can be used with any iterative cryptographic hash function, e.g., MD5, SHA-1, in combination with a secret shared key.  The cryptographic strength of HMAC depends on the properties of the underlying hash function.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind"];
+  cites -> RFC2104;
+  RFC2403 [label="RFC2403
+The Use of HMAC-MD5-96 within ESP and AH
+1998", shape=ellipse, URL="RFC2403.html", target="_top", tooltip="This memo describes the use of the HMAC algorithm in conjunction with the MD5 algorithm as an authentication mechanism within the revised IPSEC Encapsulating Security Payload and the revised IPSEC Authentication Header. [STANDARDS-TRACK]"];
+  cites -> RFC2403;
+  RFC1948 [label="RFC1948
+Defending Against Sequence Number
+Attacks
+1996", shape=ellipse, URL="RFC1948.html", target="_top", tooltip="IP spoofing attacks based on sequence number spoofing have become a serious threat on the Internet (CERT Advisory CA-95:01).  While ubiquitous crypgraphic authentication is the right answer, we propose a simple modification to TCP implementations that should be a very substantial block to the current wave of attacks.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1948;
+  RFC3562 [label="RFC3562
+Key Management Considerations for the
+TCP MD5 Signature Option
+2003", shape=ellipse, URL="RFC3562.html", target="_top", tooltip="The TCP MD5 Signature Option (RFC 2385), used predominantly by BGP, has seen significant deployment in critical areas of Internet infrastructure.  The security of this option relies heavily on the quality of the keying material used to compute the MD5 signature.  This document addresses the security requirements of that keying material.  This memo provides information for the Internet community."];
+  cites -> RFC3562;
+  RFC4808 [label="RFC4808
+Key Change Strategies for TCP-MD5
+2007", shape=ellipse, URL="RFC4808.html", target="_top", tooltip="The TCP-MD5 option is most commonly used to secure BGP sessions between routers.  However, changing the long-term key is difficult, since the change needs to be synchronized between different organizations.  We describe single-ended strategies that will permit (mostly) unsynchronized key changes.  This memo provides information for the Internet community."];
+  cites -> RFC4808;
+  RFC2018 [label="RFC2018
+TCP Selective Acknowledgment Options
+1996", shape=ellipse, URL="RFC2018.html", target="_top", tooltip="This memo proposes an implementation of SACK and discusses its performance and related issues. [STANDARDS-TRACK]"];
+  cites -> RFC2018;
+  RFC3517 [label="RFC3517
+A Conservative Selective Acknowledgment
+(SACK)-based Loss Recovery Algorithm for
+TCP
+2003", shape=ellipse, URL="RFC3517.html", target="_top", tooltip="This document presents a conservative loss recovery algorithm for TCP that is based on the use of the selective acknowledgment (SACK) TCP option.  The algorithm presented in this document conforms to the spirit of the current congestion control specification (RFC 2581), but allows TCP senders to recover more effectively when multiple segments are lost from a single flight of data. [STANDARDS-TRACK]"];
+  cites -> RFC3517;
+  RFC1323 [label="RFC1323
+TCP Extensions for High Performance
+1992", shape=ellipse, URL="RFC1323.html", target="_top", tooltip="This memo presents a set of TCP extensions to improve performance over large bandwidth*delay product paths and to provide reliable operation over very high-speed paths.  It defines new TCP options for scaled windows and timestamps, which are designed to provide compatible interworking with TCP's that do not implement the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC1323;
+  RFC2883 [label="RFC2883
+An Extension to the Selective
+Acknowledgement (SACK) Option for TCP
+2000", shape=ellipse, URL="RFC2883.html", target="_top", tooltip="This note defines an extension of the Selective Acknowledgement (SACK) Option for TCP. [STANDARDS-TRACK]"];
+  cites -> RFC2883;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  cites -> RFC4724;
+  RFC4781 [label="RFC4781
+Graceful Restart Mechanism for BGP with
+MPLS
+2007", shape=ellipse, URL="RFC4781.html", target="_top", tooltip="A mechanism for BGP that helps minimize the negative effects on routing caused by BGP restart has already been developed and is described in a separate document (Graceful Restart Mechanism for BGP). This document extends this mechanism to minimize the negative effects on MPLS forwarding caused by the Label Switching Router's (LSR's) control plane restart, and specifically by the restart of its BGP component when BGP is used to carry MPLS labels and the LSR is capable of preserving the MPLS forwarding state across the restart. The mechanism described in this document is agnostic with respect to the types of the addresses carried in the BGP Network Layer Reachability Information (NLRI) field. As such, it works in conjunction with any of the address families that could be carried in BGP (e.g., IPv4, IPv6, etc.). [STANDARDS-TRACK]"];
+  cites -> RFC4781;
+  RFC3234 [label="RFC3234
+Middleboxes: Taxonomy and Issues
+2002", shape=ellipse, URL="RFC3234.html", target="_top", tooltip="This document is intended as part of an IETF discussion about middleboxes - defined as any intermediary box performing functions apart from normal, standard functions of an IP router on the data path between a source host and destination host.  This document establishes a catalogue or taxonomy of middleboxes, cites previous and current IETF work concerning middleboxes, and attempts to identify some preliminary conclusions.  It does not, however, claim to be definitive.  This memo provides information for the Internet community."];
+  cites -> RFC3234;
+  RFC2663 [label="RFC2663
+IP Network Address Translator (NAT)
+Terminology and Considerations
+1999", shape=ellipse, URL="RFC2663.html", target="_top", tooltip="This document attempts to describe the operation of NAT devices and the associated considerations in general, and to define the terminology used to identify various flavors of NAT.  This memo provides information for the Internet community."];
+  cites -> RFC2663;
+  RFC3947 [label="RFC3947
+Negotiation of NAT-Traversal in the IKE
+2005", shape=ellipse, URL="RFC3947.html", target="_top", tooltip="This document describes how to detect one or more network address translation devices (NATs) between IPsec hosts, and how to negotiate the use of UDP encapsulation of IPsec packets through NAT boxes in Internet Key Exchange (IKE). [STANDARDS-TRACK]"];
+  cites -> RFC3947;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5925;
+  RFC5926 [label="RFC5926
+Cryptographic Algorithms for the TCP
+Authentication Option (TCP-AO)
+2010", shape=ellipse, URL="RFC5926.html", target="_top", tooltip="The TCP Authentication Option (TCP-AO) relies on security algorithms to provide authentication between two end-points.  There are many such algorithms available, and two TCP-AO systems cannot interoperate unless they are using the same algorithms.  This document specifies the algorithms and attributes that can be used in TCP-AO's current manual keying mechanism and provides the interface for future message authentication codes (MACs). [STANDARDS-TRACK]"];
+  RFC5926 -> rev_cites;
+  RFC5927 [label="RFC5927
+ICMP Attacks against TCP
+2010", shape=ellipse, URL="RFC5927.html", target="_top", tooltip="This document discusses the use of the Internet Control Message Protocol (ICMP) to perform a variety of attacks against the Transmission Control Protocol (TCP).  Additionally, this document describes a number of widely implemented modifications to TCP's handling of ICMP error messages that help to mitigate these issues.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5927 -> rev_cites;
+  RFC6006 [label="RFC6006
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Point-to-Multipoint Traffic
+Engineering Label Switched Paths
+2010", shape=ellipse, URL="RFC6006.html", target="_top", tooltip="Point-to-point Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering Label Switched Paths (TE LSPs) may be established using signaling techniques, but their paths may first need to be determined. The Path Computation Element (PCE) has been identified as an appropriate technology for the determination of the paths of point-to-multipoint (P2MP) TE LSPs. This document describes extensions to the PCE communication Protocol (PCEP) to handle requests and responses for the computation of paths for P2MP TE LSPs. [STANDARDS-TRACK]"];
+  RFC6006 -> rev_cites;
+  RFC6013 [label="RFC6013
+TCP Cookie Transactions (TCPCT)
+2011", shape=ellipse, URL="RFC6013.html", target="_top", tooltip="TCP Cookie Transactions (TCPCT) deter spoofing of connections and prevent resource exhaustion, eliminating Responder (server) state during the initial handshake.  The Initiator (client) has sole responsibility for ensuring required delays between connections.  The cookie exchange may carry data, limited to inhibit amplification and reflection denial of service attacks.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6013 -> rev_cites;
+  RFC6039 [label="RFC6039
+Issues with Existing Cryptographic
+Protection Methods for Routing Protocols
+2010", shape=ellipse, URL="RFC6039.html", target="_top", tooltip="Routing protocols have been extended over time to use cryptographic mechanisms to ensure that data received from a neighboring router has not been modified in transit and actually originated from an authorized neighboring router. The cryptographic mechanisms defined to date and described in this document rely on a digest produced with a hash algorithm applied to the payload encapsulated in the routing protocol packet. This document outlines some of the limitations of the current mechanism, problems with manual keying of these cryptographic algorithms, and possible vectors for the exploitation of these limitations. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6039 -> rev_cites;
+  RFC6056 [label="RFC6056
+Recommendations for Transport-Protocol
+Port Randomization
+2011", shape=ellipse, URL="RFC6056.html", target="_top", tooltip="During the last few years, awareness has been raised about a number of blind attacks that can be performed against the Transmission Control Protocol (TCP) and similar protocols.  The consequences of these attacks range from throughput reduction to broken connections or data corruption.  These attacks rely on the attacker's ability to guess or know the five-tuple (Protocol, Source Address, Destination Address, Source Port, Destination Port) that identifies the transport protocol instance to be attacked.  This document describes a number of simple and efficient methods for the selection of the client port number, such that the possibility of an attacker guessing the exact value is reduced.  While this is not a replacement for cryptographic methods for protecting the transport-protocol instance, the aforementioned port selection algorithms provide improved security with very little effort and without any key management overhead.  The algorithms described in this document are local policies that may be incrementally deployed and that do not violate the specifications of any of the transport protocols that may benefit from them, such as TCP, UDP, UDP-lite, Stream Control Transmission Protocol (SCTP), Datagram Congestion Control Protocol (DCCP), and RTP (provided that the RTP application explicitly signals the RTP and RTCP port numbers).  This memo documents an Internet Best Current Practice."];
+  RFC6056 -> rev_cites;
+  RFC6296 [label="RFC6296
+IPv6-to-IPv6 Network Prefix Translation
+2011", shape=ellipse, URL="RFC6296.html", target="_top", tooltip="This document describes a stateless, transport-agnostic IPv6-to-IPv6 Network Prefix Translation (NPTv6) function that provides the address-independence benefit associated with IPv4-to-IPv4 NAT (NAPT44) and provides a 1:1 relationship between addresses in the inside and outside prefixes, preserving end-to-end reachability at the network layer.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6296 -> rev_cites;
+  RFC6320 [label="RFC6320
+Protocol for Access Node Control
+Mechanism in Broadband Networks
+2011", shape=ellipse, URL="RFC6320.html", target="_top", tooltip="This document describes the Access Node Control Protocol (ANCP). ANCP operates between a Network Access Server (NAS) and an Access Node (e.g., a Digital Subscriber Line Access Multiplexer (DSLAM)) in a multi-service reference architecture in order to perform operations related to Quality of Service, service, and subscribers. Use cases for ANCP are documented in RFC 5851. As well as describing the base ANCP protocol, this document specifies capabilities for Digital Subscriber Line (DSL) topology discovery, line configuration, and remote line connectivity testing. The design of ANCP allows for protocol extensions in other documents if they are needed to support other use cases and other access technologies. ANCP is based on the General Switch Management Protocol version 3 (GSMPv3) described in RFC 3292, but with many modifications and extensions, to the point that the two protocols are not interoperable. For this reason, ANCP was assigned a separate version number to distinguish it. [STANDARDS-TRACK]"];
+  RFC6320 -> rev_cites;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  RFC6514 -> rev_cites;
+  RFC6518 [label="RFC6518
+Keying and Authentication for Routing
+Protocols (KARP) Design Guidelines
+2012", shape=ellipse, URL="RFC6518.html", target="_top", tooltip="This document is one of a series concerned with defining a roadmap of protocol specification work for the use of modern cryptographic mechanisms and algorithms for message authentication in routing protocols.  In particular, it defines the framework for a key management protocol that may be used to create and manage session keys for message authentication and integrity.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6518 -> rev_cites;
+  RFC6528 [label="RFC6528
+Defending against Sequence Number
+Attacks
+2012", shape=ellipse, URL="RFC6528.html", target="_top", tooltip="This document specifies an algorithm for the generation of TCP Initial Sequence Numbers (ISNs), such that the chances of an off-path attacker guessing the sequence numbers in use by a target connection are reduced.  This document revises (and formally obsoletes) RFC 1948, and takes the ISN generation algorithm originally proposed in that document to Standards Track, formally updating RFC 793. [STANDARDS-TRACK]"];
+  RFC6528 -> rev_cites;
+  RFC6559 [label="RFC6559
+A Reliable Transport Mechanism for PIM
+2012", shape=ellipse, URL="RFC6559.html", target="_top", tooltip="This document defines a reliable transport mechanism for the PIM protocol for transmission of Join/Prune messages.  This eliminates the need for periodic Join/Prune message transmission and processing.  The reliable transport mechanism can use either TCP or SCTP as the transport protocol.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6559 -> rev_cites;
+  RFC6720 [label="RFC6720
+The Generalized TTL Security Mechanism
+(GTSM) for the Label Distribution
+Protocol (LDP)
+2012", shape=ellipse, URL="RFC6720.html", target="_top", tooltip="The Generalized TTL Security Mechanism (GTSM) describes a generalized use of a packet's Time to Live (TTL) (IPv4) or Hop Limit (IPv6) to verify that the packet was sourced by a node on a connected link, thereby protecting the router\'s IP control plane from CPU utilization-based attacks. This technique improves security and is used by many protocols. This document defines the GTSM use for the Label Distribution Protocol (LDP). This specification uses a bit reserved in RFC 5036 and therefore updates RFC 5036. [STANDARDS-TRACK]"];
+  RFC6720 -> rev_cites;
+  RFC6810 [label="RFC6810
+The Resource Public Key Infrastructure
+(RPKI) to Router Protocol
+2013", shape=ellipse, URL="RFC6810.html", target="_top", tooltip="In order to verifiably validate the origin Autonomous Systems of BGP announcements, routers need a simple but reliable mechanism to receive Resource Public Key Infrastructure (RFC 6480) prefix origin data from a trusted cache.  This document describes a protocol to deliver validated prefix origin data to routers. [STANDARDS-TRACK]"];
+  RFC6810 -> rev_cites;
+  RFC6836 [label="RFC6836
+Locator/ID Separation Protocol
+Alternative Logical Topology (LISP+ALT)
+2013", shape=ellipse, URL="RFC6836.html", target="_top", tooltip="This document describes a simple distributed index system to be used by a Locator/ID Separation Protocol (LISP) Ingress Tunnel Router (ITR) or Map-Resolver (MR) to find the Egress Tunnel Router (ETR) that holds the mapping information for a particular Endpoint Identifier (EID).  The MR can then query that ETR to obtain the actual mapping information, which consists of a list of Routing Locators (RLOCs) for the EID.  Termed the Alternative Logical Topology (ALT), the index is built as an overlay network on the public Internet using the Border Gateway Protocol (BGP) and Generic Routing Encapsulation (GRE).  This document defines an Experimental Protocol for the Internet community."];
+  RFC6836 -> rev_cites;
+  RFC6862 [label="RFC6862
+Keying and Authentication for Routing
+Protocols (KARP) Overview, Threats, and
+Requirements
+2013", shape=ellipse, URL="RFC6862.html", target="_top", tooltip="Different routing protocols employ different mechanisms for securing protocol packets on the wire.  While most already have some method for accomplishing cryptographic message authentication, in many cases the existing methods are dated, vulnerable to attack, and employ cryptographic algorithms that have been deprecated.  The Keying and Authentication for Routing Protocols (KARP) effort aims to overhaul and improve these mechanisms.  This document does not contain protocol specifications.  Instead, it defines the areas where protocol specification work is needed.  This document is a companion document to RFC 6518, Keying and Authentication for Routing Protocols (KARP) Design Guidelines; together they form the guidance and instruction KARP design teams will use to review and overhaul routing protocol transport security."];
+  RFC6862 -> rev_cites;
+  RFC6882 [label="RFC6882
+Support for Resource Reservation
+Protocol Traffic Engineering (RSVP-TE)
+in Layer 3 Virtual Private Networks
+(L3VPNs)
+2013", shape=ellipse, URL="RFC6882.html", target="_top", tooltip="IP Virtual Private Networks (VPNs) provide connectivity between sites across an IP/MPLS backbone. These VPNs can be operated using BGP/MPLS, and a single Provider Edge (PE) node may provide access to multiple customer sites belonging to different VPNs. The VPNs may support a number of customer services, including RSVP and Resource Reservation Protocol Traffic Engineering (RSVP-TE) traffic. This document describes how to support RSVP-TE between customer sites when a single PE supports multiple VPNs and labels are not used to identify VPNs between PEs."];
+  RFC6882 -> rev_cites;
+  RFC6945 [label="RFC6945
+Definitions of Managed Objects for the
+Resource Public Key Infrastructure
+(RPKI) to Router Protocol
+2013", shape=ellipse, URL="RFC6945.html", target="_top", tooltip="This document defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes objects used for monitoring the Resource Public Key Infrastructure (RPKI) to Router Protocol."];
+  RFC6945 -> rev_cites;
+  RFC6952 [label="RFC6952
+Analysis of BGP, LDP, PCEP, and MSDP
+Issues According to the Keying and
+Authentication for Routing Protocols
+(KARP) Design Guide
+2013", shape=ellipse, URL="RFC6952.html", target="_top", tooltip="This document analyzes TCP-based routing protocols, the Border Gateway Protocol (BGP), the Label Distribution Protocol (LDP), the Path Computation Element Communication Protocol (PCEP), and the Multicast Source Distribution Protocol (MSDP), according to guidelines set forth in Section 4.2 of Keying and Authentication for Routing Protocols Design Guidelines, RFC 6518."];
+  RFC6952 -> rev_cites;
+  RFC6978 [label="RFC6978
+A TCP Authentication Option Extension
+for NAT Traversal
+2013", shape=ellipse, URL="RFC6978.html", target="_top", tooltip="This document describes an extension to the TCP Authentication Option (TCP-AO) to support its use over connections that pass through Network Address Translators and/or Network Address and Port Translators (NATs/NAPTs).  This extension changes the data used to compute traffic keys, but it does not alter TCP-AO's packet processing or key generation algorithms."];
+  RFC6978 -> rev_cites;
+  RFC7025 [label="RFC7025
+Requirements for GMPLS Applications of
+PCE
+2013", shape=ellipse, URL="RFC7025.html", target="_top", tooltip="The initial effort of the PCE (Path Computation Element) WG focused mainly on MPLS.  As a next step, this document describes functional requirements for GMPLS applications of PCE."];
+  RFC7025 -> rev_cites;
+  RFC7032 [label="RFC7032
+LDP Downstream-on-Demand in Seamless
+MPLS
+2013", shape=ellipse, URL="RFC7032.html", target="_top", tooltip="Seamless MPLS design enables a single IP/MPLS network to scale over core, metro, and access parts of a large packet network infrastructure using standardized IP/MPLS protocols. One of the key goals of Seamless MPLS is to meet requirements specific to access networks including high number of devices, device position in network topology, and compute and memory constraints that limit the amount of state access devices can hold. This can be achieved with LDP Downstream-on-Demand (DoD) label advertisement. This document describes LDP DoD use cases and lists required LDP DoD procedures in the context of Seamless MPLS design. In addition, a new optional TLV type in the LDP Label Request message is defined for fast-up convergence."];
+  RFC7032 -> rev_cites;
+  RFC7117 [label="RFC7117
+Multicast in Virtual Private LAN Service
+(VPLS)
+2014", shape=ellipse, URL="RFC7117.html", target="_top", tooltip="RFCs 4761 and 4762 describe a solution for Virtual Private LAN Service (VPLS) multicast that relies on the use of point-to-point or multipoint-to-point unicast Label Switched Paths (LSPs) for carrying multicast traffic. This solution has certain limitations for certain VPLS multicast traffic profiles. For example, it may result in highly non-optimal bandwidth utilization when a large amount of multicast traffic is to be transported. This document describes solutions for overcoming a subset of the limitations of the existing VPLS multicast solution. It describes procedures for VPLS multicast that utilize multicast trees in the service provider (SP) network. The solution described in this document allows sharing of one such multicast tree among multiple VPLS instances. Furthermore, the solution described in this document allows a single multicast tree in the SP network to carry traffic belonging only to a specified set of one or more IP multicast streams from one or more VPLS instances."];
+  RFC7117 -> rev_cites;
+  RFC7132 [label="RFC7132
+Threat Model for BGP Path Security
+2014", shape=ellipse, URL="RFC7132.html", target="_top", tooltip="This document describes a threat model for the context in which External Border Gateway Protocol (EBGP) path security mechanisms will be developed. The threat model includes an analysis of the Resource Public Key Infrastructure (RPKI) and focuses on the ability of an Autonomous System (AS) to verify the authenticity of the AS path info received in a BGP update. We use the term PATHSEC to refer to any BGP path security technology that makes use of the RPKI. PATHSEC will secure BGP, consistent with the inter-AS security focus of the RPKI. The document characterizes classes of potential adversaries that are considered to be threats and examines classes of attacks that might be launched against PATHSEC. It does not revisit attacks against unprotected BGP, as that topic has already been addressed in the BGP-4 standard. It concludes with a brief discussion of residual vulnerabilities."];
+  RFC7132 -> rev_cites;
+  RFC7210 [label="RFC7210
+Database of Long-Lived Symmetric
+Cryptographic Keys
+2014", shape=ellipse, URL="RFC7210.html", target="_top", tooltip="This document specifies the information contained in a conceptual database of long-lived cryptographic keys used by many different routing protocols for message security.  The database is designed to support both manual and automated key management.  In addition to describing the schema for the database, this document describes the operations that can be performed on the database as well as the requirements for the routing protocols that wish to use the database.  In many typical scenarios, the protocols do not directly use the long-lived key, but rather a key derivation function is used to derive a short-lived key from a long-lived key."];
+  RFC7210 -> rev_cites;
+  RFC7211 [label="RFC7211
+Operations Model for Router Keying
+2014", shape=ellipse, URL="RFC7211.html", target="_top", tooltip="The IETF is engaged in an effort to analyze the security of routing protocol authentication according to design guidelines discussed in RFC 6518, Keying and Authentication for Routing Protocols (KARP) Design Guidelines.  Developing an operational and management model for routing protocol security that works with all the routing protocols will be critical to the deployability of these efforts.  This document gives recommendations to operators and implementors regarding management and operation of router authentication.  These recommendations will also assist protocol designers in understanding management issues they will face."];
+  RFC7211 -> rev_cites;
+  RFC7275 [label="RFC7275
+Inter-Chassis Communication Protocol for
+Layer 2 Virtual Private Network (L2VPN)
+Provider Edge (PE) Redundancy
+2014", shape=ellipse, URL="RFC7275.html", target="_top", tooltip="This document specifies an Inter-Chassis Communication Protocol (ICCP) that enables Provider Edge (PE) device redundancy for Virtual Private Wire Service (VPWS) and Virtual Private LAN Service (VPLS) applications.  The protocol runs within a set of two or more PEs, forming a Redundancy Group, for the purpose of synchronizing data among the systems.  It accommodates multi-chassis attachment circuit redundancy mechanisms as well as pseudowire redundancy mechanisms."];
+  RFC7275 -> rev_cites;
+  RFC7334 [label="RFC7334
+PCE-Based Computation Procedure to
+Compute Shortest Constrained Point-to-
+Multipoint (P2MP) Inter-Domain Traffic
+Engineering Label Switched Paths
+2014", shape=ellipse, URL="RFC7334.html", target="_top", tooltip="The ability to compute paths for constrained point-to-multipoint (P2MP) Traffic Engineering Label Switched Paths (TE LSPs) across multiple domains has been identified as a key requirement for the deployment of P2MP services in MPLS- and GMPLS-controlled networks. The Path Computation Element (PCE) has been recognized as an appropriate technology for the determination of inter-domain paths of P2MP TE LSPs. This document describes an experiment to provide procedures and extensions to the PCE Communication Protocol (PCEP) for the computation of inter-domain paths for P2MP TE LSPs."];
+  RFC7334 -> rev_cites;
+  RFC7353 [label="RFC7353
+Security Requirements for BGP Path
+Validation
+2014", shape=ellipse, URL="RFC7353.html", target="_top", tooltip="This document describes requirements for a BGP security protocol design to provide cryptographic assurance that the origin Autonomous System (AS) has the right to announce the prefix and to provide assurance of the AS Path of the announcement."];
+  RFC7353 -> rev_cites;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  RFC7432 -> rev_cites;
+  RFC7605 [label="RFC7605
+Recommendations on Using Assigned
+Transport Port Numbers
+2015", shape=ellipse, URL="RFC7605.html", target="_top", tooltip="This document provides recommendations to designers of application and service protocols on how to use the transport protocol port number space and when to request a port assignment from IANA.  It provides designer guidance to requesters or users of port numbers on how to interact with IANA using the processes defined in RFC 6335; thus, this document complements (but does not update) that document."];
+  RFC7605 -> rev_cites;
+  RFC7705 [label="RFC7705
+Autonomous System Migration Mechanisms
+and Their Effects on the BGP AS_PATH
+Attribute
+2015", shape=ellipse, URL="RFC7705.html", target="_top", tooltip="This document discusses some existing commonly used BGP mechanisms for Autonomous System Number (ASN) migration that are not formally part of the BGP4 protocol specification.  It is necessary to document these de facto standards to ensure that they are properly supported in future BGP protocol work."];
+  RFC7705 -> rev_cites;
+  RFC7747 [label="RFC7747
+Basic BGP Convergence Benchmarking
+Methodology for Data-Plane Convergence
+2016", shape=ellipse, URL="RFC7747.html", target="_top", tooltip="BGP is widely deployed and used by several service providers as the default inter-AS (Autonomous System) routing protocol.  It is of utmost importance to ensure that when a BGP peer or a downstream link of a BGP peer fails, the alternate paths are rapidly used and routes via these alternate paths are installed.  This document provides the basic BGP benchmarking methodology using existing BGP convergence terminology as defined in RFC 4098."];
+  RFC7747 -> rev_cites;
+  RFC7897 [label="RFC7897
+Domain Subobjects for the Path
+Computation Element Communication
+Protocol (PCEP)
+2016", shape=ellipse, URL="RFC7897.html", target="_top", tooltip="The ability to compute shortest constrained Traffic Engineering Label Switched Paths (TE LSPs) in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks across multiple domains has been identified as a key requirement.  In this context, a domain is a collection of network elements within a common sphere of address management or path computational responsibility such as an Interior Gateway Protocol (IGP) area or an Autonomous System (AS).  This document specifies a representation and encoding of a domain sequence, which is defined as an ordered sequence of domains traversed to reach the destination domain to be used by Path Computation Elements (PCEs) to compute inter-domain constrained shortest paths across a predetermined sequence of domains.  This document also defines new subobjects to be used to encode domain identifiers."];
+  RFC7897 -> rev_cites;
+  RFC7926 [label="RFC7926
+Problem Statement and Architecture for
+Information Exchange between
+Interconnected Traffic-Engineered
+Networks
+2016", shape=ellipse, URL="RFC7926.html", target="_top", tooltip="In Traffic-Engineered (TE) systems, it is sometimes desirable to establish an end-to-end TE path with a set of constraints (such as bandwidth) across one or more networks from a source to a destination. TE information is the data relating to nodes and TE links that is used in the process of selecting a TE path. TE information is usually only available within a network. We call such a zone of visibility of TE information a domain. An example of a domain may be an IGP area or an Autonomous System. In order to determine the potential to establish a TE path through a series of connected networks, it is necessary to have available a certain amount of TE information about each network. This need not be the full set of TE information available within each network but does need to express the potential of providing TE connectivity. This subset of TE information is called TE reachability information. This document sets out the problem statement for the exchange of TE information between interconnected TE networks in support of end-to-end TE path establishment and describes the best current practice architecture to meet this problem statement. For reasons that are explained in this document, this work is limited to simple TE constraints and information that determine TE reachability."];
+  RFC7926 -> rev_cites;
+  RFC7938 [label="RFC7938
+Use of BGP for Routing in Large-Scale
+Data Centers
+2016", shape=ellipse, URL="RFC7938.html", target="_top", tooltip="Some network operators build and operate data centers that support over one hundred thousand servers.  In this document, such data centers are referred to as large-scale to differentiate them from smaller infrastructures.  Environments of this scale have a unique set of network requirements with an emphasis on operational simplicity and network stability.  This document summarizes operational experience in designing and operating large-scale data centers using BGP as the only routing protocol.  The intent is to report on a proven and stable routing design that could be leveraged by others in the industry."];
+  RFC7938 -> rev_cites;
+  RFC7974 [label="RFC7974
+An Experimental TCP Option for Host
+Identification
+2016", shape=ellipse, URL="RFC7974.html", target="_top", tooltip="Recent RFCs have discussed issues with host identification in IP address-sharing systems, such as address/prefix-sharing devices and application-layer proxies.  Potential solutions for revealing a host identifier in shared address deployments have also been discussed.  This memo describes the design, deployment, and privacy considerations for one such solution in operational use on the Internet today that uses a TCP option to transmit a host identifier."];
+  RFC7974 -> rev_cites;
+  RFC8192 [label="RFC8192
+Interface to Network Security Functions
+(I2NSF): Problem Statement and Use Cases
+2017", shape=ellipse, URL="RFC8192.html", target="_top", tooltip="This document sets out the problem statement for Interface to Network Security Functions (I2NSF) and outlines some companion use cases."];
+  RFC8192 -> rev_cites;
+  RFC8210 [label="RFC8210
+The Resource Public Key Infrastructure
+(RPKI) to Router Protocol, Version 1
+2017", shape=ellipse, URL="RFC8210.html", target="_top", tooltip="In order to verifiably validate the origin Autonomous Systems and Autonomous System Paths of BGP announcements, routers need a simple but reliable mechanism to receive Resource Public Key Infrastructure (RFC 6480) prefix origin data and router keys from a trusted cache. This document describes a protocol to deliver them. This document describes version 1 of the RPKI-Router protocol. RFC 6810 describes version 0. This document updates RFC 6810."];
+  RFC8210 -> rev_cites;
+  RFC8233 [label="RFC8233
+Extensions to the Path Computation
+Element Communication Protocol (PCEP) to
+Compute Service-Aware Label Switched
+Paths (LSPs)
+2017", shape=ellipse, URL="RFC8233.html", target="_top", tooltip="In certain networks, such as, but not limited to, financial information networks (e.g., stock market data providers), network performance criteria (e.g., latency) are becoming as critical to data path selection as other metrics and constraints. These metrics are associated with the Service Level Agreement (SLA) between customers and service providers. The link bandwidth utilization (the total bandwidth of a link in actual use for the forwarding) is another important factor to consider during path computation. IGP Traffic Engineering (TE) Metric Extensions describe mechanisms with which network performance information is distributed via OSPF and IS-IS, respectively. The Path Computation Element Communication Protocol (PCEP) provides mechanisms for Path Computation Elements (PCEs) to perform path computations in response to Path Computation Client (PCC) requests. This document describes the extension to PCEP to carry latency, delay variation, packet loss, and link bandwidth utilization as constraints for end-to-end path computation."];
+  RFC8233 -> rev_cites;
+  RFC8253 [label="RFC8253
+PCEPS: Usage of TLS to Provide a Secure
+Transport for the Path Computation
+Element Communication Protocol (PCEP)
+2017", shape=ellipse, URL="RFC8253.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) defines the mechanisms for the communication between a Path Computation Client (PCC) and a Path Computation Element (PCE), or among PCEs. This document describes PCEPS -- the usage of Transport Layer Security (TLS) to provide a secure transport for PCEP. The additional security mechanisms are provided by the transport protocol supporting PCEP; therefore, they do not affect the flexibility and extensibility of PCEP. This document updates RFC 5440 in regards to the PCEP initialization phase procedures."];
+  RFC8253 -> rev_cites;
+  RFC8303 [label="RFC8303
+On the Usage of Transport Features
+Provided by IETF Transport Protocols
+2018", shape=ellipse, URL="RFC8303.html", target="_top", tooltip="This document describes how the transport protocols Transmission Control Protocol (TCP), MultiPath TCP (MPTCP), Stream Control Transmission Protocol (SCTP), User Datagram Protocol (UDP), and Lightweight User Datagram Protocol (UDP-Lite) expose services to applications and how an application can configure and use the features that make up these services.  It also discusses the service provided by the Low Extra Delay Background Transport (LEDBAT) congestion control mechanism.  The description results in a set of transport abstractions that can be exported in a transport services (TAPS) API."];
+  RFC8303 -> rev_cites;
+  RFC8306 [label="RFC8306
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Point-to-Multipoint Traffic
+Engineering Label Switched Paths
+2017", shape=ellipse, URL="RFC8306.html", target="_top", tooltip="Point-to-point Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering Label Switched Paths (TE LSPs) may be established using signaling techniques, but their paths may first need to be determined. The Path Computation Element (PCE) has been identified as an appropriate technology for the determination of the paths of point-to-multipoint (P2MP) TE LSPs. This document describes extensions to the PCE Communication Protocol (PCEP) to handle requests and responses for the computation of paths for P2MP TE LSPs. This document obsoletes RFC 6006."];
+  RFC8306 -> rev_cites;
+  RFC8517 [label="RFC8517
+An Inventory of Transport-Centric
+Functions Provided by Middleboxes: An
+Operator Perspective
+2019", shape=ellipse, URL="RFC8517.html", target="_top", tooltip="This document summarizes an operator's perception of the benefits that may be provided by intermediary devices that execute functions beyond normal IP forwarding. Such intermediary devices are often called middleboxes. RFC 3234 defines a taxonomy of middleboxes and issues in the Internet. Most of those middleboxes utilize or modify application- layer data. This document primarily focuses on devices that observe and act on information carried in the transport layer, and especially information carried in TCP packets."];
+  RFC8517 -> rev_cites;
+  RFC8656 [label="RFC8656
+Traversal Using Relays around NAT
+(TURN): Relay Extensions to Session
+Traversal Utilities for NAT (STUN)
+2020", shape=ellipse, URL="RFC8656.html", target="_top", tooltip="If a host is located behind a NAT, it can be impossible for that host to communicate directly with other hosts (peers) in certain situations. In these situations, it is necessary for the host to use the services of an intermediate node that acts as a communication relay. This specification defines a protocol, called Traversal Using Relays around NAT (TURN), that allows the host to control the operation of the relay and to exchange packets with its peers using the relay. TURN differs from other relay control protocols in that it allows a client to communicate with multiple peers using a single relay address. The TURN protocol was designed to be used as part of the Interactive Connectivity Establishment (ICE) approach to NAT traversal, though it can also be used without ICE. This document obsoletes RFCs 5766 and 6156."];
+  RFC8656 -> rev_cites;
+  RFC8685 [label="RFC8685
+Path Computation Element Communication
+Protocol (PCEP) Extensions for the
+Hierarchical Path Computation Element
+(H-PCE) Architecture
+2019", shape=ellipse, URL="RFC8685.html", target="_top", tooltip="The Hierarchical Path Computation Element (H-PCE) architecture is defined in RFC 6805. It provides a mechanism to derive an optimum end-to-end path in a multi-domain environment by using a hierarchical relationship between domains to select the optimum sequence of domains and optimum paths across those domains. This document defines extensions to the Path Computation Element Communication Protocol (PCEP) to support H-PCE procedures."];
+  RFC8685 -> rev_cites;
+  RFC8751 [label="RFC8751
+Hierarchical Stateful Path Computation
+Element (PCE)
+2020", shape=ellipse, URL="RFC8751.html", target="_top", tooltip="A stateful Path Computation Element (PCE) maintains information on the current network state received from the Path Computation Clients (PCCs), including computed Label Switched Paths (LSPs), reserved resources within the network, and pending path computation requests. This information may then be considered when computing the path for a new traffic-engineered LSP or for any associated/dependent LSPs. The path-computation response from a PCE helps the PCC to gracefully establish the computed LSP. The Hierarchical Path Computation Element (H-PCE) architecture allows the optimum sequence of interconnected domains to be selected and network policy to be applied if applicable, via the use of a hierarchical relationship between PCEs. Combining the capabilities of stateful PCE and the hierarchical PCE would be advantageous. This document describes general considerations and use cases for the deployment of stateful, but not stateless, PCEs using the hierarchical PCE architecture."];
+  RFC8751 -> rev_cites;
+  RFC8782 [label="RFC8782
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2020", shape=ellipse, URL="RFC8782.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes."];
+  RFC8782 -> rev_cites;
+  RFC8783 [label="RFC8783
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Data Channel
+Specification
+2020", shape=ellipse, URL="RFC8783.html", target="_top", tooltip="The document specifies a Distributed Denial-of-Service Open Threat Signaling (DOTS) data channel used for bulk exchange of data that cannot easily or appropriately communicated through the DOTS signal channel under attack conditions. This is a companion document to Distributed Denial-of-Service Open Threat Signaling (DOTS) Signal Channel Specification (RFC 8782)."];
+  RFC8783 -> rev_cites;
+  RFC8803 [label="RFC8803
+0-RTT TCP Convert Protocol
+2020", shape=ellipse, URL="RFC8803.html", target="_top", tooltip="This document specifies an application proxy, called Transport Converter, to assist the deployment of TCP extensions such as Multipath TCP. A Transport Converter may provide conversion service for one or more TCP extensions. The conversion service is provided by means of the 0-RTT TCP Convert Protocol (Convert). This protocol provides 0-RTT (Zero Round-Trip Time) conversion service since no extra delay is induced by the protocol compared to connections that are not proxied. Also, the Convert Protocol does not require any encapsulation (no tunnels whatsoever). This specification assumes an explicit model, where the Transport Converter is explicitly configured on hosts. As a sample applicability use case, this document specifies how the Convert Protocol applies for Multipath TCP."];
+  RFC8803 -> rev_cites;
+  RFC8916 [label="RFC8916
+A YANG Data Model for the Multicast
+Source Discovery Protocol (MSDP)
+2020", shape=ellipse, URL="RFC8916.html", target="_top", tooltip="This document defines a YANG data model for the configuration and management of Multicast Source Discovery Protocol (MSDP) protocol operations."];
+  RFC8916 -> rev_cites;
+  RFC8922 [label="RFC8922
+A Survey of the Interaction between
+Security Protocols and Transport
+Services
+2020", shape=ellipse, URL="RFC8922.html", target="_top", tooltip="This document provides a survey of commonly used or notable network security protocols, with a focus on how they interact and integrate with applications and transport protocols.  Its goal is to supplement efforts to define and catalog Transport Services by describing the interfaces required to add security protocols.  This survey is not limited to protocols developed within the scope or context of the IETF, and those included represent a superset of features a Transport Services system may need to support."];
+  RFC8922 -> rev_cites;
+  RFC8923 [label="RFC8923
+A Minimal Set of Transport Services for
+End Systems
+2020", shape=ellipse, URL="RFC8923.html", target="_top", tooltip="This document recommends a minimal set of Transport Services offered by end systems and gives guidance on choosing among the available mechanisms and protocols.  It is based on the set of transport features in RFC 8303."];
+  RFC8923 -> rev_cites;
+  RFC8934 [label="RFC8934
+PCE Communication Protocol (PCEP)
+Extensions for Label Switched Path (LSP)
+Scheduling with Stateful PCE
+2020", shape=ellipse, URL="RFC8934.html", target="_top", tooltip="This document defines a set of extensions to the stateful PCE Communication Protocol (PCEP) to enable Label Switched Path (LSP) path computation, activation, setup, and deletion based on scheduled time intervals for the LSP and the actual network resource usage in a centralized network environment, as stated in RFC 8413."];
+  RFC8934 -> rev_cites;
+  RFC9006 [label="RFC9006
+TCP Usage Guidance in the Internet of
+Things (IoT)
+2021", shape=ellipse, URL="RFC9006.html", target="_top", tooltip="This document provides guidance on how to implement and use the Transmission Control Protocol (TCP) in Constrained-Node Networks (CNNs), which are a characteristic of the Internet of Things (IoT).  Such environments require a lightweight TCP implementation and may not make use of optional functionality.  This document explains a number of known and deployed techniques to simplify a TCP stack as well as corresponding trade-offs.  The objective is to help embedded developers with decisions on which TCP features to use."];
+  RFC9006 -> rev_cites;
+  RFC9015 [label="RFC9015
+BGP Control Plane for the Network
+Service Header in Service Function
+Chaining
+2021", shape=ellipse, URL="RFC9015.html", target="_top", tooltip="This document describes the use of BGP as a control plane for networks that support service function chaining. The document introduces a new BGP address family called the Service Function Chain (SFC) Address Family Identifier / Subsequent Address Family Identifier (SFC AFI/SAFI) with two Route Types. One Route Type is originated by a node to advertise that it hosts a particular instance of a specified service function. This Route Type also provides instructions on how to send a packet to the hosting node in a way that indicates that the service function has to be applied to the packet. The other Route Type is used by a controller to advertise the paths of chains of service functions and give a unique designator to each such path so that they can be used in conjunction with the Network Service Header (NSH) defined in RFC 8300. This document adopts the service function chaining architecture described in RFC 7665."];
+  RFC9015 -> rev_cites;
+  RFC9040 [label="RFC9040
+TCP Control Block Interdependence
+2021", shape=ellipse, URL="RFC9040.html", target="_top", tooltip="This memo provides guidance to TCP implementers that is intended to help improve connection convergence to steady-state operation without affecting interoperability.  It updates and replaces RFC 2140's description of sharing TCP state, as typically represented in TCP Control Blocks, among similar concurrent or consecutive connections."];
+  RFC9040 -> rev_cites;
+  RFC9065 [label="RFC9065
+Considerations around Transport Header
+Confidentiality, Network Operations, and
+the Evolution of Internet Transport
+Protocols
+2021", shape=ellipse, URL="RFC9065.html", target="_top", tooltip="To protect user data and privacy, Internet transport protocols have supported payload encryption and authentication for some time. Such encryption and authentication are now also starting to be applied to the transport protocol headers. This helps avoid transport protocol ossification by middleboxes, mitigate attacks against the transport protocol, and protect metadata about the communication. Current operational practice in some networks inspect transport header information within the network, but this is no longer possible when those transport headers are encrypted. This document discusses the possible impact when network traffic uses a protocol with an encrypted transport header. It suggests issues to consider when designing new transport protocols or features."];
+  RFC9065 -> rev_cites;
+  RFC9125 [label="RFC9125
+Gateway Auto-Discovery and Route
+Advertisement for Site Interconnection
+Using Segment Routing
+2021", shape=ellipse, URL="RFC9125.html", target="_top", tooltip="Data centers are attached to the Internet or a backbone network by gateway routers. One data center typically has more than one gateway for commercial, load-balancing, and resiliency reasons. Other sites, such as access networks, also need to be connected across backbone networks through gateways. This document defines a mechanism using the BGP Tunnel Encapsulation attribute to allow data center gateway routers to advertise routes to the prefixes reachable in the site, including advertising them on behalf of other gateways at the same site. This allows segment routing to be used to identify multiple paths across the Internet or backbone network between different gateways. The paths can be selected for load-balancing, resilience, and quality purposes."];
+  RFC9125 -> rev_cites;
+  RFC9132 [label="RFC9132
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2021", shape=ellipse, URL="RFC9132.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes. This document obsoletes RFC 8782."];
+  RFC9132 -> rev_cites;
+  RFC9182 [label="RFC9182
+A YANG Network Data Model for Layer 3
+VPNs
+2022", shape=ellipse, URL="RFC9182.html", target="_top", tooltip="As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), which is used for communication between customers and service providers, this document defines an L3VPN Network Model (L3NM) that can be used for the provisioning of Layer 3 Virtual Private Network (L3VPN) services within a service provider network. The model provides a network-centric view of L3VPN services. The L3NM is meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. The model can also facilitate communication between a service orchestrator and a network controller/orchestrator."];
+  RFC9182 -> rev_cites;
+  RFC9187 [label="RFC9187
+Sequence Number Extension for Windowed
+Protocols
+2022", shape=ellipse, URL="RFC9187.html", target="_top", tooltip="Sliding window protocols use finite sequence numbers to determine segment placement and order.  These sequence number spaces wrap around and are reused during the operation of such protocols.  This document describes a way to extend the size of these sequence numbers at the endpoints to avoid the impact of that wrap and reuse without transmitting additional information in the packet header.  The resulting extended sequence numbers can be used at the endpoints in encryption and authentication algorithms to ensure input bit patterns do not repeat over the lifetime of a connection."];
+  RFC9187 -> rev_cites;
+  RFC9235 [label="RFC9235
+TCP Authentication Option (TCP-AO) Test
+Vectors
+2022", shape=ellipse, URL="RFC9235.html", target="_top", tooltip="This document provides test vectors to validate implementations of the two mandatory authentication algorithms specified for the TCP Authentication Option over both IPv4 and IPv6.  This includes validation of the key derivation function (KDF) based on a set of test connection parameters as well as validation of the message authentication code (MAC).  Vectors are provided for both currently required pairs of KDF and MAC algorithms: KDF_HMAC_SHA1 and HMAC- SHA-1-96, and KDF_AES_128_CMAC and AES-128-CMAC-96.  The vectors also validate both whole TCP segments as well as segments whose options are excluded for middlebox traversal."];
+  RFC9235 -> rev_cites;
+  RFC9252 [label="RFC9252
+BGP Overlay Services Based on Segment
+Routing over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9252.html", target="_top", tooltip="This document defines procedures and messages for SRv6-based BGP services, including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and Internet services.  It builds on BGP/MPLS IP Virtual Private Networks (VPNs) (RFC 4364) and BGP MPLS-Based Ethernet VPN (RFC 7432)."];
+  RFC9252 -> rev_cites;
+  RFC9331 [label="RFC9331
+The Explicit Congestion Notification
+(ECN) Protocol for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, URL="RFC9331.html", target="_top", tooltip="This specification defines the protocol to be used for a new network service called Low Latency, Low Loss, and Scalable throughput (L4S). L4S uses an Explicit Congestion Notification (ECN) scheme at the IP layer that is similar to the original (or 'Classic') ECN approach, except as specified within. L4S uses 'Scalable' congestion control, which induces much more frequent control signals from the network, and it responds to them with much more fine-grained adjustments so that very low (typically sub-millisecond on average) and consistently low queuing delay becomes possible for L4S traffic without compromising link utilization. Thus, even capacity-seeking (TCP-like) traffic can have high bandwidth and very low delay at the same time, even during periods of high traffic load. The L4S identifier defined in this document distinguishes L4S from 'Classic' (e.g., TCP-Reno-friendly) traffic. Then, network bottlenecks can be incrementally modified to distinguish and isolate existing traffic that still follows the Classic behaviour, to prevent it from degrading the low queuing delay and low loss of L4S traffic. This Experimental specification defines the rules that L4S transports and network elements need to follow, with the intention that L4S flows neither harm each other's performance nor that of Classic traffic. It also suggests open questions to be investigated during experimentation. Examples of new Active Queue Management (AQM) marking algorithms and new transports (whether TCP-like or real time) are specified separately."];
+  RFC9331 -> rev_cites;
+  RFC9346 [label="RFC9346
+IS-IS Extensions in Support of Inter-
+Autonomous System (AS) MPLS and GMPLS
+Traffic Engineering
+2023", shape=ellipse, URL="RFC9346.html", target="_top", tooltip="This document describes extensions to the Intermediate System to Intermediate System (IS-IS) protocol to support Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering (TE) for multiple Autonomous Systems (ASes). It defines IS-IS extensions for the flooding of TE information about inter-AS links, which can be used to perform inter-AS TE path computation. No support for flooding information from within one AS to another AS is proposed or defined in this document. This document builds on RFC 5316 by adding support for IPv6-only operation. This document obsoletes RFC 5316."];
+  RFC9346 -> rev_cites;
+  RFC9353 [label="RFC9353
+IGP Extension for Path Computation
+Element Communication Protocol (PCEP)
+Security Capability Support in PCE
+Discovery (PCED)
+2023", shape=ellipse, URL="RFC9353.html", target="_top", tooltip="When a Path Computation Element (PCE) is a Label Switching Router (LSR) or a server participating in the Interior Gateway Protocol (IGP), its presence and path computation capabilities can be advertised using IGP flooding. The IGP extensions for PCE Discovery (PCED) (RFCs 5088 and 5089) define a method to advertise path computation capabilities using IGP flooding for OSPF and IS-IS, respectively. However, these specifications lack a method to advertise Path Computation Element Communication Protocol (PCEP) security (e.g., Transport Layer Security (TLS) and TCP Authentication Option (TCP-AO)) support capability. This document defines capability flag bits for the PCE-CAP-FLAGS sub-TLV that can be announced as an attribute in the IGP advertisement to distribute PCEP security support information. In addition, this document updates RFCs 5088 and 5089 to allow advertisement of a Key ID or KEY-CHAIN-NAME sub-TLV to support TCP-AO security capability. This document also updates RFCs 8231 and 8306."];
+  RFC9353 -> rev_cites;
+  RFC9415 [label="RFC9415
+On the Generation of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9415.html", target="_top", tooltip="This document performs an analysis of the security and privacy implications of different types of transient numeric identifiers used in IETF protocols and tries to categorize them based on their interoperability requirements and their associated failure severity when such requirements are not met.  Subsequently, it provides advice on possible algorithms that could be employed to satisfy the interoperability requirements of each identifier category while minimizing the negative security and privacy implications, thus providing guidance to protocol designers and protocol implementers.  Finally, it describes a number of algorithms that have been employed in real implementations to generate transient numeric identifiers and analyzes their security and privacy properties.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9415 -> rev_cites;
+  RFC9469 [label="RFC9469
+Applicability of Ethernet Virtual
+Private Network (EVPN) to Network
+Virtualization over Layer 3 (NVO3)
+Networks
+2023", shape=ellipse, URL="RFC9469.html", target="_top", tooltip="An Ethernet Virtual Private Network (EVPN) provides a unified control plane that solves the issues of Network Virtualization Edge (NVE) auto-discovery, tenant Media Access Control (MAC) / IP dissemination, and advanced features in a scablable way as required by Network Virtualization over Layer 3 (NVO3) networks.  EVPN is a scalable solution for NVO3 networks and keeps the independence of the underlay IP Fabric, i.e., there is no need to enable Protocol Independent Multicast (PIM) in the underlay network and maintain multicast states for tenant Broadcast Domains.  This document describes the use of EVPN for NVO3 networks and discusses its applicability to basic Layer 2 and Layer 3 connectivity requirements and to advanced features such as MAC Mobility, MAC Protection and Loop Protection, multihoming, Data Center Interconnect (DCI), and much more.  No new EVPN procedures are introduced."];
+  RFC9469 -> rev_cites;
+  RFC9648 [label="RFC9648
+YANG Data Model for TCP
+2024", shape=ellipse, URL="RFC9648.html", target="_top", tooltip="This document specifies a minimal YANG data model for TCP on devices that are configured and managed by network management protocols.  The YANG data model defines a container for all TCP connections and groupings of authentication parameters that can be imported and used in TCP implementations or by other models that need to configure TCP parameters.  The model also includes basic TCP statistics.  The model is compliant with Network Management Datastore Architecture (NMDA) (RFC 8342)."];
+  RFC9648 -> rev_cites;
+  RFC9757 [label="RFC9757
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Native IP
+Networks
+2025", shape=ellipse, URL="RFC9757.html", target="_top", tooltip="This document introduces extensions to the Path Computation Element Communication Protocol (PCEP) to support path computation in Native IP networks through a PCE-based central control mechanism known as Centralized Control Dynamic Routing (CCDR).  These extensions empower a PCE to calculate and manage paths specifically for Native IP networks, thereby expanding PCEP's capabilities beyond its past use in MPLS and GMPLS networks.  By implementing these extensions, IP network resources can be utilized more efficiently, facilitating the deployment of traffic engineering in Native IP environments."];
+  RFC9757 -> rev_cites;
+  RFC9815 [label="RFC9815
+BGP Link State (BGP-LS) Shortest Path
+First (SPF) Routing
+2025", shape=ellipse, URL="RFC9815.html", target="_top", tooltip="Many Massively Scaled Data Centers (MSDCs) have converged on simplified Layer 3 (L3) routing.  Furthermore, requirements for operational simplicity have led many of these MSDCs to converge on BGP as their single routing protocol for both fabric routing and Data Center Interconnect (DCI) routing.  This document describes extensions to BGP for use with BGP Link State (BGP-LS) distribution and the Shortest Path First (SPF) algorithm.  In doing this, it allows BGP to be efficiently used as both the underlay protocol and the overlay protocol in MSDCs."];
+  RFC9815 -> rev_cites;
+  RFC9816 [label="RFC9816
+Usage and Applicability of BGP Link
+State (BGP-LS) Shortest Path First (SPF)
+Routing in Data Centers
+2025", shape=ellipse, URL="RFC9816.html", target="_top", tooltip="This document discusses the usage and applicability of BGP Link State (BGP-LS) Shortest Path First (SPF) extensions in data center networks utilizing Clos or Fat Tree topologies.  The document is intended to provide simplified guidance for the deployment of BGP-LS SPF extensions."];
+  RFC9816 -> rev_cites;
+  RFC9826 [label="RFC9826
+A YANG Data Model for the Path
+Computation Element Communication
+Protocol (PCEP)
+2025", shape=ellipse, URL="RFC9826.html", target="_top", tooltip="This document defines a YANG data model for the management of the Path Computation Element Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a Path Computation Element (PCE), or between two PCEs."];
+  RFC9826 -> rev_cites;
+  RFC9832 [label="RFC9832
+BGP Classful Transport Planes
+2025", shape=ellipse, URL="RFC9832.html", target="_top", tooltip="This document specifies a mechanism referred to as Intent-Driven Service Mapping. The mechanism uses BGP to express Intent-based association of overlay routes with underlay routes having specific Traffic Engineering (TE) characteristics satisfying a certain Service Level Agreement (SLA). This is achieved by defining new constructs to group underlay routes with sufficiently similar TE characteristics into identifiable classes (called Transport Classes or TCs), that overlay routes use as an ordered set to resolve reachability (Resolution Schemes) towards service endpoints. These constructs can be used, for example, to realize the IETF Network Slice defined in the TEAS Network Slices framework (RFC 9543). Additionally, this document specifies protocol procedures for BGP that enable dissemination of service mapping information in a network that may span multiple cooperating administrative domains. These domains may be administered either by the same provider or by closely coordinating providers. A new BGP address family that leverages the procedures described in RFC 4364 (BGP/MPLS IP Virtual Private Networks (VPNs)) and follows the NLRI encoding described in RFC 8277 (Using BGP to Bind MPLS Labels to Address Prefixes) is defined to enable each advertised underlay route to be identified by its class. This new address family is called BGP Classful Transport (or BGP CT)."];
+  RFC9832 -> rev_cites;
+  RFC9833 [label="RFC9833
+A Common YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9833.html", target="_top", tooltip="The document specifies a common attachment circuits (ACs) YANG data
+model, which is designed to be reusable by other models.  This design
+is meant to ensure consistent AC structures among models that
+manipulate ACs.  For example, this common model can be reused by
+service models to expose ACs as a service, service models that
+require binding a service to a set of ACs, network and device models
+to provision ACs, etc."];
+  RFC9833 -> rev_cites;
+  RFC9834 [label="RFC9834
+YANG Data Models for Bearers and
+Attachment Circuits as a Service (ACaaS)
+2025", shape=ellipse, URL="RFC9834.html", target="_top", tooltip="Delivery of network services assumes that appropriate setup is
+provisioned over the links that connect customer termination points
+and a provider network. The required setup to allow successful data
+exchange over these links is referred to as an attachment circuit
+(AC), while the underlying link is referred to as a bearer. This document specifies a YANG service data model for ACs. This model
+can be used for the provisioning of ACs before or during service
+provisioning (e.g., RFC 9543 Network Slice Service). The document also specifies a YANG service data model for managing
+bearers over which ACs are established."];
+  RFC9834 -> rev_cites;
+  RFC9835 [label="RFC9835
+A Network YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9835.html", target="_top", tooltip="This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in the YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf- opsawg-teas-attachment-circuit). The module augments the base network ('ietf-network') and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs)."];
+  RFC9835 -> rev_cites;
+  RFC9868 [label="RFC9868
+Transport Options for UDP
+2025", shape=ellipse, URL="RFC9868.html", target="_top", tooltip="Transport protocols are extended through the use of transport header options.  This document updates RFC 768 (UDP) by indicating the location, syntax, and semantics for UDP transport layer options within the surplus area after the end of the UDP user data but before the end of the IP datagram."];
+  RFC9868 -> rev_cites;
+  RFC9871 [label="RFC9871
+BGP Color-Aware Routing (CAR)
+2025", shape=ellipse, URL="RFC9871.html", target="_top", tooltip="This document describes a BGP-based routing solution to establish end-to-end intent-aware paths across a multi-domain transport network. The transport network can span multiple service provider and customer network domains. The BGP intent-aware paths can be used to steer traffic flows for service routes that need a specific intent. This solution is called BGP Color-Aware Routing (BGP CAR). This document describes the routing framework and BGP extensions to enable intent-aware routing using the BGP CAR solution. The solution defines two new BGP SAFIs (BGP CAR SAFI and BGP VPN CAR SAFI) for IPv4 and IPv6. It also defines an extensible Network Layer Reachability Information (NLRI) model for both SAFIs that allows multiple NLRI types to be defined for different use cases. Each type of NLRI contains key and TLV-based non-key fields for efficient encoding of different per-prefix information. This specification defines two NLRI types: Color-Aware Route NLRI and IP Prefix NLRI. It defines non-key TLV types for the MPLS label stack, SR-MPLS label index, and Segment Routing over IPv6 (SRv6) Segment Identifiers (SIDs). This solution also defines a new Local Color Mapping (LCM) Extended Community."];
+  RFC9871 -> rev_cites;
+}

@@ -1,0 +1,52 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9523 [label="RFC9523
+A Secure Selection and Filtering
+Mechanism for the Network Time Protocol
+with Khronos
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Network Time Protocol version 4 (NTPv4), as defined in RFC 5905, is the mechanism used by NTP clients to synchronize with NTP servers across the Internet.  This document describes a companion application to the NTPv4 client, named Khronos, that is used as a watchdog alongside NTPv4 and that provides improved security against time-shifting attacks.  Khronos involves changes to the NTP client's system process only.  Since it does not affect the wire protocol, the Khronos mechanism is applicable to current and future time protocols."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9523;
+
+  obs [label="obsoletes", shape=box];
+  RFC9523 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9523 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9523;
+
+  cites [label="cites", shape=box];
+  RFC9523 -> cites;
+  RFC5905 [label="RFC5905
+Network Time Protocol Version 4:
+Protocol and Algorithms Specification
+2010", shape=ellipse, URL="RFC5905.html", target="_top", tooltip="The Network Time Protocol (NTP) is widely used to synchronize computer clocks in the Internet.  This document describes NTP version 4 (NTPv4), which is backwards compatible with NTP version 3 (NTPv3), described in RFC 1305, as well as previous versions of the protocol.  NTPv4 includes a modified protocol header to accommodate the Internet Protocol version 6 address family.  NTPv4 includes fundamental improvements in the mitigation and discipline algorithms that extend the potential accuracy to the tens of microseconds with modern workstations and fast LANs.  It includes a dynamic server discovery scheme, so that in many cases, specific server configuration is not required.  It corrects certain errors in the NTPv3 design and implementation and includes an optional extension mechanism."];
+  cites -> RFC5905;
+  RFC8915 [label="RFC8915
+Network Time Security for the Network
+Time Protocol
+2020", shape=ellipse, URL="RFC8915.html", target="_top", tooltip="This memo specifies Network Time Security (NTS), a mechanism for using Transport Layer Security (TLS) and Authenticated Encryption with Associated Data (AEAD) to provide cryptographic security for the client-server mode of the Network Time Protocol (NTP). NTS is structured as a suite of two loosely coupled sub-protocols. The first (NTS Key Establishment (NTS-KE)) handles initial authentication and key establishment over TLS. The second (NTS Extension Fields for NTPv4) handles encryption and authentication during NTP time synchronization via extension fields in the NTP packets, and holds all required state only on the client via opaque cookies."];
+  cites -> RFC8915;
+  RFC7384 [label="RFC7384
+Security Requirements of Time Protocols
+in Packet Switched Networks
+2014", shape=ellipse, URL="RFC7384.html", target="_top", tooltip="As time and frequency distribution protocols are becoming increasingly common and widely deployed, concern about their exposure to various security threats is increasing.  This document defines a set of security requirements for time protocols, focusing on the Precision Time Protocol (PTP) and the Network Time Protocol (NTP).  This document also discusses the security impacts of time protocol practices, the performance implications of external security practices on time protocols, and the dependencies between other security services and time synchronization."];
+  cites -> RFC7384;
+  RFC8033 [label="RFC8033
+Proportional Integral Controller
+Enhanced (PIE): A Lightweight Control
+Scheme to Address the Bufferbloat
+Problem
+2017", shape=ellipse, URL="RFC8033.html", target="_top", tooltip="Bufferbloat is a phenomenon in which excess buffers in the network cause high latency and latency variation. As more and more interactive applications (e.g., voice over IP, real-time video streaming, and financial transactions) run in the Internet, high latency and latency variation degrade application performance. There is a pressing need to design intelligent queue management schemes that can control latency and latency variation, and hence provide desirable quality of service to users. This document presents a lightweight active queue management design called PIE (Proportional Integral controller Enhanced) that can effectively control the average queuing latency to a target value. Simulation results, theoretical analysis, and Linux testbed results have shown that PIE can ensure low latency and achieve high link utilization under various congestion situations. The design does not require per-packet timestamps, so it incurs very little overhead and is simple enough to implement in both hardware and software."];
+  cites -> RFC8033;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9523;
+}

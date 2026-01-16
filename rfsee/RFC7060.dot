@@ -1,0 +1,53 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7060 [label="RFC7060
+Using LDP Multipoint Extensions on
+Targeted LDP Sessions
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="Label Distribution Protocol (LDP) can be used to set up Point-to-Multipoint (P2MP) and Multipoint-to-Multipoint (MP2MP) Label Switched Paths.  However, the specification for the Multipoint Extensions to LDP presupposes that the two endpoints of an LDP session are directly connected.  The LDP base specification allows for the case where the two endpoints of an LDP session are not directly connected; such a session is known as a Targeted LDP session.  This document provides the specification for using the LDP Multipoint Extensions over a Targeted LDP session."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7060;
+
+  obs [label="obsoletes", shape=box];
+  RFC7060 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7060 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7060;
+
+  cites [label="cites", shape=box];
+  RFC7060 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3032 [label="RFC3032
+MPLS Label Stack Encoding
+2001", shape=ellipse, URL="RFC3032.html", target="_top", tooltip="This document specifies the encoding to be used by an LSR in order to transmit labeled packets on Point-to-Point Protocol (PPP) data links, on LAN data links, and possibly on other data links as well.  This document also specifies rules and procedures for processing the various fields of the label stack encoding. [STANDARDS-TRACK]"];
+  cites -> RFC3032;
+  RFC5331 [label="RFC5331
+MPLS Upstream Label Assignment and
+Context-Specific Label Space
+2008", shape=ellipse, URL="RFC5331.html", target="_top", tooltip="RFC 3031 limits the MPLS architecture to downstream-assigned MPLS labels.  This document introduces the notion of upstream-assigned MPLS labels.  It describes the procedures for upstream MPLS label assignment and introduces the concept of a Context-Specific Label Space. [STANDARDS-TRACK]"];
+  cites -> RFC5331;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7060;
+  RFC7246 [label="RFC7246
+Multipoint Label Distribution Protocol
+In-Band Signaling in a Virtual Routing
+and Forwarding (VRF) Table Context
+2014", shape=ellipse, URL="RFC7246.html", target="_top", tooltip="An IP Multicast Distribution Tree (MDT) may traverse both label switching (i.e., Multiprotocol Label Switching, or MPLS) and non-label switching regions of a network.  Typically, the MDT begins and ends in non-MPLS regions, but travels through an MPLS region.  In such cases, it can be useful to begin building the MDT as a pure IP MDT, then convert it to an MPLS Multipoint Label Switched Path (MP-LSP) when it enters an MPLS-enabled region, and then convert it back to a pure IP MDT when it enters a non-MPLS-enabled region.  Other documents specify the procedures for building such a hybrid MDT, using Protocol Independent Multicast (PIM) in the non-MPLS region of the network, and using Multipoint Label Distribution Protocol (mLDP) in the MPLS region.  This document extends those procedures to handle the case where the link connecting the two regions is a Virtual Routing and Forwarding (VRF) table link, as defined in the BGP IP/MPLS VPN specification.  However, this document is primarily aimed at particular use cases where VRFs are used to support multicast applications other than multicast VPN."];
+  RFC7246 -> rev_cites;
+  RFC7715 [label="RFC7715
+Multipoint LDP (mLDP) Node Protection
+2016", shape=ellipse, URL="RFC7715.html", target="_top", tooltip="This document describes procedures to support node protection for Point-to-Multipoint and Multipoint-to-Multipoint Label Switched Paths (P2MP and MP2MP LSPs) that have been built by the Multipoint Label Distribution Protocol (mLDP).  In order to protect a node N, the Point of Local Repair (PLR) Label Switching Router (LSR) of N must learn the Merge Point (MPT) LSR(s) of node N such that traffic can be redirected to them in case node N fails.  Redirecting the traffic around the failed node N depends on existing Point-to-Point (P2P) Label Switched Paths (LSPs).  The pre-established LSPs originate from the PLR LSR and terminate on the MPT LSRs while bypassing LSR N."];
+  RFC7715 -> rev_cites;
+}

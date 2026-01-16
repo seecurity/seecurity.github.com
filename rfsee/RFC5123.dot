@@ -1,0 +1,39 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5123 [label="RFC5123
+Considerations in Validating the Path in
+BGP
+2008", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document examines the implications of hop-by-hop forwarding, route aggregation, and route filtering on the concept of validation within a BGP Autonomous System (AS) Path.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5123;
+
+  obs [label="obsoletes", shape=box];
+  RFC5123 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5123 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5123;
+
+  cites [label="cites", shape=box];
+  RFC5123 -> cites;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5123;
+  RFC8209 [label="RFC8209
+A Profile for BGPsec Router
+Certificates, Certificate Revocation
+Lists, and Certification Requests
+2017", shape=ellipse, URL="RFC8209.html", target="_top", tooltip="This document defines a standard profile for X.509 certificates used to enable validation of Autonomous System (AS) paths in the Border Gateway Protocol (BGP), as part of an extension to that protocol known as BGPsec.  BGP is the standard for inter-domain routing in the Internet; it is the glue that holds the Internet together.  BGPsec is being developed as one component of a solution that addresses the requirement to provide security for BGP.  The goal of BGPsec is to provide full AS path validation based on the use of strong cryptographic primitives.  The end entity (EE) certificates specified by this profile are issued to routers within an AS.  Each of these certificates is issued under a Resource Public Key Infrastructure (RPKI) Certification Authority (CA) certificate.  These CA certificates and EE certificates both contain the AS Resource extension.  An EE certificate of this type asserts that the router or routers holding the corresponding private key are authorized to emit secure route advertisements on behalf of the AS(es) specified in the certificate.  This document also profiles the format of certification requests and specifies Relying Party (RP) certificate path validation procedures for these EE certificates.  This document extends the RPKI; therefore, this document updates the RPKI Resource Certificates Profile (RFC 6487)."];
+  RFC8209 -> rev_cites;
+}

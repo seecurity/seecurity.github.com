@@ -1,0 +1,55 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7646 [label="RFC7646
+Definition and Use of DNSSEC Negative
+Trust Anchors
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="DNS Security Extensions (DNSSEC) is now entering widespread deployment.  However, domain signing tools and processes are not yet as mature and reliable as those for non-DNSSEC-related domain administration tools and processes.  This document defines Negative Trust Anchors (NTAs), which can be used to mitigate DNSSEC validation failures by disabling DNSSEC validation at specified domains."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7646;
+
+  obs [label="obsoletes", shape=box];
+  RFC7646 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7646 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7646;
+
+  cites [label="cites", shape=box];
+  RFC7646 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5914 [label="RFC5914
+Trust Anchor Format
+2010", shape=ellipse, URL="RFC5914.html", target="_top", tooltip="This document describes a structure for representing trust anchor information.  A trust anchor is an authoritative entity represented by a public key and associated data.  The public key is used to verify digital signatures, and the associated data is used to constrain the types of information or actions for which the trust anchor is authoritative.  The structures defined in this document are intended to satisfy the format-related requirements defined in Trust Anchor Management Requirements. [STANDARDS-TRACK]"];
+  cites -> RFC5914;
+  RFC6781 [label="RFC6781
+DNSSEC Operational Practices, Version 2
+2012", shape=ellipse, URL="RFC6781.html", target="_top", tooltip="This document describes a set of practices for operating the DNS with security extensions (DNSSEC). The target audience is zone administrators deploying DNSSEC. The document discusses operational aspects of using keys and signatures in the DNS. It discusses issues of key generation, key storage, signature generation, key rollover, and related policies. This document obsoletes RFC 4641, as it covers more operational ground and gives more up-to-date requirements with respect to key sizes and the DNSSEC operations."];
+  cites -> RFC6781;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7646;
+  RFC7901 [label="RFC7901
+CHAIN Query Requests in DNS
+2016", shape=ellipse, URL="RFC7901.html", target="_top", tooltip="This document defines an EDNS0 extension that can be used by a security-aware validating resolver configured to use a forwarding resolver to send a single query, requesting a complete validation path along with the regular query answer.  The reduction in queries potentially lowers the latency and reduces the need to send multiple queries at once.  This extension mandates the use of source-IP- verified transport such as TCP or UDP with EDNS-COOKIE, so it cannot be abused in amplification attacks."];
+  RFC7901 -> rev_cites;
+  RFC9364 [label="RFC9364
+DNS Security Extensions (DNSSEC)
+2023", shape=ellipse, URL="RFC9364.html", target="_top", tooltip="This document describes the DNS Security Extensions (commonly called DNSSEC) that are specified in RFCs 4033, 4034, and 4035, as well as a handful of others.  One purpose is to introduce all of the RFCs in one place so that the reader can understand the many aspects of DNSSEC.  This document does not update any of those RFCs.  A second purpose is to state that using DNSSEC for origin authentication of DNS data is the best current practice.  A third purpose is to provide a single reference for other documents that want to refer to DNSSEC."];
+  RFC9364 -> rev_cites;
+}

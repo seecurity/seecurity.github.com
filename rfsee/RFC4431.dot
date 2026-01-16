@@ -1,0 +1,38 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4431 [label="RFC4431
+The DNSSEC Lookaside Validation (DLV)
+DNS Resource Record
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a new DNS resource record, called the DNSSEC Lookaside Validation (DLV) RR, for publishing DNSSEC trust anchors outside of the DNS delegation chain.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4431;
+
+  obs [label="obsoletes", shape=box];
+  RFC4431 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4431 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4431;
+
+  cites [label="cites", shape=box];
+  RFC4431 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4431;
+  RFC5074 [label="RFC5074
+DNSSEC Lookaside Validation (DLV)
+2007", shape=ellipse, URL="RFC5074.html", target="_top", tooltip="DNSSEC Lookaside Validation (DLV) is a mechanism for publishing DNS Security (DNSSEC) trust anchors outside of the DNS delegation chain.  It allows validating resolvers to validate DNSSEC-signed data from zones whose ancestors either aren't signed or don't publish Delegation Signer (DS) records for their children.  This memo provides information for the Internet community."];
+  RFC5074 -> rev_cites;
+  RFC8749 [label="RFC8749
+Moving DNSSEC Lookaside Validation (DLV)
+to Historic Status
+2020", shape=ellipse, URL="RFC8749.html", target="_top", tooltip="This document retires DNSSEC Lookaside Validation (DLV) and reclassifies RFCs 4431 and 5074 as Historic.  Furthermore, this document updates RFC 6698 by excluding the DLV resource record from certificates and updates RFC 6840 by excluding the DLV registries from the trust anchor selection."];
+  RFC8749 -> rev_cites;
+}

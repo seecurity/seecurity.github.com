@@ -1,0 +1,112 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4724;
+
+  obs [label="obsoletes", shape=box];
+  RFC4724 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4724 -> updates;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  updates -> RFC4271;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4724;
+  RFC8538 [label="RFC8538
+Notification Message Support for BGP
+Graceful Restart
+2019", shape=ellipse, URL="RFC8538.html", target="_top", tooltip="The BGP Graceful Restart mechanism defined in RFC 4724 limits the usage of BGP Graceful Restart to BGP messages other than BGP NOTIFICATION messages.  This document updates RFC 4724 by defining an extension that permits the Graceful Restart procedures to be performed when the BGP speaker receives a BGP NOTIFICATION message or the Hold Time expires.  This document also defines a new subcode for BGP Cease NOTIFICATION messages; this new subcode requests a full session restart instead of a Graceful Restart."];
+  RFC8538 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4724 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4724;
+  RFC4781 [label="RFC4781
+Graceful Restart Mechanism for BGP with
+MPLS
+2007", shape=ellipse, URL="RFC4781.html", target="_top", tooltip="A mechanism for BGP that helps minimize the negative effects on routing caused by BGP restart has already been developed and is described in a separate document (Graceful Restart Mechanism for BGP). This document extends this mechanism to minimize the negative effects on MPLS forwarding caused by the Label Switching Router's (LSR's) control plane restart, and specifically by the restart of its BGP component when BGP is used to carry MPLS labels and the LSR is capable of preserving the MPLS forwarding state across the restart. The mechanism described in this document is agnostic with respect to the types of the addresses carried in the BGP Network Layer Reachability Information (NLRI) field. As such, it works in conjunction with any of the address families that could be carried in BGP (e.g., IPv4, IPv6, etc.). [STANDARDS-TRACK]"];
+  RFC4781 -> rev_cites;
+  RFC5773 [label="RFC5773
+Analysis of Inter-Domain Routing
+Requirements and History
+2010", shape=ellipse, URL="RFC5773.html", target="_top", tooltip="This document analyzes the state of the Internet domain-based routing system, concentrating on Inter-Domain Routing (IDR) and also considering the relationship between inter-domain and intra-domain routing.  The analysis is carried out with respect to RFC 1126 and other IDR requirements and design efforts looking at the routing system as it appeared to be in 2001 with editorial additions reflecting developments up to 2006.  It is the companion document to A Set of Possible Requirements for a Future Routing Architecture (RFC 5772), which is a discussion of requirements for the future routing architecture, addressing systems developments and future routing protocols.  This document summarizes discussions held several years ago by members of the IRTF Routing Research Group (IRTF RRG) and other interested parties.  The document is published with the support of the IRTF RRG as a record of the work completed at that time, but with the understanding that it does not necessarily represent either the latest technical understanding or the technical consensus of the research group at the date of publication.  This document defines a Historic Document for the Internet community."];
+  RFC5773 -> rev_cites;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  RFC5925 -> rev_cites;
+  RFC6198 [label="RFC6198
+Requirements for the Graceful Shutdown
+of BGP Sessions
+2011", shape=ellipse, URL="RFC6198.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is heavily used in Service Provider networks for both Internet and BGP/MPLS VPN services.  For resiliency purposes, redundant routers and BGP sessions can be deployed to reduce the consequences of an Autonomous System Border Router (ASBR) or BGP session breakdown on customers' or peers' traffic.  However, simply taking down or even bringing up a BGP session for maintenance purposes may still induce connectivity losses during the BGP convergence.  This is no longer satisfactory for new applications (e.g., voice over IP, online gaming, VPN).  Therefore, a solution is required for the graceful shutdown of a (set of) BGP session(s) in order to limit the amount of traffic loss during a planned shutdown.  This document expresses requirements for such a solution.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6198 -> rev_cites;
+  RFC7313 [label="RFC7313
+Enhanced Route Refresh Capability for
+BGP-4
+2014", shape=ellipse, URL="RFC7313.html", target="_top", tooltip="In this document, we enhance the existing BGP route refresh mechanisms to provide for the demarcation of the beginning and the ending of a route refresh.  The enhancement can be used to facilitate correction of BGP Routing Information Base (RIB) inconsistencies in a non-disruptive manner.  This document updates RFC 2918."];
+  RFC7313 -> rev_cites;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  RFC7606 -> rev_cites;
+  RFC7747 [label="RFC7747
+Basic BGP Convergence Benchmarking
+Methodology for Data-Plane Convergence
+2016", shape=ellipse, URL="RFC7747.html", target="_top", tooltip="BGP is widely deployed and used by several service providers as the default inter-AS (Autonomous System) routing protocol.  It is of utmost importance to ensure that when a BGP peer or a downstream link of a BGP peer fails, the alternate paths are rapidly used and routes via these alternate paths are installed.  This document provides the basic BGP benchmarking methodology using existing BGP convergence terminology as defined in RFC 4098."];
+  RFC7747 -> rev_cites;
+  RFC7854 [label="RFC7854
+BGP Monitoring Protocol (BMP)
+2016", shape=ellipse, URL="RFC7854.html", target="_top", tooltip="This document defines the BGP Monitoring Protocol (BMP), which can be used to monitor BGP sessions.  BMP is intended to provide a convenient interface for obtaining route views.  Prior to the introduction of BMP, screen scraping was the most commonly used approach to obtaining such views.  The design goals are to keep BMP simple, useful, easily implemented, and minimally service affecting.  BMP is not suitable for use as a routing protocol."];
+  RFC7854 -> rev_cites;
+  RFC7911 [label="RFC7911
+Advertisement of Multiple Paths in BGP
+2016", shape=ellipse, URL="RFC7911.html", target="_top", tooltip="This document defines a BGP extension that allows the advertisement of multiple paths for the same address prefix without the new paths implicitly replacing any previous ones.  The essence of the extension is that each path is identified by a Path Identifier in addition to the address prefix."];
+  RFC7911 -> rev_cites;
+  RFC8205 [label="RFC8205
+BGPsec Protocol Specification
+2017", shape=ellipse, URL="RFC8205.html", target="_top", tooltip="This document describes BGPsec, an extension to the Border Gateway Protocol (BGP) that provides security for the path of Autonomous Systems (ASes) through which a BGP UPDATE message passes.  BGPsec is implemented via an optional non-transitive BGP path attribute that carries digital signatures produced by each AS that propagates the UPDATE message.  The digital signatures provide confidence that every AS on the path of ASes listed in the UPDATE message has explicitly authorized the advertisement of the route."];
+  RFC8205 -> rev_cites;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  RFC8277 -> rev_cites;
+  RFC8374 [label="RFC8374
+BGPsec Design Choices and Summary of
+Supporting Discussions
+2018", shape=ellipse, URL="RFC8374.html", target="_top", tooltip="This document captures the design rationale of the initial draft version of what became RFC 8205 (the BGPsec protocol specification).  The designers needed to balance many competing factors, and this document lists the decisions that were made in favor of or against each design choice.  This document also presents brief summaries of the arguments that aided the decision process.  Where appropriate, this document also provides brief notes on design decisions that changed as the specification was reviewed and updated by the IETF SIDR Working Group and that resulted in RFC 8205.  These notes highlight the differences and provide pointers to details and rationale regarding those design changes."];
+  RFC8374 -> rev_cites;
+  RFC8538 [label="RFC8538
+Notification Message Support for BGP
+Graceful Restart
+2019", shape=ellipse, URL="RFC8538.html", target="_top", tooltip="The BGP Graceful Restart mechanism defined in RFC 4724 limits the usage of BGP Graceful Restart to BGP messages other than BGP NOTIFICATION messages.  This document updates RFC 4724 by defining an extension that permits the Graceful Restart procedures to be performed when the BGP speaker receives a BGP NOTIFICATION message or the Hold Time expires.  This document also defines a new subcode for BGP Cease NOTIFICATION messages; this new subcode requests a full session restart instead of a Graceful Restart."];
+  RFC8538 -> rev_cites;
+  RFC9494 [label="RFC9494
+Long-Lived Graceful Restart for BGP
+2023", shape=ellipse, URL="RFC9494.html", target="_top", tooltip="This document introduces a BGP capability called the Long-Lived Graceful Restart Capability (or LLGR Capability). The benefit of this capability is that stale routes can be retained for a longer time upon session failure than is provided for by BGP Graceful Restart (as described in RFC 4724). A well-known BGP community called LLGR_STALE is introduced for marking stale routes retained for a longer time. A second well-known BGP community called NO_LLGR is introduced for marking routes for which these procedures should not be applied. We also specify that such long-lived stale routes be treated as the least preferred and that their advertisements be limited to BGP speakers that have advertised the capability. Use of this extension is not advisable in all cases, and we provide guidelines to help determine if it is. This memo updates RFC 6368 by specifying that the LLGR_STALE community must be propagated into, or out of, the path attributes exchanged between the Provider Edge (PE) and Customer Edge (CE) routers."];
+  RFC9494 -> rev_cites;
+  RFC9815 [label="RFC9815
+BGP Link State (BGP-LS) Shortest Path
+First (SPF) Routing
+2025", shape=ellipse, URL="RFC9815.html", target="_top", tooltip="Many Massively Scaled Data Centers (MSDCs) have converged on simplified Layer 3 (L3) routing.  Furthermore, requirements for operational simplicity have led many of these MSDCs to converge on BGP as their single routing protocol for both fabric routing and Data Center Interconnect (DCI) routing.  This document describes extensions to BGP for use with BGP Link State (BGP-LS) distribution and the Shortest Path First (SPF) algorithm.  In doing this, it allows BGP to be efficiently used as both the underlay protocol and the overlay protocol in MSDCs."];
+  RFC9815 -> rev_cites;
+}

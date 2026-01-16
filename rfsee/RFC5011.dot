@@ -1,0 +1,125 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5011 [label="RFC5011
+Automated Updates of DNS Security
+(DNSSEC) Trust Anchors
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a means for automated, authenticated, and authorized updating of DNSSEC trust anchors. The method provides protection against N-1 key compromises of N keys in the trust point key set. Based on the trust established by the presence of a current anchor, other anchors may be added at the same place in the hierarchy, and, ultimately, supplant the existing anchor(s). This mechanism will require changes to resolver management behavior (but not resolver resolution behavior), and the addition of a single flag bit to the DNSKEY record. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5011;
+
+  obs [label="obsoletes", shape=box];
+  RFC5011 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5011 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5011;
+
+  cites [label="cites", shape=box];
+  RFC5011 -> cites;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  cites -> RFC4034;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  cites -> RFC4035;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3755 [label="RFC3755
+Legacy Resolver Compatibility for
+Delegation Signer (DS)
+2004", shape=ellipse, URL="RFC3755.html", target="_top", tooltip="As the DNS Security (DNSSEC) specifications have evolved, the syntax and semantics of the DNSSEC resource records (RRs) have changed.  Many deployed nameservers understand variants of these semantics.  Dangerous interactions can occur when a resolver that understands an earlier version of these semantics queries an authoritative server that understands the new delegation signer semantics, including at least one failure scenario that will cause an unsecured zone to be unresolvable.  This document changes the type codes and mnemonics of the DNSSEC RRs (SIG, KEY, and NXT) to avoid those interactions. [STANDARDS-TRACK]"];
+  cites -> RFC3755;
+  RFC4986 [label="RFC4986
+Requirements Related to DNS Security
+(DNSSEC) Trust Anchor Rollover
+2007", shape=ellipse, URL="RFC4986.html", target="_top", tooltip="Every DNS security-aware resolver must have at least one Trust Anchor to use as the basis for validating responses from DNS signed zones.  For various reasons, most DNS security-aware resolvers are expected to have several Trust Anchors.  For some operations, manual monitoring and updating of Trust Anchors may be feasible, but many operations will require automated methods for updating Trust Anchors in their security-aware resolvers.  This document identifies the requirements that must be met by an automated DNS Trust Anchor rollover solution for security-aware DNS resolvers.  This memo provides information for the Internet community."];
+  cites -> RFC4986;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5011;
+  RFC6168 [label="RFC6168
+Requirements for Management of Name
+Servers for the DNS
+2011", shape=ellipse, URL="RFC6168.html", target="_top", tooltip="Management of name servers for the Domain Name System (DNS) has traditionally been done using vendor-specific monitoring, configuration, and control methods. Although some service monitoring platforms can test the functionality of the DNS itself, there is not an interoperable way to manage (monitor, control, and configure) the internal aspects of a name server itself. This document discusses the requirements of a management system for name servers and can be used as a shopping list of needed features for such a system. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6168 -> rev_cites;
+  RFC6781 [label="RFC6781
+DNSSEC Operational Practices, Version 2
+2012", shape=ellipse, URL="RFC6781.html", target="_top", tooltip="This document describes a set of practices for operating the DNS with security extensions (DNSSEC). The target audience is zone administrators deploying DNSSEC. The document discusses operational aspects of using keys and signatures in the DNS. It discusses issues of key generation, key storage, signature generation, key rollover, and related policies. This document obsoletes RFC 4641, as it covers more operational ground and gives more up-to-date requirements with respect to key sizes and the DNSSEC operations."];
+  RFC6781 -> rev_cites;
+  RFC6840 [label="RFC6840
+Clarifications and Implementation Notes
+for DNS Security (DNSSEC)
+2013", shape=ellipse, URL="RFC6840.html", target="_top", tooltip="This document is a collection of technical clarifications to the DNS Security (DNSSEC) document set. It is meant to serve as a resource to implementors as well as a collection of DNSSEC errata that existed at the time of writing. This document updates the core DNSSEC documents (RFC 4033, RFC 4034, and RFC 4035) as well as the NSEC3 specification (RFC 5155). It also defines NSEC3 and SHA-2 (RFC 4509 and RFC 5702) as core parts of the DNSSEC specification."];
+  RFC6840 -> rev_cites;
+  RFC7344 [label="RFC7344
+Automating DNSSEC Delegation Trust
+Maintenance
+2014", shape=ellipse, URL="RFC7344.html", target="_top", tooltip="This document describes a method to allow DNS Operators to more easily update DNSSEC Key Signing Keys using the DNS as a communication channel.  The technique described is aimed at delegations in which it is currently hard to move information from the Child to Parent."];
+  RFC7344 -> rev_cites;
+  RFC7583 [label="RFC7583
+DNSSEC Key Rollover Timing
+Considerations
+2015", shape=ellipse, URL="RFC7583.html", target="_top", tooltip="This document describes the issues surrounding the timing of events in the rolling of a key in a DNSSEC-secured zone.  It presents timelines for the key rollover and explicitly identifies the relationships between the various parameters affecting the process."];
+  RFC7583 -> rev_cites;
+  RFC7958 [label="RFC7958
+DNSSEC Trust Anchor Publication for the
+Root Zone
+2016", shape=ellipse, URL="RFC7958.html", target="_top", tooltip="The root zone of the Domain Name System (DNS) has been cryptographically signed using DNS Security Extensions (DNSSEC). In order to obtain secure answers from the root zone of the DNS using DNSSEC, a client must configure a suitable trust anchor. This document describes the format and publication mechanisms IANA has used to distribute the DNSSEC trust anchors."];
+  RFC7958 -> rev_cites;
+  RFC8111 [label="RFC8111
+Locator/ID Separation Protocol Delegated
+Database Tree (LISP-DDT)
+2017", shape=ellipse, URL="RFC8111.html", target="_top", tooltip="This document describes the Locator/ID Separation Protocol Delegated Database Tree (LISP-DDT), a hierarchical distributed database that embodies the delegation of authority to provide mappings from LISP Endpoint Identifiers (EIDs) to Routing Locators (RLOCs).  It is a statically defined distribution of the EID namespace among a set of LISP-speaking servers called DDT nodes.  Each DDT node is configured as authoritative for one or more EID-prefixes, along with the set of RLOCs for Map-Servers or child DDT nodes to which more-specific EID-prefixes are delegated."];
+  RFC8111 -> rev_cites;
+  RFC8145 [label="RFC8145
+Signaling Trust Anchor Knowledge in DNS
+Security Extensions (DNSSEC)
+2017", shape=ellipse, URL="RFC8145.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) were developed to provide origin authentication and integrity protection for DNS data by using digital signatures.  These digital signatures can be verified by building a chain of trust starting from a trust anchor and proceeding down to a particular node in the DNS.  This document specifies two different ways for validating resolvers to signal to a server which keys are referenced in their chain of trust.  The data from such signaling allow zone administrators to monitor the progress of rollovers in a DNSSEC-signed zone."];
+  RFC8145 -> rev_cites;
+  RFC8483 [label="RFC8483
+Yeti DNS Testbed
+2018", shape=ellipse, URL="RFC8483.html", target="_top", tooltip="Yeti DNS is an experimental, non-production root server testbed that provides an environment where technical and operational experiments can safely be performed without risk to production root server infrastructure.  This document aims solely to document the technical and operational experience of deploying a system that is similar to but different from the Root Server system (on which the Internet's Domain Name System is designed and built)."];
+  RFC8483 -> rev_cites;
+  RFC8509 [label="RFC8509
+A Root Key Trust Anchor Sentinel for
+DNSSEC
+2018", shape=ellipse, URL="RFC8509.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) were developed to provide origin authentication and integrity protection for DNS data by using digital signatures.  These digital signatures can be verified by building a chain of trust starting from a trust anchor and proceeding down to a particular node in the DNS.  This document specifies a mechanism that will allow an end user and third parties to determine the trusted key state for the root key of the resolvers that handle that user's DNS queries.  Note that this method is only applicable for determining which keys are in the trust store for the root key."];
+  RFC8509 -> rev_cites;
+  RFC9102 [label="RFC9102
+TLS DNSSEC Chain Extension
+2021", shape=ellipse, URL="RFC9102.html", target="_top", tooltip="This document describes an experimental TLS extension for the in-band transport of the complete set of records that can be validated by DNSSEC and that are needed to perform DNS-Based Authentication of Named Entities (DANE) of a TLS server. This extension obviates the need to perform separate, out-of-band DNS lookups. When the requisite DNS records do not exist, the extension conveys a denial-of-existence proof that can be validated. This experimental extension is developed outside the IETF and is published here to guide implementation of the extension and to ensure interoperability among implementations."];
+  RFC9102 -> rev_cites;
+  RFC9364 [label="RFC9364
+DNS Security Extensions (DNSSEC)
+2023", shape=ellipse, URL="RFC9364.html", target="_top", tooltip="This document describes the DNS Security Extensions (commonly called DNSSEC) that are specified in RFCs 4033, 4034, and 4035, as well as a handful of others.  One purpose is to introduce all of the RFCs in one place so that the reader can understand the many aspects of DNSSEC.  This document does not update any of those RFCs.  A second purpose is to state that using DNSSEC for origin authentication of DNS data is the best current practice.  A third purpose is to provide a single reference for other documents that want to refer to DNSSEC."];
+  RFC9364 -> rev_cites;
+  RFC9526 [label="RFC9526
+Simple Provisioning of Public Names for
+Residential Networks
+2024", shape=ellipse, URL="RFC9526.html", target="_top", tooltip="Home network owners may have devices or services hosted on their home network that they wish to access from the Internet (i.e., from a network outside of the home network). Home networks are increasingly numbered using IPv6 addresses, which in principle makes this access simpler, but accessing home networks from the Internet requires the names and IP addresses of these devices and services to be made available in the public DNS. This document describes how a Home Naming Authority (NHA) instructs the outsourced infrastructure to publish these pieces of information in the public DNS. The names and IP addresses of the home network are set in the Public Homenet Zone by the Homenet Naming Authority (HNA), which in turn instructs an outsourced infrastructure to publish the zone on behalf of the home network owner."];
+  RFC9526 -> rev_cites;
+  RFC9718 [label="RFC9718
+DNSSEC Trust Anchor Publication for the
+Root Zone
+2025", shape=ellipse, URL="RFC9718.html", target="_top", tooltip="The root zone of the global Domain Name System (DNS) is cryptographically signed using DNS Security Extensions (DNSSEC). In order to obtain secure answers from the root zone of the DNS using DNSSEC, a client must configure a suitable trust anchor. This document describes the format and publication mechanisms IANA uses to distribute the DNSSEC trust anchors. This document obsoletes RFC 7958."];
+  RFC9718 -> rev_cites;
+}

@@ -1,0 +1,47 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6924 [label="RFC6924
+Registration of Second-Level URN
+Namespaces under ietf
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC 2648 defines the ietf URN namespace and a number of sub- namespaces.  RFC 3553 defines an additional sub-namespace, params, and creates a registry to document allocations under that.  But there is no registry that lists, in one place, all sub-namespaces of ietf.  This document creates and populates such a registry, thereby changing the mechanism defined in RFC 2648 for adding new sub- namespaces of ietf."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6924;
+
+  obs [label="obsoletes", shape=box];
+  RFC6924 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6924 -> updates;
+  RFC2648 [label="RFC2648
+A URN Namespace for IETF Documents
+1999", shape=ellipse, URL="RFC2648.html", target="_top", tooltip="This document proposes the ietf namespace, which consists of the RFC family of documents (RFCs, STDs, FYIs, and BCPs) developed by the IETF and published by the RFC Editor and the minutes of working groups (WG) and birds of a feather (BOF) meetings that occur during IETF conferences. [STANDARDS-TRACK]"];
+  updates -> RFC2648;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6924;
+
+  cites [label="cites", shape=box];
+  RFC6924 -> cites;
+  RFC2648 [label="RFC2648
+A URN Namespace for IETF Documents
+1999", shape=ellipse, URL="RFC2648.html", target="_top", tooltip="This document proposes the ietf namespace, which consists of the RFC family of documents (RFCs, STDs, FYIs, and BCPs) developed by the IETF and published by the RFC Editor and the minutes of working groups (WG) and birds of a feather (BOF) meetings that occur during IETF conferences. [STANDARDS-TRACK]"];
+  cites -> RFC2648;
+  RFC3553 [label="RFC3553
+An IETF URN Sub-namespace for Registered
+Protocol Parameters
+2003", shape=ellipse, URL="RFC3553.html", target="_top", tooltip="This document describes a new sub-delegation for the 'ietf' URN namespace for registered protocol items.  The 'ietf' URN namespace is defined in RFC 2648 as a root for persistent URIs that refer to IETF- defined resources.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3553;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6924;
+}

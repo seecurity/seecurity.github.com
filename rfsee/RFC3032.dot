@@ -1,0 +1,543 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3032 [label="RFC3032
+MPLS Label Stack Encoding
+2001", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies the encoding to be used by an LSR in order to transmit labeled packets on Point-to-Point Protocol (PPP) data links, on LAN data links, and possibly on other data links as well.  This document also specifies rules and procedures for processing the various fields of the label stack encoding. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3032;
+
+  obs [label="obsoletes", shape=box];
+  RFC3032 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3032 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3032;
+  RFC3443 [label="RFC3443
+Time To Live (TTL) Processing in Multi-
+Protocol Label Switching (MPLS) Networks
+2003", shape=ellipse, URL="RFC3443.html", target="_top", tooltip="This document describes Time To Live (TTL) processing in hierarchical Multi-Protocol Label Switching (MPLS) networks and is motivated by the need to formalize a TTL-transparent mode of operation for an MPLS label-switched path.  It updates RFC 3032, MPLS Label Stack Encoding.  TTL processing in both Pipe and Uniform Model hierarchical tunnels are specified with examples for both push and pop cases.  The document also complements RFC 3270, MPLS Support of Differentiated Services and ties together the terminology introduced in that document with TTL processing in hierarchical MPLS networks. [STANDARDS-TRACK]"];
+  RFC3443 -> updated_by;
+  RFC4182 [label="RFC4182
+Removing a Restriction on the use of
+MPLS Explicit NULL
+2005", shape=ellipse, URL="RFC4182.html", target="_top", tooltip="The label stack encoding for Multi-protocol Label Switching (MPLS) defines a reserved label value known as IPv4 Explicit NULL and a reserved label value known as IPv6 Explicit NULL. Previously, these labels were only legal when they occurred at the bottom of the MPLS label stack. This restriction is now removed, so that these label values may legally occur anywhere in the stack. This document updates RFC 3032. [STANDARDS-TRACK]"];
+  RFC4182 -> updated_by;
+  RFC5332 [label="RFC5332
+MPLS Multicast Encapsulations
+2008", shape=ellipse, URL="RFC5332.html", target="_top", tooltip="RFC 3032 established two data link layer codepoints for MPLS, used to distinguish whether the data link layer frame is carrying an MPLS unicast or an MPLS multicast packet. However, this usage was never deployed. This specification updates RFC 3032 by redefining the meaning of these two codepoints. Both codepoints can now be used to carry multicast packets. The second codepoint (formerly the multicast codepoint) is now to be used only on multiaccess media, and it is to mean the top label of the following label stack is an upstream-assigned label. RFC 3032 does not specify the destination address to be placed in the MAC DA (Medium Access Layer Destination Address) field of an ethernet frame that carries an MPLS multicast packet. This document provides that specification. This document updates RFC 3032 and RFC 4023. [STANDARDS-TRACK]"];
+  RFC5332 -> updated_by;
+  RFC3270 [label="RFC3270
+Multi-Protocol Label Switching (MPLS)
+Support of Differentiated Services
+2002", shape=ellipse, URL="RFC3270.html", target="_top", tooltip="This document defines a flexible solution for support of Differentiated Services (Diff-Serv) over Multi-Protocol Label Switching (MPLS) networks. [STANDARDS-TRACK]"];
+  RFC3270 -> updated_by;
+  RFC5129 [label="RFC5129
+Explicit Congestion Marking in MPLS
+2008", shape=ellipse, URL="RFC5129.html", target="_top", tooltip="RFC 3270 defines how to support the Diffserv architecture in MPLS networks, including how to encode Diffserv Code Points (DSCPs) in an MPLS header.  DSCPs may be encoded in the EXP field, while other uses of that field are not precluded.  RFC 3270 makes no statement about how Explicit Congestion Notification (ECN) marking might be encoded in the MPLS header.  This document defines how an operator might define some of the EXP codepoints for explicit congestion notification, without precluding other uses. [STANDARDS-TRACK]"];
+  RFC5129 -> updated_by;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  RFC5462 -> updated_by;
+  RFC5586 [label="RFC5586
+MPLS Generic Associated Channel
+2009", shape=ellipse, URL="RFC5586.html", target="_top", tooltip="This document generalizes the applicability of the pseudowire (PW) Associated Channel Header (ACH), enabling the realization of a control channel associated to MPLS Label Switched Paths (LSPs) and MPLS Sections in addition to MPLS pseudowires.  In order to identify the presence of this Associated Channel Header in the label stack, this document also assigns one of the reserved MPLS label values to the Generic Associated Channel Label (GAL), to be used as a label based exception mechanism."];
+  RFC5586 -> updated_by;
+  RFC7274 [label="RFC7274
+Allocating and Retiring Special-Purpose
+MPLS Labels
+2014", shape=ellipse, URL="RFC7274.html", target="_top", tooltip="Some MPLS labels have been allocated for specific purposes. A block of labels (0-15) has been set aside to this end; these labels are commonly called reserved labels. They will be called special-purpose labels in this document. As there are only 16 of these special-purpose labels, caution is needed in the allocation of new special-purpose labels; yet, at the same time, forward progress should be allowed when one is called for. This memo defines new procedures for the allocation and retirement of special-purpose labels, as well as a method to extend the special-purpose label space and a description of how to handle extended special-purpose labels in the data plane. Finally, this memo renames the IANA registry for special-purpose labels to Special-Purpose MPLS Label Values and creates a new registry called the Extended Special-Purpose MPLS Label Values registry. This document updates a number of previous RFCs that use the term reserved label. Specifically, this document updates RFCs 3032, 3038, 3209, 3811, 4182, 4928, 5331, 5586, 5921, 5960, 6391, 6478, and 6790."];
+  RFC7274 -> updated_by;
+  RFC9017 [label="RFC9017
+Special-Purpose Label Terminology
+2021", shape=ellipse, URL="RFC9017.html", target="_top", tooltip="This document discusses and recommends terminology that may be used when MPLS Special-Purpose Labels (SPLs) are specified and documented. This document applies that terminology change to the relevant IANA registry and also clarifies the use of the Entropy Label Indicator (7) when immediately preceded by the Extension Label (15). This document updates RFCs 3032 and 7274."];
+  RFC9017 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3032 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3032;
+  RFC3036 [label="RFC3036
+LDP Specification
+2001", shape=ellipse, URL="RFC3036.html", target="_top", tooltip="A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  RFC3036 -> rev_cites;
+  RFC3682 [label="RFC3682
+The Generalized TTL Security Mechanism
+(GTSM)
+2004", shape=ellipse, URL="RFC3682.html", target="_top", tooltip="The use of a packet's Time to Live (TTL) (IPv4) or Hop Limit (IPv6) to protect a protocol stack from CPU-utilization based attacks has been proposed in many settings (see for example, RFC 2461).  This document generalizes these techniques for use by other protocols such as BGP (RFC 1771), Multicast Source Discovery Protocol (MSDP), Bidirectional Forwarding Detection, and Label Distribution Protocol (LDP) (RFC 3036).  While the Generalized TTL Security Mechanism (GTSM) is most effective in protecting directly connected protocol peers, it can also provide a lower level of protection to multi-hop sessions.  GTSM is not directly applicable to protocols employing flooding mechanisms (e.g., multicast), and use of multi-hop GTSM should be considered on a case-by-case basis.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC3682 -> rev_cites;
+  RFC3811 [label="RFC3811
+Definitions of Textual Conventions (TCs)
+for Multiprotocol Label Switching (MPLS)
+Management
+2004", shape=ellipse, URL="RFC3811.html", target="_top", tooltip="This memo defines a Management Information Base (MIB) module which contains Textual Conventions to represent commonly used Multiprotocol Label Switching (MPLS) management information.  The intent is that these TEXTUAL CONVENTIONS (TCs) will be imported and used in MPLS related MIB modules that would otherwise define their own representations. [STANDARDS-TRACK]"];
+  RFC3811 -> rev_cites;
+  RFC3815 [label="RFC3815
+Definitions of Managed Objects for the
+Multiprotocol Label Switching (MPLS),
+Label Distribution Protocol (LDP)
+2004", shape=ellipse, URL="RFC3815.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects for the Multiprotocol Label Switching, Label Distribution Protocol (LDP). [STANDARDS-TRACK]"];
+  RFC3815 -> rev_cites;
+  RFC3919 [label="RFC3919
+Remote Network Monitoring (RMON)
+Protocol Identifiers for IPv6 and Multi
+Protocol Label Switching (MPLS)
+2004", shape=ellipse, URL="RFC3919.html", target="_top", tooltip="This memo defines additional (to those in RFC 2896) protocol identifier examples for IP version 6 and MPLS protocols. These can be used to produce valid protocolDirTable ``INDEX`` encodings, as defined by the Remote Network Monitoring MIB (Management Information Base) Version 2 [RFC2021] and the RMON Protocol Identifier Reference [RFC2895]. This document contains additional (to those in RFC 2896) protocol identifier macros for well-known protocols. A conformant implementation of the RMON-2 MIB [RFC2021] can be accomplished without the use of these protocol identifiers, and accordingly, this document does not specify any IETF standard. It is published to encourage better interoperability between RMON-2 agent implementations, by providing RMON related IPv6 and MPLS protocol information. This memo provides information for the Internet community."];
+  RFC3919 -> rev_cites;
+  RFC3985 [label="RFC3985
+Pseudo Wire Emulation Edge-to-Edge
+(PWE3) Architecture
+2005", shape=ellipse, URL="RFC3985.html", target="_top", tooltip="This document describes an architecture for Pseudo Wire Emulation Edge-to-Edge (PWE3).  It discusses the emulation of services such as Frame Relay, ATM, Ethernet, TDM, and SONET/SDH over packet switched networks (PSNs) using IP or MPLS.  It presents the architectural framework for pseudo wires (PWs), defines terminology, and specifies the various protocol elements and their functions.  This memo provides information for the Internet community."];
+  RFC3985 -> rev_cites;
+  RFC4023 [label="RFC4023
+Encapsulating MPLS in IP or Generic
+Routing Encapsulation (GRE)
+2005", shape=ellipse, URL="RFC4023.html", target="_top", tooltip="Various applications of MPLS make use of label stacks with multiple entries.  In some cases, it is possible to replace the top label of the stack with an IP-based encapsulation, thereby enabling the application to run over networks that do not have MPLS enabled in their core routers.  This document specifies two IP-based encapsulations: MPLS-in-IP and MPLS-in-GRE (Generic Routing Encapsulation).  Each of these is applicable in some circumstances. [STANDARDS-TRACK]"];
+  RFC4023 -> rev_cites;
+  RFC4110 [label="RFC4110
+A Framework for Layer 3 Provider-
+Provisioned Virtual Private Networks
+(PPVPNs)
+2005", shape=ellipse, URL="RFC4110.html", target="_top", tooltip="This document provides a framework for Layer 3 Provider-Provisioned Virtual Private Networks (PPVPNs).  This framework is intended to aid in the standardization of protocols and mechanisms for support of layer 3 PPVPNs.  It is the intent of this document to produce a coherent description of the significant technical issues that are important in the design of layer 3 PPVPN solutions.  Selection of specific approaches, making choices regarding engineering tradeoffs, and detailed protocol specification, are outside of the scope of this framework document.  This memo provides information for the Internet community."];
+  RFC4110 -> rev_cites;
+  RFC4182 [label="RFC4182
+Removing a Restriction on the use of
+MPLS Explicit NULL
+2005", shape=ellipse, URL="RFC4182.html", target="_top", tooltip="The label stack encoding for Multi-protocol Label Switching (MPLS) defines a reserved label value known as IPv4 Explicit NULL and a reserved label value known as IPv6 Explicit NULL. Previously, these labels were only legal when they occurred at the bottom of the MPLS label stack. This restriction is now removed, so that these label values may legally occur anywhere in the stack. This document updates RFC 3032. [STANDARDS-TRACK]"];
+  RFC4182 -> rev_cites;
+  RFC4202 [label="RFC4202
+Routing Extensions in Support of
+Generalized Multi-Protocol Label
+Switching (GMPLS)
+2005", shape=ellipse, URL="RFC4202.html", target="_top", tooltip="This document specifies routing extensions in support of carrying link state information for Generalized Multi-Protocol Label Switching (GMPLS).  This document enhances the routing extensions required to support MPLS Traffic Engineering (TE). [STANDARDS-TRACK]"];
+  RFC4202 -> rev_cites;
+  RFC4446 [label="RFC4446
+IANA Allocations for Pseudowire Edge to
+Edge Emulation (PWE3)
+2006", shape=ellipse, URL="RFC4446.html", target="_top", tooltip="This document allocates the fixed pseudowire identifier and other fixed protocol values for protocols that have been defined in the Pseudo Wire Edge to Edge (PWE3) working group.  Detailed IANA allocation instructions are also included in this document.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4446 -> rev_cites;
+  RFC4447 [label="RFC4447
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2006", shape=ellipse, URL="RFC4447.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDU) and transmitting them over pseudowires.  It is also possible to use pseudowires to provide low-rate Time Division Multiplexed and a Synchronous Optical NETworking circuit emulation over an MPLS-enabled network.  This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to Label Distribution Protocol (LDP).  Procedures for encapsulating Layer 2 PDUs are specified in a set of companion documents. [STANDARDS-TRACK]"];
+  RFC4447 -> rev_cites;
+  RFC4618 [label="RFC4618
+Encapsulation Methods for Transport of
+PPP/High-Level Data Link Control (HDLC)
+over MPLS Networks
+2006", shape=ellipse, URL="RFC4618.html", target="_top", tooltip="A pseudowire (PW) can be used to carry Point to Point Protocol (PPP) or High-Level Data Link Control (HDLC) Protocol Data Units over a Multiprotocol Label Switching (MPLS) network without terminating the PPP/HDLC protocol.  This enables service providers to offer emulated HDLC, or PPP link services over existing MPLS networks.  This document specifies the encapsulation of PPP/HDLC Packet Data Units (PDUs) within a pseudowire. [STANDARDS-TRACK]"];
+  RFC4618 -> rev_cites;
+  RFC4619 [label="RFC4619
+Encapsulation Methods for Transport of
+Frame Relay over Multiprotocol Label
+Switching (MPLS) Networks
+2006", shape=ellipse, URL="RFC4619.html", target="_top", tooltip="A frame relay pseudowire is a mechanism that exists between a provider's edge network nodes and that supports as faithfully as possible frame relay services over an MPLS packet switched network (PSN).  This document describes the detailed encapsulation necessary to transport frame relay packets over an MPLS network. [STANDARDS-TRACK]"];
+  RFC4619 -> rev_cites;
+  RFC4717 [label="RFC4717
+Encapsulation Methods for Transport of
+Asynchronous Transfer Mode (ATM) over
+MPLS Networks
+2006", shape=ellipse, URL="RFC4717.html", target="_top", tooltip="An Asynchronous Transfer Mode (ATM) Pseudowire (PW) is used to carry ATM cells over an MPLS network.  This enables service providers to offer emulated ATM services over existing MPLS networks.  This document specifies methods for the encapsulation of ATM cells within a pseudowire.  It also specifies the procedures for using a PW to provide an ATM service. [STANDARDS-TRACK]"];
+  RFC4717 -> rev_cites;
+  RFC4798 [label="RFC4798
+Connecting IPv6 Islands over IPv4 MPLS
+Using IPv6 Provider Edge Routers (6PE)
+2007", shape=ellipse, URL="RFC4798.html", target="_top", tooltip="This document explains how to interconnect IPv6 islands over a Multiprotocol Label Switching (MPLS)-enabled IPv4 cloud.  This approach relies on IPv6 Provider Edge routers (6PE), which are Dual Stack in order to connect to IPv6 islands and to the MPLS core, which is only required to run IPv4 MPLS.  The 6PE routers exchange the IPv6 reachability information transparently over the core using the Multiprotocol Border Gateway Protocol (MP-BGP) over IPv4.  In doing so, the BGP Next Hop field is used to convey the IPv4 address of the 6PE router so that dynamically established IPv4-signaled MPLS Label Switched Paths (LSPs) can be used without explicit tunnel configuration. [STANDARDS-TRACK]"];
+  RFC4798 -> rev_cites;
+  RFC4803 [label="RFC4803
+Generalized Multiprotocol Label
+Switching (GMPLS) Label Switching Router
+(LSR) Management Information Base
+2007", shape=ellipse, URL="RFC4803.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects to configure and/or monitor a Generalized Multiprotocol Label Switching (GMPLS) Label Switching Router (LSR). [STANDARDS-TRACK]"];
+  RFC4803 -> rev_cites;
+  RFC4814 [label="RFC4814
+Hash and Stuffing: Overlooked Factors in
+Network Device Benchmarking
+2007", shape=ellipse, URL="RFC4814.html", target="_top", tooltip="Test engineers take pains to declare all factors that affect a given measurement, including intended load, packet length, test duration, and traffic orientation.  However, current benchmarking practice overlooks two factors that have a profound impact on test results.  First, existing methodologies do not require the reporting of addresses or other test traffic contents, even though these fields can affect test results.  Second, stuff bits and bytes inserted in test traffic by some link-layer technologies add significant and variable overhead, which in turn affects test results.  This document describes the effects of these factors; recommends guidelines for test traffic contents; and offers formulas for determining the probability of bit- and byte-stuffing in test traffic.  This memo provides information for the Internet community."];
+  RFC4814 -> rev_cites;
+  RFC4817 [label="RFC4817
+Encapsulation of MPLS over Layer 2
+Tunneling Protocol Version 3
+2007", shape=ellipse, URL="RFC4817.html", target="_top", tooltip="The Layer 2 Tunneling Protocol, Version 3 (L2TPv3) defines a protocol for tunneling a variety of payload types over IP networks.  This document defines how to carry an MPLS label stack and its payload over the L2TPv3 data encapsulation.  This enables an application that traditionally requires an MPLS-enabled core network, to utilize an L2TPv3 encapsulation over an IP network instead. [STANDARDS-TRACK]"];
+  RFC4817 -> rev_cites;
+  RFC4905 [label="RFC4905
+Encapsulation Methods for Transport of
+Layer 2 Frames over MPLS Networks
+2007", shape=ellipse, URL="RFC4905.html", target="_top", tooltip="This document describes methods for encapsulating the Protocol Data Units (PDUs) of layer 2 protocols such as Frame Relay, Asynchronous Transfer Mode (ATM), or Ethernet for transport across an MPLS network.  This document describes the so-called draft-martini protocol, which has since been superseded by the Pseudowire Emulation Edge to Edge Working Group specifications described in RFC 4447 and related documents.  This memo defines a Historic Document for the Internet community."];
+  RFC4905 -> rev_cites;
+  RFC4906 [label="RFC4906
+Transport of Layer 2 Frames Over MPLS
+2007", shape=ellipse, URL="RFC4906.html", target="_top", tooltip="This document describes methods for transporting the Protocol Data Units (PDUs) of layer 2 protocols such as Frame Relay, Asynchronous Transfer Mode (ATM) Adaption Layer 5 (AAL5), and Ethernet, and for providing a Synchronized Optical Network (SONET) circuit emulation service across an MPLS network.  This document describes the so-called draft-martini protocol, which has since been superseded by the Pseudowire Emulation Edge to Edge Working Group specifications described in RFC 4447 and related documents.  This memo defines a Historic Document for the Internet community."];
+  RFC4906 -> rev_cites;
+  RFC4950 [label="RFC4950
+ICMP Extensions for Multiprotocol Label
+Switching
+2007", shape=ellipse, URL="RFC4950.html", target="_top", tooltip="This memo defines an extension object that can be appended to selected multi-part ICMP messages.  This extension permits Label Switching Routers to append MPLS information to ICMP messages, and has already been widely deployed. [STANDARDS-TRACK]"];
+  RFC4950 -> rev_cites;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  RFC5036 -> rev_cites;
+  RFC5082 [label="RFC5082
+The Generalized TTL Security Mechanism
+(GTSM)
+2007", shape=ellipse, URL="RFC5082.html", target="_top", tooltip="The use of a packet's Time to Live (TTL) (IPv4) or Hop Limit (IPv6) to verify whether the packet was originated by an adjacent node on a connected link has been used in many recent protocols.  This document generalizes this technique.  This document obsoletes Experimental RFC 3682. [STANDARDS-TRACK]"];
+  RFC5082 -> rev_cites;
+  RFC5085 [label="RFC5085
+Pseudowire Virtual Circuit Connectivity
+Verification (VCCV): A Control Channel
+for Pseudowires
+2007", shape=ellipse, URL="RFC5085.html", target="_top", tooltip="This document describes Virtual Circuit Connectivity Verification (VCCV), which provides a control channel that is associated with a pseudowire (PW), as well as the corresponding operations and management functions (such as connectivity verification) to be used over that control channel.  VCCV applies to all supported access circuit and transport types currently defined for PWs. [STANDARDS-TRACK]"];
+  RFC5085 -> rev_cites;
+  RFC5087 [label="RFC5087
+Time Division Multiplexing over IP
+(TDMoIP)
+2007", shape=ellipse, URL="RFC5087.html", target="_top", tooltip="Time Division Multiplexing over IP (TDMoIP) is a structure-aware method for transporting Time Division Multiplexed (TDM) signals using pseudowires (PWs).  Being structure-aware, TDMoIP is able to ensure TDM structure integrity, and thus withstand network degradations better than structure-agnostic transport.  Structure-aware methods can distinguish individual channels, enabling packet loss concealment and bandwidth conservation.  Accessibility of TDM signaling facilitates mechanisms that exploit or manipulate signaling.  This memo provides information for the Internet community."];
+  RFC5087 -> rev_cites;
+  RFC5102 [label="RFC5102
+Information Model for IP Flow
+Information Export
+2008", shape=ellipse, URL="RFC5102.html", target="_top", tooltip="This memo defines an information model for the IP Flow Information eXport (IPFIX) protocol.  It is used by the IPFIX protocol for encoding measured traffic information and information related to the traffic Observation Point, the traffic Metering Process, and the Exporting Process.  Although developed for the IPFIX protocol, the model is defined in an open way that easily allows using it in other protocols, interfaces, and applications. [STANDARDS-TRACK]"];
+  RFC5102 -> rev_cites;
+  RFC5129 [label="RFC5129
+Explicit Congestion Marking in MPLS
+2008", shape=ellipse, URL="RFC5129.html", target="_top", tooltip="RFC 3270 defines how to support the Diffserv architecture in MPLS networks, including how to encode Diffserv Code Points (DSCPs) in an MPLS header.  DSCPs may be encoded in the EXP field, while other uses of that field are not precluded.  RFC 3270 makes no statement about how Explicit Congestion Notification (ECN) marking might be encoded in the MPLS header.  This document defines how an operator might define some of the EXP codepoints for explicit congestion notification, without precluding other uses. [STANDARDS-TRACK]"];
+  RFC5129 -> rev_cites;
+  RFC5150 [label="RFC5150
+Label Switched Path Stitching with
+Generalized Multiprotocol Label
+Switching Traffic Engineering (GMPLS TE)
+2008", shape=ellipse, URL="RFC5150.html", target="_top", tooltip="In certain scenarios, there may be a need to combine several Generalized Multiprotocol Label Switching (GMPLS) Label Switched Paths (LSPs) such that a single end-to-end (e2e) LSP is realized and all traffic from one constituent LSP is switched onto the next LSP. We will refer to this as LSP stitching, the key requirement being that a constituent LSP not be allocated to more than one e2e LSP. The constituent LSPs will be referred to as LSP segments (S-LSPs). This document describes extensions to the existing GMPLS signaling protocol (Resource Reservation Protocol-Traffic Engineering (RSVP-TE)) to establish e2e LSPs created from S-LSPs, and describes how the LSPs can be managed using the GMPLS signaling and routing protocols. It may be possible to configure a GMPLS node to switch the traffic from an LSP for which it is the egress, to another LSP for which it is the ingress, without requiring any signaling or routing extensions whatsoever and such that the operation is completely transparent to other nodes. This will also result in LSP stitching in the data plane. However, this document does not cover this scenario of LSP stitching. [STANDARDS-TRACK]"];
+  RFC5150 -> rev_cites;
+  RFC5331 [label="RFC5331
+MPLS Upstream Label Assignment and
+Context-Specific Label Space
+2008", shape=ellipse, URL="RFC5331.html", target="_top", tooltip="RFC 3031 limits the MPLS architecture to downstream-assigned MPLS labels.  This document introduces the notion of upstream-assigned MPLS labels.  It describes the procedures for upstream MPLS label assignment and introduces the concept of a Context-Specific Label Space. [STANDARDS-TRACK]"];
+  RFC5331 -> rev_cites;
+  RFC5332 [label="RFC5332
+MPLS Multicast Encapsulations
+2008", shape=ellipse, URL="RFC5332.html", target="_top", tooltip="RFC 3032 established two data link layer codepoints for MPLS, used to distinguish whether the data link layer frame is carrying an MPLS unicast or an MPLS multicast packet. However, this usage was never deployed. This specification updates RFC 3032 by redefining the meaning of these two codepoints. Both codepoints can now be used to carry multicast packets. The second codepoint (formerly the multicast codepoint) is now to be used only on multiaccess media, and it is to mean the top label of the following label stack is an upstream-assigned label. RFC 3032 does not specify the destination address to be placed in the MAC DA (Medium Access Layer Destination Address) field of an ethernet frame that carries an MPLS multicast packet. This document provides that specification. This document updates RFC 3032 and RFC 4023. [STANDARDS-TRACK]"];
+  RFC5332 -> rev_cites;
+  RFC5388 [label="RFC5388
+Information Model and XML Data Model for
+Traceroute Measurements
+2008", shape=ellipse, URL="RFC5388.html", target="_top", tooltip="This document describes a standard way to store the configuration and the results of traceroute measurements.  This document first describes the terminology used in this document and the traceroute tool itself; afterwards, the common information model is defined, dividing the information elements into two semantically separated groups (configuration elements and results elements).  Moreover, an additional element is defined to relate configuration elements and results elements by means of a common unique identifier.  On the basis of the information model, a data model based on XML is defined to store the results of traceroute measurements. [STANDARDS-TRACK]"];
+  RFC5388 -> rev_cites;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  RFC5462 -> rev_cites;
+  RFC5477 [label="RFC5477
+Information Model for Packet Sampling
+Exports
+2009", shape=ellipse, URL="RFC5477.html", target="_top", tooltip="This memo defines an information model for the Packet SAMPling (PSAMP) protocol.  It is used by the PSAMP protocol for encoding sampled packet data and information related to the Sampling process.  As the PSAMP protocol is based on the IP Flow Information eXport (IPFIX) protocol, this information model is an extension to the IPFIX information model. [STANDARDS-TRACK]"];
+  RFC5477 -> rev_cites;
+  RFC5565 [label="RFC5565
+Softwire Mesh Framework
+2009", shape=ellipse, URL="RFC5565.html", target="_top", tooltip="The Internet needs to be able to handle both IPv4 and IPv6 packets.  However, it is expected that some constituent networks of the Internet will be single-protocol networks.  One kind of single-protocol network can parse only IPv4 packets and can process only IPv4 routing information; another kind can parse only IPv6 packets and can process only IPv6 routing information.  It is nevertheless required that either kind of single-protocol network be able to provide transit service for the other protocol.  This is done by passing the other kind of routing information from one edge of the single-protocol network to the other, and by tunneling the other kind of data packet from one edge to the other.  The tunnels are known as softwires.  This framework document explains how the routing information and the data packets of one protocol are passed through a single-protocol network of the other protocol.  The document is careful to specify when this can be done with existing technology and when it requires the development of new or modified technology. [STANDARDS-TRACK]"];
+  RFC5565 -> rev_cites;
+  RFC5586 [label="RFC5586
+MPLS Generic Associated Channel
+2009", shape=ellipse, URL="RFC5586.html", target="_top", tooltip="This document generalizes the applicability of the pseudowire (PW) Associated Channel Header (ACH), enabling the realization of a control channel associated to MPLS Label Switched Paths (LSPs) and MPLS Sections in addition to MPLS pseudowires.  In order to identify the presence of this Associated Channel Header in the label stack, this document also assigns one of the reserved MPLS label values to the Generic Associated Channel Label (GAL), to be used as a label based exception mechanism."];
+  RFC5586 -> rev_cites;
+  RFC5695 [label="RFC5695
+MPLS Forwarding Benchmarking Methodology
+for IP Flows
+2009", shape=ellipse, URL="RFC5695.html", target="_top", tooltip="This document describes a methodology specific to the benchmarking of Multiprotocol Label Switching (MPLS) forwarding devices, limited to the most common MPLS packet forwarding scenarios and delay measurements for each, considering IP flows.  It builds upon the tenets set forth in RFC 2544, RFC 1242, and other IETF Benchmarking Methodology Working Group (BMWG) efforts.  This document seeks to extend these efforts to the MPLS paradigm.  This memo provides information for the Internet community."];
+  RFC5695 -> rev_cites;
+  RFC5704 [label="RFC5704
+Uncoordinated Protocol Development
+Considered Harmful
+2009", shape=ellipse, URL="RFC5704.html", target="_top", tooltip="This document identifies problems that may result from the absence of formal coordination and joint development on protocols of mutual interest between standards development organizations (SDOs). Some of these problems may cause significant harm to the Internet. The document suggests that a robust procedure is required prevent this from occurring in the future. The IAB has selected a number of case studies, such as Transport MPLS (T-MPLS), as recent examples to describe the hazard to the Internet architecture that results from uncoordinated adaptation of a protocol. This experience has resulted in a considerable improvement in the relationship between the IETF and the ITU-T. In particular, this was achieved via the establishment of the Joint working team on MPLS-TP. In addition, the leadership of the two organizations agreed to improve inter-organizational working practices so as to avoid conflict in the future between ITU-T Recommendations and IETF RFCs. Whilst we use ITU-T - IETF interactions in these case studies, the scope of the document extends to all SDOs that have an overlapping protocol interest with the IETF. This memo provides information for the Internet community."];
+  RFC5704 -> rev_cites;
+  RFC5921 [label="RFC5921
+A Framework for MPLS in Transport
+Networks
+2010", shape=ellipse, URL="RFC5921.html", target="_top", tooltip="This document specifies an architectural framework for the application of Multiprotocol Label Switching (MPLS) to the construction of packet-switched transport networks. It describes a common set of protocol functions -- the MPLS Transport Profile (MPLS-TP) -- that supports the operational models and capabilities typical of such networks, including signaled or explicitly provisioned bidirectional connection-oriented paths, protection and restoration mechanisms, comprehensive Operations, Administration, and Maintenance (OAM) functions, and network operation in the absence of a dynamic control plane or IP forwarding support. Some of these functions are defined in existing MPLS specifications, while others require extensions to existing specifications to meet the requirements of the MPLS-TP. This document defines the subset of the MPLS-TP applicable in general and to point-to-point transport paths. The remaining subset, applicable specifically to point-to-multipoint transport paths, is outside the scope of this document. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network as defined by the ITU-T. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5921 -> rev_cites;
+  RFC5960 [label="RFC5960
+MPLS Transport Profile Data Plane
+Architecture
+2010", shape=ellipse, URL="RFC5960.html", target="_top", tooltip="The Multiprotocol Label Switching Transport Profile (MPLS-TP) is the set of MPLS protocol functions applicable to the construction and operation of packet-switched transport networks. This document specifies the subset of these functions that comprises the MPLS-TP data plane: the architectural layer concerned with the encapsulation and forwarding of packets within an MPLS-TP network. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network. [STANDARDS-TRACK]"];
+  RFC5960 -> rev_cites;
+  RFC5994 [label="RFC5994
+Application of Ethernet Pseudowires to
+MPLS Transport Networks
+2010", shape=ellipse, URL="RFC5994.html", target="_top", tooltip="Ethernet pseudowires are widely deployed to support packet transport of Ethernet services. These services in-turn provide transport for a variety of client networks, e.g., IP and MPLS. This document uses procedures defined in the existing IETF specifications of Ethernet pseudowires carried over MPLS networks. Many of the requirements for the services provided by the mechanisms explained in this document are also recognized by the MPLS transport profile (MPLS-TP) design effort formed jointly by the IETF and ITU-T. The solution described here does not address all of the MPLS-TP requirements, but it provides a viable form of packet transport service using tools that are already available. This document also serves as an indication that existing MPLS techniques form an appropriate basis for the design of a fully- featured packet transport solution addressing all of the requirements of MPLS-TP. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5994 -> rev_cites;
+  RFC6073 [label="RFC6073
+Segmented Pseudowire
+2011", shape=ellipse, URL="RFC6073.html", target="_top", tooltip="This document describes how to connect pseudowires (PWs) between different Packet Switched Network (PSN) domains or between two or more distinct PW control plane domains, where a control plane domain uses a common control plane protocol or instance of that protocol for a given PW.  The different PW control plane domains may belong to independent autonomous systems, or the PSN technology is heterogeneous, or a PW might need to be aggregated at a specific PSN point.  The PW packet data units are simply switched from one PW to another without changing the PW payload. [STANDARDS-TRACK]"];
+  RFC6073 -> rev_cites;
+  RFC6077 [label="RFC6077
+Open Research Issues in Internet
+Congestion Control
+2011", shape=ellipse, URL="RFC6077.html", target="_top", tooltip="This document describes some of the open problems in Internet congestion control that are known today.  This includes several new challenges that are becoming important as the network grows, as well as some issues that have been known for many years.  These challenges are generally considered to be open research topics that may require more study or application of innovative techniques before Internet-scale solutions can be confidently engineered and deployed.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6077 -> rev_cites;
+  RFC6178 [label="RFC6178
+Label Edge Router Forwarding of IPv4
+Option Packets
+2011", shape=ellipse, URL="RFC6178.html", target="_top", tooltip="This document specifies how Label Edge Routers (LERs) should behave when determining whether to MPLS encapsulate an IPv4 packet with header options.  Lack of a formal standard has resulted in different LER forwarding behaviors for IPv4 packets with header options despite being associated with a prefix-based Forwarding Equivalence Class (FEC).  IPv4 option packets that belong to a prefix-based FEC, yet are forwarded into an IPv4/MPLS network without being MPLS- encapsulated, present a security risk against the MPLS infrastructure.  Further, LERs that are unable to MPLS encapsulate IPv4 packets with header options cannot operate in certain MPLS environments.  While this newly defined LER behavior is mandatory to implement, it is optional to invoke. [STANDARDS-TRACK]"];
+  RFC6178 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6378 [label="RFC6378
+MPLS Transport Profile (MPLS-TP) Linear
+Protection
+2011", shape=ellipse, URL="RFC6378.html", target="_top", tooltip="This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunications Union Telecommunications Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network as defined by the ITU-T. This document addresses the functionality described in the MPLS-TP Survivability Framework document (RFC 6372) and defines a protocol that may be used to fulfill the function of the Protection State Coordination for linear protection, as described in that document. [STANDARDS-TRACK]"];
+  RFC6378 -> rev_cites;
+  RFC6389 [label="RFC6389
+MPLS Upstream Label Assignment for LDP
+2011", shape=ellipse, URL="RFC6389.html", target="_top", tooltip="This document describes procedures for distributing upstream-assigned labels for the Label Distribution Protocol (LDP).  It also describes how these procedures can be used for avoiding branch Label Switching Router (LSR) traffic replication on a LAN for LDP point-to-multipoint (P2MP) Label Switched Paths (LSPs). [STANDARDS-TRACK]"];
+  RFC6389 -> rev_cites;
+  RFC6391 [label="RFC6391
+Flow-Aware Transport of Pseudowires over
+an MPLS Packet Switched Network
+2011", shape=ellipse, URL="RFC6391.html", target="_top", tooltip="Where the payload of a pseudowire comprises a number of distinct flows, it can be desirable to carry those flows over the Equal Cost Multiple Paths (ECMPs) that exist in the packet switched network. Most forwarding engines are able to generate a hash of the MPLS label stack and use this mechanism to balance MPLS flows over ECMPs. This document describes a method of identifying the flows, or flow groups, within pseudowires such that Label Switching Routers can balance flows at a finer granularity than individual pseudowires. The mechanism uses an additional label in the MPLS label stack. [STANDARDS-TRACK]"];
+  RFC6391 -> rev_cites;
+  RFC6790 [label="RFC6790
+The Use of Entropy Labels in MPLS
+Forwarding
+2012", shape=ellipse, URL="RFC6790.html", target="_top", tooltip="Load balancing is a powerful tool for engineering traffic across a network.  This memo suggests ways of improving load balancing across MPLS networks using the concept of entropy labels.  It defines the concept, describes why entropy labels are useful, enumerates properties of entropy labels that allow maximal benefit, and shows how they can be signaled and used for various applications.  This document updates RFCs 3031, 3107, 3209, and 5036. [STANDARDS-TRACK]"];
+  RFC6790 -> rev_cites;
+  RFC7060 [label="RFC7060
+Using LDP Multipoint Extensions on
+Targeted LDP Sessions
+2013", shape=ellipse, URL="RFC7060.html", target="_top", tooltip="Label Distribution Protocol (LDP) can be used to set up Point-to-Multipoint (P2MP) and Multipoint-to-Multipoint (MP2MP) Label Switched Paths.  However, the specification for the Multipoint Extensions to LDP presupposes that the two endpoints of an LDP session are directly connected.  The LDP base specification allows for the case where the two endpoints of an LDP session are not directly connected; such a session is known as a Targeted LDP session.  This document provides the specification for using the LDP Multipoint Extensions over a Targeted LDP session."];
+  RFC7060 -> rev_cites;
+  RFC7133 [label="RFC7133
+Information Elements for Data Link Layer
+Traffic Measurement
+2014", shape=ellipse, URL="RFC7133.html", target="_top", tooltip="This document describes Information Elements related to the data link layer.  They are used by the IP Flow Information Export (IPFIX) protocol for encoding measured data link layer traffic information."];
+  RFC7133 -> rev_cites;
+  RFC7213 [label="RFC7213
+MPLS Transport Profile (MPLS-TP) Next-
+Hop Ethernet Addressing
+2014", shape=ellipse, URL="RFC7213.html", target="_top", tooltip="The MPLS Transport Profile (MPLS-TP) is the set of MPLS protocol functions applicable to the construction and operation of packet- switched transport networks.  This document presents considerations for link-layer addressing of Ethernet frames carrying MPLS-TP packets."];
+  RFC7213 -> rev_cites;
+  RFC7274 [label="RFC7274
+Allocating and Retiring Special-Purpose
+MPLS Labels
+2014", shape=ellipse, URL="RFC7274.html", target="_top", tooltip="Some MPLS labels have been allocated for specific purposes. A block of labels (0-15) has been set aside to this end; these labels are commonly called reserved labels. They will be called special-purpose labels in this document. As there are only 16 of these special-purpose labels, caution is needed in the allocation of new special-purpose labels; yet, at the same time, forward progress should be allowed when one is called for. This memo defines new procedures for the allocation and retirement of special-purpose labels, as well as a method to extend the special-purpose label space and a description of how to handle extended special-purpose labels in the data plane. Finally, this memo renames the IANA registry for special-purpose labels to Special-Purpose MPLS Label Values and creates a new registry called the Extended Special-Purpose MPLS Label Values registry. This document updates a number of previous RFCs that use the term reserved label. Specifically, this document updates RFCs 3032, 3038, 3209, 3811, 4182, 4928, 5331, 5586, 5921, 5960, 6391, 6478, and 6790."];
+  RFC7274 -> rev_cites;
+  RFC7325 [label="RFC7325
+MPLS Forwarding Compliance and
+Performance Requirements
+2014", shape=ellipse, URL="RFC7325.html", target="_top", tooltip="This document provides guidelines for implementers regarding MPLS forwarding and a basis for evaluations of forwarding implementations.  Guidelines cover many aspects of MPLS forwarding.  Topics are highlighted where implementers might otherwise overlook practical requirements which are unstated or under emphasized or are optional for conformance to RFCs but are often considered mandatory by providers."];
+  RFC7325 -> rev_cites;
+  RFC7439 [label="RFC7439
+Gap Analysis for Operating IPv6-Only
+MPLS Networks
+2015", shape=ellipse, URL="RFC7439.html", target="_top", tooltip="This document reviews the Multiprotocol Label Switching (MPLS) protocol suite in the context of IPv6 and identifies gaps that must be addressed in order to allow MPLS-related protocols and applications to be used with IPv6-only networks. This document is intended to focus on gaps in the standards defining the MPLS suite, and is not intended to highlight particular vendor implementations (or lack thereof) in the context of IPv6-only MPLS functionality. In the data plane, MPLS fully supports IPv6, and MPLS labeled packets can be carried over IPv6 packets in a variety of encapsulations. However, support for IPv6 among MPLS control-plane protocols, MPLS applications, MPLS Operations, Administration, and Maintenance (OAM), and MIB modules is mixed, with some protocols having major gaps. For most major gaps, work is in progress to upgrade the relevant protocols."];
+  RFC7439 -> rev_cites;
+  RFC7490 [label="RFC7490
+Remote Loop-Free Alternate (LFA) Fast
+Reroute (FRR)
+2015", shape=ellipse, URL="RFC7490.html", target="_top", tooltip="This document describes an extension to the basic IP fast reroute mechanism, described in RFC 5286, that provides additional backup connectivity for point-to-point link failures when none can be provided by the basic mechanisms."];
+  RFC7490 -> rev_cites;
+  RFC7510 [label="RFC7510
+Encapsulating MPLS in UDP
+2015", shape=ellipse, URL="RFC7510.html", target="_top", tooltip="This document specifies an IP-based encapsulation for MPLS, called MPLS-in-UDP for situations where UDP (User Datagram Protocol) encapsulation is preferred to direct use of MPLS, e.g., to enable UDP-based ECMP (Equal-Cost Multipath) or link aggregation.  The MPLS- in-UDP encapsulation technology must only be deployed within a single network (with a single network operator) or networks of an adjacent set of cooperating network operators where traffic is managed to avoid congestion, rather than over the Internet where congestion control is required.  Usage restrictions apply to MPLS-in-UDP usage for traffic that is not congestion controlled and to UDP zero checksum usage with IPv6."];
+  RFC7510 -> rev_cites;
+  RFC7708 [label="RFC7708
+Using a Generic Associated Channel Label
+as a Virtual Circuit Connectivity
+Verification Channel Indicator
+2015", shape=ellipse, URL="RFC7708.html", target="_top", tooltip="The Virtual Circuit Connectivity Verification (VCCV) protocol specified in RFC 5085 provides a control channel (CC) that is associated with a pseudowire (PW).  This document specifies an additional VCCV control channel type to be used with pseudowires that do not use the PW Control Word and that are carried over an MPLS network.  This new VCCV CC type uses the Generic Associated Channel Label defined in RFC 5586 to distinguish VCCV packets from packets carrying user data.  This new VCCV CC type introduces compatibility with the method of MPLS Label Switched Path Operations, Administration, and Maintenance (OAM) identification, particularly in MPLS Transport Profile (MPLS-TP) networks (RFC 5921)."];
+  RFC7708 -> rev_cites;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  RFC8029 -> rev_cites;
+  RFC8077 [label="RFC8077
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2017", shape=ellipse, URL="RFC8077.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDUs) and then transmitting them over pseudowires (PWs). It is also possible to use pseudowires to provide low-rate Time-Division Multiplexed and Synchronous Optical NETworking circuit emulation over an MPLS-enabled network. This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to the Label Distribution Protocol (LDP). Procedures for encapsulating Layer 2 PDUs are specified in other documents. This document is a rewrite of RFC 4447 for publication as an Internet Standard."];
+  RFC8077 -> rev_cites;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  RFC8277 -> rev_cites;
+  RFC8294 [label="RFC8294
+Common YANG Data Types for the Routing
+Area
+2017", shape=ellipse, URL="RFC8294.html", target="_top", tooltip="This document defines a collection of common data types using the YANG data modeling language.  These derived common types are designed to be imported by other modules defined in the routing area."];
+  RFC8294 -> rev_cites;
+  RFC8296 [label="RFC8296
+Encapsulation for Bit Index Explicit
+Replication (BIER) in MPLS and Non-MPLS
+Networks
+2018", shape=ellipse, URL="RFC8296.html", target="_top", tooltip="Bit Index Explicit Replication (BIER) is an architecture that provides optimal multicast forwarding through a multicast domain, without requiring intermediate routers to maintain any per-flow state or to engage in an explicit tree-building protocol.  When a multicast data packet enters the domain, the ingress router determines the set of egress routers to which the packet needs to be sent.  The ingress router then encapsulates the packet in a BIER header.  The BIER header contains a bit string in which each bit represents exactly one egress router in the domain; to forward the packet to a given set of egress routers, the bits corresponding to those routers are set in the BIER header.  The details of the encapsulation depend on the type of network used to realize the multicast domain.  This document specifies a BIER encapsulation that can be used in an MPLS network or, with slight differences, in a non-MPLS network."];
+  RFC8296 -> rev_cites;
+  RFC8317 [label="RFC8317
+Ethernet-Tree (E-Tree) Support in
+Ethernet VPN (EVPN) and Provider
+Backbone Bridging EVPN (PBB-EVPN)
+2018", shape=ellipse, URL="RFC8317.html", target="_top", tooltip="The MEF Forum (MEF) has defined a rooted-multipoint Ethernet service known as Ethernet-Tree (E-Tree).  A solution framework for supporting this service in MPLS networks is described in RFC 7387, A Framework for Ethernet-Tree (E-Tree) Service over a Multiprotocol Label Switching (MPLS) Network.  This document discusses how those functional requirements can be met with a solution based on RFC 7432, BGP MPLS Based Ethernet VPN (EVPN), with some extensions and a description of how such a solution can offer a more efficient implementation of these functions than that of RFC 7796, Ethernet-Tree (E-Tree) Support in Virtual Private LAN Service (VPLS).  This document makes use of the most significant bit of the Tunnel Type field (in the P-Multicast Service Interface (PMSI) Tunnel attribute) governed by the IANA registry created by RFC 7385; hence, it updates RFC 7385 accordingly."];
+  RFC8317 -> rev_cites;
+  RFC8401 [label="RFC8401
+Bit Index Explicit Replication (BIER)
+Support via IS-IS
+2018", shape=ellipse, URL="RFC8401.html", target="_top", tooltip="This document defines IS-IS extensions to support multicast forwarding using the Bit Index Explicit Replication (BIER) architecture."];
+  RFC8401 -> rev_cites;
+  RFC8503 [label="RFC8503
+BGP/MPLS Layer 3 VPN Multicast
+Management Information Base
+2018", shape=ellipse, URL="RFC8503.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects to configure and/or monitor Multicast communication over IP Virtual Private Networks (VPNs) supported by the Multiprotocol Label Switching/Border Gateway Protocol (MPLS/BGP) on a Provider Edge (PE) router."];
+  RFC8503 -> rev_cites;
+  RFC8596 [label="RFC8596
+MPLS Transport Encapsulation for the
+Service Function Chaining (SFC) Network
+Service Header (NSH)
+2019", shape=ellipse, URL="RFC8596.html", target="_top", tooltip="This document describes how to use a Service Function Forwarder (SFF) Label (similar to a pseudowire label or VPN label) to indicate the presence of a Service Function Chaining (SFC) Network Service Header (NSH) between an MPLS label stack and the packet original packet/ frame.  This allows SFC packets using the NSH to be forwarded between SFFs over an MPLS network, and to select one of multiple SFFs in the destination MPLS node."];
+  RFC8596 -> rev_cites;
+  RFC8660 [label="RFC8660
+Segment Routing with the MPLS Data Plane
+2019", shape=ellipse, URL="RFC8660.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm.  A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header.  In the MPLS data plane, the SR header is instantiated through a label stack.  This document specifies the forwarding behavior to allow instantiating SR over the MPLS data plane (SR-MPLS)."];
+  RFC8660 -> rev_cites;
+  RFC8663 [label="RFC8663
+MPLS Segment Routing over IP
+2019", shape=ellipse, URL="RFC8663.html", target="_top", tooltip="MPLS Segment Routing (SR-MPLS) is a method of source routing a packet through an MPLS data plane by imposing a stack of MPLS labels on the packet to specify the path together with any packet-specific instructions to be executed on it. SR-MPLS can be leveraged to realize a source-routing mechanism across MPLS, IPv4, and IPv6 data planes by using an MPLS label stack as a source-routing instruction set while making no changes to SR-MPLS specifications and interworking with SR-MPLS implementations. This document describes how SR-MPLS-capable routers and IP-only routers can seamlessly coexist and interoperate through the use of SR-MPLS label stacks and IP encapsulation/tunneling such as MPLS-over-UDP as defined in RFC 7510."];
+  RFC8663 -> rev_cites;
+  RFC8664 [label="RFC8664
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Segment
+Routing
+2019", shape=ellipse, URL="RFC8664.html", target="_top", tooltip="Segment Routing (SR) enables any head-end node to select any path without relying on a hop-by-hop signaling technique (e.g., LDP or RSVP-TE). It depends only on segments that are advertised by link-state Interior Gateway Protocols (IGPs). An SR path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), an explicit configuration, or a Path Computation Element (PCE). This document specifies extensions to the Path Computation Element Communication Protocol (PCEP) that allow a stateful PCE to compute and initiate Traffic-Engineering (TE) paths, as well as a Path Computation Client (PCC) to request a path subject to certain constraints and optimization criteria in SR networks. This document updates RFC 8408."];
+  RFC8664 -> rev_cites;
+  RFC8669 [label="RFC8669
+Segment Routing Prefix Segment
+Identifier Extensions for BGP
+2019", shape=ellipse, URL="RFC8669.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm. A node steers a packet through an ordered list of instructions called segments. A segment can represent any instruction, topological or service based. The ingress node prepends an SR header to a packet containing a set of segment identifiers (SIDs). Each SID represents a topological or service-based instruction. Per-flow state is maintained only on the ingress node of the SR domain. An SR domain is defined as a single administrative domain for global SID assignment. This document defines an optional, transitive BGP attribute for announcing information about BGP Prefix Segment Identifiers (BGP Prefix-SIDs) and the specification for SR-MPLS SIDs."];
+  RFC8669 -> rev_cites;
+  RFC8957 [label="RFC8957
+Synonymous Flow Label Framework
+2021", shape=ellipse, URL="RFC8957.html", target="_top", tooltip="RFC 8372 (MPLS Flow Identification Considerations) describes the requirement for introducing flow identities within the MPLS architecture.  This document describes a method of accomplishing this by using a technique called Synonymous Flow Labels in which labels that mimic the behavior of other labels provide the identification service.  These identifiers can be used to trigger per-flow operations on the packet at the receiving label switching router."];
+  RFC8957 -> rev_cites;
+  RFC8960 [label="RFC8960
+A YANG Data Model for MPLS Base
+2020", shape=ellipse, URL="RFC8960.html", target="_top", tooltip="This document contains a specification of the MPLS base YANG data model.  The MPLS base YANG data model serves as a base framework for configuring and managing an MPLS switching subsystem on an MPLS-enabled router.  It is expected that other MPLS YANG data models (e.g., MPLS Label Switched Path (LSP) static, LDP, or RSVP-TE YANG data models) will augment the MPLS base YANG data model."];
+  RFC8960 -> rev_cites;
+  RFC8964 [label="RFC8964
+Deterministic Networking (DetNet) Data
+Plane: MPLS
+2021", shape=ellipse, URL="RFC8964.html", target="_top", tooltip="This document specifies the Deterministic Networking (DetNet) data plane when operating over an MPLS Packet Switched Network.  It leverages existing pseudowire (PW) encapsulations and MPLS Traffic Engineering (MPLS-TE) encapsulations and mechanisms.  This document builds on the DetNet architecture and data plane framework."];
+  RFC8964 -> rev_cites;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  RFC9012 -> rev_cites;
+  RFC9017 [label="RFC9017
+Special-Purpose Label Terminology
+2021", shape=ellipse, URL="RFC9017.html", target="_top", tooltip="This document discusses and recommends terminology that may be used when MPLS Special-Purpose Labels (SPLs) are specified and documented. This document applies that terminology change to the relevant IANA registry and also clarifies the use of the Entropy Label Indicator (7) when immediately preceded by the Extension Label (15). This document updates RFCs 3032 and 7274."];
+  RFC9017 -> rev_cites;
+  RFC9263 [label="RFC9263
+Network Service Header (NSH) Metadata
+Type 2 Variable-Length Context Headers
+2022", shape=ellipse, URL="RFC9263.html", target="_top", tooltip="Service Function Chaining (SFC) uses the Network Service Header (NSH) (RFC 8300) to steer and provide context metadata (MD) with each packet.  Such metadata can be of various types, including MD Type 2, consisting of Variable-Length Context Headers.  This document specifies several such Context Headers that can be used within a Service Function Path (SFP)."];
+  RFC9263 -> rev_cites;
+  RFC9291 [label="RFC9291
+A YANG Network Data Model for Layer 2
+VPNs
+2022", shape=ellipse, URL="RFC9291.html", target="_top", tooltip="This document defines an L2VPN Network Model (L2NM) that can be used to manage the provisioning of Layer 2 Virtual Private Network (L2VPN) services within a network (e.g., a service provider network). The L2NM complements the L2VPN Service Model (L2SM) by providing a network-centric view of the service that is internal to a service provider. The L2NM is particularly meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. Also, this document defines a YANG module to manage Ethernet segments and the initial versions of two IANA-maintained modules that include a set of identities of BGP Layer 2 encapsulation types and pseudowire types."];
+  RFC9291 -> rev_cites;
+  RFC9570 [label="RFC9570
+Deprecating the Use of Router Alert in
+LSP Ping
+2024", shape=ellipse, URL="RFC9570.html", target="_top", tooltip="The MPLS echo request and MPLS echo response messages, defined in RFC 8029, Detecting Multiprotocol Label Switched (MPLS) Data-Plane Failures (usually referred to as LSP ping), are encapsulated in IP packets with headers that include a Router Alert Option (RAO). In actual deployments, the RAO was neither required nor used. Furthermore, RFC 6398 identifies security vulnerabilities associated with the RAO in non-controlled environments, e.g., the case of using the MPLS echo request/reply as inter-area Operations, Administration, and Maintenance (OAM), and recommends against its use outside of controlled environments. Therefore, this document retires the RAO for MPLS OAM and updates RFC 8029 to remove the RAO from LSP ping message encapsulations. Furthermore, this document explains why RFC 7506 has been reclassified as Historic. Also, this document recommends the use of an IPv6 loopback address (::1/128) as the IPv6 destination address for an MPLS echo request message."];
+  RFC9570 -> rev_cites;
+  RFC9571 [label="RFC9571
+Extension of RFC 6374-Based Performance
+Measurement Using Synonymous Flow Labels
+2024", shape=ellipse, URL="RFC9571.html", target="_top", tooltip="RFC 6374 describes methods of making loss and delay measurements on Label Switched Paths (LSPs) primarily as they are used in MPLS Transport Profile (MPLS-TP) networks.  This document describes a method of extending the performance measurements (specified in RFC 6374) from flows carried over MPLS-TP to flows carried over generic MPLS LSPs.  In particular, it extends the technique to allow loss and delay measurements to be made on multipoint-to-point LSPs and introduces some additional techniques to allow more sophisticated measurements to be made in both MPLS-TP and generic MPLS networks."];
+  RFC9571 -> rev_cites;
+  RFC9604 [label="RFC9604
+Carrying Binding Label/SID in PCE-Based
+Networks
+2024", shape=ellipse, URL="RFC9604.html", target="_top", tooltip="In order to provide greater scalability, network confidentiality, and service independence, Segment Routing (SR) utilizes a Binding Segment Identifier (BSID), as described in RFC 8402.  It is possible to associate a BSID to an RSVP-TE-signaled Traffic Engineering (TE) Label Switched Path (LSP) or an SR TE path.  The BSID can be used by an upstream node for steering traffic into the appropriate TE path to enforce SR policies.  This document specifies the concept of binding value, which can be either an MPLS label or a Segment Identifier (SID).  It further specifies an extension to Path Computation Element Communication Protocol (PCEP) for reporting the binding value by a Path Computation Client (PCC) to the Path Computation Element (PCE) to support PCE-based TE policies."];
+  RFC9604 -> rev_cites;
+  RFC9613 [label="RFC9613
+Requirements for Solutions that Support
+MPLS Network Actions (MNAs)
+2024", shape=ellipse, URL="RFC9613.html", target="_top", tooltip="This document specifies requirements for the development of MPLS Network Actions (MNAs) that affect the forwarding or other processing of MPLS packets.  These requirements are informed by a number of proposals for additions to the MPLS information in the labeled packet to allow such actions to be performed, either by a transit or terminating Label Switching Router (i.e., the Label Edge Router - LER)."];
+  RFC9613 -> rev_cites;
+  RFC9625 [label="RFC9625
+EVPN Optimized Inter-Subnet Multicast
+(OISM) Forwarding
+2024", shape=ellipse, URL="RFC9625.html", target="_top", tooltip="Ethernet VPN (EVPN) provides a service that allows a single Local Area Network (LAN), comprising a single IP subnet, to be divided into multiple segments.  Each segment may be located at a different site, and the segments are interconnected by an IP or MPLS backbone.  Intra-subnet traffic (either unicast or multicast) always appears to the end users to be bridged, even when it is actually carried over the IP or MPLS backbone.  When a single tenant owns multiple such LANs, EVPN also allows IP unicast traffic to be routed between those LANs.  This document specifies new procedures that allow inter-subnet IP multicast traffic to be routed among the LANs of a given tenant while still making intra-subnet IP multicast traffic appear to be bridged.  These procedures can provide optimal routing of the inter-subnet multicast traffic and do not require any such traffic to egress a given router and then ingress that same router.  These procedures also accommodate IP multicast traffic that originates or is destined to be external to the EVPN domain."];
+  RFC9625 -> rev_cites;
+  RFC9714 [label="RFC9714
+Encapsulation for MPLS Performance
+Measurement with the Alternate-Marking
+Method
+2025", shape=ellipse, URL="RFC9714.html", target="_top", tooltip="This document defines the encapsulation for MPLS performance
+measurement with the Alternate-Marking Method, which performs
+flow-based packet loss, delay, and jitter measurements on MPLS
+traffic."];
+  RFC9714 -> rev_cites;
+  RFC9716 [label="RFC9716
+Mechanisms for MPLS Ping and Traceroute
+Procedures in Inter-Domain Segment
+Routing Networks
+2025", shape=ellipse, URL="RFC9716.html", target="_top", tooltip="The Segment Routing (SR) architecture leverages source routing and can be directly applied to the use of an MPLS data plane.  A Segment Routing over MPLS (SR-MPLS) network may consist of multiple IGP domains or multiple Autonomous Systems (ASes) under the control of the same organization.  It is useful to have the Label Switched Path (LSP) ping and traceroute procedures when an SR end-to-end path traverses multiple ASes or IGP domains.  This document outlines mechanisms to enable efficient LSP ping and traceroute procedures in inter-AS and inter-domain SR-MPLS networks.  This is achieved through a straightforward extension to the Operations, Administration, and Maintenance (OAM) protocol, relying solely on data plane forwarding for handling echo replies on transit nodes."];
+  RFC9716 -> rev_cites;
+  RFC9723 [label="RFC9723
+BGP Colored Prefix Routing (CPR) for
+Services Based on Segment Routing over
+IPv6 (SRv6)
+2025", shape=ellipse, URL="RFC9723.html", target="_top", tooltip="This document describes a mechanism to advertise IPv6 prefixes in BGP that are associated with Color Extended Communities to establish end-to-end intent-aware paths for Segment Routing over IPv6 (SRv6) services. Such IPv6 prefixes are called Colored Prefixes, and this mechanism is called Colored Prefix Routing (CPR). In SRv6 networks, the Colored Prefixes are the SRv6 locators associated with different intents. SRv6 services (e.g., SRv6 VPN services) with a specific intent could be assigned with SRv6 Segment Identifiers (SIDs) under the corresponding SRv6 locators, which are advertised as Colored Prefixes. This operational methodology allows the SRv6 service traffic to be steered into end-to-end intent-aware paths based on the longest prefix matching of SRv6 Service SIDs to the Colored Prefixes. The existing IPv6 Address Family and Color Extended Community are reused to advertise IPv6 Colored Prefixes without new BGP extensions; thus, this mechanism is easy to interoperate and can be deployed incrementally in multi-Autonomous System (AS) networks that belong to the same trusted domain."];
+  RFC9723 -> rev_cites;
+  RFC9779 [label="RFC9779
+Performance Measurement for Segment
+Routing Networks with the MPLS Data
+Plane
+2025", shape=ellipse, URL="RFC9779.html", target="_top", tooltip="This document specifies the application of the MPLS loss and delay measurement techniques (originally defined in RFCs 6374, 7876, and 9341) within Segment Routing (SR) networks that utilize the MPLS data plane, also referred to as Segment Routing over MPLS (SR-MPLS).  SR enables the forwarding of packets through an ordered list of instructions, known as segments, which are imposed at the ingress node.  This document defines the procedures and extensions necessary to perform accurate measurement of packet loss and delay in SR-MPLS environments, ensuring that network operators can effectively measure and maintain the quality of service across their SR-based MPLS networks.  This includes coverage of links and end-to-end SR-MPLS paths, as well as SR Policies."];
+  RFC9779 -> rev_cites;
+  RFC9789 [label="RFC9789
+MPLS Network Actions (MNAs) Framework
+2025", shape=ellipse, URL="RFC9789.html", target="_top", tooltip="This document describes an architectural framework for MPLS Network Action (MNA) technologies. MNA technologies are used to indicate actions that impact the forwarding or other processing (such as monitoring) of the packet along the Label Switched Path (LSP) of the packet and to transfer any additional data needed for these actions. This document provides the foundation for the development of a common set of network actions and information elements supporting additional operational models and capabilities of MPLS networks."];
+  RFC9789 -> rev_cites;
+  RFC9790 [label="RFC9790
+IANA Registry and Processing
+Recommendations for the First Nibble
+Following a Label Stack
+2025", shape=ellipse, URL="RFC9790.html", target="_top", tooltip="This document creates a new IANA registry (called the Post-Stack First Nibble registry) for the first nibble (4-bit field) immediately following an MPLS label stack. Furthermore, this document presents some requirements for registering new values and making the processing of MPLS packets easier and more robust. The relationship between the IANA Post-Stack First Nibble registry and the IP Version Numbers registry (RFC 2780) is described in this document. This document updates RFC 4928 by deprecating the heuristic method for identifying the type of packet encapsulated in MPLS."];
+  RFC9790 -> rev_cites;
+  RFC9791 [label="RFC9791
+Use Cases for MPLS Network Action
+Indicators and Ancillary Data
+2025", shape=ellipse, URL="RFC9791.html", target="_top", tooltip="This document presents use cases that have a common feature that may be addressed by encoding network action indicators and associated ancillary data within MPLS packets. There is community interest in extending the MPLS data plane to carry such indicators and ancillary data to address these use cases. The use cases described in this document are not an exhaustive set but rather the ones that have been actively discussed by members of the IETF MPLS, PALS, and DetNet Working Groups from the beginning of work on MPLS Network Action (MNA) until the publication of this document."];
+  RFC9791 -> rev_cites;
+  RFC9830 [label="RFC9830
+Advertising Segment Routing Policies in
+BGP
+2025", shape=ellipse, URL="RFC9830.html", target="_top", tooltip="A Segment Routing (SR) Policy is an ordered list of segments (also referred to as instructions) that define a source-routed policy. An SR Policy consists of one or more Candidate Paths (CPs), each comprising one or more segment lists. A headend can be provisioned with these CPs using various mechanisms such as Command-Line Interface (CLI), Network Configuration Protocol (NETCONF), Path Computation Element Communication Protocol (PCEP), or BGP. This document specifies how BGP can be used to distribute SR Policy CPs. It introduces a BGP SAFI for advertising a CP of an SR Policy and defines sub-TLVs for the Tunnel Encapsulation Attribute to signal information related to these CPs. Furthermore, this document updates RFC 9012 by extending the Color Extended Community to support additional steering modes over SR Policy."];
+  RFC9830 -> rev_cites;
+  RFC9862 [label="RFC9862
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Segment
+Routing (SR) Policy Candidate Paths
+2025", shape=ellipse, URL="RFC9862.html", target="_top", tooltip="A Segment Routing (SR) Policy is an ordered list of instructions called segments that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated. An SR Policy is made of one or more Candidate Paths. This document specifies the Path Computation Element Communication Protocol (PCEP) extension to signal Candidate Paths of an SR Policy. Additionally, this document updates RFC 8231 to allow delegation and setup of an SR Label Switched Path (LSP) without using the path computation request and reply messages. This document is applicable to both Segment Routing over MPLS (SR-MPLS) and Segment Routing over IPv6 (SRv6)."];
+  RFC9862 -> rev_cites;
+  RFC9899 [label="RFC9899
+Extensions to the YANG Data Model for
+Access Control Lists (ACLs)
+2025", shape=ellipse, URL="RFC9899.html", target="_top", tooltip="RFC 8519 defines a YANG data model for Access Control Lists (ACLs). This document specifies a set of extensions that fix many of the limitations of the ACL model as initially defined in RFC 8519. Specifically, it introduces augmentations to the ACL base model to enhance its functionality and applicability. This document also creates initial versions of IANA-maintained modules for ICMP types and IPv6 extension headers."];
+  RFC9899 -> rev_cites;
+}

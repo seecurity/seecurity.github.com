@@ -1,0 +1,54 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9611 [label="RFC9611
+Internet Key Exchange Protocol Version 2
+(IKEv2) Support for Per-Resource Child
+Security Associations (SAs)
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="In order to increase the bandwidth of IPsec traffic between peers, this document defines one Notify Message Status Types and one Notify Message Error Types payload for the Internet Key Exchange Protocol Version 2 (IKEv2) to support the negotiation of multiple Child Security Associations (SAs) with the same Traffic Selectors used on different resources, such as CPUs. The SA_RESOURCE_INFO notification is used to convey information that the negotiated Child SA and subsequent new Child SAs with the same Traffic Selectors are a logical group of Child SAs where most or all of the Child SAs are bound to a specific resource, such as a specific CPU. The TS_MAX_QUEUE notify conveys that the peer is unwilling to create more additional Child SAs for this particular negotiated Traffic Selector combination. Using multiple Child SAs with the same Traffic Selectors has the benefit that each resource holding the Child SA has its own Sequence Number Counter, ensuring that CPUs don't have to synchronize their cryptographic state or disable their packet replay protection."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9611;
+
+  obs [label="obsoletes", shape=box];
+  RFC9611 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9611 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9611;
+
+  cites [label="cites", shape=box];
+  RFC9611 -> cites;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC7296 [label="RFC7296
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2014", shape=ellipse, URL="RFC7296.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document obsoletes RFC 5996, and includes all of the errata for it.  It advances IKEv2 to be an Internet Standard."];
+  cites -> RFC7296;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC2367 [label="RFC2367
+PF_KEY Key Management API, Version 2
+1998", shape=ellipse, URL="RFC2367.html", target="_top", tooltip="A generic key management API that can be used not only for IP Security but also for other network security services is presented in this document.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  cites -> RFC2367;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9611;
+}

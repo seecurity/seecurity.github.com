@@ -1,0 +1,70 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8538 [label="RFC8538
+Notification Message Support for BGP
+Graceful Restart
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="The BGP Graceful Restart mechanism defined in RFC 4724 limits the usage of BGP Graceful Restart to BGP messages other than BGP NOTIFICATION messages.  This document updates RFC 4724 by defining an extension that permits the Graceful Restart procedures to be performed when the BGP speaker receives a BGP NOTIFICATION message or the Hold Time expires.  This document also defines a new subcode for BGP Cease NOTIFICATION messages; this new subcode requests a full session restart instead of a Graceful Restart."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8538;
+
+  obs [label="obsoletes", shape=box];
+  RFC8538 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8538 -> updates;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  updates -> RFC4724;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8538;
+
+  cites [label="cites", shape=box];
+  RFC8538 -> cites;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  cites -> RFC4724;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8203 [label="RFC8203
+BGP Administrative Shutdown
+Communication
+2017", shape=ellipse, URL="RFC8203.html", target="_top", tooltip="This document enhances the BGP Cease NOTIFICATION message Administrative Shutdown and Administrative Reset subcodes for operators to transmit a short freeform message to describe why a BGP session was shutdown or reset.  This document updates RFC 4486."];
+  cites -> RFC8203;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8538;
+  RFC9384 [label="RFC9384
+A BGP Cease NOTIFICATION Subcode for
+Bidirectional Forwarding Detection (BFD)
+2023", shape=ellipse, URL="RFC9384.html", target="_top", tooltip="The Bidirectional Forwarding Detection (BFD) protocol (RFC 5880) is used to detect loss of connectivity between two forwarding engines, typically with low latency. BFD is leveraged by routing protocols, including the Border Gateway Protocol (BGP), to bring down routing protocol connections more quickly than the original protocol timers. This document defines a subcode for the BGP Cease NOTIFICATION message (Section 6.7 of RFC 4271) for use when a BGP connection is being closed due to a BFD session going down."];
+  RFC9384 -> rev_cites;
+  RFC9494 [label="RFC9494
+Long-Lived Graceful Restart for BGP
+2023", shape=ellipse, URL="RFC9494.html", target="_top", tooltip="This document introduces a BGP capability called the Long-Lived Graceful Restart Capability (or LLGR Capability). The benefit of this capability is that stale routes can be retained for a longer time upon session failure than is provided for by BGP Graceful Restart (as described in RFC 4724). A well-known BGP community called LLGR_STALE is introduced for marking stale routes retained for a longer time. A second well-known BGP community called NO_LLGR is introduced for marking routes for which these procedures should not be applied. We also specify that such long-lived stale routes be treated as the least preferred and that their advertisements be limited to BGP speakers that have advertised the capability. Use of this extension is not advisable in all cases, and we provide guidelines to help determine if it is. This memo updates RFC 6368 by specifying that the LLGR_STALE community must be propagated into, or out of, the path attributes exchanged between the Provider Edge (PE) and Customer Edge (CE) routers."];
+  RFC9494 -> rev_cites;
+}

@@ -1,0 +1,81 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9785 [label="RFC9785
+Preference-Based EVPN Designated
+Forwarder (DF) Election
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Designated Forwarder (DF) in Ethernet Virtual Private Networks (EVPNs) is defined as the Provider Edge (PE) router responsible for sending Broadcast, Unknown Unicast, and Multicast (BUM) traffic to a multihomed device/network in the case of an All-Active multihoming Ethernet Segment (ES) or BUM and unicast in the case of Single-Active multihoming. The Designated Forwarder is selected out of a candidate list of PEs that advertise the same Ethernet Segment Identifier (ESI) to the EVPN network, according to the default DF election algorithm. While the default algorithm provides an efficient and automated way of selecting the Designated Forwarder across different Ethernet Tags in the Ethernet Segment, there are some use cases where a more deterministic and user-controlled method is required. At the same time, Network Operators require an easy way to force an on-demand Designated Forwarder switchover in order to carry out some maintenance tasks on the existing Designated Forwarder or control whether a new active PE can preempt the existing Designated Forwarder PE. This document proposes use of a DF election algorithm that meets the requirements of determinism and operation control. This document updates RFC 8584 by modifying the definition of the DF Election Extended Community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9785;
+
+  obs [label="obsoletes", shape=box];
+  RFC9785 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9785 -> updates;
+  RFC8584 [label="RFC8584
+Framework for Ethernet VPN Designated
+Forwarder Election Extensibility
+2019", shape=ellipse, URL="RFC8584.html", target="_top", tooltip="An alternative to the default Designated Forwarder (DF) selection algorithm in Ethernet VPNs (EVPNs) is defined.  The DF is the Provider Edge (PE) router responsible for sending Broadcast, Unknown Unicast, and Multicast (BUM) traffic to a multihomed Customer Edge (CE) device on a given VLAN on a particular Ethernet Segment (ES).  In addition, the ability to influence the DF election result for a VLAN based on the state of the associated Attachment Circuit (AC) is specified.  This document clarifies the DF election Finite State Machine in EVPN services.  Therefore, it updates the EVPN specification (RFC 7432)."];
+  updates -> RFC8584;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9785;
+
+  cites [label="cites", shape=box];
+  RFC9785 -> cites;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  cites -> RFC7432;
+  RFC8584 [label="RFC8584
+Framework for Ethernet VPN Designated
+Forwarder Election Extensibility
+2019", shape=ellipse, URL="RFC8584.html", target="_top", tooltip="An alternative to the default Designated Forwarder (DF) selection algorithm in Ethernet VPNs (EVPNs) is defined.  The DF is the Provider Edge (PE) router responsible for sending Broadcast, Unknown Unicast, and Multicast (BUM) traffic to a multihomed Customer Edge (CE) device on a given VLAN on a particular Ethernet Segment (ES).  In addition, the ability to influence the DF election result for a VLAN based on the state of the associated Attachment Circuit (AC) is specified.  This document clarifies the DF election Finite State Machine in EVPN services.  Therefore, it updates the EVPN specification (RFC 7432)."];
+  cites -> RFC8584;
+  RFC9784 [label="RFC9784
+Virtual Ethernet Segments for EVPN and
+Provider Backbone Bridge EVPN
+2025", shape=ellipse, URL="RFC9784.html", target="_top", tooltip="Ethernet VPN (EVPN) and Provider Backbone Bridge EVPN (PBB-EVPN) introduce a comprehensive suite of solutions for delivering Ethernet services over MPLS/IP networks.  These solutions offer advanced multihoming capabilities.  Specifically, they support Single-Active and All-Active redundancy modes for an Ethernet Segment (ES), which is defined as a collection of physical links connecting a multihomed device or network to a set of Provider Edge (PE) devices.  This document extends the concept of an ES by allowing an ES to be associated with a set of Ethernet Virtual Circuits (EVCs), such as VLANs, or other entities, including MPLS Label Switched Paths (LSPs) or pseudowires (PWs).  This extended concept is referred to as virtual Ethernet Segments (vESes).  This document lists the requirements and specifies the necessary extensions to support vES in both EVPN and PBB-EVPN."];
+  cites -> RFC9784;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8214 [label="RFC8214
+Virtual Private Wire Service Support in
+Ethernet VPN
+2017", shape=ellipse, URL="RFC8214.html", target="_top", tooltip="This document describes how Ethernet VPN (EVPN) can be used to support the Virtual Private Wire Service (VPWS) in MPLS/IP networks.  EVPN accomplishes the following for VPWS: provides Single-Active as well as All-Active multihoming with flow-based load-balancing, eliminates the need for Pseudowire (PW) signaling, and provides fast protection convergence upon node or link failure."];
+  cites -> RFC8214;
+  RFC7623 [label="RFC7623
+Provider Backbone Bridging Combined with
+Ethernet VPN (PBB-EVPN)
+2015", shape=ellipse, URL="RFC7623.html", target="_top", tooltip="This document discusses how Ethernet Provider Backbone Bridging (PBB) can be combined with Ethernet VPN (EVPN) in order to reduce the number of BGP MAC Advertisement routes by aggregating Customer/Client MAC (C-MAC) addresses via Provider Backbone MAC (B-MAC) address, provide client MAC address mobility using C-MAC aggregation, confine the scope of C-MAC learning to only active flows, offer per-site policies, and avoid C-MAC address flushing on topology changes.  The combined solution is referred to as PBB-EVPN."];
+  cites -> RFC7623;
+  RFC8365 [label="RFC8365
+A Network Virtualization Overlay
+Solution Using Ethernet VPN (EVPN)
+2018", shape=ellipse, URL="RFC8365.html", target="_top", tooltip="This document specifies how Ethernet VPN (EVPN) can be used as a Network Virtualization Overlay (NVO) solution and explores the various tunnel encapsulation options over IP and their impact on the EVPN control plane and procedures.  In particular, the following encapsulation options are analyzed: Virtual Extensible LAN (VXLAN), Network Virtualization using Generic Routing Encapsulation (NVGRE), and MPLS over GRE.  This specification is also applicable to Generic Network Virtualization Encapsulation (GENEVE); however, some incremental work is required, which will be covered in a separate document.  This document also specifies new multihoming procedures for split-horizon filtering and mass withdrawal.  It also specifies EVPN route constructions for VXLAN/NVGRE encapsulations and Autonomous System Border Router (ASBR) procedures for multihoming of Network Virtualization Edge (NVE) devices."];
+  cites -> RFC8365;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9785;
+  RFC9786 [label="RFC9786
+EVPN Port-Active Redundancy Mode
+2025", shape=ellipse, URL="RFC9786.html", target="_top", tooltip="The Multi-Chassis Link Aggregation (MC-LAG) group technology enables establishing a logical link-aggregation connection with a redundant group of independent nodes.  The objective of MC-LAG is to enhance both network availability and bandwidth utilization through various modes of traffic load balancing.  RFC 7432 defines an EVPN-based MC-LAG with Single-Active and All-Active multihoming redundancy modes.  This document builds on the existing redundancy mechanisms supported by EVPN and introduces a new active/standby redundancy mode, called 'Port-Active'."];
+  RFC9786 -> rev_cites;
+  RFC9856 [label="RFC9856
+Multicast Source Redundancy in EVPNs
+2025", shape=ellipse, URL="RFC9856.html", target="_top", tooltip="In Ethernet Virtual Private Networks (EVPNs), IP multicast traffic replication and delivery play a crucial role in enabling efficient and scalable Layer 2 and Layer 3 services.  A common deployment scenario involves redundant multicast sources that ensure high availability and resiliency.  However, the presence of redundant sources can lead to duplicate IP multicast traffic in the network, causing inefficiencies and increased overhead.  This document specifies extensions to the EVPN multicast procedures that allow for the suppression of duplicate IP multicast traffic from redundant sources.  The proposed mechanisms enhance the EVPN's capability to deliver multicast traffic efficiently while maintaining high availability.  These extensions are applicable to various EVPN deployment scenarios and provide guidelines to ensure consistent and predictable behavior across diverse network topologies."];
+  RFC9856 -> rev_cites;
+}

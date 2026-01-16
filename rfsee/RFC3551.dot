@@ -1,0 +1,458 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3551 [label="RFC3551
+RTP Profile for Audio and Video
+Conferences with Minimal Control
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a profile called RTP/AVP for the use of the real-time transport protocol (RTP), version 2, and the associated control protocol, RTCP, within audio and video multiparticipant conferences with minimal control.  It provides interpretations of generic fields within the RTP specification suitable for audio and video conferences.  In particular, this document defines a set of default mappings from payload type numbers to encodings.  This document also describes how audio and video data may be carried within RTP.  It defines a set of standard encodings and their names when used within RTP.  The descriptions provide pointers to reference implementations and the detailed standards.  This document is meant as an aid for implementors of audio, video and other real-time multimedia applications.  This memorandum obsoletes RFC 1890.  It is mostly backwards-compatible except for functions removed because two interoperable implementations were not found.  The additions to RFC 1890 codify existing practice in the use of payload formats under this profile and include new payload formats defined since RFC 1890 was published. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3551;
+
+  obs [label="obsoletes", shape=box];
+  RFC3551 -> obs;
+  RFC1890 [label="RFC1890
+RTP Profile for Audio and Video
+Conferences with Minimal Control
+1996", shape=ellipse, URL="RFC1890.html", target="_top", tooltip="This memo describes a profile for the use of the real-time transport protocol (RTP), version 2, and the associated control protocol, RTCP, within audio and video multiparticipant conferences with minimal control. [STANDARDS-TRACK]"];
+  obs -> RFC1890;
+
+  updates [label="updates", shape=box];
+  RFC3551 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3551;
+  RFC5761 [label="RFC5761
+Multiplexing RTP Data and Control
+Packets on a Single Port
+2010", shape=ellipse, URL="RFC5761.html", target="_top", tooltip="This memo discusses issues that arise when multiplexing RTP data packets and RTP Control Protocol (RTCP) packets on a single UDP port.  It updates RFC 3550 and RFC 3551 to describe when such multiplexing is and is not appropriate, and it explains how the Session Description Protocol (SDP) can be used to signal multiplexed sessions. [STANDARDS-TRACK]"];
+  RFC5761 -> updated_by;
+  RFC7007 [label="RFC7007
+Update to Remove DVI4 from the
+Recommended Codecs for the RTP Profile
+for Audio and Video Conferences with
+Minimal Control (RTP/AVP)
+2013", shape=ellipse, URL="RFC7007.html", target="_top", tooltip="The RTP Profile for Audio and Video Conferences with Minimal Control (RTP/AVP) is the basis for many other profiles, such as the Secure Real-time Transport Protocol (RTP/SAVP), the Extended RTP Profile for Real-time Transport Control Protocol (RTCP)-Based Feedback (RTP/AVPF), and the Extended Secure RTP Profile for RTCP-Based Feedback (RTP/SAVPF).  This document updates RFC 3551, the RTP/AVP profile (and by extension, the profiles that build upon it), to reflect changes in audio codec usage since that document was originally published."];
+  RFC7007 -> updated_by;
+  RFC8860 [label="RFC8860
+Sending Multiple Types of Media in a
+Single RTP Session
+2021", shape=ellipse, URL="RFC8860.html", target="_top", tooltip="This document specifies how an RTP session can contain RTP streams with media from multiple media types such as audio, video, and text.  This has been restricted by the RTP specifications (RFCs 3550 and 3551), and thus this document updates RFCs 3550 and 3551 to enable this behaviour for applications that satisfy the applicability for using multiple media types in a single RTP session."];
+  RFC8860 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3551 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3551;
+  RFC3557 [label="RFC3557
+RTP Payload Format for European
+Telecommunications Standards Institute
+(ETSI) European Standard ES 201 108
+Distributed Speech Recognition Encoding
+2003", shape=ellipse, URL="RFC3557.html", target="_top", tooltip="This document specifies an RTP payload format for encapsulating European Telecommunications Standards Institute (ETSI) European Standard (ES) 201 108 front-end signal processing feature streams for distributed speech recognition (DSR) systems. [STANDARDS-TRACK]"];
+  RFC3557 -> rev_cites;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  RFC3711 -> rev_cites;
+  RFC3714 [label="RFC3714
+IAB Concerns Regarding Congestion
+Control for Voice Traffic in the
+Internet
+2004", shape=ellipse, URL="RFC3714.html", target="_top", tooltip="This document discusses IAB concerns about effective end-to-end congestion control for best-effort voice traffic in the Internet.  These concerns have to do with fairness, user quality, and with the dangers of congestion collapse.  The concerns are particularly relevant in light of the absence of a widespread Quality of Service (QoS) deployment in the Internet, and the likelihood that this situation will not change much in the near term.  This document is not making any recommendations about deployment paths for Voice over Internet Protocol (VoIP) in terms of QoS support, and is not claiming that best-effort service can be relied upon to give acceptable performance for VoIP.  We are merely observing that voice traffic is occasionally deployed as best-effort traffic over some links in the Internet, that we expect this occasional deployment to continue, and that we have concerns about the lack of effective end-to-end congestion control for this best-effort voice traffic.  This memo provides information for the Internet community."];
+  RFC3714 -> rev_cites;
+  RFC4184 [label="RFC4184
+RTP Payload Format for AC-3 Audio
+2005", shape=ellipse, URL="RFC4184.html", target="_top", tooltip="This document describes an RTP payload format for transporting audio data using the AC-3 audio compression standard.  AC-3 is a high quality, multichannel audio coding system that is used for United States HDTV, DVD, cable television, satellite television and other media.  The RTP payload format presented in this document includes support for data fragmentation. [STANDARDS-TRACK]"];
+  RFC4184 -> rev_cites;
+  RFC4553 [label="RFC4553
+Structure-Agnostic Time Division
+Multiplexing (TDM) over Packet (SAToP)
+2006", shape=ellipse, URL="RFC4553.html", target="_top", tooltip="This document describes a pseudowire encapsulation for Time Division Multiplexing (TDM) bit-streams (T1, E1, T3, E3) that disregards any structure that may be imposed on these streams, in particular the structure imposed by the standard TDM framing. [STANDARDS-TRACK]"];
+  RFC4553 -> rev_cites;
+  RFC4571 [label="RFC4571
+Framing Real-time Transport Protocol
+(RTP) and RTP Control Protocol (RTCP)
+Packets over Connection-Oriented
+Transport
+2006", shape=ellipse, URL="RFC4571.html", target="_top", tooltip="This memo defines a method for framing Real-time Transport Protocol (RTP) and RTP Control Protocol (RTCP) packets onto connection-oriented transport (such as TCP).  The memo also defines how session descriptions may specify RTP streams that use the framing method. [STANDARDS-TRACK]"];
+  RFC4571 -> rev_cites;
+  RFC4573 [label="RFC4573
+MIME Type Registration for RTP Payload
+Format for H.224
+2006", shape=ellipse, URL="RFC4573.html", target="_top", tooltip="In conversational video applications, far-end camera control protocol is used by participants to control the remote camera.  The protocol that is commonly used is ITU H.281 over H.224.  The document registers the H224 media type.  It defines the syntax and the semantics of the Session Description Protocol (SDP) parameters needed to support far-end camera control protocol using H.224. [STANDARDS-TRACK]"];
+  RFC4573 -> rev_cites;
+  RFC4587 [label="RFC4587
+RTP Payload Format for H.261 Video
+Streams
+2006", shape=ellipse, URL="RFC4587.html", target="_top", tooltip="This memo describes a scheme to packetize an H.261 video stream for transport using the Real-time Transport Protocol, RTP, with any of the underlying protocols that carry RTP. The memo also describes the syntax and semantics of the Session Description Protocol (SDP) parameters needed to support the H.261 video codec. A media type registration is included for this payload format. This specification obsoletes RFC 2032. [STANDARDS-TRACK]"];
+  RFC4587 -> rev_cites;
+  RFC4598 [label="RFC4598
+Real-time Transport Protocol (RTP)
+Payload Format for Enhanced AC-3
+(E-AC-3) Audio
+2006", shape=ellipse, URL="RFC4598.html", target="_top", tooltip="This document describes a Real-time Transport Protocol (RTP) payload format for transporting Enhanced AC-3 (E-AC-3) encoded audio data.  E-AC-3 is a high-quality, multichannel audio coding format and is an extension of the AC-3 audio coding format, which is used in US High-Definition Television (HDTV), DVD, cable and satellite television, and other media.  E-AC-3 is an optional audio format in US and world wide digital television and high-definition DVD formats.  The RTP payload format as presented in this document includes support for data fragmentation. [STANDARDS-TRACK]"];
+  RFC4598 -> rev_cites;
+  RFC4628 [label="RFC4628
+RTP Payload Format for H.263 Moving RFC
+2190 to Historic Status
+2007", shape=ellipse, URL="RFC4628.html", target="_top", tooltip="The first RFC that describes RTP payload format for ITU Telecommunication Standardization Sector (ITU-T) recommendation H.263 is RFC 2190.  This specification discusses why to move RFC 2190 to historic status.  This memo provides information for the Internet community."];
+  RFC4628 -> rev_cites;
+  RFC4629 [label="RFC4629
+RTP Payload Format for ITU-T Rec. H.263
+Video
+2007", shape=ellipse, URL="RFC4629.html", target="_top", tooltip="This document describes a scheme to packetize an H.263 video stream for transport using the Real-time Transport Protocol (RTP) with any of the underlying protocols that carry RTP. The document also describes the syntax and semantics of the Session Description Protocol (SDP) parameters needed to support the H.263 video codec. The document obsoletes RFC 2429 and updates the H263-1998 and H263-2000 MIME media type in RFC 3555. [STANDARDS-TRACK]"];
+  RFC4629 -> rev_cites;
+  RFC4695 [label="RFC4695
+RTP Payload Format for MIDI
+2006", shape=ellipse, URL="RFC4695.html", target="_top", tooltip="This memo describes a Real-time Transport Protocol (RTP) payload format for the MIDI (Musical Instrument Digital Interface) command language.  The format encodes all commands that may legally appear on a MIDI 1.0 DIN cable.  The format is suitable for interactive applications (such as network musical performance) and content-delivery applications (such as file streaming).  The format may be used over unicast and multicast UDP and TCP, and it defines tools for graceful recovery from packet loss.  Stream behavior, including the MIDI rendering method, may be customized during session setup.  The format also serves as a mode for the mpeg4-generic format, to support the MPEG 4 Audio Object Types for General MIDI, Downloadable Sounds Level 2, and Structured Audio. [STANDARDS-TRACK]"];
+  RFC4695 -> rev_cites;
+  RFC4696 [label="RFC4696
+An Implementation Guide for RTP MIDI
+2006", shape=ellipse, URL="RFC4696.html", target="_top", tooltip="This memo offers non-normative implementation guidance for the Real-time Protocol (RTP) MIDI (Musical Instrument Digital Interface) payload format.  The memo presents its advice in the context of a network musical performance application.  In this application two musicians, located in different physical locations, interact over a network to perform as they would if located in the same room.  Underlying the performances are RTP MIDI sessions over unicast UDP.  Algorithms for sending and receiving recovery journals (the resiliency structure for the payload format) are described in detail.  Although the memo focuses on network musical performance, the presented implementation advice is relevant to other RTP MIDI applications. [STANDARDS-TRACK]"];
+  RFC4696 -> rev_cites;
+  RFC4710 [label="RFC4710
+Real-time Application Quality-of-Service
+Monitoring (RAQMON) Framework
+2006", shape=ellipse, URL="RFC4710.html", target="_top", tooltip="There is a need to monitor end-devices such as IP phones, pagers, Instant Messaging clients, mobile phones, and various other handheld computing devices.  This memo extends the remote network monitoring (RMON) family of specifications to allow real-time quality-of-service (QoS) monitoring of various applications that run on these devices and allows this information to be integrated with the RMON family using the Simple Network Management Protocol (SNMP).  This memo defines the framework, architecture, relevant metrics, and transport requirements for real-time QoS monitoring of applications. [STANDARDS-TRACK]"];
+  RFC4710 -> rev_cites;
+  RFC4712 [label="RFC4712
+Transport Mappings for Real-time
+Application Quality-of-Service
+Monitoring (RAQMON) Protocol Data Unit
+(PDU)
+2006", shape=ellipse, URL="RFC4712.html", target="_top", tooltip="This memo specifies two transport mappings of the \%Real-Time Application Quality-of-Service Monitoring (RAQMON) information model defined in RFC 4710 using TCP as a native transport and the Simple Network Management Protocol (SNMP) to carry the RAQMON information from a RAQMON Data Source (RDS) to a RAQMON Report Collector (RRC). [STANDARDS-TRACK]"];
+  RFC4712 -> rev_cites;
+  RFC5027 [label="RFC5027
+Security Preconditions for Session
+Description Protocol (SDP) Media Streams
+2007", shape=ellipse, URL="RFC5027.html", target="_top", tooltip="This document defines a new security precondition for the Session Description Protocol (SDP) precondition framework described in RFCs 3312 and 4032.  A security precondition can be used to delay session establishment or modification until media stream security for a secure media stream has been negotiated successfully. [STANDARDS-TRACK]"];
+  RFC5027 -> rev_cites;
+  RFC5215 [label="RFC5215
+RTP Payload Format for Vorbis Encoded
+Audio
+2008", shape=ellipse, URL="RFC5215.html", target="_top", tooltip="This document describes an RTP payload format for transporting Vorbis encoded audio. It details the RTP encapsulation mechanism for raw Vorbis data and the delivery mechanisms for the decoder probability model (referred to as a codebook), as well as other setup information. Also included within this memo are media type registrations and the details necessary for the use of Vorbis with the Session Description Protocol (SDP). [STANDARDS-TRACK]"];
+  RFC5215 -> rev_cites;
+  RFC5391 [label="RFC5391
+RTP Payload Format for ITU-T
+Recommendation G.711.1
+2008", shape=ellipse, URL="RFC5391.html", target="_top", tooltip="This document specifies a Real-time Transport Protocol (RTP) payload format to be used for the ITU Telecommunication Standardization Sector (ITU-T) G.711.1 audio codec.  Two media type registrations are also included. [STANDARDS-TRACK]"];
+  RFC5391 -> rev_cites;
+  RFC5404 [label="RFC5404
+RTP Payload Format for G.719
+2009", shape=ellipse, URL="RFC5404.html", target="_top", tooltip="This document specifies the payload format for packetization of the G.719 full-band codec encoded audio signals into the Real-time Transport Protocol (RTP).  The payload format supports transmission of multiple channels, multiple frames per payload, and interleaving. [STANDARDS-TRACK]"];
+  RFC5404 -> rev_cites;
+  RFC5405 [label="RFC5405
+Unicast UDP Usage Guidelines for
+Application Designers
+2008", shape=ellipse, URL="RFC5405.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms.  Because congestion control is critical to the stable operation of the Internet, applications and upper-layer protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic.  This document provides guidelines on the use of UDP for the designers of unicast applications and upper-layer protocols.  Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, and middlebox traversal.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC5405 -> rev_cites;
+  RFC5459 [label="RFC5459
+G.729.1 RTP Payload Format Update:
+Discontinuous Transmission (DTX) Support
+2009", shape=ellipse, URL="RFC5459.html", target="_top", tooltip="This document updates the Real-time Transport Protocol (RTP) payload format to be used for the International Telecommunication Union (ITU-T) Recommendation G.729.1 audio codec.  It adds Discontinuous Transmission (DTX) support to the RFC 4749 specification, in a backward-compatible way.  An updated media type registration is included for this payload format. [STANDARDS-TRACK]"];
+  RFC5459 -> rev_cites;
+  RFC5506 [label="RFC5506
+Support for Reduced-Size Real-Time
+Transport Control Protocol (RTCP):
+Opportunities and Consequences
+2009", shape=ellipse, URL="RFC5506.html", target="_top", tooltip="This memo discusses benefits and issues that arise when allowing Real-time Transport Protocol (RTCP) packets to be transmitted with reduced size.  The size can be reduced if the rules on how to create compound packets outlined in RFC 3550 are removed or changed.  Based on that analysis, this memo defines certain changes to the rules to allow feedback messages to be sent as Reduced-Size RTCP packets under certain conditions when using the RTP/AVPF (Real-time Transport Protocol / Audio-Visual Profile with Feedback) profile (RFC 4585).  This document updates RFC 3550, RFC 3711, and RFC 4585. [STANDARDS-TRACK]"];
+  RFC5506 -> rev_cites;
+  RFC5552 [label="RFC5552
+SIP Interface to VoiceXML Media Services
+2009", shape=ellipse, URL="RFC5552.html", target="_top", tooltip="This document describes a SIP interface to VoiceXML media services.  Commonly, Application Servers controlling Media Servers use this protocol for pure VoiceXML processing capabilities.  This protocol is an adjunct to the full MEDIACTRL protocol and packages mechanism. [STANDARDS-TRACK]"];
+  RFC5552 -> rev_cites;
+  RFC5583 [label="RFC5583
+Signaling Media Decoding Dependency in
+the Session Description Protocol (SDP)
+2009", shape=ellipse, URL="RFC5583.html", target="_top", tooltip="This memo defines semantics that allow for signaling the decoding dependency of different media descriptions with the same media type in the Session Description Protocol (SDP). This is required, for example, if media data is separated and transported in different network streams as a result of the use of a layered or multiple descriptive media coding process. A new grouping type DDP -- decoding dependency -- is defined, to be used in conjunction with RFC 3388 entitled Grouping of Media Lines in the Session Description Protocol. In addition, an attribute is specified describing the relationship of the media streams in a DDP group indicated by media identification attribute(s) and media format description(s). [STANDARDS-TRACK]"];
+  RFC5583 -> rev_cites;
+  RFC5686 [label="RFC5686
+RTP Payload Format for mU-law EMbedded
+Codec for Low-delay IP Communication
+(UEMCLIP) Speech Codec
+2009", shape=ellipse, URL="RFC5686.html", target="_top", tooltip="This document describes the RTP payload format of a mU-law EMbedded Coder for Low-delay IP communication (UEMCLIP), an enhanced speech codec of ITU-T G.711.  The bitstream has a scalable structure with an embedded u-law bitstream, also known as PCMU, thus providing a handy transcoding operation between narrowband and wideband speech. [STANDARDS-TRACK]"];
+  RFC5686 -> rev_cites;
+  RFC5762 [label="RFC5762
+RTP and the Datagram Congestion Control
+Protocol (DCCP)
+2010", shape=ellipse, URL="RFC5762.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is a widely used transport for real-time multimedia on IP networks.  The Datagram Congestion Control Protocol (DCCP) is a transport protocol that provides desirable services for real-time applications.  This memo specifies a mapping of RTP onto DCCP, along with associated signalling, such that real- time applications can make use of the services provided by DCCP. [STANDARDS-TRACK]"];
+  RFC5762 -> rev_cites;
+  RFC5939 [label="RFC5939
+Session Description Protocol (SDP)
+Capability Negotiation
+2010", shape=ellipse, URL="RFC5939.html", target="_top", tooltip="The Session Description Protocol (SDP) was intended to describe multimedia sessions for the purposes of session announcement, session invitation, and other forms of multimedia session initiation. SDP was not intended to provide capability indication or capability negotiation; however, over the years, SDP has seen widespread adoption and as a result it has been gradually extended to provide limited support for these, notably in the form of the offer/answer model defined in RFC 3264. SDP does not define how to negotiate one or more alternative transport protocols (e.g., RTP profiles) or attributes. This makes it difficult to deploy new RTP profiles such as Secure RTP or RTP with RTCP-based feedback, negotiate use of different security keying mechanisms, etc. It also presents problems for some forms of media negotiation. The purpose of this document is to address these shortcomings by extending SDP with capability negotiation parameters and associated offer/answer procedures to use those parameters in a backwards compatible manner. The document defines a general SDP Capability Negotiation framework. It also specifies how to provide attributes and transport protocols as capabilities and negotiate them using the framework. Extensions for other types of capabilities (e.g., media types and media formats) may be provided in other documents. [STANDARDS-TRACK]"];
+  RFC5939 -> rev_cites;
+  RFC5968 [label="RFC5968
+Guidelines for Extending the RTP Control
+Protocol (RTCP)
+2010", shape=ellipse, URL="RFC5968.html", target="_top", tooltip="The RTP Control Protocol (RTCP) is used along with the Real-time Transport Protocol (RTP) to provide a control channel between media senders and receivers.  This allows constructing a feedback loop to enable application adaptation and monitoring, among other uses.  The basic reporting mechanisms offered by RTCP are generic, yet quite powerful and suffice to cover a range of uses.  This document provides guidelines on extending RTCP if those basic mechanisms prove insufficient.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5968 -> rev_cites;
+  RFC5993 [label="RFC5993
+RTP Payload Format for Global System for
+Mobile Communications Half Rate (GSM-HR)
+2010", shape=ellipse, URL="RFC5993.html", target="_top", tooltip="This document specifies the payload format for packetization of Global System for Mobile Communications Half Rate (GSM-HR) speech codec data into the Real-time Transport Protocol (RTP).  The payload format supports transmission of multiple frames per payload and packet loss robustness methods using redundancy. [STANDARDS-TRACK]"];
+  RFC5993 -> rev_cites;
+  RFC6064 [label="RFC6064
+SDP and RTSP Extensions Defined for 3GPP
+Packet-Switched Streaming Service and
+Multimedia Broadcast/Multicast Service
+2011", shape=ellipse, URL="RFC6064.html", target="_top", tooltip="The Packet-switched Streaming Service (PSS) and the Multimedia Broadcast/Multicast Service (MBMS) defined by 3GPP use the Session Description Protocol (SDP) and Real Time Streaming Protocol (RTSP) with some extensions.  This document provides information about these extensions and registers the RTSP and SDP extensions with IANA.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6064 -> rev_cites;
+  RFC6262 [label="RFC6262
+RTP Payload Format for IP-MR Speech
+Codec
+2011", shape=ellipse, URL="RFC6262.html", target="_top", tooltip="This document specifies the payload format for packetization of SPIRIT IP-MR encoded speech signals into the Real-time Transport Protocol (RTP).  The payload format supports transmission of multiple frames per packet and introduces redundancy for robustness against packet loss and bit errors. [STANDARDS-TRACK]"];
+  RFC6262 -> rev_cites;
+  RFC6295 [label="RFC6295
+RTP Payload Format for MIDI
+2011", shape=ellipse, URL="RFC6295.html", target="_top", tooltip="This memo describes a Real-time Transport Protocol (RTP) payload format for the MIDI (Musical Instrument Digital Interface) command language.  The format encodes all commands that may legally appear on a MIDI 1.0 DIN cable.  The format is suitable for interactive applications (such as network musical performance) and content-delivery applications (such as file streaming).  The format may be used over unicast and multicast UDP and TCP, and it defines tools for graceful recovery from packet loss.  Stream behavior, including the MIDI rendering method, may be customized during session setup.  The format also serves as a mode for the mpeg4-generic format, to support the MPEG 4 Audio Object Types for General MIDI, Downloadable Sounds Level 2, and Structured Audio.  This document obsoletes RFC 4695. [STANDARDS-TRACK]"];
+  RFC6295 -> rev_cites;
+  RFC6443 [label="RFC6443
+Framework for Emergency Calling Using
+Internet Multimedia
+2011", shape=ellipse, URL="RFC6443.html", target="_top", tooltip="The IETF has standardized various aspects of placing emergency calls.  This document describes how all of those component parts are used to support emergency calls from citizens and visitors to authorities.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6443 -> rev_cites;
+  RFC6469 [label="RFC6469
+RTP Payload Format for DV (IEC 61834)
+Video
+2011", shape=ellipse, URL="RFC6469.html", target="_top", tooltip="This document specifies the packetization scheme for encapsulating the compressed digital video data streams commonly known as DV into a payload format for the Real-Time Transport Protocol (RTP).  This document obsoletes RFC 3189. [STANDARDS-TRACK]"];
+  RFC6469 -> rev_cites;
+  RFC6597 [label="RFC6597
+RTP Payload Format for Society of Motion
+Picture and Television Engineers (SMPTE)
+ST 336 Encoded Data
+2012", shape=ellipse, URL="RFC6597.html", target="_top", tooltip="This document specifies the payload format for packetization of KLV (Key-Length-Value) Encoded Data, as defined by the Society of Motion Picture and Television Engineers (SMPTE) in SMPTE ST 336, into the Real-time Transport Protocol (RTP). [STANDARDS-TRACK]"];
+  RFC6597 -> rev_cites;
+  RFC6679 [label="RFC6679
+Explicit Congestion Notification (ECN)
+for RTP over UDP
+2012", shape=ellipse, URL="RFC6679.html", target="_top", tooltip="This memo specifies how Explicit Congestion Notification (ECN) can be used with the Real-time Transport Protocol (RTP) running over UDP, using the RTP Control Protocol (RTCP) as a feedback mechanism.  It defines a new RTCP Extended Report (XR) block for periodic ECN feedback, a new RTCP transport feedback message for timely reporting of congestion events, and a Session Traversal Utilities for NAT (STUN) extension used in the optional initialisation method using Interactive Connectivity Establishment (ICE).  Signalling and procedures for negotiation of capabilities and initialisation methods are also defined. [STANDARDS-TRACK]"];
+  RFC6679 -> rev_cites;
+  RFC6773 [label="RFC6773
+DCCP-UDP: A Datagram Congestion Control
+Protocol UDP Encapsulation for NAT
+Traversal
+2012", shape=ellipse, URL="RFC6773.html", target="_top", tooltip="This document specifies an alternative encapsulation of the Datagram Congestion Control Protocol (DCCP), referred to as DCCP-UDP.  This encapsulation allows DCCP to be carried through the current generation of Network Address Translation (NAT) middleboxes without modification of those middleboxes.  This document also updates the Session Description Protocol (SDP) information for DCCP defined in RFC 5762. [STANDARDS-TRACK]"];
+  RFC6773 -> rev_cites;
+  RFC6849 [label="RFC6849
+An Extension to the Session Description
+Protocol (SDP) and Real-time Transport
+Protocol (RTP) for Media Loopback
+2013", shape=ellipse, URL="RFC6849.html", target="_top", tooltip="The wide deployment of Voice over IP (VoIP), real-time text, and Video over IP services has introduced new challenges in managing and maintaining real-time voice/text/video quality, reliability, and overall performance.  In particular, media delivery is an area that needs attention.  One method of meeting these challenges is monitoring the media delivery performance by looping media back to the transmitter.  This is typically referred to as active monitoring of services.  Media loopback is especially popular in ensuring the quality of transport to the edge of a given VoIP, real-time text, or Video over IP service.  Today, in networks that deliver real-time media, short of running 'ping' and 'traceroute' to the edge, administrators are left without the necessary tools to actively monitor, manage, and diagnose quality issues with their service.  The extension defined herein adds new Session Description Protocol (SDP) media types and attributes that enable establishment of media sessions where the media is looped back to the transmitter.  Such media sessions will serve as monitoring and troubleshooting tools by providing the means for measurement of more advanced VoIP, real-time text, and Video over IP performance metrics."];
+  RFC6849 -> rev_cites;
+  RFC6881 [label="RFC6881
+Best Current Practice for Communications
+Services in Support of Emergency Calling
+2013", shape=ellipse, URL="RFC6881.html", target="_top", tooltip="The IETF and other standards organizations have efforts targeted at standardizing various aspects of placing emergency calls on IP networks.  This memo describes best current practice on how devices, networks, and services using IETF protocols should use such standards to make emergency calls."];
+  RFC6881 -> rev_cites;
+  RFC7007 [label="RFC7007
+Update to Remove DVI4 from the
+Recommended Codecs for the RTP Profile
+for Audio and Video Conferences with
+Minimal Control (RTP/AVP)
+2013", shape=ellipse, URL="RFC7007.html", target="_top", tooltip="The RTP Profile for Audio and Video Conferences with Minimal Control (RTP/AVP) is the basis for many other profiles, such as the Secure Real-time Transport Protocol (RTP/SAVP), the Extended RTP Profile for Real-time Transport Control Protocol (RTCP)-Based Feedback (RTP/AVPF), and the Extended Secure RTP Profile for RTCP-Based Feedback (RTP/SAVPF).  This document updates RFC 3551, the RTP/AVP profile (and by extension, the profiles that build upon it), to reflect changes in audio codec usage since that document was originally published."];
+  RFC7007 -> rev_cites;
+  RFC7160 [label="RFC7160
+Support for Multiple Clock Rates in an
+RTP Session
+2014", shape=ellipse, URL="RFC7160.html", target="_top", tooltip="This document clarifies the RTP specification regarding the use of different clock rates in an RTP session.  It also provides guidance on how legacy RTP implementations that use multiple clock rates can interoperate with RTP implementations that use the algorithm described in this document.  It updates RFC 3550."];
+  RFC7160 -> rev_cites;
+  RFC7195 [label="RFC7195
+Session Description Protocol (SDP)
+Extension for Setting Audio and Video
+Media Streams over Circuit-Switched
+Bearers in the Public Switched Telephone
+Network (PSTN)
+2014", shape=ellipse, URL="RFC7195.html", target="_top", tooltip="This memo describes use cases, requirements, and protocol extensions for using the Session Description Protocol (SDP) offer/answer model for establishing audio and video media streams over circuit-switched bearers in the Public Switched Telephone Network (PSTN)."];
+  RFC7195 -> rev_cites;
+  RFC7261 [label="RFC7261
+Offer/Answer Considerations for G723
+Annex A and G729 Annex B
+2014", shape=ellipse, URL="RFC7261.html", target="_top", tooltip="This document provides the offer/answer considerations for the annexa parameter of G723 and the annexb parameter of G729, G729D, and G729E when the value of the annexa or annexb parameter does not match in the Session Description Protocol (SDP) offer and answer."];
+  RFC7261 -> rev_cites;
+  RFC7266 [label="RFC7266
+RTP Control Protocol (RTCP) Extended
+Report (XR) Blocks for Mean Opinion
+Score (MOS) Metric Reporting
+2014", shape=ellipse, URL="RFC7266.html", target="_top", tooltip="This document defines an RTP Control Protocol (RTCP) Extended Report (XR) Block including two new segment types and associated Session Description Protocol (SDP) parameters that allow the reporting of mean opinion score (MOS) Metrics for use in a range of RTP applications."];
+  RFC7266 -> rev_cites;
+  RFC7272 [label="RFC7272
+Inter-Destination Media Synchronization
+(IDMS) Using the RTP Control Protocol
+(RTCP)
+2014", shape=ellipse, URL="RFC7272.html", target="_top", tooltip="This document defines a new RTP Control Protocol (RTCP) Packet Type and an RTCP Extended Report (XR) Block Type to be used for achieving Inter-Destination Media Synchronization (IDMS). IDMS is the process of synchronizing playout across multiple media receivers. Using the RTCP XR IDMS Report Block defined in this document, media playout information from participants in a synchronization group can be collected. Based on the collected information, an RTCP IDMS Settings Packet can then be sent to distribute a common target playout point to which all the distributed receivers, sharing a media experience, can synchronize. Typical use cases in which IDMS is useful are social TV, shared service control (i.e., applications where two or more geographically separated users are watching a media stream together), distance learning, networked video walls, networked loudspeakers, etc."];
+  RFC7272 -> rev_cites;
+  RFC7310 [label="RFC7310
+RTP Payload Format for Standard apt-X
+and Enhanced apt-X Codecs
+2014", shape=ellipse, URL="RFC7310.html", target="_top", tooltip="This document specifies a scheme for packetizing Standard apt-X or Enhanced apt-X encoded audio data into Real-time Transport Protocol (RTP) packets.  The document describes a payload format that permits transmission of multiple related audio channels in a single RTP payload and a means of establishing Standard apt-X and Enhanced apt-X connections through the Session Description Protocol (SDP)."];
+  RFC7310 -> rev_cites;
+  RFC7587 [label="RFC7587
+RTP Payload Format for the Opus Speech
+and Audio Codec
+2015", shape=ellipse, URL="RFC7587.html", target="_top", tooltip="This document defines the Real-time Transport Protocol (RTP) payload format for packetization of Opus-encoded speech and audio data necessary to integrate the codec in the most compatible way.  It also provides an applicability statement for the use of Opus over RTP.  Further, it describes media type registrations for the RTP payload format."];
+  RFC7587 -> rev_cites;
+  RFC7655 [label="RFC7655
+RTP Payload Format for G.711.0
+2015", shape=ellipse, URL="RFC7655.html", target="_top", tooltip="This document specifies the Real-time Transport Protocol (RTP) payload format for ITU-T Recommendation G.711.0.  ITU-T Rec.  G.711.0 defines a lossless and stateless compression for G.711 packet payloads typically used in IP networks.  This document also defines a storage mode format for G.711.0 and a media type registration for the G.711.0 RTP payload format."];
+  RFC7655 -> rev_cites;
+  RFC7656 [label="RFC7656
+A Taxonomy of Semantics and Mechanisms
+for Real-Time Transport Protocol (RTP)
+Sources
+2015", shape=ellipse, URL="RFC7656.html", target="_top", tooltip="The terminology about, and associations among, Real-time Transport Protocol (RTP) sources can be complex and somewhat opaque.  This document describes a number of existing and proposed properties and relationships among RTP sources and defines common terminology for discussing protocol entities and their relationships."];
+  RFC7656 -> rev_cites;
+  RFC7741 [label="RFC7741
+RTP Payload Format for VP8 Video
+2016", shape=ellipse, URL="RFC7741.html", target="_top", tooltip="This memo describes an RTP payload format for the VP8 video codec.  The payload format has wide applicability, as it supports applications from low-bitrate peer-to-peer usage to high-bitrate video conferences."];
+  RFC7741 -> rev_cites;
+  RFC7798 [label="RFC7798
+RTP Payload Format for High Efficiency
+Video Coding (HEVC)
+2016", shape=ellipse, URL="RFC7798.html", target="_top", tooltip="This memo describes an RTP payload format for the video coding standard ITU-T Recommendation H.265 and ISO/IEC International Standard 23008-2, both also known as High Efficiency Video Coding (HEVC) and developed by the Joint Collaborative Team on Video Coding (JCT-VC).  The RTP payload format allows for packetization of one or more Network Abstraction Layer (NAL) units in each RTP packet payload as well as fragmentation of a NAL unit into multiple RTP packets.  Furthermore, it supports transmission of an HEVC bitstream over a single stream as well as multiple RTP streams.  When multiple RTP streams are used, a single transport or multiple transports may be utilized.  The payload format has wide applicability in videoconferencing, Internet video streaming, and high-bitrate entertainment-quality video, among others."];
+  RFC7798 -> rev_cites;
+  RFC7826 [label="RFC7826
+Real-Time Streaming Protocol Version 2.0
+2016", shape=ellipse, URL="RFC7826.html", target="_top", tooltip="This memorandum defines the Real-Time Streaming Protocol (RTSP) version 2.0, which obsoletes RTSP version 1.0 defined in RFC 2326. RTSP is an application-layer protocol for the setup and control of the delivery of data with real-time properties. RTSP provides an extensible framework to enable controlled, on-demand delivery of real-time data, such as audio and video. Sources of data can include both live data feeds and stored clips. This protocol is intended to control multiple data delivery sessions; provide a means for choosing delivery channels such as UDP, multicast UDP, and TCP; and provide a means for choosing delivery mechanisms based upon RTP (RFC 3550)."];
+  RFC7826 -> rev_cites;
+  RFC7866 [label="RFC7866
+Session Recording Protocol
+2016", shape=ellipse, URL="RFC7866.html", target="_top", tooltip="This document specifies the use of the Session Initiation Protocol (SIP), the Session Description Protocol (SDP), and the Real-time Transport Protocol (RTP) for delivering real-time media and metadata from a Communication Session (CS) to a recording device.  The Session Recording Protocol specifies the use of SIP, SDP, and RTP to establish a Recording Session (RS) between the Session Recording Client (SRC), which is on the path of the CS, and a Session Recording Server (SRS) at the recording device.  This document considers only active recording, where the SRC purposefully streams media to an SRS and all participating user agents (UAs) are notified of the recording.  Passive recording, where a recording device detects media directly from the network (e.g., using port-mirroring techniques), is outside the scope of this document.  In addition, lawful intercept is outside the scope of this document."];
+  RFC7866 -> rev_cites;
+  RFC7874 [label="RFC7874
+WebRTC Audio Codec and Processing
+Requirements
+2016", shape=ellipse, URL="RFC7874.html", target="_top", tooltip="This document outlines the audio codec and processing requirements for WebRTC endpoints."];
+  RFC7874 -> rev_cites;
+  RFC7875 [label="RFC7875
+Additional WebRTC Audio Codecs for
+Interoperability
+2016", shape=ellipse, URL="RFC7875.html", target="_top", tooltip="To ensure a baseline of interoperability between WebRTC endpoints, a minimum set of required codecs is specified. However, to maximize the possibility of establishing the session without the need for audio transcoding, it is also recommended to include in the offer other suitable audio codecs that are available to the browser. This document provides some guidelines on the suitable codecs to be considered for WebRTC endpoints to address the use cases most relevant to interoperability."];
+  RFC7875 -> rev_cites;
+  RFC8083 [label="RFC8083
+Multimedia Congestion Control: Circuit
+Breakers for Unicast RTP Sessions
+2017", shape=ellipse, URL="RFC8083.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is widely used in telephony, video conferencing, and telepresence applications. Such applications are often run on best-effort UDP/IP networks. If congestion control is not implemented in these applications, then network congestion can lead to uncontrolled packet loss and a resulting deterioration of the user's multimedia experience. The congestion control algorithm acts as a safety measure by stopping RTP flows from using excessive resources and protecting the network from overload. At the time of this writing, however, while there are several proprietary solutions, there is no standard algorithm for congestion control of interactive RTP flows. This document does not propose a congestion control algorithm. It instead defines a minimal set of RTP circuit breakers: conditions under which an RTP sender needs to stop transmitting media data to protect the network from excessive congestion. It is expected that, in the absence of long-lived excessive congestion, RTP applications running on best-effort IP networks will be able to operate without triggering these circuit breakers. To avoid triggering the RTP circuit breaker, any Standards Track congestion control algorithms defined for RTP will need to operate within the envelope set by these RTP circuit breaker algorithms."];
+  RFC8083 -> rev_cites;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  RFC8085 -> rev_cites;
+  RFC8088 [label="RFC8088
+How to Write an RTP Payload Format
+2017", shape=ellipse, URL="RFC8088.html", target="_top", tooltip="This document contains information on how best to write an RTP payload format specification.  It provides reading tips, design practices, and practical tips on how to produce an RTP payload format specification quickly and with good results.  A template is also included with instructions."];
+  RFC8088 -> rev_cites;
+  RFC8108 [label="RFC8108
+Sending Multiple RTP Streams in a Single
+RTP Session
+2017", shape=ellipse, URL="RFC8108.html", target="_top", tooltip="This memo expands and clarifies the behavior of Real-time Transport Protocol (RTP) endpoints that use multiple synchronization sources (SSRCs).  This occurs, for example, when an endpoint sends multiple RTP streams in a single RTP session.  This memo updates RFC 3550 with regard to handling multiple SSRCs per endpoint in RTP sessions, with a particular focus on RTP Control Protocol (RTCP) behavior.  It also updates RFC 4585 to change and clarify the calculation of the timeout of SSRCs and the inclusion of feedback messages."];
+  RFC8108 -> rev_cites;
+  RFC8130 [label="RFC8130
+RTP Payload Format for the Mixed
+Excitation Linear Prediction Enhanced
+(MELPe) Codec
+2017", shape=ellipse, URL="RFC8130.html", target="_top", tooltip="This document describes the RTP payload format for the Mixed Excitation Linear Prediction Enhanced (MELPe) speech coder.  MELPe's three different speech encoding rates and sample frame sizes are supported.  Comfort noise procedures and packet loss concealment are described in detail."];
+  RFC8130 -> rev_cites;
+  RFC8331 [label="RFC8331
+RTP Payload for Society of Motion
+Picture and Television Engineers (SMPTE)
+ST 291-1 Ancillary Data
+2018", shape=ellipse, URL="RFC8331.html", target="_top", tooltip="This memo describes a Real-time Transport Protocol (RTP) payload format for the Society of Motion Picture and Television Engineers (SMPTE) ancillary space (ANC) data, as defined by SMPTE ST 291-1.  SMPTE ANC data is generally used along with professional video formats to carry a range of ancillary data types, including time code, Closed Captioning, and the Active Format Description (AFD)."];
+  RFC8331 -> rev_cites;
+  RFC8450 [label="RFC8450
+RTP Payload Format for VC-2 High Quality
+(HQ) Profile
+2018", shape=ellipse, URL="RFC8450.html", target="_top", tooltip="This memo describes an RTP payload format for the High Quality (HQ) profile of Society of Motion Picture and Television Engineers Standard ST 2042-1, known as VC-2. This document describes the transport of HQ Profile VC-2 in RTP packets and has applications for low-complexity, high-bandwidth streaming of both lossless and lossy compressed video. The HQ profile of VC-2 is intended for low-latency video compression (with latency potentially on the order of lines of video) at high data rates (with compression ratios on the order of 2:1 or 4:1)."];
+  RFC8450 -> rev_cites;
+  RFC8643 [label="RFC8643
+An Opportunistic Approach for Secure
+Real-time Transport Protocol (OSRTP)
+2019", shape=ellipse, URL="RFC8643.html", target="_top", tooltip="Opportunistic Secure Real-time Transport Protocol (OSRTP) is an implementation of the Opportunistic Security mechanism, as defined in RFC 7435, applied to the Real-time Transport Protocol (RTP).  OSRTP allows encrypted media to be used in environments where support for encryption is not known in advance and is not required.  OSRTP does not require Session Description Protocol (SDP) extensions or features and is fully backwards compatible with existing implementations using encrypted and authenticated media and implementations that do not encrypt or authenticate media packets.  OSRTP is not specific to any key management technique for Secure RTP (SRTP).  OSRTP is a transitional approach useful for migrating existing deployments of real-time communications to a fully encrypted and authenticated state."];
+  RFC8643 -> rev_cites;
+  RFC8759 [label="RFC8759
+RTP Payload for Timed Text Markup
+Language (TTML)
+2020", shape=ellipse, URL="RFC8759.html", target="_top", tooltip="This memo describes a Real-time Transport Protocol (RTP) payload format for Timed Text Markup Language (TTML), an XML-based timed text format from W3C.  This payload format is specifically targeted at streaming workflows using TTML."];
+  RFC8759 -> rev_cites;
+  RFC8817 [label="RFC8817
+RTP Payload Format for Tactical Secure
+Voice Cryptographic Interoperability
+Specification (TSVCIS) Codec
+2020", shape=ellipse, URL="RFC8817.html", target="_top", tooltip="This document describes the RTP payload format for the Tactical Secure Voice Cryptographic Interoperability Specification (TSVCIS) speech coder.  TSVCIS is a scalable narrowband voice coder supporting varying encoder data rates and fallbacks.  It is implemented as an augmentation to the Mixed Excitation Linear Prediction Enhanced (MELPe) speech coder by conveying additional speech coder parameters to enhance voice quality.  TSVCIS augmented speech data is processed in conjunction with its temporally matched Mixed Excitation Linear Prediction (MELP) 2400 speech data.  The RTP packetization of TSVCIS and MELPe speech coder data is described in detail."];
+  RFC8817 -> rev_cites;
+  RFC8834 [label="RFC8834
+Media Transport and Use of RTP in WebRTC
+2021", shape=ellipse, URL="RFC8834.html", target="_top", tooltip="The framework for Web Real-Time Communication (WebRTC) provides support for direct interactive rich communication using audio, video, text, collaboration, games, etc.  between two peers' web browsers.  This memo describes the media transport aspects of the WebRTC framework.  It specifies how the Real-time Transport Protocol (RTP) is used in the WebRTC context and gives requirements for which RTP features, profiles, and extensions need to be supported."];
+  RFC8834 -> rev_cites;
+  RFC8860 [label="RFC8860
+Sending Multiple Types of Media in a
+Single RTP Session
+2021", shape=ellipse, URL="RFC8860.html", target="_top", tooltip="This document specifies how an RTP session can contain RTP streams with media from multiple media types such as audio, video, and text.  This has been restricted by the RTP specifications (RFCs 3550 and 3551), and thus this document updates RFCs 3550 and 3551 to enable this behaviour for applications that satisfy the applicability for using multiple media types in a single RTP session."];
+  RFC8860 -> rev_cites;
+  RFC8866 [label="RFC8866
+SDP: Session Description Protocol
+2021", shape=ellipse, URL="RFC8866.html", target="_top", tooltip="This memo defines the Session Description Protocol (SDP).  SDP is intended for describing multimedia sessions for the purposes of session announcement, session invitation, and other forms of multimedia session initiation.  This document obsoletes RFC 4566."];
+  RFC8866 -> rev_cites;
+  RFC8867 [label="RFC8867
+Test Cases for Evaluating Congestion
+Control for Interactive Real-Time Media
+2021", shape=ellipse, URL="RFC8867.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is used to transmit media in multimedia telephony applications.  These applications are typically required to implement congestion control.  This document describes the test cases to be used in the performance evaluation of such congestion control algorithms in a controlled environment."];
+  RFC8867 -> rev_cites;
+  RFC8868 [label="RFC8868
+Evaluating Congestion Control for
+Interactive Real-Time Media
+2021", shape=ellipse, URL="RFC8868.html", target="_top", tooltip="The Real-Time Transport Protocol (RTP) is used to transmit media in telephony and video conferencing applications.  This document describes the guidelines to evaluate new congestion control algorithms for interactive point-to-point real-time media."];
+  RFC8868 -> rev_cites;
+  RFC8872 [label="RFC8872
+Guidelines for Using the Multiplexing
+Features of RTP to Support Multiple
+Media Streams
+2021", shape=ellipse, URL="RFC8872.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is a flexible protocol that can be used in a wide range of applications, networks, and system topologies.  That flexibility makes for wide applicability but can complicate the application design process.  One particular design question that has received much attention is how to support multiple media streams in RTP.  This memo discusses the available options and design trade-offs, and provides guidelines on how to use the multiplexing features of RTP to support multiple media streams."];
+  RFC8872 -> rev_cites;
+  RFC8888 [label="RFC8888
+RTP Control Protocol (RTCP) Feedback for
+Congestion Control
+2021", shape=ellipse, URL="RFC8888.html", target="_top", tooltip="An effective RTP congestion control algorithm requires more fine-grained feedback on packet loss, timing, and Explicit Congestion Notification (ECN) marks than is provided by the standard RTP Control Protocol (RTCP) Sender Report (SR) and Receiver Report (RR) packets.  This document describes an RTCP feedback message intended to enable congestion control for interactive real-time traffic using RTP.  The feedback message is designed for use with a sender-based congestion control algorithm, in which the receiver of an RTP flow sends back to the sender RTCP feedback packets containing the information the sender needs to perform congestion control."];
+  RFC8888 -> rev_cites;
+  RFC9134 [label="RFC9134
+RTP Payload Format for ISO/IEC 21122
+(JPEG XS)
+2021", shape=ellipse, URL="RFC9134.html", target="_top", tooltip="This document specifies a Real-Time Transport Protocol (RTP) payload format to be used for transporting video encoded with JPEG XS (ISO/IEC 21122).  JPEG XS is a low-latency, lightweight image coding system.  Compared to an uncompressed video use case, it allows higher resolutions and video frame rates while offering visually lossless quality, reduced power consumption, and encoding-decoding latency confined to a fraction of a video frame."];
+  RFC9134 -> rev_cites;
+  RFC9328 [label="RFC9328
+RTP Payload Format for Versatile Video
+Coding (VVC)
+2022", shape=ellipse, URL="RFC9328.html", target="_top", tooltip="This memo describes an RTP payload format for the Versatile Video Coding (VVC) specification, which was published as both ITU-T Recommendation H.266 and ISO/IEC International Standard 23090-3.  VVC was developed by the Joint Video Experts Team (JVET).  The RTP payload format allows for packetization of one or more Network Abstraction Layer (NAL) units in each RTP packet payload, as well as fragmentation of a NAL unit into multiple RTP packets.  The payload format has wide applicability in videoconferencing, Internet video streaming, and high-bitrate entertainment-quality video, among other applications."];
+  RFC9328 -> rev_cites;
+  RFC9584 [label="RFC9584
+RTP Payload Format for Essential Video
+Coding (EVC)
+2024", shape=ellipse, URL="RFC9584.html", target="_top", tooltip="This document describes an RTP payload format for the Essential Video Coding (EVC) standard, published as ISO/IEC International Standard 23094-1.  EVC was developed by the MPEG.  The RTP payload format allows for the packetization of one or more Network Abstraction Layer (NAL) units in each RTP packet payload and the fragmentation of a NAL unit into multiple RTP packets.  The payload format has broad applicability in videoconferencing, Internet video streaming, and high-bitrate entertainment-quality video, among other applications."];
+  RFC9584 -> rev_cites;
+  RFC9607 [label="RFC9607
+RTP Payload Format for the Secure
+Communication Interoperability Protocol
+(SCIP) Codec
+2024", shape=ellipse, URL="RFC9607.html", target="_top", tooltip="This document describes the RTP payload format of the Secure Communication Interoperability Protocol (SCIP).  SCIP is an application-layer protocol that provides end-to-end session establishment, payload encryption, packetization and de-packetization of media, and reliable transport.  This document provides a globally available reference that can be used for the development of network equipment and procurement of services that support SCIP traffic.  The intended audience is network security policymakers; network administrators, architects, and original equipment manufacturers (OEMs); procurement personnel; and government agency and commercial industry representatives."];
+  RFC9607 -> rev_cites;
+  RFC9628 [label="RFC9628
+RTP Payload Format for VP9 Video
+2025", shape=ellipse, URL="RFC9628.html", target="_top", tooltip="This specification describes an RTP payload format for the VP9 video codec.  The payload format has wide applicability as it supports applications from low bitrate peer-to-peer usage to high bitrate video conferences.  It includes provisions for temporal and spatial scalability."];
+  RFC9628 -> rev_cites;
+  RFC9801 [label="RFC9801
+Private Line Emulation over Packet
+Switched Networks
+2025", shape=ellipse, URL="RFC9801.html", target="_top", tooltip="This document expands the applicability of Virtual Private Wire Service (VPWS) bit-stream payloads beyond Time Division Multiplexing (TDM) signals and provides pseudowire transport with complete signal transparency over Packet Switched Networks (PSNs)."];
+  RFC9801 -> rev_cites;
+  RFC9828 [label="RFC9828
+RTP Payload Format for JPEG 2000
+Streaming with Sub-Codestream Latency
+2025", shape=ellipse, URL="RFC9828.html", target="_top", tooltip="This document defines the RTP payload format for the streaming of a video signal encoded as a sequence of JPEG 2000 codestreams.  The format allows sub-codestream latency, such that the first RTP packet for a given image can be emitted before the entire image is available to or encoded by the sender."];
+  RFC9828 -> rev_cites;
+}

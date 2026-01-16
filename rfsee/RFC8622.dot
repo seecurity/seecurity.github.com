@@ -1,0 +1,169 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8622 [label="RFC8622
+A Lower-Effort Per-Hop Behavior (LE PHB)
+for Differentiated Services
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies properties and characteristics of a Lower- Effort Per-Hop Behavior (LE PHB). The primary objective of this LE PHB is to protect Best-Effort (BE) traffic (packets forwarded with the default PHB) from LE traffic in congestion situations, i.e., when resources become scarce, BE traffic has precedence over LE traffic and may preempt it. Alternatively, packets forwarded by the LE PHB can be associated with a scavenger service class, i.e., they scavenge otherwise-unused resources only. There are numerous uses for this PHB, e.g., for background traffic of low precedence, such as bulk data transfers with low priority in time, non-time-critical backups, larger software updates, web search engines while gathering information from web servers and so on. This document recommends a standard Differentiated Services Code Point (DSCP) value for the LE PHB. This specification obsoletes RFC 3662 and updates the DSCP recommended in RFCs 4594 and 8325 to use the DSCP assigned in this specification."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8622;
+
+  obs [label="obsoletes", shape=box];
+  RFC8622 -> obs;
+  RFC3662 [label="RFC3662
+A Lower Effort Per-Domain Behavior (PDB)
+for Differentiated Services
+2003", shape=ellipse, URL="RFC3662.html", target="_top", tooltip="This document proposes a differentiated services per-domain behavior (PDB) whose traffic may be starved (although starvation is not strictly required) in a properly functioning network.  This is in contrast to the Internet's best-effort or normal Internet traffic model, where prolonged starvation indicates network problems.  In this sense, the proposed PDB's traffic is forwarded with a lower priority than the normal best-effort Internet traffic, thus the PDB is called Lower Effort (LE).  Use of this PDB permits a network operator to strictly limit the effect of its traffic on best-effort/normal or all other Internet traffic.  This document gives some example uses, but does not propose constraining the PDB's use to any particular type of traffic."];
+  obs -> RFC3662;
+
+  updates [label="updates", shape=box];
+  RFC8622 -> updates;
+  RFC4594 [label="RFC4594
+Configuration Guidelines for DiffServ
+Service Classes
+2006", shape=ellipse, URL="RFC4594.html", target="_top", tooltip="This document describes service classes configured with Diffserv and recommends how they can be used and how to construct them using Differentiated Services Code Points (DSCPs), traffic conditioners, Per-Hop Behaviors (PHBs), and Active Queue Management (AQM) mechanisms.  There is no intrinsic requirement that particular DSCPs, traffic conditioners, PHBs, and AQM be used for a certain service class, but as a policy and for interoperability it is useful to apply them consistently.  This memo provides information for the Internet community."];
+  updates -> RFC4594;
+  RFC8325 [label="RFC8325
+Mapping Diffserv to IEEE 802.11
+2018", shape=ellipse, URL="RFC8325.html", target="_top", tooltip="As Internet traffic is increasingly sourced from and destined to wireless endpoints, it is crucial that Quality of Service (QoS) be aligned between wired and wireless networks; however, this is not always the case by default.  This document specifies a set of mappings from Differentiated Services Code Point (DSCP) to IEEE 802.11 User Priority (UP) to reconcile the marking recommendations offered by the IETF and the IEEE so as to maintain consistent QoS treatment between wired and IEEE 802.11 wireless networks."];
+  updates -> RFC8325;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8622;
+
+  cites [label="cites", shape=box];
+  RFC8622 -> cites;
+  RFC2474 [label="RFC2474
+Definition of the Differentiated
+Services Field (DS Field) in the IPv4
+and IPv6 Headers
+1998", shape=ellipse, URL="RFC2474.html", target="_top", tooltip="This document defines the IP header field, called the DS (for differentiated services) field. [STANDARDS-TRACK]"];
+  cites -> RFC2474;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  cites -> RFC8085;
+  RFC6817 [label="RFC6817
+Low Extra Delay Background Transport
+(LEDBAT)
+2012", shape=ellipse, URL="RFC6817.html", target="_top", tooltip="Low Extra Delay Background Transport (LEDBAT) is an experimental delay-based congestion control algorithm that seeks to utilize the available bandwidth on an end-to-end path while limiting the consequent increase in queueing delay on that path.  LEDBAT uses changes in one-way delay measurements to limit congestion that the flow itself induces in the network.  LEDBAT is designed for use by background bulk-transfer applications to be no more aggressive than standard TCP congestion control (as specified in RFC 5681) and to yield in the presence of competing flows, thus limiting interference with the network performance of competing flows.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6817;
+  RFC3754 [label="RFC3754
+IP Multicast in Differentiated Services
+(DS) Networks
+2004", shape=ellipse, URL="RFC3754.html", target="_top", tooltip="This document discusses the problems of IP Multicast use in Differentiated Services (DS) networks, expanding on the discussion in RFC 2475 (An Architecture of Differentiated Services).  It also suggests possible solutions to these problems, describes a potential implementation model, and presents simulation results.  This memo provides information for the Internet community."];
+  cites -> RFC3754;
+  RFC3439 [label="RFC3439
+Some Internet Architectural Guidelines
+and Philosophy
+2002", shape=ellipse, URL="RFC3439.html", target="_top", tooltip="This document extends RFC 1958 by outlining some of the philosophical guidelines to which architects and designers of Internet backbone networks should adhere.  We describe the Simplicity Principle, which states that complexity is the primary mechanism that impedes efficient scaling, and discuss its implications on the architecture, design and engineering issues found in large scale Internet backbones.  This memo provides information for the Internet community."];
+  cites -> RFC3439;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC8087 [label="RFC8087
+The Benefits of Using Explicit
+Congestion Notification (ECN)
+2017", shape=ellipse, URL="RFC8087.html", target="_top", tooltip="The goal of this document is to describe the potential benefits of applications using a transport that enables Explicit Congestion Notification (ECN).  The document outlines the principal gains in terms of increased throughput, reduced delay, and other benefits when ECN is used over a network path that includes equipment that supports Congestion Experienced (CE) marking.  It also discusses challenges for successful deployment of ECN.  It does not propose new algorithms to use ECN nor does it describe the details of implementation of ECN in endpoint devices (Internet hosts), routers, or other network devices."];
+  cites -> RFC8087;
+  RFC4594 [label="RFC4594
+Configuration Guidelines for DiffServ
+Service Classes
+2006", shape=ellipse, URL="RFC4594.html", target="_top", tooltip="This document describes service classes configured with Diffserv and recommends how they can be used and how to construct them using Differentiated Services Code Points (DSCPs), traffic conditioners, Per-Hop Behaviors (PHBs), and Active Queue Management (AQM) mechanisms.  There is no intrinsic requirement that particular DSCPs, traffic conditioners, PHBs, and AQM be used for a certain service class, but as a policy and for interoperability it is useful to apply them consistently.  This memo provides information for the Internet community."];
+  cites -> RFC4594;
+  RFC3662 [label="RFC3662
+A Lower Effort Per-Domain Behavior (PDB)
+for Differentiated Services
+2003", shape=ellipse, URL="RFC3662.html", target="_top", tooltip="This document proposes a differentiated services per-domain behavior (PDB) whose traffic may be starved (although starvation is not strictly required) in a properly functioning network.  This is in contrast to the Internet's best-effort or normal Internet traffic model, where prolonged starvation indicates network problems.  In this sense, the proposed PDB's traffic is forwarded with a lower priority than the normal best-effort Internet traffic, thus the PDB is called Lower Effort (LE).  Use of this PDB permits a network operator to strictly limit the effect of its traffic on best-effort/normal or all other Internet traffic.  This document gives some example uses, but does not propose constraining the PDB's use to any particular type of traffic."];
+  cites -> RFC3662;
+  RFC8436 [label="RFC8436
+Update to IANA Registration Procedures
+for Pool 3 Values in the Differentiated
+Services Field Codepoints (DSCP)
+Registry
+2018", shape=ellipse, URL="RFC8436.html", target="_top", tooltip="The Differentiated Services (Diffserv) architecture specifies use of the DS field in the IPv4 and IPv6 packet headers to carry one of 64 distinct differentiated services field codepoint (DSCP) values. The Internet Assigned Numbers Authority (IANA) maintains a registry of assigned DSCP values. This update to RFC 2474 changes the IANA registration policy for Pool 3 of the registry (i.e., DSCP values of the form xxxx01) to Standards Action, i.e., values are assigned through a Standards Track or Best Current Practice RFC. The update also removes permission for experimental and local use of the codepoints that form Pool 3 of the DSCP registry; Pool 2 Codepoints (i.e., DSCP values of the form xxxx11) remain available for these purposes."];
+  cites -> RFC8436;
+  RFC2475 [label="RFC2475
+An Architecture for Differentiated
+Services
+1998", shape=ellipse, URL="RFC2475.html", target="_top", tooltip="This document defines an architecture for implementing scalable service differentiation in the Internet.  This memo provides information for the Internet community."];
+  cites -> RFC2475;
+  RFC6297 [label="RFC6297
+A Survey of Lower-than-Best-Effort
+Transport Protocols
+2011", shape=ellipse, URL="RFC6297.html", target="_top", tooltip="This document provides a survey of transport protocols that are designed to have a smaller bandwidth and/or delay impact on standard TCP than standard TCP itself when they share a bottleneck with it.  Such protocols could be used for delay-insensitive background traffic, as they provide what is sometimes called a less than (or lower than) best-effort service.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6297;
+  RFC8100 [label="RFC8100
+Diffserv-Interconnection Classes and
+Practice
+2017", shape=ellipse, URL="RFC8100.html", target="_top", tooltip="This document defines a limited common set of Diffserv Per-Hop Behaviors (PHBs) and Diffserv Codepoints (DSCPs) to be applied at (inter)connections of two separately administered and operated networks, and it explains how this approach can simplify network configuration and operation.  Many network providers operate Multiprotocol Label Switching (MPLS) using Treatment Aggregates for traffic marked with different Diffserv Per-Hop Behaviors and use MPLS for interconnection with other networks.  This document offers a simple interconnection approach that may simplify operation of Diffserv for network interconnection among providers that use MPLS and apply the Short Pipe Model.  While motivated by the requirements of MPLS network operators that use Short Pipe Model tunnels, this document is applicable to other networks, both MPLS and non-MPLS."];
+  cites -> RFC8100;
+  RFC5053 [label="RFC5053
+Raptor Forward Error Correction Scheme
+for Object Delivery
+2007", shape=ellipse, URL="RFC5053.html", target="_top", tooltip="This document describes a Fully-Specified Forward Error Correction (FEC) scheme, corresponding to FEC Encoding ID 1, for the Raptor forward error correction code and its application to reliable delivery of data objects. Raptor is a fountain code, i.e., as many encoding symbols as needed can be generated by the encoder on-the-fly from the source symbols of a source block of data. The decoder is able to recover the source block from any set of encoding symbols only slightly more in number than the number of source symbols. The Raptor code described here is a systematic code, meaning that all the source symbols are among the encoding symbols that can be generated. [STANDARDS-TRACK]"];
+  cites -> RFC5053;
+  RFC8325 [label="RFC8325
+Mapping Diffserv to IEEE 802.11
+2018", shape=ellipse, URL="RFC8325.html", target="_top", tooltip="As Internet traffic is increasingly sourced from and destined to wireless endpoints, it is crucial that Quality of Service (QoS) be aligned between wired and wireless networks; however, this is not always the case by default.  This document specifies a set of mappings from Differentiated Services Code Point (DSCP) to IEEE 802.11 User Priority (UP) to reconcile the marking recommendations offered by the IETF and the IEEE so as to maintain consistent QoS treatment between wired and IEEE 802.11 wireless networks."];
+  cites -> RFC8325;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+  RFC6973 [label="RFC6973
+Privacy Considerations for Internet
+Protocols
+2013", shape=ellipse, URL="RFC6973.html", target="_top", tooltip="This document offers guidance for developing privacy considerations for inclusion in protocol specifications.  It aims to make designers, implementers, and users of Internet protocols aware of privacy-related design choices.  It suggests that whether any individual RFC warrants a specific privacy considerations section will depend on the document's content."];
+  cites -> RFC6973;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8622;
+  RFC8837 [label="RFC8837
+Differentiated Services Code Point
+(DSCP) Packet Markings for WebRTC QoS
+2021", shape=ellipse, URL="RFC8837.html", target="_top", tooltip="Networks can provide different forwarding treatments for individual packets based on Differentiated Services Code Point (DSCP) values on a per-hop basis.  This document provides the recommended DSCP values for web browsers to use for various classes of Web Real-Time Communication (WebRTC) traffic."];
+  RFC8837 -> rev_cites;
+  RFC8923 [label="RFC8923
+A Minimal Set of Transport Services for
+End Systems
+2020", shape=ellipse, URL="RFC8923.html", target="_top", tooltip="This document recommends a minimal set of Transport Services offered by end systems and gives guidance on choosing among the available mechanisms and protocols.  It is based on the set of transport features in RFC 8303."];
+  RFC8923 -> rev_cites;
+  RFC9317 [label="RFC9317
+Operational Considerations for Streaming
+Media
+2022", shape=ellipse, URL="RFC9317.html", target="_top", tooltip="This document provides an overview of operational networking and transport protocol issues that pertain to the quality of experience (QoE) when streaming video and other high-bitrate media over the Internet. This document explains the characteristics of streaming media delivery that have surprised network designers or transport experts who lack specific media expertise, since streaming media highlights key differences between common assumptions in existing networking practices and observations of media delivery issues encountered when streaming media over those existing networks."];
+  RFC9317 -> rev_cites;
+  RFC9435 [label="RFC9435
+Considerations for Assigning a New
+Recommended Differentiated Services Code
+Point (DSCP)
+2023", shape=ellipse, URL="RFC9435.html", target="_top", tooltip="This document discusses considerations for assigning a new recommended Differentiated Services Code Point (DSCP) for a standard Per-Hop Behavior (PHB).  It considers the common observed re-marking behaviors that the Diffserv field might be subjected to along an Internet path.  It also notes some implications of using a specific DSCP."];
+  RFC9435 -> rev_cites;
+  RFC9622 [label="RFC9622
+An Abstract Application Programming
+Interface (API) for Transport Services
+2025", shape=ellipse, URL="RFC9622.html", target="_top", tooltip="This document describes an abstract Application Programming Interface (API) to the transport layer that enables the selection of transport protocols and network paths dynamically at runtime.  This API enables faster deployment of new protocols and protocol features without requiring changes to the applications.  The specified API follows the Transport Services Architecture by providing asynchronous, atomic transmission of Messages.  It is intended to replace the BSD Socket API as the common interface to the transport layer, in an environment where endpoints could select from multiple network paths and potential transport protocols."];
+  RFC9622 -> rev_cites;
+}

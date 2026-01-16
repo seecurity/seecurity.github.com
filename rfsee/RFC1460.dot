@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC1460 [label="RFC1460
+Post Office Protocol - Version 3
+1993", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo is a revision to RFC 1225, a Draft Standard. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC1460;
+  RFC1725 [label="RFC1725
+Post Office Protocol - Version 3
+1994", shape=ellipse, URL="RFC1725.html", target="_top", tooltip="This memo is a revision to RFC 1460, a Draft Standard. [STANDARDS-TRACK]"];
+  RFC1725 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC1460 -> obs;
+  RFC1225 [label="RFC1225
+Post Office Protocol: Version 3
+1991", shape=ellipse, URL="RFC1225.html", target="_top", tooltip="This memo suggests a simple method for workstations to dynamically access mail from a mailbox server. [STANDARDS-TRACK]"];
+  obs -> RFC1225;
+
+  updates [label="updates", shape=box];
+  RFC1460 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC1460;
+
+  cites [label="cites", shape=box];
+  RFC1460 -> cites;
+  RFC1321 [label="RFC1321
+The MD5 Message-Digest Algorithm
+1992", shape=ellipse, URL="RFC1321.html", target="_top", tooltip="This document describes the MD5 message-digest algorithm.  The algorithm takes as input a message of arbitrary length and produces as output a 128-bit fingerprint or message digest of the input.  This memo provides information for the Internet community.  It does not specify an Internet standard."];
+  cites -> RFC1321;
+  RFC1225 [label="RFC1225
+Post Office Protocol: Version 3
+1991", shape=ellipse, URL="RFC1225.html", target="_top", tooltip="This memo suggests a simple method for workstations to dynamically access mail from a mailbox server. [STANDARDS-TRACK]"];
+  cites -> RFC1225;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC1460;
+}

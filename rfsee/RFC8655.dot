@@ -1,0 +1,291 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8655 [label="RFC8655
+Deterministic Networking Architecture
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides the overall architecture for Deterministic Networking (DetNet), which provides a capability to carry specified unicast or multicast data flows for real-time applications with extremely low data loss rates and bounded latency within a network domain.  Techniques used include 1) reserving data-plane resources for individual (or aggregated) DetNet flows in some or all of the intermediate nodes along the path of the flow, 2) providing explicit routes for DetNet flows that do not immediately change with the network topology, and 3) distributing data from DetNet flow packets over time and/or space to ensure delivery of each packet's data in spite of the loss of a path.  DetNet operates at the IP layer and delivers service over lower-layer technologies such as MPLS and Time- Sensitive Networking (TSN) as defined by IEEE 802.1."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8655;
+
+  obs [label="obsoletes", shape=box];
+  RFC8655 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8655 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8655;
+
+  cites [label="cites", shape=box];
+  RFC8655 -> cites;
+  RFC8557 [label="RFC8557
+Deterministic Networking Problem
+Statement
+2019", shape=ellipse, URL="RFC8557.html", target="_top", tooltip="This paper documents the needs in various industries to establish multi-hop paths for characterized flows with deterministic properties."];
+  cites -> RFC8557;
+  RFC8578 [label="RFC8578
+Deterministic Networking Use Cases
+2019", shape=ellipse, URL="RFC8578.html", target="_top", tooltip="This document presents use cases for diverse industries that have in common a need for deterministic flows. Deterministic in this context means that such flows provide guaranteed bandwidth, bounded latency, and other properties germane to the transport of time-sensitive data.  These use cases differ notably in their network topologies and specific desired behavior, providing as a group broad industry context for Deterministic Networking (DetNet).  For each use case, this document will identify the use case, identify representative solutions used today, and describe potential improvements that DetNet can enable."];
+  cites -> RFC8578;
+  RFC2205 [label="RFC2205
+Resource ReSerVation Protocol (RSVP) --
+Version 1 Functional Specification
+1997", shape=ellipse, URL="RFC2205.html", target="_top", tooltip="This memo describes version 1 of RSVP, a resource reservation setup protocol designed for an integrated services Internet.  RSVP provides receiver-initiated setup of resource reservations for multicast or unicast data flows, with good scaling and robustness properties. [STANDARDS-TRACK]"];
+  cites -> RFC2205;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+  RFC8227 [label="RFC8227
+MPLS-TP Shared-Ring Protection (MSRP)
+Mechanism for Ring Topology
+2017", shape=ellipse, URL="RFC8227.html", target="_top", tooltip="This document describes requirements, architecture, and solutions for MPLS-TP Shared-Ring Protection (MSRP) in a ring topology for point- to-point (P2P) services.  The MSRP mechanism is described to meet the ring protection requirements as described in RFC 5654.  This document defines the Ring Protection Switching (RPS) protocol that is used to coordinate the protection behavior of the nodes on an MPLS ring."];
+  cites -> RFC8227;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC2475 [label="RFC2475
+An Architecture for Differentiated
+Services
+1998", shape=ellipse, URL="RFC2475.html", target="_top", tooltip="This document defines an architecture for implementing scalable service differentiation in the Internet.  This memo provides information for the Internet community."];
+  cites -> RFC2475;
+  RFC6372 [label="RFC6372
+MPLS Transport Profile (MPLS-TP)
+Survivability Framework
+2011", shape=ellipse, URL="RFC6372.html", target="_top", tooltip="Network survivability is the ability of a network to recover traffic delivery following failure or degradation of network resources. Survivability is critical for the delivery of guaranteed network services, such as those subject to strict Service Level Agreements (SLAs) that place maximum bounds on the length of time that services may be degraded or unavailable. The Transport Profile of Multiprotocol Label Switching (MPLS-TP) is a packet-based transport technology based on the MPLS data plane that reuses many aspects of the MPLS management and control planes. This document comprises a framework for the provision of survivability in an MPLS-TP network; it describes recovery elements, types, methods, and topological considerations. To enable data-plane recovery, survivability may be supported by the control plane, management plane, and by Operations, Administration, and Maintenance (OAM) functions. This document describes mechanisms for recovering MPLS-TP Label Switched Paths (LSPs). A detailed description of pseudowire recovery in MPLS-TP networks is beyond the scope of this document. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet-based transport network as defined by the ITU-T. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6372;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8453 [label="RFC8453
+Framework for Abstraction and Control of
+TE Networks (ACTN)
+2018", shape=ellipse, URL="RFC8453.html", target="_top", tooltip="Traffic Engineered (TE) networks have a variety of mechanisms to facilitate the separation of the data plane and control plane. They also have a range of management and provisioning protocols to configure and activate network resources. These mechanisms represent key technologies for enabling flexible and dynamic networking. The term Traffic Engineered network refers to a network that uses any connection-oriented technology under the control of a distributed or centralized control plane to support dynamic provisioning of end-to- end connectivity. Abstraction of network resources is a technique that can be applied to a single network domain or across multiple domains to create a single virtualized network that is under the control of a network operator or the customer of the operator that actually owns the network resources. This document provides a framework for Abstraction and Control of TE Networks (ACTN) to support virtual network services and connectivity services."];
+  cites -> RFC8453;
+  RFC7813 [label="RFC7813
+IS-IS Path Control and Reservation
+2016", shape=ellipse, URL="RFC7813.html", target="_top", tooltip="IEEE 802.1Qca Path Control and Reservation (PCR) specifies explicit path control via IS-IS in Layer 2 networks in order to move beyond the shortest path capabilities provided by IEEE 802.1aq Shortest Path Bridging (SPB).  IS-IS PCR provides capabilities for the establishment and control of explicit forwarding trees in a Layer 2 network domain.  This document specifies the sub-TLVs for IS-IS PCR."];
+  cites -> RFC7813;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  cites -> RFC7567;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC7426 [label="RFC7426
+Software-Defined Networking (SDN):
+Layers and Architecture Terminology
+2015", shape=ellipse, URL="RFC7426.html", target="_top", tooltip="Software-Defined Networking (SDN) refers to a new approach for network programmability, that is, the capacity to initialize, control, change, and manage network behavior dynamically via open interfaces.  SDN emphasizes the role of software in running networks through the introduction of an abstraction for the data forwarding plane and, by doing so, separates it from the control plane.  This separation allows faster innovation cycles at both planes as experience has already shown.  However, there is increasing confusion as to what exactly SDN is, what the layer structure is in an SDN architecture, and how layers interface with each other.  This document, a product of the IRTF Software-Defined Networking Research Group (SDNRG), addresses these questions and provides a concise reference for the SDN research community based on relevant peer-reviewed literature, the RFC series, and relevant documents by other standards organizations."];
+  cites -> RFC7426;
+  RFC7149 [label="RFC7149
+Software-Defined Networking: A
+Perspective from within a Service
+Provider Environment
+2014", shape=ellipse, URL="RFC7149.html", target="_top", tooltip="Software-Defined Networking (SDN) has been one of the major buzz words of the networking industry for the past couple of years. And yet, no clear definition of what SDN actually covers has been broadly admitted so far. This document aims to clarify the SDN landscape by providing a perspective on requirements, issues, and other considerations about SDN, as seen from within a service provider environment. It is not meant to endlessly discuss what SDN truly means but rather to suggest a functional taxonomy of the techniques that can be used under an SDN umbrella and to elaborate on the various pending issues the combined activation of such techniques inevitably raises. As such, a definition of SDN is only mentioned for the sake of clarification."];
+  cites -> RFC7149;
+  RFC4655 [label="RFC4655
+A Path Computation Element (PCE)-Based
+Architecture
+2006", shape=ellipse, URL="RFC4655.html", target="_top", tooltip="Constraint-based path computation is a fundamental building block for traffic engineering systems such as Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) networks. Path computation in large, multi-domain, multi-region, or multi-layer networks is complex and may require special computational components and cooperation between the different network domains. This document specifies the architecture for a Path Computation Element (PCE)-based model to address this problem space. This document does not attempt to provide a detailed description of all the architectural components, but rather it describes a set of building blocks for the PCE architecture from which solutions may be constructed. This memo provides information for the Internet community."];
+  cites -> RFC4655;
+  RFC7554 [label="RFC7554
+Using IEEE 802.15.4e Time-Slotted
+Channel Hopping (TSCH) in the Internet
+of Things (IoT): Problem Statement
+2015", shape=ellipse, URL="RFC7554.html", target="_top", tooltip="This document describes the environment, problem statement, and goals for using the Time-Slotted Channel Hopping (TSCH) Medium Access Control (MAC) protocol of IEEE 802.14.4e in the context of Low-Power and Lossy Networks (LLNs).  The set of goals enumerated in this document form an initial set only."];
+  cites -> RFC7554;
+  RFC8289 [label="RFC8289
+Controlled Delay Active Queue Management
+2018", shape=ellipse, URL="RFC8289.html", target="_top", tooltip="This document describes CoDel (Controlled Delay) -- a general framework that controls bufferbloat-generated excess delay in modern networking environments.  CoDel consists of an estimator, a setpoint, and a control loop.  It requires no configuration in normal Internet deployments."];
+  cites -> RFC8289;
+  RFC8033 [label="RFC8033
+Proportional Integral Controller
+Enhanced (PIE): A Lightweight Control
+Scheme to Address the Bufferbloat
+Problem
+2017", shape=ellipse, URL="RFC8033.html", target="_top", tooltip="Bufferbloat is a phenomenon in which excess buffers in the network cause high latency and latency variation. As more and more interactive applications (e.g., voice over IP, real-time video streaming, and financial transactions) run in the Internet, high latency and latency variation degrade application performance. There is a pressing need to design intelligent queue management schemes that can control latency and latency variation, and hence provide desirable quality of service to users. This document presents a lightweight active queue management design called PIE (Proportional Integral controller Enhanced) that can effectively control the average queuing latency to a target value. Simulation results, theoretical analysis, and Linux testbed results have shown that PIE can ensure low latency and achieve high link utilization under various congestion situations. The design does not require per-packet timestamps, so it incurs very little overhead and is simple enough to implement in both hardware and software."];
+  cites -> RFC8033;
+  RFC6658 [label="RFC6658
+Packet Pseudowire Encapsulation over an
+MPLS PSN
+2012", shape=ellipse, URL="RFC6658.html", target="_top", tooltip="This document describes a pseudowire mechanism that is used to transport a packet service over an MPLS PSN in the case where the client Label Switching Router (LSR) and the server Provider Edge equipments are co-resident in the same equipment.  This pseudowire mechanism may be used to carry all of the required layer 2 and layer 3 protocols between the pair of client LSRs. [STANDARDS-TRACK]"];
+  cites -> RFC6658;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC7384 [label="RFC7384
+Security Requirements of Time Protocols
+in Packet Switched Networks
+2014", shape=ellipse, URL="RFC7384.html", target="_top", tooltip="As time and frequency distribution protocols are becoming increasingly common and widely deployed, concern about their exposure to various security threats is increasing.  This document defines a set of security requirements for time protocols, focusing on the Precision Time Protocol (PTP) and the Network Time Protocol (NTP).  This document also discusses the security impacts of time protocol practices, the performance implications of external security practices on time protocols, and the dependencies between other security services and time synchronization."];
+  cites -> RFC7384;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8655;
+  RFC8799 [label="RFC8799
+Limited Domains and Internet Protocols
+2020", shape=ellipse, URL="RFC8799.html", target="_top", tooltip="There is a noticeable trend towards network behaviors and semantics that are specific to a particular set of requirements applied within a limited region of the Internet. Policies, default parameters, the options supported, the style of network management, and security requirements may vary between such limited regions. This document reviews examples of such limited domains (also known as controlled environments), notes emerging solutions, and includes a related taxonomy. It then briefly discusses the standardization of protocols for limited domains. Finally, it shows the need for a precise definition of limited domain membership and for mechanisms to allow nodes to join a domain securely and to find other members, including boundary nodes. This document is the product of the research of the authors. It has been produced through discussions and consultation within the IETF but is not the product of IETF consensus."];
+  RFC8799 -> rev_cites;
+  RFC8934 [label="RFC8934
+PCE Communication Protocol (PCEP)
+Extensions for Label Switched Path (LSP)
+Scheduling with Stateful PCE
+2020", shape=ellipse, URL="RFC8934.html", target="_top", tooltip="This document defines a set of extensions to the stateful PCE Communication Protocol (PCEP) to enable Label Switched Path (LSP) path computation, activation, setup, and deletion based on scheduled time intervals for the LSP and the actual network resource usage in a centralized network environment, as stated in RFC 8413."];
+  RFC8934 -> rev_cites;
+  RFC8938 [label="RFC8938
+Deterministic Networking (DetNet) Data
+Plane Framework
+2020", shape=ellipse, URL="RFC8938.html", target="_top", tooltip="This document provides an overall framework for the Deterministic Networking (DetNet) data plane.  It covers concepts and considerations that are generally common to any DetNet data plane specification.  It describes related Controller Plane considerations as well."];
+  RFC8938 -> rev_cites;
+  RFC8939 [label="RFC8939
+Deterministic Networking (DetNet) Data
+Plane: IP
+2020", shape=ellipse, URL="RFC8939.html", target="_top", tooltip="This document specifies the Deterministic Networking (DetNet) data plane operation for IP hosts and routers that provide DetNet service to IP-encapsulated data.  No DetNet-specific encapsulation is defined to support IP flows; instead, the existing IP-layer and higher-layer protocol header information is used to support flow identification and DetNet service delivery.  This document builds on the DetNet architecture (RFC 8655) and data plane framework (RFC 8938)."];
+  RFC8939 -> rev_cites;
+  RFC8964 [label="RFC8964
+Deterministic Networking (DetNet) Data
+Plane: MPLS
+2021", shape=ellipse, URL="RFC8964.html", target="_top", tooltip="This document specifies the Deterministic Networking (DetNet) data plane when operating over an MPLS Packet Switched Network.  It leverages existing pseudowire (PW) encapsulations and MPLS Traffic Engineering (MPLS-TE) encapsulations and mechanisms.  This document builds on the DetNet architecture and data plane framework."];
+  RFC8964 -> rev_cites;
+  RFC9016 [label="RFC9016
+Flow and Service Information Model for
+Deterministic Networking (DetNet)
+2021", shape=ellipse, URL="RFC9016.html", target="_top", tooltip="This document describes the flow and service information model for Deterministic Networking (DetNet).  These models are defined for IP and MPLS DetNet data planes."];
+  RFC9016 -> rev_cites;
+  RFC9023 [label="RFC9023
+Deterministic Networking (DetNet) Data
+Plane: IP over IEEE 802.1 Time-Sensitive
+Networking (TSN)
+2021", shape=ellipse, URL="RFC9023.html", target="_top", tooltip="This document specifies the Deterministic Networking IP data plane when operating over a Time-Sensitive Networking (TSN) sub-network.  This document does not define new procedures or processes.  Whenever this document makes statements or recommendations, these are taken from normative text in the referenced RFCs."];
+  RFC9023 -> rev_cites;
+  RFC9024 [label="RFC9024
+Deterministic Networking (DetNet) Data
+Plane: IEEE 802.1 Time-Sensitive
+Networking over MPLS
+2021", shape=ellipse, URL="RFC9024.html", target="_top", tooltip="This document specifies the Deterministic Networking data plane when Time-Sensitive Networking (TSN) networks are interconnected over a DetNet MPLS network."];
+  RFC9024 -> rev_cites;
+  RFC9025 [label="RFC9025
+Deterministic Networking (DetNet) Data
+Plane: MPLS over UDP/IP
+2021", shape=ellipse, URL="RFC9025.html", target="_top", tooltip="This document specifies the MPLS Deterministic Networking (DetNet) data plane operation and encapsulation over an IP network.  The approach is based on the operation of MPLS-over-UDP technology."];
+  RFC9025 -> rev_cites;
+  RFC9030 [label="RFC9030
+An Architecture for IPv6 over the Time-
+Slotted Channel Hopping Mode of IEEE
+802.15.4 (6TiSCH)
+2021", shape=ellipse, URL="RFC9030.html", target="_top", tooltip="This document describes a network architecture that provides low-latency, low-jitter, and high-reliability packet delivery.  It combines a high-speed powered backbone and subnetworks using IEEE 802.15.4 time-slotted channel hopping (TSCH) to meet the requirements of low-power wireless deterministic applications."];
+  RFC9030 -> rev_cites;
+  RFC9034 [label="RFC9034
+Packet Delivery Deadline Time in the
+Routing Header for IPv6 over Low-Power
+Wireless Personal Area Networks
+(6LoWPANs)
+2021", shape=ellipse, URL="RFC9034.html", target="_top", tooltip="This document specifies a new type for the 6LoWPAN routing header containing the deadline time for data packets, designed for use over constrained networks.  The deadline time enables forwarding and scheduling decisions for time-critical machine-to-machine (M2M) applications running on Internet-enabled devices that operate within time-synchronized networks.  This document also specifies a representation for the deadline time values in such networks."];
+  RFC9034 -> rev_cites;
+  RFC9037 [label="RFC9037
+Deterministic Networking (DetNet) Data
+Plane: MPLS over IEEE 802.1 Time-
+Sensitive Networking (TSN)
+2021", shape=ellipse, URL="RFC9037.html", target="_top", tooltip="This document specifies the Deterministic Networking (DetNet) MPLS data plane when operating over an IEEE 802.1 Time-Sensitive Networking (TSN) sub-network.  This document does not define new procedures or processes.  Whenever this document makes statements or recommendations, they are taken from normative text in the referenced RFCs."];
+  RFC9037 -> rev_cites;
+  RFC9049 [label="RFC9049
+Path Aware Networking: Obstacles to
+Deployment (A Bestiary of Roads Not
+Taken)
+2021", shape=ellipse, URL="RFC9049.html", target="_top", tooltip="This document is a product of the Path Aware Networking Research Group (PANRG). At the first meeting of the PANRG, the Research Group agreed to catalog and analyze past efforts to develop and deploy Path Aware techniques, most of which were unsuccessful or at most partially successful, in order to extract insights and lessons for Path Aware networking researchers. This document contains that catalog and analysis."];
+  RFC9049 -> rev_cites;
+  RFC9055 [label="RFC9055
+Deterministic Networking (DetNet)
+Security Considerations
+2021", shape=ellipse, URL="RFC9055.html", target="_top", tooltip="A DetNet (deterministic network) provides specific performance guarantees to its data flows, such as extremely low data loss rates and bounded latency (including bounded latency variation, i.e., jitter). As a result, securing a DetNet requires that in addition to the best practice security measures taken for any mission-critical network, additional security measures may be needed to secure the intended operation of these novel service properties. This document addresses DetNet-specific security considerations from the perspectives of both the DetNet system-level designer and component designer. System considerations include a taxonomy of relevant threats and attacks, and associations of threats versus use cases and service properties. Component-level considerations include ingress filtering and packet arrival-time violation detection. This document also addresses security considerations specific to the IP and MPLS data plane technologies, thereby complementing the Security Considerations sections of those documents."];
+  RFC9055 -> rev_cites;
+  RFC9056 [label="RFC9056
+Deterministic Networking (DetNet) Data
+Plane: IP over MPLS
+2021", shape=ellipse, URL="RFC9056.html", target="_top", tooltip="This document specifies the Deterministic Networking data plane when encapsulating IP over an MPLS packet-switched network."];
+  RFC9056 -> rev_cites;
+  RFC9320 [label="RFC9320
+Deterministic Networking (DetNet)
+Bounded Latency
+2022", shape=ellipse, URL="RFC9320.html", target="_top", tooltip="This document presents a timing model for sources, destinations, and Deterministic Networking (DetNet) transit nodes.  Using the model, it provides a methodology to compute end-to-end latency and backlog bounds for various queuing methods.  The methodology can be used by the management and control planes and by resource reservation algorithms to provide bounded latency and zero congestion loss for the DetNet service."];
+  RFC9320 -> rev_cites;
+  RFC9450 [label="RFC9450
+Reliable and Available Wireless (RAW)
+Use Cases
+2023", shape=ellipse, URL="RFC9450.html", target="_top", tooltip="The wireless medium presents significant specific challenges to achieve properties similar to those of wired deterministic networks.  At the same time, a number of use cases cannot be solved with wires and justify the extra effort of going wireless.  This document presents wireless use cases (such as aeronautical communications, amusement parks, industrial applications, pro audio and video, gaming, Unmanned Aerial Vehicle (UAV) and vehicle-to-vehicle (V2V) control, edge robotics, and emergency vehicles), demanding reliable and available behavior."];
+  RFC9450 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+  RFC9546 [label="RFC9546
+Operations, Administration, and
+Maintenance (OAM) for Deterministic
+Networking (DetNet) with the MPLS Data
+Plane
+2024", shape=ellipse, URL="RFC9546.html", target="_top", tooltip="This document defines format and usage principles of the Deterministic Networking (DetNet) service Associated Channel over a DetNet network with the MPLS data plane.  The DetNet service Associated Channel can be used to carry test packets of active Operations, Administration, and Maintenance (OAM) protocols that are used to detect DetNet failures and measure performance metrics."];
+  RFC9546 -> rev_cites;
+  RFC9550 [label="RFC9550
+Deterministic Networking (DetNet):
+Packet Ordering Function
+2024", shape=ellipse, URL="RFC9550.html", target="_top", tooltip="The replication and elimination functions of the Deterministic Networking (DetNet) architecture can result in out-of-order packets, which is not acceptable for some time-sensitive applications.  The Packet Ordering Function (POF) algorithms described in this document enable restoration of the correct packet order when the replication and elimination functions are used in DetNet networks.  The POF only provides ordering within the latency bound of a DetNet flow; it does not provide any additional reliability."];
+  RFC9550 -> rev_cites;
+  RFC9551 [label="RFC9551
+Framework of Operations, Administration,
+and Maintenance (OAM) for Deterministic
+Networking (DetNet)
+2024", shape=ellipse, URL="RFC9551.html", target="_top", tooltip="Deterministic Networking (DetNet), as defined in RFC 8655, aims to provide bounded end-to-end latency on top of the network infrastructure, comprising both Layer 2 bridged and Layer 3 routed segments.  This document's primary purpose is to detail the specific requirements of the Operations, Administration, and Maintenance (OAM) recommended to maintain a deterministic network.  The document will be used in future work that defines the applicability of and extension of OAM protocols for a deterministic network.  With the implementation of the OAM framework in DetNet, an operator will have a real-time view of the network infrastructure regarding the network's ability to respect the Service Level Objective (SLO), such as packet delay, delay variation, and packet-loss ratio, assigned to each DetNet flow."];
+  RFC9551 -> rev_cites;
+  RFC9566 [label="RFC9566
+Deterministic Networking (DetNet) Packet
+Replication, Elimination, and Ordering
+Functions (PREOF) via MPLS over UDP/IP
+2024", shape=ellipse, URL="RFC9566.html", target="_top", tooltip="This document describes how the DetNet IP data plane can support the Packet Replication, Elimination, and Ordering Functions (PREOF) built on the existing MPLS PREOF solution defined for the DetNet MPLS data plane and the mechanisms defined by MPLS-over-UDP technology."];
+  RFC9566 -> rev_cites;
+  RFC9633 [label="RFC9633
+Deterministic Networking (DetNet) YANG
+Data Model
+2024", shape=ellipse, URL="RFC9633.html", target="_top", tooltip="This document contains the specification for the Deterministic Networking (DetNet) YANG data model for configuration and operational data for DetNet flows. The model allows the provisioning of an end-to-end DetNet service on devices along the path without depending on any signaling protocol. It also specifies operational status for flows. The YANG module defined in this document conforms to the Network Management Datastore Architecture (NMDA)."];
+  RFC9633 -> rev_cites;
+  RFC9634 [label="RFC9634
+Operations, Administration, and
+Maintenance (OAM) for Deterministic
+Networking (DetNet) with the IP Data
+Plane
+2024", shape=ellipse, URL="RFC9634.html", target="_top", tooltip="This document discusses the use of existing IP Operations, Administration, and Maintenance protocols and mechanisms in Deterministic Networking networks that use the IP data plane."];
+  RFC9634 -> rev_cites;
+  RFC9696 [label="RFC9696
+Routing in Fat Trees (RIFT)
+Applicability and Operational
+Considerations
+2025", shape=ellipse, URL="RFC9696.html", target="_top", tooltip="This document discusses the properties, applicability, and operational considerations of Routing in Fat Trees (RIFT) in different network scenarios with the intention of providing a rough guide on how RIFT can be deployed to simplify routing operations in Clos topologies and their variations."];
+  RFC9696 -> rev_cites;
+  RFC9732 [label="RFC9732
+A Framework for NRP-Based Enhanced
+Virtual Private Networks
+2025", shape=ellipse, URL="RFC9732.html", target="_top", tooltip="This document describes a framework for Enhanced Virtual Private Networks (VPNs) based on Network Resource Partitions (NRPs) in order to support the needs of applications with specific traffic performance requirements (e.g., low latency, bounded jitter).  NRP-based enhanced VPNs leverage the VPN and Traffic Engineering (TE) technologies and add characteristics that specific services require beyond those provided by conventional VPNs.  Typically, an NRP-based enhanced VPN will be used to underpin network slicing, but it could also be of use in its own right providing enhanced connectivity services between customer sites.  This document also provides an overview of relevant technologies in different network layers and identifies some areas for potential new work."];
+  RFC9732 -> rev_cites;
+  RFC9791 [label="RFC9791
+Use Cases for MPLS Network Action
+Indicators and Ancillary Data
+2025", shape=ellipse, URL="RFC9791.html", target="_top", tooltip="This document presents use cases that have a common feature that may be addressed by encoding network action indicators and associated ancillary data within MPLS packets. There is community interest in extending the MPLS data plane to carry such indicators and ancillary data to address these use cases. The use cases described in this document are not an exhaustive set but rather the ones that have been actively discussed by members of the IETF MPLS, PALS, and DetNet Working Groups from the beginning of work on MPLS Network Action (MNA) until the publication of this document."];
+  RFC9791 -> rev_cites;
+}

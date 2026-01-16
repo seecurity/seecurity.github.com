@@ -1,0 +1,88 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8467 [label="RFC8467
+Padding Policies for Extension
+Mechanisms for DNS (EDNS(0))
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC 7830 specifies the Padding option for Extension Mechanisms for DNS (EDNS(0)) but does not specify the actual padding length for specific applications.  This memo lists the possible options (padding policies), discusses the implications of each option, and provides a recommended (experimental) option."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8467;
+
+  obs [label="obsoletes", shape=box];
+  RFC8467 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8467 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8467;
+
+  cites [label="cites", shape=box];
+  RFC8467 -> cites;
+  RFC7830 [label="RFC7830
+The EDNS(0) Padding Option
+2016", shape=ellipse, URL="RFC7830.html", target="_top", tooltip="This document specifies the EDNS(0) Padding option, which allows DNS clients and servers to pad request and response messages by a variable number of octets."];
+  cites -> RFC7830;
+  RFC7858 [label="RFC7858
+Specification for DNS over Transport
+Layer Security (TLS)
+2016", shape=ellipse, URL="RFC7858.html", target="_top", tooltip="This document describes the use of Transport Layer Security (TLS) to provide privacy for DNS. Encryption provided by TLS eliminates opportunities for eavesdropping and on-path tampering with DNS queries in the network, such as discussed in RFC 7626. In addition, this document specifies two usage profiles for DNS over TLS and provides advice on performance considerations to minimize overhead from using TCP and TLS with DNS. This document focuses on securing stub-to-recursive traffic, as per the charter of the DPRIVE Working Group. It does not prevent future applications of the protocol to recursive-to-authoritative traffic."];
+  cites -> RFC7858;
+  RFC8094 [label="RFC8094
+DNS over Datagram Transport Layer
+Security (DTLS)
+2017", shape=ellipse, URL="RFC8094.html", target="_top", tooltip="DNS queries and responses are visible to network elements on the path between the DNS client and its server. These queries and responses can contain privacy-sensitive information, which is valuable to protect. This document proposes the use of Datagram Transport Layer Security (DTLS) for DNS, to protect against passive listeners and certain active attacks. As latency is critical for DNS, this proposal also discusses mechanisms to reduce DTLS round trips and reduce the DTLS handshake size. The proposed mechanism runs over port 853."];
+  cites -> RFC8094;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8467;
+  RFC8484 [label="RFC8484
+DNS Queries over HTTPS (DoH)
+2018", shape=ellipse, URL="RFC8484.html", target="_top", tooltip="This document defines a protocol for sending DNS queries and getting DNS responses over HTTPS.  Each DNS query-response pair is mapped into an HTTP exchange."];
+  RFC8484 -> rev_cites;
+  RFC8490 [label="RFC8490
+DNS Stateful Operations
+2019", shape=ellipse, URL="RFC8490.html", target="_top", tooltip="This document defines a new DNS OPCODE for DNS Stateful Operations (DSO).  DSO messages communicate operations within persistent stateful sessions using Type Length Value (TLV) syntax.  Three TLVs are defined that manage session timeouts, termination, and encryption padding, and a framework is defined for extensions to enable new stateful operations.  This document updates RFC 1035 by adding a new DNS header OPCODE that has both different message semantics and a new result code.  This document updates RFC 7766 by redefining a session, providing new guidance on connection reuse, and providing a new mechanism for handling session idle timeouts."];
+  RFC8490 -> rev_cites;
+  RFC8932 [label="RFC8932
+Recommendations for DNS Privacy Service
+Operators
+2020", shape=ellipse, URL="RFC8932.html", target="_top", tooltip="This document presents operational, policy, and security considerations for DNS recursive resolver operators who choose to offer DNS privacy services. With these recommendations, the operator can make deliberate decisions regarding which services to provide, as well as understanding how those decisions and the alternatives impact the privacy of users. This document also presents a non-normative framework to assist writers of a Recursive operator Privacy Statement, analogous to DNS Security Extensions (DNSSEC) Policies and DNSSEC Practice Statements described in RFC 6841."];
+  RFC8932 -> rev_cites;
+  RFC9180 [label="RFC9180
+Hybrid Public Key Encryption
+2022", shape=ellipse, URL="RFC9180.html", target="_top", tooltip="This document describes a scheme for hybrid public key encryption (HPKE). This scheme provides a variant of public key encryption of arbitrary-sized plaintexts for a recipient public key. It also includes three authenticated variants, including one that authenticates possession of a pre-shared key and two optional ones that authenticate possession of a key encapsulation mechanism (KEM) private key. HPKE works for any combination of an asymmetric KEM, key derivation function (KDF), and authenticated encryption with additional data (AEAD) encryption function. Some authenticated variants may not be supported by all KEMs. We provide instantiations of the scheme using widely used and efficient primitives, such as Elliptic Curve Diffie-Hellman (ECDH) key agreement, HMAC-based key derivation function (HKDF), and SHA2. This document is a product of the Crypto Forum Research Group (CFRG) in the IRTF."];
+  RFC9180 -> rev_cites;
+  RFC9210 [label="RFC9210
+DNS Transport over TCP - Operational
+Requirements
+2022", shape=ellipse, URL="RFC9210.html", target="_top", tooltip="This document updates RFCs 1123 and 1536.  This document requires the operational practice of permitting DNS messages to be carried over TCP on the Internet as a Best Current Practice.  This operational requirement is aligned with the implementation requirements in RFC 7766.  The use of TCP includes both DNS over unencrypted TCP as well as over an encrypted TLS session.  The document also considers the consequences of this form of DNS communication and the potential operational issues that can arise when this Best Current Practice is not upheld."];
+  RFC9210 -> rev_cites;
+  RFC9230 [label="RFC9230
+Oblivious DNS over HTTPS
+2022", shape=ellipse, URL="RFC9230.html", target="_top", tooltip="This document describes a protocol that allows clients to hide their IP addresses from DNS resolvers via proxying encrypted DNS over HTTPS (DoH) messages. This improves privacy of DNS operations by not allowing any one server entity to be aware of both the client IP address and the content of DNS queries and answers. This experimental protocol has been developed outside the IETF and is published here to guide implementation, ensure interoperability among implementations, and enable wide-scale experimentation."];
+  RFC9230 -> rev_cites;
+  RFC9250 [label="RFC9250
+DNS over Dedicated QUIC Connections
+2022", shape=ellipse, URL="RFC9250.html", target="_top", tooltip="This document describes the use of QUIC to provide transport confidentiality for DNS.  The encryption provided by QUIC has similar properties to those provided by TLS, while QUIC transport eliminates the head-of-line blocking issues inherent with TCP and provides more efficient packet-loss recovery than UDP.  DNS over QUIC (DoQ) has privacy properties similar to DNS over TLS (DoT) specified in RFC 7858, and latency characteristics similar to classic DNS over UDP.  This specification describes the use of DoQ as a general-purpose transport for DNS and includes the use of DoQ for stub to recursive, recursive to authoritative, and zone transfer scenarios."];
+  RFC9250 -> rev_cites;
+  RFC9539 [label="RFC9539
+Unilateral Opportunistic Deployment of
+Encrypted Recursive-to-Authoritative DNS
+2024", shape=ellipse, URL="RFC9539.html", target="_top", tooltip="This document sets out steps that DNS servers (recursive resolvers and authoritative servers) can take unilaterally (without any coordination with other peers) to defend DNS query privacy against a passive network monitor. The protections provided by the guidance in this document can be defeated by an active attacker, but they should be simpler and less risky to deploy than more powerful defenses. The goal of this document is to simplify and speed up deployment of opportunistic encrypted transport in the recursive-to-authoritative hop of the DNS ecosystem. Wider easy deployment of the underlying encrypted transport on an opportunistic basis may facilitate the future specification of stronger cryptographic protections against more-powerful attacks."];
+  RFC9539 -> rev_cites;
+}

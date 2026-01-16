@@ -1,0 +1,114 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7112 [label="RFC7112
+Implications of Oversized IPv6 Header
+Chains
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IPv6 specification allows IPv6 Header Chains of an arbitrary size.  The specification also allows options that can, in turn, extend each of the headers.  In those scenarios in which the IPv6 Header Chain or options are unusually long and packets are fragmented, or scenarios in which the fragment size is very small, the First Fragment of a packet may fail to include the entire IPv6 Header Chain.  This document discusses the interoperability and security problems of such traffic, and updates RFC 2460 such that the First Fragment of a packet is required to contain the entire IPv6 Header Chain."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7112;
+
+  obs [label="obsoletes", shape=box];
+  RFC7112 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7112 -> updates;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  updates -> RFC2460;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7112;
+
+  cites [label="cites", shape=box];
+  RFC7112 -> cites;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC7045 [label="RFC7045
+Transmission and Processing of IPv6
+Extension Headers
+2013", shape=ellipse, URL="RFC7045.html", target="_top", tooltip="Various IPv6 extension headers have been standardised since the IPv6 standard was first published.  This document updates RFC 2460 to clarify how intermediate nodes should deal with such extension headers and with any that are defined in the future.  It also specifies how extension headers should be registered by IANA, with a corresponding minor update to RFC 2780."];
+  cites -> RFC7045;
+  RFC4443 [label="RFC4443
+Internet Control Message Protocol
+(ICMPv6) for the Internet Protocol
+Version 6 (IPv6) Specification
+2006", shape=ellipse, URL="RFC4443.html", target="_top", tooltip="This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC4443;
+  RFC1981 [label="RFC1981
+Path MTU Discovery for IP version 6
+1996", shape=ellipse, URL="RFC1981.html", target="_top", tooltip="This document describes Path MTU Discovery for IP version 6.  It is largely derived from RFC 1191, which describes Path MTU Discovery for IP version 4. [STANDARDS-TRACK]"];
+  cites -> RFC1981;
+  RFC4821 [label="RFC4821
+Packetization Layer Path MTU Discovery
+2007", shape=ellipse, URL="RFC4821.html", target="_top", tooltip="This document describes a robust method for Path MTU Discovery (PMTUD) that relies on TCP or some other Packetization Layer to probe an Internet path with progressively larger packets.  This method is described as an extension to RFC 1191 and RFC 1981, which specify ICMP-based Path MTU Discovery for IP versions 4 and 6, respectively. [STANDARDS-TRACK]"];
+  cites -> RFC4821;
+  RFC2827 [label="RFC2827
+Network Ingress Filtering: Defeating
+Denial of Service Attacks which employ
+IP Source Address Spoofing
+2000", shape=ellipse, URL="RFC2827.html", target="_top", tooltip="This paper discusses a simple, effective, and straightforward method for using ingress traffic filtering to prohibit DoS (Denial of Service) attacks which use forged IP addresses to be propagated from 'behind' an Internet Service Provider's (ISP) aggregation point.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2827;
+  RFC3704 [label="RFC3704
+Ingress Filtering for Multihomed
+Networks
+2004", shape=ellipse, URL="RFC3704.html", target="_top", tooltip="BCP 38, RFC 2827, is designed to limit the impact of distributed denial of service attacks, by denying traffic with spoofed addresses access to the network, and to help ensure that traffic is traceable to its correct source network.  As a side effect of protecting the Internet against such attacks, the network implementing the solution also protects itself from this and other attacks, such as spoofed management access to networking equipment.  There are cases when this may create problems, e.g., with multihoming.  This document describes the current ingress filtering operational mechanisms, examines generic issues related to ingress filtering, and delves into the effects on multihoming in particular.  This memo updates RFC 2827.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3704;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7112;
+  RFC7113 [label="RFC7113
+Implementation Advice for IPv6 Router
+Advertisement Guard (RA-Guard)
+2014", shape=ellipse, URL="RFC7113.html", target="_top", tooltip="The IPv6 Router Advertisement Guard (RA-Guard) mechanism is commonly employed to mitigate attack vectors based on forged ICMPv6 Router Advertisement messages.  Many existing IPv6 deployments rely on RA-Guard as the first line of defense against the aforementioned attack vectors.  However, some implementations of RA-Guard have been found to be prone to circumvention by employing IPv6 Extension Headers.  This document describes the evasion techniques that affect the aforementioned implementations and formally updates RFC 6105, such that the aforementioned RA-Guard evasion vectors are eliminated."];
+  RFC7113 -> rev_cites;
+  RFC7610 [label="RFC7610
+DHCPv6-Shield: Protecting against Rogue
+DHCPv6 Servers
+2015", shape=ellipse, URL="RFC7610.html", target="_top", tooltip="This document specifies a mechanism for protecting hosts connected to a switched network against rogue DHCPv6 servers.  It is based on DHCPv6 packet filtering at the layer 2 device at which the packets are received.  A similar mechanism has been widely deployed in IPv4 networks ('DHCP snooping'); hence, it is desirable that similar functionality be provided for IPv6 networks.  This document specifies a Best Current Practice for the implementation of DHCPv6-Shield."];
+  RFC7610 -> rev_cites;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  RFC8200 -> rev_cites;
+  RFC8504 [label="RFC8504
+IPv6 Node Requirements
+2019", shape=ellipse, URL="RFC8504.html", target="_top", tooltip="This document defines requirements for IPv6 nodes. It is expected that IPv6 will be deployed in a wide range of devices and situations. Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments. This document obsoletes RFC 6434, and in turn RFC 4294."];
+  RFC8504 -> rev_cites;
+  RFC8956 [label="RFC8956
+Dissemination of Flow Specification
+Rules for IPv6
+2020", shape=ellipse, URL="RFC8956.html", target="_top", tooltip="Dissemination of Flow Specification Rules (RFC 8955) provides a Border Gateway Protocol (BGP) extension for the propagation of traffic flow information for the purpose of rate limiting or filtering IPv4 protocol data packets. This document extends RFC 8955 with IPv6 functionality. It also updates RFC 8955 by changing the IANA Flow Spec Component Types registry."];
+  RFC8956 -> rev_cites;
+  RFC9098 [label="RFC9098
+Operational Implications of IPv6 Packets
+with Extension Headers
+2021", shape=ellipse, URL="RFC9098.html", target="_top", tooltip="This document summarizes the operational implications of IPv6 extension headers specified in the IPv6 protocol specification (RFC 8200) and attempts to analyze reasons why packets with IPv6 extension headers are often dropped in the public Internet."];
+  RFC9098 -> rev_cites;
+  RFC9099 [label="RFC9099
+Operational Security Considerations for
+IPv6 Networks
+2021", shape=ellipse, URL="RFC9099.html", target="_top", tooltip="Knowledge and experience on how to operate IPv4 networks securely is available, whether the operator is an Internet Service Provider (ISP) or an enterprise internal network. However, IPv6 presents some new security challenges. RFC 4942 describes security issues in the protocol, but network managers also need a more practical, operations-minded document to enumerate advantages and/or disadvantages of certain choices. This document analyzes the operational security issues associated with several types of networks and proposes technical and procedural mitigation techniques. This document is only applicable to managed networks, such as enterprise networks, service provider networks, or managed residential networks."];
+  RFC9099 -> rev_cites;
+  RFC9288 [label="RFC9288
+Recommendations on the Filtering of IPv6
+Packets Containing IPv6 Extension
+Headers at Transit Routers
+2022", shape=ellipse, URL="RFC9288.html", target="_top", tooltip="This document analyzes the security implications of IPv6 Extension Headers and associated IPv6 options.  Additionally, it discusses the operational and interoperability implications of discarding packets based on the IPv6 Extension Headers and IPv6 options they contain.  Finally, it provides advice on the filtering of such IPv6 packets at transit routers for traffic not directed to them, for those cases where such filtering is deemed as necessary."];
+  RFC9288 -> rev_cites;
+}

@@ -1,0 +1,36 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8875 [label="RFC8875
+Working Group GitHub Administration
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="The use of GitHub in IETF working group processes is increasing.  This document describes uses and conventions for working groups that are considering starting to use GitHub.  It does not mandate any processes and does not require changes to the processes used by current and future working groups not using GitHub."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8875;
+
+  obs [label="obsoletes", shape=box];
+  RFC8875 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8875 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8875;
+
+  cites [label="cites", shape=box];
+  RFC8875 -> cites;
+  RFC8874 [label="RFC8874
+Working Group GitHub Usage Guidance
+2020", shape=ellipse, URL="RFC8874.html", target="_top", tooltip="This document provides a set of guidelines for working groups that choose to use GitHub for their work."];
+  cites -> RFC8874;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8875;
+  RFC8874 [label="RFC8874
+Working Group GitHub Usage Guidance
+2020", shape=ellipse, URL="RFC8874.html", target="_top", tooltip="This document provides a set of guidelines for working groups that choose to use GitHub for their work."];
+  RFC8874 -> rev_cites;
+}

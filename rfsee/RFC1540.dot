@@ -1,0 +1,36 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC1540 [label="RFC1540
+Internet Official Protocol Standards
+1993", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo describes the state of standardization of protocols used in the Internet as determined by the Internet Activities Board (IAB). [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC1540;
+  RFC1600 [label="RFC1600
+Internet Official Protocol Standards
+1994", shape=ellipse, URL="RFC1600.html", target="_top", tooltip="This memo describes the state of standardization of protocols used in the Internet as determined by the Internet Architecture Board (IAB). [STANDARDS-TRACK]"];
+  RFC1600 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC1540 -> obs;
+  RFC1500 [label="RFC1500
+Internet Official Protocol Standards
+1993", shape=ellipse, URL="RFC1500.html", target="_top", tooltip="This memo describes the state of standardization of protocols used in the Internet as determined by the Internet Activities Board (IAB). [STANDARDS-TRACK]"];
+  obs -> RFC1500;
+
+  updates [label="updates", shape=box];
+  RFC1540 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC1540;
+
+  cites [label="cites", shape=box];
+  RFC1540 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC1540;
+}

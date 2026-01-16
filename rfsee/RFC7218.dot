@@ -1,0 +1,81 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7218 [label="RFC7218
+Adding Acronyms to Simplify
+Conversations about DNS-Based
+Authentication of Named Entities (DANE)
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="Experience has shown that people get confused when discussing the three numeric fields of the TLSA record.  This document specifies descriptive acronyms for the three numeric fields in TLSA records.  This document updates the format of the IANA registry created by RFC 6698."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7218;
+
+  obs [label="obsoletes", shape=box];
+  RFC7218 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7218 -> updates;
+  RFC6698 [label="RFC6698
+The DNS-Based Authentication of Named
+Entities (DANE) Transport Layer Security
+(TLS) Protocol: TLSA
+2012", shape=ellipse, URL="RFC6698.html", target="_top", tooltip="Encrypted communication on the Internet often uses Transport Layer Security (TLS), which depends on third parties to certify the keys used.  This document improves on that situation by enabling the administrators of domain names to specify the keys used in that domain's TLS servers.  This requires matching improvements in TLS client software, but no change in TLS server software. [STANDARDS-TRACK]"];
+  updates -> RFC6698;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7218;
+
+  cites [label="cites", shape=box];
+  RFC7218 -> cites;
+  RFC6698 [label="RFC6698
+The DNS-Based Authentication of Named
+Entities (DANE) Transport Layer Security
+(TLS) Protocol: TLSA
+2012", shape=ellipse, URL="RFC6698.html", target="_top", tooltip="Encrypted communication on the Internet often uses Transport Layer Security (TLS), which depends on third parties to certify the keys used.  This document improves on that situation by enabling the administrators of domain names to specify the keys used in that domain's TLS servers.  This requires matching improvements in TLS client software, but no change in TLS server software. [STANDARDS-TRACK]"];
+  cites -> RFC6698;
+  RFC6234 [label="RFC6234
+US Secure Hash Algorithms (SHA and SHA-
+based HMAC and HKDF)
+2011", shape=ellipse, URL="RFC6234.html", target="_top", tooltip="Federal Information Processing Standard, FIPS"];
+  cites -> RFC6234;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7218;
+  RFC7671 [label="RFC7671
+The DNS-Based Authentication of Named
+Entities (DANE) Protocol: Updates and
+Operational Guidance
+2015", shape=ellipse, URL="RFC7671.html", target="_top", tooltip="This document clarifies and updates the DNS-Based Authentication of Named Entities (DANE) TLSA specification (RFC 6698), based on subsequent implementation experience.  It also contains guidance for implementers, operators, and protocol developers who want to use DANE records."];
+  RFC7671 -> rev_cites;
+  RFC7672 [label="RFC7672
+SMTP Security via Opportunistic DNS-
+Based Authentication of Named Entities
+(DANE) Transport Layer Security (TLS)
+2015", shape=ellipse, URL="RFC7672.html", target="_top", tooltip="This memo describes a downgrade-resistant protocol for SMTP transport security between Message Transfer Agents (MTAs), based on the DNS-Based Authentication of Named Entities (DANE) TLSA DNS record.  Adoption of this protocol enables an incremental transition of the Internet email backbone to one using encrypted and authenticated Transport Layer Security (TLS)."];
+  RFC7672 -> rev_cites;
+  RFC7673 [label="RFC7673
+Using DNS-Based Authentication of Named
+Entities (DANE) TLSA Records with SRV
+Records
+2015", shape=ellipse, URL="RFC7673.html", target="_top", tooltip="The DNS-Based Authentication of Named Entities (DANE) specification (RFC 6698) describes how to use TLSA resource records secured by DNSSEC (RFC 4033) to associate a server's connection endpoint with its Transport Layer Security (TLS) certificate (thus enabling administrators of domain names to specify the keys used in that domain's TLS servers).  However, application protocols that use SRV records (RFC 2782) to indirectly name the target server connection endpoints for a service domain name cannot apply the rules from RFC 6698.  Therefore, this document provides guidelines that enable such protocols to locate and use TLSA records."];
+  RFC7673 -> rev_cites;
+  RFC7712 [label="RFC7712
+Domain Name Associations (DNA) in the
+Extensible Messaging and Presence
+Protocol (XMPP)
+2015", shape=ellipse, URL="RFC7712.html", target="_top", tooltip="This document improves the security of the Extensible Messaging and Presence Protocol (XMPP) in two ways.  First, it specifies how to establish a strong association between a domain name and an XML stream, using the concept of prooftypes.  Second, it describes how to securely delegate a service domain name (e.g., example.com) to a target server hostname (e.g., hosting.example.net); this is especially important in multi-tenanted environments where the same target server hosts a large number of domains."];
+  RFC7712 -> rev_cites;
+  RFC8162 [label="RFC8162
+Using Secure DNS to Associate
+Certificates with Domain Names for
+S/MIME
+2017", shape=ellipse, URL="RFC8162.html", target="_top", tooltip="This document describes how to use secure DNS to associate an S/MIME user's certificate with the intended domain name, similar to the way that DNS-Based Authentication of Named Entities (DANE), RFC 6698, does for TLS."];
+  RFC8162 -> rev_cites;
+  RFC9102 [label="RFC9102
+TLS DNSSEC Chain Extension
+2021", shape=ellipse, URL="RFC9102.html", target="_top", tooltip="This document describes an experimental TLS extension for the in-band transport of the complete set of records that can be validated by DNSSEC and that are needed to perform DNS-Based Authentication of Named Entities (DANE) of a TLS server. This extension obviates the need to perform separate, out-of-band DNS lookups. When the requisite DNS records do not exist, the extension conveys a denial-of-existence proof that can be validated. This experimental extension is developed outside the IETF and is published here to guide implementation of the extension and to ensure interoperability among implementations."];
+  RFC9102 -> rev_cites;
+}

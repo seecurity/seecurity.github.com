@@ -1,0 +1,51 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5243 [label="RFC5243
+OSPF Database Exchange Summary List
+Optimization
+2008", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a backward-compatible optimization for the Database Exchange process in OSPFv2 and OSPFv3.  In this optimization, a router does not list a Link State Advertisement (LSA) in Database Description packets sent to a neighbor, if the same or a more recent instance of the LSA was listed in a Database Description packet already received from the neighbor.  This optimization reduces Database Description overhead by about 50% in large networks.  This optimization does not affect synchronization, since it only omits unnecessary information from Database Description packets.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5243;
+
+  obs [label="obsoletes", shape=box];
+  RFC5243 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5243 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5243;
+  RFC9454 [label="RFC9454
+Update to OSPF Terminology
+2023", shape=ellipse, URL="RFC9454.html", target="_top", tooltip="This document updates some OSPF terminology to be in line with inclusive language used in the industry. The IETF has designated Guidance for NIST Staff on Using Inclusive Language in Documentary Standards by the US National Institute of Standards and Technology (NIST) for its inclusive language guidelines. It is intended that all future OSPF documents use this revised terminology even when they reference the RFCs updated by this document. This document updates RFCs 2328, 4222, 4811, 5243, 5340, 5614, and 5838."];
+  RFC9454 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5243 -> cites;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC2740 [label="RFC2740
+OSPF for IPv6
+1999", shape=ellipse, URL="RFC2740.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC2740;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5243;
+  RFC5614 [label="RFC5614
+Mobile Ad Hoc Network (MANET) Extension
+of OSPF Using Connected Dominating Set
+(CDS) Flooding
+2009", shape=ellipse, URL="RFC5614.html", target="_top", tooltip="This document specifies an extension of OSPFv3 to support mobile ad hoc networks (MANETs).  The extension, called OSPF-MDR, is designed as a new OSPF interface type for MANETs.  OSPF-MDR is based on the selection of a subset of MANET routers, consisting of MANET Designated Routers (MDRs) and Backup MDRs.  The MDRs form a connected dominating set (CDS), and the MDRs and Backup MDRs together form a biconnected CDS for robustness.  This CDS is exploited in two ways.  First, to reduce flooding overhead, an optimized flooding procedure is used in which only (Backup) MDRs flood new link state advertisements (LSAs) back out the receiving interface; reliable flooding is ensured by retransmitting LSAs along adjacencies.  Second, adjacencies are formed only between (Backup) MDRs and a subset of their neighbors, allowing for much better scaling in dense networks.  The CDS is constructed using 2-hop neighbor information provided in a Hello protocol extension.  The Hello protocol is further optimized by allowing differential Hellos that report only changes in neighbor states.  Options are specified for originating router-LSAs that provide full or partial topology information, allowing overhead to be reduced by advertising less topology information.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC5614 -> rev_cites;
+  RFC9454 [label="RFC9454
+Update to OSPF Terminology
+2023", shape=ellipse, URL="RFC9454.html", target="_top", tooltip="This document updates some OSPF terminology to be in line with inclusive language used in the industry. The IETF has designated Guidance for NIST Staff on Using Inclusive Language in Documentary Standards by the US National Institute of Standards and Technology (NIST) for its inclusive language guidelines. It is intended that all future OSPF documents use this revised terminology even when they reference the RFCs updated by this document. This document updates RFCs 2328, 4222, 4811, 5243, 5340, 5614, and 5838."];
+  RFC9454 -> rev_cites;
+}

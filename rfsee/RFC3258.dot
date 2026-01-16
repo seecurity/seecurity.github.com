@@ -1,0 +1,47 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3258 [label="RFC3258
+Distributing Authoritative Name Servers
+via Shared Unicast Addresses
+2002", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo describes a set of practices intended to enable an authoritative name server operator to provide access to a single named server in multiple locations.  The primary motivation for the development and deployment of these practices is to increase the distribution of Domain Name System (DNS) servers to previously under- served areas of the network topology and to reduce the latency for DNS query responses in those areas.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3258;
+
+  obs [label="obsoletes", shape=box];
+  RFC3258 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3258 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3258;
+
+  cites [label="cites", shape=box];
+  RFC3258 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3258;
+  RFC4384 [label="RFC4384
+BGP Communities for Data Collection
+2006", shape=ellipse, URL="RFC4384.html", target="_top", tooltip="BGP communities (RFC 1997) are used by service providers for many purposes, including tagging of customer, peer, and geographically originated routes.  Such tagging is typically used to control the scope of redistribution of routes within a provider's network and to its peers and customers.  With the advent of large-scale BGP data collection (and associated research), it has become clear that the information carried in such communities is essential for a deeper understanding of the global routing system.  This memo defines standard (outbound) communities and their encodings for export to BGP route collectors.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4384 -> rev_cites;
+  RFC4892 [label="RFC4892
+Requirements for a Mechanism Identifying
+a Name Server Instance
+2007", shape=ellipse, URL="RFC4892.html", target="_top", tooltip="With the increased use of DNS anycast, load balancing, and other mechanisms allowing more than one DNS name server to share a single IP address, it is sometimes difficult to tell which of a pool of name servers has answered a particular query.  A standardized mechanism to determine the identity of a name server responding to a particular query would be useful, particularly as a diagnostic aid for administrators.  Existing ad hoc mechanisms for addressing this need have some shortcomings, not the least of which is the lack of prior analysis of exactly how such a mechanism should be designed and deployed.  This document describes the existing convention used in some widely deployed implementations of the DNS protocol, including advantages and disadvantages, and discusses some attributes of an improved mechanism.  This memo provides information for the Internet community."];
+  RFC4892 -> rev_cites;
+  RFC7094 [label="RFC7094
+Architectural Considerations of IP
+Anycast
+2014", shape=ellipse, URL="RFC7094.html", target="_top", tooltip="This memo discusses architectural implications of IP anycast and provides some historical analysis of anycast use by various IETF protocols."];
+  RFC7094 -> rev_cites;
+  RFC8976 [label="RFC8976
+Message Digest for DNS Zones
+2021", shape=ellipse, URL="RFC8976.html", target="_top", tooltip="This document describes a protocol and new DNS Resource Record that provides a cryptographic message digest over DNS zone data at rest. The ZONEMD Resource Record conveys the digest data in the zone itself. When used in combination with DNSSEC, ZONEMD allows recipients to verify the zone contents for data integrity and origin authenticity. This provides assurance that received zone data matches published data, regardless of how the zone data has been transmitted and received. When used without DNSSEC, ZONEMD functions as a checksum, guarding only against unintentional changes. ZONEMD does not replace DNSSEC: DNSSEC protects individual RRsets (DNS data with fine granularity), whereas ZONEMD protects a zone's data as a whole, whether consumed by authoritative name servers, recursive name servers, or any other applications. As specified herein, ZONEMD is impractical for large, dynamic zones due to the time and resources required for digest calculation. However, the ZONEMD record is extensible so that new digest schemes may be added in the future to support large, dynamic zones."];
+  RFC8976 -> rev_cites;
+}

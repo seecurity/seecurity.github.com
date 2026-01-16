@@ -1,0 +1,394 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8029;
+
+  obs [label="obsoletes", shape=box];
+  RFC8029 -> obs;
+  RFC4379 [label="RFC4379
+Detecting Multi-Protocol Label Switched
+(MPLS) Data Plane Failures
+2006", shape=ellipse, URL="RFC4379.html", target="_top", tooltip="This document describes a simple and efficient mechanism that can be used to detect data plane failures in Multi-Protocol Label Switching (MPLS) Label Switched Paths (LSPs).  There are two parts to this document: information carried in an MPLS echo request and echo reply for the purposes of fault detection and isolation, and mechanisms for reliably sending the echo reply. [STANDARDS-TRACK]"];
+  obs -> RFC4379;
+  RFC6424 [label="RFC6424
+Mechanism for Performing Label Switched
+Path Ping (LSP Ping) over MPLS Tunnels
+2011", shape=ellipse, URL="RFC6424.html", target="_top", tooltip="This document describes methods for performing LSP ping (specified in RFC 4379) traceroute over MPLS tunnels and for traceroute of stitched MPLS Label Switched Paths (LSPs).  The techniques outlined in RFC 4379 are insufficient to perform traceroute Forwarding Equivalency Class (FEC) validation and path discovery for an LSP that goes over other MPLS tunnels or for a stitched LSP.  This document deprecates the Downstream Mapping TLV (defined in RFC 4379) in favor of a new TLV that, along with other procedures outlined in this document, can be used to trace such LSPs. [STANDARDS-TRACK]"];
+  obs -> RFC6424;
+  RFC6829 [label="RFC6829
+Label Switched Path (LSP) Ping for
+Pseudowire Forwarding Equivalence
+Classes (FECs) Advertised over IPv6
+2013", shape=ellipse, URL="RFC6829.html", target="_top", tooltip="The Multiprotocol Label Switching (MPLS) Label Switched Path (LSP) Ping and traceroute mechanisms are commonly used to detect and isolate data-plane failures in all MPLS LSPs, including LSPs used for each direction of an MPLS Pseudowire (PW). However, the LSP Ping and traceroute elements used for PWs are not specified for IPv6 address usage. This document extends the PW LSP Ping and traceroute mechanisms so they can be used with PWs that are set up and maintained using IPv6 LDP sessions. This document updates RFC 4379. [STANDARDS-TRACK]"];
+  obs -> RFC6829;
+  RFC7537 [label="RFC7537
+IANA Registries for LSP Ping Code Points
+2015", shape=ellipse, URL="RFC7537.html", target="_top", tooltip="RFCs 4379 and 6424 created name spaces for Multi-Protocol Label Switching (MPLS) Label Switched Path (LSP) Ping. However, those RFCs did not create the corresponding IANA registries for Downstream Mapping object Flags (DS Flags), Multipath Types, Pad TLVs, and Interface and Label Stack Address Types. There is now a need to make further code point allocations from these name spaces. This document updates RFCs 4379 and 6424 in that it creates IANA registries for that purpose."];
+  obs -> RFC7537;
+
+  updates [label="updates", shape=box];
+  RFC8029 -> updates;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  updates -> RFC1122;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8029;
+  RFC8611 [label="RFC8611
+Label Switched Path (LSP) Ping and
+Traceroute Multipath Support for Link
+Aggregation Group (LAG) Interfaces
+2019", shape=ellipse, URL="RFC8611.html", target="_top", tooltip="This document defines extensions to the MPLS Label Switched Path (LSP) Ping and Traceroute mechanisms as specified in RFC 8029. The extensions allow the MPLS LSP Ping and Traceroute mechanisms to discover and exercise specific paths of Layer 2 (L2) Equal-Cost Multipath (ECMP) over Link Aggregation Group (LAG) interfaces. Additionally, a mechanism is defined to enable the determination of the capabilities supported by a Label Switching Router (LSR). This document updates RFC 8029."];
+  RFC8611 -> updated_by;
+  RFC9041 [label="RFC9041
+Updating the MPLS Label Switched Paths
+(LSPs) Ping Parameters IANA Registry
+2021", shape=ellipse, URL="RFC9041.html", target="_top", tooltip="This document updates RFCs 8029 and 8611, both of which define IANA registries for MPLS Label Switched Path (LSP) Ping. In particular, the registration procedure Private Use (previously known as Vendor Private Use) has been changed to First Come First Served for the TLV and sub-TLV registries. It also updates the description of the procedures for the responses sent when an unknown or erroneous code point is found. The updates are to clarify and align this namespace with recent developments, e.g., aligning terminology with RFC 8126 instead of the now obsoleted RFC 5226 (both titled Guidelines for Writing an IANA Considerations Section in RFCs)."];
+  RFC9041 -> updated_by;
+  RFC9570 [label="RFC9570
+Deprecating the Use of Router Alert in
+LSP Ping
+2024", shape=ellipse, URL="RFC9570.html", target="_top", tooltip="The MPLS echo request and MPLS echo response messages, defined in RFC 8029, Detecting Multiprotocol Label Switched (MPLS) Data-Plane Failures (usually referred to as LSP ping), are encapsulated in IP packets with headers that include a Router Alert Option (RAO). In actual deployments, the RAO was neither required nor used. Furthermore, RFC 6398 identifies security vulnerabilities associated with the RAO in non-controlled environments, e.g., the case of using the MPLS echo request/reply as inter-area Operations, Administration, and Maintenance (OAM), and recommends against its use outside of controlled environments. Therefore, this document retires the RAO for MPLS OAM and updates RFC 8029 to remove the RAO from LSP ping message encapsulations. Furthermore, this document explains why RFC 7506 has been reclassified as Historic. Also, this document recommends the use of an IPv6 loopback address (::1/128) as the IPv6 destination address for an MPLS echo request message."];
+  RFC9570 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC8029 -> cites;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC4379 [label="RFC4379
+Detecting Multi-Protocol Label Switched
+(MPLS) Data Plane Failures
+2006", shape=ellipse, URL="RFC4379.html", target="_top", tooltip="This document describes a simple and efficient mechanism that can be used to detect data plane failures in Multi-Protocol Label Switching (MPLS) Label Switched Paths (LSPs).  There are two parts to this document: information carried in an MPLS echo request and echo reply for the purposes of fault detection and isolation, and mechanisms for reliably sending the echo reply. [STANDARDS-TRACK]"];
+  cites -> RFC4379;
+  RFC6424 [label="RFC6424
+Mechanism for Performing Label Switched
+Path Ping (LSP Ping) over MPLS Tunnels
+2011", shape=ellipse, URL="RFC6424.html", target="_top", tooltip="This document describes methods for performing LSP ping (specified in RFC 4379) traceroute over MPLS tunnels and for traceroute of stitched MPLS Label Switched Paths (LSPs).  The techniques outlined in RFC 4379 are insufficient to perform traceroute Forwarding Equivalency Class (FEC) validation and path discovery for an LSP that goes over other MPLS tunnels or for a stitched LSP.  This document deprecates the Downstream Mapping TLV (defined in RFC 4379) in favor of a new TLV that, along with other procedures outlined in this document, can be used to trace such LSPs. [STANDARDS-TRACK]"];
+  cites -> RFC6424;
+  RFC6829 [label="RFC6829
+Label Switched Path (LSP) Ping for
+Pseudowire Forwarding Equivalence
+Classes (FECs) Advertised over IPv6
+2013", shape=ellipse, URL="RFC6829.html", target="_top", tooltip="The Multiprotocol Label Switching (MPLS) Label Switched Path (LSP) Ping and traceroute mechanisms are commonly used to detect and isolate data-plane failures in all MPLS LSPs, including LSPs used for each direction of an MPLS Pseudowire (PW). However, the LSP Ping and traceroute elements used for PWs are not specified for IPv6 address usage. This document extends the PW LSP Ping and traceroute mechanisms so they can be used with PWs that are set up and maintained using IPv6 LDP sessions. This document updates RFC 4379. [STANDARDS-TRACK]"];
+  cites -> RFC6829;
+  RFC7537 [label="RFC7537
+IANA Registries for LSP Ping Code Points
+2015", shape=ellipse, URL="RFC7537.html", target="_top", tooltip="RFCs 4379 and 6424 created name spaces for Multi-Protocol Label Switching (MPLS) Label Switched Path (LSP) Ping. However, those RFCs did not create the corresponding IANA registries for Downstream Mapping object Flags (DS Flags), Multipath Types, Pad TLVs, and Interface and Label Stack Address Types. There is now a need to make further code point allocations from these name spaces. This document updates RFCs 4379 and 6424 in that it creates IANA registries for that purpose."];
+  cites -> RFC7537;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4026 [label="RFC4026
+Provider Provisioned Virtual Private
+Network (VPN) Terminology
+2005", shape=ellipse, URL="RFC4026.html", target="_top", tooltip="The widespread interest in provider-provisioned Virtual Private Network (VPN) solutions lead to memos proposing different and overlapping solutions. The IETF working groups (first Provider Provisioned VPNs and later Layer 2 VPNs and Layer 3 VPNs) have discussed these proposals and documented specifications. This has lead to the development of a partially new set of concepts used to describe the set of VPN services. To a certain extent, more than one term covers the same concept, and sometimes the same term covers more than one concept. This document seeks to make the terminology in the area clearer and more intuitive. This memo provides information for the Internet community."];
+  cites -> RFC4026;
+  RFC1812 [label="RFC1812
+Requirements for IP Version 4 Routers
+1995", shape=ellipse, URL="RFC1812.html", target="_top", tooltip="This memo defines and discusses requirements for devices that perform the network layer forwarding function of the Internet protocol suite. [STANDARDS-TRACK]"];
+  cites -> RFC1812;
+  RFC2113 [label="RFC2113
+IP Router Alert Option
+1997", shape=ellipse, URL="RFC2113.html", target="_top", tooltip="This memo describes a new IP Option type that alerts transit routers to more closely examine the contents of an IP packet. [STANDARDS-TRACK]"];
+  cites -> RFC2113;
+  RFC7506 [label="RFC7506
+IPv6 Router Alert Option for MPLS
+Operations, Administration, and
+Maintenance (OAM)
+2015", shape=ellipse, URL="RFC7506.html", target="_top", tooltip="RFC 4379 defines the MPLS Label Switched Path (LSP) Ping/Traceroute mechanism in which the Router Alert Option (RAO) MUST be set in the IP header of the MPLS Echo Request messages and may conditionally be set in the IP header of the MPLS Echo Reply messages depending on the Reply Mode used. While a generic Router shall examine packet Option Value is used for the IPv4 RAO, there is no generic RAO value defined for IPv6 that can be used. This document allocates a new, generic IPv6 RAO value that can be used by MPLS Operations, Administration, and Maintenance (OAM) tools, including the MPLS Echo Request and MPLS Echo Reply messages for MPLS in IPv6 environments. Consequently, it updates RFC 4379. The initial motivation to request an IPv6 RAO value for MPLS OAM comes from the MPLS LSP Ping/Traceroute. However, this value is applicable to all MPLS OAM and not limited to MPLS LSP Ping/ Traceroute."];
+  cites -> RFC7506;
+  RFC6425 [label="RFC6425
+Detecting Data-Plane Failures in Point-
+to-Multipoint MPLS - Extensions to LSP
+Ping
+2011", shape=ellipse, URL="RFC6425.html", target="_top", tooltip="Recent proposals have extended the scope of Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs) to encompass point-to-multipoint (P2MP) LSPs. The requirement for a simple and efficient mechanism that can be used to detect data-plane failures in point-to-point (P2P) MPLS LSPs has been recognized and has led to the development of techniques for fault detection and isolation commonly referred to as LSP ping. The scope of this document is fault detection and isolation for P2MP MPLS LSPs. This documents does not replace any of the mechanisms of LSP ping, but clarifies their applicability to MPLS P2MP LSPs, and extends the techniques and mechanisms of LSP ping to the MPLS P2MP environment. This document updates RFC 4379. [STANDARDS-TRACK]"];
+  cites -> RFC6425;
+  RFC6426 [label="RFC6426
+MPLS On-Demand Connectivity Verification
+and Route Tracing
+2011", shape=ellipse, URL="RFC6426.html", target="_top", tooltip="Label Switched Path Ping (LSP ping) is an existing and widely deployed Operations, Administration, and Maintenance (OAM) mechanism for Multi-Protocol Label Switching (MPLS) Label Switched Paths (LSPs).  This document describes extensions to LSP ping so that LSP ping can be used for on-demand connectivity verification of MPLS Transport Profile (MPLS-TP) LSPs and pseudowires.  This document also clarifies procedures to be used for processing the related OAM packets.  Further, it describes procedures for using LSP ping to perform connectivity verification and route tracing functions in MPLS-TP networks.  Finally, this document updates RFC 4379 by adding a new address type and creating an IANA registry. [STANDARDS-TRACK]"];
+  cites -> RFC6426;
+  RFC5085 [label="RFC5085
+Pseudowire Virtual Circuit Connectivity
+Verification (VCCV): A Control Channel
+for Pseudowires
+2007", shape=ellipse, URL="RFC5085.html", target="_top", tooltip="This document describes Virtual Circuit Connectivity Verification (VCCV), which provides a control channel that is associated with a pseudowire (PW), as well as the corresponding operations and management functions (such as connectivity verification) to be used over that control channel.  VCCV applies to all supported access circuit and transport types currently defined for PWs. [STANDARDS-TRACK]"];
+  cites -> RFC5085;
+  RFC5885 [label="RFC5885
+Bidirectional Forwarding Detection (BFD)
+for the Pseudowire Virtual Circuit
+Connectivity Verification (VCCV)
+2010", shape=ellipse, URL="RFC5885.html", target="_top", tooltip="This document describes Connectivity Verification (CV) Types using Bidirectional Forwarding Detection (BFD) with Virtual Circuit Connectivity Verification (VCCV).  VCCV provides a control channel that is associated with a pseudowire (PW), as well as the corresponding operations and management functions such as connectivity verification to be used over that control channel. [STANDARDS-TRACK]"];
+  cites -> RFC5885;
+  RFC5905 [label="RFC5905
+Network Time Protocol Version 4:
+Protocol and Algorithms Specification
+2010", shape=ellipse, URL="RFC5905.html", target="_top", tooltip="The Network Time Protocol (NTP) is widely used to synchronize computer clocks in the Internet.  This document describes NTP version 4 (NTPv4), which is backwards compatible with NTP version 3 (NTPv3), described in RFC 1305, as well as previous versions of the protocol.  NTPv4 includes a modified protocol header to accommodate the Internet Protocol version 6 address family.  NTPv4 includes fundamental improvements in the mitigation and discipline algorithms that extend the potential accuracy to the tens of microseconds with modern workstations and fast LANs.  It includes a dynamic server discovery scheme, so that in many cases, specific server configuration is not required.  It corrects certain errors in the NTPv3 design and implementation and includes an optional extension mechanism."];
+  cites -> RFC5905;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  cites -> RFC5036;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC4365 [label="RFC4365
+Applicability Statement for BGP/MPLS IP
+Virtual Private Networks (VPNs)
+2006", shape=ellipse, URL="RFC4365.html", target="_top", tooltip="This document provides an Applicability Statement for the Virtual Private Network (VPN) solution described in RFC 4364 and other documents listed in the References section.  This memo provides information for the Internet community."];
+  cites -> RFC4365;
+  RFC3107 [label="RFC3107
+Carrying Label Information in BGP-4
+2001", shape=ellipse, URL="RFC3107.html", target="_top", tooltip="This document specifies the way in which the label mapping information for a particular route is piggybacked in the same Border Gateway Protocol (BGP) Update message that is used to distribute the route itself. [STANDARDS-TRACK]"];
+  cites -> RFC3107;
+  RFC4761 [label="RFC4761
+Virtual Private LAN Service (VPLS) Using
+BGP for Auto-Discovery and Signaling
+2007", shape=ellipse, URL="RFC4761.html", target="_top", tooltip="Virtual Private LAN Service (VPLS), also known as Transparent LAN Service and Virtual Private Switched Network service, is a useful Service Provider offering. The service offers a Layer 2 Virtual Private Network (VPN); however, in the case of VPLS, the customers in the VPN are connected by a multipoint Ethernet LAN, in contrast to the usual Layer 2 VPNs, which are point-to-point in nature. This document describes the functions required to offer VPLS, a mechanism for signaling a VPLS, and rules for forwarding VPLS frames across a packet switched network. [STANDARDS-TRACK]"];
+  cites -> RFC4761;
+  RFC8077 [label="RFC8077
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2017", shape=ellipse, URL="RFC8077.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDUs) and then transmitting them over pseudowires (PWs). It is also possible to use pseudowires to provide low-rate Time-Division Multiplexed and Synchronous Optical NETworking circuit emulation over an MPLS-enabled network. This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to the Label Distribution Protocol (LDP). Procedures for encapsulating Layer 2 PDUs are specified in other documents. This document is a rewrite of RFC 4447 for publication as an Internet Standard."];
+  cites -> RFC8077;
+  RFC4461 [label="RFC4461
+Signaling Requirements for Point-to-
+Multipoint Traffic-Engineered MPLS Label
+Switched Paths (LSPs)
+2006", shape=ellipse, URL="RFC4461.html", target="_top", tooltip="This document presents a set of requirements for the establishment and maintenance of Point-to-Multipoint (P2MP) Traffic-Engineered (TE) Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). There is no intent to specify solution-specific details or application-specific requirements in this document. The requirements presented in this document not only apply to packet-switched networks under the control of MPLS protocols, but also encompass the requirements of Layer Two Switching (L2SC), Time Division Multiplexing (TDM), lambda, and port switching networks managed by Generalized MPLS (GMPLS) protocols. Protocol solutions developed to meet the requirements set out in this document must attempt to be equally applicable to MPLS and GMPLS. This memo provides information for the Internet community."];
+  cites -> RFC4461;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  cites -> RFC5462;
+  RFC5331 [label="RFC5331
+MPLS Upstream Label Assignment and
+Context-Specific Label Space
+2008", shape=ellipse, URL="RFC5331.html", target="_top", tooltip="RFC 3031 limits the MPLS architecture to downstream-assigned MPLS labels.  This document introduces the notion of upstream-assigned MPLS labels.  It describes the procedures for upstream MPLS label assignment and introduces the concept of a Context-Specific Label Space. [STANDARDS-TRACK]"];
+  cites -> RFC5331;
+  RFC3032 [label="RFC3032
+MPLS Label Stack Encoding
+2001", shape=ellipse, URL="RFC3032.html", target="_top", tooltip="This document specifies the encoding to be used by an LSR in order to transmit labeled packets on Point-to-Point Protocol (PPP) data links, on LAN data links, and possibly on other data links as well.  This document also specifies rules and procedures for processing the various fields of the label stack encoding. [STANDARDS-TRACK]"];
+  cites -> RFC3032;
+  RFC3443 [label="RFC3443
+Time To Live (TTL) Processing in Multi-
+Protocol Label Switching (MPLS) Networks
+2003", shape=ellipse, URL="RFC3443.html", target="_top", tooltip="This document describes Time To Live (TTL) processing in hierarchical Multi-Protocol Label Switching (MPLS) networks and is motivated by the need to formalize a TTL-transparent mode of operation for an MPLS label-switched path.  It updates RFC 3032, MPLS Label Stack Encoding.  TTL processing in both Pipe and Uniform Model hierarchical tunnels are specified with examples for both push and pop cases.  The document also complements RFC 3270, MPLS Support of Differentiated Services and ties together the terminology introduced in that document with TTL processing in hierarchical MPLS networks. [STANDARDS-TRACK]"];
+  cites -> RFC3443;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+  RFC8012 [label="RFC8012
+Label Switched Path (LSP) and Pseudowire
+(PW) Ping/Trace over MPLS Networks Using
+Entropy Labels (ELs)
+2016", shape=ellipse, URL="RFC8012.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) Label Switched Path (LSP) ping and traceroute are methods used to test Equal-Cost Multipath (ECMP) paths. Ping is known as a connectivity-verification method and traceroute is known as a fault-isolation method, as described in RFC 4379. When an LSP is signaled using the Entropy Label (EL) described in RFC 6790, the ability for LSP ping and traceroute operations to discover and exercise ECMP paths is lost for scenarios where Label Switching Routers (LSRs) apply different load-balancing techniques. One such scenario is when some LSRs apply EL-based load balancing while other LSRs apply load balancing that is not EL based (e.g., IP). Another scenario is when an EL-based LSP is stitched with another LSP that can be EL based or not EL based. This document extends the MPLS LSP ping and traceroute multipath mechanisms in RFC 6424 to allow the ability of exercising LSPs that make use of the EL. This document updates RFC 6790."];
+  cites -> RFC8012;
+  RFC4447 [label="RFC4447
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2006", shape=ellipse, URL="RFC4447.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDU) and transmitting them over pseudowires.  It is also possible to use pseudowires to provide low-rate Time Division Multiplexed and a Synchronous Optical NETworking circuit emulation over an MPLS-enabled network.  This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to Label Distribution Protocol (LDP).  Procedures for encapsulating Layer 2 PDUs are specified in a set of companion documents. [STANDARDS-TRACK]"];
+  cites -> RFC4447;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8029;
+  RFC8287 [label="RFC8287
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+IGP-Prefix and IGP-Adjacency Segment
+Identifiers (SIDs) with MPLS Data Planes
+2017", shape=ellipse, URL="RFC8287.html", target="_top", tooltip="A Segment Routing (SR) architecture leverages source routing and tunneling paradigms and can be directly applied to the use of a Multiprotocol Label Switching (MPLS) data plane. A node steers a packet through a controlled set of instructions called segments by prepending the packet with an SR header. The segment assignment and forwarding semantic nature of SR raises additional considerations for connectivity verification and fault isolation for a Label Switched Path (LSP) within an SR architecture. This document illustrates the problem and defines extensions to perform LSP Ping and Traceroute for Segment Routing IGP-Prefix and IGP-Adjacency Segment Identifiers (SIDs) with an MPLS data plane."];
+  RFC8287 -> rev_cites;
+  RFC8339 [label="RFC8339
+Definition of P2MP PW TLV for Label
+Switched Path (LSP) Ping Mechanisms
+2018", shape=ellipse, URL="RFC8339.html", target="_top", tooltip="Label Switched Path (LSP) Ping is a widely deployed Operation, Administration, and Maintenance (OAM) mechanism in MPLS networks.  This document describes a mechanism to verify connectivity of Point-to-Multipoint (P2MP) Pseudowires (PWs) using LSP Ping."];
+  RFC8339 -> rev_cites;
+  RFC8403 [label="RFC8403
+A Scalable and Topology-Aware MPLS Data-
+Plane Monitoring System
+2018", shape=ellipse, URL="RFC8403.html", target="_top", tooltip="This document describes features of an MPLS path monitoring system and related use cases.  Segment-based routing enables a scalable and simple method to monitor data-plane liveliness of the complete set of paths belonging to a single domain.  The MPLS monitoring system adds features to the traditional MPLS ping and Label Switched Path (LSP) trace, in a very complementary way.  MPLS topology awareness reduces management and control-plane involvement of Operations, Administration, and Maintenance (OAM) measurements while enabling new OAM features."];
+  RFC8403 -> rev_cites;
+  RFC8532 [label="RFC8532
+Generic YANG Data Model for the
+Management of Operations,
+Administration, and Maintenance (OAM)
+Protocols That Use Connectionless
+Communications
+2019", shape=ellipse, URL="RFC8532.html", target="_top", tooltip="This document presents a base YANG Data model for the management of Operations, Administration, and Maintenance (OAM) protocols that use connectionless communications. The data model is defined using the YANG data modeling language, as specified in RFC 7950. It provides a technology-independent abstraction of key OAM constructs for OAM protocols that use connectionless communication. The base model presented here can be extended to include technology-specific details. There are two key benefits of this approach: First, it leads to uniformity between OAM protocols. Second, it supports both nested OAM workflows (i.e., performing OAM functions at the same level or different levels through a unified interface) as well as interactive OAM workflows (i.e., performing OAM functions at the same level through a unified interface)."];
+  RFC8532 -> rev_cites;
+  RFC8533 [label="RFC8533
+A YANG Data Model for Retrieval Methods
+for the Management of Operations,
+Administration, and Maintenance (OAM)
+Protocols That Use Connectionless
+Communications
+2019", shape=ellipse, URL="RFC8533.html", target="_top", tooltip="This document presents a retrieval method YANG data model for connectionless Operations, Administration, and Maintenance (OAM) protocols.  It provides technology-independent RPC operations for OAM protocols that use connectionless communication.  The retrieval methods model herein presented can be extended to include technology- specific details.  There are two key benefits of this approach: First, it leads to uniformity between OAM protocols.  Second, it supports both nested OAM workflows (i.e., performing OAM functions at different or the same levels through a unified interface) as well as interactive OAM workflows (i.e., performing OAM functions at the same levels through a unified interface)."];
+  RFC8533 -> rev_cites;
+  RFC8562 [label="RFC8562
+Bidirectional Forwarding Detection (BFD)
+for Multipoint Networks
+2019", shape=ellipse, URL="RFC8562.html", target="_top", tooltip="This document describes extensions to the Bidirectional Forwarding Detection (BFD) protocol for its use in multipoint and multicast networks. This document updates RFC 5880."];
+  RFC8562 -> rev_cites;
+  RFC8577 [label="RFC8577
+Signaling RSVP-TE Tunnels on a Shared
+MPLS Forwarding Plane
+2019", shape=ellipse, URL="RFC8577.html", target="_top", tooltip="As the scale of MPLS RSVP-TE networks has grown, the number of Label Switched Paths (LSPs) supported by individual network elements has increased. Various implementation recommendations have been proposed to manage the resulting increase in the amount of control-plane state information. However, those changes have had no effect on the number of labels that a transit Label Switching Router (LSR) has to support in the forwarding plane. That number is governed by the number of LSPs transiting or terminated at the LSR and is directly related to the total LSP state in the control plane. This document defines a mechanism to prevent the maximum size of the label space limit on an LSR from being a constraint to control-plane scaling on that node. It introduces the notion of preinstalled 'per-TE link labels' that can be shared by MPLS RSVP-TE LSPs that traverse these TE links. This approach significantly reduces the forwarding-plane state required to support a large number of LSPs. This couples the feature benefits of the RSVP-TE control plane with the simplicity of the Segment Routing (SR) MPLS forwarding plane."];
+  RFC8577 -> rev_cites;
+  RFC8611 [label="RFC8611
+Label Switched Path (LSP) Ping and
+Traceroute Multipath Support for Link
+Aggregation Group (LAG) Interfaces
+2019", shape=ellipse, URL="RFC8611.html", target="_top", tooltip="This document defines extensions to the MPLS Label Switched Path (LSP) Ping and Traceroute mechanisms as specified in RFC 8029. The extensions allow the MPLS LSP Ping and Traceroute mechanisms to discover and exercise specific paths of Layer 2 (L2) Equal-Cost Multipath (ECMP) over Link Aggregation Group (LAG) interfaces. Additionally, a mechanism is defined to enable the determination of the capabilities supported by a Label Switching Router (LSR). This document updates RFC 8029."];
+  RFC8611 -> rev_cites;
+  RFC8690 [label="RFC8690
+Clarification of Segment ID Sub-TLV
+Length for RFC 8287
+2019", shape=ellipse, URL="RFC8690.html", target="_top", tooltip="RFC 8287 defines the extensions to perform LSP Ping and Traceroute for Segment Routing IGP-Prefix and IGP-Adjacency Segment Identifiers (SIDs) with the MPLS data plane. RFC 8287 proposes three Target Forwarding Equivalence Class (FEC) Stack sub-TLVs. While RFC 8287 defines the format and procedure to handle those sub-TLVs, it does not sufficiently clarify how the length of the Segment ID sub-TLVs should be computed to be included in the Length field of the sub-TLVs. This ambiguity has resulted in interoperability issues. This document updates RFC 8287 by clarifying the length of each of the Segment ID sub-TLVs defined in RFC 8287."];
+  RFC8690 -> rev_cites;
+  RFC8924 [label="RFC8924
+Service Function Chaining (SFC)
+Operations, Administration, and
+Maintenance (OAM) Framework
+2020", shape=ellipse, URL="RFC8924.html", target="_top", tooltip="This document provides a reference framework for Operations, Administration, and Maintenance (OAM) for Service Function Chaining (SFC)."];
+  RFC8924 -> rev_cites;
+  RFC9041 [label="RFC9041
+Updating the MPLS Label Switched Paths
+(LSPs) Ping Parameters IANA Registry
+2021", shape=ellipse, URL="RFC9041.html", target="_top", tooltip="This document updates RFCs 8029 and 8611, both of which define IANA registries for MPLS Label Switched Path (LSP) Ping. In particular, the registration procedure Private Use (previously known as Vendor Private Use) has been changed to First Come First Served for the TLV and sub-TLV registries. It also updates the description of the procedures for the responses sent when an unknown or erroneous code point is found. The updates are to clarify and align this namespace with recent developments, e.g., aligning terminology with RFC 8126 instead of the now obsoleted RFC 5226 (both titled Guidelines for Writing an IANA Considerations Section in RFCs)."];
+  RFC9041 -> rev_cites;
+  RFC9062 [label="RFC9062
+Framework and Requirements for Ethernet
+VPN (EVPN) Operations, Administration,
+and Maintenance (OAM)
+2021", shape=ellipse, URL="RFC9062.html", target="_top", tooltip="This document specifies the requirements and reference framework for Ethernet VPN (EVPN) Operations, Administration, and Maintenance (OAM).  The requirements cover the OAM aspects of EVPN and Provider Backbone Bridge EVPN (PBB-EVPN).  The framework defines the layered OAM model encompassing the EVPN service layer, network layer, underlying Packet Switched Network (PSN) transport layer, and link layer but focuses on the service and network layers."];
+  RFC9062 -> rev_cites;
+  RFC9198 [label="RFC9198
+Advanced Unidirectional Route Assessment
+(AURA)
+2022", shape=ellipse, URL="RFC9198.html", target="_top", tooltip="This memo introduces an advanced unidirectional route assessment (AURA) metric and associated measurement methodology based on the IP Performance Metrics (IPPM) framework (RFC 2330).  This memo updates RFC 2330 in the areas of path-related terminology and path description, primarily to include the possibility of parallel subpaths between a given Source and Destination pair, owing to the presence of multipath technologies."];
+  RFC9198 -> rev_cites;
+  RFC9214 [label="RFC9214
+OSPFv3 Code Point for MPLS LSP Ping
+2022", shape=ellipse, URL="RFC9214.html", target="_top", tooltip="IANA has created Protocol in the Segment ID Sub-TLV and Protocol in Label Stack Sub-TLV of Downstream Detailed Mapping TLV registries under the Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs) Ping Parameters registry. RFC 8287 defines the code points for Open Shortest Path First (OSPF) and Intermediate System to Intermediate System (IS-IS) protocols. This document specifies the code point to be used in the Segment ID sub-TLV and Downstream Detailed Mapping (DDMAP) TLV when the Interior Gateway Protocol (IGP) is OSPFv3. This document also updates RFC 8287 by clarifying that the existing OSPF code point is to be used only to indicate OSPFv2 and by defining the behavior when the Segment ID sub-TLV indicates the use of IPv6."];
+  RFC9214 -> rev_cites;
+  RFC9359 [label="RFC9359
+Echo Request/Reply for Enabled In Situ
+OAM (IOAM) Capabilities
+2023", shape=ellipse, URL="RFC9359.html", target="_top", tooltip="This document describes a generic format for use in echo request/reply mechanisms, which can be used within an IOAM-Domain, allowing the IOAM encapsulating node to discover the enabled IOAM capabilities of each IOAM transit and IOAM decapsulating node.  The generic format is intended to be used with a variety of data planes such as IPv6, MPLS, Service Function Chain (SFC), and Bit Index Explicit Replication (BIER)."];
+  RFC9359 -> rev_cites;
+  RFC9489 [label="RFC9489
+Label Switched Path (LSP) Ping
+Mechanisms for EVPN and Provider
+Backbone Bridging EVPN (PBB-EVPN)
+2023", shape=ellipse, URL="RFC9489.html", target="_top", tooltip="Label Switched Path (LSP) Ping is a widely deployed Operations, Administration, and Maintenance (OAM) mechanism in MPLS networks.  This document describes mechanisms for detecting data plane failures using LSP Ping in MPLS-based Ethernet VPN (EVPN) and Provider Backbone Bridging EVPN (PBB-EVPN) networks."];
+  RFC9489 -> rev_cites;
+  RFC9516 [label="RFC9516
+Active Operations, Administration, and
+Maintenance (OAM) for Service Function
+Chaining (SFC)
+2023", shape=ellipse, URL="RFC9516.html", target="_top", tooltip="A set of requirements for active Operations, Administration, and Maintenance (OAM) for Service Function Chaining (SFC) in a network is presented in this document.  Based on these requirements, an encapsulation of active OAM messages in SFC and a mechanism to detect and localize defects are described."];
+  RFC9516 -> rev_cites;
+  RFC9531 [label="RFC9531
+Path Steering in Content-Centric
+Networking (CCNx) and Named Data
+Networking (NDN)
+2024", shape=ellipse, URL="RFC9531.html", target="_top", tooltip="Path steering is a mechanism to discover paths to the producers of Information-Centric Networking (ICN) Content Objects and steer subsequent Interest messages along a previously discovered path. It has various uses, including the operation of state-of-the-art multi-path congestion control algorithms and for network measurement and management. This specification derives directly from the design published in Path Switching in Content Centric and Named Data Networks (4th ACM Conference on Information-Centric Networking) and, therefore, does not recapitulate the design motivations, implementation details, or evaluation of the scheme. However, some technical details are different, and where there are differences, the design documented here is to be considered definitive. This document is a product of the IRTF Information-Centric Networking Research Group (ICNRG). It is not an IETF product and is not an Internet Standard."];
+  RFC9531 -> rev_cites;
+  RFC9546 [label="RFC9546
+Operations, Administration, and
+Maintenance (OAM) for Deterministic
+Networking (DetNet) with the MPLS Data
+Plane
+2024", shape=ellipse, URL="RFC9546.html", target="_top", tooltip="This document defines format and usage principles of the Deterministic Networking (DetNet) service Associated Channel over a DetNet network with the MPLS data plane.  The DetNet service Associated Channel can be used to carry test packets of active Operations, Administration, and Maintenance (OAM) protocols that are used to detect DetNet failures and measure performance metrics."];
+  RFC9546 -> rev_cites;
+  RFC9570 [label="RFC9570
+Deprecating the Use of Router Alert in
+LSP Ping
+2024", shape=ellipse, URL="RFC9570.html", target="_top", tooltip="The MPLS echo request and MPLS echo response messages, defined in RFC 8029, Detecting Multiprotocol Label Switched (MPLS) Data-Plane Failures (usually referred to as LSP ping), are encapsulated in IP packets with headers that include a Router Alert Option (RAO). In actual deployments, the RAO was neither required nor used. Furthermore, RFC 6398 identifies security vulnerabilities associated with the RAO in non-controlled environments, e.g., the case of using the MPLS echo request/reply as inter-area Operations, Administration, and Maintenance (OAM), and recommends against its use outside of controlled environments. Therefore, this document retires the RAO for MPLS OAM and updates RFC 8029 to remove the RAO from LSP ping message encapsulations. Furthermore, this document explains why RFC 7506 has been reclassified as Historic. Also, this document recommends the use of an IPv6 loopback address (::1/128) as the IPv6 destination address for an MPLS echo request message."];
+  RFC9570 -> rev_cites;
+  RFC9612 [label="RFC9612
+Bidirectional Forwarding Detection (BFD)
+Reverse Path for MPLS Label Switched
+Paths (LSPs)
+2024", shape=ellipse, URL="RFC9612.html", target="_top", tooltip="Bidirectional Forwarding Detection (BFD) is expected to be able to monitor a wide variety of encapsulations of paths between systems.  When a BFD session monitors an explicitly routed unidirectional path, there may be a need to direct the egress BFD peer to use a specific path for the reverse direction of the BFD session.  This document describes an extension to the MPLS Label Switched Path (LSP) echo request that allows a BFD system to request that the remote BFD peer transmit BFD control packets over the specified LSP."];
+  RFC9612 -> rev_cites;
+  RFC9655 [label="RFC9655
+Egress Validation in Label Switched Path
+Ping and Traceroute Mechanisms
+2024", shape=ellipse, URL="RFC9655.html", target="_top", tooltip="The MPLS ping and traceroute mechanisms described in RFC 8029 and the related extensions for Segment Routing (SR) defined in RFC 8287 are highly valuable for validating control plane and data plane synchronization. In certain environments, only some intermediate or transit nodes may have been upgraded to support these validation procedures. A straightforward MPLS ping and traceroute mechanism allows traversal of any path without validation of the control plane state. RFC 8029 supports this mechanism with the Nil Forwarding Equivalence Class (FEC). The procedures outlined in RFC 8029 are primarily applicable when the Nil FEC is used as an intermediate FEC in the FEC stack. However, challenges arise when all labels in the label stack are represented using the Nil FEC. This document introduces a new Type-Length-Value (TLV) as an extension to the existing Nil FEC. It describes MPLS ping and traceroute procedures using the Nil FEC with this extension to address and overcome these challenges."];
+  RFC9655 -> rev_cites;
+  RFC9658 [label="RFC9658
+Multipoint LDP Extensions for Multi-
+Topology Routing
+2024", shape=ellipse, URL="RFC9658.html", target="_top", tooltip="Multi-Topology Routing (MTR) is a technology that enables service differentiation within an IP network.  The Flexible Algorithm (FA) is another mechanism for creating a sub-topology within a topology using defined topology constraints and computation algorithms.  In order to deploy Multipoint LDP (mLDP) in a network that supports MTR, FA, or other methods of signaling non-default IGP Algorithms (IPAs), mLDP is required to become topology and algorithm aware.  This document specifies extensions to mLDP to support the use of MTR/IPAs such that, when building multipoint Label Switched Paths (LSPs), the LSPs can follow a particular topology and algorithm.  This document updates RFC 7307 by allocating eight bits from a previously reserved field to be used as the IPA field."];
+  RFC9658 -> rev_cites;
+  RFC9703 [label="RFC9703
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+Egress Peer Engineering (EPE) Segment
+Identifiers (SIDs) with MPLS Data Plane
+2024", shape=ellipse, URL="RFC9703.html", target="_top", tooltip="Egress Peer Engineering (EPE) is an application of Segment Routing (SR) that solves the problem of egress peer selection.  The SR-based BGP-EPE solution allows a centralized controller, e.g., a Software-Defined Network (SDN) controller, to program any egress peer.  The EPE solution requires the node or the SDN controller to program 1) the PeerNode Segment Identifier (SID) describing a session between two nodes, 2) the PeerAdj SID describing the link or links that are used by the sessions between peer nodes, and 3) the PeerSet SID describing any connected interface to any peer in the related group.  This document provides new sub-TLVs for EPE-SIDs that are used in the Target FEC Stack TLV (Type 1) in MPLS Ping and Traceroute procedures."];
+  RFC9703 -> rev_cites;
+  RFC9716 [label="RFC9716
+Mechanisms for MPLS Ping and Traceroute
+Procedures in Inter-Domain Segment
+Routing Networks
+2025", shape=ellipse, URL="RFC9716.html", target="_top", tooltip="The Segment Routing (SR) architecture leverages source routing and can be directly applied to the use of an MPLS data plane.  A Segment Routing over MPLS (SR-MPLS) network may consist of multiple IGP domains or multiple Autonomous Systems (ASes) under the control of the same organization.  It is useful to have the Label Switched Path (LSP) ping and traceroute procedures when an SR end-to-end path traverses multiple ASes or IGP domains.  This document outlines mechanisms to enable efficient LSP ping and traceroute procedures in inter-AS and inter-domain SR-MPLS networks.  This is achieved through a straightforward extension to the Operations, Administration, and Maintenance (OAM) protocol, relying solely on data plane forwarding for handling echo replies on transit nodes."];
+  RFC9716 -> rev_cites;
+  RFC9772 [label="RFC9772
+Active Operations, Administration, and
+Maintenance (OAM) for Use in Generic
+Network Virtualization Encapsulation
+(Geneve)
+2025", shape=ellipse, URL="RFC9772.html", target="_top", tooltip="Geneve (Generic Network Virtualization Encapsulation) is a flexible and extensible network virtualization overlay protocol designed to encapsulate network packets for transport across underlying physical networks.  This document specifies the requirements and provides a framework for Operations, Administration, and Maintenance (OAM) in Geneve networks.  It outlines the OAM functions necessary to monitor, diagnose, and troubleshoot Geneve overlay networks to ensure proper operation and performance.  The document aims to guide the implementation of OAM mechanisms within the Geneve protocol to support network operators in maintaining reliable and efficient virtualized network environments."];
+  RFC9772 -> rev_cites;
+  RFC9780 [label="RFC9780
+Bidirectional Forwarding Detection (BFD)
+for Multipoint Networks over Point-to-
+Multipoint MPLS Label Switched Paths
+(LSPs)
+2025", shape=ellipse, URL="RFC9780.html", target="_top", tooltip="This document describes procedures for using Bidirectional Forwarding Detection (BFD) for multipoint networks to detect data plane failures in point-to-multipoint MPLS Label Switched Paths (LSPs) and Segment Routing (SR) point-to-multipoint policies with an SR over MPLS (SR-MPLS) data plane. Furthermore, this document updates RFC 8562 by recommending the use of an IPv6 address from the Dummy IPv6 Prefix address block 100:0:0:1::/64 and discouraging the use of an IPv4 loopback address mapped to IPv6. In addition, this document describes the applicability of LSP Ping (as an in-band solution) and the control plane (as an out-of-band solution) to bootstrap a BFD session. The document also describes the behavior of the active tail for head notification."];
+  RFC9780 -> rev_cites;
+  RFC9805 [label="RFC9805
+Deprecation of the IPv6 Router Alert
+Option for New Protocols
+2025", shape=ellipse, URL="RFC9805.html", target="_top", tooltip="This document deprecates the IPv6 Router Alert option. Protocols that use the IPv6 Router Alert option may continue to do so, even in future versions. However, new protocols that are standardized in the future must not use the IPv6 Router Alert option. This document updates RFC 2711."];
+  RFC9805 -> rev_cites;
+  RFC9832 [label="RFC9832
+BGP Classful Transport Planes
+2025", shape=ellipse, URL="RFC9832.html", target="_top", tooltip="This document specifies a mechanism referred to as Intent-Driven Service Mapping. The mechanism uses BGP to express Intent-based association of overlay routes with underlay routes having specific Traffic Engineering (TE) characteristics satisfying a certain Service Level Agreement (SLA). This is achieved by defining new constructs to group underlay routes with sufficiently similar TE characteristics into identifiable classes (called Transport Classes or TCs), that overlay routes use as an ordered set to resolve reachability (Resolution Schemes) towards service endpoints. These constructs can be used, for example, to realize the IETF Network Slice defined in the TEAS Network Slices framework (RFC 9543). Additionally, this document specifies protocol procedures for BGP that enable dissemination of service mapping information in a network that may span multiple cooperating administrative domains. These domains may be administered either by the same provider or by closely coordinating providers. A new BGP address family that leverages the procedures described in RFC 4364 (BGP/MPLS IP Virtual Private Networks (VPNs)) and follows the NLRI encoding described in RFC 8277 (Using BGP to Bind MPLS Labels to Address Prefixes) is defined to enable each advertised underlay route to be identified by its class. This new address family is called BGP Classful Transport (or BGP CT)."];
+  RFC9832 -> rev_cites;
+  RFC9884 [label="RFC9884
+Label Switched Path Ping for Segment
+Routing Path Segment Identifier with
+MPLS Data Plane
+2025", shape=ellipse, URL="RFC9884.html", target="_top", tooltip="Segment Routing (SR) leverages source routing to steer packets through an ordered list of instructions called segments.  SR can be instantiated over the MPLS data plane.  Path Segment Identifiers (PSIDs) are used to identify and correlate bidirectional or end-to-end paths in SR networks.  This document defines procedures (i.e., six new Target Forwarding Equivalence Class (FEC) Stack sub-TLVs) for the use of LSP Ping to support connectivity verification and fault isolation for SR paths that include PSIDs.  The mechanisms described enable the validation and tracing of SR paths with Path SIDs in MPLS networks, complementing existing SR-MPLS Operations, Administration, and Maintenance (OAM) capabilities."];
+  RFC9884 -> rev_cites;
+}

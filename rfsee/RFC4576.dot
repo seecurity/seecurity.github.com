@@ -1,0 +1,48 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4576 [label="RFC4576
+Using a Link State Advertisement (LSA)
+Options Bit to Prevent Looping in
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies a procedure that deals with a particular issue that may arise when a Service Provider (SP) provides BGP/MPLS IP VPN service to a customer and the customer uses OSPFv2 to advertise its routes to the SP.  In this situation, a Customer Edge (CE) Router and a Provider Edge (PE) Router are OSPF peers, and customer routes are sent via OSPFv2 from the CE to the PE.  The customer routes are converted into BGP routes, and BGP carries them across the backbone to other PE routers.  The routes are then converted back to OSPF routes sent via OSPF to other CE routers.  As a result of this conversion, some of the information needed to prevent loops may be lost.  A procedure is needed to ensure that once a route is sent from a PE to a CE, the route will be ignored by any PE that receives it back from a CE.  This document specifies the necessary procedure, using one of the options bits in the LSA (Link State Advertisements) to indicate that an LSA has already been forwarded by a PE and should be ignored by any other PEs that see it. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4576;
+
+  obs [label="obsoletes", shape=box];
+  RFC4576 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4576 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4576;
+
+  cites [label="cites", shape=box];
+  RFC4576 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4576;
+  RFC5250 [label="RFC5250
+The OSPF Opaque LSA Option
+2008", shape=ellipse, URL="RFC5250.html", target="_top", tooltip="This document defines enhancements to the OSPF protocol to support a new class of link state advertisements (LSAs) called Opaque LSAs. Opaque LSAs provide a generalized mechanism to allow for the future extensibility of OSPF. Opaque LSAs consist of a standard LSA header followed by application-specific information. The information field may be used directly by OSPF or by other applications. Standard OSPF link-state database flooding mechanisms are used to distribute Opaque LSAs to all or some limited portion of the OSPF topology. This document replaces RFC 2370 and adds to it a mechanism to enable an OSPF router to validate Autonomous System (AS)-scope Opaque LSAs originated outside of the router's OSPF area. [STANDARDS-TRACK]"];
+  RFC5250 -> rev_cites;
+  RFC6565 [label="RFC6565
+OSPFv3 as a Provider Edge to Customer
+Edge (PE-CE) Routing Protocol
+2012", shape=ellipse, URL="RFC6565.html", target="_top", tooltip="Many Service Providers (SPs) offer Virtual Private Network (VPN) services to their customers using a technique in which Customer Edge (CE) routers are routing peers of Provider Edge (PE) routers.  The Border Gateway Protocol (BGP) is used to distribute the customer's routes across the provider's IP backbone network, and Multiprotocol Label Switching (MPLS) is used to tunnel customer packets across the provider's backbone.  Support currently exists for both IPv4 and IPv6 VPNs; however, only Open Shortest Path First version 2 (OSPFv2) as PE-CE protocol is specified.  This document extends those specifications to support OSPF version 3 (OSPFv3) as a PE-CE routing protocol.  The OSPFv3 PE-CE functionality is identical to that of OSPFv2 except for the differences described in this document. [STANDARDS-TRACK]"];
+  RFC6565 -> rev_cites;
+  RFC6992 [label="RFC6992
+Routing for IPv4-Embedded IPv6 Packets
+2013", shape=ellipse, URL="RFC6992.html", target="_top", tooltip="This document describes a routing scenario where IPv4 packets are transported over an IPv6 network, based on the methods described in RFCs 6145 and 6052, along with a separate OSPFv3 routing table for IPv4-embedded IPv6 routes in the IPv6 network."];
+  RFC6992 -> rev_cites;
+  RFC9129 [label="RFC9129
+YANG Data Model for the OSPF Protocol
+2022", shape=ellipse, URL="RFC9129.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage OSPF.  The model is based on YANG 1.1 as defined in RFC 7950 and conforms to the Network Management Datastore Architecture (NMDA) as described in RFC 8342."];
+  RFC9129 -> rev_cites;
+}

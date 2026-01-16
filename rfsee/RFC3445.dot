@@ -1,0 +1,81 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3445 [label="RFC3445
+Limiting the Scope of the KEY Resource
+Record (RR)
+2002", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document limits the Domain Name System (DNS) KEY Resource Record (RR) to only keys used by the Domain Name System Security Extensions (DNSSEC).  The original KEY RR used sub-typing to store both DNSSEC keys and arbitrary application keys.  Storing both DNSSEC and application keys with the same record type is a mistake.  This document removes application keys from the KEY record by redefining the Protocol Octet field in the KEY RR Data.  As a result of removing application keys, all but one of the flags in the KEY record become unnecessary and are redefined.  Three existing application key sub-types are changed to reserved, but the format of the KEY record is not changed.  This document updates RFC 2535. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3445;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  RFC4033 -> obs_by;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4034 -> obs_by;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4035 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC3445 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3445 -> updates;
+  RFC2535 [label="RFC2535
+Domain Name System Security Extensions
+1999", shape=ellipse, URL="RFC2535.html", target="_top", tooltip="This document incorporates feedback on RFC 2065 from early implementers and potential users. [STANDARDS-TRACK]"];
+  updates -> RFC2535;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3445;
+
+  cites [label="cites", shape=box];
+  RFC3445 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3445;
+  RFC3631 [label="RFC3631
+Security Mechanisms for the Internet
+2003", shape=ellipse, URL="RFC3631.html", target="_top", tooltip="Security must be built into Internet Protocols for those protocols to offer their services securely.  Many security problems can be traced to improper implementations.  However, even a proper implementation will have security problems if the fundamental protocol is itself exploitable.  Exactly how security should be implemented in a protocol will vary, because of the structure of the protocol itself.  However, there are many protocols for which standard Internet security mechanisms, already developed, may be applicable.  The precise one that is appropriate in any given situation can vary.  We review a number of different choices, explaining the properties of each."];
+  RFC3631 -> rev_cites;
+  RFC3658 [label="RFC3658
+Delegation Signer (DS) Resource Record
+(RR)
+2003", shape=ellipse, URL="RFC3658.html", target="_top", tooltip="The delegation signer (DS) resource record (RR) is inserted at a zone cut (i.e., a delegation point) to indicate that the delegated zone is digitally signed and that the delegated zone recognizes the indicated key as a valid zone key for the delegated zone.  The DS RR is a modification to the DNS Security Extensions definition, motivated by operational considerations.  The intent is to use this resource record as an explicit statement about the delegation, rather than relying on inference.  This document defines the DS RR, gives examples of how it is used and describes the implications on resolvers.  This change is not backwards compatible with RFC 2535.  This document updates RFC 1035, RFC 2535, RFC 3008 and RFC 3090."];
+  RFC3658 -> rev_cites;
+  RFC3755 [label="RFC3755
+Legacy Resolver Compatibility for
+Delegation Signer (DS)
+2004", shape=ellipse, URL="RFC3755.html", target="_top", tooltip="As the DNS Security (DNSSEC) specifications have evolved, the syntax and semantics of the DNSSEC resource records (RRs) have changed.  Many deployed nameservers understand variants of these semantics.  Dangerous interactions can occur when a resolver that understands an earlier version of these semantics queries an authoritative server that understands the new delegation signer semantics, including at least one failure scenario that will cause an unsecured zone to be unresolvable.  This document changes the type codes and mnemonics of the DNSSEC RRs (SIG, KEY, and NXT) to avoid those interactions. [STANDARDS-TRACK]"];
+  RFC3755 -> rev_cites;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  RFC4033 -> rev_cites;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4034 -> rev_cites;
+  RFC4322 [label="RFC4322
+Opportunistic Encryption using the
+Internet Key Exchange (IKE)
+2005", shape=ellipse, URL="RFC4322.html", target="_top", tooltip="This document describes opportunistic encryption (OE) as designed and implemented by the Linux FreeS/WAN project. OE uses the Internet Key Exchange (IKE) and IPsec protocols. The objective is to allow encryption for secure communication without any pre-arrangement specific to the pair of systems involved. DNS is used to distribute the public keys of each system involved. This is resistant to passive attacks. The use of DNS Security (DNSSEC) secures this system against active attackers as well. As a result, the administrative overhead is reduced from the square of the number of systems to a linear dependence, and it becomes possible to make secure communication the default even when the partner is not known in advance. This memo provides information for the Internet community."];
+  RFC4322 -> rev_cites;
+  RFC5507 [label="RFC5507
+Design Choices When Expanding the DNS
+2009", shape=ellipse, URL="RFC5507.html", target="_top", tooltip="This note discusses how to extend the DNS with new data for a new application.  DNS extension discussions too often focus on reuse of the TXT Resource Record Type.  This document lists different mechanisms to extend the DNS, and concludes that the use of a new DNS Resource Record Type is the best solution.  This memo provides information for the Internet community."];
+  RFC5507 -> rev_cites;
+}

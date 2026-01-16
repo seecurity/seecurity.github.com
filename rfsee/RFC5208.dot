@@ -1,0 +1,61 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5208 [label="RFC5208
+Public-Key Cryptography Standards (PKCS)
+#8: Private-Key Information Syntax
+Specification Version 1.2
+2008", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document represents a republication of PKCS #8 v1.2 from RSA Laboratories' Public Key Cryptography Standard (PKCS) series. Change control is transferred to the IETF. The body of this document, except for the security considerations section, is taken directly from the PKCS #8 v1.2 specification. This document describes a syntax for private-key information. This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5208;
+  RFC5958 [label="RFC5958
+Asymmetric Key Packages
+2010", shape=ellipse, URL="RFC5958.html", target="_top", tooltip="This document defines the syntax for private-key information and a content type for it.  Private-key information includes a private key for a specified public-key algorithm and a set of attributes.  The Cryptographic Message Syntax (CMS), as defined in RFC 5652, can be used to digitally sign, digest, authenticate, or encrypt the asymmetric key format content type.  This document obsoletes RFC 5208. [STANDARDS-TRACK]"];
+  RFC5958 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC5208 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5208 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5208;
+
+  cites [label="cites", shape=box];
+  RFC5208 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5208;
+  RFC5915 [label="RFC5915
+Elliptic Curve Private Key Structure
+2010", shape=ellipse, URL="RFC5915.html", target="_top", tooltip="This document specifies the syntax and semantics for conveying Elliptic Curve (EC) private key information.  The syntax and semantics defined herein are based on similar syntax and semantics defined by the Standards for Efficient Cryptography Group (SECG).  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5915 -> rev_cites;
+  RFC5958 [label="RFC5958
+Asymmetric Key Packages
+2010", shape=ellipse, URL="RFC5958.html", target="_top", tooltip="This document defines the syntax for private-key information and a content type for it.  Private-key information includes a private key for a specified public-key algorithm and a set of attributes.  The Cryptographic Message Syntax (CMS), as defined in RFC 5652, can be used to digitally sign, digest, authenticate, or encrypt the asymmetric key format content type.  This document obsoletes RFC 5208. [STANDARDS-TRACK]"];
+  RFC5958 -> rev_cites;
+  RFC7468 [label="RFC7468
+Textual Encodings of PKIX, PKCS, and CMS
+Structures
+2015", shape=ellipse, URL="RFC7468.html", target="_top", tooltip="This document describes and discusses the textual encodings of the Public-Key Infrastructure X.509 (PKIX), Public-Key Cryptography Standards (PKCS), and Cryptographic Message Syntax (CMS).  The textual encodings are well-known, are implemented by several applications and libraries, and are widely deployed.  This document articulates the de facto rules by which existing implementations operate and defines them so that future implementations can interoperate."];
+  RFC7468 -> rev_cites;
+  RFC7914 [label="RFC7914
+The scrypt Password-Based Key Derivation
+Function
+2016", shape=ellipse, URL="RFC7914.html", target="_top", tooltip="This document specifies the password-based key derivation function scrypt.  The function derives one or more secret keys from a secret string.  It is based on memory-hard functions, which offer added protection against attacks using custom hardware.  The document also provides an ASN.1 schema."];
+  RFC7914 -> rev_cites;
+  RFC8351 [label="RFC8351
+The PKCS #8 EncryptedPrivateKeyInfo
+Media Type
+2018", shape=ellipse, URL="RFC8351.html", target="_top", tooltip="This document registers the application/pkcs8-encrypted media type for the EncryptedPrivateKeyInfo type of PKCS #8.  An instance of this media type carries a single encrypted private key, BER-encoded as a single EncryptedPrivateKeyInfo value."];
+  RFC8351 -> rev_cites;
+  RFC8479 [label="RFC8479
+Storing Validation Parameters in PKCS#8
+2018", shape=ellipse, URL="RFC8479.html", target="_top", tooltip="This memo describes a method of storing parameters needed for private-key validation in the Private-Key Information Syntax Specification as defined in PKCS#8 format (RFC 5208). It is equally applicable to the alternative implementation of the Private-Key Information Syntax Specification as defined in RFC 5958. The approach described in this document encodes the parameters under a private enterprise extension and does not form part of a formal standard."];
+  RFC8479 -> rev_cites;
+}

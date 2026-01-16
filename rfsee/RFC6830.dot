@@ -1,0 +1,353 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6830 [label="RFC6830
+The Locator/ID Separation Protocol
+(LISP)
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a network-layer-based protocol that enables separation of IP addresses into two new numbering spaces: Endpoint Identifiers (EIDs) and Routing Locators (RLOCs). No changes are required to either host protocol stacks or to the core of the Internet infrastructure. The Locator/ID Separation Protocol (LISP) can be incrementally deployed, without a flag day, and offers Traffic Engineering, multihoming, and mobility benefits to early adopters, even when there are relatively few LISP-capable sites. Design and development of LISP was largely motivated by the problem statement produced by the October 2006 IAB Routing and Addressing Workshop. This document defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6830;
+  RFC9300 [label="RFC9300
+The Locator/ID Separation Protocol
+(LISP)
+2022", shape=ellipse, URL="RFC9300.html", target="_top", tooltip="This document describes the data plane protocol for the Locator/ID Separation Protocol (LISP). LISP defines two namespaces: Endpoint Identifiers (EIDs), which identify end hosts; and Routing Locators (RLOCs), which identify network attachment points. With this, LISP effectively separates control from data and allows routers to create overlay networks. LISP-capable routers exchange encapsulated packets according to EID-to-RLOC mappings stored in a local Map-Cache. LISP requires no change to either host protocol stacks or underlay routers and offers Traffic Engineering (TE), multihoming, and mobility, among other features. This document obsoletes RFC 6830."];
+  RFC9300 -> obs_by;
+  RFC9301 [label="RFC9301
+Locator/ID Separation Protocol (LISP)
+Control Plane
+2022", shape=ellipse, URL="RFC9301.html", target="_top", tooltip="This document describes the control plane and Mapping Service for the Locator/ID Separation Protocol (LISP), implemented by two types of LISP-speaking devices -- the LISP Map-Resolver and LISP Map-Server -- that provide a simplified front end for one or more Endpoint IDs (EIDs) to Routing Locator mapping databases. By using this control plane service interface and communicating with Map-Resolvers and Map-Servers, LISP Ingress Tunnel Routers (ITRs) and Egress Tunnel Routers (ETRs) are not dependent on the details of mapping database systems; this behavior facilitates modularity with different database designs. Since these devices implement the edge of the LISP control plane infrastructure, connecting EID addressable nodes of a LISP site, the implementation and operational complexity of the overall cost and effort of deploying LISP is reduced. This document obsoletes RFCs 6830 and 6833."];
+  RFC9301 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC6830 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6830 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6830;
+  RFC8113 [label="RFC8113
+Locator/ID Separation Protocol (LISP):
+Shared Extension Message & IANA Registry
+for Packet Type Allocations
+2017", shape=ellipse, URL="RFC8113.html", target="_top", tooltip="This document specifies a Locator/ID Separation Protocol (LISP) shared message type for defining future extensions and conducting experiments without consuming a LISP packet type codepoint for each extension.  It also defines a registry for LISP Packet Type allocations, thus updating RFC 6830."];
+  RFC8113 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC6830 -> cites;
+  RFC4984 [label="RFC4984
+Report from the IAB Workshop on Routing
+and Addressing
+2007", shape=ellipse, URL="RFC4984.html", target="_top", tooltip="This document reports the outcome of the Routing and Addressing Workshop that was held by the Internet Architecture Board (IAB) on October 18-19, 2006, in Amsterdam, Netherlands. The primary goal of the workshop was to develop a shared understanding of the problems that the large backbone operators are facing regarding the scalability of today's Internet routing system. The key workshop findings include an analysis of the major factors that are driving routing table growth, constraints in router technology, and the limitations of today's Internet addressing architecture. It is hoped that these findings will serve as input to the IETF community and help identify next steps towards effective solutions. Note that this document is a report on the proceedings of the workshop. The views and positions documented in this report are those of the workshop participants and not of the IAB. Furthermore, note that work on issues related to this workshop report is continuing, and this document does not intend to reflect the increased understanding of issues nor to discuss the range of potential solutions that may be the outcome of this ongoing work. This memo provides information for the Internet community."];
+  cites -> RFC4984;
+  RFC6836 [label="RFC6836
+Locator/ID Separation Protocol
+Alternative Logical Topology (LISP+ALT)
+2013", shape=ellipse, URL="RFC6836.html", target="_top", tooltip="This document describes a simple distributed index system to be used by a Locator/ID Separation Protocol (LISP) Ingress Tunnel Router (ITR) or Map-Resolver (MR) to find the Egress Tunnel Router (ETR) that holds the mapping information for a particular Endpoint Identifier (EID).  The MR can then query that ETR to obtain the actual mapping information, which consists of a list of Routing Locators (RLOCs) for the EID.  Termed the Alternative Logical Topology (ALT), the index is built as an overlay network on the public Internet using the Border Gateway Protocol (BGP) and Generic Routing Encapsulation (GRE).  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6836;
+  RFC6837 [label="RFC6837
+NERD: A Not-so-novel Endpoint ID (EID)
+to Routing Locator (RLOC) Database
+2013", shape=ellipse, URL="RFC6837.html", target="_top", tooltip="The Locator/ID Separation Protocol (LISP) is a protocol to encapsulate IP packets in order to allow end sites to route to one another without injecting routes from one end of the Internet to another.  This memo presents an experimental database and a discussion of methods to transport the mapping of Endpoint IDs (EIDs) to Routing Locators (RLOCs) to routers in a reliable, scalable, and secure manner.  Our analysis concludes that transport of all EID-to- RLOC mappings scales well to at least 10^8 entries.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6837;
+  RFC6833 [label="RFC6833
+Locator/ID Separation Protocol (LISP)
+Map-Server Interface
+2013", shape=ellipse, URL="RFC6833.html", target="_top", tooltip="This document describes the Mapping Service for the Locator/ID Separation Protocol (LISP), implemented by two new types of LISP- speaking devices -- the LISP Map-Resolver and LISP Map-Server -- that provides a simplified front end for one or more Endpoint ID to Routing Locator mapping databases. By using this service interface and communicating with Map-Resolvers and Map-Servers, LISP Ingress Tunnel Routers and Egress Tunnel Routers are not dependent on the details of mapping database systems, which facilitates experimentation with different database designs. Since these devices implement the edge of the LISP infrastructure, connect directly to LISP-capable Internet end sites, and comprise the bulk of LISP-speaking devices, reducing their implementation and operational complexity should also reduce the overall cost and effort of deploying LISP. This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6833;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4632 [label="RFC4632
+Classless Inter-domain Routing (CIDR):
+The Internet Address Assignment and
+Aggregation Plan
+2006", shape=ellipse, URL="RFC4632.html", target="_top", tooltip="This memo discusses the strategy for address assignment of the existing 32-bit IPv4 address space with a view toward conserving the address space and limiting the growth rate of global routing state.  This document obsoletes the original Classless Inter-domain Routing (CIDR) spec in RFC 1519, with changes made both to clarify the concepts it introduced and, after more than twelve years, to update the Internet community on the results of deploying the technology described.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4632;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC3261 [label="RFC3261
+SIP: Session Initiation Protocol
+2002", shape=ellipse, URL="RFC3261.html", target="_top", tooltip="This document describes Session Initiation Protocol (SIP), an application-layer control (signaling) protocol for creating, modifying, and terminating sessions with one or more participants.  These sessions include Internet telephone calls, multimedia distribution, and multimedia conferences. [STANDARDS-TRACK]"];
+  cites -> RFC3261;
+  RFC6832 [label="RFC6832
+Interworking between Locator/ID
+Separation Protocol (LISP) and Non-LISP
+Sites
+2013", shape=ellipse, URL="RFC6832.html", target="_top", tooltip="This document describes techniques for allowing sites running the Locator/ID Separation Protocol (LISP) to interoperate with Internet sites that may be using either IPv4, IPv6, or both but that are not running LISP.  A fundamental property of LISP-speaking sites is that they use Endpoint Identifiers (EIDs), rather than traditional IP addresses, in the source and destination fields of all traffic they emit or receive.  While EIDs are syntactically identical to IPv4 or IPv6 addresses, normally routes to them are not carried in the global routing system, so an interoperability mechanism is needed for non- LISP-speaking sites to exchange traffic with LISP-speaking sites.  This document introduces three such mechanisms.  The first uses a new network element, the LISP Proxy Ingress Tunnel Router (Proxy-ITR), to act as an intermediate LISP Ingress Tunnel Router (ITR) for non-LISP- speaking hosts.  Second, this document adds Network Address Translation (NAT) functionality to LISP ITRs and LISP Egress Tunnel Routers (ETRs) to substitute routable IP addresses for non-routable EIDs.  Finally, this document introduces the Proxy Egress Tunnel Router (Proxy-ETR) to handle cases where a LISP ITR cannot send packets to non-LISP sites without encapsulation.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6832;
+  RFC3232 [label="RFC3232
+Assigned Numbers: RFC 1700 is Replaced
+by an On-line Database
+2002", shape=ellipse, URL="RFC3232.html", target="_top", tooltip="This memo obsoletes RFC 1700 (STD 2) Assigned Numbers, which contained an October 1994 snapshot of assigned Internet protocol parameters.  This memo provides information for the Internet community."];
+  cites -> RFC3232;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC1918 [label="RFC1918
+Address Allocation for Private Internets
+1996", shape=ellipse, URL="RFC1918.html", target="_top", tooltip="This document describes address allocation for private internets.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC1918;
+  RFC4086 [label="RFC4086
+Randomness Requirements for Security
+2005", shape=ellipse, URL="RFC4086.html", target="_top", tooltip="Security systems are built on strong cryptographic algorithms that foil pattern analysis attempts. However, the security of these systems is dependent on generating secret quantities for passwords, cryptographic keys, and similar quantities. The use of pseudo-random processes to generate secret quantities can result in pseudo-security. A sophisticated attacker may find it easier to reproduce the environment that produced the secret quantities and to search the resulting small set of possibilities than to locate the quantities in the whole of the potential number space. Choosing random quantities to foil a resourceful and motivated adversary is surprisingly difficult. This document points out many pitfalls in using poor entropy sources or traditional pseudo-random number generation techniques for generating such quantities. It recommends the use of truly random hardware techniques and shows that the existing hardware on many systems can be used for this purpose. It provides suggestions to ameliorate the problem when a hardware solution is not available, and it gives examples of how large such quantities need to be for some applications. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4086;
+  RFC6831 [label="RFC6831
+The Locator/ID Separation Protocol
+(LISP) for Multicast Environments
+2013", shape=ellipse, URL="RFC6831.html", target="_top", tooltip="This document describes how inter-domain multicast routing will function in an environment where Locator/ID Separation is deployed using the Locator/ID Separation Protocol (LISP) architecture.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6831;
+  RFC2404 [label="RFC2404
+The Use of HMAC-SHA-1-96 within ESP and
+AH
+1998", shape=ellipse, URL="RFC2404.html", target="_top", tooltip="This memo describes the use of the HMAC algorithm in conjunction with the SHA-1 algorithm as an authentication mechanism within the revised IPSEC Encapsulating Security Payload and the revised IPSEC Authentication Header. [STANDARDS-TRACK]"];
+  cites -> RFC2404;
+  RFC4868 [label="RFC4868
+Using HMAC-SHA-256, HMAC-SHA-384, and
+HMAC-SHA-512 with IPsec
+2007", shape=ellipse, URL="RFC4868.html", target="_top", tooltip="This specification describes the use of Hashed Message Authentication Mode (HMAC) in conjunction with the SHA-256, SHA-384, and SHA-512 algorithms in IPsec.  These algorithms may be used as the basis for data origin authentication and integrity verification mechanisms for the Authentication Header (AH), Encapsulating Security Payload (ESP), Internet Key Exchange Protocol (IKE), and IKEv2 protocols, and also as Pseudo-Random Functions (PRFs) for IKE and IKEv2.  Truncated output lengths are specified for the authentication-related variants, with the corresponding algorithms designated as HMAC-SHA-256-128, HMAC-SHA-384-192, and HMAC-SHA-512-256.  The PRF variants are not truncated, and are called PRF-HMAC-SHA-256, PRF-HMAC-SHA-384, and PRF-HMAC-SHA-512. [STANDARDS-TRACK]"];
+  cites -> RFC4868;
+  RFC6834 [label="RFC6834
+Locator/ID Separation Protocol (LISP)
+Map-Versioning
+2013", shape=ellipse, URL="RFC6834.html", target="_top", tooltip="This document describes the LISP (Locator/ID Separation Protocol) Map-Versioning mechanism, which provides in-packet information about Endpoint ID to Routing Locator (EID-to-RLOC) mappings used to encapsulate LISP data packets.  The proposed approach is based on associating a version number to EID-to-RLOC mappings and the transport of such a version number in the LISP-specific header of LISP-encapsulated packets.  LISP Map-Versioning is particularly useful to inform communicating Ingress Tunnel Routers (ITRs) and Egress Tunnel Routers (ETRs) about modifications of the mappings used to encapsulate packets.  The mechanism is transparent to implementations not supporting this feature, since in the LISP- specific header and in the Map Records, bits used for Map-Versioning can be safely ignored by ITRs and ETRs that do not support the mechanism.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6834;
+  RFC2784 [label="RFC2784
+Generic Routing Encapsulation (GRE)
+2000", shape=ellipse, URL="RFC2784.html", target="_top", tooltip="This document specifies a protocol for encapsulation of an arbitrary network layer protocol over another arbitrary network layer protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2784;
+  RFC3056 [label="RFC3056
+Connection of IPv6 Domains via IPv4
+Clouds
+2001", shape=ellipse, URL="RFC3056.html", target="_top", tooltip="This memo specifies an optional interim mechanism for IPv6 sites to communicate with each other over the IPv4 network without explicit tunnel setup, and for them to communicate with native IPv6 domains via relay routers. [STANDARDS-TRACK]"];
+  cites -> RFC3056;
+  RFC4192 [label="RFC4192
+Procedures for Renumbering an IPv6
+Network without a Flag Day
+2005", shape=ellipse, URL="RFC4192.html", target="_top", tooltip="This document describes a procedure that can be used to renumber a network from one prefix to another.  It uses IPv6's intrinsic ability to assign multiple addresses to a network interface to provide continuity of network service through a make-before-break transition, as well as addresses naming and configuration management issues.  It also uses other IPv6 features to minimize the effort and time required to complete the transition from the old prefix to the new prefix.  This memo provides information for the Internet community."];
+  cites -> RFC4192;
+  RFC5944 [label="RFC5944
+IP Mobility Support for IPv4, Revised
+2010", shape=ellipse, URL="RFC5944.html", target="_top", tooltip="This document specifies protocol enhancements that allow transparent routing of IP datagrams to mobile nodes in the Internet.  Each mobile node is always identified by its home address, regardless of its current point of attachment to the Internet.  While situated away from its home, a mobile node is also associated with a care-of address, which provides information about its current point of attachment to the Internet.  The protocol provides for registering the care-of address with a home agent.  The home agent sends datagrams destined for the mobile node through a tunnel to the care-of address.  After arriving at the end of the tunnel, each datagram is then delivered to the mobile node. [STANDARDS-TRACK]"];
+  cites -> RFC5944;
+  RFC6275 [label="RFC6275
+Mobility Support in IPv6
+2011", shape=ellipse, URL="RFC6275.html", target="_top", tooltip="This document specifies Mobile IPv6, a protocol that allows nodes to remain reachable while moving around in the IPv6 Internet.  Each mobile node is always identified by its home address, regardless of its current point of attachment to the Internet.  While situated away from its home, a mobile node is also associated with a care-of address, which provides information about the mobile node's current location.  IPv6 packets addressed to a mobile node's home address are transparently routed to its care-of address.  The protocol enables IPv6 nodes to cache the binding of a mobile node's home address with its care-of address, and to then send any packets destined for the mobile node directly to it at this care-of address.  To support this operation, Mobile IPv6 defines a new IPv6 protocol and a new destination option.  All IPv6 nodes, whether mobile or stationary, can communicate with mobile nodes.  This document obsoletes RFC 3775. [STANDARDS-TRACK]"];
+  cites -> RFC6275;
+  RFC4866 [label="RFC4866
+Enhanced Route Optimization for Mobile
+IPv6
+2007", shape=ellipse, URL="RFC4866.html", target="_top", tooltip="This document specifies an enhanced version of Mobile IPv6 route optimization, providing lower handoff delays, increased security, and reduced signaling overhead. [STANDARDS-TRACK]"];
+  cites -> RFC4866;
+  RFC5496 [label="RFC5496
+The Reverse Path Forwarding (RPF) Vector
+TLV
+2009", shape=ellipse, URL="RFC5496.html", target="_top", tooltip="This document describes a use of the Protocol Independent Multicast (PIM) Join Attribute as defined in RFC 5384, which enables PIM to build multicast trees through an MPLS-enabled network, even if that network's IGP does not have a route to the source of the tree. [STANDARDS-TRACK]"];
+  cites -> RFC5496;
+  RFC4107 [label="RFC4107
+Guidelines for Cryptographic Key
+Management
+2005", shape=ellipse, URL="RFC4107.html", target="_top", tooltip="The question often arises of whether a given security system requires some form of automated key management, or whether manual keying is sufficient.  This memo provides guidelines for making such decisions.  When symmetric cryptographic mechanisms are used in a protocol, the presumption is that automated key management is generally but not always needed.  If manual keying is proposed, the burden of proving that automated key management is not required falls to the proposer.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4107;
+  RFC6518 [label="RFC6518
+Keying and Authentication for Routing
+Protocols (KARP) Design Guidelines
+2012", shape=ellipse, URL="RFC6518.html", target="_top", tooltip="This document is one of a series concerned with defining a roadmap of protocol specification work for the use of modern cryptographic mechanisms and algorithms for message authentication in routing protocols.  In particular, it defines the framework for a key management protocol that may be used to create and manage session keys for message authentication and integrity.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6518;
+  RFC6480 [label="RFC6480
+An Infrastructure to Support Secure
+Internet Routing
+2012", shape=ellipse, URL="RFC6480.html", target="_top", tooltip="This document describes an architecture for an infrastructure to support improved security of Internet routing.  The foundation of this architecture is a Resource Public Key Infrastructure (RPKI) that represents the allocation hierarchy of IP address space and Autonomous System (AS) numbers; and a distributed repository system for storing and disseminating the data objects that comprise the RPKI, as well as other signed objects necessary for improved routing security.  As an initial application of this architecture, the document describes how a legitimate holder of IP address space can explicitly and verifiably authorize one or more ASes to originate routes to that address space.  Such verifiable authorizations could be used, for example, to more securely construct BGP route filters.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6480;
+  RFC6835 [label="RFC6835
+The Locator/ID Separation Protocol
+Internet Groper (LIG)
+2013", shape=ellipse, URL="RFC6835.html", target="_top", tooltip="A simple tool called the Locator/ID Separation Protocol (LISP) Internet Groper or 'lig' can be used to query the LISP mapping database.  This document describes how it works.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6835;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+  RFC6115 [label="RFC6115
+Recommendation for a Routing
+Architecture
+2011", shape=ellipse, URL="RFC6115.html", target="_top", tooltip="It is commonly recognized that the Internet routing and addressing architecture is facing challenges in scalability, multihoming, and inter-domain traffic engineering.  This document presents, as a recommendation of future directions for the IETF, solutions that could aid the future scalability of the Internet.  To this end, this document surveys many of the proposals that were brought forward for discussion in this activity, as well as some of the subsequent analysis and the architectural recommendation of the chairs.  This document is a product of the Routing Research Group.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6115;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6830;
+  RFC6831 [label="RFC6831
+The Locator/ID Separation Protocol
+(LISP) for Multicast Environments
+2013", shape=ellipse, URL="RFC6831.html", target="_top", tooltip="This document describes how inter-domain multicast routing will function in an environment where Locator/ID Separation is deployed using the Locator/ID Separation Protocol (LISP) architecture.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6831 -> rev_cites;
+  RFC6832 [label="RFC6832
+Interworking between Locator/ID
+Separation Protocol (LISP) and Non-LISP
+Sites
+2013", shape=ellipse, URL="RFC6832.html", target="_top", tooltip="This document describes techniques for allowing sites running the Locator/ID Separation Protocol (LISP) to interoperate with Internet sites that may be using either IPv4, IPv6, or both but that are not running LISP.  A fundamental property of LISP-speaking sites is that they use Endpoint Identifiers (EIDs), rather than traditional IP addresses, in the source and destination fields of all traffic they emit or receive.  While EIDs are syntactically identical to IPv4 or IPv6 addresses, normally routes to them are not carried in the global routing system, so an interoperability mechanism is needed for non- LISP-speaking sites to exchange traffic with LISP-speaking sites.  This document introduces three such mechanisms.  The first uses a new network element, the LISP Proxy Ingress Tunnel Router (Proxy-ITR), to act as an intermediate LISP Ingress Tunnel Router (ITR) for non-LISP- speaking hosts.  Second, this document adds Network Address Translation (NAT) functionality to LISP ITRs and LISP Egress Tunnel Routers (ETRs) to substitute routable IP addresses for non-routable EIDs.  Finally, this document introduces the Proxy Egress Tunnel Router (Proxy-ETR) to handle cases where a LISP ITR cannot send packets to non-LISP sites without encapsulation.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6832 -> rev_cites;
+  RFC6833 [label="RFC6833
+Locator/ID Separation Protocol (LISP)
+Map-Server Interface
+2013", shape=ellipse, URL="RFC6833.html", target="_top", tooltip="This document describes the Mapping Service for the Locator/ID Separation Protocol (LISP), implemented by two new types of LISP- speaking devices -- the LISP Map-Resolver and LISP Map-Server -- that provides a simplified front end for one or more Endpoint ID to Routing Locator mapping databases. By using this service interface and communicating with Map-Resolvers and Map-Servers, LISP Ingress Tunnel Routers and Egress Tunnel Routers are not dependent on the details of mapping database systems, which facilitates experimentation with different database designs. Since these devices implement the edge of the LISP infrastructure, connect directly to LISP-capable Internet end sites, and comprise the bulk of LISP-speaking devices, reducing their implementation and operational complexity should also reduce the overall cost and effort of deploying LISP. This document defines an Experimental Protocol for the Internet community."];
+  RFC6833 -> rev_cites;
+  RFC6834 [label="RFC6834
+Locator/ID Separation Protocol (LISP)
+Map-Versioning
+2013", shape=ellipse, URL="RFC6834.html", target="_top", tooltip="This document describes the LISP (Locator/ID Separation Protocol) Map-Versioning mechanism, which provides in-packet information about Endpoint ID to Routing Locator (EID-to-RLOC) mappings used to encapsulate LISP data packets.  The proposed approach is based on associating a version number to EID-to-RLOC mappings and the transport of such a version number in the LISP-specific header of LISP-encapsulated packets.  LISP Map-Versioning is particularly useful to inform communicating Ingress Tunnel Routers (ITRs) and Egress Tunnel Routers (ETRs) about modifications of the mappings used to encapsulate packets.  The mechanism is transparent to implementations not supporting this feature, since in the LISP- specific header and in the Map Records, bits used for Map-Versioning can be safely ignored by ITRs and ETRs that do not support the mechanism.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6834 -> rev_cites;
+  RFC6835 [label="RFC6835
+The Locator/ID Separation Protocol
+Internet Groper (LIG)
+2013", shape=ellipse, URL="RFC6835.html", target="_top", tooltip="A simple tool called the Locator/ID Separation Protocol (LISP) Internet Groper or 'lig' can be used to query the LISP mapping database.  This document describes how it works.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6835 -> rev_cites;
+  RFC6836 [label="RFC6836
+Locator/ID Separation Protocol
+Alternative Logical Topology (LISP+ALT)
+2013", shape=ellipse, URL="RFC6836.html", target="_top", tooltip="This document describes a simple distributed index system to be used by a Locator/ID Separation Protocol (LISP) Ingress Tunnel Router (ITR) or Map-Resolver (MR) to find the Egress Tunnel Router (ETR) that holds the mapping information for a particular Endpoint Identifier (EID).  The MR can then query that ETR to obtain the actual mapping information, which consists of a list of Routing Locators (RLOCs) for the EID.  Termed the Alternative Logical Topology (ALT), the index is built as an overlay network on the public Internet using the Border Gateway Protocol (BGP) and Generic Routing Encapsulation (GRE).  This document defines an Experimental Protocol for the Internet community."];
+  RFC6836 -> rev_cites;
+  RFC6837 [label="RFC6837
+NERD: A Not-so-novel Endpoint ID (EID)
+to Routing Locator (RLOC) Database
+2013", shape=ellipse, URL="RFC6837.html", target="_top", tooltip="The Locator/ID Separation Protocol (LISP) is a protocol to encapsulate IP packets in order to allow end sites to route to one another without injecting routes from one end of the Internet to another.  This memo presents an experimental database and a discussion of methods to transport the mapping of Endpoint IDs (EIDs) to Routing Locators (RLOCs) to routers in a reliable, scalable, and secure manner.  Our analysis concludes that transport of all EID-to- RLOC mappings scales well to at least 10^8 entries.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6837 -> rev_cites;
+  RFC6935 [label="RFC6935
+IPv6 and UDP Checksums for Tunneled
+Packets
+2013", shape=ellipse, URL="RFC6935.html", target="_top", tooltip="This document updates the IPv6 specification (RFC 2460) to improve performance when a tunnel protocol uses UDP with IPv6 to tunnel packets.  The performance improvement is obtained by relaxing the IPv6 UDP checksum requirement for tunnel protocols whose header information is protected on the inner packet being carried.  Relaxing this requirement removes the overhead associated with the computation of UDP checksums on IPv6 packets that carry the tunnel protocol packets.  This specification describes how the IPv6 UDP checksum requirement can be relaxed when the encapsulated packet itself contains a checksum.  It also describes the limitations and risks of this approach and discusses the restrictions on the use of this method."];
+  RFC6935 -> rev_cites;
+  RFC6936 [label="RFC6936
+Applicability Statement for the Use of
+IPv6 UDP Datagrams with Zero Checksums
+2013", shape=ellipse, URL="RFC6936.html", target="_top", tooltip="This document provides an applicability statement for the use of UDP transport checksums with IPv6.  It defines recommendations and requirements for the use of IPv6 UDP datagrams with a zero UDP checksum.  It describes the issues and design principles that need to be considered when UDP is used with IPv6 to support tunnel encapsulations, and it examines the role of the IPv6 UDP transport checksum.  The document also identifies issues and constraints for deployment on network paths that include middleboxes.  An appendix presents a summary of the trade-offs that were considered in evaluating the safety of the update to RFC 2460 that changes the use of the UDP checksum with IPv6."];
+  RFC6936 -> rev_cites;
+  RFC7052 [label="RFC7052
+Locator/ID Separation Protocol (LISP)
+MIB
+2013", shape=ellipse, URL="RFC7052.html", target="_top", tooltip="This document defines the MIB module that contains managed objects to support the monitoring devices of the Locator/ID Separation Protocol (LISP).  These objects provide information useful for monitoring LISP devices, including determining basic LISP configuration information, LISP functional status, and operational counters and other statistics."];
+  RFC7052 -> rev_cites;
+  RFC7059 [label="RFC7059
+A Comparison of IPv6-over-IPv4 Tunnel
+Mechanisms
+2013", shape=ellipse, URL="RFC7059.html", target="_top", tooltip="This document provides an overview of various ways to tunnel IPv6 packets over IPv4 networks.  It covers mechanisms in current use, touches on several mechanisms that are now only of historic interest, and discusses some newer tunnel mechanisms that are not widely used at the time of publication.  The goal of the document is helping people with an IPv6-in-IPv4 tunneling need to select the mechanisms that may apply to them."];
+  RFC7059 -> rev_cites;
+  RFC7215 [label="RFC7215
+Locator/Identifier Separation Protocol
+(LISP) Network Element Deployment
+Considerations
+2014", shape=ellipse, URL="RFC7215.html", target="_top", tooltip="This document is a snapshot of different Locator/Identifier Separation Protocol (LISP) deployment scenarios.  It discusses the placement of new network elements introduced by the protocol, representing the thinking of the LISP working group as of Summer 2013.  LISP deployment scenarios may have evolved since then.  This memo represents one stable point in that evolution of understanding."];
+  RFC7215 -> rev_cites;
+  RFC7364 [label="RFC7364
+Problem Statement: Overlays for Network
+Virtualization
+2014", shape=ellipse, URL="RFC7364.html", target="_top", tooltip="This document describes issues associated with providing multi-tenancy in large data center networks and how these issues may be addressed using an overlay-based network virtualization approach.  A key multi-tenancy requirement is traffic isolation so that one tenant's traffic is not visible to any other tenant.  Another requirement is address space isolation so that different tenants can use the same address space within different virtual networks.  Traffic and address space isolation is achieved by assigning one or more virtual networks to each tenant, where traffic within a virtual network can only cross into another virtual network in a controlled fashion (e.g., via a configured router and/or a security gateway).  Additional functionality is required to provision virtual networks, associating a virtual machine's network interface(s) with the appropriate virtual network and maintaining that association as the virtual machine is activated, migrated, and/or deactivated.  Use of an overlay-based approach enables scalable deployment on large network infrastructures."];
+  RFC7364 -> rev_cites;
+  RFC7834 [label="RFC7834
+Locator/ID Separation Protocol (LISP)
+Impact
+2016", shape=ellipse, URL="RFC7834.html", target="_top", tooltip="The Locator/ID Separation Protocol (LISP) aims to improve the Internet routing scalability properties by leveraging three principles: address role separation, encapsulation, and mapping.  In this document, based on implementation work, deployment experiences, and theoretical studies, we discuss the impact that the deployment of LISP can have on both the routing infrastructure and the end user."];
+  RFC7834 -> rev_cites;
+  RFC7835 [label="RFC7835
+Locator/ID Separation Protocol (LISP)
+Threat Analysis
+2016", shape=ellipse, URL="RFC7835.html", target="_top", tooltip="This document provides a threat analysis of the Locator/ID Separation Protocol (LISP)."];
+  RFC7835 -> rev_cites;
+  RFC7954 [label="RFC7954
+Locator/ID Separation Protocol (LISP)
+Endpoint Identifier (EID) Block
+2016", shape=ellipse, URL="RFC7954.html", target="_top", tooltip="This document directs IANA to allocate a /32 IPv6 prefix for use with the Locator/ID Separation Protocol (LISP).  The prefix will be used for local intra-domain routing and global endpoint identification, by sites deploying LISP as Endpoint Identifier (EID) addressing space."];
+  RFC7954 -> rev_cites;
+  RFC7955 [label="RFC7955
+Management Guidelines for the Locator/ID
+Separation Protocol (LISP) Endpoint
+Identifier (EID) Block
+2016", shape=ellipse, URL="RFC7955.html", target="_top", tooltip="This document proposes a framework for the management of the Locator/ ID Separation Protocol (LISP) Endpoint Identifier (EID) address block.  The framework described relies on hierarchical distribution of the address space, granting temporary usage of prefixes of such space to requesting organizations."];
+  RFC7955 -> rev_cites;
+  RFC8059 [label="RFC8059
+PIM Join Attributes for Locator/ID
+Separation Protocol (LISP) Environments
+2017", shape=ellipse, URL="RFC8059.html", target="_top", tooltip="This document defines two PIM Join/Prune attributes that support the construction of multicast distribution trees where the root and receivers are located in different Locator/ID Separation Protocol (LISP) sites.  These attributes allow the receiver site to select between unicast and multicast underlying transport and to convey the RLOC (Routing Locator) address of the receiver ETR (Egress Tunnel Router) to the control plane of the root ITR (Ingress Tunnel Router)."];
+  RFC8059 -> rev_cites;
+  RFC8060 [label="RFC8060
+LISP Canonical Address Format (LCAF)
+2017", shape=ellipse, URL="RFC8060.html", target="_top", tooltip="This document defines a canonical address format encoding used in Locator/ID Separation Protocol (LISP) control messages and in the encoding of lookup keys for the LISP Mapping Database System."];
+  RFC8060 -> rev_cites;
+  RFC8061 [label="RFC8061
+Locator/ID Separation Protocol (LISP)
+Data-Plane Confidentiality
+2017", shape=ellipse, URL="RFC8061.html", target="_top", tooltip="This document describes a mechanism for encrypting traffic encapsulated using the Locator/ID Separation Protocol (LISP).  The design describes how key exchange is achieved using existing LISP control-plane mechanisms as well as how to secure the LISP data plane from third-party surveillance attacks."];
+  RFC8061 -> rev_cites;
+  RFC8111 [label="RFC8111
+Locator/ID Separation Protocol Delegated
+Database Tree (LISP-DDT)
+2017", shape=ellipse, URL="RFC8111.html", target="_top", tooltip="This document describes the Locator/ID Separation Protocol Delegated Database Tree (LISP-DDT), a hierarchical distributed database that embodies the delegation of authority to provide mappings from LISP Endpoint Identifiers (EIDs) to Routing Locators (RLOCs).  It is a statically defined distribution of the EID namespace among a set of LISP-speaking servers called DDT nodes.  Each DDT node is configured as authoritative for one or more EID-prefixes, along with the set of RLOCs for Map-Servers or child DDT nodes to which more-specific EID-prefixes are delegated."];
+  RFC8111 -> rev_cites;
+  RFC8112 [label="RFC8112
+Locator/ID Separation Protocol Delegated
+Database Tree (LISP-DDT) Referral
+Internet Groper (RIG)
+2017", shape=ellipse, URL="RFC8112.html", target="_top", tooltip="A simple tool called the Locator/ID Separation Protocol Delegated Database Tree (LISP-DDT) Referral Internet Groper (RIG), also referred to in this document as rig, can be used to query the LISP- DDT hierarchy.  This document describes how the rig tool works."];
+  RFC8112 -> rev_cites;
+  RFC8113 [label="RFC8113
+Locator/ID Separation Protocol (LISP):
+Shared Extension Message & IANA Registry
+for Packet Type Allocations
+2017", shape=ellipse, URL="RFC8113.html", target="_top", tooltip="This document specifies a Locator/ID Separation Protocol (LISP) shared message type for defining future extensions and conducting experiments without consuming a LISP packet type codepoint for each extension.  It also defines a registry for LISP Packet Type allocations, thus updating RFC 6830."];
+  RFC8113 -> rev_cites;
+  RFC8378 [label="RFC8378
+Signal-Free Locator/ID Separation
+Protocol (LISP) Multicast
+2018", shape=ellipse, URL="RFC8378.html", target="_top", tooltip="When multicast sources and receivers are active at Locator/ID Separation Protocol (LISP) sites, the core network is required to use native multicast so packets can be delivered from sources to group members.  When multicast is not available to connect the multicast sites together, a signal-free mechanism can be used to allow traffic to flow between sites.  The mechanism described in this document uses unicast replication and encapsulation over the core network for the data plane and uses the LISP mapping database system so encapsulators at the source LISP multicast site can find decapsulators at the receiver LISP multicast sites."];
+  RFC8378 -> rev_cites;
+  RFC8921 [label="RFC8921
+Dynamic Service Negotiation: The
+Connectivity Provisioning Negotiation
+Protocol (CPNP)
+2020", shape=ellipse, URL="RFC8921.html", target="_top", tooltip="This document defines the Connectivity Provisioning Negotiation Protocol (CPNP), which is designed to facilitate the dynamic negotiation of service parameters. CPNP is a generic protocol that can be used for various negotiation purposes that include (but are not necessarily limited to) connectivity provisioning services, storage facilities, Content Delivery Networks, etc."];
+  RFC8921 -> rev_cites;
+  RFC8929 [label="RFC8929
+IPv6 Backbone Router
+2020", shape=ellipse, URL="RFC8929.html", target="_top", tooltip="This document updates RFCs 6775 and 8505 in order to enable proxy services for IPv6 Neighbor Discovery by Routing Registrars called Backbone Routers.  Backbone Routers are placed along the wireless edge of a backbone and federate multiple wireless links to form a single Multi-Link Subnet (MLSN)."];
+  RFC8929 -> rev_cites;
+  RFC8994 [label="RFC8994
+An Autonomic Control Plane (ACP)
+2021", shape=ellipse, URL="RFC8994.html", target="_top", tooltip="Autonomic functions need a control plane to communicate, which depends on some addressing and routing.  This Autonomic Control Plane should ideally be self-managing and be as independent as possible of configuration.  This document defines such a plane and calls it the Autonomic Control Plane, with the primary use as a control plane for autonomic functions.  It also serves as a virtual out-of-band channel for Operations, Administration, and Management (OAM) communications over a network that provides automatically configured, hop-by-hop authenticated and encrypted communications via automatically configured IPv6 even when the network is not configured or is misconfigured."];
+  RFC8994 -> rev_cites;
+  RFC9030 [label="RFC9030
+An Architecture for IPv6 over the Time-
+Slotted Channel Hopping Mode of IEEE
+802.15.4 (6TiSCH)
+2021", shape=ellipse, URL="RFC9030.html", target="_top", tooltip="This document describes a network architecture that provides low-latency, low-jitter, and high-reliability packet delivery.  It combines a high-speed powered backbone and subnetworks using IEEE 802.15.4 time-slotted channel hopping (TSCH) to meet the requirements of low-power wireless deterministic applications."];
+  RFC9030 -> rev_cites;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  RFC9256 -> rev_cites;
+  RFC9300 [label="RFC9300
+The Locator/ID Separation Protocol
+(LISP)
+2022", shape=ellipse, URL="RFC9300.html", target="_top", tooltip="This document describes the data plane protocol for the Locator/ID Separation Protocol (LISP). LISP defines two namespaces: Endpoint Identifiers (EIDs), which identify end hosts; and Routing Locators (RLOCs), which identify network attachment points. With this, LISP effectively separates control from data and allows routers to create overlay networks. LISP-capable routers exchange encapsulated packets according to EID-to-RLOC mappings stored in a local Map-Cache. LISP requires no change to either host protocol stacks or underlay routers and offers Traffic Engineering (TE), multihoming, and mobility, among other features. This document obsoletes RFC 6830."];
+  RFC9300 -> rev_cites;
+  RFC9301 [label="RFC9301
+Locator/ID Separation Protocol (LISP)
+Control Plane
+2022", shape=ellipse, URL="RFC9301.html", target="_top", tooltip="This document describes the control plane and Mapping Service for the Locator/ID Separation Protocol (LISP), implemented by two types of LISP-speaking devices -- the LISP Map-Resolver and LISP Map-Server -- that provide a simplified front end for one or more Endpoint IDs (EIDs) to Routing Locator mapping databases. By using this control plane service interface and communicating with Map-Resolvers and Map-Servers, LISP Ingress Tunnel Routers (ITRs) and Egress Tunnel Routers (ETRs) are not dependent on the details of mapping database systems; this behavior facilitates modularity with different database designs. Since these devices implement the edge of the LISP control plane infrastructure, connecting EID addressable nodes of a LISP site, the implementation and operational complexity of the overall cost and effort of deploying LISP is reduced. This document obsoletes RFCs 6830 and 6833."];
+  RFC9301 -> rev_cites;
+}

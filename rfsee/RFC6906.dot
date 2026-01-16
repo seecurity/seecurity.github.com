@@ -1,0 +1,50 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6906 [label="RFC6906
+The 'profile' Link Relation Type
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This specification defines the 'profile' link relation type that allows resource representations to indicate that they are following one or more profiles.  A profile is defined not to alter the semantics of the resource representation itself, but to allow clients to learn about additional semantics (constraints, conventions, extensions) that are associated with the resource representation, in addition to those defined by the media type and possibly other mechanisms."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6906;
+
+  obs [label="obsoletes", shape=box];
+  RFC6906 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6906 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6906;
+
+  cites [label="cites", shape=box];
+  RFC6906 -> cites;
+  RFC5988 [label="RFC5988
+Web Linking
+2010", shape=ellipse, URL="RFC5988.html", target="_top", tooltip="This document specifies relation types for Web links, and defines a registry for them.  It also defines the use of such links in HTTP headers with the Link header field. [STANDARDS-TRACK]"];
+  cites -> RFC5988;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC6350 [label="RFC6350
+vCard Format Specification
+2011", shape=ellipse, URL="RFC6350.html", target="_top", tooltip="This document defines the vCard data format for representing and exchanging a variety of information about individuals and other entities (e.g., formatted and structured name and delivery addresses, email address, multiple telephone numbers, photograph, logo, audio clips, etc.).  This document obsoletes RFCs 2425, 2426, and 4770, and updates RFC 2739. [STANDARDS-TRACK]"];
+  cites -> RFC6350;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6906;
+  RFC7284 [label="RFC7284
+The Profile URI Registry
+2014", shape=ellipse, URL="RFC7284.html", target="_top", tooltip="This document defines a registry for profile URIs to be used in specifications standardizing profiles."];
+  RFC7284 -> rev_cites;
+  RFC9264 [label="RFC9264
+Linkset: Media Types and a Link Relation
+Type for Link Sets
+2022", shape=ellipse, URL="RFC9264.html", target="_top", tooltip="This specification defines two formats and associated media types for representing sets of links as standalone documents.  One format is based on JSON, and the other is aligned with the format for representing links in the HTTP Link header field.  This specification also introduces a link relation type to support the discovery of sets of links."];
+  RFC9264 -> rev_cites;
+}

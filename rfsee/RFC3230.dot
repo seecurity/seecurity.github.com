@@ -1,0 +1,50 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3230 [label="RFC3230
+Instance Digests in HTTP
+2002", shape=ellipse, fillcolor="#e8f0ff", tooltip="HTTP/1.1 defines a Content-MD5 header that allows a server to include a digest of the response body.  However, this is specifically defined to cover the body of the actual message, not the contents of the full file (which might be quite different, if the response is a Content-Range, or uses a delta encoding).  Also, the Content-MD5 is limited to one specific digest algorithm; other algorithms, such as SHA-1 (Secure Hash Standard), may be more appropriate in some circumstances.  Finally, HTTP/1.1 provides no explicit mechanism by which a client may request a digest.  This document proposes HTTP extensions that solve these problems. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3230;
+  RFC9530 [label="RFC9530
+Digest Fields
+2024", shape=ellipse, URL="RFC9530.html", target="_top", tooltip="This document defines HTTP fields that support integrity digests. The Content-Digest field can be used for the integrity of HTTP message content. The Repr-Digest field can be used for the integrity of HTTP representations. Want-Content-Digest and Want-Repr-Digest can be used to indicate a sender's interest and preferences for receiving the respective Integrity fields. This document obsoletes RFC 3230 and the Digest and Want-Digest HTTP fields."];
+  RFC9530 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC3230 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3230 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3230;
+
+  cites [label="cites", shape=box];
+  RFC3230 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3230;
+  RFC5843 [label="RFC5843
+Additional Hash Algorithms for HTTP
+Instance Digests
+2010", shape=ellipse, URL="RFC5843.html", target="_top", tooltip="The IANA registry named Hypertext Transfer Protocol (HTTP) Digest Algorithm Values defines values for digest algorithms used by Instance Digests in HTTP.  Instance Digests in HTTP provide a digest, also known as a checksum or hash, of an entire representation of the current state of a resource.  This document adds new values to the registry and updates previous values.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5843 -> rev_cites;
+  RFC6249 [label="RFC6249
+Metalink/HTTP: Mirrors and Hashes
+2011", shape=ellipse, URL="RFC6249.html", target="_top", tooltip="This document specifies Metalink/HTTP: Mirrors and Cryptographic Hashes in HTTP header fields, a different way to get information that is usually contained in the Metalink XML-based download description format.  Metalink/HTTP describes multiple download locations (mirrors), Peer-to-Peer, cryptographic hashes, digital signatures, and other information using existing standards for HTTP header fields.  Metalink clients can use this information to make file transfers more robust and reliable.  Normative requirements for Metalink/HTTP clients and servers are described here. [STANDARDS-TRACK]"];
+  RFC6249 -> rev_cites;
+  RFC9404 [label="RFC9404
+JSON Meta Application Protocol (JMAP)
+Blob Management Extension
+2023", shape=ellipse, URL="RFC9404.html", target="_top", tooltip="The JSON Meta Application Protocol (JMAP) base protocol (RFC 8620) provides the ability to upload and download arbitrary binary data via HTTP POST and GET on a defined endpoint. This binary data is called a blob. This extension adds additional ways to create and access blobs by making inline method calls within a standard JMAP request. This extension also adds a reverse lookup mechanism to discover where blobs are referenced within other data types."];
+  RFC9404 -> rev_cites;
+  RFC9530 [label="RFC9530
+Digest Fields
+2024", shape=ellipse, URL="RFC9530.html", target="_top", tooltip="This document defines HTTP fields that support integrity digests. The Content-Digest field can be used for the integrity of HTTP message content. The Repr-Digest field can be used for the integrity of HTTP representations. Want-Content-Digest and Want-Repr-Digest can be used to indicate a sender's interest and preferences for receiving the respective Integrity fields. This document obsoletes RFC 3230 and the Digest and Want-Digest HTTP fields."];
+  RFC9530 -> rev_cites;
+}

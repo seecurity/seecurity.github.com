@@ -1,0 +1,206 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6601 [label="RFC6601
+Generic Connection Admission Control
+(GCAC) Algorithm Specification for
+IP/MPLS Networks
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document presents a generic connection admission control (GCAC) reference model and algorithm for IP-/MPLS-based networks.  Service provider (SP) IP/MPLS networks need an MPLS GCAC mechanism, as one motivational example, to reject Voice over IP (VoIP) calls when additional calls would adversely affect calls already in progress.  Without MPLS GCAC, connections on congested links will suffer degraded quality.  The MPLS GCAC algorithm can be optionally implemented in vendor equipment and deployed by service providers.  MPLS GCAC interoperates between vendor equipment and across multiple service provider domains.  The MPLS GCAC algorithm uses available standard mechanisms for MPLS-based networks, such as RSVP, Diffserv-aware MPLS Traffic Engineering (DS-TE), Path Computation Element (PCE), Next Steps in Signaling (NSIS), Diffserv, and OSPF.  The MPLS GCAC algorithm does not include aspects of CAC that might be considered vendor proprietary implementations, such as detailed path selection mechanisms.  MPLS GCAC functions are implemented in a distributed manner to deliver the objective Quality of Service (QoS) for specified QoS constraints.  The objective is that the source is able to compute a source route with high likelihood that via-elements along the selected path will in fact admit the request.  In some cases (e.g., multiple Autonomous Systems (ASes)), this objective cannot always be met, but this document summarizes methods that partially meet this objective.  MPLS GCAC is applicable to any service or flow that must meet an objective QoS (delay, jitter, packet loss rate) for a specified quantity of traffic.  This document defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6601;
+
+  obs [label="obsoletes", shape=box];
+  RFC6601 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6601 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6601;
+
+  cites [label="cites", shape=box];
+  RFC6601 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4124 [label="RFC4124
+Protocol Extensions for Support of
+Diffserv-aware MPLS Traffic Engineering
+2005", shape=ellipse, URL="RFC4124.html", target="_top", tooltip="This document specifies the protocol extensions for support of Diffserv-aware MPLS Traffic Engineering (DS-TE).  This includes generalization of the semantics of a number of Interior Gateway Protocol (IGP) extensions already defined for existing MPLS Traffic Engineering in RFC 3630, RFC 3784, and additional IGP extensions beyond those.  This also includes extensions to RSVP-TE signaling beyond those already specified in RFC 3209 for existing MPLS Traffic Engineering.  These extensions address the requirements for DS-TE spelled out in RFC 3564. [STANDARDS-TRACK]"];
+  cites -> RFC4124;
+  RFC3270 [label="RFC3270
+Multi-Protocol Label Switching (MPLS)
+Support of Differentiated Services
+2002", shape=ellipse, URL="RFC3270.html", target="_top", tooltip="This document defines a flexible solution for support of Differentiated Services (Diff-Serv) over Multi-Protocol Label Switching (MPLS) networks. [STANDARDS-TRACK]"];
+  cites -> RFC3270;
+  RFC4804 [label="RFC4804
+Aggregation of Resource ReSerVation
+Protocol (RSVP) Reservations over MPLS
+TE/DS-TE Tunnels
+2007", shape=ellipse, URL="RFC4804.html", target="_top", tooltip="RFC 3175 specifies aggregation of Resource ReSerVation Protocol (RSVP) end-to-end reservations over aggregate RSVP reservations.  This document specifies aggregation of RSVP end-to-end reservations over MPLS Traffic Engineering (TE) tunnels or MPLS Diffserv-aware MPLS Traffic Engineering (DS-TE) tunnels.  This approach is based on RFC 3175 and simply modifies the corresponding procedures for operations over MPLS TE tunnels instead of aggregate RSVP reservations.  This approach can be used to achieve admission control of a very large number of flows in a scalable manner since the devices in the core of the network are unaware of the end-to-end RSVP reservations and are only aware of the MPLS TE tunnels. [STANDARDS-TRACK]"];
+  cites -> RFC4804;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  cites -> RFC5462;
+  RFC5971 [label="RFC5971
+GIST: General Internet Signalling
+Transport
+2010", shape=ellipse, URL="RFC5971.html", target="_top", tooltip="This document specifies protocol stacks for the routing and transport of per-flow signalling messages along the path taken by that flow through the network.  The design uses existing transport and security protocols under a common messaging layer, the General Internet Signalling Transport (GIST), which provides a common service for diverse signalling applications.  GIST does not handle signalling application state itself, but manages its own internal state and the configuration of the underlying transport and security protocols to enable the transfer of messages in both directions along the flow path.  The combination of GIST and the lower layer transport and security protocols provides a solution for the base protocol component of the Next Steps in Signalling (NSIS) framework.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC5971;
+  RFC5974 [label="RFC5974
+NSIS Signaling Layer Protocol (NSLP) for
+Quality-of-Service Signaling
+2010", shape=ellipse, URL="RFC5974.html", target="_top", tooltip="This specification describes the NSIS Signaling Layer Protocol (NSLP) for signaling Quality of Service (QoS) reservations in the Internet.  It is in accordance with the framework and requirements developed in NSIS.  Together with General Internet Signaling Transport (GIST), it provides functionality similar to RSVP and extends it.  The QoS NSLP is independent of the underlying QoS specification or architecture and provides support for different reservation models.  It is simplified by the elimination of support for multicast flows.  This specification explains the overall protocol approach, describes the design decisions made, and provides examples.  It specifies object, message formats, and processing rules.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC5974;
+  RFC5975 [label="RFC5975
+QSPEC Template for the Quality-of-
+Service NSIS Signaling Layer Protocol
+(NSLP)
+2010", shape=ellipse, URL="RFC5975.html", target="_top", tooltip="The Quality-of-Service (QoS) NSIS signaling layer protocol (NSLP) is used to signal QoS reservations and is independent of a specific QoS model (QOSM) such as IntServ or Diffserv.  Rather, all information specific to a QOSM is encapsulated in a separate object, the QSPEC.  This document defines a template for the QSPEC including a number of QSPEC parameters.  The QSPEC parameters provide a common language to be reused in several QOSMs and thereby aim to ensure the extensibility and interoperability of QoS NSLP.  While the base protocol is QOSM-agnostic, the parameters that can be carried in the QSPEC object are possibly closely coupled to specific models.  The node initiating the NSIS signaling adds an Initiator QSPEC, which indicates the QSPEC parameters that must be interpreted by the downstream nodes less the reservation fails, thereby ensuring the intention of the NSIS initiator is preserved along the signaling path.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC5975;
+  RFC5976 [label="RFC5976
+Y.1541-QOSM: Model for Networks Using
+Y.1541 Quality-of-Service Classes
+2010", shape=ellipse, URL="RFC5976.html", target="_top", tooltip="This document describes a QoS-NSLP Quality-of-Service model (QOSM) based on ITU-T Recommendation Y.1541 Network QoS Classes and related guidance on signaling.  Y.1541 specifies 8 classes of Network Performance objectives, and the Y.1541-QOSM extensions include additional QSPEC parameters and QOSM processing guidelines.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC5976;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC4126 [label="RFC4126
+Max Allocation with Reservation
+Bandwidth Constraints Model for
+Diffserv-aware MPLS Traffic Engineering
+& Performance Comparisons
+2005", shape=ellipse, URL="RFC4126.html", target="_top", tooltip="This document complements the Diffserv-aware MPLS Traffic Engineering (DS-TE) requirements document by giving a functional specification for the Maximum Allocation with Reservation (MAR) Bandwidth Constraints Model.  Assumptions, applicability, and examples of the operation of the MAR Bandwidth Constraints Model are presented.  MAR performance is analyzed relative to the criteria for selecting a Bandwidth Constraints Model, in order to provide guidance to user implementation of the model in their networks.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4126;
+  RFC4125 [label="RFC4125
+Maximum Allocation Bandwidth Constraints
+Model for Diffserv-aware MPLS Traffic
+Engineering
+2005", shape=ellipse, URL="RFC4125.html", target="_top", tooltip="This document provides specifications for one Bandwidth Constraints Model for Diffserv-aware MPLS Traffic Engineering, which is referred to as the Maximum Allocation Model.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4125;
+  RFC4127 [label="RFC4127
+Russian Dolls Bandwidth Constraints
+Model for Diffserv-aware MPLS Traffic
+Engineering
+2005", shape=ellipse, URL="RFC4127.html", target="_top", tooltip="This document provides specifications for one Bandwidth Constraints Model for Diffserv-aware MPLS Traffic Engineering, which is referred to as the Russian Dolls Model.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4127;
+  RFC4920 [label="RFC4920
+Crankback Signaling Extensions for MPLS
+and GMPLS RSVP-TE
+2007", shape=ellipse, URL="RFC4920.html", target="_top", tooltip="In a distributed, constraint-based routing environment, the information used to compute a path may be out of date. This means that Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineered (TE) Label Switched Path (LSP) setup requests may be blocked by links or nodes without sufficient resources. Crankback is a scheme whereby setup failure information is returned from the point of failure to allow new setup attempts to be made avoiding the blocked resources. Crankback can also be applied to LSP recovery to indicate the location of the failed link or node. This document specifies crankback signaling extensions for use in MPLS signaling using RSVP-TE as defined in RSVP-TE: Extensions to RSVP for LSP Tunnels, RFC 3209, and GMPLS signaling as defined in Generalized Multi-Protocol Label Switching (GMPLS) Signaling Functional Description, RFC 3473. These extensions mean that the LSP setup request can be retried on an alternate path that detours around blocked links or nodes. This offers significant improvements in the successful setup and recovery ratios for LSPs, especially in situations where a large number of setup requests are triggered at the same time. [STANDARDS-TRACK]"];
+  cites -> RFC4920;
+  RFC4655 [label="RFC4655
+A Path Computation Element (PCE)-Based
+Architecture
+2006", shape=ellipse, URL="RFC4655.html", target="_top", tooltip="Constraint-based path computation is a fundamental building block for traffic engineering systems such as Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) networks. Path computation in large, multi-domain, multi-region, or multi-layer networks is complex and may require special computational components and cooperation between the different network domains. This document specifies the architecture for a Path Computation Element (PCE)-based model to address this problem space. This document does not attempt to provide a detailed description of all the architectural components, but rather it describes a set of building blocks for the PCE architecture from which solutions may be constructed. This memo provides information for the Internet community."];
+  cites -> RFC4655;
+  RFC5865 [label="RFC5865
+A Differentiated Services Code Point
+(DSCP) for Capacity-Admitted Traffic
+2010", shape=ellipse, URL="RFC5865.html", target="_top", tooltip="This document requests one Differentiated Services Code Point (DSCP) from the Internet Assigned Numbers Authority (IANA) for a class of real-time traffic.  This traffic class conforms to the Expedited Forwarding Per-Hop Behavior.  This traffic is also admitted by the network using a Call Admission Control (CAC) procedure involving authentication, authorization, and capacity admission.  This differs from a real-time traffic class that conforms to the Expedited Forwarding Per-Hop Behavior but is not subject to capacity admission or subject to very coarse capacity admission. [STANDARDS-TRACK]"];
+  cites -> RFC5865;
+  RFC4657 [label="RFC4657
+Path Computation Element (PCE)
+Communication Protocol Generic
+Requirements
+2006", shape=ellipse, URL="RFC4657.html", target="_top", tooltip="The PCE model is described in the PCE Architecture document and facilitates path computation requests from Path Computation Clients (PCCs) to Path Computation Elements (PCEs).  This document specifies generic requirements for a communication protocol between PCCs and PCEs, and also between PCEs where cooperation between PCEs is desirable.  Subsequent documents will specify application-specific requirements for the PCE communication protocol.  This memo provides information for the Internet community."];
+  cites -> RFC4657;
+  RFC5440 [label="RFC5440
+Path Computation Element (PCE)
+Communication Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5440.html", target="_top", tooltip="This document specifies the Path Computation Element (PCE) Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a PCE, or between two PCEs.  Such interactions include path computation requests and path computation replies as well as notifications of specific states related to the use of a PCE in the context of Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering.  PCEP is designed to be flexible and extensible so as to easily allow for the addition of further messages and objects, should further requirements be expressed in the future. [STANDARDS-TRACK]"];
+  cites -> RFC5440;
+  RFC5441 [label="RFC5441
+A Backward-Recursive PCE-Based
+Computation (BRPC) Procedure to Compute
+Shortest Constrained Inter-Domain
+Traffic Engineering Label Switched Paths
+2009", shape=ellipse, URL="RFC5441.html", target="_top", tooltip="The ability to compute shortest constrained Traffic Engineering Label Switched Paths (TE LSPs) in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks across multiple domains has been identified as a key requirement.  In this context, a domain is a collection of network elements within a common sphere of address management or path computational responsibility such as an IGP area or an Autonomous Systems.  This document specifies a procedure relying on the use of multiple Path Computation Elements (PCEs) to compute such inter-domain shortest constrained paths across a predetermined sequence of domains, using a backward-recursive path computation technique.  This technique preserves confidentiality across domains, which is sometimes required when domains are managed by different service providers. [STANDARDS-TRACK]"];
+  cites -> RFC5441;
+  RFC5152 [label="RFC5152
+A Per-Domain Path Computation Method for
+Establishing Inter-Domain Traffic
+Engineering (TE) Label Switched Paths
+(LSPs)
+2008", shape=ellipse, URL="RFC5152.html", target="_top", tooltip="This document specifies a per-domain path computation technique for establishing inter-domain Traffic Engineering (TE) Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Label Switched Paths (LSPs). In this document, a domain refers to a collection of network elements within a common sphere of address management or path computational responsibility such as Interior Gateway Protocol (IGP) areas and Autonomous Systems. Per-domain computation applies where the full path of an inter-domain TE LSP cannot be or is not determined at the ingress node of the TE LSP, and is not signaled across domain boundaries. This is most likely to arise owing to TE visibility limitations. The signaling message indicates the destination and nodes up to the next domain boundary. It may also indicate further domain boundaries or domain identifiers. The path through each domain, possibly including the choice of exit point from the domain, must be determined within the domain. [STANDARDS-TRACK]"];
+  cites -> RFC5152;
+  RFC4090 [label="RFC4090
+Fast Reroute Extensions to RSVP-TE for
+LSP Tunnels
+2005", shape=ellipse, URL="RFC4090.html", target="_top", tooltip="This document defines RSVP-TE extensions to establish backup label-switched path (LSP) tunnels for local repair of LSP tunnels. These mechanisms enable the re-direction of traffic onto backup LSP tunnels in 10s of milliseconds, in the event of a failure. Two methods are defined here. The one-to-one backup method creates detour LSPs for each protected LSP at each potential point of local repair. The facility backup method creates a bypass tunnel to protect a potential failure point; by taking advantage of MPLS label stacking, this bypass tunnel can protect a set of LSPs that have similar backup constraints. Both methods can be used to protect links and nodes during network failure. The described behavior and extensions to RSVP allow nodes to implement either method or both and to interoperate in a mixed network. [STANDARDS-TRACK]"];
+  cites -> RFC4090;
+  RFC4203 [label="RFC4203
+OSPF Extensions in Support of
+Generalized Multi-Protocol Label
+Switching (GMPLS)
+2005", shape=ellipse, URL="RFC4203.html", target="_top", tooltip="This document specifies encoding of extensions to the OSPF routing protocol in support of Generalized Multi-Protocol Label Switching (GMPLS). [STANDARDS-TRACK]"];
+  cites -> RFC4203;
+  RFC5307 [label="RFC5307
+IS-IS Extensions in Support of
+Generalized Multi-Protocol Label
+Switching (GMPLS)
+2008", shape=ellipse, URL="RFC5307.html", target="_top", tooltip="This document specifies encoding of extensions to the IS-IS routing protocol in support of Generalized Multi-Protocol Label Switching (GMPLS). [STANDARDS-TRACK]"];
+  cites -> RFC5307;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC3630 [label="RFC3630
+Traffic Engineering (TE) Extensions to
+OSPF Version 2
+2003", shape=ellipse, URL="RFC3630.html", target="_top", tooltip="This document describes extensions to the OSPF protocol version 2 to support intra-area Traffic Engineering (TE), using Opaque Link State Advertisements."];
+  cites -> RFC3630;
+  RFC5069 [label="RFC5069
+Security Threats and Requirements for
+Emergency Call Marking and Mapping
+2008", shape=ellipse, URL="RFC5069.html", target="_top", tooltip="This document reviews the security threats associated with the marking of signalling messages to indicate that they are related to an emergency, and with the process of mapping locations to Universal Resource Identifiers (URIs) that point to Public Safety Answering Points (PSAPs). This mapping occurs as part of the process of routing emergency calls through the IP network. Based on the identified threats, this document establishes a set of security requirements for the mapping protocol and for the handling of emergency-marked calls. This memo provides information for the Internet community."];
+  cites -> RFC5069;
+  RFC4412 [label="RFC4412
+Communications Resource Priority for the
+Session Initiation Protocol (SIP)
+2006", shape=ellipse, URL="RFC4412.html", target="_top", tooltip="This document defines two new Session Initiation Protocol (SIP) header fields for communicating resource priority, namely, Resource-Priority and Accept-Resource-Priority.  The Resource-Priority header field can influence the behavior of SIP user agents (such as telephone gateways and IP telephones) and SIP proxies.  It does not directly influence the forwarding behavior of IP routers. [STANDARDS-TRACK]"];
+  cites -> RFC4412;
+  RFC6401 [label="RFC6401
+RSVP Extensions for Admission Priority
+2011", shape=ellipse, URL="RFC6401.html", target="_top", tooltip="Some applications require the ability to provide an elevated probability of session establishment to specific sessions in times of network congestion. When supported over the Internet Protocol suite, this may be facilitated through a network-layer admission control solution that supports prioritized access to resources (e.g., bandwidth). These resources may be explicitly set aside for prioritized sessions, or may be shared with other sessions. This document specifies extensions to the Resource reSerVation Protocol (RSVP) that can be used to support such an admission priority capability at the network layer. Based on current security concerns, these extensions are intended for use in a single administrative domain. [STANDARDS-TRACK]"];
+  cites -> RFC6401;
+  RFC3031 [label="RFC3031
+Multiprotocol Label Switching
+Architecture
+2001", shape=ellipse, URL="RFC3031.html", target="_top", tooltip="This document specifies the architecture for Multiprotocol Label Switching (MPLS). [STANDARDS-TRACK]"];
+  cites -> RFC3031;
+  RFC2597 [label="RFC2597
+Assured Forwarding PHB Group
+1999", shape=ellipse, URL="RFC2597.html", target="_top", tooltip="This document defines a general use Differentiated Services (DS) Per-Hop-Behavior (PHB) Group called Assured Forwarding (AF). [STANDARDS-TRACK]"];
+  cites -> RFC2597;
+  RFC3246 [label="RFC3246
+An Expedited Forwarding PHB (Per-Hop
+Behavior)
+2002", shape=ellipse, URL="RFC3246.html", target="_top", tooltip="This document defines a PHB (per-hop behavior) called Expedited Forwarding (EF).  The PHB is a basic building block in the Differentiated Services architecture.  EF is intended to provide a building block for low delay, low jitter and low loss services by ensuring that the EF aggregate is served at a certain configured rate.  This document obsoletes RFC 2598. [STANDARDS-TRACK]"];
+  cites -> RFC3246;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6601;
+  RFC7297 [label="RFC7297
+IP Connectivity Provisioning Profile
+(CPP)
+2014", shape=ellipse, URL="RFC7297.html", target="_top", tooltip="This document describes the Connectivity Provisioning Profile (CPP) and proposes a CPP template to capture IP/MPLS connectivity requirements to be met within a service delivery context (e.g., Voice over IP or IP TV). The CPP defines the set of IP transfer parameters to be supported by the underlying transport network together with a reachability scope and bandwidth/capacity needs. Appropriate performance metrics, such as one-way delay or one-way delay variation, are used to characterize an IP transfer service. Both global and restricted reachability scopes can be captured in the CPP. Such a generic CPP template is meant to (1) facilitate the automation of the service negotiation and activation procedures, thus accelerating service provisioning, (2) set (traffic) objectives of Traffic Engineering functions and service management functions, and (3) improve service and network management systems with 'decision- making' capabilities based upon negotiated/offered CPPs."];
+  RFC7297 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+}

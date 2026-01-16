@@ -1,0 +1,62 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8425 [label="RFC8425
+IANA Considerations for IPv6 Neighbor
+Discovery Prefix Information Option
+Flags
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Prefix Information Option (PIO) in the IPv6 Neighbor Discovery Router Advertisement message defines an 8-bit flag field; this field has two flags defined, and the remaining 6 bits are reserved (Reserved1).  RFC 6275 defines a flag from this field without creating an IANA registry or updating RFC 4861.  The purpose of this document is to create an IANA registry for the PIO flags.  This document updates RFC 4861."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8425;
+
+  obs [label="obsoletes", shape=box];
+  RFC8425 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8425 -> updates;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  updates -> RFC4861;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8425;
+
+  cites [label="cites", shape=box];
+  RFC8425 -> cites;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC6275 [label="RFC6275
+Mobility Support in IPv6
+2011", shape=ellipse, URL="RFC6275.html", target="_top", tooltip="This document specifies Mobile IPv6, a protocol that allows nodes to remain reachable while moving around in the IPv6 Internet.  Each mobile node is always identified by its home address, regardless of its current point of attachment to the Internet.  While situated away from its home, a mobile node is also associated with a care-of address, which provides information about the mobile node's current location.  IPv6 packets addressed to a mobile node's home address are transparently routed to its care-of address.  The protocol enables IPv6 nodes to cache the binding of a mobile node's home address with its care-of address, and to then send any packets destined for the mobile node directly to it at this care-of address.  To support this operation, Mobile IPv6 defines a new IPv6 protocol and a new destination option.  All IPv6 nodes, whether mobile or stationary, can communicate with mobile nodes.  This document obsoletes RFC 3775. [STANDARDS-TRACK]"];
+  cites -> RFC6275;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8425;
+  RFC8678 [label="RFC8678
+Enterprise Multihoming using Provider-
+Assigned IPv6 Addresses without Network
+Prefix Translation: Requirements and
+Solutions
+2019", shape=ellipse, URL="RFC8678.html", target="_top", tooltip="Connecting an enterprise site to multiple ISPs over IPv6 using provider-assigned addresses is difficult without the use of some form of Network Address Translation (NAT). Much has been written on this topic over the last 10 to 15 years, but it still remains a problem without a clearly defined or widely implemented solution. Any multihoming solution without NAT requires hosts at the site to have addresses from each ISP and to select the egress ISP by selecting a source address for outgoing packets. It also requires routers at the site to take into account those source addresses when forwarding packets out towards the ISPs. This document examines currently available mechanisms for providing a solution to this problem for a broad range of enterprise topologies. It covers the behavior of routers to forward traffic by taking into account source address, and it covers the behavior of hosts to select appropriate default source addresses. It also covers any possible role that routers might play in providing information to hosts to help them select appropriate source addresses. In the process of exploring potential solutions, this document also makes explicit requirements for how the solution would be expected to behave from the perspective of an enterprise site network administrator."];
+  RFC8678 -> rev_cites;
+  RFC9762 [label="RFC9762
+Using Router Advertisements to Signal
+the Availability of DHCPv6 Prefix
+Delegation to Clients
+2025", shape=ellipse, URL="RFC9762.html", target="_top", tooltip="This document defines the P flag in the Prefix Information Option (PIO) of IPv6 Router Advertisements (RAs). The flag is used to indicate that the network prefers that clients use the deployment model in RFC 9663 instead of using individual addresses in the on-link prefix assigned using Stateless Address Autoconfiguration (SLAAC) or DHCPv6 address assignment. This document updates RFC 4862 to indicate that the Autonomous flag in a PIO needs to be ignored if the PIO has the P flag set. It also updates RFC 4861 to specify that the P flag indicates DHCPv6 prefix delegation support for clients."];
+  RFC9762 -> rev_cites;
+}

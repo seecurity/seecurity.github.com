@@ -1,0 +1,68 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6854 [label="RFC6854
+Update to Internet Message Format to
+Allow Group Syntax in the From: and
+Sender: Header Fields
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Internet Message Format (RFC 5322) allows group syntax in some email header fields, such as To: and CC:, but not in From: or Sender:.  This document updates RFC 5322 to relax that restriction, allowing group syntax in those latter fields, as well as in Resent-From: and Resent-Sender:, in certain situations."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6854;
+
+  obs [label="obsoletes", shape=box];
+  RFC6854 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6854 -> updates;
+  RFC5322 [label="RFC5322
+Internet Message Format
+2008", shape=ellipse, URL="RFC5322.html", target="_top", tooltip="This document specifies the Internet Message Format (IMF), a syntax for text messages that are sent between computer users, within the framework of electronic mail messages.  This specification is a revision of Request For Comments (RFC) 2822, which itself superseded Request For Comments (RFC) 822, Standard for the Format of ARPA Internet Text Messages, updating it to reflect current practice and incorporating incremental changes that were specified in other RFCs. [STANDARDS-TRACK]"];
+  updates -> RFC5322;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6854;
+
+  cites [label="cites", shape=box];
+  RFC6854 -> cites;
+  RFC5322 [label="RFC5322
+Internet Message Format
+2008", shape=ellipse, URL="RFC5322.html", target="_top", tooltip="This document specifies the Internet Message Format (IMF), a syntax for text messages that are sent between computer users, within the framework of electronic mail messages.  This specification is a revision of Request For Comments (RFC) 2822, which itself superseded Request For Comments (RFC) 822, Standard for the Format of ARPA Internet Text Messages, updating it to reflect current practice and incorporating incremental changes that were specified in other RFCs. [STANDARDS-TRACK]"];
+  cites -> RFC5322;
+  RFC6530 [label="RFC6530
+Overview and Framework for
+Internationalized Email
+2012", shape=ellipse, URL="RFC6530.html", target="_top", tooltip="Full use of electronic mail throughout the world requires that (subject to other constraints) people be able to use close variations on their own names (written correctly in their own languages and scripts) as mailbox names in email addresses.  This document introduces a series of specifications that define mechanisms and protocol extensions needed to fully support internationalized email addresses.  These changes include an SMTP extension and extension of email header syntax to accommodate UTF-8 data.  The document set also includes discussion of key assumptions and issues in deploying fully internationalized email.  This document is a replacement for RFC 4952; it reflects additional issues identified since that document was published. [STANDARDS-TRACK]"];
+  cites -> RFC6530;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+  RFC2026 [label="RFC2026
+The Internet Standards Process --
+Revision 3
+1996", shape=ellipse, URL="RFC2026.html", target="_top", tooltip="This memo documents the process used by the Internet community for the standardization of protocols and procedures.  It defines the stages in the standardization process, the requirements for moving a document between stages and the types of documents used during this process.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2026;
+  RFC5617 [label="RFC5617
+DomainKeys Identified Mail (DKIM) Author
+Domain Signing Practices (ADSP)
+2009", shape=ellipse, URL="RFC5617.html", target="_top", tooltip="DomainKeys Identified Mail (DKIM) defines a domain-level authentication framework for email to permit verification of the source and contents of messages.  This document specifies an adjunct mechanism to aid in assessing messages that do not contain a DKIM signature for the domain used in the author's address.  It defines a record that can advertise whether a domain signs its outgoing mail as well as how other hosts can access that record. [STANDARDS-TRACK]"];
+  cites -> RFC5617;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6854;
+  RFC6857 [label="RFC6857
+Post-Delivery Message Downgrading for
+Internationalized Email Messages
+2013", shape=ellipse, URL="RFC6857.html", target="_top", tooltip="The Email Address Internationalization (SMTPUTF8) extension to SMTP allows Unicode characters encoded in UTF-8 and outside the ASCII repertoire in mail header fields.  Upgraded POP and IMAP servers support internationalized messages.  If a POP or IMAP client does not support Email Address Internationalization, a POP or IMAP server cannot deliver internationalized messages to the client and cannot remove the message.  To avoid that situation, this document describes a mechanism for converting internationalized messages into the traditional message format.  As part of the conversion process, message elements that require internationalized treatment are recoded or removed, and receivers are able to recognize that they received messages containing such elements, even if they cannot process the internationalized elements."];
+  RFC6857 -> rev_cites;
+}

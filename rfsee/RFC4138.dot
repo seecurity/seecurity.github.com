@@ -1,0 +1,53 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4138 [label="RFC4138
+Forward RTO-Recovery (F-RTO): An
+Algorithm for Detecting Spurious
+Retransmission Timeouts with TCP and the
+Stream Control Transmission Protocol
+(SCTP)
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="Spurious retransmission timeouts cause suboptimal TCP performance because they often result in unnecessary retransmission of the last window of data.  This document describes the F-RTO detection algorithm for detecting spurious TCP retransmission timeouts.  F-RTO is a TCP sender-only algorithm that does not require any TCP options to operate.  After retransmitting the first unacknowledged segment triggered by a timeout, the F-RTO algorithm of the TCP sender monitors the incoming acknowledgments to determine whether the timeout was spurious.  It then decides whether to send new segments or retransmit unacknowledged segments.  The algorithm effectively helps to avoid additional unnecessary retransmissions and thereby improves TCP performance in the case of a spurious timeout.  The F-RTO algorithm can also be applied to the Stream Control Transmission Protocol (SCTP).  This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4138;
+
+  obs [label="obsoletes", shape=box];
+  RFC4138 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4138 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4138;
+  RFC5682 [label="RFC5682
+Forward RTO-Recovery (F-RTO): An
+Algorithm for Detecting Spurious
+Retransmission Timeouts with TCP
+2009", shape=ellipse, URL="RFC5682.html", target="_top", tooltip="The purpose of this document is to move the F-RTO (Forward RTO-Recovery) functionality for TCP in RFC 4138 from Experimental to Standards Track status. The F-RTO support for Stream Control Transmission Protocol (SCTP) in RFC 4138 remains with Experimental status. See Appendix B for the differences between this document and RFC 4138. Spurious retransmission timeouts cause suboptimal TCP performance because they often result in unnecessary retransmission of the last window of data. This document describes the F-RTO detection algorithm for detecting spurious TCP retransmission timeouts. F-RTO is a TCP sender-only algorithm that does not require any TCP options to operate. After retransmitting the first unacknowledged segment triggered by a timeout, the F-RTO algorithm of the TCP sender monitors the incoming acknowledgments to determine whether the timeout was spurious. It then decides whether to send new segments or retransmit unacknowledged segments. The algorithm effectively helps to avoid additional unnecessary retransmissions and thereby improves TCP performance in the case of a spurious timeout. [STANDARDS-TRACK]"];
+  RFC5682 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4138 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4138;
+  RFC4614 [label="RFC4614
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2006", shape=ellipse, URL="RFC4614.html", target="_top", tooltip="This document contains a roadmap to the Requests for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP).  This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series.  This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs.  This memo provides information for the Internet community."];
+  RFC4614 -> rev_cites;
+  RFC4653 [label="RFC4653
+Improving the Robustness of TCP to Non-
+Congestion Events
+2006", shape=ellipse, URL="RFC4653.html", target="_top", tooltip="This document specifies Non-Congestion Robustness (NCR) for TCP.  In the absence of explicit congestion notification from the network, TCP uses loss as an indication of congestion.  One of the ways TCP detects loss is using the arrival of three duplicate acknowledgments.  However, this heuristic is not always correct, notably in the case when network paths reorder segments (for whatever reason), resulting in degraded performance.  TCP-NCR is designed to mitigate this degraded performance by increasing the number of duplicate acknowledgments required to trigger loss recovery, based on the current state of the connection, in an effort to better disambiguate true segment loss from segment reordering.  This document specifies the changes to TCP, as well as the costs and benefits of these modifications.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC4653 -> rev_cites;
+}

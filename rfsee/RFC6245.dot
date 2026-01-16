@@ -1,0 +1,56 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6245 [label="RFC6245
+Generic Routing Encapsulation (GRE) Key
+Extension for Mobile IPv4
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Generic Routing Encapsulation (GRE) specification contains a Key field, which MAY contain a value that is used to identify a particular GRE data stream.  This specification defines a new Mobile IP extension that is used to exchange the value to be used in the GRE Key field.  This extension further allows the Mobility Agents to set up the necessary protocol interfaces prior to receiving the mobile node traffic.  The new extension allows a Foreign Agent to request GRE tunneling without disturbing the Home Agent behavior specified for Mobile IPv4.  GRE tunneling with the Key field allows the operators to have home networks that consist of multiple Virtual Private Networks (VPNs), which may have overlapping home addresses.  When the tuple <Care of Address, Home Address, and Home Agent Address> is the same across multiple subscriber sessions, GRE tunneling will provide a means for the Foreign Agent and Home Agent to identify data streams for the individual sessions based on the GRE key.  In the absence of this key identifier, the data streams cannot be distinguished from each other -- a significant drawback when using IP-in-IP tunneling. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6245;
+
+  obs [label="obsoletes", shape=box];
+  RFC6245 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6245 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6245;
+
+  cites [label="cites", shape=box];
+  RFC6245 -> cites;
+  RFC2784 [label="RFC2784
+Generic Routing Encapsulation (GRE)
+2000", shape=ellipse, URL="RFC2784.html", target="_top", tooltip="This document specifies a protocol for encapsulation of an arbitrary network layer protocol over another arbitrary network layer protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2784;
+  RFC5944 [label="RFC5944
+IP Mobility Support for IPv4, Revised
+2010", shape=ellipse, URL="RFC5944.html", target="_top", tooltip="This document specifies protocol enhancements that allow transparent routing of IP datagrams to mobile nodes in the Internet.  Each mobile node is always identified by its home address, regardless of its current point of attachment to the Internet.  While situated away from its home, a mobile node is also associated with a care-of address, which provides information about its current point of attachment to the Internet.  The protocol provides for registering the care-of address with a home agent.  The home agent sends datagrams destined for the mobile node through a tunnel to the care-of address.  After arriving at the end of the tunnel, each datagram is then delivered to the mobile node. [STANDARDS-TRACK]"];
+  cites -> RFC5944;
+  RFC2890 [label="RFC2890
+Key and Sequence Number Extensions to
+GRE
+2000", shape=ellipse, URL="RFC2890.html", target="_top", tooltip="This document describes extensions by which two fields, Key and Sequence Number, can be optionally carried in the GRE Header. [STANDARDS-TRACK]"];
+  cites -> RFC2890;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3024 [label="RFC3024
+Reverse Tunneling for Mobile IP, revised
+2001", shape=ellipse, URL="RFC3024.html", target="_top", tooltip="This document proposes backwards-compatible extensions to Mobile IP to support topologically correct reverse tunnels.  This document does not attempt to solve the problems posed by firewalls located between the home agent and the mobile node's care-of address. [STANDARDS-TRACK]"];
+  cites -> RFC3024;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6245;
+  RFC7364 [label="RFC7364
+Problem Statement: Overlays for Network
+Virtualization
+2014", shape=ellipse, URL="RFC7364.html", target="_top", tooltip="This document describes issues associated with providing multi-tenancy in large data center networks and how these issues may be addressed using an overlay-based network virtualization approach.  A key multi-tenancy requirement is traffic isolation so that one tenant's traffic is not visible to any other tenant.  Another requirement is address space isolation so that different tenants can use the same address space within different virtual networks.  Traffic and address space isolation is achieved by assigning one or more virtual networks to each tenant, where traffic within a virtual network can only cross into another virtual network in a controlled fashion (e.g., via a configured router and/or a security gateway).  Additional functionality is required to provision virtual networks, associating a virtual machine's network interface(s) with the appropriate virtual network and maintaining that association as the virtual machine is activated, migrated, and/or deactivated.  Use of an overlay-based approach enables scalable deployment on large network infrastructures."];
+  RFC7364 -> rev_cites;
+}

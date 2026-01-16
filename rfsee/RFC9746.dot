@@ -1,0 +1,123 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9746 [label="RFC9746
+BGP EVPN Multihoming Extensions for
+Split-Horizon Filtering
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="An Ethernet Virtual Private Network (EVPN) is commonly used with Network Virtualization Overlay (NVO) tunnels as well as with MPLS and Segment Routing (SR) tunnels. The multihoming procedures in EVPN may vary based on the type of tunnel used within the EVPN Broadcast Domain. Specifically, there are two multihoming split-horizon procedures designed to prevent looped frames on multihomed Customer Edge (CE) devices: the Ethernet Segment Identifier (ESI) Label-based procedure and the local-bias procedure. The ESI Label-based split-horizon procedure is applied to MPLS-based tunnels such as MPLS over UDP (MPLSoUDP), while the local-bias procedure is used for other tunnels such as Virtual eXtensible Local Area Network (VXLAN) tunnels. Current specifications do not allow operators to choose which split-horizon procedure to use for tunnel encapsulations that support both methods. Examples of tunnels that may support both procedures include MPLSoUDP, MPLS over GRE (MPLSoGRE), Generic Network Virtualization Encapsulation (Geneve), and Segment Routing over IPv6 (SRv6) tunnels. This document updates the EVPN multihoming procedures described in RFCs 7432 and 8365, enabling operators to select the split-horizon procedure that meets their specific requirements."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9746;
+
+  obs [label="obsoletes", shape=box];
+  RFC9746 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9746 -> updates;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  updates -> RFC7432;
+  RFC8365 [label="RFC8365
+A Network Virtualization Overlay
+Solution Using Ethernet VPN (EVPN)
+2018", shape=ellipse, URL="RFC8365.html", target="_top", tooltip="This document specifies how Ethernet VPN (EVPN) can be used as a Network Virtualization Overlay (NVO) solution and explores the various tunnel encapsulation options over IP and their impact on the EVPN control plane and procedures.  In particular, the following encapsulation options are analyzed: Virtual Extensible LAN (VXLAN), Network Virtualization using Generic Routing Encapsulation (NVGRE), and MPLS over GRE.  This specification is also applicable to Generic Network Virtualization Encapsulation (GENEVE); however, some incremental work is required, which will be covered in a separate document.  This document also specifies new multihoming procedures for split-horizon filtering and mass withdrawal.  It also specifies EVPN route constructions for VXLAN/NVGRE encapsulations and Autonomous System Border Router (ASBR) procedures for multihoming of Network Virtualization Edge (NVE) devices."];
+  updates -> RFC8365;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9746;
+
+  cites [label="cites", shape=box];
+  RFC9746 -> cites;
+  RFC8365 [label="RFC8365
+A Network Virtualization Overlay
+Solution Using Ethernet VPN (EVPN)
+2018", shape=ellipse, URL="RFC8365.html", target="_top", tooltip="This document specifies how Ethernet VPN (EVPN) can be used as a Network Virtualization Overlay (NVO) solution and explores the various tunnel encapsulation options over IP and their impact on the EVPN control plane and procedures.  In particular, the following encapsulation options are analyzed: Virtual Extensible LAN (VXLAN), Network Virtualization using Generic Routing Encapsulation (NVGRE), and MPLS over GRE.  This specification is also applicable to Generic Network Virtualization Encapsulation (GENEVE); however, some incremental work is required, which will be covered in a separate document.  This document also specifies new multihoming procedures for split-horizon filtering and mass withdrawal.  It also specifies EVPN route constructions for VXLAN/NVGRE encapsulations and Autonomous System Border Router (ASBR) procedures for multihoming of Network Virtualization Edge (NVE) devices."];
+  cites -> RFC8365;
+  RFC4023 [label="RFC4023
+Encapsulating MPLS in IP or Generic
+Routing Encapsulation (GRE)
+2005", shape=ellipse, URL="RFC4023.html", target="_top", tooltip="Various applications of MPLS make use of label stacks with multiple entries.  In some cases, it is possible to replace the top label of the stack with an IP-based encapsulation, thereby enabling the application to run over networks that do not have MPLS enabled in their core routers.  This document specifies two IP-based encapsulations: MPLS-in-IP and MPLS-in-GRE (Generic Routing Encapsulation).  Each of these is applicable in some circumstances. [STANDARDS-TRACK]"];
+  cites -> RFC4023;
+  RFC7510 [label="RFC7510
+Encapsulating MPLS in UDP
+2015", shape=ellipse, URL="RFC7510.html", target="_top", tooltip="This document specifies an IP-based encapsulation for MPLS, called MPLS-in-UDP for situations where UDP (User Datagram Protocol) encapsulation is preferred to direct use of MPLS, e.g., to enable UDP-based ECMP (Equal-Cost Multipath) or link aggregation.  The MPLS- in-UDP encapsulation technology must only be deployed within a single network (with a single network operator) or networks of an adjacent set of cooperating network operators where traffic is managed to avoid congestion, rather than over the Internet where congestion control is required.  Usage restrictions apply to MPLS-in-UDP usage for traffic that is not congestion controlled and to UDP zero checksum usage with IPv6."];
+  cites -> RFC7510;
+  RFC8926 [label="RFC8926
+Geneve: Generic Network Virtualization
+Encapsulation
+2020", shape=ellipse, URL="RFC8926.html", target="_top", tooltip="Network virtualization involves the cooperation of devices with a wide variety of capabilities such as software and hardware tunnel endpoints, transit fabrics, and centralized control clusters.  As a result of their role in tying together different elements of the system, the requirements on tunnels are influenced by all of these components.  Therefore, flexibility is the most important aspect of a tunneling protocol if it is to keep pace with the evolution of technology.  This document describes Geneve, an encapsulation protocol designed to recognize and accommodate these changing capabilities and needs."];
+  cites -> RFC8926;
+  RFC7348 [label="RFC7348
+Virtual eXtensible Local Area Network
+(VXLAN): A Framework for Overlaying
+Virtualized Layer 2 Networks over Layer
+3 Networks
+2014", shape=ellipse, URL="RFC7348.html", target="_top", tooltip="This document describes Virtual eXtensible Local Area Network (VXLAN), which is used to address the need for overlay networks within virtualized data centers accommodating multiple tenants.  The scheme and the related protocols can be used in networks for cloud service providers and enterprise data centers.  This memo documents the deployed VXLAN protocol for the benefit of the Internet community."];
+  cites -> RFC7348;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  cites -> RFC7432;
+  RFC8660 [label="RFC8660
+Segment Routing with the MPLS Data Plane
+2019", shape=ellipse, URL="RFC8660.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm.  A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header.  In the MPLS data plane, the SR header is instantiated through a label stack.  This document specifies the forwarding behavior to allow instantiating SR over the MPLS data plane (SR-MPLS)."];
+  cites -> RFC8660;
+  RFC9252 [label="RFC9252
+BGP Overlay Services Based on Segment
+Routing over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9252.html", target="_top", tooltip="This document defines procedures and messages for SRv6-based BGP services, including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and Internet services.  It builds on BGP/MPLS IP Virtual Private Networks (VPNs) (RFC 4364) and BGP MPLS-Based Ethernet VPN (RFC 7432)."];
+  cites -> RFC9252;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8754 [label="RFC8754
+IPv6 Segment Routing Header (SRH)
+2020", shape=ellipse, URL="RFC8754.html", target="_top", tooltip="Segment Routing can be applied to the IPv6 data plane using a new type of Routing Extension Header called the Segment Routing Header (SRH).  This document describes the SRH and how it is used by nodes that are Segment Routing (SR) capable."];
+  cites -> RFC8754;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7637 [label="RFC7637
+NVGRE: Network Virtualization Using
+Generic Routing Encapsulation
+2015", shape=ellipse, URL="RFC7637.html", target="_top", tooltip="This document describes the usage of the Generic Routing Encapsulation (GRE) header for Network Virtualization (NVGRE) in multi-tenant data centers.  Network Virtualization decouples virtual networks and addresses from physical network infrastructure, providing isolation and concurrency between multiple virtual networks on the same physical network infrastructure.  This document also introduces a Network Virtualization framework to illustrate the use cases, but the focus is on specifying the data-plane aspect of NVGRE."];
+  cites -> RFC7637;
+  RFC8986 [label="RFC8986
+Segment Routing over IPv6 (SRv6) Network
+Programming
+2021", shape=ellipse, URL="RFC8986.html", target="_top", tooltip="The Segment Routing over IPv6 (SRv6) Network Programming framework enables a network operator or an application to specify a packet processing program by encoding a sequence of instructions in the IPv6 packet header. Each instruction is implemented on one or several nodes in the network and identified by an SRv6 Segment Identifier in the packet. This document defines the SRv6 Network Programming concept and specifies the base set of SRv6 behaviors that enables the creation of interoperable overlays with underlay optimization."];
+  cites -> RFC8986;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  cites -> RFC7606;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  cites -> RFC9012;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9746;
+  RFC9856 [label="RFC9856
+Multicast Source Redundancy in EVPNs
+2025", shape=ellipse, URL="RFC9856.html", target="_top", tooltip="In Ethernet Virtual Private Networks (EVPNs), IP multicast traffic replication and delivery play a crucial role in enabling efficient and scalable Layer 2 and Layer 3 services.  A common deployment scenario involves redundant multicast sources that ensure high availability and resiliency.  However, the presence of redundant sources can lead to duplicate IP multicast traffic in the network, causing inefficiencies and increased overhead.  This document specifies extensions to the EVPN multicast procedures that allow for the suppression of duplicate IP multicast traffic from redundant sources.  The proposed mechanisms enhance the EVPN's capability to deliver multicast traffic efficiently while maintaining high availability.  These extensions are applicable to various EVPN deployment scenarios and provide guidelines to ensure consistent and predictable behavior across diverse network topologies."];
+  RFC9856 -> rev_cites;
+}

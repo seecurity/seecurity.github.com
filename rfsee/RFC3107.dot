@@ -1,0 +1,98 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3107 [label="RFC3107
+Carrying Label Information in BGP-4
+2001", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies the way in which the label mapping information for a particular route is piggybacked in the same Border Gateway Protocol (BGP) Update message that is used to distribute the route itself. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3107;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  RFC8277 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC3107 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3107 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3107;
+  RFC6790 [label="RFC6790
+The Use of Entropy Labels in MPLS
+Forwarding
+2012", shape=ellipse, URL="RFC6790.html", target="_top", tooltip="Load balancing is a powerful tool for engineering traffic across a network.  This memo suggests ways of improving load balancing across MPLS networks using the concept of entropy labels.  It defines the concept, describes why entropy labels are useful, enumerates properties of entropy labels that allow maximal benefit, and shows how they can be signaled and used for various applications.  This document updates RFCs 3031, 3107, 3209, and 5036. [STANDARDS-TRACK]"];
+  RFC6790 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3107 -> cites;
+  RFC2283 [label="RFC2283
+Multiprotocol Extensions for BGP-4
+1998", shape=ellipse, URL="RFC2283.html", target="_top", tooltip="This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, etc...).  The extensions are backward compatible - a router that supports the extensions can interoperate with a router that doesn't support the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC2283;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3107;
+  RFC4781 [label="RFC4781
+Graceful Restart Mechanism for BGP with
+MPLS
+2007", shape=ellipse, URL="RFC4781.html", target="_top", tooltip="A mechanism for BGP that helps minimize the negative effects on routing caused by BGP restart has already been developed and is described in a separate document (Graceful Restart Mechanism for BGP). This document extends this mechanism to minimize the negative effects on MPLS forwarding caused by the Label Switching Router's (LSR's) control plane restart, and specifically by the restart of its BGP component when BGP is used to carry MPLS labels and the LSR is capable of preserving the MPLS forwarding state across the restart. The mechanism described in this document is agnostic with respect to the types of the addresses carried in the BGP Network Layer Reachability Information (NLRI) field. As such, it works in conjunction with any of the address families that could be carried in BGP (e.g., IPv4, IPv6, etc.). [STANDARDS-TRACK]"];
+  RFC4781 -> rev_cites;
+  RFC4798 [label="RFC4798
+Connecting IPv6 Islands over IPv4 MPLS
+Using IPv6 Provider Edge Routers (6PE)
+2007", shape=ellipse, URL="RFC4798.html", target="_top", tooltip="This document explains how to interconnect IPv6 islands over a Multiprotocol Label Switching (MPLS)-enabled IPv4 cloud.  This approach relies on IPv6 Provider Edge routers (6PE), which are Dual Stack in order to connect to IPv6 islands and to the MPLS core, which is only required to run IPv4 MPLS.  The 6PE routers exchange the IPv6 reachability information transparently over the core using the Multiprotocol Border Gateway Protocol (MP-BGP) over IPv4.  In doing so, the BGP Next Hop field is used to convey the IPv4 address of the 6PE router so that dynamically established IPv4-signaled MPLS Label Switched Paths (LSPs) can be used without explicit tunnel configuration. [STANDARDS-TRACK]"];
+  RFC4798 -> rev_cites;
+  RFC4928 [label="RFC4928
+Avoiding Equal Cost Multipath Treatment
+in MPLS Networks
+2007", shape=ellipse, URL="RFC4928.html", target="_top", tooltip="This document describes the Equal Cost Multipath (ECMP) behavior of currently deployed MPLS networks.  This document makes best practice recommendations for anyone defining an application to run over an MPLS network that wishes to avoid the reordering that can result from transmission of different packets from the same flow over multiple different equal cost paths.  These recommendations rely on inspection of the IP version number field in packets.  Despite the heuristic nature of the recommendations, they provide a relatively safe way to operate MPLS networks, even if future allocations of IP version numbers were made for some purpose.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4928 -> rev_cites;
+  RFC5549 [label="RFC5549
+Advertising IPv4 Network Layer
+Reachability Information with an IPv6
+Next Hop
+2009", shape=ellipse, URL="RFC5549.html", target="_top", tooltip="Multiprotocol BGP (MP-BGP) specifies that the set of network-layer protocols to which the address carried in the Next Hop field may belong is determined by the Address Family Identifier (AFI) and the Subsequent Address Family Identifier (SAFI).  The current AFI/SAFI definitions for the IPv4 address family only have provisions for advertising a Next Hop address that belongs to the IPv4 protocol when advertising IPv4 Network Layer Reachability Information (NLRI) or VPN-IPv4 NLRI.  This document specifies the extensions necessary to allow advertising IPv4 NLRI or VPN-IPv4 NLRI with a Next Hop address that belongs to the IPv6 protocol.  This comprises an extension of the AFI/SAFI definitions to allow the address of the Next Hop for IPv4 NLRI or VPN-IPv4 NLRI to also belong to the IPv6 protocol, the encoding of the Next Hop in order to determine which of the protocols the address actually belongs to, and a new BGP Capability allowing MP-BGP Peers to dynamically discover whether they can exchange IPv4 NLRI and VPN-IPv4 NLRI with an IPv6 Next Hop. [STANDARDS-TRACK]"];
+  RFC5549 -> rev_cites;
+  RFC5695 [label="RFC5695
+MPLS Forwarding Benchmarking Methodology
+for IP Flows
+2009", shape=ellipse, URL="RFC5695.html", target="_top", tooltip="This document describes a methodology specific to the benchmarking of Multiprotocol Label Switching (MPLS) forwarding devices, limited to the most common MPLS packet forwarding scenarios and delay measurements for each, considering IP flows.  It builds upon the tenets set forth in RFC 2544, RFC 1242, and other IETF Benchmarking Methodology Working Group (BMWG) efforts.  This document seeks to extend these efforts to the MPLS paradigm.  This memo provides information for the Internet community."];
+  RFC5695 -> rev_cites;
+  RFC5884 [label="RFC5884
+Bidirectional Forwarding Detection (BFD)
+for MPLS Label Switched Paths (LSPs)
+2010", shape=ellipse, URL="RFC5884.html", target="_top", tooltip="One desirable application of Bidirectional Forwarding Detection (BFD) is to detect a Multiprotocol Label Switching (MPLS) Label Switched Path (LSP) data plane failure.  LSP Ping is an existing mechanism for detecting MPLS data plane failures and for verifying the MPLS LSP data plane against the control plane.  BFD can be used for the former, but not for the latter.  However, the control plane processing required for BFD Control packets is relatively smaller than the processing required for LSP Ping messages.  A combination of LSP Ping and BFD can be used to provide faster data plane failure detection and/or make it possible to provide such detection on a greater number of LSPs.  This document describes the applicability of BFD in relation to LSP Ping for this application.  It also describes procedures for using BFD in this environment. [STANDARDS-TRACK]"];
+  RFC5884 -> rev_cites;
+  RFC6790 [label="RFC6790
+The Use of Entropy Labels in MPLS
+Forwarding
+2012", shape=ellipse, URL="RFC6790.html", target="_top", tooltip="Load balancing is a powerful tool for engineering traffic across a network.  This memo suggests ways of improving load balancing across MPLS networks using the concept of entropy labels.  It defines the concept, describes why entropy labels are useful, enumerates properties of entropy labels that allow maximal benefit, and shows how they can be signaled and used for various applications.  This document updates RFCs 3031, 3107, 3209, and 5036. [STANDARDS-TRACK]"];
+  RFC6790 -> rev_cites;
+  RFC7032 [label="RFC7032
+LDP Downstream-on-Demand in Seamless
+MPLS
+2013", shape=ellipse, URL="RFC7032.html", target="_top", tooltip="Seamless MPLS design enables a single IP/MPLS network to scale over core, metro, and access parts of a large packet network infrastructure using standardized IP/MPLS protocols. One of the key goals of Seamless MPLS is to meet requirements specific to access networks including high number of devices, device position in network topology, and compute and memory constraints that limit the amount of state access devices can hold. This can be achieved with LDP Downstream-on-Demand (DoD) label advertisement. This document describes LDP DoD use cases and lists required LDP DoD procedures in the context of Seamless MPLS design. In addition, a new optional TLV type in the LDP Label Request message is defined for fast-up convergence."];
+  RFC7032 -> rev_cites;
+  RFC7439 [label="RFC7439
+Gap Analysis for Operating IPv6-Only
+MPLS Networks
+2015", shape=ellipse, URL="RFC7439.html", target="_top", tooltip="This document reviews the Multiprotocol Label Switching (MPLS) protocol suite in the context of IPv6 and identifies gaps that must be addressed in order to allow MPLS-related protocols and applications to be used with IPv6-only networks. This document is intended to focus on gaps in the standards defining the MPLS suite, and is not intended to highlight particular vendor implementations (or lack thereof) in the context of IPv6-only MPLS functionality. In the data plane, MPLS fully supports IPv6, and MPLS labeled packets can be carried over IPv6 packets in a variety of encapsulations. However, support for IPv6 among MPLS control-plane protocols, MPLS applications, MPLS Operations, Administration, and Maintenance (OAM), and MIB modules is mixed, with some protocols having major gaps. For most major gaps, work is in progress to upgrade the relevant protocols."];
+  RFC7439 -> rev_cites;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  RFC8029 -> rev_cites;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  RFC8277 -> rev_cites;
+}

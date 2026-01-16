@@ -1,0 +1,81 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5463 [label="RFC5463
+Sieve Email Filtering:  Ihave Extension
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the ihave extension to the Sieve email filtering language.  The ihave extension provides a means to write scripts that can take advantage of optional Sieve features but can still run when those optional features are not available.  The extension also defines a new error control command intended to be used to report situations where no combination of available extensions satisfies the needs of the script. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5463;
+
+  obs [label="obsoletes", shape=box];
+  RFC5463 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5463 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5463;
+
+  cites [label="cites", shape=box];
+  RFC5463 -> cites;
+  RFC5228 [label="RFC5228
+Sieve: An Email Filtering Language
+2008", shape=ellipse, URL="RFC5228.html", target="_top", tooltip="This document describes a language for filtering email messages at time of final delivery.  It is designed to be implementable on either a mail client or mail server.  It is meant to be extensible, simple, and independent of access protocol, mail architecture, and operating system.  It is suitable for running on a mail server where users may not be allowed to execute arbitrary programs, such as on black box Internet Message Access Protocol (IMAP) servers, as the base language has no variables, loops, or ability to shell out to external programs. [STANDARDS-TRACK]"];
+  cites -> RFC5228;
+  RFC3501 [label="RFC3501
+INTERNET MESSAGE ACCESS PROTOCOL -
+VERSION 4rev1
+2003", shape=ellipse, URL="RFC3501.html", target="_top", tooltip="The Internet Message Access Protocol, Version 4rev1 (IMAP4rev1) allows a client to access and manipulate electronic mail messages on a server.  IMAP4rev1 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders.  IMAP4rev1 also provides the capability for an offline client to resynchronize with the server.  IMAP4rev1 includes operations for creating, deleting, and renaming mailboxes, checking for new messages, permanently removing messages, setting and clearing flags, RFC 2822 and RFC 2045 parsing, searching, and selective fetching of message attributes, texts, and portions thereof.  Messages in IMAP4rev1 are accessed by the use of numbers.  These numbers are either message sequence numbers or unique identifiers.  IMAP4rev1 supports a single server.  A mechanism for accessing configuration information to support multiple IMAP4rev1 servers is discussed in RFC 2244.  IMAP4rev1 does not specify a means of posting mail; this function is handled by a mail transfer protocol such as RFC 2821. [STANDARDS-TRACK]"];
+  cites -> RFC3501;
+  RFC5229 [label="RFC5229
+Sieve Email Filtering: Variables
+Extension
+2008", shape=ellipse, URL="RFC5229.html", target="_top", tooltip="In advanced mail filtering rule sets, it is useful to keep state or configuration details across rules.  This document updates the Sieve filtering language (RFC 5228) with an extension to support variables.  The extension changes the interpretation of strings, adds an action to store data in variables, and supplies a new test so that the value of a string can be examined. [STANDARDS-TRACK]"];
+  cites -> RFC5229;
+  RFC5230 [label="RFC5230
+Sieve Email Filtering: Vacation
+Extension
+2008", shape=ellipse, URL="RFC5230.html", target="_top", tooltip="This document describes an extension to the Sieve email filtering language for an autoresponder similar to that of the Unix vacation command for replying to messages.  Various safety features are included to prevent problems such as message loops. [STANDARDS-TRACK]"];
+  cites -> RFC5230;
+  RFC5231 [label="RFC5231
+Sieve Email Filtering: Relational
+Extension
+2008", shape=ellipse, URL="RFC5231.html", target="_top", tooltip="This document describes the RELATIONAL extension to the Sieve mail filtering language defined in RFC 3028. This extension extends existing conditional tests in Sieve to allow relational operators. In addition to testing their content, it also allows for testing of the number of entities in header and envelope fields. This document obsoletes RFC 3431. [STANDARDS-TRACK]"];
+  cites -> RFC5231;
+  RFC5232 [label="RFC5232
+Sieve Email Filtering: Imap4flags
+Extension
+2008", shape=ellipse, URL="RFC5232.html", target="_top", tooltip="Recent discussions have shown that it is desirable to set different IMAP (RFC 3501) flags on message delivery. This can be done, for example, by a Sieve interpreter that works as a part of a Mail Delivery Agent. This document describes an extension to the Sieve mail filtering language for setting IMAP flags. The extension allows setting of both IMAP system flags and IMAP keywords. [STANDARDS-TRACK]"];
+  cites -> RFC5232;
+  RFC5233 [label="RFC5233
+Sieve Email Filtering: Subaddress
+Extension
+2008", shape=ellipse, URL="RFC5233.html", target="_top", tooltip="On email systems that allow for 'subaddressing' or 'detailed addressing' (e.g., ken+sieve@example.org), it is sometimes desirable to make comparisons against these sub-parts of addresses.  This document defines an extension to the Sieve Email Filtering Language that allows users to compare against the user and detail sub-parts of an address. [STANDARDS-TRACK]"];
+  cites -> RFC5233;
+  RFC5235 [label="RFC5235
+Sieve Email Filtering: Spamtest and
+Virustest Extensions
+2008", shape=ellipse, URL="RFC5235.html", target="_top", tooltip="The Sieve email filtering language spamtest, spamtestplus, and virustest extensions permit users to use simple, portable commands for spam and virus tests on email messages.  Each extension provides a new test using matches against numeric scores.  It is the responsibility of the underlying Sieve implementation to do the actual checks that result in proper input to the tests. [STANDARDS-TRACK]"];
+  cites -> RFC5235;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5463;
+  RFC6134 [label="RFC6134
+Sieve Extension: Externally Stored Lists
+2011", shape=ellipse, URL="RFC6134.html", target="_top", tooltip="The Sieve email filtering language can be used to implement email whitelisting, blacklisting, personal distribution lists, and other sorts of list matching. Currently, this requires that all members of such lists be hard-coded in the script itself. Whenever a member of a list is added or deleted, the script needs to be updated and possibly uploaded to a mail server. This document defines a Sieve extension for accessing externally stored lists -- lists whose members are stored externally to the script, such as using the Lightweight Directory Access Protocol (LDAP), the Application Configuration Access Protocol (ACAP), vCard Extensions to WebDAV (CardDAV), or relational databases. [STANDARDS-TRACK]"];
+  RFC6134 -> rev_cites;
+  RFC9661 [label="RFC9661
+The JSON Meta Application Protocol
+(JMAP) for Sieve Scripts
+2024", shape=ellipse, URL="RFC9661.html", target="_top", tooltip="This document specifies a data model for managing Sieve scripts on a server using the JSON Meta Application Protocol (JMAP).  Clients can use this protocol to efficiently search, access, organize, and validate Sieve scripts."];
+  RFC9661 -> rev_cites;
+}

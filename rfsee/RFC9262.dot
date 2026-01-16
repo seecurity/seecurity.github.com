@@ -1,0 +1,143 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9262 [label="RFC9262
+Tree Engineering for Bit Index Explicit
+Replication (BIER-TE)
+2022", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo describes per-packet stateless strict and loose path steered replication and forwarding for Bit Index Explicit Replication (BIER) packets (RFC 8279); it is called Tree Engineering for Bit Index Explicit Replication (BIER-TE) and is intended to be used as the path steering mechanism for Traffic Engineering with BIER. BIER-TE introduces a new semantic for bit positions (BPs). These BPs indicate adjacencies of the network topology, as opposed to (non-TE) BIER in which BPs indicate Bit-Forwarding Egress Routers (BFERs). A BIER-TE packets BitString therefore indicates the edges of the (loop-free) tree across which the packets are forwarded by BIER-TE. BIER-TE can leverage BIER forwarding engines with little changes. Co-existence of BIER and BIER-TE forwarding in the same domain is possible -- for example, by using separate BIER subdomains (SDs). Except for the optional routed adjacencies, BIER-TE does not require a BIER routing underlay and can therefore operate without depending on a routing protocol such as the Interior Gateway Protocol (IGP)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9262;
+
+  obs [label="obsoletes", shape=box];
+  RFC9262 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9262 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9262;
+
+  cites [label="cites", shape=box];
+  RFC9262 -> cites;
+  RFC8279 [label="RFC8279
+Multicast Using Bit Index Explicit
+Replication (BIER)
+2017", shape=ellipse, URL="RFC8279.html", target="_top", tooltip="This document specifies a new architecture for the forwarding of multicast data packets.  It provides optimal forwarding of multicast packets through a multicast domain.  However, it does not require a protocol for explicitly building multicast distribution trees, nor does it require intermediate nodes to maintain any per-flow state.  This architecture is known as Bit Index Explicit Replication (BIER).  When a multicast data packet enters the domain, the ingress router determines the set of egress routers to which the packet needs to be sent.  The ingress router then encapsulates the packet in a BIER header.  The BIER header contains a bit string in which each bit represents exactly one egress router in the domain; to forward the packet to a given set of egress routers, the bits corresponding to those routers are set in the BIER header.  The procedures for forwarding a packet based on its BIER header are specified in this document.  Elimination of the per-flow state and the explicit tree-building protocols results in a considerable simplification."];
+  cites -> RFC8279;
+  RFC8296 [label="RFC8296
+Encapsulation for Bit Index Explicit
+Replication (BIER) in MPLS and Non-MPLS
+Networks
+2018", shape=ellipse, URL="RFC8296.html", target="_top", tooltip="Bit Index Explicit Replication (BIER) is an architecture that provides optimal multicast forwarding through a multicast domain, without requiring intermediate routers to maintain any per-flow state or to engage in an explicit tree-building protocol.  When a multicast data packet enters the domain, the ingress router determines the set of egress routers to which the packet needs to be sent.  The ingress router then encapsulates the packet in a BIER header.  The BIER header contains a bit string in which each bit represents exactly one egress router in the domain; to forward the packet to a given set of egress routers, the bits corresponding to those routers are set in the BIER header.  The details of the encapsulation depend on the type of network used to realize the multicast domain.  This document specifies a BIER encapsulation that can be used in an MPLS network or, with slight differences, in a non-MPLS network."];
+  cites -> RFC8296;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8401 [label="RFC8401
+Bit Index Explicit Replication (BIER)
+Support via IS-IS
+2018", shape=ellipse, URL="RFC8401.html", target="_top", tooltip="This document defines IS-IS extensions to support multicast forwarding using the Bit Index Explicit Replication (BIER) architecture."];
+  cites -> RFC8401;
+  RFC8444 [label="RFC8444
+OSPFv2 Extensions for Bit Index Explicit
+Replication (BIER)
+2018", shape=ellipse, URL="RFC8444.html", target="_top", tooltip="Bit Index Explicit Replication (BIER) is an architecture that provides optimal multicast forwarding through a BIER domain without requiring intermediate routers to maintain multicast-related, per- flow state. BIER also does not require an explicit tree-building protocol for its operation. A multicast data packet enters a BIER domain at a Bit-Forwarding Ingress Router (BFIR) and leaves the BIER domain at one or more Bit-Forwarding Egress Routers (BFERs). The BFIR adds a BIER packet header to the packet. The BIER packet header contains a BitString in which each bit represents exactly one BFER to forward the packet to. The set of BFERs to which the multicast packet needs to be forwarded is expressed by the set of bits in the BIER packet header. This document describes the OSPF protocol extension (from RFC 2328) that is required for BIER with MPLS encapsulation (which is defined in RFC 8296). Support for other encapsulation types and the use of multiple encapsulation types are outside the scope of this document."];
+  cites -> RFC8444;
+  RFC8556 [label="RFC8556
+Multicast VPN Using Bit Index Explicit
+Replication (BIER)
+2019", shape=ellipse, URL="RFC8556.html", target="_top", tooltip="The Multicast Virtual Private Network (MVPN) specifications require the use of multicast tunnels (P-tunnels) that traverse a service provider's backbone network.  The P-tunnels are used for carrying multicast traffic across the backbone.  A variety of P-tunnel types are supported.  Bit Index Explicit Replication (BIER) is a new architecture that provides optimal multicast forwarding through a multicast domain, without requiring intermediate routers to maintain any per-flow state or to engage in an explicit tree-building protocol.  This document specifies the protocol and procedures that allow MVPN to use BIER as the method of carrying multicast traffic over a service provider's backbone network."];
+  cites -> RFC8556;
+  RFC4456 [label="RFC4456
+BGP Route Reflection: An Alternative to
+Full Mesh Internal BGP (IBGP)
+2006", shape=ellipse, URL="RFC4456.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for TCP/IP internets. Typically, all BGP speakers within a single AS must be fully meshed so that any external routing information must be re-distributed to all other routers within that Autonomous System (AS). This represents a serious scaling problem that has been well documented with several alternatives proposed. This document describes the use and design of a method known as route reflection to alleviate the need for full mesh Internal BGP (IBGP). This document obsoletes RFC 2796 and RFC 1966. [STANDARDS-TRACK]"];
+  cites -> RFC4456;
+  RFC7950 [label="RFC7950
+The YANG 1.1 Data Modeling Language
+2016", shape=ellipse, URL="RFC7950.html", target="_top", tooltip="YANG is a data modeling language used to model configuration data, state data, Remote Procedure Calls, and notifications for network management protocols.  This document describes the syntax and semantics of version 1.1 of the YANG language.  YANG version 1.1 is a maintenance release of the YANG language, addressing ambiguities and defects in the original specification.  There are a small number of backward incompatibilities from YANG version 1.  This document also specifies the YANG mappings to the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC7950;
+  RFC6241 [label="RFC6241
+Network Configuration Protocol (NETCONF)
+2011", shape=ellipse, URL="RFC6241.html", target="_top", tooltip="The Network Configuration Protocol (NETCONF) defined in this document provides mechanisms to install, manipulate, and delete the configuration of network devices.  It uses an Extensible Markup Language (XML)-based data encoding for the configuration data as well as the protocol messages.  The NETCONF protocol operations are realized as remote procedure calls (RPCs).  This document obsoletes RFC 4741. [STANDARDS-TRACK]"];
+  cites -> RFC6241;
+  RFC8040 [label="RFC8040
+RESTCONF Protocol
+2017", shape=ellipse, URL="RFC8040.html", target="_top", tooltip="This document describes an HTTP-based protocol that provides a programmatic interface for accessing data defined in YANG, using the datastore concepts defined in the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC8040;
+  RFC5440 [label="RFC5440
+Path Computation Element (PCE)
+Communication Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5440.html", target="_top", tooltip="This document specifies the Path Computation Element (PCE) Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a PCE, or between two PCEs.  Such interactions include path computation requests and path computation replies as well as notifications of specific states related to the use of a PCE in the context of Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering.  PCEP is designed to be flexible and extensible so as to easily allow for the addition of further messages and objects, should further requirements be expressed in the future. [STANDARDS-TRACK]"];
+  cites -> RFC5440;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  cites -> RFC7752;
+  RFC8345 [label="RFC8345
+A YANG Data Model for Network Topologies
+2018", shape=ellipse, URL="RFC8345.html", target="_top", tooltip="This document defines an abstract (generic, or base) YANG data model for network/service topologies and inventories.  The data model serves as a base model that is augmented with technology-specific details in other, more specific topology and inventory data models."];
+  cites -> RFC8345;
+  RFC4253 [label="RFC4253
+The Secure Shell (SSH) Transport Layer
+Protocol
+2006", shape=ellipse, URL="RFC4253.html", target="_top", tooltip="The Secure Shell (SSH) is a protocol for secure remote login and other secure network services over an insecure network. This document describes the SSH transport layer protocol, which typically runs on top of TCP/IP. The protocol can be used as a basis for a number of secure network services. It provides strong encryption, server authentication, and integrity protection. It may also provide compression. Key exchange method, public key algorithm, symmetric encryption algorithm, message authentication algorithm, and hash algorithm are all negotiated. This document also describes the Diffie-Hellman key exchange method and the minimal set of algorithms that are needed to implement the SSH transport layer protocol. [STANDARDS-TRACK]"];
+  cites -> RFC4253;
+  RFC6242 [label="RFC6242
+Using the NETCONF Protocol over Secure
+Shell (SSH)
+2011", shape=ellipse, URL="RFC6242.html", target="_top", tooltip="This document describes a method for invoking and running the Network Configuration Protocol (NETCONF) within a Secure Shell (SSH) session as an SSH subsystem.  This document obsoletes RFC 4742. [STANDARDS-TRACK]"];
+  cites -> RFC6242;
+  RFC8253 [label="RFC8253
+PCEPS: Usage of TLS to Provide a Secure
+Transport for the Path Computation
+Element Communication Protocol (PCEP)
+2017", shape=ellipse, URL="RFC8253.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) defines the mechanisms for the communication between a Path Computation Client (PCC) and a Path Computation Element (PCE), or among PCEs. This document describes PCEPS -- the usage of Transport Layer Security (TLS) to provide a secure transport for PCEP. The additional security mechanisms are provided by the transport protocol supporting PCEP; therefore, they do not affect the flexibility and extensibility of PCEP. This document updates RFC 5440 in regards to the PCEP initialization phase procedures."];
+  cites -> RFC8253;
+  RFC7589 [label="RFC7589
+Using the NETCONF Protocol over
+Transport Layer Security (TLS) with
+Mutual X.509 Authentication
+2015", shape=ellipse, URL="RFC7589.html", target="_top", tooltip="The Network Configuration Protocol (NETCONF) provides mechanisms to install, manipulate, and delete the configuration of network devices.  This document describes how to use the Transport Layer Security (TLS) protocol with mutual X.509 authentication to secure the exchange of NETCONF messages.  This revision of RFC 5539 documents the new message framing used by NETCONF 1.1 and it obsoletes RFC 5539."];
+  cites -> RFC7589;
+  RFC4655 [label="RFC4655
+A Path Computation Element (PCE)-Based
+Architecture
+2006", shape=ellipse, URL="RFC4655.html", target="_top", tooltip="Constraint-based path computation is a fundamental building block for traffic engineering systems such as Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) networks. Path computation in large, multi-domain, multi-region, or multi-layer networks is complex and may require special computational components and cooperation between the different network domains. This document specifies the architecture for a Path Computation Element (PCE)-based model to address this problem space. This document does not attempt to provide a detailed description of all the architectural components, but rather it describes a set of building blocks for the PCE architecture from which solutions may be constructed. This memo provides information for the Internet community."];
+  cites -> RFC4655;
+  RFC7988 [label="RFC7988
+Ingress Replication Tunnels in Multicast
+VPN
+2016", shape=ellipse, URL="RFC7988.html", target="_top", tooltip="RFCs 6513, 6514, and other RFCs describe procedures by which a Service Provider may offer Multicast VPN (MVPN) service to its customers.  These procedures create point-to-multipoint (P2MP) or multipoint-to-multipoint (MP2MP) trees across the Service Provider's backbone.  One type of P2MP tree that may be used is known as an Ingress Replication (IR) tunnel.  In an IR tunnel, a parent node need not be directly connected to its child nodes.  When a parent node has to send a multicast data packet to its n child nodes, it does not use Layer 2 multicast, IP multicast, or MPLS multicast to do so.  Rather, it makes n individual copies, and then unicasts each copy, through an IP or MPLS unicast tunnel, to exactly one child node.  While the prior MVPN specifications allow the use of IR tunnels, those specifications are not always very clear or explicit about how the MVPN protocol elements and procedures are applied to IR tunnels.  This document updates RFCs 6513 and 6514 by adding additional details that are specific to the use of IR tunnels."];
+  cites -> RFC7988;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9262;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, URL="RFC9689.html", target="_top", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."];
+  RFC9689 -> rev_cites;
+}

@@ -1,0 +1,121 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5014 [label="RFC5014
+IPv6 Socket API for Source Address
+Selection
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IPv6 default address selection document (RFC 3484) describes the rules for selecting source and destination IPv6 addresses, and indicates that applications should be able to reverse the sense of some of the address selection rules through some unspecified API.  However, no such socket API exists in the basic (RFC 3493) or advanced (RFC 3542) IPv6 socket API documents.  This document fills that gap partially by specifying new socket-level options for source address selection and flags for the getaddrinfo() API to specify address selection based on the source address preference in accordance with the socket-level options that modify the default source address selection algorithm.  The socket API described in this document will be particularly useful for IPv6 applications that want to choose between temporary and public addresses, and for Mobile IPv6 aware applications that want to use the care-of address for communication.  It also specifies socket options and flags for selecting Cryptographically Generated Address (CGA) or non-CGA source addresses.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5014;
+
+  obs [label="obsoletes", shape=box];
+  RFC5014 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5014 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5014;
+
+  cites [label="cites", shape=box];
+  RFC5014 -> cites;
+  RFC3484 [label="RFC3484
+Default Address Selection for Internet
+Protocol version 6 (IPv6)
+2003", shape=ellipse, URL="RFC3484.html", target="_top", tooltip="This document describes two algorithms, for source address selection and for destination address selection.  The algorithms specify default behavior for all Internet Protocol version 6 (IPv6) implementations.  They do not override choices made by applications or upper-layer protocols, nor do they preclude the development of more advanced mechanisms for address selection.  The two algorithms share a common context, including an optional mechanism for allowing administrators to provide policy that can override the default behavior.  In dual stack implementations, the destination address selection algorithm can consider both IPv4 and IPv6 addresses - depending on the available source addresses, the algorithm might prefer IPv6 addresses over IPv4 addresses, or vice-versa.  All IPv6 nodes, including both hosts and routers, must implement default address selection as defined in this specification. [STANDARDS-TRACK]"];
+  cites -> RFC3484;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC3041 [label="RFC3041
+Privacy Extensions for Stateless Address
+Autoconfiguration in IPv6
+2001", shape=ellipse, URL="RFC3041.html", target="_top", tooltip="This document describes an extension to IPv6 stateless address autoconfiguration for interfaces whose interface identifier is derived from an IEEE identifier. [STANDARDS-TRACK]"];
+  cites -> RFC3041;
+  RFC3775 [label="RFC3775
+Mobility Support in IPv6
+2004", shape=ellipse, URL="RFC3775.html", target="_top", tooltip="This document specifies a protocol which allows nodes to remain reachable while moving around in the IPv6 Internet.  Each mobile node is always identified by its home address, regardless of its current point of attachment to the Internet.  While situated away from its home, a mobile node is also associated with a care-of address, which provides information about the mobile node's current location.  IPv6 packets addressed to a mobile node's home address are transparently routed to its care-of address.  The protocol enables IPv6 nodes to cache the binding of a mobile node's home address with its care-of address, and to then send any packets destined for the mobile node directly to it at this care-of address.  To support this operation, Mobile IPv6 defines a new IPv6 protocol and a new destination option.  All IPv6 nodes, whether mobile or stationary, can communicate with mobile nodes. [STANDARDS-TRACK]"];
+  cites -> RFC3775;
+  RFC3542 [label="RFC3542
+Advanced Sockets Application Program
+Interface (API) for IPv6
+2003", shape=ellipse, URL="RFC3542.html", target="_top", tooltip="This document provides sockets Application Program Interface (API) to support advanced IPv6 applications, as a supplement to a separate specification, RFC 3493.  The expected applications include Ping, Traceroute, routing daemons and the like, which typically use raw sockets to access IPv6 or ICMPv6 header fields.  This document proposes some portable interfaces for applications that use raw sockets under IPv6.  There are other features of IPv6 that some applications will need to access: interface identification (specifying the outgoing interface and determining the incoming interface), IPv6 extension headers, and path Maximum Transmission Unit (MTU) information.  This document provides API access to these features too.  Additionally, some extended interfaces to libraries for the r commands are defined.  The extension will provide better backward compatibility to existing implementations that are not IPv6-capable.  This memo provides information for the Internet community."];
+  cites -> RFC3542;
+  RFC3972 [label="RFC3972
+Cryptographically Generated Addresses
+(CGA)
+2005", shape=ellipse, URL="RFC3972.html", target="_top", tooltip="This document describes a method for binding a public signature key to an IPv6 address in the Secure Neighbor Discovery (SEND) protocol.  Cryptographically Generated Addresses (CGA) are IPv6 addresses for which the interface identifier is generated by computing a cryptographic one-way hash function from a public key and auxiliary parameters.  The binding between the public key and the address can be verified by re-computing the hash value and by comparing the hash with the interface identifier.  Messages sent from an IPv6 address can be protected by attaching the public key and auxiliary parameters and by signing the message with the corresponding private key.  The protection works without a certification authority or any security infrastructure. [STANDARDS-TRACK]"];
+  cites -> RFC3972;
+  RFC3493 [label="RFC3493
+Basic Socket Interface Extensions for
+IPv6
+2003", shape=ellipse, URL="RFC3493.html", target="_top", tooltip="The de facto standard Application Program Interface (API) for TCP/IP applications is the sockets interface.  Although this API was developed for Unix in the early 1980s it has also been implemented on a wide variety of non-Unix systems.  TCP/IP applications written using the sockets API have in the past enjoyed a high degree of portability and we would like the same portability with IPv6 applications.  But changes are required to the sockets API to support IPv6 and this memo describes these changes.  These include a new socket address structure to carry IPv6 addresses, new address conversion functions, and some new socket options.  These extensions are designed to provide access to the basic IPv6 features required by TCP and UDP applications, including multicasting, while introducing a minimum of change into the system and providing complete compatibility for existing IPv4 applications.  Additional extensions for advanced IPv6 features (raw sockets and access to the IPv6 extension headers) are defined in another document.  This memo provides information for the Internet community."];
+  cites -> RFC3493;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3971 [label="RFC3971
+SEcure Neighbor Discovery (SEND)
+2005", shape=ellipse, URL="RFC3971.html", target="_top", tooltip="IPv6 nodes use the Neighbor Discovery Protocol (NDP) to discover other nodes on the link, to determine their link-layer addresses to find routers, and to maintain reachability information about the paths to active neighbors.  If not secured, NDP is vulnerable to various attacks.  This document specifies security mechanisms for NDP.  Unlike those in the original NDP specifications, these mechanisms do not use IPsec. [STANDARDS-TRACK]"];
+  cites -> RFC3971;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5014;
+  RFC5220 [label="RFC5220
+Problem Statement for Default Address
+Selection in Multi-Prefix Environments:
+Operational Issues of RFC 3484 Default
+Rules
+2008", shape=ellipse, URL="RFC5220.html", target="_top", tooltip="A single physical link can have multiple prefixes assigned to it.  In that environment, end hosts might have multiple IP addresses and be required to use them selectively.  RFC 3484 defines default source and destination address selection rules and is implemented in a variety of OSs.  But, it has been too difficult to use operationally for several reasons.  In some environments where multiple prefixes are assigned on a single physical link, the host using the default address selection rules will experience some trouble in communication.  This document describes the possible problems that end hosts could encounter in an environment with multiple prefixes.  This memo provides information for the Internet community."];
+  RFC5220 -> rev_cites;
+  RFC6317 [label="RFC6317
+Basic Socket Interface Extensions for
+the Host Identity Protocol (HIP)
+2011", shape=ellipse, URL="RFC6317.html", target="_top", tooltip="This document defines extensions to the current sockets API for the Host Identity Protocol (HIP).  The extensions focus on the use of public-key-based identifiers discovered via DNS resolution, but also define interfaces for manual bindings between Host Identity Tags (HITs) and locators.  With the extensions, the application can also support more relaxed security models where communication can be non-HIP-based, according to local policies.  The extensions in this document are experimental and provide basic tools for further experimentation with policies.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6317 -> rev_cites;
+  RFC6418 [label="RFC6418
+Multiple Interfaces and Provisioning
+Domains Problem Statement
+2011", shape=ellipse, URL="RFC6418.html", target="_top", tooltip="This document describes issues encountered by a node attached to multiple provisioning domains.  This node receives configuration information from each of its provisioning domains, where some configuration objects are global to the node and others are local to the interface.  Issues such as selecting the wrong interface to send traffic happen when conflicting node-scoped configuration objects are received and inappropriately used.  Moreover, other issues are the result of simultaneous attachment to multiple networks, such as domain selection or addressing and naming space overlaps, regardless of the provisioning mechanism.  While multiple provisioning domains are typically seen on nodes with multiple interfaces, this document also discusses situations involving single-interface nodes.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6418 -> rev_cites;
+  RFC6434 [label="RFC6434
+IPv6 Node Requirements
+2011", shape=ellipse, URL="RFC6434.html", target="_top", tooltip="This document defines requirements for IPv6 nodes.  It is expected that IPv6 will be deployed in a wide range of devices and situations.  Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6434 -> rev_cites;
+  RFC6724 [label="RFC6724
+Default Address Selection for Internet
+Protocol Version 6 (IPv6)
+2012", shape=ellipse, URL="RFC6724.html", target="_top", tooltip="This document describes two algorithms, one for source address selection and one for destination address selection. The algorithms specify default behavior for all Internet Protocol version 6 (IPv6) implementations. They do not override choices made by applications or upper-layer protocols, nor do they preclude the development of more advanced mechanisms for address selection. The two algorithms share a common context, including an optional mechanism for allowing administrators to provide policy that can override the default behavior. In dual-stack implementations, the destination address selection algorithm can consider both IPv4 and IPv6 addresses -- depending on the available source addresses, the algorithm might prefer IPv6 addresses over IPv4 addresses, or vice versa. Default address selection as defined in this specification applies to all IPv6 nodes, including both hosts and routers. This document obsoletes RFC 3484. [STANDARDS-TRACK]"];
+  RFC6724 -> rev_cites;
+  RFC7429 [label="RFC7429
+Distributed Mobility Management: Current
+Practices and Gap Analysis
+2015", shape=ellipse, URL="RFC7429.html", target="_top", tooltip="This document analyzes deployment practices of existing IP mobility protocols in a distributed mobility management environment.  It then identifies existing limitations when compared to the requirements defined for a distributed mobility management solution."];
+  RFC7429 -> rev_cites;
+  RFC8504 [label="RFC8504
+IPv6 Node Requirements
+2019", shape=ellipse, URL="RFC8504.html", target="_top", tooltip="This document defines requirements for IPv6 nodes. It is expected that IPv6 will be deployed in a wide range of devices and situations. Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments. This document obsoletes RFC 6434, and in turn RFC 4294."];
+  RFC8504 -> rev_cites;
+  RFC8653 [label="RFC8653
+On-Demand Mobility Management
+2019", shape=ellipse, URL="RFC8653.html", target="_top", tooltip="Applications differ with respect to whether they need session continuity and/or IP address reachability.  The network providing the same type of service to any mobile host and any application running on the host yields inefficiencies, as described in RFC 7333.  This document defines a new concept of enabling applications to influence the network's mobility services (session continuity and/or IP address reachability) on a per-socket basis, and suggests extensions to the networking stack's API to accommodate this concept."];
+  RFC8653 -> rev_cites;
+  RFC8835 [label="RFC8835
+Transports for WebRTC
+2021", shape=ellipse, URL="RFC8835.html", target="_top", tooltip="This document describes the data transport protocols used by Web Real-Time Communication (WebRTC), including the protocols used for interaction with intermediate boxes such as firewalls, relays, and NAT boxes."];
+  RFC8835 -> rev_cites;
+  RFC8981 [label="RFC8981
+Temporary Address Extensions for
+Stateless Address Autoconfiguration in
+IPv6
+2021", shape=ellipse, URL="RFC8981.html", target="_top", tooltip="This document describes an extension to IPv6 Stateless Address Autoconfiguration that causes hosts to generate temporary addresses with randomized interface identifiers for each prefix advertised with autoconfiguration enabled.  Changing addresses over time limits the window of time during which eavesdroppers and other information collectors may trivially perform address-based network-activity correlation when the same address is employed for multiple transactions by the same host.  Additionally, it reduces the window of exposure of a host as being accessible via an address that becomes revealed as a result of active communication.  This document obsoletes RFC 4941."];
+  RFC8981 -> rev_cites;
+}

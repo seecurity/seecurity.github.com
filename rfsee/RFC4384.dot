@@ -1,0 +1,65 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4384 [label="RFC4384
+BGP Communities for Data Collection
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="BGP communities (RFC 1997) are used by service providers for many purposes, including tagging of customer, peer, and geographically originated routes.  Such tagging is typically used to control the scope of redistribution of routes within a provider's network and to its peers and customers.  With the advent of large-scale BGP data collection (and associated research), it has become clear that the information carried in such communities is essential for a deeper understanding of the global routing system.  This memo defines standard (outbound) communities and their encodings for export to BGP route collectors.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4384;
+
+  obs [label="obsoletes", shape=box];
+  RFC4384 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4384 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4384;
+
+  cites [label="cites", shape=box];
+  RFC4384 -> cites;
+  RFC1997 [label="RFC1997
+BGP Communities Attribute
+1996", shape=ellipse, URL="RFC1997.html", target="_top", tooltip="This document describes an extension to BGP which may be used to pass additional information to both neighboring and remote BGP peers. [STANDARDS-TRACK]"];
+  cites -> RFC1997;
+  RFC1771 [label="RFC1771
+A Border Gateway Protocol 4 (BGP-4)
+1995", shape=ellipse, URL="RFC1771.html", target="_top", tooltip="This document, together with its companion document, Application of the Border Gateway Protocol in the Internet, define an inter-autonomous system routing protocol for the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC1771;
+  RFC4360 [label="RFC4360
+BGP Extended Communities Attribute
+2006", shape=ellipse, URL="RFC4360.html", target="_top", tooltip="This document describes the extended community BGP-4 attribute.  This attribute provides a mechanism for labeling information carried in BGP-4.  These labels can be used to control the distribution of this information, or for other applications. [STANDARDS-TRACK]"];
+  cites -> RFC4360;
+  RFC3258 [label="RFC3258
+Distributing Authoritative Name Servers
+via Shared Unicast Addresses
+2002", shape=ellipse, URL="RFC3258.html", target="_top", tooltip="This memo describes a set of practices intended to enable an authoritative name server operator to provide access to a single named server in multiple locations.  The primary motivation for the development and deployment of these practices is to increase the distribution of Domain Name System (DNS) servers to previously under- served areas of the network topology and to reduce the latency for DNS query responses in those areas.  This memo provides information for the Internet community."];
+  cites -> RFC3258;
+  RFC2434 [label="RFC2434
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+1998", shape=ellipse, URL="RFC2434.html", target="_top", tooltip="This document discusses issues that should be considered in formulating a policy for assigning values to a name space and provides guidelines to document authors on the specific text that must be included in documents that place demands on the IANA.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2434;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4384;
+  RFC6183 [label="RFC6183
+IP Flow Information Export (IPFIX)
+Mediation: Framework
+2011", shape=ellipse, URL="RFC6183.html", target="_top", tooltip="This document describes a framework for IP Flow Information Export (IPFIX) Mediation.  This framework extends the IPFIX reference model specified in RFC 5470 by defining the IPFIX Mediator components.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6183 -> rev_cites;
+  RFC7789 [label="RFC7789
+Impact of BGP Filtering on Inter-Domain
+Routing Policies
+2016", shape=ellipse, URL="RFC7789.html", target="_top", tooltip="This document describes how unexpected traffic flows can emerge across an autonomous system as the result of other autonomous systems filtering or restricting the propagation of more-specific prefixes.  We provide a review of the techniques to detect the occurrence of this issue and defend against it."];
+  RFC7789 -> rev_cites;
+  RFC8549 [label="RFC8549
+Export of BGP Community Information in
+IP Flow Information Export (IPFIX)
+2019", shape=ellipse, URL="RFC8549.html", target="_top", tooltip="By introducing new Information Elements (IEs), this document extends the existing BGP-related IEs to enable IP Flow Information Export (IPFIX) to export BGP community information, including the BGP Standard Communities defined in RFC 1997, BGP Extended Communities defined in RFC 4360, and BGP Large Communities defined in RFC 8092.  According to the network operator's BGP community planning, network traffic information can then be accumulated and analyzed at the BGP community granularity, which represents the traffic of different kinds of customers, services, or geographical regions.  Network traffic information at the BGP community granularity is useful for network traffic analysis and engineering."];
+  RFC8549 -> rev_cites;
+}

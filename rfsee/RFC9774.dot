@@ -1,0 +1,111 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9774 [label="RFC9774
+Deprecation of AS_SET and AS_CONFED_SET
+in BGP
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="BCP 172 (i.e., RFC 6472) recommends not using AS_SET and AS_CONFED_SET AS_PATH segment types in the Border Gateway Protocol (BGP).  This document advances that recommendation to a standards requirement in BGP; it prohibits the use of the AS_SET and AS_CONFED_SET path segment types in the AS_PATH.  This is done to simplify the design and implementation of BGP and to make the semantics of the originator of a BGP route clearer.  This will also simplify the design, implementation, and deployment of various BGP security mechanisms.  This document updates RFC 4271 by deprecating the origination of BGP routes with AS_SET (Type 1 AS_PATH segment) and updates RFC 5065 by deprecating the origination of BGP routes with AS_CONFED_SET (Type 4 AS_PATH segment).  Finally, it obsoletes RFC 6472."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9774;
+
+  obs [label="obsoletes", shape=box];
+  RFC9774 -> obs;
+  RFC6472 [label="RFC6472
+Recommendation for Not Using AS_SET and
+AS_CONFED_SET in BGP
+2011", shape=ellipse, URL="RFC6472.html", target="_top", tooltip="This document recommends against the use of the AS_SET and AS_CONFED_SET types of the AS_PATH in BGPv4.  This is done to simplify the design and implementation of BGP and to make the semantics of the originator of a route more clear.  This will also simplify the design, implementation, and deployment of ongoing work in the Secure Inter-Domain Routing Working Group.  This memo documents an Internet Best Current Practice."];
+  obs -> RFC6472;
+
+  updates [label="updates", shape=box];
+  RFC9774 -> updates;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  updates -> RFC4271;
+  RFC5065 [label="RFC5065
+Autonomous System Confederations for BGP
+2007", shape=ellipse, URL="RFC5065.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for Transmission Control Protocol/Internet Protocol (TCP/IP) networks. BGP requires that all BGP speakers within a single autonomous system (AS) must be fully meshed. This represents a serious scaling problem that has been well documented in a number of proposals. This document describes an extension to BGP that may be used to create a confederation of autonomous systems that is represented as a single autonomous system to BGP peers external to the confederation, thereby removing the full mesh requirement. The intention of this extension is to aid in policy administration and reduce the management complexity of maintaining a large autonomous system. This document obsoletes RFC 3065. [STANDARDS-TRACK]"];
+  updates -> RFC5065;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9774;
+
+  cites [label="cites", shape=box];
+  RFC9774 -> cites;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC5065 [label="RFC5065
+Autonomous System Confederations for BGP
+2007", shape=ellipse, URL="RFC5065.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for Transmission Control Protocol/Internet Protocol (TCP/IP) networks. BGP requires that all BGP speakers within a single autonomous system (AS) must be fully meshed. This represents a serious scaling problem that has been well documented in a number of proposals. This document describes an extension to BGP that may be used to create a confederation of autonomous systems that is represented as a single autonomous system to BGP peers external to the confederation, thereby removing the full mesh requirement. The intention of this extension is to aid in policy administration and reduce the management complexity of maintaining a large autonomous system. This document obsoletes RFC 3065. [STANDARDS-TRACK]"];
+  cites -> RFC5065;
+  RFC6811 [label="RFC6811
+BGP Prefix Origin Validation
+2013", shape=ellipse, URL="RFC6811.html", target="_top", tooltip="To help reduce well-known threats against BGP including prefix mis- announcing and monkey-in-the-middle attacks, one of the security requirements is the ability to validate the origination Autonomous System (AS) of BGP routes.  More specifically, one needs to validate that the AS number claiming to originate an address prefix (as derived from the AS_PATH attribute of the BGP route) is in fact authorized by the prefix holder to do so.  This document describes a simple validation mechanism to partially satisfy this requirement. [STANDARDS-TRACK]"];
+  cites -> RFC6811;
+  RFC6907 [label="RFC6907
+Use Cases and Interpretations of
+Resource Public Key Infrastructure
+(RPKI) Objects for Issuers and Relying
+Parties
+2013", shape=ellipse, URL="RFC6907.html", target="_top", tooltip="This document describes a number of use cases together with directions and interpretations for organizations and relying parties when creating or encountering Resource Public Key Infrastructure (RPKI) object scenarios in the public RPKI.  All of these items are discussed here in relation to the Internet routing system."];
+  cites -> RFC6907;
+  RFC9319 [label="RFC9319
+The Use of maxLength in the Resource
+Public Key Infrastructure (RPKI)
+2022", shape=ellipse, URL="RFC9319.html", target="_top", tooltip="This document recommends ways to reduce the forged-origin hijack attack surface by prudently limiting the set of IP prefixes that are included in a Route Origin Authorization (ROA).  One recommendation is to avoid using the maxLength attribute in ROAs except in some specific cases.  The recommendations complement and extend those in RFC 7115.  This document also discusses the creation of ROAs for facilitating the use of Distributed Denial of Service (DDoS) mitigation services.  Considerations related to ROAs and RPKI-based Route Origin Validation (RPKI-ROV) in the context of destination-based Remotely Triggered Discard Route (RTDR) (elsewhere referred to as Remotely Triggered Black Hole) filtering are also highlighted."];
+  cites -> RFC9319;
+  RFC6480 [label="RFC6480
+An Infrastructure to Support Secure
+Internet Routing
+2012", shape=ellipse, URL="RFC6480.html", target="_top", tooltip="This document describes an architecture for an infrastructure to support improved security of Internet routing.  The foundation of this architecture is a Resource Public Key Infrastructure (RPKI) that represents the allocation hierarchy of IP address space and Autonomous System (AS) numbers; and a distributed repository system for storing and disseminating the data objects that comprise the RPKI, as well as other signed objects necessary for improved routing security.  As an initial application of this architecture, the document describes how a legitimate holder of IP address space can explicitly and verifiably authorize one or more ASes to originate routes to that address space.  Such verifiable authorizations could be used, for example, to more securely construct BGP route filters.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6480;
+  RFC8205 [label="RFC8205
+BGPsec Protocol Specification
+2017", shape=ellipse, URL="RFC8205.html", target="_top", tooltip="This document describes BGPsec, an extension to the Border Gateway Protocol (BGP) that provides security for the path of Autonomous Systems (ASes) through which a BGP UPDATE message passes.  BGPsec is implemented via an optional non-transitive BGP path attribute that carries digital signatures produced by each AS that propagates the UPDATE message.  The digital signatures provide confidence that every AS on the path of ASes listed in the UPDATE message has explicitly authorized the advertisement of the route."];
+  cites -> RFC8205;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  cites -> RFC7606;
+  RFC6793 [label="RFC6793
+BGP Support for Four-Octet Autonomous
+System (AS) Number Space
+2012", shape=ellipse, URL="RFC6793.html", target="_top", tooltip="The Autonomous System number is encoded as a two-octet entity in the base BGP specification.  This document describes extensions to BGP to carry the Autonomous System numbers as four-octet entities.  This document obsoletes RFC 4893 and updates RFC 4271. [STANDARDS-TRACK]"];
+  cites -> RFC6793;
+  RFC3779 [label="RFC3779
+X.509 Extensions for IP Addresses and AS
+Identifiers
+2004", shape=ellipse, URL="RFC3779.html", target="_top", tooltip="This document defines two X.509 v3 certificate extensions.  The first binds a list of IP address blocks, or prefixes, to the subject of a certificate.  The second binds a list of autonomous system identifiers to the subject of a certificate.  These extensions may be used to convey the authorization of the subject to use the IP addresses and autonomous system identifiers contained in the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC3779;
+  RFC9582 [label="RFC9582
+A Profile for Route Origin
+Authorizations (ROAs)
+2024", shape=ellipse, URL="RFC9582.html", target="_top", tooltip="This document defines a standard profile for Route Origin Authorizations (ROAs).  A ROA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block.  This document obsoletes RFC 6482."];
+  cites -> RFC9582;
+  RFC4632 [label="RFC4632
+Classless Inter-domain Routing (CIDR):
+The Internet Address Assignment and
+Aggregation Plan
+2006", shape=ellipse, URL="RFC4632.html", target="_top", tooltip="This memo discusses the strategy for address assignment of the existing 32-bit IPv4 address space with a view toward conserving the address space and limiting the growth rate of global routing state.  This document obsoletes the original Classless Inter-domain Routing (CIDR) spec in RFC 1519, with changes made both to clarify the concepts it introduced and, after more than twelve years, to update the Internet community on the results of deploying the technology described.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4632;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9774;
+}

@@ -1,0 +1,90 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6152 [label="RFC6152
+SMTP Service Extension for 8-bit MIME
+Transport
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo defines an extension to the SMTP service whereby an SMTP content body consisting of text containing octets outside of the US-ASCII octet range (hex 00-7F) may be relayed using SMTP. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6152;
+
+  obs [label="obsoletes", shape=box];
+  RFC6152 -> obs;
+  RFC1652 [label="RFC1652
+SMTP Service Extension for 8bit-
+MIMEtransport
+1994", shape=ellipse, URL="RFC1652.html", target="_top", tooltip="This memo defines an extension to the SMTP service whereby an SMTP content body consisting of text containing octets outside of the US- ASCII octet range (hex 00-7F) may be relayed using SMTP. [STANDARDS-TRACK]"];
+  obs -> RFC1652;
+
+  updates [label="updates", shape=box];
+  RFC6152 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6152;
+
+  cites [label="cites", shape=box];
+  RFC6152 -> cites;
+  RFC2045 [label="RFC2045
+Multipurpose Internet Mail Extensions
+(MIME) Part One: Format of Internet
+Message Bodies
+1996", shape=ellipse, URL="RFC2045.html", target="_top", tooltip="This initial document specifies the various headers used to describe the structure of MIME messages. [STANDARDS-TRACK]"];
+  cites -> RFC2045;
+  RFC2046 [label="RFC2046
+Multipurpose Internet Mail Extensions
+(MIME) Part Two: Media Types
+1996", shape=ellipse, URL="RFC2046.html", target="_top", tooltip="This second document defines the general structure of the MIME media typing system and defines an initial set of media types. [STANDARDS-TRACK]"];
+  cites -> RFC2046;
+  RFC5322 [label="RFC5322
+Internet Message Format
+2008", shape=ellipse, URL="RFC5322.html", target="_top", tooltip="This document specifies the Internet Message Format (IMF), a syntax for text messages that are sent between computer users, within the framework of electronic mail messages.  This specification is a revision of Request For Comments (RFC) 2822, which itself superseded Request For Comments (RFC) 822, Standard for the Format of ARPA Internet Text Messages, updating it to reflect current practice and incorporating incremental changes that were specified in other RFCs. [STANDARDS-TRACK]"];
+  cites -> RFC5322;
+  RFC5321 [label="RFC5321
+Simple Mail Transfer Protocol
+2008", shape=ellipse, URL="RFC5321.html", target="_top", tooltip="This document is a specification of the basic protocol for Internet electronic mail transport.  It consolidates, updates, and clarifies several previous documents, making all or parts of most of them obsolete.  It covers the SMTP extension mechanisms and best practices for the contemporary Internet, but does not provide details about particular extensions.  Although SMTP was designed as a mail transport and delivery protocol, this specification also contains information that is important to its use as a mail submission protocol for split-UA (User Agent) mail reading systems and mobile environments. [STANDARDS-TRACK]"];
+  cites -> RFC5321;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6152;
+  RFC6409 [label="RFC6409
+Message Submission for Mail
+2011", shape=ellipse, URL="RFC6409.html", target="_top", tooltip="This memo splits message submission from message relay, allowing each service to operate according to its own rules (for security, policy, etc.), and specifies what actions are to be taken by a submission server. Message relay is unaffected, and continues to use SMTP over port 25. When conforming to this document, message submission uses the protocol specified here, normally over port 587. This separation of function offers a number of benefits, including the ability to apply specific security or policy requirements. [STANDARDS-TRACK]"];
+  RFC6409 -> rev_cites;
+  RFC6530 [label="RFC6530
+Overview and Framework for
+Internationalized Email
+2012", shape=ellipse, URL="RFC6530.html", target="_top", tooltip="Full use of electronic mail throughout the world requires that (subject to other constraints) people be able to use close variations on their own names (written correctly in their own languages and scripts) as mailbox names in email addresses.  This document introduces a series of specifications that define mechanisms and protocol extensions needed to fully support internationalized email addresses.  These changes include an SMTP extension and extension of email header syntax to accommodate UTF-8 data.  The document set also includes discussion of key assumptions and issues in deploying fully internationalized email.  This document is a replacement for RFC 4952; it reflects additional issues identified since that document was published. [STANDARDS-TRACK]"];
+  RFC6530 -> rev_cites;
+  RFC6531 [label="RFC6531
+SMTP Extension for Internationalized
+Email
+2012", shape=ellipse, URL="RFC6531.html", target="_top", tooltip="This document specifies an SMTP extension for transport and delivery of email messages with internationalized email addresses or header information. [STANDARDS-TRACK]"];
+  RFC6531 -> rev_cites;
+  RFC6532 [label="RFC6532
+Internationalized Email Headers
+2012", shape=ellipse, URL="RFC6532.html", target="_top", tooltip="Internet mail was originally limited to 7-bit ASCII. MIME added support for the use of 8-bit character sets in body parts, and also defined an encoded-word construct so other character sets could be used in certain header field values. However, full internationalization of electronic mail requires additional enhancements to allow the use of Unicode, including characters outside the ASCII repertoire, in mail addresses as well as direct use of Unicode in header fields like From:, To:, and Subject:, without requiring the use of complex encoded-word constructs. This document specifies an enhancement to the Internet Message Format and to MIME that allows use of Unicode in mail addresses and most header field content. This specification updates Section 6.4 of RFC 2045 to eliminate the restriction prohibiting the use of non-identity content-transfer- encodings on subtypes of message/. [STANDARDS-TRACK]"];
+  RFC6532 -> rev_cites;
+  RFC6856 [label="RFC6856
+Post Office Protocol Version 3 (POP3)
+Support for UTF-8
+2013", shape=ellipse, URL="RFC6856.html", target="_top", tooltip="This specification extends the Post Office Protocol version 3 (POP3) to support international strings encoded in UTF-8 in usernames, passwords, mail addresses, message headers, and protocol-level text strings."];
+  RFC6856 -> rev_cites;
+  RFC7303 [label="RFC7303
+XML Media Types
+2014", shape=ellipse, URL="RFC7303.html", target="_top", tooltip="This specification standardizes three media types -- application/xml, application/xml-external-parsed-entity, and application/xml-dtd -- for use in exchanging network entities that are related to the Extensible Markup Language (XML) while defining text/xml and text/ xml-external-parsed-entity as aliases for the respective application/ types.  This specification also standardizes the '+xml' suffix for naming media types outside of these five types when those media types represent XML MIME entities."];
+  RFC7303 -> rev_cites;
+  RFC8494 [label="RFC8494
+Multicast Email (MULE) over Allied
+Communications Publication (ACP) 142
+2018", shape=ellipse, URL="RFC8494.html", target="_top", tooltip="Allied Communications Publication (ACP) 142 defines P_MUL, which is a protocol for reliable multicast suitable for bandwidth-constrained and delayed acknowledgement (Emissions Control or EMCON) environments running over UDP. This document defines MULE (Multicast Email), an application protocol for transferring Internet Mail messages (as described in RFC 5322) over P_MUL (as defined in ACP 142). MULE enables transfer between Message Transfer Agents (MTAs). It doesn't provide a service similar to SMTP Submission (as described in RFC 6409). This document explains how MULE can be used in conjunction with SMTP (RFC 5321), including some common SMTP extensions, to provide an alternate MTA-to-MTA transfer mechanism. This is not an IETF specification; it describes an existing implementation. It is provided in order to facilitate interoperable implementations and third-party diagnostics."];
+  RFC8494 -> rev_cites;
+}

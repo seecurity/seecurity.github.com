@@ -1,0 +1,53 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4152 [label="RFC4152
+A Uniform Resource Name (URN) Namespace
+for the Common Language Equipment
+Identifier (CLEI) Code
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a Uniform Resource Name (URN) namespace (RFC 3406) for the assignment of the Common Language Equipment Identifier (CLEI) code, which is used in messages standardized by ANSI.  The URN namespace is managed by Telcordia Technologies, Inc., as the maintenance agent for ANSI T1.213.  The CLEI code is a globally unique, ten-character alphanumeric intelligent code assigned by Telcordia Technologies at the request of equipment suppliers.  The CLEI code identifies communications equipment by specifying product type and features.  There is a one-to-one relationship between a CLEI code and supplier's product ID (the manufacturer's name and the part number along with its version number).  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4152;
+
+  obs [label="obsoletes", shape=box];
+  RFC4152 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4152 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4152;
+
+  cites [label="cites", shape=box];
+  RFC4152 -> cites;
+  RFC3406 [label="RFC3406
+Uniform Resource Names (URN) Namespace
+Definition Mechanisms
+2002", shape=ellipse, URL="RFC3406.html", target="_top", tooltip="This document lays out general definitions of and mechanisms for establishing Uniform Resource Names (URN) namespaces.  The URN WG has defined a syntax for URNs in RFC 2141, as well as some proposed mechanisms for their resolution and use in Internet applications in RFC 3401 and RFC 3405.  The whole rests on the concept of individual namespaces within the URN structure.  Apart from proof-of-concept namespaces, the use of existing identifiers in URNs has been discussed in RFC 2288.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3406;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4152;
+  RFC4133 [label="RFC4133
+Entity MIB (Version 3)
+2005", shape=ellipse, URL="RFC4133.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects used for managing multiple logical and physical entities managed by a single SNMP agent.  This document specifies version 3 of the Entity MIB, which obsoletes version 2 (RFC 2737). [STANDARDS-TRACK]"];
+  RFC4133 -> rev_cites;
+  RFC5031 [label="RFC5031
+A Uniform Resource Name (URN) for
+Emergency and Other Well-Known Services
+2008", shape=ellipse, URL="RFC5031.html", target="_top", tooltip="The content of many communication services depends on the context, such as the user's location.  We describe a 'service' URN that allows well-known context-dependent services that can be resolved in a distributed manner to be identified.  Examples include emergency services, directory assistance, and call-before-you-dig hot lines. [STANDARDS-TRACK]"];
+  RFC5031 -> rev_cites;
+  RFC6933 [label="RFC6933
+Entity MIB (Version 4)
+2013", shape=ellipse, URL="RFC6933.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects used for managing multiple logical and physical entities managed by a single Simple Network Management Protocol (SNMP) agent.  This document specifies version 4 of the Entity MIB.  This memo obsoletes version 3 of the Entity MIB module published as RFC 4133."];
+  RFC6933 -> rev_cites;
+  RFC7462 [label="RFC7462
+URNs for the Alert-Info Header Field of
+the Session Initiation Protocol (SIP)
+2015", shape=ellipse, URL="RFC7462.html", target="_top", tooltip="The Session Initiation Protocol (SIP) supports the capability to provide a reference to a specific rendering to be used by the User Agent (UA) as an alerting signal (e.g., a ring tone or ringback tone) when the user is alerted. This is done using the Alert-Info header field. However, the reference (typically a URL) addresses only a specific network resource with specific rendering properties. There is currently no support for standard identifiers for describing the semantics of the alerting situation or the characteristics of the alerting signal, without being tied to a particular rendering. To overcome these limitations and support new applications, a new family of URNs for use in Alert-Info header fields (and situations with similar requirements) is defined in this specification. This document normatively updates RFC 3261, which defines the Session Initiation Protocol (SIP). It changes the usage of the Alert-Info header field defined in RFC 3261 by additionally allowing its use in any non-100 provisional response to INVITE. This document also permits proxies to add or remove an Alert-Info header field and to add or remove Alert-Info header field values."];
+  RFC7462 -> rev_cites;
+}

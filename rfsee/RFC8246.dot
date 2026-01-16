@@ -1,0 +1,57 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8246 [label="RFC8246
+HTTP Immutable Responses
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="The immutable HTTP response Cache-Control extension allows servers to identify resources that will not be updated during their freshness lifetime.  This ensures that a client never needs to revalidate a cached fresh resource to be certain it has not been modified."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8246;
+
+  obs [label="obsoletes", shape=box];
+  RFC8246 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8246 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8246;
+
+  cites [label="cites", shape=box];
+  RFC8246 -> cites;
+  RFC7234 [label="RFC7234
+Hypertext Transfer Protocol (HTTP/1.1):
+Caching
+2014", shape=ellipse, URL="RFC7234.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless \%application- level protocol for distributed, collaborative, hypertext information systems.  This document defines HTTP caches and the associated header fields that control cache behavior or indicate cacheable response messages."];
+  cites -> RFC7234;
+  RFC7232 [label="RFC7232
+Hypertext Transfer Protocol (HTTP/1.1):
+Conditional Requests
+2014", shape=ellipse, URL="RFC7232.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application- level protocol for distributed, collaborative, hypertext information systems.  This document defines HTTP/1.1 conditional requests, including metadata header fields for indicating state changes, request header fields for making preconditions on such state, and rules for constructing the responses to a conditional request when one or more preconditions evaluate to false."];
+  cites -> RFC7232;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8246;
+  RFC8620 [label="RFC8620
+The JSON Meta Application Protocol
+(JMAP)
+2019", shape=ellipse, URL="RFC8620.html", target="_top", tooltip="This document specifies a protocol for clients to efficiently query, fetch, and modify JSON-based data objects, with support for push notification of changes and fast resynchronisation and for out-of- band binary data upload/download."];
+  RFC8620 -> rev_cites;
+  RFC9110 [label="RFC9110
+HTTP Semantics
+2022", shape=ellipse, URL="RFC9110.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems. This document describes the overall architecture of HTTP, establishes common terminology, and defines aspects of the protocol that are shared by all versions. In this definition are core protocol elements, extensibility mechanisms, and the http and https Uniform Resource Identifier (URI) schemes. This document updates RFC 3864 and obsoletes RFCs 2818, 7231, 7232, 7233, 7235, 7538, 7615, 7694, and portions of 7230."];
+  RFC9110 -> rev_cites;
+}

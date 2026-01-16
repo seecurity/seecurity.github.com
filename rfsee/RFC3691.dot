@@ -1,0 +1,39 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3691 [label="RFC3691
+Internet Message Access Protocol (IMAP)
+UNSELECT command
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines an UNSELECT command that can be used to close the current mailbox in an Internet Message Access Protocol - version 4 (IMAP4) session without expunging it.  Certain types of IMAP clients need to release resources associated with the selected mailbox without selecting a different mailbox.  While IMAP4 provides this functionality (via a SELECT command with a nonexistent mailbox name or reselecting the same mailbox with EXAMINE command), a more clean solution is desirable. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3691;
+
+  obs [label="obsoletes", shape=box];
+  RFC3691 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3691 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3691;
+
+  cites [label="cites", shape=box];
+  RFC3691 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3691;
+  RFC8437 [label="RFC8437
+IMAP UNAUTHENTICATE Extension for
+Connection Reuse
+2018", shape=ellipse, URL="RFC8437.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to allow an administrative client to reuse the same IMAP connection on behalf of multiple IMAP user identities."];
+  RFC8437 -> rev_cites;
+  RFC9051 [label="RFC9051
+Internet Message Access Protocol (IMAP)
+- Version 4rev2
+2021", shape=ellipse, URL="RFC9051.html", target="_top", tooltip="The Internet Message Access Protocol Version 4rev2 (IMAP4rev2) allows a client to access and manipulate electronic mail messages on a server. IMAP4rev2 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders. IMAP4rev2 also provides the capability for an offline client to resynchronize with the server. IMAP4rev2 includes operations for creating, deleting, and renaming mailboxes; checking for new messages; removing messages permanently; setting and clearing flags; parsing per RFCs 5322, 2045, and 2231; searching; and selective fetching of message attributes, texts, and portions thereof. Messages in IMAP4rev2 are accessed by the use of numbers. These numbers are either message sequence numbers or unique identifiers. IMAP4rev2 does not specify a means of posting mail; this function is handled by a mail submission protocol such as the one specified in RFC 6409."];
+  RFC9051 -> rev_cites;
+}

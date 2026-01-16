@@ -1,0 +1,107 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8286 [label="RFC8286
+RTP/RTCP Extension for RTP Splicing
+Notification
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="Content splicing is a process that replaces the content of a main multimedia stream with other multimedia content and that delivers the substitutive multimedia content to the receivers for a period of time. The splicer is designed to handle RTP splicing and needs to know when to start and end the splicing. This memo defines two RTP/RTCP extensions to indicate the splicing-related information to the splicer: an RTP header extension that conveys the information in band and an RTP Control Protocol (RTCP) packet that conveys the information out of band."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8286;
+
+  obs [label="obsoletes", shape=box];
+  RFC8286 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8286 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8286;
+
+  cites [label="cites", shape=box];
+  RFC8286 -> cites;
+  RFC8285 [label="RFC8285
+A General Mechanism for RTP Header
+Extensions
+2017", shape=ellipse, URL="RFC8285.html", target="_top", tooltip="This document provides a general mechanism to use the header extension feature of RTP (the Real-time Transport Protocol).  It provides the option to use a small number of small extensions in each RTP packet, where the universe of possible extensions is large and registration is decentralized.  The actual extensions in use in a session are signaled in the setup information for that session.  This document obsoletes RFC 5285."];
+  cites -> RFC8285;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6828 [label="RFC6828
+Content Splicing for RTP Sessions
+2013", shape=ellipse, URL="RFC6828.html", target="_top", tooltip="Content splicing is a process that replaces the content of a main multimedia stream with other multimedia content and delivers the substitutive multimedia content to the receivers for a period of time. Splicing is commonly used for insertion of local advertisements by cable operators, whereby national advertisement content is replaced with a local advertisement. This memo describes some use cases for content splicing and a set of requirements for splicing content delivered by RTP. It provides concrete guidelines for how an RTP mixer can be used to handle content splicing. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6828;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC5905 [label="RFC5905
+Network Time Protocol Version 4:
+Protocol and Algorithms Specification
+2010", shape=ellipse, URL="RFC5905.html", target="_top", tooltip="The Network Time Protocol (NTP) is widely used to synchronize computer clocks in the Internet.  This document describes NTP version 4 (NTPv4), which is backwards compatible with NTP version 3 (NTPv3), described in RFC 1305, as well as previous versions of the protocol.  NTPv4 includes a modified protocol header to accommodate the Internet Protocol version 6 address family.  NTPv4 includes fundamental improvements in the mitigation and discipline algorithms that extend the potential accuracy to the tens of microseconds with modern workstations and fast LANs.  It includes a dynamic server discovery scheme, so that in many cases, specific server configuration is not required.  It corrects certain errors in the NTPv3 design and implementation and includes an optional extension mechanism."];
+  cites -> RFC5905;
+  RFC5506 [label="RFC5506
+Support for Reduced-Size Real-Time
+Transport Control Protocol (RTCP):
+Opportunities and Consequences
+2009", shape=ellipse, URL="RFC5506.html", target="_top", tooltip="This memo discusses benefits and issues that arise when allowing Real-time Transport Protocol (RTCP) packets to be transmitted with reduced size.  The size can be reduced if the rules on how to create compound packets outlined in RFC 3550 are removed or changed.  Based on that analysis, this memo defines certain changes to the rules to allow feedback messages to be sent as Reduced-Size RTCP packets under certain conditions when using the RTP/AVPF (Real-time Transport Protocol / Audio-Visual Profile with Feedback) profile (RFC 4585).  This document updates RFC 3550, RFC 3711, and RFC 4585. [STANDARDS-TRACK]"];
+  cites -> RFC5506;
+  RFC6285 [label="RFC6285
+Unicast-Based Rapid Acquisition of
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6285.html", target="_top", tooltip="When an RTP receiver joins a multicast session, it may need to acquire and parse certain Reference Information before it can process any data sent in the multicast session. Depending on the join time, length of the Reference Information repetition (or appearance) interval, size of the Reference Information, and the application and transport properties, the time lag before an RTP receiver can usefully consume the multicast data, which we refer to as the Acquisition Delay, varies and can be large. This is an undesirable phenomenon for receivers that frequently switch among different multicast sessions, such as video broadcasts. In this document, we describe a method using the existing RTP and RTP Control Protocol (RTCP) machinery that reduces the acquisition delay. In this method, an auxiliary unicast RTP session carrying the Reference Information to the receiver precedes or accompanies the multicast stream. This unicast RTP flow can be transmitted at a faster than natural bitrate to further accelerate the acquisition. The motivating use case for this capability is multicast applications that carry real-time compressed audio and video. However, this method can also be used in other types of multicast applications where the acquisition delay is long enough to be a problem. [STANDARDS-TRACK]"];
+  cites -> RFC6285;
+  RFC6051 [label="RFC6051
+Rapid Synchronisation of RTP Flows
+2010", shape=ellipse, URL="RFC6051.html", target="_top", tooltip="This memo outlines how RTP sessions are synchronised, and discusses how rapidly such synchronisation can occur. We show that most RTP sessions can be synchronised immediately, but that the use of video switching multipoint conference units (MCUs) or large source-specific multicast (SSM) groups can greatly increase the synchronisation delay. This increase in delay can be unacceptable to some applications that use layered and/or multi-description codecs. This memo introduces three mechanisms to reduce the synchronisation delay for such sessions. First, it updates the RTP Control Protocol (RTCP) timing rules to reduce the initial synchronisation delay for SSM sessions. Second, a new feedback packet is defined for use with the extended RTP profile for RTCP-based feedback (RTP/AVPF), allowing video switching MCUs to rapidly request resynchronisation. Finally, new RTP header extensions are defined to allow rapid synchronisation of late joiners, and guarantee correct timestamp-based decoding order recovery for layered codecs in the presence of clock skew. [STANDARDS-TRACK]"];
+  cites -> RFC6051;
+  RFC5888 [label="RFC5888
+The Session Description Protocol (SDP)
+Grouping Framework
+2010", shape=ellipse, URL="RFC5888.html", target="_top", tooltip="In this specification, we define a framework to group m lines in the Session Description Protocol (SDP) for different purposes.  This framework uses the group and mid SDP attributes, both of which are defined in this specification.  Additionally, we specify how to use the framework for two different purposes: for lip synchronization and for receiving a media flow consisting of several media streams on different transport addresses.  This document obsoletes RFC 3388. [STANDARDS-TRACK]"];
+  cites -> RFC5888;
+  RFC3264 [label="RFC3264
+An Offer/Answer Model with Session
+Description Protocol (SDP)
+2002", shape=ellipse, URL="RFC3264.html", target="_top", tooltip="This document defines a mechanism by which two entities can make use of the Session Description Protocol (SDP) to arrive at a common view of a multimedia session between them.  In the model, one participant offers the other a description of the desired session from their perspective, and the other participant answers with the desired session from their perspective.  This offer/answer model is most useful in unicast sessions where information from both participants is needed for the complete view of the session.  The offer/answer model is used by protocols like the Session Initiation Protocol (SIP). [STANDARDS-TRACK]"];
+  cites -> RFC3264;
+  RFC7667 [label="RFC7667
+RTP Topologies
+2015", shape=ellipse, URL="RFC7667.html", target="_top", tooltip="This document discusses point-to-point and multi-endpoint topologies used in environments based on the Real-time Transport Protocol (RTP).  In particular, centralized topologies commonly employed in the video conferencing industry are mapped to the RTP terminology."];
+  cites -> RFC7667;
+  RFC7201 [label="RFC7201
+Options for Securing RTP Sessions
+2014", shape=ellipse, URL="RFC7201.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is used in a large number of different application domains and environments.  This heterogeneity implies that different security mechanisms are needed to provide services such as confidentiality, integrity, and source authentication of RTP and RTP Control Protocol (RTCP) packets suitable for the various environments.  The range of solutions makes it difficult for RTP-based application developers to pick the most suitable mechanism.  This document provides an overview of a number of security solutions for RTP and gives guidance for developers on how to choose the appropriate security mechanism."];
+  cites -> RFC7201;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  cites -> RFC3711;
+  RFC6904 [label="RFC6904
+Encryption of Header Extensions in the
+Secure Real-time Transport Protocol
+(SRTP)
+2013", shape=ellipse, URL="RFC6904.html", target="_top", tooltip="The Secure Real-time Transport Protocol (SRTP) provides authentication, but not encryption, of the headers of Real-time Transport Protocol (RTP) packets. However, RTP header extensions may carry sensitive information for which participants in multimedia sessions want confidentiality. This document provides a mechanism, extending the mechanisms of SRTP, to selectively encrypt RTP header extensions in SRTP. This document updates RFC 3711, the Secure Real-time Transport Protocol specification, to require that all future SRTP encryption transforms specify how RTP header extensions are to be encrypted."];
+  cites -> RFC6904;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8286;
+}

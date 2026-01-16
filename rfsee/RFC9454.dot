@@ -1,0 +1,96 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9454 [label="RFC9454
+Update to OSPF Terminology
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document updates some OSPF terminology to be in line with inclusive language used in the industry. The IETF has designated Guidance for NIST Staff on Using Inclusive Language in Documentary Standards by the US National Institute of Standards and Technology (NIST) for its inclusive language guidelines. It is intended that all future OSPF documents use this revised terminology even when they reference the RFCs updated by this document. This document updates RFCs 2328, 4222, 4811, 5243, 5340, 5614, and 5838."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9454;
+
+  obs [label="obsoletes", shape=box];
+  RFC9454 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9454 -> updates;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  updates -> RFC2328;
+  RFC4222 [label="RFC4222
+Prioritized Treatment of Specific OSPF
+Version 2 Packets and Congestion
+Avoidance
+2005", shape=ellipse, URL="RFC4222.html", target="_top", tooltip="This document recommends methods that are intended to improve the scalability and stability of large networks using Open Shortest Path First (OSPF) Version 2 protocol.  The methods include processing OSPF Hellos and Link State Advertisement (LSA) Acknowledgments at a higher priority compared to other OSPF packets, and other congestion avoidance procedures.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  updates -> RFC4222;
+  RFC4811 [label="RFC4811
+OSPF Out-of-Band Link State Database
+(LSDB) Resynchronization
+2007", shape=ellipse, URL="RFC4811.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks. Link State Database (LSDB) synchronization in OSPF is achieved via two methods -- initial LSDB synchronization when an OSPF router has just been connected to the network and asynchronous flooding that ensures continuous LSDB synchronization in the presence of topology changes after the initial procedure was completed. It may sometime be necessary for OSPF routers to resynchronize their LSDBs. The OSPF standard, however, does not allow routers to do so without actually changing the topology view of the network. This memo describes a vendor-specific mechanism to perform such a form of out-of-band LSDB synchronization. The mechanism described in this document was proposed before Graceful OSPF Restart, as described in RFC 3623, came into existence. It is implemented/supported by at least one major vendor and is currently deployed in the field. The purpose of this document is to capture the details of this mechanism for public use. This mechanism is not an IETF standard. This memo provides information for the Internet community."];
+  updates -> RFC4811;
+  RFC5243 [label="RFC5243
+OSPF Database Exchange Summary List
+Optimization
+2008", shape=ellipse, URL="RFC5243.html", target="_top", tooltip="This document describes a backward-compatible optimization for the Database Exchange process in OSPFv2 and OSPFv3.  In this optimization, a router does not list a Link State Advertisement (LSA) in Database Description packets sent to a neighbor, if the same or a more recent instance of the LSA was listed in a Database Description packet already received from the neighbor.  This optimization reduces Database Description overhead by about 50% in large networks.  This optimization does not affect synchronization, since it only omits unnecessary information from Database Description packets.  This memo provides information for the Internet community."];
+  updates -> RFC5243;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  updates -> RFC5340;
+  RFC5614 [label="RFC5614
+Mobile Ad Hoc Network (MANET) Extension
+of OSPF Using Connected Dominating Set
+(CDS) Flooding
+2009", shape=ellipse, URL="RFC5614.html", target="_top", tooltip="This document specifies an extension of OSPFv3 to support mobile ad hoc networks (MANETs).  The extension, called OSPF-MDR, is designed as a new OSPF interface type for MANETs.  OSPF-MDR is based on the selection of a subset of MANET routers, consisting of MANET Designated Routers (MDRs) and Backup MDRs.  The MDRs form a connected dominating set (CDS), and the MDRs and Backup MDRs together form a biconnected CDS for robustness.  This CDS is exploited in two ways.  First, to reduce flooding overhead, an optimized flooding procedure is used in which only (Backup) MDRs flood new link state advertisements (LSAs) back out the receiving interface; reliable flooding is ensured by retransmitting LSAs along adjacencies.  Second, adjacencies are formed only between (Backup) MDRs and a subset of their neighbors, allowing for much better scaling in dense networks.  The CDS is constructed using 2-hop neighbor information provided in a Hello protocol extension.  The Hello protocol is further optimized by allowing differential Hellos that report only changes in neighbor states.  Options are specified for originating router-LSAs that provide full or partial topology information, allowing overhead to be reduced by advertising less topology information.  This memo defines an Experimental Protocol for the Internet community."];
+  updates -> RFC5614;
+  RFC5838 [label="RFC5838
+Support of Address Families in OSPFv3
+2010", shape=ellipse, URL="RFC5838.html", target="_top", tooltip="This document describes a mechanism for supporting multiple address families (AFs) in OSPFv3 using multiple instances.  It maps an AF to an OSPFv3 instance using the Instance ID field in the OSPFv3 packet header.  This approach is fairly simple and minimizes extensions to OSPFv3 for supporting multiple AFs. [STANDARDS-TRACK]"];
+  updates -> RFC5838;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9454;
+
+  cites [label="cites", shape=box];
+  RFC9454 -> cites;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC4222 [label="RFC4222
+Prioritized Treatment of Specific OSPF
+Version 2 Packets and Congestion
+Avoidance
+2005", shape=ellipse, URL="RFC4222.html", target="_top", tooltip="This document recommends methods that are intended to improve the scalability and stability of large networks using Open Shortest Path First (OSPF) Version 2 protocol.  The methods include processing OSPF Hellos and Link State Advertisement (LSA) Acknowledgments at a higher priority compared to other OSPF packets, and other congestion avoidance procedures.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4222;
+  RFC4811 [label="RFC4811
+OSPF Out-of-Band Link State Database
+(LSDB) Resynchronization
+2007", shape=ellipse, URL="RFC4811.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks. Link State Database (LSDB) synchronization in OSPF is achieved via two methods -- initial LSDB synchronization when an OSPF router has just been connected to the network and asynchronous flooding that ensures continuous LSDB synchronization in the presence of topology changes after the initial procedure was completed. It may sometime be necessary for OSPF routers to resynchronize their LSDBs. The OSPF standard, however, does not allow routers to do so without actually changing the topology view of the network. This memo describes a vendor-specific mechanism to perform such a form of out-of-band LSDB synchronization. The mechanism described in this document was proposed before Graceful OSPF Restart, as described in RFC 3623, came into existence. It is implemented/supported by at least one major vendor and is currently deployed in the field. The purpose of this document is to capture the details of this mechanism for public use. This mechanism is not an IETF standard. This memo provides information for the Internet community."];
+  cites -> RFC4811;
+  RFC5243 [label="RFC5243
+OSPF Database Exchange Summary List
+Optimization
+2008", shape=ellipse, URL="RFC5243.html", target="_top", tooltip="This document describes a backward-compatible optimization for the Database Exchange process in OSPFv2 and OSPFv3.  In this optimization, a router does not list a Link State Advertisement (LSA) in Database Description packets sent to a neighbor, if the same or a more recent instance of the LSA was listed in a Database Description packet already received from the neighbor.  This optimization reduces Database Description overhead by about 50% in large networks.  This optimization does not affect synchronization, since it only omits unnecessary information from Database Description packets.  This memo provides information for the Internet community."];
+  cites -> RFC5243;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC5614 [label="RFC5614
+Mobile Ad Hoc Network (MANET) Extension
+of OSPF Using Connected Dominating Set
+(CDS) Flooding
+2009", shape=ellipse, URL="RFC5614.html", target="_top", tooltip="This document specifies an extension of OSPFv3 to support mobile ad hoc networks (MANETs).  The extension, called OSPF-MDR, is designed as a new OSPF interface type for MANETs.  OSPF-MDR is based on the selection of a subset of MANET routers, consisting of MANET Designated Routers (MDRs) and Backup MDRs.  The MDRs form a connected dominating set (CDS), and the MDRs and Backup MDRs together form a biconnected CDS for robustness.  This CDS is exploited in two ways.  First, to reduce flooding overhead, an optimized flooding procedure is used in which only (Backup) MDRs flood new link state advertisements (LSAs) back out the receiving interface; reliable flooding is ensured by retransmitting LSAs along adjacencies.  Second, adjacencies are formed only between (Backup) MDRs and a subset of their neighbors, allowing for much better scaling in dense networks.  The CDS is constructed using 2-hop neighbor information provided in a Hello protocol extension.  The Hello protocol is further optimized by allowing differential Hellos that report only changes in neighbor states.  Options are specified for originating router-LSAs that provide full or partial topology information, allowing overhead to be reduced by advertising less topology information.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC5614;
+  RFC5838 [label="RFC5838
+Support of Address Families in OSPFv3
+2010", shape=ellipse, URL="RFC5838.html", target="_top", tooltip="This document describes a mechanism for supporting multiple address families (AFs) in OSPFv3 using multiple instances.  It maps an AF to an OSPFv3 instance using the Instance ID field in the OSPFv3 packet header.  This approach is fairly simple and minimizes extensions to OSPFv3 for supporting multiple AFs. [STANDARDS-TRACK]"];
+  cites -> RFC5838;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9454;
+}

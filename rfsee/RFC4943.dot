@@ -1,0 +1,73 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4943 [label="RFC4943
+IPv6 Neighbor Discovery On-Link
+Assumption Considered Harmful
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the historical and background information behind the removal of the on-link assumption from the conceptual host sending algorithm defined in Neighbor Discovery for IP Version 6 (IPv6).  According to the algorithm as originally described, when a host's default router list is empty, the host assumes that all destinations are on-link.  This is particularly problematic with IPv6-capable nodes that do not have off-link IPv6 connectivity (e.g., no default router).  This document describes how making this assumption causes problems and how these problems outweigh the benefits of this part of the conceptual sending algorithm.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4943;
+
+  obs [label="obsoletes", shape=box];
+  RFC4943 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4943 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4943;
+
+  cites [label="cites", shape=box];
+  RFC4943 -> cites;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC2461 [label="RFC2461
+Neighbor Discovery for IP Version 6
+(IPv6)
+1998", shape=ellipse, URL="RFC2461.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6. [STANDARDS-TRACK]"];
+  cites -> RFC2461;
+  RFC3484 [label="RFC3484
+Default Address Selection for Internet
+Protocol version 6 (IPv6)
+2003", shape=ellipse, URL="RFC3484.html", target="_top", tooltip="This document describes two algorithms, for source address selection and for destination address selection.  The algorithms specify default behavior for all Internet Protocol version 6 (IPv6) implementations.  They do not override choices made by applications or upper-layer protocols, nor do they preclude the development of more advanced mechanisms for address selection.  The two algorithms share a common context, including an optional mechanism for allowing administrators to provide policy that can override the default behavior.  In dual stack implementations, the destination address selection algorithm can consider both IPv4 and IPv6 addresses - depending on the available source addresses, the algorithm might prefer IPv6 addresses over IPv4 addresses, or vice-versa.  All IPv6 nodes, including both hosts and routers, must implement default address selection as defined in this specification. [STANDARDS-TRACK]"];
+  cites -> RFC3484;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC3756 [label="RFC3756
+IPv6 Neighbor Discovery (ND) Trust
+Models and Threats
+2004", shape=ellipse, URL="RFC3756.html", target="_top", tooltip="The existing IETF standards specify that IPv6 Neighbor Discovery (ND) and Address Autoconfiguration mechanisms may be protected with IPsec Authentication Header (AH).  However, the current specifications limit the security solutions to manual keying due to practical problems faced with automatic key management.  This document specifies three different trust models and discusses the threats pertinent to IPv6 Neighbor Discovery.  The purpose of this discussion is to define the requirements for Securing IPv6 Neighbor Discovery.  This memo provides information for the Internet community."];
+  cites -> RFC3756;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4943;
+  RFC5018 [label="RFC5018
+Connection Establishment in the Binary
+Floor Control Protocol (BFCP)
+2007", shape=ellipse, URL="RFC5018.html", target="_top", tooltip="This document specifies how a Binary Floor Control Protocol (BFCP) client establishes a connection to a BFCP floor control server outside the context of an offer/answer exchange.  Client and server authentication are based on Transport Layer Security (TLS). [STANDARDS-TRACK]"];
+  RFC5018 -> rev_cites;
+  RFC5461 [label="RFC5461
+TCP's Reaction to Soft Errors
+2009", shape=ellipse, URL="RFC5461.html", target="_top", tooltip="This document describes a non-standard, but widely implemented, modification to TCP's handling of ICMP soft error messages that rejects pending connection-requests when those error messages are received.  This behavior reduces the likelihood of long delays between connection-establishment attempts that may arise in a number of scenarios, including one in which dual-stack nodes that have IPv6 enabled by default are deployed in IPv4 or mixed IPv4 and IPv6 environments.  This memo provides information for the Internet community."];
+  RFC5461 -> rev_cites;
+  RFC5942 [label="RFC5942
+IPv6 Subnet Model: The Relationship
+between Links and Subnet Prefixes
+2010", shape=ellipse, URL="RFC5942.html", target="_top", tooltip="IPv6 specifies a model of a subnet that is different than the IPv4 subnet model.  The subtlety of the differences has resulted in incorrect implementations that do not interoperate.  This document spells out the most important difference: that an IPv6 address isn't automatically associated with an IPv6 on-link prefix.  This document also updates (partially due to security concerns caused by incorrect implementations) a part of the definition of on-link from RFC 4861. [STANDARDS-TRACK]"];
+  RFC5942 -> rev_cites;
+  RFC8415 [label="RFC8415
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2018", shape=ellipse, URL="RFC8415.html", target="_top", tooltip="This document describes the Dynamic Host Configuration Protocol for IPv6 (DHCPv6): an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly, or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC). This document updates the text from RFC 3315 (the original DHCPv6 specification) and incorporates prefix delegation (RFC 3633), stateless DHCPv6 (RFC 3736), an option to specify an upper bound for how long a client should wait before refreshing information (RFC 4242), a mechanism for throttling DHCPv6 clients when DHCPv6 service is not available (RFC 7083), and relay agent handling of unknown messages (RFC 7283). In addition, this document clarifies the interactions between models of operation (RFC 7550). As such, this document obsoletes RFC 3315, RFC 3633, RFC 3736, RFC 4242, RFC 7083, RFC 7283, and RFC 7550."];
+  RFC8415 -> rev_cites;
+}

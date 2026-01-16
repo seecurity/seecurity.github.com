@@ -1,0 +1,59 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7664 [label="RFC7664
+Dragonfly Key Exchange
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies a key exchange using discrete logarithm cryptography that is authenticated using a password or passphrase.  It is resistant to active attack, passive attack, and offline dictionary attack.  This document is a product of the Crypto Forum Research Group (CFRG)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7664;
+
+  obs [label="obsoletes", shape=box];
+  RFC7664 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7664 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7664;
+
+  cites [label="cites", shape=box];
+  RFC7664 -> cites;
+  RFC7296 [label="RFC7296
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2014", shape=ellipse, URL="RFC7296.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document obsoletes RFC 5996, and includes all of the errata for it.  It advances IKEv2 to be an Internet Standard."];
+  cites -> RFC7296;
+  RFC5433 [label="RFC5433
+Extensible Authentication Protocol -
+Generalized Pre-Shared Key (EAP-GPSK)
+Method
+2009", shape=ellipse, URL="RFC5433.html", target="_top", tooltip="This memo defines an Extensible Authentication Protocol (EAP) method called EAP Generalized Pre-Shared Key (EAP-GPSK).  This method is a lightweight shared-key authentication protocol supporting mutual authentication and key derivation. [STANDARDS-TRACK]"];
+  cites -> RFC5433;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC6090 [label="RFC6090
+Fundamental Elliptic Curve Cryptography
+Algorithms
+2011", shape=ellipse, URL="RFC6090.html", target="_top", tooltip="This note describes the fundamental algorithms of Elliptic Curve Cryptography (ECC) as they were defined in some seminal references from 1994 and earlier.  These descriptions may be useful for implementing the fundamental algorithms without using any of the specialized methods that were developed in following years.  Only elliptic curves defined over fields of characteristic greater than three are in scope; these curves are those used in Suite B.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6090;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7664;
+  RFC8146 [label="RFC8146
+Adding Support for Salted Password
+Databases to EAP-pwd
+2017", shape=ellipse, URL="RFC8146.html", target="_top", tooltip="EAP-pwd is an Extensible Authentication Protocol (EAP) method that utilizes a shared password for authentication using a technique that is resistant to dictionary attacks.  It includes support for raw keys and double hashing of a password in the style of Microsoft Challenge Handshake Authentication Protocol version 2 (MSCHAPv2), but it does not include support for salted passwords.  There are many existing databases of salted passwords, and it is desirable to allow their use with EAP-pwd."];
+  RFC8146 -> rev_cites;
+  RFC8492 [label="RFC8492
+Secure Password Ciphersuites for
+Transport Layer Security (TLS)
+2019", shape=ellipse, URL="RFC8492.html", target="_top", tooltip="This memo defines several new ciphersuites for the Transport Layer Security (TLS) protocol to support certificateless, secure authentication using only a simple, low-entropy password.  The exchange is called TLS-PWD.  The ciphersuites are all based on an authentication and key exchange protocol, named dragonfly, that is resistant to offline dictionary attacks."];
+  RFC8492 -> rev_cites;
+}

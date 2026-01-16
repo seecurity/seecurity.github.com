@@ -1,0 +1,81 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8539 [label="RFC8539
+Softwire Provisioning Using DHCPv4 over
+DHCPv6
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="DHCPv4 over DHCPv6 (RFC 7341) is a mechanism for dynamically configuring IPv4 for use as an over-the-top service in an IPv6-only network. Softwires are an example of such a service. For DHCPv4 over DHCPv6 (DHCP 4o6) to function with some IPv4-over-IPv6 softwire mechanisms and deployment scenarios (e.g., RFC 7596 or RFC 7597), the operator needs to know the IPv6 address that the client will use as the source of an IPv4-in-IPv6 softwire tunnel. This address, in conjunction with the client's IPv4 address, and (in some deployments) the Port Set ID are used to create a binding table entry in the operator's softwire tunnel concentrator. This memo defines a DHCPv6 option to convey IPv6 parameters for establishing the softwire tunnel and a DHCPv4 option (to be used only with DHCP 4o6) to communicate the source tunnel IPv6 address between the DHCP 4o6 client and server. It is designed to work in conjunction with the IPv4 address allocation process. DHCPv6 Options for Configuration of Softwire Address and Port-Mapped Clients (RFC 7598) describes a deterministic DHCPv6-based mechanism for provisioning softwires. This document updates RFC 7598, allowing OPTION_S46_BR (90) to be enumerated in the DHCPv6 client's Option Request Option (ORO) request and to appear directly within subsequent messages sent by the DHCPv6 server."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8539;
+
+  obs [label="obsoletes", shape=box];
+  RFC8539 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8539 -> updates;
+  RFC7598 [label="RFC7598
+DHCPv6 Options for Configuration of
+Softwire Address and Port-Mapped Clients
+2015", shape=ellipse, URL="RFC7598.html", target="_top", tooltip="This document specifies DHCPv6 options, termed Softwire46 options, for the provisioning of Softwire46 Customer Edge (CE) devices.  Softwire46 is a collective term used to refer to architectures based on the notion of IPv4 Address plus Port (A+P) for providing IPv4 connectivity across an IPv6 network."];
+  updates -> RFC7598;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8539;
+
+  cites [label="cites", shape=box];
+  RFC8539 -> cites;
+  RFC7598 [label="RFC7598
+DHCPv6 Options for Configuration of
+Softwire Address and Port-Mapped Clients
+2015", shape=ellipse, URL="RFC7598.html", target="_top", tooltip="This document specifies DHCPv6 options, termed Softwire46 options, for the provisioning of Softwire46 Customer Edge (CE) devices.  Softwire46 is a collective term used to refer to architectures based on the notion of IPv4 Address plus Port (A+P) for providing IPv4 connectivity across an IPv6 network."];
+  cites -> RFC7598;
+  RFC7341 [label="RFC7341
+DHCPv4-over-DHCPv6 (DHCP 4o6) Transport
+2014", shape=ellipse, URL="RFC7341.html", target="_top", tooltip="IPv4 connectivity is still needed as networks migrate towards IPv6.  Users require IPv4 configuration even if the uplink to their service provider supports IPv6 only.  This document describes a mechanism for obtaining IPv4 configuration information dynamically in IPv6 networks by carrying DHCPv4 messages over DHCPv6 transport.  Two new DHCPv6 messages and two new DHCPv6 options are defined for this purpose."];
+  cites -> RFC7341;
+  RFC7597 [label="RFC7597
+Mapping of Address and Port with
+Encapsulation (MAP-E)
+2015", shape=ellipse, URL="RFC7597.html", target="_top", tooltip="This document describes a mechanism for transporting IPv4 packets across an IPv6 network using IP encapsulation.  It also describes a generic mechanism for mapping between IPv6 addresses and IPv4 addresses as well as transport-layer ports."];
+  cites -> RFC7597;
+  RFC7596 [label="RFC7596
+Lightweight 4over6: An Extension to the
+Dual-Stack Lite Architecture
+2015", shape=ellipse, URL="RFC7596.html", target="_top", tooltip="Dual-Stack Lite (DS-Lite) (RFC 6333) describes an architecture for transporting IPv4 packets over an IPv6 network.  This document specifies an extension to DS-Lite called Lightweight 4over6, which moves the Network Address and Port Translation (NAPT) function from the centralized DS-Lite tunnel concentrator to the tunnel client located in the Customer Premises Equipment (CPE).  This removes the requirement for a Carrier Grade NAT function in the tunnel concentrator and reduces the amount of centralized state that must be held to a per-subscriber level.  In order to delegate the NAPT function and make IPv4 address sharing possible, port-restricted IPv4 addresses are allocated to the CPEs."];
+  cites -> RFC7596;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8415 [label="RFC8415
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2018", shape=ellipse, URL="RFC8415.html", target="_top", tooltip="This document describes the Dynamic Host Configuration Protocol for IPv6 (DHCPv6): an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly, or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC). This document updates the text from RFC 3315 (the original DHCPv6 specification) and incorporates prefix delegation (RFC 3633), stateless DHCPv6 (RFC 3736), an option to specify an upper bound for how long a client should wait before refreshing information (RFC 4242), a mechanism for throttling DHCPv6 clients when DHCPv6 service is not available (RFC 7083), and relay agent handling of unknown messages (RFC 7283). In addition, this document clarifies the interactions between models of operation (RFC 7550). As such, this document obsoletes RFC 3315, RFC 3633, RFC 3736, RFC 4242, RFC 7083, RFC 7283, and RFC 7550."];
+  cites -> RFC8415;
+  RFC2131 [label="RFC2131
+Dynamic Host Configuration Protocol
+1997", shape=ellipse, URL="RFC2131.html", target="_top", tooltip="The Dynamic Host Configuration Protocol (DHCP) provides a framework for passing configuration information to hosts on a TCPIP network.  DHCP is based on the Bootstrap Protocol (BOOTP), adding the capability of automatic allocation of reusable network addresses and additional configuration options. [STANDARDS-TRACK]"];
+  cites -> RFC2131;
+  RFC7618 [label="RFC7618
+Dynamic Allocation of Shared IPv4
+Addresses
+2015", shape=ellipse, URL="RFC7618.html", target="_top", tooltip="This memo describes the dynamic allocation of shared IPv4 addresses to clients using DHCPv4. Address sharing allows a single IPv4 address to be allocated to multiple active clients simultaneously, with each client being differentiated by a unique set of transport- layer source port numbers. The necessary changes to existing DHCPv4 client and server behavior are described, and a new DHCPv4 option for provisioning clients with shared IPv4 addresses is included. Due to the nature of IP address sharing, some limitations to its applicability are necessary. This memo describes these limitations and recommends suitable architectures and technologies where address sharing may be utilized."];
+  cites -> RFC7618;
+  RFC7844 [label="RFC7844
+Anonymity Profiles for DHCP Clients
+2016", shape=ellipse, URL="RFC7844.html", target="_top", tooltip="Some DHCP options carry unique identifiers.  These identifiers can enable device tracking even if the device administrator takes care of randomizing other potential identifications like link-layer addresses or IPv6 addresses.  The anonymity profiles are designed for clients that wish to remain anonymous to the visited network.  The profiles provide guidelines on the composition of DHCP or DHCPv6 messages, designed to minimize disclosure of identifying information."];
+  cites -> RFC7844;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8539;
+}

@@ -1,0 +1,80 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3865 [label="RFC3865
+A No Soliciting Simple Mail Transfer
+Protocol (SMTP) Service Extension
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document proposes an extension to Soliciting Simple Mail Transfer Protocol (SMTP) for an electronic mail equivalent to the real-world No Soliciting sign.  In addition to the service extension, a new message header and extensions to the existing received message header are described. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3865;
+
+  obs [label="obsoletes", shape=box];
+  RFC3865 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3865 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3865;
+
+  cites [label="cites", shape=box];
+  RFC3865 -> cites;
+  RFC2505 [label="RFC2505
+Anti-Spam Recommendations for SMTP MTAs
+1999", shape=ellipse, URL="RFC2505.html", target="_top", tooltip="This memo gives a number of implementation recommendations for SMTP, MTAs (Mail Transfer Agents, e.g.  sendmail,) to make them more capable of reducing the impact of spam.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2505;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2821 [label="RFC2821
+Simple Mail Transfer Protocol
+2001", shape=ellipse, URL="RFC2821.html", target="_top", tooltip="This document is a self-contained specification of the basic protocol for the Internet electronic mail transport. [STANDARDS-TRACK]"];
+  cites -> RFC2821;
+  RFC2234 [label="RFC2234
+Augmented BNF for Syntax Specifications:
+ABNF
+1997", shape=ellipse, URL="RFC2234.html", target="_top", tooltip="In the early days of the Arpanet, each specification contained its own definition of ABNF.  This included the email specifications, RFC733 and then RFC822 which have come to be the common citations for defining ABNF.  The current document separates out that definition, to permit selective reference.  Predictably, it also provides some modifications and enhancements. [STANDARDS-TRACK]"];
+  cites -> RFC2234;
+  RFC3463 [label="RFC3463
+Enhanced Mail System Status Codes
+2003", shape=ellipse, URL="RFC3463.html", target="_top", tooltip="This document defines a set of extended status codes for use within the mail system for delivery status reports, tracking, and improved diagnostics.  In combination with other information provided in the Delivery Status Notification (DSN) delivery report, these codes facilitate media and language independent rendering of message delivery status. [STANDARDS-TRACK]"];
+  cites -> RFC3463;
+  RFC2822 [label="RFC2822
+Internet Message Format
+2001", shape=ellipse, URL="RFC2822.html", target="_top", tooltip="This document specifies a syntax for text messages that are sent between computer users, within the framework of electronic mail messages. [STANDARDS-TRACK]"];
+  cites -> RFC2822;
+  RFC3864 [label="RFC3864
+Registration Procedures for Message
+Header Fields
+2004", shape=ellipse, URL="RFC3864.html", target="_top", tooltip="This specification defines registration procedures for the message header fields used by Internet mail, HTTP, Netnews and other applications.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3864;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3865;
+  RFC4095 [label="RFC4095
+Attaching Meaning to Solicitation Class
+Keywords
+2005", shape=ellipse, URL="RFC4095.html", target="_top", tooltip="This document proposes a mechanism for finding a URI associated with a solicitation class keyword, which is defined in RFC 3865, the No Soliciting SMTP Service Extension. Solicitation class keywords are simple labels consisting of a domain name that has been reversed, such as org.example.adv. These solicitation class keywords are inserted in selected header fields or used in the ESMTP service extension, including a new \%No-Solicit: header, which can contain one or more solicitation class keywords inserted by the sender. This document specifies an application based on the Dynamic Delegation Discovery System (DDDS) described in RFC 3401 and related documents. An algorithm is specified to associate a solicitation class keyword with a URI which contains further information about the meaning and usage of that solicitation class keyword. For example, the registrant of the example.org domain could use this mechanism to create a URI which contains detailed information about the org.example.adv solicitation class keyword. [STANDARDS-TRACK]"];
+  RFC4095 -> rev_cites;
+  RFC4096 [label="RFC4096
+Policy-Mandated Labels Such as Adv: in
+Email Subject Headers Considered
+Ineffective At Best
+2005", shape=ellipse, URL="RFC4096.html", target="_top", tooltip="This memo discusses policies that require certain labels to be inserted in the Subject: header of a mail message.  Such policies are difficult to specify accurately while remaining compliant with key RFCs and are likely to be ineffective at best.  This memo discusses an alternate, \%standards-compliant approach that is significantly simpler to specify and is somewhat less likely to be ineffective.  This memo provides information for the Internet community."];
+  RFC4096 -> rev_cites;
+  RFC6409 [label="RFC6409
+Message Submission for Mail
+2011", shape=ellipse, URL="RFC6409.html", target="_top", tooltip="This memo splits message submission from message relay, allowing each service to operate according to its own rules (for security, policy, etc.), and specifies what actions are to be taken by a submission server. Message relay is unaffected, and continues to use SMTP over port 25. When conforming to this document, message submission uses the protocol specified here, normally over port 587. This separation of function offers a number of benefits, including the ability to apply specific security or policy requirements. [STANDARDS-TRACK]"];
+  RFC6409 -> rev_cites;
+  RFC8494 [label="RFC8494
+Multicast Email (MULE) over Allied
+Communications Publication (ACP) 142
+2018", shape=ellipse, URL="RFC8494.html", target="_top", tooltip="Allied Communications Publication (ACP) 142 defines P_MUL, which is a protocol for reliable multicast suitable for bandwidth-constrained and delayed acknowledgement (Emissions Control or EMCON) environments running over UDP. This document defines MULE (Multicast Email), an application protocol for transferring Internet Mail messages (as described in RFC 5322) over P_MUL (as defined in ACP 142). MULE enables transfer between Message Transfer Agents (MTAs). It doesn't provide a service similar to SMTP Submission (as described in RFC 6409). This document explains how MULE can be used in conjunction with SMTP (RFC 5321), including some common SMTP extensions, to provide an alternate MTA-to-MTA transfer mechanism. This is not an IETF specification; it describes an existing implementation. It is provided in order to facilitate interoperable implementations and third-party diagnostics."];
+  RFC8494 -> rev_cites;
+}

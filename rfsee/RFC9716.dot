@@ -1,0 +1,113 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9716 [label="RFC9716
+Mechanisms for MPLS Ping and Traceroute
+Procedures in Inter-Domain Segment
+Routing Networks
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Segment Routing (SR) architecture leverages source routing and can be directly applied to the use of an MPLS data plane.  A Segment Routing over MPLS (SR-MPLS) network may consist of multiple IGP domains or multiple Autonomous Systems (ASes) under the control of the same organization.  It is useful to have the Label Switched Path (LSP) ping and traceroute procedures when an SR end-to-end path traverses multiple ASes or IGP domains.  This document outlines mechanisms to enable efficient LSP ping and traceroute procedures in inter-AS and inter-domain SR-MPLS networks.  This is achieved through a straightforward extension to the Operations, Administration, and Maintenance (OAM) protocol, relying solely on data plane forwarding for handling echo replies on transit nodes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9716;
+
+  obs [label="obsoletes", shape=box];
+  RFC9716 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9716 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9716;
+
+  cites [label="cites", shape=box];
+  RFC9716 -> cites;
+  RFC8660 [label="RFC8660
+Segment Routing with the MPLS Data Plane
+2019", shape=ellipse, URL="RFC8660.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm.  A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header.  In the MPLS data plane, the SR header is instantiated through a label stack.  This document specifies the forwarding behavior to allow instantiating SR over the MPLS data plane (SR-MPLS)."];
+  cites -> RFC8660;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC9087 [label="RFC9087
+Segment Routing Centralized BGP Egress
+Peer Engineering
+2021", shape=ellipse, URL="RFC9087.html", target="_top", tooltip="Segment Routing (SR) leverages source routing. A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows for the enforcement of a flow through any topological path while maintaining per-flow state only at the ingress node of the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change on the forwarding plane. It requires a minor extension to the existing link-state routing protocols. This document illustrates the application of Segment Routing to solve the BGP Egress Peer Engineering (BGP-EPE) requirement. The SR-based BGP-EPE solution allows a centralized (Software-Defined Networking, or SDN) controller to program any egress peer policy at ingress border routers or at hosts within the domain."];
+  cites -> RFC9087;
+  RFC9086 [label="RFC9086
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+BGP Egress Peer Engineering
+2021", shape=ellipse, URL="RFC9086.html", target="_top", tooltip="A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with a list of segment identifiers (SIDs). A segment can represent any instruction, topological or service based. SR segments allow steering a flow through any topological path and service chain while maintaining per-flow state only at the ingress node of the SR domain. This document describes an extension to Border Gateway Protocol - Link State (BGP-LS) for advertisement of BGP Peering Segments along with their BGP peering node information so that efficient BGP Egress Peer Engineering (EPE) policies and strategies can be computed based on Segment Routing."];
+  cites -> RFC9086;
+  RFC8287 [label="RFC8287
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+IGP-Prefix and IGP-Adjacency Segment
+Identifiers (SIDs) with MPLS Data Planes
+2017", shape=ellipse, URL="RFC8287.html", target="_top", tooltip="A Segment Routing (SR) architecture leverages source routing and tunneling paradigms and can be directly applied to the use of a Multiprotocol Label Switching (MPLS) data plane. A node steers a packet through a controlled set of instructions called segments by prepending the packet with an SR header. The segment assignment and forwarding semantic nature of SR raises additional considerations for connectivity verification and fault isolation for a Label Switched Path (LSP) within an SR architecture. This document illustrates the problem and defines extensions to perform LSP Ping and Traceroute for Segment Routing IGP-Prefix and IGP-Adjacency Segment Identifiers (SIDs) with an MPLS data plane."];
+  cites -> RFC8287;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  cites -> RFC8029;
+  RFC8403 [label="RFC8403
+A Scalable and Topology-Aware MPLS Data-
+Plane Monitoring System
+2018", shape=ellipse, URL="RFC8403.html", target="_top", tooltip="This document describes features of an MPLS path monitoring system and related use cases.  Segment-based routing enables a scalable and simple method to monitor data-plane liveliness of the complete set of paths belonging to a single domain.  The MPLS monitoring system adds features to the traditional MPLS ping and Label Switched Path (LSP) trace, in a very complementary way.  MPLS topology awareness reduces management and control-plane involvement of Operations, Administration, and Maintenance (OAM) measurements while enabling new OAM features."];
+  cites -> RFC8403;
+  RFC7743 [label="RFC7743
+Relayed Echo Reply Mechanism for Label
+Switched Path (LSP) Ping
+2016", shape=ellipse, URL="RFC7743.html", target="_top", tooltip="In some inter-AS (Autonomous System) and inter-area deployment scenarios for RFC 4379 (Label Switched Path (LSP) Ping and Traceroute), a replying Label Switching Router (LSR) may not have the available route to an initiator, and the Echo Reply message sent to the initiator would be discarded, resulting in false negatives or a complete failure of operation of the LSP Ping and Traceroute.  This document describes extensions to the LSP Ping mechanism to enable the replying LSR to have the capability to relay the Echo Response by a set of routable intermediate nodes to the initiator.  This document updates RFC 4379."];
+  cites -> RFC7743;
+  RFC7110 [label="RFC7110
+Return Path Specified Label Switched
+Path (LSP) Ping
+2014", shape=ellipse, URL="RFC7110.html", target="_top", tooltip="This document defines extensions to the data-plane failure-detection protocol for Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs) known as LSP ping.  These extensions allow a selection of the LSP to be used for the echo reply return path.  Enforcing a specific return path can be used to verify bidirectional connectivity and also increase LSP ping robustness."];
+  cites -> RFC7110;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  cites -> RFC8277;
+  RFC8604 [label="RFC8604
+Interconnecting Millions of Endpoints
+with Segment Routing
+2019", shape=ellipse, URL="RFC8604.html", target="_top", tooltip="This document describes an application of Segment Routing to scale the network to support hundreds of thousands of network nodes, and tens of millions of physical underlay endpoints.  This use case can be applied to the interconnection of massive-scale Data Centers (DCs) and/or large aggregation networks.  Forwarding tables of midpoint and leaf nodes only require a few tens of thousands of entries.  This may be achieved by the inherently scaleable nature of Segment Routing and the design proposed in this document."];
+  cites -> RFC8604;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  cites -> RFC9256;
+  RFC9350 [label="RFC9350
+IGP Flexible Algorithm
+2023", shape=ellipse, URL="RFC9350.html", target="_top", tooltip="IGP protocols historically compute the best paths over the network based on the IGP metric assigned to the links.  Many network deployments use RSVP-TE or Segment Routing - Traffic Engineering (SR-TE) to steer traffic over a path that is computed using different metrics or constraints than the shortest IGP path.  This document specifies a solution that allows IGPs themselves to compute constraint-based paths over the network.  This document also specifies a way of using Segment Routing (SR) Prefix-SIDs and SRv6 locators to steer packets along the constraint-based paths."];
+  cites -> RFC9350;
+  RFC3032 [label="RFC3032
+MPLS Label Stack Encoding
+2001", shape=ellipse, URL="RFC3032.html", target="_top", tooltip="This document specifies the encoding to be used by an LSR in order to transmit labeled packets on Point-to-Point Protocol (PPP) data links, on LAN data links, and possibly on other data links as well.  This document also specifies rules and procedures for processing the various fields of the label stack encoding. [STANDARDS-TRACK]"];
+  cites -> RFC3032;
+  RFC9552 [label="RFC9552
+Distribution of Link-State and Traffic
+Engineering Information Using BGP
+2023", shape=ellipse, URL="RFC9552.html", target="_top", tooltip="In many environments, a component external to a network is called upon to perform computations based on the network topology and the current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism applies to physical and virtual (e.g., tunnel) IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs). This document obsoletes RFC 7752 by completely replacing that document. It makes some small changes and clarifications to the previous specification. This document also obsoletes RFC 9029 by incorporating the updates that it made to RFC 7752."];
+  cites -> RFC9552;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9716;
+}

@@ -1,0 +1,137 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9363 [label="RFC9363
+A YANG Data Model for Static Context
+Header Compression (SCHC)
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a YANG data model for the Static Context Header Compression (SCHC) compression and fragmentation Rules. This document formalizes the description of the Rules for better interoperability between SCHC instances either to exchange a set of Rules or to modify the parameters of some Rules."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9363;
+
+  obs [label="obsoletes", shape=box];
+  RFC9363 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9363 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9363;
+  RFC9441 [label="RFC9441
+Static Context Header Compression (SCHC)
+Compound Acknowledgement (ACK)
+2023", shape=ellipse, URL="RFC9441.html", target="_top", tooltip="This document updates the Static Context Header Compression (SCHC) and fragmentation protocol (RFC 8724) and the corresponding YANG module (RFC 9363). It defines a SCHC Compound Acknowledgement (ACK) message format and procedure, which are intended to reduce the number of response transmissions (i.e., SCHC ACKs) in the ACK-on-Error Mode, by accumulating bitmaps of several windows in a single SCHC message (i.e., the SCHC Compound ACK). Both the message format and procedure are generic, so they can be used, for instance, by any of the four Low-Power Wide Area Network (LPWAN) technologies defined in RFC 8376, which are Sigfox, Long Range Wide Area Network (LoRaWAN), Narrowband Internet of Things (NB-IoT), and IEEE 802.15.4w."];
+  RFC9441 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC9363 -> cites;
+  RFC8724 [label="RFC8724
+SCHC: Generic Framework for Static
+Context Header Compression and
+Fragmentation
+2020", shape=ellipse, URL="RFC8724.html", target="_top", tooltip="This document defines the Static Context Header Compression and fragmentation (SCHC) framework, which provides both a header compression mechanism and an optional fragmentation mechanism. SCHC has been designed with Low-Power Wide Area Networks (LPWANs) in mind. SCHC compression is based on a common static context stored both in the LPWAN device and in the network infrastructure side. This document defines a generic header compression mechanism and its application to compress IPv6/UDP headers. This document also specifies an optional fragmentation and reassembly mechanism. It can be used to support the IPv6 MTU requirement over the LPWAN technologies. Fragmentation is needed for IPv6 datagrams that, after SCHC compression or when such compression was not possible, still exceed the Layer 2 maximum payload size. The SCHC header compression and fragmentation mechanisms are independent of the specific LPWAN technology over which they are used. This document defines generic functionalities and offers flexibility with regard to parameter settings and mechanism choices. This document standardizes the exchange over the LPWAN between two SCHC entities. Settings and choices specific to a technology or a product are expected to be grouped into profiles, which are specified in other documents. Data models for the context and profiles are out of scope."];
+  cites -> RFC8724;
+  RFC7950 [label="RFC7950
+The YANG 1.1 Data Modeling Language
+2016", shape=ellipse, URL="RFC7950.html", target="_top", tooltip="YANG is a data modeling language used to model configuration data, state data, Remote Procedure Calls, and notifications for network management protocols.  This document describes the syntax and semantics of version 1.1 of the YANG language.  YANG version 1.1 is a maintenance release of the YANG language, addressing ambiguities and defects in the original specification.  There are a small number of backward incompatibilities from YANG version 1.  This document also specifies the YANG mappings to the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC7950;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8376 [label="RFC8376
+Low-Power Wide Area Network (LPWAN)
+Overview
+2018", shape=ellipse, URL="RFC8376.html", target="_top", tooltip="Low-Power Wide Area Networks (LPWANs) are wireless technologies with characteristics such as large coverage areas, low bandwidth, possibly very small packet and application-layer data sizes, and long battery life operation.  This memo is an informational overview of the set of LPWAN technologies being considered in the IETF and of the gaps that exist between the needs of those technologies and the goal of running IP in LPWANs."];
+  cites -> RFC8376;
+  RFC7136 [label="RFC7136
+Significance of IPv6 Interface
+Identifiers
+2014", shape=ellipse, URL="RFC7136.html", target="_top", tooltip="The IPv6 addressing architecture includes a unicast interface identifier that is used in the creation of many IPv6 addresses.  Interface identifiers are formed by a variety of methods.  This document clarifies that the bits in an interface identifier have no meaning and that the entire identifier should be treated as an opaque value.  In particular, RFC 4291 defines a method by which the Universal and Group bits of an IEEE link-layer address are mapped into an IPv6 unicast interface identifier.  This document clarifies that those two bits are significant only in the process of deriving interface identifiers from an IEEE link-layer address, and it updates RFC 4291 accordingly."];
+  cites -> RFC7136;
+  RFC8824 [label="RFC8824
+Static Context Header Compression (SCHC)
+for the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, URL="RFC8824.html", target="_top", tooltip="This document defines how to compress Constrained Application Protocol (CoAP) headers using the Static Context Header Compression and fragmentation (SCHC) framework.  SCHC defines a header compression mechanism adapted for Constrained Devices.  SCHC uses a static description of the header to reduce the header's redundancy and size.  While RFC 8724 describes the SCHC compression and fragmentation framework, and its application for IPv6/UDP headers, this document applies SCHC to CoAP headers.  The CoAP header structure differs from IPv6 and UDP, since CoAP uses a flexible header with a variable number of options, themselves of variable length.  The CoAP message format is asymmetric: the request messages have a header format different from the format in the response messages.  This specification gives guidance on applying SCHC to flexible headers and how to leverage the asymmetry for more efficient compression Rules."];
+  cites -> RFC8824;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  cites -> RFC8200;
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, URL="RFC7252.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."];
+  cites -> RFC7252;
+  RFC7967 [label="RFC7967
+Constrained Application Protocol (CoAP)
+Option for No Server Response
+2016", shape=ellipse, URL="RFC7967.html", target="_top", tooltip="There can be machine-to-machine (M2M) scenarios where server responses to client requests are redundant. This kind of open-loop exchange (with no response path from the server to the client) may be desired to minimize resource consumption in constrained systems while updating many resources simultaneously or performing high-frequency updates. CoAP already provides Non-confirmable (NON) messages that are not acknowledged by the recipient. However, the request/response semantics still require the server to respond with a status code indicating the result of the attempt to understand and satisfy the request, per RFC 7252. This specification introduces a CoAP option called 'No-Response'. Using this option, the client can explicitly express to the server its disinterest in all responses against the particular request. This option also provides granular control to enable expression of disinterest to a particular response class or a combination of response classes. The server MAY decide to suppress the response by not transmitting it back to the client according to the value of the No-Response option in the request. This option may be effective for both unicast and multicast requests. This document also discusses a few examples of applications that benefit from this option."];
+  cites -> RFC7967;
+  RFC8613 [label="RFC8613
+Object Security for Constrained RESTful
+Environments (OSCORE)
+2019", shape=ellipse, URL="RFC8613.html", target="_top", tooltip="This document defines Object Security for Constrained RESTful Environments (OSCORE), a method for application-layer protection of the Constrained Application Protocol (CoAP), using CBOR Object Signing and Encryption (COSE). OSCORE provides end-to-end protection between endpoints communicating using CoAP or CoAP-mappable HTTP. OSCORE is designed for constrained nodes and networks supporting a range of proxy operations, including translation between different transport protocols. Although an optional functionality of CoAP, OSCORE alters CoAP options processing and IANA registration. Therefore, this document updates RFC 7252."];
+  cites -> RFC8613;
+  RFC9011 [label="RFC9011
+Static Context Header Compression and
+Fragmentation (SCHC) over LoRaWAN
+2021", shape=ellipse, URL="RFC9011.html", target="_top", tooltip="The Static Context Header Compression and fragmentation (SCHC) specification (RFC 8724) describes generic header compression and fragmentation techniques for Low-Power Wide Area Network (LPWAN) technologies. SCHC is a generic mechanism designed for great flexibility so that it can be adapted for any of the LPWAN technologies. This document defines a profile of SCHC (RFC 8724) for use in LoRaWAN networks and provides elements such as efficient parameterization and modes of operation."];
+  cites -> RFC9011;
+  RFC8342 [label="RFC8342
+Network Management Datastore
+Architecture (NMDA)
+2018", shape=ellipse, URL="RFC8342.html", target="_top", tooltip="Datastores are a fundamental concept binding the data models written in the YANG data modeling language to network management protocols such as the Network Configuration Protocol (NETCONF) and RESTCONF.  This document defines an architectural framework for datastores based on the experience gained with the initial simpler model, addressing requirements that were not well supported in the initial model.  This document updates RFC 7950."];
+  cites -> RFC8342;
+  RFC3688 [label="RFC3688
+The IETF XML Registry
+2004", shape=ellipse, URL="RFC3688.html", target="_top", tooltip="This document describes an IANA maintained registry for IETF standards which use Extensible Markup Language (XML) related items such as Namespaces, Document Type Declarations (DTDs), Schemas, and Resource Description Framework (RDF) Schemas."];
+  cites -> RFC3688;
+  RFC6020 [label="RFC6020
+YANG - A Data Modeling Language for the
+Network Configuration Protocol (NETCONF)
+2010", shape=ellipse, URL="RFC6020.html", target="_top", tooltip="YANG is a data modeling language used to model configuration and state data manipulated by the Network Configuration Protocol (NETCONF), NETCONF remote procedure calls, and NETCONF notifications. [STANDARDS-TRACK]"];
+  cites -> RFC6020;
+  RFC6241 [label="RFC6241
+Network Configuration Protocol (NETCONF)
+2011", shape=ellipse, URL="RFC6241.html", target="_top", tooltip="The Network Configuration Protocol (NETCONF) defined in this document provides mechanisms to install, manipulate, and delete the configuration of network devices.  It uses an Extensible Markup Language (XML)-based data encoding for the configuration data as well as the protocol messages.  The NETCONF protocol operations are realized as remote procedure calls (RPCs).  This document obsoletes RFC 4741. [STANDARDS-TRACK]"];
+  cites -> RFC6241;
+  RFC8040 [label="RFC8040
+RESTCONF Protocol
+2017", shape=ellipse, URL="RFC8040.html", target="_top", tooltip="This document describes an HTTP-based protocol that provides a programmatic interface for accessing data defined in YANG, using the datastore concepts defined in the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC8040;
+  RFC6242 [label="RFC6242
+Using the NETCONF Protocol over Secure
+Shell (SSH)
+2011", shape=ellipse, URL="RFC6242.html", target="_top", tooltip="This document describes a method for invoking and running the Network Configuration Protocol (NETCONF) within a Secure Shell (SSH) session as an SSH subsystem.  This document obsoletes RFC 4742. [STANDARDS-TRACK]"];
+  cites -> RFC6242;
+  RFC8446 [label="RFC8446
+The Transport Layer Security (TLS)
+Protocol Version 1.3
+2018", shape=ellipse, URL="RFC8446.html", target="_top", tooltip="This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery. This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations."];
+  cites -> RFC8446;
+  RFC8341 [label="RFC8341
+Network Configuration Access Control
+Model
+2018", shape=ellipse, URL="RFC8341.html", target="_top", tooltip="The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability. There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content. This document defines such an access control model. This document obsoletes RFC 6536."];
+  cites -> RFC8341;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9363;
+  RFC9441 [label="RFC9441
+Static Context Header Compression (SCHC)
+Compound Acknowledgement (ACK)
+2023", shape=ellipse, URL="RFC9441.html", target="_top", tooltip="This document updates the Static Context Header Compression (SCHC) and fragmentation protocol (RFC 8724) and the corresponding YANG module (RFC 9363). It defines a SCHC Compound Acknowledgement (ACK) message format and procedure, which are intended to reduce the number of response transmissions (i.e., SCHC ACKs) in the ACK-on-Error Mode, by accumulating bitmaps of several windows in a single SCHC message (i.e., the SCHC Compound ACK). Both the message format and procedure are generic, so they can be used, for instance, by any of the four Low-Power Wide Area Network (LPWAN) technologies defined in RFC 8376, which are Sigfox, Long Range Wide Area Network (LoRaWAN), Narrowband Internet of Things (NB-IoT), and IEEE 802.15.4w."];
+  RFC9441 -> rev_cites;
+}

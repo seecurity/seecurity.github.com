@@ -1,0 +1,94 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7661 [label="RFC7661
+Updating TCP to Support Rate-Limited
+Traffic
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides a mechanism to address issues that arise when TCP is used for traffic that exhibits periods where the sending rate is limited by the application rather than the congestion window. It provides an experimental update to TCP that allows a TCP sender to restart quickly following a rate-limited interval. This method is expected to benefit applications that send rate-limited traffic using TCP while also providing an appropriate response if congestion is experienced. This document also evaluates the Experimental specification of TCP Congestion Window Validation (CWV) defined in RFC 2861 and concludes that RFC 2861 sought to address important issues but failed to deliver a widely used solution. This document therefore reclassifies the status of RFC 2861 from Experimental to Historic. This document obsoletes RFC 2861."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7661;
+
+  obs [label="obsoletes", shape=box];
+  RFC7661 -> obs;
+  RFC2861 [label="RFC2861
+TCP Congestion Window Validation
+2000", shape=ellipse, URL="RFC2861.html", target="_top", tooltip="This document describes a simple modification to TCP's congestion control algorithms to decay the congestion window cwnd after the transition from a sufficiently-long application-limited period, while using the slow-start threshold ssthresh to save information about the previous value of the congestion window.  This memo defines an Experimental Protocol for the Internet community."];
+  obs -> RFC2861;
+
+  updates [label="updates", shape=box];
+  RFC7661 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7661;
+
+  cites [label="cites", shape=box];
+  RFC7661 -> cites;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC2861 [label="RFC2861
+TCP Congestion Window Validation
+2000", shape=ellipse, URL="RFC2861.html", target="_top", tooltip="This document describes a simple modification to TCP's congestion control algorithms to decay the congestion window cwnd after the transition from a sufficiently-long application-limited period, while using the slow-start threshold ssthresh to save information about the previous value of the congestion window.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC2861;
+  RFC7230 [label="RFC7230
+Hypertext Transfer Protocol (HTTP/1.1):
+Message Syntax and Routing
+2014", shape=ellipse, URL="RFC7230.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems.  This document provides an overview of HTTP architecture and its associated terminology, defines the http and https Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations."];
+  cites -> RFC7230;
+  RFC6298 [label="RFC6298
+Computing TCP's Retransmission Timer
+2011", shape=ellipse, URL="RFC6298.html", target="_top", tooltip="This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer.  It expands on the discussion in Section 4.2.3.1 of RFC 1122 and upgrades the requirement of supporting the algorithm from a SHOULD to a MUST.  This document obsoletes RFC 2988. [STANDARDS-TRACK]"];
+  cites -> RFC6298;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC6675 [label="RFC6675
+A Conservative Loss Recovery Algorithm
+Based on Selective Acknowledgment (SACK)
+for TCP
+2012", shape=ellipse, URL="RFC6675.html", target="_top", tooltip="This document presents a conservative loss recovery algorithm for TCP that is based on the use of the selective acknowledgment (SACK) TCP option.  The algorithm presented in this document conforms to the spirit of the current congestion control specification (RFC 5681), but allows TCP senders to recover more effectively when multiple segments are lost from a single flight of data.  This document obsoletes RFC 3517 and describes changes from it. [STANDARDS-TRACK]"];
+  cites -> RFC6675;
+  RFC2018 [label="RFC2018
+TCP Selective Acknowledgment Options
+1996", shape=ellipse, URL="RFC2018.html", target="_top", tooltip="This memo proposes an implementation of SACK and discusses its performance and related issues. [STANDARDS-TRACK]"];
+  cites -> RFC2018;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7661;
+  RFC8298 [label="RFC8298
+Self-Clocked Rate Adaptation for
+Multimedia
+2017", shape=ellipse, URL="RFC8298.html", target="_top", tooltip="This memo describes a rate adaptation algorithm for conversational media services such as interactive video.  The solution conforms to the packet conservation principle and uses a hybrid loss-and-delay- based congestion control algorithm.  The algorithm is evaluated over both simulated Internet bottleneck scenarios as well as in a Long Term Evolution (LTE) system simulator and is shown to achieve both low latency and high video throughput in these scenarios."];
+  RFC8298 -> rev_cites;
+  RFC8337 [label="RFC8337
+Model-Based Metrics for Bulk Transport
+Capacity
+2018", shape=ellipse, URL="RFC8337.html", target="_top", tooltip="This document introduces a new class of Model-Based Metrics designed to assess if a complete Internet path can be expected to meet a predefined Target Transport Performance by applying a suite of IP diagnostic tests to successive subpaths. The subpath-at-a-time tests can be robustly applied to critical infrastructure, such as network interconnections or even individual devices, to accurately detect if any part of the infrastructure will prevent paths traversing it from meeting the Target Transport Performance. Model-Based Metrics rely on mathematical models to specify a Targeted IP Diagnostic Suite, a set of IP diagnostic tests designed to assess whether common transport protocols can be expected to meet a predetermined Target Transport Performance over an Internet path. For Bulk Transport Capacity, the IP diagnostics are built using test streams and statistical criteria for evaluating the packet transfer that mimic TCP over the complete path. The temporal structure of the test stream (e.g., bursts) mimics TCP or other transport protocols carrying bulk data over a long path. However, they are constructed to be independent of the details of the subpath under test, end systems, or applications. Likewise, the success criteria evaluates the packet transfer statistics of the subpath against criteria determined by protocol performance models applied to the Target Transport Performance of the complete path. The success criteria also does not depend on the details of the subpath, end systems, or applications."];
+  RFC8337 -> rev_cites;
+  RFC9002 [label="RFC9002
+QUIC Loss Detection and Congestion
+Control
+2021", shape=ellipse, URL="RFC9002.html", target="_top", tooltip="This document describes loss detection and congestion control mechanisms for QUIC."];
+  RFC9002 -> rev_cites;
+  RFC9040 [label="RFC9040
+TCP Control Block Interdependence
+2021", shape=ellipse, URL="RFC9040.html", target="_top", tooltip="This memo provides guidance to TCP implementers that is intended to help improve connection convergence to steady-state operation without affecting interoperability.  It updates and replaces RFC 2140's description of sharing TCP state, as typically represented in TCP Control Blocks, among similar concurrent or consecutive connections."];
+  RFC9040 -> rev_cites;
+  RFC9317 [label="RFC9317
+Operational Considerations for Streaming
+Media
+2022", shape=ellipse, URL="RFC9317.html", target="_top", tooltip="This document provides an overview of operational networking and transport protocol issues that pertain to the quality of experience (QoE) when streaming video and other high-bitrate media over the Internet. This document explains the characteristics of streaming media delivery that have surprised network designers or transport experts who lack specific media expertise, since streaming media highlights key differences between common assumptions in existing networking practices and observations of media delivery issues encountered when streaming media over those existing networks."];
+  RFC9317 -> rev_cites;
+  RFC9438 [label="RFC9438
+CUBIC for Fast and Long-Distance
+Networks
+2023", shape=ellipse, URL="RFC9438.html", target="_top", tooltip="CUBIC is a standard TCP congestion control algorithm that uses a cubic function instead of a linear congestion window increase function to improve scalability and stability over fast and long-distance networks. CUBIC has been adopted as the default TCP congestion control algorithm by the Linux, Windows, and Apple stacks. This document updates the specification of CUBIC to include algorithmic improvements based on these implementations and recent academic work. Based on the extensive deployment experience with CUBIC, this document also moves the specification to the Standards Track and obsoletes RFC 8312. This document also updates RFC 5681, to allow for CUBIC's occasionally more aggressive sending behavior."];
+  RFC9438 -> rev_cites;
+}

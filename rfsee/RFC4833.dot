@@ -1,0 +1,42 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4833 [label="RFC4833
+Timezone Options for DHCP
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="Two common ways to communicate timezone information are POSIX 1003.1 timezone strings and timezone database names.  This memo specifies DHCP options for each of those methods.  The DHCPv4 time offset option is deprecated. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4833;
+
+  obs [label="obsoletes", shape=box];
+  RFC4833 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4833 -> updates;
+  RFC2132 [label="RFC2132
+DHCP Options and BOOTP Vendor Extensions
+1997", shape=ellipse, URL="RFC2132.html", target="_top", tooltip="This document specifies the current set of DHCP options.  Future options will be specified in separate RFCs.  The current list of valid options is also available in ftp://ftp.isi.edu/in-notes/iana/assignments. [STANDARDS-TRACK]"];
+  updates -> RFC2132;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4833;
+
+  cites [label="cites", shape=box];
+  RFC4833 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4833;
+  RFC6557 [label="RFC6557
+Procedures for Maintaining the Time Zone
+Database
+2012", shape=ellipse, URL="RFC6557.html", target="_top", tooltip="Time zone information serves as a basic protocol element in protocols, such as the calendaring suite and DHCP.  The Time Zone (TZ) Database specifies the indices used in various protocols, as well as their semantic meanings, for all localities throughout the world.  This database has been meticulously maintained and distributed free of charge by a group of volunteers, coordinated by a single volunteer who is now planning to retire.  This memo specifies procedures involved with maintenance of the TZ database and associated code, including how to submit proposed updates, how decisions for inclusion of those updates are made, and the selection of a designated expert by and for the time zone community.  The intent of this memo is, to the extent possible, to document existing practice and provide a means to ease succession of the database maintainers.  This memo documents an Internet Best Current Practice."];
+  RFC6557 -> rev_cites;
+  RFC7227 [label="RFC7227
+Guidelines for Creating New DHCPv6
+Options
+2014", shape=ellipse, URL="RFC7227.html", target="_top", tooltip="This document provides guidance to prospective DHCPv6 option developers to help them create option formats that are easily adoptable by existing DHCPv6 software.  It also provides guidelines for expert reviewers to evaluate new registrations.  This document updates RFC 3315."];
+  RFC7227 -> rev_cites;
+}

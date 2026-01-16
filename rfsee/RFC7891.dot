@@ -1,0 +1,60 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7891 [label="RFC7891
+Explicit Reverse Path Forwarding (RPF)
+Vector
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="The PIM Reverse Path Forwarding (RPF) Vector TLV defined in RFC 5496 can be included in a PIM Join Attribute such that the RPF neighbor is selected based on the unicast reachability of the RPF Vector instead of the source or Rendezvous Point associated with the multicast tree. This document defines a new RPF Vector Attribute type such that an explicit RPF neighbor list can be encoded in the PIM Join Attribute, thus bypassing the unicast route lookup."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7891;
+
+  obs [label="obsoletes", shape=box];
+  RFC7891 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7891 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7891;
+
+  cites [label="cites", shape=box];
+  RFC7891 -> cites;
+  RFC5496 [label="RFC5496
+The Reverse Path Forwarding (RPF) Vector
+TLV
+2009", shape=ellipse, URL="RFC5496.html", target="_top", tooltip="This document describes a use of the Protocol Independent Multicast (PIM) Join Attribute as defined in RFC 5384, which enables PIM to build multicast trees through an MPLS-enabled network, even if that network's IGP does not have a route to the source of the tree. [STANDARDS-TRACK]"];
+  cites -> RFC5496;
+  RFC5384 [label="RFC5384
+The Protocol Independent Multicast (PIM)
+Join Attribute Format
+2008", shape=ellipse, URL="RFC5384.html", target="_top", tooltip="A Protocol Independent Multicast - Sparse Mode Join message sent by a given node identifies one or more multicast distribution trees that that node wishes to join.  Each tree is identified by the combination of a multicast group address and a source address (where the source address is possibly a wild card).  Under certain conditions it can be useful, when joining a tree, to specify additional information related to the construction of the tree.  However, there has been no way to do so until now.  This document describes a modification of the Join message that allows a node to associate attributes with a particular tree.  The attributes are encoded in Type-Length-Value format. [STANDARDS-TRACK]"];
+  cites -> RFC5384;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC7431 [label="RFC7431
+Multicast-Only Fast Reroute
+2015", shape=ellipse, URL="RFC7431.html", target="_top", tooltip="As IPTV deployments grow in number and size, service providers are looking for solutions that minimize the service disruption due to faults in the IP network carrying the packets for these services.  This document describes a mechanism for minimizing packet loss in a network when node or link failures occur.  Multicast-only Fast Reroute (MoFRR) works by making simple enhancements to multicast routing protocols such as Protocol Independent Multicast (PIM) and Multipoint LDP (mLDP)."];
+  cites -> RFC7431;
+  RFC7761 [label="RFC7761
+Protocol Independent Multicast - Sparse
+Mode (PIM-SM): Protocol Specification
+(Revised)
+2016", shape=ellipse, URL="RFC7761.html", target="_top", tooltip="This document specifies Protocol Independent Multicast - Sparse Mode (PIM-SM). PIM-SM is a multicast routing protocol that can use the underlying unicast routing information base or a separate multicast-capable routing information base. It builds unidirectional shared trees rooted at a Rendezvous Point (RP) per group, and it optionally creates shortest-path trees per source. This document obsoletes RFC 4601 by replacing it, addresses the errata filed against it, removes the optional (*,*,RP), PIM Multicast Border Router features and authentication using IPsec that lack sufficient deployment experience (see Appendix A), and moves the PIM specification to Internet Standard."];
+  cites -> RFC7761;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7891;
+  RFC9860 [label="RFC9860
+Multicast-Only Fast Reroute (MoFRR)
+Based on Topology Independent Loop-Free
+Alternate (TI-LFA) Fast Reroute
+2025", shape=ellipse, URL="RFC9860.html", target="_top", tooltip="This document specifies the use of Topology Independent Loop-Free Alternate (TI-LFA) mechanisms with Multicast-only Fast Reroute (MoFRR) for Protocol Independent Multicast (PIM).  The TI-LFA provides Fast Reroute (FRR) protection for unicast traffic in IP networks by precomputing backup paths that avoid potential failures.  By integrating TI-LFA with MoFRR, this document extends the benefits of FRR mechanisms to multicast traffic, enabling enhanced resilience and minimized packet loss in multicast networks.  The document outlines an optional approach to implement TI-LFA in conjunction with MoFRR for PIM, ensuring that multicast traffic is rapidly rerouted in the event of a failure."];
+  RFC9860 -> rev_cites;
+}

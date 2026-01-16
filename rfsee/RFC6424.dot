@@ -1,0 +1,126 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6424 [label="RFC6424
+Mechanism for Performing Label Switched
+Path Ping (LSP Ping) over MPLS Tunnels
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes methods for performing LSP ping (specified in RFC 4379) traceroute over MPLS tunnels and for traceroute of stitched MPLS Label Switched Paths (LSPs).  The techniques outlined in RFC 4379 are insufficient to perform traceroute Forwarding Equivalency Class (FEC) validation and path discovery for an LSP that goes over other MPLS tunnels or for a stitched LSP.  This document deprecates the Downstream Mapping TLV (defined in RFC 4379) in favor of a new TLV that, along with other procedures outlined in this document, can be used to trace such LSPs. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6424;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  RFC8029 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC6424 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6424 -> updates;
+  RFC4379 [label="RFC4379
+Detecting Multi-Protocol Label Switched
+(MPLS) Data Plane Failures
+2006", shape=ellipse, URL="RFC4379.html", target="_top", tooltip="This document describes a simple and efficient mechanism that can be used to detect data plane failures in Multi-Protocol Label Switching (MPLS) Label Switched Paths (LSPs).  There are two parts to this document: information carried in an MPLS echo request and echo reply for the purposes of fault detection and isolation, and mechanisms for reliably sending the echo reply. [STANDARDS-TRACK]"];
+  updates -> RFC4379;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6424;
+  RFC7537 [label="RFC7537
+IANA Registries for LSP Ping Code Points
+2015", shape=ellipse, URL="RFC7537.html", target="_top", tooltip="RFCs 4379 and 6424 created name spaces for Multi-Protocol Label Switching (MPLS) Label Switched Path (LSP) Ping. However, those RFCs did not create the corresponding IANA registries for Downstream Mapping object Flags (DS Flags), Multipath Types, Pad TLVs, and Interface and Label Stack Address Types. There is now a need to make further code point allocations from these name spaces. This document updates RFCs 4379 and 6424 in that it creates IANA registries for that purpose."];
+  RFC7537 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC6424 -> cites;
+  RFC4379 [label="RFC4379
+Detecting Multi-Protocol Label Switched
+(MPLS) Data Plane Failures
+2006", shape=ellipse, URL="RFC4379.html", target="_top", tooltip="This document describes a simple and efficient mechanism that can be used to detect data plane failures in Multi-Protocol Label Switching (MPLS) Label Switched Paths (LSPs).  There are two parts to this document: information carried in an MPLS echo request and echo reply for the purposes of fault detection and isolation, and mechanisms for reliably sending the echo reply. [STANDARDS-TRACK]"];
+  cites -> RFC4379;
+  RFC5150 [label="RFC5150
+Label Switched Path Stitching with
+Generalized Multiprotocol Label
+Switching Traffic Engineering (GMPLS TE)
+2008", shape=ellipse, URL="RFC5150.html", target="_top", tooltip="In certain scenarios, there may be a need to combine several Generalized Multiprotocol Label Switching (GMPLS) Label Switched Paths (LSPs) such that a single end-to-end (e2e) LSP is realized and all traffic from one constituent LSP is switched onto the next LSP. We will refer to this as LSP stitching, the key requirement being that a constituent LSP not be allocated to more than one e2e LSP. The constituent LSPs will be referred to as LSP segments (S-LSPs). This document describes extensions to the existing GMPLS signaling protocol (Resource Reservation Protocol-Traffic Engineering (RSVP-TE)) to establish e2e LSPs created from S-LSPs, and describes how the LSPs can be managed using the GMPLS signaling and routing protocols. It may be possible to configure a GMPLS node to switch the traffic from an LSP for which it is the egress, to another LSP for which it is the ingress, without requiring any signaling or routing extensions whatsoever and such that the operation is completely transparent to other nodes. This will also result in LSP stitching in the data plane. However, this document does not cover this scenario of LSP stitching. [STANDARDS-TRACK]"];
+  cites -> RFC5150;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4461 [label="RFC4461
+Signaling Requirements for Point-to-
+Multipoint Traffic-Engineered MPLS Label
+Switched Paths (LSPs)
+2006", shape=ellipse, URL="RFC4461.html", target="_top", tooltip="This document presents a set of requirements for the establishment and maintenance of Point-to-Multipoint (P2MP) Traffic-Engineered (TE) Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). There is no intent to specify solution-specific details or application-specific requirements in this document. The requirements presented in this document not only apply to packet-switched networks under the control of MPLS protocols, but also encompass the requirements of Layer Two Switching (L2SC), Time Division Multiplexing (TDM), lambda, and port switching networks managed by Generalized MPLS (GMPLS) protocols. Protocol solutions developed to meet the requirements set out in this document must attempt to be equally applicable to MPLS and GMPLS. This memo provides information for the Internet community."];
+  cites -> RFC4461;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  cites -> RFC5462;
+  RFC5331 [label="RFC5331
+MPLS Upstream Label Assignment and
+Context-Specific Label Space
+2008", shape=ellipse, URL="RFC5331.html", target="_top", tooltip="RFC 3031 limits the MPLS architecture to downstream-assigned MPLS labels.  This document introduces the notion of upstream-assigned MPLS labels.  It describes the procedures for upstream MPLS label assignment and introduces the concept of a Context-Specific Label Space. [STANDARDS-TRACK]"];
+  cites -> RFC5331;
+  RFC3443 [label="RFC3443
+Time To Live (TTL) Processing in Multi-
+Protocol Label Switching (MPLS) Networks
+2003", shape=ellipse, URL="RFC3443.html", target="_top", tooltip="This document describes Time To Live (TTL) processing in hierarchical Multi-Protocol Label Switching (MPLS) networks and is motivated by the need to formalize a TTL-transparent mode of operation for an MPLS label-switched path.  It updates RFC 3032, MPLS Label Stack Encoding.  TTL processing in both Pipe and Uniform Model hierarchical tunnels are specified with examples for both push and pop cases.  The document also complements RFC 3270, MPLS Support of Differentiated Services and ties together the terminology introduced in that document with TTL processing in hierarchical MPLS networks. [STANDARDS-TRACK]"];
+  cites -> RFC3443;
+  RFC3692 [label="RFC3692
+Assigning Experimental and Testing
+Numbers Considered Useful
+2004", shape=ellipse, URL="RFC3692.html", target="_top", tooltip="When experimenting with or extending protocols, it is often necessary to use some sort of protocol number or constant in order to actually test or experiment with the new function, even when testing in a closed environment.  For example, to test a new DHCP option, one needs an option number to identify the new function.  This document recommends that when writing IANA Considerations sections, authors should consider assigning a small range of numbers for experimentation purposes that implementers can use when testing protocol extensions or other new features.  This document reserves some ranges of numbers for experimentation purposes in specific protocols where the need to support experimentation has been identified."];
+  cites -> RFC3692;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6424;
+  RFC6425 [label="RFC6425
+Detecting Data-Plane Failures in Point-
+to-Multipoint MPLS - Extensions to LSP
+Ping
+2011", shape=ellipse, URL="RFC6425.html", target="_top", tooltip="Recent proposals have extended the scope of Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs) to encompass point-to-multipoint (P2MP) LSPs. The requirement for a simple and efficient mechanism that can be used to detect data-plane failures in point-to-point (P2P) MPLS LSPs has been recognized and has led to the development of techniques for fault detection and isolation commonly referred to as LSP ping. The scope of this document is fault detection and isolation for P2MP MPLS LSPs. This documents does not replace any of the mechanisms of LSP ping, but clarifies their applicability to MPLS P2MP LSPs, and extends the techniques and mechanisms of LSP ping to the MPLS P2MP environment. This document updates RFC 4379. [STANDARDS-TRACK]"];
+  RFC6425 -> rev_cites;
+  RFC6426 [label="RFC6426
+MPLS On-Demand Connectivity Verification
+and Route Tracing
+2011", shape=ellipse, URL="RFC6426.html", target="_top", tooltip="Label Switched Path Ping (LSP ping) is an existing and widely deployed Operations, Administration, and Maintenance (OAM) mechanism for Multi-Protocol Label Switching (MPLS) Label Switched Paths (LSPs).  This document describes extensions to LSP ping so that LSP ping can be used for on-demand connectivity verification of MPLS Transport Profile (MPLS-TP) LSPs and pseudowires.  This document also clarifies procedures to be used for processing the related OAM packets.  Further, it describes procedures for using LSP ping to perform connectivity verification and route tracing functions in MPLS-TP networks.  Finally, this document updates RFC 4379 by adding a new address type and creating an IANA registry. [STANDARDS-TRACK]"];
+  RFC6426 -> rev_cites;
+  RFC7297 [label="RFC7297
+IP Connectivity Provisioning Profile
+(CPP)
+2014", shape=ellipse, URL="RFC7297.html", target="_top", tooltip="This document describes the Connectivity Provisioning Profile (CPP) and proposes a CPP template to capture IP/MPLS connectivity requirements to be met within a service delivery context (e.g., Voice over IP or IP TV). The CPP defines the set of IP transfer parameters to be supported by the underlying transport network together with a reachability scope and bandwidth/capacity needs. Appropriate performance metrics, such as one-way delay or one-way delay variation, are used to characterize an IP transfer service. Both global and restricted reachability scopes can be captured in the CPP. Such a generic CPP template is meant to (1) facilitate the automation of the service negotiation and activation procedures, thus accelerating service provisioning, (2) set (traffic) objectives of Traffic Engineering functions and service management functions, and (3) improve service and network management systems with 'decision- making' capabilities based upon negotiated/offered CPPs."];
+  RFC7297 -> rev_cites;
+  RFC7325 [label="RFC7325
+MPLS Forwarding Compliance and
+Performance Requirements
+2014", shape=ellipse, URL="RFC7325.html", target="_top", tooltip="This document provides guidelines for implementers regarding MPLS forwarding and a basis for evaluations of forwarding implementations.  Guidelines cover many aspects of MPLS forwarding.  Topics are highlighted where implementers might otherwise overlook practical requirements which are unstated or under emphasized or are optional for conformance to RFCs but are often considered mandatory by providers."];
+  RFC7325 -> rev_cites;
+  RFC7537 [label="RFC7537
+IANA Registries for LSP Ping Code Points
+2015", shape=ellipse, URL="RFC7537.html", target="_top", tooltip="RFCs 4379 and 6424 created name spaces for Multi-Protocol Label Switching (MPLS) Label Switched Path (LSP) Ping. However, those RFCs did not create the corresponding IANA registries for Downstream Mapping object Flags (DS Flags), Multipath Types, Pad TLVs, and Interface and Label Stack Address Types. There is now a need to make further code point allocations from these name spaces. This document updates RFCs 4379 and 6424 in that it creates IANA registries for that purpose."];
+  RFC7537 -> rev_cites;
+  RFC7555 [label="RFC7555
+Proxy MPLS Echo Request
+2015", shape=ellipse, URL="RFC7555.html", target="_top", tooltip="This document defines a means of remotely initiating Multiprotocol Label Switched Protocol (MPLS) Pings on Label Switched Paths.  An MPLS Proxy Ping Request is sent to any Label Switching Router along a Label Switched Path.  The primary motivations for this facility are first to limit the number of messages and related processing when using LSP Ping in large Point-to-Multipoint LSPs, and second to enable tracing from leaf to leaf (or root)."];
+  RFC7555 -> rev_cites;
+  RFC8012 [label="RFC8012
+Label Switched Path (LSP) and Pseudowire
+(PW) Ping/Trace over MPLS Networks Using
+Entropy Labels (ELs)
+2016", shape=ellipse, URL="RFC8012.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) Label Switched Path (LSP) ping and traceroute are methods used to test Equal-Cost Multipath (ECMP) paths. Ping is known as a connectivity-verification method and traceroute is known as a fault-isolation method, as described in RFC 4379. When an LSP is signaled using the Entropy Label (EL) described in RFC 6790, the ability for LSP ping and traceroute operations to discover and exercise ECMP paths is lost for scenarios where Label Switching Routers (LSRs) apply different load-balancing techniques. One such scenario is when some LSRs apply EL-based load balancing while other LSRs apply load balancing that is not EL based (e.g., IP). Another scenario is when an EL-based LSP is stitched with another LSP that can be EL based or not EL based. This document extends the MPLS LSP ping and traceroute multipath mechanisms in RFC 6424 to allow the ability of exercising LSPs that make use of the EL. This document updates RFC 6790."];
+  RFC8012 -> rev_cites;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  RFC8029 -> rev_cites;
+}

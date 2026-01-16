@@ -1,0 +1,201 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8899 [label="RFC8899
+Packetization Layer Path MTU Discovery
+for Datagram Transports
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies Datagram Packetization Layer Path MTU Discovery (DPLPMTUD). This is a robust method for Path MTU Discovery (PMTUD) for datagram Packetization Layers (PLs). It allows a PL, or a datagram application that uses a PL, to discover whether a network path can support the current size of datagram. This can be used to detect and reduce the message size when a sender encounters a packet black hole. It can also probe a network path to discover whether the maximum packet size can be increased. This provides functionality for datagram transports that is equivalent to the PLPMTUD specification for TCP, specified in RFC 4821, which it updates. It also updates the UDP Usage Guidelines to refer to this method for use with UDP datagrams and updates SCTP. The document provides implementation notes for incorporating Datagram PMTUD into IETF datagram transports or applications that use datagram transports. This specification updates RFC 4960, RFC 4821, RFC 6951, RFC 8085, and RFC 8261."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8899;
+
+  obs [label="obsoletes", shape=box];
+  RFC8899 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8899 -> updates;
+  RFC4821 [label="RFC4821
+Packetization Layer Path MTU Discovery
+2007", shape=ellipse, URL="RFC4821.html", target="_top", tooltip="This document describes a robust method for Path MTU Discovery (PMTUD) that relies on TCP or some other Packetization Layer to probe an Internet path with progressively larger packets.  This method is described as an extension to RFC 1191 and RFC 1981, which specify ICMP-based Path MTU Discovery for IP versions 4 and 6, respectively. [STANDARDS-TRACK]"];
+  updates -> RFC4821;
+  RFC4960 [label="RFC4960
+Stream Control Transmission Protocol
+2007", shape=ellipse, URL="RFC4960.html", target="_top", tooltip="This document obsoletes RFC 2960 and RFC 3309. It describes the Stream Control Transmission Protocol (SCTP). SCTP is designed to transport Public Switched Telephone Network (PSTN) signaling messages over IP networks, but is capable of broader applications. SCTP is a reliable transport protocol operating on top of a connectionless packet network such as IP. It offers the following services to its users: -- acknowledged error-free non-duplicated transfer of user data, -- data fragmentation to conform to discovered path MTU size, -- sequenced delivery of user messages within multiple streams, with an option for order-of-arrival delivery of individual user messages, -- optional bundling of multiple user messages into a single SCTP packet, and -- network-level fault tolerance through supporting of multi-homing at either or both ends of an association. The design of SCTP includes appropriate congestion avoidance behavior and resistance to flooding and masquerade attacks. [STANDARDS-TRACK]"];
+  updates -> RFC4960;
+  RFC6951 [label="RFC6951
+UDP Encapsulation of Stream Control
+Transmission Protocol (SCTP) Packets for
+End-Host to End-Host Communication
+2013", shape=ellipse, URL="RFC6951.html", target="_top", tooltip="This document describes a simple method of encapsulating Stream Control Transmission Protocol (SCTP) packets into UDP packets and its limitations. This allows the usage of SCTP in networks with legacy NATs that do not support SCTP. It can also be used to implement SCTP on hosts without directly accessing the IP layer, for example, implementing it as part of the application without requiring special privileges. Please note that this document only describes the functionality required within an SCTP stack to add on UDP encapsulation, providing only those mechanisms for two end-hosts to communicate with each other over UDP ports. In particular, it does not provide mechanisms to determine whether UDP encapsulation is being used by the peer, nor the mechanisms for determining which remote UDP port number can be used. These functions are out of scope for this document. This document covers only end-hosts and not tunneling (egress or ingress) endpoints."];
+  updates -> RFC6951;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  updates -> RFC8085;
+  RFC8261 [label="RFC8261
+Datagram Transport Layer Security (DTLS)
+Encapsulation of SCTP Packets
+2017", shape=ellipse, URL="RFC8261.html", target="_top", tooltip="The Stream Control Transmission Protocol (SCTP) is a transport protocol originally defined to run on top of the network protocols IPv4 or IPv6.  This document specifies how SCTP can be used on top of the Datagram Transport Layer Security (DTLS) protocol.  Using the encapsulation method described in this document, SCTP is unaware of the protocols being used below DTLS; hence, explicit IP addresses cannot be used in the SCTP control chunks.  As a consequence, the SCTP associations carried over DTLS can only be single-homed."];
+  updates -> RFC8261;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8899;
+
+  cites [label="cites", shape=box];
+  RFC8899 -> cites;
+  RFC1191 [label="RFC1191
+Path MTU discovery
+1990", shape=ellipse, URL="RFC1191.html", target="_top", tooltip="This memo describes a technique for dynamically discovering the maximum transmission unit (MTU) of an arbitrary internet path.  It specifies a small change to the way routers generate one type of ICMP message.  For a path that passes through a router that has not been so changed, this technique might not discover the correct Path MTU, but it will always choose a Path MTU as accurate as, and in many cases more accurate than, the Path MTU that would be chosen by current practice. [STANDARDS-TRACK]"];
+  cites -> RFC1191;
+  RFC8201 [label="RFC8201
+Path MTU Discovery for IP version 6
+2017", shape=ellipse, URL="RFC8201.html", target="_top", tooltip="This document describes Path MTU Discovery (PMTUD) for IP version 6.  It is largely derived from RFC 1191, which describes Path MTU Discovery for IP version 4.  It obsoletes RFC 1981."];
+  cites -> RFC8201;
+  RFC4443 [label="RFC4443
+Internet Control Message Protocol
+(ICMPv6) for the Internet Protocol
+Version 6 (IPv6) Specification
+2006", shape=ellipse, URL="RFC4443.html", target="_top", tooltip="This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC4443;
+  RFC2923 [label="RFC2923
+TCP Problems with Path MTU Discovery
+2000", shape=ellipse, URL="RFC2923.html", target="_top", tooltip="This memo catalogs several known Transmission Control Protocol (TCP) implementation problems dealing with Path Maximum Transmission Unit Discovery (PMTUD), including the long-standing black hole problem, stretch acknowlegements (ACKs) due to confusion between Maximum Segment Size (MSS) and segment size, and MSS advertisement based on PMTU.  This memo provides information for the Internet community."];
+  cites -> RFC2923;
+  RFC4890 [label="RFC4890
+Recommendations for Filtering ICMPv6
+Messages in Firewalls
+2007", shape=ellipse, URL="RFC4890.html", target="_top", tooltip="In networks supporting IPv6, the Internet Control Message Protocol version 6 (ICMPv6) plays a fundamental role with a large number of functions, and a correspondingly large number of message types and options. ICMPv6 is essential to the functioning of IPv6, but there are a number of security risks associated with uncontrolled forwarding of ICMPv6 messages. Filtering strategies designed for the corresponding protocol, ICMP, in IPv4 networks are not directly applicable, because these strategies are intended to accommodate a useful auxiliary protocol that may not be required for correct functioning. This document provides some recommendations for ICMPv6 firewall filter configuration that will allow propagation of ICMPv6 messages that are needed to maintain the functioning of the network but drop messages that are potential security risks. This memo provides information for the Internet community."];
+  cites -> RFC4890;
+  RFC1812 [label="RFC1812
+Requirements for IP Version 4 Routers
+1995", shape=ellipse, URL="RFC1812.html", target="_top", tooltip="This memo defines and discusses requirements for devices that perform the network layer forwarding function of the Internet protocol suite. [STANDARDS-TRACK]"];
+  cites -> RFC1812;
+  RFC5508 [label="RFC5508
+NAT Behavioral Requirements for ICMP
+2009", shape=ellipse, URL="RFC5508.html", target="_top", tooltip="This document specifies the behavioral properties required of the Network Address Translator (NAT) devices in conjunction with the Internet Control Message Protocol (ICMP).  The objective of this memo is to make NAT devices more predictable and compatible with diverse application protocols that traverse the devices.  Companion documents provide behavioral recommendations specific to TCP, UDP, and other protocols.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5508;
+  RFC4821 [label="RFC4821
+Packetization Layer Path MTU Discovery
+2007", shape=ellipse, URL="RFC4821.html", target="_top", tooltip="This document describes a robust method for Path MTU Discovery (PMTUD) that relies on TCP or some other Packetization Layer to probe an Internet path with progressively larger packets.  This method is described as an extension to RFC 1191 and RFC 1981, which specify ICMP-based Path MTU Discovery for IP versions 4 and 6, respectively. [STANDARDS-TRACK]"];
+  cites -> RFC4821;
+  RFC4820 [label="RFC4820
+Padding Chunk and Parameter for the
+Stream Control Transmission Protocol
+(SCTP)
+2007", shape=ellipse, URL="RFC4820.html", target="_top", tooltip="This document defines a padding chunk and a padding parameter and describes the required receiver side procedures.  The padding chunk is used to pad a Stream Control Transmission Protocol (SCTP) packet to an arbitrary size.  The padding parameter is used to pad an SCTP INIT chunk to an arbitrary size. [STANDARDS-TRACK]"];
+  cites -> RFC4820;
+  RFC4340 [label="RFC4340
+Datagram Congestion Control Protocol
+(DCCP)
+2006", shape=ellipse, URL="RFC4340.html", target="_top", tooltip="The Datagram Congestion Control Protocol (DCCP) is a transport protocol that provides bidirectional unicast connections of congestion-controlled unreliable datagrams.  DCCP is suitable for applications that transfer fairly large amounts of data and that can benefit from control over the tradeoff between timeliness and reliability. [STANDARDS-TRACK]"];
+  cites -> RFC4340;
+  RFC4960 [label="RFC4960
+Stream Control Transmission Protocol
+2007", shape=ellipse, URL="RFC4960.html", target="_top", tooltip="This document obsoletes RFC 2960 and RFC 3309. It describes the Stream Control Transmission Protocol (SCTP). SCTP is designed to transport Public Switched Telephone Network (PSTN) signaling messages over IP networks, but is capable of broader applications. SCTP is a reliable transport protocol operating on top of a connectionless packet network such as IP. It offers the following services to its users: -- acknowledged error-free non-duplicated transfer of user data, -- data fragmentation to conform to discovered path MTU size, -- sequenced delivery of user messages within multiple streams, with an option for order-of-arrival delivery of individual user messages, -- optional bundling of multiple user messages into a single SCTP packet, and -- network-level fault tolerance through supporting of multi-homing at either or both ends of an association. The design of SCTP includes appropriate congestion avoidance behavior and resistance to flooding and masquerade attacks. [STANDARDS-TRACK]"];
+  cites -> RFC4960;
+  RFC6951 [label="RFC6951
+UDP Encapsulation of Stream Control
+Transmission Protocol (SCTP) Packets for
+End-Host to End-Host Communication
+2013", shape=ellipse, URL="RFC6951.html", target="_top", tooltip="This document describes a simple method of encapsulating Stream Control Transmission Protocol (SCTP) packets into UDP packets and its limitations. This allows the usage of SCTP in networks with legacy NATs that do not support SCTP. It can also be used to implement SCTP on hosts without directly accessing the IP layer, for example, implementing it as part of the application without requiring special privileges. Please note that this document only describes the functionality required within an SCTP stack to add on UDP encapsulation, providing only those mechanisms for two end-hosts to communicate with each other over UDP ports. In particular, it does not provide mechanisms to determine whether UDP encapsulation is being used by the peer, nor the mechanisms for determining which remote UDP port number can be used. These functions are out of scope for this document. This document covers only end-hosts and not tunneling (egress or ingress) endpoints."];
+  cites -> RFC6951;
+  RFC8261 [label="RFC8261
+Datagram Transport Layer Security (DTLS)
+Encapsulation of SCTP Packets
+2017", shape=ellipse, URL="RFC8261.html", target="_top", tooltip="The Stream Control Transmission Protocol (SCTP) is a transport protocol originally defined to run on top of the network protocols IPv4 or IPv6.  This document specifies how SCTP can be used on top of the Datagram Transport Layer Security (DTLS) protocol.  Using the encapsulation method described in this document, SCTP is unaware of the protocols being used below DTLS; hence, explicit IP addresses cannot be used in the SCTP control chunks.  As a consequence, the SCTP associations carried over DTLS can only be single-homed."];
+  cites -> RFC8261;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC8900 [label="RFC8900
+IP Fragmentation Considered Fragile
+2020", shape=ellipse, URL="RFC8900.html", target="_top", tooltip="This document describes IP fragmentation and explains how it introduces fragility to Internet communication. This document also proposes alternatives to IP fragmentation and provides recommendations for developers and network operators."];
+  cites -> RFC8900;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  cites -> RFC8200;
+  RFC3828 [label="RFC3828
+The Lightweight User Datagram Protocol
+(UDP-Lite)
+2004", shape=ellipse, URL="RFC3828.html", target="_top", tooltip="This document describes the Lightweight User Datagram Protocol (UDP-Lite), which is similar to the User Datagram Protocol (UDP) (RFC 768), but can also serve applications in error-prone network environments that prefer to have partially damaged payloads delivered rather than discarded.  If this feature is not used, UDP-Lite is semantically identical to UDP. [STANDARDS-TRACK]"];
+  cites -> RFC3828;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8899;
+  RFC8900 [label="RFC8900
+IP Fragmentation Considered Fragile
+2020", shape=ellipse, URL="RFC8900.html", target="_top", tooltip="This document describes IP fragmentation and explains how it introduces fragility to Internet communication. This document also proposes alternatives to IP fragmentation and provides recommendations for developers and network operators."];
+  RFC8900 -> rev_cites;
+  RFC9028 [label="RFC9028
+Native NAT Traversal Mode for the Host
+Identity Protocol
+2021", shape=ellipse, URL="RFC9028.html", target="_top", tooltip="This document specifies a new Network Address Translator (NAT) traversal mode for the Host Identity Protocol (HIP).  The new mode is based on the Interactive Connectivity Establishment (ICE) methodology and UDP encapsulation of data and signaling traffic.  The main difference from the previously specified modes is the use of HIP messages instead of ICE for all NAT traversal procedures due to the kernel-space dependencies of HIP."];
+  RFC9028 -> rev_cites;
+  RFC9260 [label="RFC9260
+Stream Control Transmission Protocol
+2022", shape=ellipse, URL="RFC9260.html", target="_top", tooltip="This document describes the Stream Control Transmission Protocol (SCTP) and obsoletes RFC 4960. It incorporates the specification of the chunk flags registry from RFC 6096 and the specification of the I bit of DATA chunks from RFC 7053. Therefore, RFCs 6096 and 7053 are also obsoleted by this document. In addition, RFCs 4460 and 8540, which describe errata for SCTP, are obsoleted by this document. SCTP was originally designed to transport Public Switched Telephone Network (PSTN) signaling messages over IP networks. It is also suited to be used for other applications, for example, WebRTC. SCTP is a reliable transport protocol operating on top of a connectionless packet network, such as IP. It offers the following services to its users: The design of SCTP includes appropriate congestion avoidance behavior and resistance to flooding and masquerade attacks."];
+  RFC9260 -> rev_cites;
+  RFC9268 [label="RFC9268
+IPv6 Minimum Path MTU Hop-by-Hop Option
+2022", shape=ellipse, URL="RFC9268.html", target="_top", tooltip="This document specifies a new IPv6 Hop-by-Hop Option that is used to record the Minimum Path MTU (PMTU) along the forward path between a source host to a destination host.  The recorded value can then be communicated back to the source using the return Path MTU field in the Option."];
+  RFC9268 -> rev_cites;
+  RFC9289 [label="RFC9289
+Towards Remote Procedure Call Encryption
+by Default
+2022", shape=ellipse, URL="RFC9289.html", target="_top", tooltip="This document describes a mechanism that, through the use of opportunistic Transport Layer Security (TLS), enables encryption of Remote Procedure Call (RPC) transactions while they are in transit.  The proposed mechanism interoperates with Open Network Computing (ONC) RPC implementations that do not support it.  This document updates RFC 5531."];
+  RFC9289 -> rev_cites;
+  RFC9300 [label="RFC9300
+The Locator/ID Separation Protocol
+(LISP)
+2022", shape=ellipse, URL="RFC9300.html", target="_top", tooltip="This document describes the data plane protocol for the Locator/ID Separation Protocol (LISP). LISP defines two namespaces: Endpoint Identifiers (EIDs), which identify end hosts; and Routing Locators (RLOCs), which identify network attachment points. With this, LISP effectively separates control from data and allows routers to create overlay networks. LISP-capable routers exchange encapsulated packets according to EID-to-RLOC mappings stored in a local Map-Cache. LISP requires no change to either host protocol stacks or underlay routers and offers Traffic Engineering (TE), multihoming, and mobility, among other features. This document obsoletes RFC 6830."];
+  RFC9300 -> rev_cites;
+  RFC9347 [label="RFC9347
+Aggregation and Fragmentation Mode for
+Encapsulating Security Payload (ESP) and
+Its Use for IP Traffic Flow Security
+(IP-TFS)
+2023", shape=ellipse, URL="RFC9347.html", target="_top", tooltip="This document describes a mechanism for aggregation and fragmentation of IP packets when they are being encapsulated in Encapsulating Security Payload (ESP).  This new payload type can be used for various purposes, such as decreasing encapsulation overhead for small IP packets; however, the focus in this document is to enhance IP Traffic Flow Security (IP-TFS) by adding Traffic Flow Confidentiality (TFC) to encrypted IP-encapsulated traffic.  TFC is provided by obscuring the size and frequency of IP traffic using a fixed-size, constant-send-rate IPsec tunnel.  The solution allows for congestion control, as well as nonconstant send-rate usage."];
+  RFC9347 -> rev_cites;
+  RFC9365 [label="RFC9365
+IPv6 Wireless Access in Vehicular
+Environments (IPWAVE): Problem Statement
+and Use Cases
+2023", shape=ellipse, URL="RFC9365.html", target="_top", tooltip="This document discusses the problem statement and use cases of IPv6-based vehicular networking for Intelligent Transportation Systems (ITS).  The main scenarios of vehicular communications are vehicle-to-vehicle (V2V), vehicle-to-infrastructure (V2I), and vehicle-to-everything (V2X) communications.  First, this document explains use cases using V2V, V2I, and V2X networking.  Next, for IPv6-based vehicular networks, it makes a gap analysis of current IPv6 protocols (e.g., IPv6 Neighbor Discovery, mobility management, as well as security and privacy)."];
+  RFC9365 -> rev_cites;
+  RFC9622 [label="RFC9622
+An Abstract Application Programming
+Interface (API) for Transport Services
+2025", shape=ellipse, URL="RFC9622.html", target="_top", tooltip="This document describes an abstract Application Programming Interface (API) to the transport layer that enables the selection of transport protocols and network paths dynamically at runtime.  This API enables faster deployment of new protocols and protocol features without requiring changes to the applications.  The specified API follows the Transport Services Architecture by providing asynchronous, atomic transmission of Messages.  It is intended to replace the BSD Socket API as the common interface to the transport layer, in an environment where endpoints could select from multiple network paths and potential transport protocols."];
+  RFC9622 -> rev_cites;
+  RFC9715 [label="RFC9715
+IP Fragmentation Avoidance in DNS over
+UDP
+2025", shape=ellipse, URL="RFC9715.html", target="_top", tooltip="The widely deployed Extension Mechanisms for DNS (EDNS(0)) feature in the DNS enables a DNS receiver to indicate its received UDP message size capacity, which supports the sending of large UDP responses by a DNS server.  Large DNS/UDP messages are more likely to be fragmented, and IP fragmentation has exposed weaknesses in application protocols.  It is possible to avoid IP fragmentation in DNS by limiting the response size where possible and signaling the need to upgrade from UDP to TCP transport where necessary.  This document describes techniques to avoid IP fragmentation in DNS."];
+  RFC9715 -> rev_cites;
+  RFC9868 [label="RFC9868
+Transport Options for UDP
+2025", shape=ellipse, URL="RFC9868.html", target="_top", tooltip="Transport protocols are extended through the use of transport header options.  This document updates RFC 768 (UDP) by indicating the location, syntax, and semantics for UDP transport layer options within the surplus area after the end of the UDP user data but before the end of the IP datagram."];
+  RFC9868 -> rev_cites;
+  RFC9869 [label="RFC9869
+Datagram Packetization Layer Path MTU
+Discovery (DPLPMTUD) for UDP Options
+2025", shape=ellipse, URL="RFC9869.html", target="_top", tooltip="This document specifies how a UDP Options sender implements Datagram Packetization Layer Path MTU Discovery (DPLPMTUD) as a robust method for Path MTU Discovery (PMTUD).  This method uses the UDP Options packetization layer.  It allows an application to discover the largest size of datagram that can be sent across a network path.  It also provides a way to allow the application to periodically verify the current Maximum Packet Size (MPS) supported by a path and to update this when required."];
+  RFC9869 -> rev_cites;
+}

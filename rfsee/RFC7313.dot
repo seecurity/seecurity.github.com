@@ -1,0 +1,69 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7313 [label="RFC7313
+Enhanced Route Refresh Capability for
+BGP-4
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="In this document, we enhance the existing BGP route refresh mechanisms to provide for the demarcation of the beginning and the ending of a route refresh.  The enhancement can be used to facilitate correction of BGP Routing Information Base (RIB) inconsistencies in a non-disruptive manner.  This document updates RFC 2918."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7313;
+
+  obs [label="obsoletes", shape=box];
+  RFC7313 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7313 -> updates;
+  RFC2918 [label="RFC2918
+Route Refresh Capability for BGP-4
+2000", shape=ellipse, URL="RFC2918.html", target="_top", tooltip="This document defines a new Border Gateway Protocol (BGP) capability termed 'Route Refresh Capability', which would allow the dynamic exchange of route refresh request between BGP speakers and subsequent re-advertisement of the respective Adj-RIB-Out. [STANDARDS-TRACK]"];
+  updates -> RFC2918;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7313;
+
+  cites [label="cites", shape=box];
+  RFC7313 -> cites;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC2918 [label="RFC2918
+Route Refresh Capability for BGP-4
+2000", shape=ellipse, URL="RFC2918.html", target="_top", tooltip="This document defines a new Border Gateway Protocol (BGP) capability termed 'Route Refresh Capability', which would allow the dynamic exchange of route refresh request between BGP speakers and subsequent re-advertisement of the respective Adj-RIB-Out. [STANDARDS-TRACK]"];
+  cites -> RFC2918;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5492 [label="RFC5492
+Capabilities Advertisement with BGP-4
+2009", shape=ellipse, URL="RFC5492.html", target="_top", tooltip="This document defines an Optional Parameter, called Capabilities, that is expected to facilitate the introduction of new capabilities in the Border Gateway Protocol (BGP) by providing graceful capability advertisement without requiring that BGP peering be terminated. This document obsoletes RFC 3392. [STANDARDS-TRACK]"];
+  cites -> RFC5492;
+  RFC5291 [label="RFC5291
+Outbound Route Filtering Capability for
+BGP-4
+2008", shape=ellipse, URL="RFC5291.html", target="_top", tooltip="This document defines a BGP-based mechanism that allows a BGP speaker to send to its BGP peer a set of Outbound Route Filters (ORFs) that the peer would use to constrain/filter its outbound routing updates to the speaker. [STANDARDS-TRACK]"];
+  cites -> RFC5291;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  cites -> RFC4724;
+  RFC4272 [label="RFC4272
+BGP Security Vulnerabilities Analysis
+2006", shape=ellipse, URL="RFC4272.html", target="_top", tooltip="Border Gateway Protocol 4 (BGP-4), along with a host of other infrastructure protocols designed before the Internet environment became perilous, was originally designed with little consideration for protection of the information it carries. There are no mechanisms internal to BGP that protect against attacks that modify, delete, forge, or replay data, any of which has the potential to disrupt overall network routing behavior. This document discusses some of the security issues with BGP routing data dissemination. This document does not discuss security issues with forwarding of packets. This memo provides information for the Internet community."];
+  cites -> RFC4272;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7313;
+  RFC9324 [label="RFC9324
+Policy Based on the Resource Public Key
+Infrastructure (RPKI) without Route
+Refresh
+2022", shape=ellipse, URL="RFC9324.html", target="_top", tooltip="A BGP speaker performing policy based on the Resource Public Key Infrastructure (RPKI) should not issue route refresh to its neighbors because it has received new RPKI data.  This document updates RFC 8481 by describing how to avoid doing so by either keeping a full Adj-RIB-In or saving paths dropped due to ROV (Route Origin Validation) so they may be reevaluated with respect to new RPKI data."];
+  RFC9324 -> rev_cites;
+}

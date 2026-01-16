@@ -1,0 +1,66 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4781 [label="RFC4781
+Graceful Restart Mechanism for BGP with
+MPLS
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="A mechanism for BGP that helps minimize the negative effects on routing caused by BGP restart has already been developed and is described in a separate document (Graceful Restart Mechanism for BGP). This document extends this mechanism to minimize the negative effects on MPLS forwarding caused by the Label Switching Router's (LSR's) control plane restart, and specifically by the restart of its BGP component when BGP is used to carry MPLS labels and the LSR is capable of preserving the MPLS forwarding state across the restart. The mechanism described in this document is agnostic with respect to the types of the addresses carried in the BGP Network Layer Reachability Information (NLRI) field. As such, it works in conjunction with any of the address families that could be carried in BGP (e.g., IPv4, IPv6, etc.). [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4781;
+
+  obs [label="obsoletes", shape=box];
+  RFC4781 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4781 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4781;
+
+  cites [label="cites", shape=box];
+  RFC4781 -> cites;
+  RFC3107 [label="RFC3107
+Carrying Label Information in BGP-4
+2001", shape=ellipse, URL="RFC3107.html", target="_top", tooltip="This document specifies the way in which the label mapping information for a particular route is piggybacked in the same Border Gateway Protocol (BGP) Update message that is used to distribute the route itself. [STANDARDS-TRACK]"];
+  cites -> RFC3107;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  cites -> RFC4724;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC2385 [label="RFC2385
+Protection of BGP Sessions via the TCP
+MD5 Signature Option
+1998", shape=ellipse, URL="RFC2385.html", target="_top", tooltip="This memo describes a TCP extension to enhance security for BGP. [STANDARDS-TRACK]"];
+  cites -> RFC2385;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4781;
+  RFC5824 [label="RFC5824
+Requirements for Supporting Customer
+Resource ReSerVation Protocol (RSVP) and
+RSVP Traffic Engineering (RSVP-TE) over
+a BGP/MPLS IP-VPN
+2010", shape=ellipse, URL="RFC5824.html", target="_top", tooltip="Today, customers expect to run triple-play services through BGP/MPLS IP-VPNs. Some service providers will deploy services that request Quality of Service (QoS) guarantees from a local Customer Edge (CE) to a remote CE across the network. As a result, the application (e.g., voice, video, bandwidth-guaranteed data pipe, etc.) requirements for an end-to-end QoS and reserving an adequate bandwidth continue to increase. Service providers can use both an MPLS and an MPLS Traffic Engineering (MPLS-TE) Label Switched Path (LSP) to meet their service objectives. This document describes service-provider requirements for supporting a customer Resource ReSerVation Protocol (RSVP) and RSVP-TE over a BGP/MPLS IP-VPN. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5824 -> rev_cites;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  RFC5925 -> rev_cites;
+  RFC9494 [label="RFC9494
+Long-Lived Graceful Restart for BGP
+2023", shape=ellipse, URL="RFC9494.html", target="_top", tooltip="This document introduces a BGP capability called the Long-Lived Graceful Restart Capability (or LLGR Capability). The benefit of this capability is that stale routes can be retained for a longer time upon session failure than is provided for by BGP Graceful Restart (as described in RFC 4724). A well-known BGP community called LLGR_STALE is introduced for marking stale routes retained for a longer time. A second well-known BGP community called NO_LLGR is introduced for marking routes for which these procedures should not be applied. We also specify that such long-lived stale routes be treated as the least preferred and that their advertisements be limited to BGP speakers that have advertised the capability. Use of this extension is not advisable in all cases, and we provide guidelines to help determine if it is. This memo updates RFC 6368 by specifying that the LLGR_STALE community must be propagated into, or out of, the path attributes exchanged between the Provider Edge (PE) and Customer Edge (CE) routers."];
+  RFC9494 -> rev_cites;
+}

@@ -1,0 +1,109 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9545 [label="RFC9545
+Path Segment Identifier in MPLS-Based
+Segment Routing Networks
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="A Segment Routing (SR) path is identified by an SR segment list. A subset of segments from the segment list cannot be leveraged to distinguish one SR path from another as they may be partially congruent. SR path identification is a prerequisite for various use cases such as performance measurement and end-to-end 1+1 path protection. In an SR over MPLS (SR-MPLS) data plane, an egress node cannot determine on which SR path a packet traversed the network from the label stack because the segment identifiers are removed from the label stack as the packet transits the network. This document defines a Path Segment Identifier (PSID) to identify an SR path on the egress node of the path."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9545;
+
+  obs [label="obsoletes", shape=box];
+  RFC9545 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9545 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9545;
+
+  cites [label="cites", shape=box];
+  RFC9545 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8660 [label="RFC8660
+Segment Routing with the MPLS Data Plane
+2019", shape=ellipse, URL="RFC8660.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm.  A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header.  In the MPLS data plane, the SR header is instantiated through a label stack.  This document specifies the forwarding behavior to allow instantiating SR over the MPLS data plane (SR-MPLS)."];
+  cites -> RFC8660;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC5586 [label="RFC5586
+MPLS Generic Associated Channel
+2009", shape=ellipse, URL="RFC5586.html", target="_top", tooltip="This document generalizes the applicability of the pseudowire (PW) Associated Channel Header (ACH), enabling the realization of a control channel associated to MPLS Label Switched Paths (LSPs) and MPLS Sections in addition to MPLS pseudowires.  In order to identify the presence of this Associated Channel Header in the label stack, this document also assigns one of the reserved MPLS label values to the Generic Associated Channel Label (GAL), to be used as a label based exception mechanism."];
+  cites -> RFC5586;
+  RFC8664 [label="RFC8664
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Segment
+Routing
+2019", shape=ellipse, URL="RFC8664.html", target="_top", tooltip="Segment Routing (SR) enables any head-end node to select any path without relying on a hop-by-hop signaling technique (e.g., LDP or RSVP-TE). It depends only on segments that are advertised by link-state Interior Gateway Protocols (IGPs). An SR path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), an explicit configuration, or a Path Computation Element (PCE). This document specifies extensions to the Path Computation Element Communication Protocol (PCEP) that allow a stateful PCE to compute and initiate Traffic-Engineering (TE) paths, as well as a Path Computation Client (PCC) to request a path subject to certain constraints and optimization criteria in SR networks. This document updates RFC 8408."];
+  cites -> RFC8664;
+  RFC8491 [label="RFC8491
+Signaling Maximum SID Depth (MSD) Using
+IS-IS
+2018", shape=ellipse, URL="RFC8491.html", target="_top", tooltip="This document defines a way for an Intermediate System to Intermediate System (IS-IS) router to advertise multiple types of supported Maximum SID Depths (MSDs) at node and/or link granularity.  Such advertisements allow entities (e.g., centralized controllers) to determine whether a particular Segment ID (SID) stack can be supported in a given network.  This document only defines one type of MSD: Base MPLS Imposition.  However, it defines an encoding that can support other MSD types.  This document focuses on MSD use in a network that is Segment Routing (SR) enabled, but MSD may also be useful when SR is not enabled."];
+  cites -> RFC8491;
+  RFC6790 [label="RFC6790
+The Use of Entropy Labels in MPLS
+Forwarding
+2012", shape=ellipse, URL="RFC6790.html", target="_top", tooltip="Load balancing is a powerful tool for engineering traffic across a network.  This memo suggests ways of improving load balancing across MPLS networks using the concept of entropy labels.  It defines the concept, describes why entropy labels are useful, enumerates properties of entropy labels that allow maximal benefit, and shows how they can be signaled and used for various applications.  This document updates RFCs 3031, 3107, 3209, and 5036. [STANDARDS-TRACK]"];
+  cites -> RFC6790;
+  RFC8957 [label="RFC8957
+Synonymous Flow Label Framework
+2021", shape=ellipse, URL="RFC8957.html", target="_top", tooltip="RFC 8372 (MPLS Flow Identification Considerations) describes the requirement for introducing flow identities within the MPLS architecture.  This document describes a method of accomplishing this by using a technique called Synonymous Flow Labels in which labels that mimic the behavior of other labels provide the identification service.  These identifiers can be used to trigger per-flow operations on the packet at the receiving label switching router."];
+  cites -> RFC8957;
+  RFC7799 [label="RFC7799
+Active and Passive Metrics and Methods
+(with Hybrid Types In-Between)
+2016", shape=ellipse, URL="RFC7799.html", target="_top", tooltip="This memo provides clear definitions for Active and Passive performance assessment.  The construction of Metrics and Methods can be described as either Active or Passive.  Some methods may use a subset of both Active and Passive attributes, and we refer to these as Hybrid Methods.  This memo also describes multiple dimensions to help evaluate new methods as they emerge."];
+  cites -> RFC7799;
+  RFC9197 [label="RFC9197
+Data Fields for In Situ Operations,
+Administration, and Maintenance (IOAM)
+2022", shape=ellipse, URL="RFC9197.html", target="_top", tooltip="In situ Operations, Administration, and Maintenance (IOAM) collects operational and telemetry information in the packet while the packet traverses a path between two points in the network.  This document discusses the data fields and associated data types for IOAM.  IOAM-Data-Fields can be encapsulated into a variety of protocols, such as Network Service Header (NSH), Segment Routing, Generic Network Virtualization Encapsulation (Geneve), or IPv6.  IOAM can be used to complement OAM mechanisms based on, e.g., ICMP or other types of probe packets."];
+  cites -> RFC9197;
+  RFC6965 [label="RFC6965
+MPLS Transport Profile (MPLS-TP)
+Applicability: Use Cases and Design
+2013", shape=ellipse, URL="RFC6965.html", target="_top", tooltip="This document describes the applicability of the MPLS Transport Profile (MPLS-TP) with use case studies and network design considerations.  The use cases include Metro Ethernet access and aggregation transport, mobile backhaul, and packet optical transport."];
+  cites -> RFC6965;
+  RFC5654 [label="RFC5654
+Requirements of an MPLS Transport
+Profile
+2009", shape=ellipse, URL="RFC5654.html", target="_top", tooltip="This document specifies the requirements of an MPLS Transport Profile (MPLS-TP). This document is a product of a joint effort of the International Telecommunications Union (ITU) and IETF to include an MPLS Transport Profile within the IETF MPLS and PWE3 architectures to support the capabilities and functionalities of a packet transport network as defined by International Telecommunications Union - Telecommunications Standardization Sector (ITU-T). This work is based on two sources of requirements: MPLS and PWE3 architectures as defined by IETF, and packet transport networks as defined by ITU-T. The requirements expressed in this document are for the behavior of the protocol mechanisms and procedures that constitute building blocks out of which the MPLS Transport Profile is constructed. The requirements are not implementation requirements. [STANDARDS-TRACK]"];
+  cites -> RFC5654;
+  RFC4426 [label="RFC4426
+Generalized Multi-Protocol Label
+Switching (GMPLS) Recovery Functional
+Specification
+2006", shape=ellipse, URL="RFC4426.html", target="_top", tooltip="This document presents a functional description of the protocol extensions needed to support Generalized Multi-Protocol Label Switching (GMPLS)-based recovery (i.e., protection and restoration).  Protocol specific formats and mechanisms will be described in companion documents. [STANDARDS-TRACK]"];
+  cites -> RFC4426;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9545;
+  RFC9779 [label="RFC9779
+Performance Measurement for Segment
+Routing Networks with the MPLS Data
+Plane
+2025", shape=ellipse, URL="RFC9779.html", target="_top", tooltip="This document specifies the application of the MPLS loss and delay measurement techniques (originally defined in RFCs 6374, 7876, and 9341) within Segment Routing (SR) networks that utilize the MPLS data plane, also referred to as Segment Routing over MPLS (SR-MPLS).  SR enables the forwarding of packets through an ordered list of instructions, known as segments, which are imposed at the ingress node.  This document defines the procedures and extensions necessary to perform accurate measurement of packet loss and delay in SR-MPLS environments, ensuring that network operators can effectively measure and maintain the quality of service across their SR-based MPLS networks.  This includes coverage of links and end-to-end SR-MPLS paths, as well as SR Policies."];
+  RFC9779 -> rev_cites;
+  RFC9884 [label="RFC9884
+Label Switched Path Ping for Segment
+Routing Path Segment Identifier with
+MPLS Data Plane
+2025", shape=ellipse, URL="RFC9884.html", target="_top", tooltip="Segment Routing (SR) leverages source routing to steer packets through an ordered list of instructions called segments.  SR can be instantiated over the MPLS data plane.  Path Segment Identifiers (PSIDs) are used to identify and correlate bidirectional or end-to-end paths in SR networks.  This document defines procedures (i.e., six new Target Forwarding Equivalence Class (FEC) Stack sub-TLVs) for the use of LSP Ping to support connectivity verification and fault isolation for SR paths that include PSIDs.  The mechanisms described enable the validation and tracing of SR paths with Path SIDs in MPLS networks, complementing existing SR-MPLS Operations, Administration, and Maintenance (OAM) capabilities."];
+  RFC9884 -> rev_cites;
+}

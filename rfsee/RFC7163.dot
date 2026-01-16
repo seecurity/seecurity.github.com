@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7163 [label="RFC7163
+URN for Country-Specific Emergency
+Services
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document updates the registration guidance provided in Section 4.2 of RFC 5031, which allows the registration of service URNs with the 'sos' service type only for emergency services that are offered widely and in different countries.  This document updates those instructions to allow such registrations when, at the time of registration, those services are offered in only one country."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7163;
+
+  obs [label="obsoletes", shape=box];
+  RFC7163 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7163 -> updates;
+  RFC5031 [label="RFC5031
+A Uniform Resource Name (URN) for
+Emergency and Other Well-Known Services
+2008", shape=ellipse, URL="RFC5031.html", target="_top", tooltip="The content of many communication services depends on the context, such as the user's location.  We describe a 'service' URN that allows well-known context-dependent services that can be resolved in a distributed manner to be identified.  Examples include emergency services, directory assistance, and call-before-you-dig hot lines. [STANDARDS-TRACK]"];
+  updates -> RFC5031;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7163;
+
+  cites [label="cites", shape=box];
+  RFC7163 -> cites;
+  RFC5031 [label="RFC5031
+A Uniform Resource Name (URN) for
+Emergency and Other Well-Known Services
+2008", shape=ellipse, URL="RFC5031.html", target="_top", tooltip="The content of many communication services depends on the context, such as the user's location.  We describe a 'service' URN that allows well-known context-dependent services that can be resolved in a distributed manner to be identified.  Examples include emergency services, directory assistance, and call-before-you-dig hot lines. [STANDARDS-TRACK]"];
+  cites -> RFC5031;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7163;
+}

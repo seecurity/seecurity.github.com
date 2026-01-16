@@ -1,0 +1,87 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6820 [label="RFC6820
+Address Resolution Problems in Large
+Data Center Networks
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document examines address resolution issues related to the scaling of data centers with a very large number of hosts.  The scope of this document is relatively narrow, focusing on address resolution (the Address Resolution Protocol (ARP) in IPv4 and Neighbor Discovery (ND) in IPv6) within a data center.  This document is a product of the Internet Engineering Task Force (IETF)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6820;
+
+  obs [label="obsoletes", shape=box];
+  RFC6820 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6820 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6820;
+
+  cites [label="cites", shape=box];
+  RFC6820 -> cites;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC5227 [label="RFC5227
+IPv4 Address Conflict Detection
+2008", shape=ellipse, URL="RFC5227.html", target="_top", tooltip="When two hosts on the same link attempt to use the same IPv4 address at the same time (except in rare special cases where this has been arranged by prior coordination), problems ensue for one or both hosts.  This document describes (i) a simple precaution that a host can take in advance to help prevent this misconfiguration from happening, and (ii) if this misconfiguration does occur, a simple mechanism by which a host can passively detect, after the fact, that it has happened, so that the host or administrator may respond to rectify the problem. [STANDARDS-TRACK]"];
+  cites -> RFC5227;
+  RFC1812 [label="RFC1812
+Requirements for IP Version 4 Routers
+1995", shape=ellipse, URL="RFC1812.html", target="_top", tooltip="This memo defines and discusses requirements for devices that perform the network layer forwarding function of the Internet protocol suite. [STANDARDS-TRACK]"];
+  cites -> RFC1812;
+  RFC6583 [label="RFC6583
+Operational Neighbor Discovery Problems
+2012", shape=ellipse, URL="RFC6583.html", target="_top", tooltip="In IPv4, subnets are generally small, made just large enough to cover the actual number of machines on the subnet. In contrast, the default IPv6 subnet size is a /64, a number so large it covers trillions of addresses, the overwhelming number of which will be unassigned. Consequently, simplistic implementations of Neighbor Discovery (ND) can be vulnerable to deliberate or accidental denial of service (DoS), whereby they attempt to perform address resolution for large numbers of unassigned addresses. Such denial-of-service attacks can be launched intentionally (by an attacker) or result from legitimate operational tools or accident conditions. As a result of these vulnerabilities, new devices may not be able to join a network, it may be impossible to establish new IPv6 flows, and existing IPv6 transported flows may be interrupted. This document describes the potential for DoS in detail and suggests possible implementation improvements as well as operational mitigation techniques that can, in some cases, be used to protect against or at least alleviate the impact of such attacks. [STANDARDS-TRACK]"];
+  cites -> RFC6583;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6820;
+  RFC7342 [label="RFC7342
+Practices for Scaling ARP and Neighbor
+Discovery (ND) in Large Data Centers
+2014", shape=ellipse, URL="RFC7342.html", target="_top", tooltip="This memo documents some operational practices that allow ARP and Neighbor Discovery (ND) to scale in data center environments."];
+  RFC7342 -> rev_cites;
+  RFC7364 [label="RFC7364
+Problem Statement: Overlays for Network
+Virtualization
+2014", shape=ellipse, URL="RFC7364.html", target="_top", tooltip="This document describes issues associated with providing multi-tenancy in large data center networks and how these issues may be addressed using an overlay-based network virtualization approach.  A key multi-tenancy requirement is traffic isolation so that one tenant's traffic is not visible to any other tenant.  Another requirement is address space isolation so that different tenants can use the same address space within different virtual networks.  Traffic and address space isolation is achieved by assigning one or more virtual networks to each tenant, where traffic within a virtual network can only cross into another virtual network in a controlled fashion (e.g., via a configured router and/or a security gateway).  Additional functionality is required to provision virtual networks, associating a virtual machine's network interface(s) with the appropriate virtual network and maintaining that association as the virtual machine is activated, migrated, and/or deactivated.  Use of an overlay-based approach enables scalable deployment on large network infrastructures."];
+  RFC7364 -> rev_cites;
+  RFC7365 [label="RFC7365
+Framework for Data Center (DC) Network
+Virtualization
+2014", shape=ellipse, URL="RFC7365.html", target="_top", tooltip="This document provides a framework for Data Center (DC) Network Virtualization over Layer 3 (NVO3) and defines a reference model along with logical components required to design a solution."];
+  RFC7365 -> rev_cites;
+  RFC7586 [label="RFC7586
+The Scalable Address Resolution Protocol
+(SARP) for Large Data Centers
+2015", shape=ellipse, URL="RFC7586.html", target="_top", tooltip="This document introduces the Scalable Address Resolution Protocol (SARP), an architecture that uses proxy gateways to scale large data center networks.  SARP is based on fast proxies that significantly reduce switches' Filtering Database (FDB) table sizes and reduce impact of ARP and Neighbor Discovery (ND) on network elements in an environment where hosts within one subnet (or VLAN) can spread over various locations.  SARP is targeted for massive data centers with a significant number of Virtual Machines (VMs) that can move across various physical locations."];
+  RFC7586 -> rev_cites;
+  RFC7814 [label="RFC7814
+Virtual Subnet: A BGP/MPLS IP VPN-Based
+Subnet Extension Solution
+2016", shape=ellipse, URL="RFC7814.html", target="_top", tooltip="This document describes a BGP/MPLS IP VPN-based subnet extension solution referred to as Virtual Subnet, which can be used for building Layer 3 network virtualization overlays within and/or between data centers."];
+  RFC7814 -> rev_cites;
+  RFC8302 [label="RFC8302
+Transparent Interconnection of Lots of
+Links (TRILL): ARP and Neighbor
+Discovery (ND) Optimization
+2018", shape=ellipse, URL="RFC8302.html", target="_top", tooltip="This document describes mechanisms to optimize the Address Resolution Protocol (ARP) and Neighbor Discovery (ND) traffic in a Transparent Interconnection of Lots of Links (TRILL) campus.  TRILL switches maintain a cache of IP / Media Access Control (MAC) address / Data Label bindings that are learned from ARP/ND requests and responses that pass through them.  In many cases, this cache allows an edge Routing Bridge (RBridge) to avoid flooding an ARP/ND request by either responding to it directly or encapsulating it and unicasting it.  Such optimization reduces packet flooding over a TRILL campus."];
+  RFC8302 -> rev_cites;
+  RFC9161 [label="RFC9161
+Operational Aspects of Proxy ARP/ND in
+Ethernet Virtual Private Networks
+2022", shape=ellipse, URL="RFC9161.html", target="_top", tooltip="This document describes the Ethernet Virtual Private Network (EVPN) Proxy ARP/ND function augmented by the capability of the ARP/ND Extended Community.  From that perspective, this document updates the EVPN specification to provide more comprehensive documentation of the operation of the Proxy ARP/ND function.  The EVPN Proxy ARP/ND function and the ARP/ND Extended Community help operators of Internet Exchange Points, Data Centers, and other networks deal with IPv4 and IPv6 address resolution issues associated with large Broadcast Domains by reducing and even suppressing the flooding produced by address resolution in the EVPN network."];
+  RFC9161 -> rev_cites;
+}

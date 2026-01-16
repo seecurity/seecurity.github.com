@@ -1,0 +1,115 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5760 [label="RFC5760
+RTP Control Protocol (RTCP) Extensions
+for Single-Source Multicast Sessions
+with Unicast Feedback
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies an extension to the Real-time Transport Control Protocol (RTCP) to use unicast feedback to a multicast sender.  The proposed extension is useful for single-source multicast sessions such as Source-Specific Multicast (SSM) communication where the traditional model of many-to-many group communication is either not available or not desired.  In addition, it can be applied to any group that might benefit from a sender-controlled summarized reporting mechanism. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5760;
+
+  obs [label="obsoletes", shape=box];
+  RFC5760 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5760 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5760;
+  RFC6128 [label="RFC6128
+RTP Control Protocol (RTCP) Port for
+Source-Specific Multicast (SSM) Sessions
+2011", shape=ellipse, URL="RFC6128.html", target="_top", tooltip="The Session Description Protocol (SDP) has an attribute that allows RTP applications to specify an address and a port associated with the RTP Control Protocol (RTCP) traffic.  In RTP-based source-specific multicast (SSM) sessions, the same attribute is used to designate the address and the RTCP port of the Feedback Target in the SDP description.  However, the RTCP port associated with the SSM session itself cannot be specified by the same attribute to avoid ambiguity, and thus, is required to be derived from the m= line of the media description.  Deriving the RTCP port from the m= line imposes an unnecessary restriction.  This document removes this restriction by introducing a new SDP attribute. [STANDARDS-TRACK]"];
+  RFC6128 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5760 -> cites;
+  RFC3547 [label="RFC3547
+The Group Domain of Interpretation
+2003", shape=ellipse, URL="RFC3547.html", target="_top", tooltip="This document presents an ISAMKP Domain of Interpretation (DOI) for group key management to support secure group communications.  The GDOI manages group security associations, which are used by IPSEC and potentially other data security protocols running at the IP or application layers.  These security associations protect one or more key-encrypting keys, traffic-encrypting keys, or data shared by group members. [STANDARDS-TRACK]"];
+  cites -> RFC3547;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5760;
+  RFC5968 [label="RFC5968
+Guidelines for Extending the RTP Control
+Protocol (RTCP)
+2010", shape=ellipse, URL="RFC5968.html", target="_top", tooltip="The RTP Control Protocol (RTCP) is used along with the Real-time Transport Protocol (RTP) to provide a control channel between media senders and receivers.  This allows constructing a feedback loop to enable application adaptation and monitoring, among other uses.  The basic reporting mechanisms offered by RTCP are generic, yet quite powerful and suffice to cover a range of uses.  This document provides guidelines on extending RTCP if those basic mechanisms prove insufficient.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5968 -> rev_cites;
+  RFC6051 [label="RFC6051
+Rapid Synchronisation of RTP Flows
+2010", shape=ellipse, URL="RFC6051.html", target="_top", tooltip="This memo outlines how RTP sessions are synchronised, and discusses how rapidly such synchronisation can occur. We show that most RTP sessions can be synchronised immediately, but that the use of video switching multipoint conference units (MCUs) or large source-specific multicast (SSM) groups can greatly increase the synchronisation delay. This increase in delay can be unacceptable to some applications that use layered and/or multi-description codecs. This memo introduces three mechanisms to reduce the synchronisation delay for such sessions. First, it updates the RTP Control Protocol (RTCP) timing rules to reduce the initial synchronisation delay for SSM sessions. Second, a new feedback packet is defined for use with the extended RTP profile for RTCP-based feedback (RTP/AVPF), allowing video switching MCUs to rapidly request resynchronisation. Finally, new RTP header extensions are defined to allow rapid synchronisation of late joiners, and guarantee correct timestamp-based decoding order recovery for layered codecs in the presence of clock skew. [STANDARDS-TRACK]"];
+  RFC6051 -> rev_cites;
+  RFC6128 [label="RFC6128
+RTP Control Protocol (RTCP) Port for
+Source-Specific Multicast (SSM) Sessions
+2011", shape=ellipse, URL="RFC6128.html", target="_top", tooltip="The Session Description Protocol (SDP) has an attribute that allows RTP applications to specify an address and a port associated with the RTP Control Protocol (RTCP) traffic.  In RTP-based source-specific multicast (SSM) sessions, the same attribute is used to designate the address and the RTCP port of the Feedback Target in the SDP description.  However, the RTCP port associated with the SSM session itself cannot be specified by the same attribute to avoid ambiguity, and thus, is required to be derived from the m= line of the media description.  Deriving the RTCP port from the m= line imposes an unnecessary restriction.  This document removes this restriction by introducing a new SDP attribute. [STANDARDS-TRACK]"];
+  RFC6128 -> rev_cites;
+  RFC6284 [label="RFC6284
+Port Mapping between Unicast and
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6284.html", target="_top", tooltip="This document presents a port mapping solution that allows RTP receivers to choose their own ports for an auxiliary unicast session in RTP applications using both unicast and multicast services.  The solution provides protection against denial-of-service or packet amplification attacks that could be used to cause one or more RTP packets to be sent to a victim client. [STANDARDS-TRACK]"];
+  RFC6284 -> rev_cites;
+  RFC6285 [label="RFC6285
+Unicast-Based Rapid Acquisition of
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6285.html", target="_top", tooltip="When an RTP receiver joins a multicast session, it may need to acquire and parse certain Reference Information before it can process any data sent in the multicast session. Depending on the join time, length of the Reference Information repetition (or appearance) interval, size of the Reference Information, and the application and transport properties, the time lag before an RTP receiver can usefully consume the multicast data, which we refer to as the Acquisition Delay, varies and can be large. This is an undesirable phenomenon for receivers that frequently switch among different multicast sessions, such as video broadcasts. In this document, we describe a method using the existing RTP and RTP Control Protocol (RTCP) machinery that reduces the acquisition delay. In this method, an auxiliary unicast RTP session carrying the Reference Information to the receiver precedes or accompanies the multicast stream. This unicast RTP flow can be transmitted at a faster than natural bitrate to further accelerate the acquisition. The motivating use case for this capability is multicast applications that carry real-time compressed audio and video. However, this method can also be used in other types of multicast applications where the acquisition delay is long enough to be a problem. [STANDARDS-TRACK]"];
+  RFC6285 -> rev_cites;
+  RFC6642 [label="RFC6642
+RTP Control Protocol (RTCP) Extension
+for a Third-Party Loss Report
+2012", shape=ellipse, URL="RFC6642.html", target="_top", tooltip="In a large RTP session using the RTP Control Protocol (RTCP) feedback mechanism defined in RFC 4585, a feedback target may experience transient overload if some event causes a large number of receivers to send feedback at once.  This overload is usually avoided by ensuring that feedback reports are forwarded to all receivers, allowing them to avoid sending duplicate feedback reports.  However, there are cases where it is not recommended to forward feedback reports, and this may allow feedback implosion.  This memo discusses these cases and defines a new RTCP Third-Party Loss Report that can be used to inform receivers that the feedback target is aware of some loss event, allowing them to suppress feedback.  Associated Session Description Protocol (SDP) signaling is also defined. [STANDARDS-TRACK]"];
+  RFC6642 -> rev_cites;
+  RFC6659 [label="RFC6659
+Considerations for Deploying the Rapid
+Acquisition of Multicast RTP Sessions
+(RAMS) Method
+2012", shape=ellipse, URL="RFC6659.html", target="_top", tooltip="The Rapid Acquisition of Multicast RTP Sessions (RAMS) solution is a method based on RTP and the RTP Control Protocol (RTCP) that enables an RTP receiver to rapidly acquire and start consuming the RTP multicast data.  Upon a request from the RTP receiver, an auxiliary unicast RTP retransmission session is set up between a retransmission server and the RTP receiver, over which the reference information about the new multicast stream the RTP receiver is about to join is transmitted at an accelerated rate.  This often precedes, but may also accompany, the multicast stream itself.  When there is only one multicast stream to be acquired, the RAMS solution works in a straightforward manner.  However, when there are two or more multicast streams to be acquired from the same or different multicast RTP sessions, care should be taken to configure each RAMS session appropriately.  This document provides example scenarios and discusses how the RAMS solution could be used in such scenarios.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6659 -> rev_cites;
+  RFC6679 [label="RFC6679
+Explicit Congestion Notification (ECN)
+for RTP over UDP
+2012", shape=ellipse, URL="RFC6679.html", target="_top", tooltip="This memo specifies how Explicit Congestion Notification (ECN) can be used with the Real-time Transport Protocol (RTP) running over UDP, using the RTP Control Protocol (RTCP) as a feedback mechanism.  It defines a new RTCP Extended Report (XR) block for periodic ECN feedback, a new RTCP transport feedback message for timely reporting of congestion events, and a Session Traversal Utilities for NAT (STUN) extension used in the optional initialisation method using Interactive Connectivity Establishment (ICE).  Signalling and procedures for negotiation of capabilities and initialisation methods are also defined. [STANDARDS-TRACK]"];
+  RFC6679 -> rev_cites;
+  RFC6792 [label="RFC6792
+Guidelines for Use of the RTP Monitoring
+Framework
+2012", shape=ellipse, URL="RFC6792.html", target="_top", tooltip="This memo proposes an extensible Real-time Transport Protocol (RTP) monitoring framework for extending the RTP Control Protocol (RTCP) with a new RTCP Extended Reports (XR) block type to report new metrics regarding media transmission or reception quality.  In this framework, a new XR block should contain a single metric or a small number of metrics relevant to a single parameter of interest or concern, rather than containing a number of metrics that attempt to provide full coverage of all those parameters of concern to a specific application.  Applications may then mix and match to create a set of blocks that cover their set of concerns.  Where possible, a specific block should be designed to be reusable across more than one application, for example, for all of voice, streaming audio, and video.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6792 -> rev_cites;
+  RFC7160 [label="RFC7160
+Support for Multiple Clock Rates in an
+RTP Session
+2014", shape=ellipse, URL="RFC7160.html", target="_top", tooltip="This document clarifies the RTP specification regarding the use of different clock rates in an RTP session.  It also provides guidance on how legacy RTP implementations that use multiple clock rates can interoperate with RTP implementations that use the algorithm described in this document.  It updates RFC 3550."];
+  RFC7160 -> rev_cites;
+  RFC7201 [label="RFC7201
+Options for Securing RTP Sessions
+2014", shape=ellipse, URL="RFC7201.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is used in a large number of different application domains and environments.  This heterogeneity implies that different security mechanisms are needed to provide services such as confidentiality, integrity, and source authentication of RTP and RTP Control Protocol (RTCP) packets suitable for the various environments.  The range of solutions makes it difficult for RTP-based application developers to pick the most suitable mechanism.  This document provides an overview of a number of security solutions for RTP and gives guidance for developers on how to choose the appropriate security mechanism."];
+  RFC7201 -> rev_cites;
+  RFC7667 [label="RFC7667
+RTP Topologies
+2015", shape=ellipse, URL="RFC7667.html", target="_top", tooltip="This document discusses point-to-point and multi-endpoint topologies used in environments based on the Real-time Transport Protocol (RTP).  In particular, centralized topologies commonly employed in the video conferencing industry are mapped to the RTP terminology."];
+  RFC7667 -> rev_cites;
+  RFC8079 [label="RFC8079
+Guidelines for End-to-End Support of the
+RTP Control Protocol (RTCP) in Back-to-
+Back User Agents (B2BUAs)
+2017", shape=ellipse, URL="RFC8079.html", target="_top", tooltip="SIP Back-to-Back User Agents (B2BUAs) are often designed to also be on the media path, rather than just to intercept signalling. This means that B2BUAs often implement an RTP or RTP Control Protocol (RTCP) stack as well, thus leading to separate multimedia sessions that the B2BUA correlates and bridges together. If not disciplined, this behaviour can severely impact the communication experience, especially when statistics and feedback information contained in RTCP messages get lost because of mismatches in the reported data. This document defines the proper behaviour B2BUAs should follow when acting on both the signalling plane and media plane in order to preserve the end-to-end functionality of RTCP."];
+  RFC8079 -> rev_cites;
+  RFC8859 [label="RFC8859
+A Framework for Session Description
+Protocol (SDP) Attributes When
+Multiplexing
+2021", shape=ellipse, URL="RFC8859.html", target="_top", tooltip="The purpose of this specification is to provide a framework for analyzing the multiplexing characteristics of Session Description Protocol (SDP) attributes when SDP is used to negotiate the usage of a single 5-tuple for sending and receiving media associated with multiple media descriptions. This specification also categorizes the existing SDP attributes based on the framework described herein."];
+  RFC8859 -> rev_cites;
+  RFC8872 [label="RFC8872
+Guidelines for Using the Multiplexing
+Features of RTP to Support Multiple
+Media Streams
+2021", shape=ellipse, URL="RFC8872.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is a flexible protocol that can be used in a wide range of applications, networks, and system topologies.  That flexibility makes for wide applicability but can complicate the application design process.  One particular design question that has received much attention is how to support multiple media streams in RTP.  This memo discusses the available options and design trade-offs, and provides guidelines on how to use the multiplexing features of RTP to support multiple media streams."];
+  RFC8872 -> rev_cites;
+}

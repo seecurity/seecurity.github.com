@@ -1,0 +1,59 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8099 [label="RFC8099
+OSPF Topology-Transparent Zone
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document presents a Topology-Transparent Zone (TTZ) in an OSPF area.  A TTZ comprises a group of routers and a number of links connecting these routers.  Any router outside of the zone is not aware of the zone.  A TTZ hides the internal topology of the TTZ from the outside.  It does not directly advertise any internal information about the TTZ to a router outside of the TTZ.  The information about the links and routers such as a link down inside the TTZ is not advertised to any router outside of the TTZ."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8099;
+
+  obs [label="obsoletes", shape=box];
+  RFC8099 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8099 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8099;
+
+  cites [label="cites", shape=box];
+  RFC8099 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5250 [label="RFC5250
+The OSPF Opaque LSA Option
+2008", shape=ellipse, URL="RFC5250.html", target="_top", tooltip="This document defines enhancements to the OSPF protocol to support a new class of link state advertisements (LSAs) called Opaque LSAs. Opaque LSAs provide a generalized mechanism to allow for the future extensibility of OSPF. Opaque LSAs consist of a standard LSA header followed by application-specific information. The information field may be used directly by OSPF or by other applications. Standard OSPF link-state database flooding mechanisms are used to distribute Opaque LSAs to all or some limited portion of the OSPF topology. This document replaces RFC 2370 and adds to it a mechanism to enable an OSPF router to validate Autonomous System (AS)-scope Opaque LSAs originated outside of the router's OSPF area. [STANDARDS-TRACK]"];
+  cites -> RFC5250;
+  RFC4940 [label="RFC4940
+IANA Considerations for OSPF
+2007", shape=ellipse, URL="RFC4940.html", target="_top", tooltip="This memo creates a number of OSPF registries and provides guidance to IANA for assignment of code points within these registries.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4940;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC7474 [label="RFC7474
+Security Extension for OSPFv2 When Using
+Manual Key Management
+2015", shape=ellipse, URL="RFC7474.html", target="_top", tooltip="The current OSPFv2 cryptographic authentication mechanism as defined in RFCs 2328 and 5709 is vulnerable to both inter-session and intra- session replay attacks when using manual keying. Additionally, the existing cryptographic authentication mechanism does not cover the IP header. This omission can be exploited to carry out various types of attacks. This document defines changes to the authentication sequence number mechanism that will protect OSPFv2 from both inter-session and intra- session replay attacks when using manual keys for securing OSPFv2 protocol packets. Additionally, we also describe some changes in the cryptographic hash computation that will eliminate attacks resulting from OSPFv2 not protecting the IP header."];
+  cites -> RFC7474;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8099;
+  RFC9377 [label="RFC9377
+IS-IS Flood Reflection
+2023", shape=ellipse, URL="RFC9377.html", target="_top", tooltip="This document describes a backward-compatible, optional IS-IS extension that allows the creation of IS-IS flood reflection topologies.  Flood reflection permits topologies in which IS-IS Level 1 (L1) areas provide transit-forwarding for IS-IS Level 2 (L2) areas using all available L1 nodes internally.  It accomplishes this by creating L2 flood reflection adjacencies within each L1 area.  Those adjacencies are used to flood L2 Link State Protocol Data Units (LSPs) and are used in the L2 Shortest Path First (SPF) computation.  However, they are not ordinarily utilized for forwarding within the flood reflection cluster.  This arrangement gives the L2 topology significantly better scaling properties than prevalently used flat designs.  As an additional benefit, only those routers directly participating in flood reflection are required to support the feature.  This allows for incremental deployment of scalable L1 transit areas in an existing, previously flat network design, without the necessity of upgrading all routers in the network."];
+  RFC9377 -> rev_cites;
+}

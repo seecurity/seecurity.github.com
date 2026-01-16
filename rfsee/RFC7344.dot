@@ -1,0 +1,133 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7344 [label="RFC7344
+Automating DNSSEC Delegation Trust
+Maintenance
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a method to allow DNS Operators to more easily update DNSSEC Key Signing Keys using the DNS as a communication channel.  The technique described is aimed at delegations in which it is currently hard to move information from the Child to Parent."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7344;
+
+  obs [label="obsoletes", shape=box];
+  RFC7344 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7344 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7344;
+  RFC8078 [label="RFC8078
+Managing DS Records from the Parent via
+CDS/CDNSKEY
+2017", shape=ellipse, URL="RFC8078.html", target="_top", tooltip="RFC 7344 specifies how DNS trust can be maintained across key rollovers in-band between parent and child. This document elevates RFC 7344 from Informational to Standards Track. It also adds a method for initial trust setup and removal of a secure entry point. Changing a domain's DNSSEC status can be a complicated matter involving multiple unrelated parties. Some of these parties, such as the DNS operator, might not even be known by all the organizations involved. The inability to disable DNSSEC via in-band signaling is seen as a problem or liability that prevents some DNSSEC adoption at a large scale. This document adds a method for in-band signaling of these DNSSEC status changes. This document describes reasonable policies to ease deployment of the initial acceptance of new secure entry points (DS records). It is preferable that operators collaborate on the transfer or move of a domain. The best method is to perform a Key Signing Key (KSK) plus Zone Signing Key (ZSK) rollover. If that is not possible, the method using an unsigned intermediate state described in this document can be used to move the domain between two parties. This leaves the domain temporarily unsigned and vulnerable to DNS spoofing, but that is preferred over the alternative of validation failures due to a mismatched DS and DNSKEY record."];
+  RFC8078 -> updated_by;
+  RFC9615 [label="RFC9615
+Automatic DNSSEC Bootstrapping Using
+Authenticated Signals from the Zone's
+Operator
+2024", shape=ellipse, URL="RFC9615.html", target="_top", tooltip="This document introduces an in-band method for DNS operators to publish arbitrary information about the zones for which they are authoritative, in an authenticated fashion and on a per-zone basis. The mechanism allows managed DNS operators to securely announce DNSSEC key parameters for zones under their management, including for zones that are not currently securely delegated. Whenever DS records are absent for a zone's delegation, this signal enables the parent's registry or registrar to cryptographically validate the CDS/CDNSKEY records found at the child's apex. The parent can then provision DS records for the delegation without resorting to out-of-band validation or weaker types of cross-checks such as Accept after Delay. This document establishes the DS enrollment method described in Section 4 of this document as the preferred method over those from Section 3 of RFC 8078. It also updates RFC 7344."];
+  RFC9615 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC7344 -> cites;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  cites -> RFC4034;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  cites -> RFC4035;
+  RFC5011 [label="RFC5011
+Automated Updates of DNS Security
+(DNSSEC) Trust Anchors
+2007", shape=ellipse, URL="RFC5011.html", target="_top", tooltip="This document describes a means for automated, authenticated, and authorized updating of DNSSEC trust anchors. The method provides protection against N-1 key compromises of N keys in the trust point key set. Based on the trust established by the presence of a current anchor, other anchors may be added at the same place in the hierarchy, and, ultimately, supplant the existing anchor(s). This mechanism will require changes to resolver management behavior (but not resolver resolution behavior), and the addition of a single flag bit to the DNSKEY record. [STANDARDS-TRACK]"];
+  cites -> RFC5011;
+  RFC6781 [label="RFC6781
+DNSSEC Operational Practices, Version 2
+2012", shape=ellipse, URL="RFC6781.html", target="_top", tooltip="This document describes a set of practices for operating the DNS with security extensions (DNSSEC). The target audience is zone administrators deploying DNSSEC. The document discusses operational aspects of using keys and signatures in the DNS. It discusses issues of key generation, key storage, signature generation, key rollover, and related policies. This document obsoletes RFC 4641, as it covers more operational ground and gives more up-to-date requirements with respect to key sizes and the DNSSEC operations."];
+  cites -> RFC6781;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC5730 [label="RFC5730
+Extensible Provisioning Protocol (EPP)
+2009", shape=ellipse, URL="RFC5730.html", target="_top", tooltip="This document describes an application-layer client-server protocol for the provisioning and management of objects stored in a shared central repository.  Specified in XML, the protocol defines generic object management operations and an extensible framework that maps protocol operations to objects.  This document includes a protocol specification, an object mapping template, and an XML media type registration.  This document obsoletes RFC 4930. [STANDARDS-TRACK]"];
+  cites -> RFC5730;
+  RFC5910 [label="RFC5910
+Domain Name System (DNS) Security
+Extensions Mapping for the Extensible
+Provisioning Protocol (EPP)
+2010", shape=ellipse, URL="RFC5910.html", target="_top", tooltip="This document describes an Extensible Provisioning Protocol (EPP) extension mapping for the provisioning and management of Domain Name System security (DNSSEC) extensions for domain names stored in a shared central repository.  Specified in XML, this mapping extends the EPP domain name mapping to provide additional features required for the provisioning of DNS security extensions.  This document obsoletes RFC 4310. [STANDARDS-TRACK]"];
+  cites -> RFC5910;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7344;
+  RFC7477 [label="RFC7477
+Child-to-Parent Synchronization in DNS
+2015", shape=ellipse, URL="RFC7477.html", target="_top", tooltip="This document specifies how a child zone in the DNS can publish a record to indicate to a parental agent that the parental agent may copy and process certain records from the child zone.  The existence of the record and any change in its value can be monitored by a parental agent and acted on depending on local policy."];
+  RFC7477 -> rev_cites;
+  RFC7719 [label="RFC7719
+DNS Terminology
+2015", shape=ellipse, URL="RFC7719.html", target="_top", tooltip="The DNS is defined in literally dozens of different RFCs.  The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined.  This document gives current definitions for many of the terms used in the DNS in a single document."];
+  RFC7719 -> rev_cites;
+  RFC8078 [label="RFC8078
+Managing DS Records from the Parent via
+CDS/CDNSKEY
+2017", shape=ellipse, URL="RFC8078.html", target="_top", tooltip="RFC 7344 specifies how DNS trust can be maintained across key rollovers in-band between parent and child. This document elevates RFC 7344 from Informational to Standards Track. It also adds a method for initial trust setup and removal of a secure entry point. Changing a domain's DNSSEC status can be a complicated matter involving multiple unrelated parties. Some of these parties, such as the DNS operator, might not even be known by all the organizations involved. The inability to disable DNSSEC via in-band signaling is seen as a problem or liability that prevents some DNSSEC adoption at a large scale. This document adds a method for in-band signaling of these DNSSEC status changes. This document describes reasonable policies to ease deployment of the initial acceptance of new secure entry points (DS records). It is preferable that operators collaborate on the transfer or move of a domain. The best method is to perform a Key Signing Key (KSK) plus Zone Signing Key (ZSK) rollover. If that is not possible, the method using an unsigned intermediate state described in this document can be used to move the domain between two parties. This leaves the domain temporarily unsigned and vulnerable to DNS spoofing, but that is preferred over the alternative of validation failures due to a mismatched DS and DNSKEY record."];
+  RFC8078 -> rev_cites;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  RFC8499 -> rev_cites;
+  RFC8624 [label="RFC8624
+Algorithm Implementation Requirements
+and Usage Guidance for DNSSEC
+2019", shape=ellipse, URL="RFC8624.html", target="_top", tooltip="The DNSSEC protocol makes use of various cryptographic algorithms in order to provide authentication of DNS data and proof of nonexistence.  To ensure interoperability between DNS resolvers and DNS authoritative servers, it is necessary to specify a set of algorithm implementation requirements and usage guidelines to ensure that there is at least one algorithm that all implementations support.  This document defines the current algorithm implementation requirements and usage guidance for DNSSEC.  This document obsoletes RFC 6944."];
+  RFC8624 -> rev_cites;
+  RFC8901 [label="RFC8901
+Multi-Signer DNSSEC Models
+2020", shape=ellipse, URL="RFC8901.html", target="_top", tooltip="Many enterprises today employ the service of multiple DNS providers to distribute their authoritative DNS service.  Deploying DNSSEC in such an environment may present some challenges, depending on the configuration and feature set in use.  In particular, when each DNS provider independently signs zone data with their own keys, additional key-management mechanisms are necessary.  This document presents deployment models that accommodate this scenario and describes these key-management requirements.  These models do not require any changes to the behavior of validating resolvers, nor do they impose the new key-management requirements on authoritative servers not involved in multi-signer configurations."];
+  RFC8901 -> rev_cites;
+  RFC9364 [label="RFC9364
+DNS Security Extensions (DNSSEC)
+2023", shape=ellipse, URL="RFC9364.html", target="_top", tooltip="This document describes the DNS Security Extensions (commonly called DNSSEC) that are specified in RFCs 4033, 4034, and 4035, as well as a handful of others.  One purpose is to introduce all of the RFCs in one place so that the reader can understand the many aspects of DNSSEC.  This document does not update any of those RFCs.  A second purpose is to state that using DNSSEC for origin authentication of DNS data is the best current practice.  A third purpose is to provide a single reference for other documents that want to refer to DNSSEC."];
+  RFC9364 -> rev_cites;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+  RFC9526 [label="RFC9526
+Simple Provisioning of Public Names for
+Residential Networks
+2024", shape=ellipse, URL="RFC9526.html", target="_top", tooltip="Home network owners may have devices or services hosted on their home network that they wish to access from the Internet (i.e., from a network outside of the home network). Home networks are increasingly numbered using IPv6 addresses, which in principle makes this access simpler, but accessing home networks from the Internet requires the names and IP addresses of these devices and services to be made available in the public DNS. This document describes how a Home Naming Authority (NHA) instructs the outsourced infrastructure to publish these pieces of information in the public DNS. The names and IP addresses of the home network are set in the Public Homenet Zone by the Homenet Naming Authority (HNA), which in turn instructs an outsourced infrastructure to publish the zone on behalf of the home network owner."];
+  RFC9526 -> rev_cites;
+  RFC9615 [label="RFC9615
+Automatic DNSSEC Bootstrapping Using
+Authenticated Signals from the Zone's
+Operator
+2024", shape=ellipse, URL="RFC9615.html", target="_top", tooltip="This document introduces an in-band method for DNS operators to publish arbitrary information about the zones for which they are authoritative, in an authenticated fashion and on a per-zone basis. The mechanism allows managed DNS operators to securely announce DNSSEC key parameters for zones under their management, including for zones that are not currently securely delegated. Whenever DS records are absent for a zone's delegation, this signal enables the parent's registry or registrar to cryptographically validate the CDS/CDNSKEY records found at the child's apex. The parent can then provision DS records for the delegation without resorting to out-of-band validation or weaker types of cross-checks such as Accept after Delay. This document establishes the DS enrollment method described in Section 4 of this document as the preferred method over those from Section 3 of RFC 8078. It also updates RFC 7344."];
+  RFC9615 -> rev_cites;
+  RFC9859 [label="RFC9859
+Generalized DNS Notifications
+2025", shape=ellipse, URL="RFC9859.html", target="_top", tooltip="This document generalizes and extends the use of DNS NOTIFY (RFC 1996) beyond conventional zone transfer hints to allow other types of actions that were previously lacking a trigger mechanism to be triggered via the DNS. Notifications merely nudge the receiver to initiate a predefined action promptly (instead of on a schedule); they do not alter the action itself (including any security checks it might employ). To enable this functionality, a method for discovering the receiver endpoint for such notification messages is introduced, via the new DSYNC record type. Notification types are recorded in a new registry, with initial support for parental NS and DS record updates including DNSSEC bootstrapping."];
+  RFC9859 -> rev_cites;
+}

@@ -1,0 +1,38 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2577 [label="RFC2577
+FTP Security Considerations
+1999", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides suggestions for system administrators and those implementing FTP servers that will decrease the security problems associated with FTP.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2577;
+
+  obs [label="obsoletes", shape=box];
+  RFC2577 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2577 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2577;
+
+  cites [label="cites", shape=box];
+  RFC2577 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2577;
+  RFC6384 [label="RFC6384
+An FTP Application Layer Gateway (ALG)
+for IPv6-to-IPv4 Translation
+2011", shape=ellipse, URL="RFC6384.html", target="_top", tooltip="The File Transfer Protocol (FTP) has a very long history, and despite the fact that today other options exist to perform file transfers, FTP is still in common use. As such, in situations where some client computers only have IPv6 connectivity while many servers are still IPv4-only and IPv6-to-IPv4 translators are used to bridge that gap, it is important that FTP is made to work through these translators to the best possible extent. FTP has an active and a passive mode, both as original commands that are IPv4-specific and as extended, IP version agnostic commands. The only FTP mode that works without changes through an IPv6-to-IPv4 translator is extended passive. However, many existing FTP servers do not support this mode, and some clients do not ask for it. This document specifies a middlebox that may solve this mismatch. [STANDARDS-TRACK]"];
+  RFC6384 -> rev_cites;
+  RFC7151 [label="RFC7151
+File Transfer Protocol HOST Command for
+Virtual Hosts
+2014", shape=ellipse, URL="RFC7151.html", target="_top", tooltip="The File Transfer Protocol, as defined in RFC 959, does not provide a way for FTP clients and servers to differentiate between multiple DNS names that are registered for a single IP address.  This document defines a new FTP command that provides a mechanism for FTP clients and servers to identify individual virtual hosts on an FTP server."];
+  RFC7151 -> rev_cites;
+}

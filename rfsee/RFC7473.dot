@@ -1,0 +1,94 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7473 [label="RFC7473
+Controlling State Advertisements of Non-
+negotiated LDP Applications
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="There is no capability negotiation done for Label Distribution Protocol (LDP) applications that set up Label Switched Paths (LSPs) for IP prefixes or that signal point-to-point (P2P) Pseudowires (PWs) for Layer 2 Virtual Private Networks (L2VPNs).  When an LDP session comes up, an LDP speaker may unnecessarily advertise its local state for such LDP applications even when the peer session is established for some other applications like Multipoint LDP (mLDP) or the Inter-Chassis Communication Protocol (ICCP).  This document defines a solution by which an LDP speaker announces to its peer its disinterest in such non-negotiated applications, thus disabling the unnecessary advertisement of corresponding application state, which would have otherwise been advertised over the established LDP session."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7473;
+
+  obs [label="obsoletes", shape=box];
+  RFC7473 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7473 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7473;
+  RFC8223 [label="RFC8223
+Application-Aware Targeted LDP
+2017", shape=ellipse, URL="RFC8223.html", target="_top", tooltip="Recent Targeted Label Distribution Protocol (tLDP) applications, such as remote Loop-Free Alternates (LFAs) and BGP auto-discovered pseudowires, may automatically establish a tLDP session with any Label Switching Router (LSR) in a network.  The initiating LSR has information about the targeted applications to administratively control initiation of the session.  However, the responding LSR has no such information to control acceptance of this session.  This document defines a mechanism to advertise and negotiate the Targeted Application Capability (TAC) during LDP session initialization.  As the responding LSR becomes aware of targeted applications, it may establish a limited number of tLDP sessions for certain applications.  In addition, each targeted application is mapped to LDP Forwarding Equivalence Class (FEC) elements to advertise only necessary LDP FEC label bindings over the session.  This document updates RFC 7473 for enabling advertisement of LDP FEC label bindings over the session."];
+  RFC8223 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC7473 -> cites;
+  RFC5561 [label="RFC5561
+LDP Capabilities
+2009", shape=ellipse, URL="RFC5561.html", target="_top", tooltip="A number of enhancements to the Label Distribution Protocol (LDP) have been proposed.  Some have been implemented, and some are advancing toward standardization.  It is likely that additional enhancements will be proposed in the future.  This document defines a mechanism for advertising LDP enhancements at session initialization time, as well as a mechanism to enable and disable enhancements after LDP session establishment. [STANDARDS-TRACK]"];
+  cites -> RFC5561;
+  RFC5918 [label="RFC5918
+Label Distribution Protocol (LDP) 'Typed
+Wildcard' Forward Equivalence Class
+(FEC)
+2010", shape=ellipse, URL="RFC5918.html", target="_top", tooltip="The Label Distribution Protocol (LDP) specification for the Wildcard Forward Equivalence Class (FEC) element has several limitations.  This document addresses those limitations by defining a Typed Wildcard FEC Element and associated procedures.  In addition, it defines a new LDP capability to address backward compatibility. [STANDARDS-TRACK]"];
+  cites -> RFC5918;
+  RFC7275 [label="RFC7275
+Inter-Chassis Communication Protocol for
+Layer 2 Virtual Private Network (L2VPN)
+Provider Edge (PE) Redundancy
+2014", shape=ellipse, URL="RFC7275.html", target="_top", tooltip="This document specifies an Inter-Chassis Communication Protocol (ICCP) that enables Provider Edge (PE) device redundancy for Virtual Private Wire Service (VPWS) and Virtual Private LAN Service (VPLS) applications.  The protocol runs within a set of two or more PEs, forming a Redundancy Group, for the purpose of synchronizing data among the systems.  It accommodates multi-chassis attachment circuit redundancy mechanisms as well as pseudowire redundancy mechanisms."];
+  cites -> RFC7275;
+  RFC6388 [label="RFC6388
+Label Distribution Protocol Extensions
+for Point-to-Multipoint and Multipoint-
+to-Multipoint Label Switched Paths
+2011", shape=ellipse, URL="RFC6388.html", target="_top", tooltip="This document describes extensions to the Label Distribution Protocol (LDP) for the setup of point-to-multipoint (P2MP) and multipoint-to-multipoint (MP2MP) Label Switched Paths (LSPs) in MPLS networks.  These extensions are also referred to as multipoint LDP.  Multipoint LDP constructs the P2MP or MP2MP LSPs without interacting with or relying upon any other multicast tree construction protocol.  Protocol elements and procedures for this solution are described for building such LSPs in a receiver-initiated manner.  There can be various applications for multipoint LSPs, for example IP multicast or support for multicast in BGP/MPLS Layer 3 Virtual Private Networks (L3VPNs).  Specification of how such applications can use an LDP signaled multipoint LSP is outside the scope of this document. [STANDARDS-TRACK]"];
+  cites -> RFC6388;
+  RFC7338 [label="RFC7338
+Requirements and Framework for Point-to-
+Multipoint Pseudowires over MPLS Packet
+Switched Networks
+2014", shape=ellipse, URL="RFC7338.html", target="_top", tooltip="This document presents a set of requirements and a framework for providing a point-to-multipoint pseudowire (PW) over MPLS Packet Switched Networks.  The requirements identified in this document are related to architecture, signaling, and maintenance aspects of point-to-multipoint PW operation.  They are proposed as guidelines for the standardization of such mechanisms.  Among other potential applications, point-to-multipoint PWs can be used to optimize the support of multicast Layer 2 services (Virtual Private LAN Service and Virtual Private Multicast Service)."];
+  cites -> RFC7338;
+  RFC4447 [label="RFC4447
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2006", shape=ellipse, URL="RFC4447.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDU) and transmitting them over pseudowires.  It is also possible to use pseudowires to provide low-rate Time Division Multiplexed and a Synchronous Optical NETworking circuit emulation over an MPLS-enabled network.  This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to Label Distribution Protocol (LDP).  Procedures for encapsulating Layer 2 PDUs are specified in a set of companion documents. [STANDARDS-TRACK]"];
+  cites -> RFC4447;
+  RFC4762 [label="RFC4762
+Virtual Private LAN Service (VPLS) Using
+Label Distribution Protocol (LDP)
+Signaling
+2007", shape=ellipse, URL="RFC4762.html", target="_top", tooltip="This document describes a Virtual Private LAN Service (VPLS) solution using pseudowires, a service previously implemented over other tunneling technologies and known as Transparent LAN Services (TLS). A VPLS creates an emulated LAN segment for a given set of users; i.e., it creates a Layer 2 broadcast domain that is fully capable of learning and forwarding on Ethernet MAC addresses and that is closed to a given set of users. Multiple VPLS services can be supported from a single Provider Edge (PE) node. This document describes the control plane functions of signaling pseudowire labels using Label Distribution Protocol (LDP), extending RFC 4447. It is agnostic to discovery protocols. The data plane functions of forwarding are also described, focusing in particular on the learning of MAC addresses. The encapsulation of VPLS packets is described by RFC 4448. [STANDARDS-TRACK]"];
+  cites -> RFC4762;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  cites -> RFC5036;
+  RFC5920 [label="RFC5920
+Security Framework for MPLS and GMPLS
+Networks
+2010", shape=ellipse, URL="RFC5920.html", target="_top", tooltip="This document provides a security framework for Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) Networks.  This document addresses the security aspects that are relevant in the context of MPLS and GMPLS.  It describes the security threats, the related defensive techniques, and the mechanisms for detection and reporting.  This document emphasizes RSVP-TE and LDP security considerations, as well as inter-AS and inter-provider security considerations for building and maintaining MPLS and GMPLS networks across different domains or different Service Providers.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5920;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7473;
+  RFC7552 [label="RFC7552
+Updates to LDP for IPv6
+2015", shape=ellipse, URL="RFC7552.html", target="_top", tooltip="The Label Distribution Protocol (LDP) specification defines procedures to exchange label bindings over either IPv4 or IPv6 networks, or both.  This document corrects and clarifies the LDP behavior when an IPv6 network is used (with or without IPv4).  This document updates RFCs 5036 and 6720."];
+  RFC7552 -> rev_cites;
+  RFC8223 [label="RFC8223
+Application-Aware Targeted LDP
+2017", shape=ellipse, URL="RFC8223.html", target="_top", tooltip="Recent Targeted Label Distribution Protocol (tLDP) applications, such as remote Loop-Free Alternates (LFAs) and BGP auto-discovered pseudowires, may automatically establish a tLDP session with any Label Switching Router (LSR) in a network.  The initiating LSR has information about the targeted applications to administratively control initiation of the session.  However, the responding LSR has no such information to control acceptance of this session.  This document defines a mechanism to advertise and negotiate the Targeted Application Capability (TAC) during LDP session initialization.  As the responding LSR becomes aware of targeted applications, it may establish a limited number of tLDP sessions for certain applications.  In addition, each targeted application is mapped to LDP Forwarding Equivalence Class (FEC) elements to advertise only necessary LDP FEC label bindings over the session.  This document updates RFC 7473 for enabling advertisement of LDP FEC label bindings over the session."];
+  RFC8223 -> rev_cites;
+}

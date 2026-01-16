@@ -1,0 +1,421 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4120 [label="RFC4120
+The Kerberos Network Authentication
+Service (V5)
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides an overview and specification of Version 5 of the Kerberos protocol, and it obsoletes RFC 1510 to clarify aspects of the protocol and its intended use that require more detailed or clearer explanation than was provided in RFC 1510.  This document is intended to provide a detailed description of the protocol, suitable for implementation, together with descriptions of the appropriate use of protocol messages and fields within those messages. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4120;
+
+  obs [label="obsoletes", shape=box];
+  RFC4120 -> obs;
+  RFC1510 [label="RFC1510
+The Kerberos Network Authentication
+Service (V5)
+1993", shape=ellipse, URL="RFC1510.html", target="_top", tooltip="This document gives an overview and specification of Version 5 of the protocol for the Kerberos network authentication system. [STANDARDS-TRACK]"];
+  obs -> RFC1510;
+
+  updates [label="updates", shape=box];
+  RFC4120 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4120;
+  RFC4537 [label="RFC4537
+Kerberos Cryptosystem Negotiation
+Extension
+2006", shape=ellipse, URL="RFC4537.html", target="_top", tooltip="This document specifies an extension to the Kerberos protocol as defined in RFC 4120, in which the client can send a list of supported encryption types in decreasing preference order, and the server then selects an encryption type that is supported by both the client and the server. [STANDARDS-TRACK]"];
+  RFC4537 -> updated_by;
+  RFC5021 [label="RFC5021
+Extended Kerberos Version 5 Key
+Distribution Center (KDC) Exchanges over
+TCP
+2007", shape=ellipse, URL="RFC5021.html", target="_top", tooltip="This document describes an extensibility mechanism for the Kerberos V5 protocol when used over TCP transports.  The mechanism uses the reserved high-bit in the length field.  It can be used to negotiate TCP-specific Kerberos extensions. [STANDARDS-TRACK]"];
+  RFC5021 -> updated_by;
+  RFC5896 [label="RFC5896
+Generic Security Service Application
+Program Interface (GSS-API): Delegate if
+Approved by Policy
+2010", shape=ellipse, URL="RFC5896.html", target="_top", tooltip="Several Generic Security Service Application Program Interface (GSS-API) applications work in a multi-tiered architecture, where the server takes advantage of delegated user credentials to act on behalf of the user and contact additional servers.  In effect, the server acts as an agent on behalf of the user.  Examples include web applications that need to access e-mail or file servers, including CIFS (Common Internet File System) file servers.  However, delegating the user credentials to a party who is not sufficiently trusted is problematic from a security standpoint.  Kerberos provides a flag called OK-AS-DELEGATE that allows the administrator of a Kerberos realm to communicate that a particular service is trusted for delegation.  This specification adds support for this flag and similar facilities in other authentication mechanisms to GSS-API (RFC 2743). [STANDARDS-TRACK]"];
+  RFC5896 -> updated_by;
+  RFC6111 [label="RFC6111
+Additional Kerberos Naming Constraints
+2011", shape=ellipse, URL="RFC6111.html", target="_top", tooltip="This document defines new naming constraints for well-known Kerberos principal names and well-known Kerberos realm names. [STANDARDS- TRACK]"];
+  RFC6111 -> updated_by;
+  RFC6112 [label="RFC6112
+Anonymity Support for Kerberos
+2011", shape=ellipse, URL="RFC6112.html", target="_top", tooltip="This document defines extensions to the Kerberos protocol to allow a Kerberos client to securely communicate with a Kerberos application service without revealing its identity, or without revealing more than its Kerberos realm.  It also defines extensions that allow a Kerberos client to obtain anonymous credentials without revealing its identity to the Kerberos Key Distribution Center (KDC).  This document updates RFCs 4120, 4121, and 4556. [STANDARDS-TRACK]"];
+  RFC6112 -> updated_by;
+  RFC6113 [label="RFC6113
+A Generalized Framework for Kerberos
+Pre-Authentication
+2011", shape=ellipse, URL="RFC6113.html", target="_top", tooltip="Kerberos is a protocol for verifying the identity of principals (e.g., a workstation user or a network server) on an open network. The Kerberos protocol provides a facility called pre-authentication. Pre-authentication mechanisms can use this facility to extend the Kerberos protocol and prove the identity of a principal. This document describes a more formal model for this facility. The model describes what state in the Kerberos request a pre-authentication mechanism is likely to change. It also describes how multiple pre-authentication mechanisms used in the same request will interact. This document also provides common tools needed by multiple pre-authentication mechanisms. One of these tools is a secure channel between the client and the key distribution center with a reply key strengthening mechanism; this secure channel can be used to protect the authentication exchange and thus eliminate offline dictionary attacks. With these tools, it is relatively straightforward to chain multiple authentication mechanisms, utilize a different key management system, or support a new key agreement algorithm. [STANDARDS-TRACK]"];
+  RFC6113 -> updated_by;
+  RFC6649 [label="RFC6649
+Deprecate DES, RC4-HMAC-EXP, and Other
+Weak Cryptographic Algorithms in
+Kerberos
+2012", shape=ellipse, URL="RFC6649.html", target="_top", tooltip="The Kerberos 5 network authentication protocol, originally specified in RFC 1510, can use the Data Encryption Standard (DES) for encryption.  Almost 30 years after first publishing DES, the National Institute of Standards and Technology (NIST) finally withdrew the standard in 2005, reflecting a long-established consensus that DES is insufficiently secure.  By 2008, commercial hardware costing less than USD 15,000 could break DES keys in less than a day on average.  DES is long past its sell-by date.  Accordingly, this document updates RFC 1964, RFC 4120, RFC 4121, and RFC 4757 to deprecate the use of DES, RC4-HMAC-EXP, and other weak cryptographic algorithms in Kerberos.  Because RFC 1510 (obsoleted by RFC 4120) supports only DES, this document recommends the reclassification of RFC 1510 as Historic.  This memo documents an Internet Best Current Practice."];
+  RFC6649 -> updated_by;
+  RFC6806 [label="RFC6806
+Kerberos Principal Name Canonicalization
+and Cross-Realm Referrals
+2012", shape=ellipse, URL="RFC6806.html", target="_top", tooltip="This memo documents a method for a Kerberos Key Distribution Center (KDC) to respond to client requests for Kerberos tickets when the client does not have detailed configuration information on the realms of users or services.  The KDC will handle requests for principals in other realms by returning either a referral error or a cross-realm Ticket-Granting Ticket (TGT) to another realm on the referral path.  The clients will use this referral information to reach the realm of the target principal and then receive the ticket.  This memo also provides a mechanism for verifying that a request has not been tampered with in transit.  This memo updates RFC 4120. [STANDARDS-TRACK]"];
+  RFC6806 -> updated_by;
+  RFC7751 [label="RFC7751
+Kerberos Authorization Data Container
+Authenticated by Multiple Message
+Authentication Codes (MACs)
+2016", shape=ellipse, URL="RFC7751.html", target="_top", tooltip="This document specifies a Kerberos authorization data container that supersedes AD-KDC-ISSUED.  It allows for multiple Message Authentication Codes (MACs) or signatures to authenticate the contained authorization data elements.  The multiple MACs are needed to mitigate shortcomings in the existing AD-KDC-ISSUED container.  This document updates RFC 4120."];
+  RFC7751 -> updated_by;
+  RFC8062 [label="RFC8062
+Anonymity Support for Kerberos
+2017", shape=ellipse, URL="RFC8062.html", target="_top", tooltip="This document defines extensions to the Kerberos protocol to allow a Kerberos client to securely communicate with a Kerberos application service without revealing its identity, or without revealing more than its Kerberos realm.  It also defines extensions that allow a Kerberos client to obtain anonymous credentials without revealing its identity to the Kerberos Key Distribution Center (KDC).  This document updates RFCs 4120, 4121, and 4556.  This document obsoletes RFC 6112 and reclassifies that document as Historic.  RFC 6112 contained errors, and the protocol described in that specification is not interoperable with any known implementation.  This specification describes a protocol that interoperates with multiple implementations."];
+  RFC8062 -> updated_by;
+  RFC8129 [label="RFC8129
+Authentication Indicator in Kerberos
+Tickets
+2017", shape=ellipse, URL="RFC8129.html", target="_top", tooltip="This document updates RFC 4120, as it specifies an extension in the Kerberos protocol.  It defines a new authorization data type, AD-AUTHENTICATION-INDICATOR.  The purpose of introducing this data type is to include an indicator of the strength of a client's authentication in service tickets so that application services can use it as an input into policy decisions."];
+  RFC8129 -> updated_by;
+  RFC8429 [label="RFC8429
+Deprecate Triple-DES (3DES) and RC4 in
+Kerberos
+2018", shape=ellipse, URL="RFC8429.html", target="_top", tooltip="The triple-DES (3DES) and RC4 encryption types are steadily weakening in cryptographic strength, and the deprecation process should begin for their use in Kerberos.  Accordingly, RFC 4757 has been moved to Historic status, as none of the encryption types it specifies should be used, and RFC 3961 has been updated to note the deprecation of the triple-DES encryption types.  RFC 4120 is likewise updated to remove the recommendation to implement triple-DES encryption and checksum types."];
+  RFC8429 -> updated_by;
+  RFC8553 [label="RFC8553
+DNS Attrleaf Changes: Fixing
+Specifications That Use Underscored Node
+Names
+2019", shape=ellipse, URL="RFC8553.html", target="_top", tooltip="Using an underscore for a prefix creates a space for constrained interoperation of resource records.  Original uses of an underscore character as a domain node name prefix were specified without the benefit of an IANA registry.  This produced an entirely uncoordinated set of name-creation activities, all drawing from the same namespace.  A registry for these names has now been defined by RFC 8552.  However, the existing specifications that use underscored naming need to be modified in order to be in line with the new registry.  This document specifies those changes.  The changes preserve existing software and operational practice, while adapting the specifications for those practices to the newer underscore registry model."];
+  RFC8553 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4120 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4121 [label="RFC4121
+The Kerberos Version 5 Generic Security
+Service Application Program Interface
+(GSS-API) Mechanism: Version 2
+2005", shape=ellipse, URL="RFC4121.html", target="_top", tooltip="This document defines protocols, procedures, and conventions to be employed by peers implementing the Generic Security Service Application Program Interface (GSS-API) when using the Kerberos Version 5 mechanism. RFC 1964 is updated and incremental changes are proposed in response to recent developments such as the introduction of Kerberos cryptosystem framework. These changes support the inclusion of new cryptosystems, by defining new per-message tokens along with their encryption and checksum algorithms based on the cryptosystem profiles. [STANDARDS-TRACK]"];
+  cites -> RFC4121;
+  RFC4086 [label="RFC4086
+Randomness Requirements for Security
+2005", shape=ellipse, URL="RFC4086.html", target="_top", tooltip="Security systems are built on strong cryptographic algorithms that foil pattern analysis attempts. However, the security of these systems is dependent on generating secret quantities for passwords, cryptographic keys, and similar quantities. The use of pseudo-random processes to generate secret quantities can result in pseudo-security. A sophisticated attacker may find it easier to reproduce the environment that produced the secret quantities and to search the resulting small set of possibilities than to locate the quantities in the whole of the potential number space. Choosing random quantities to foil a resourceful and motivated adversary is surprisingly difficult. This document points out many pitfalls in using poor entropy sources or traditional pseudo-random number generation techniques for generating such quantities. It recommends the use of truly random hardware techniques and shows that the existing hardware on many systems can be used for this purpose. It provides suggestions to ameliorate the problem when a hardware solution is not available, and it gives examples of how large such quantities need to be for some applications. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4086;
+  RFC3961 [label="RFC3961
+Encryption and Checksum Specifications
+for Kerberos 5
+2005", shape=ellipse, URL="RFC3961.html", target="_top", tooltip="This document describes a framework for defining encryption and checksum mechanisms for use with the Kerberos protocol, defining an abstraction layer between the Kerberos protocol and related protocols, and the actual mechanisms themselves.  The document also defines several mechanisms.  Some are taken from RFC 1510, modified in form to fit this new framework and occasionally modified in content when the old specification was incorrect.  New mechanisms are presented here as well.  This document does NOT indicate which mechanisms may be considered required to implement. [STANDARDS-TRACK]"];
+  cites -> RFC3961;
+  RFC1510 [label="RFC1510
+The Kerberos Network Authentication
+Service (V5)
+1993", shape=ellipse, URL="RFC1510.html", target="_top", tooltip="This document gives an overview and specification of Version 5 of the protocol for the Kerberos network authentication system. [STANDARDS-TRACK]"];
+  cites -> RFC1510;
+  RFC1964 [label="RFC1964
+The Kerberos Version 5 GSS-API Mechanism
+1996", shape=ellipse, URL="RFC1964.html", target="_top", tooltip="This specification defines protocols, procedures, and conventions to be employed by peers implementing the Generic Security Service Application Program Interface (as specified in RFCs 1508 and 1509) when using Kerberos Version 5 technology (as specified in RFC 1510). [STANDARDS-TRACK]"];
+  cites -> RFC1964;
+  RFC2253 [label="RFC2253
+Lightweight Directory Access Protocol
+(v3): UTF-8 String Representation of
+Distinguished Names
+1997", shape=ellipse, URL="RFC2253.html", target="_top", tooltip="This specification defines the string format for representing names, which is designed to give a clean representation of commonly used distinguished names, while being able to represent any distinguished name. [STANDARDS-TRACK]"];
+  cites -> RFC2253;
+  RFC3513 [label="RFC3513
+Internet Protocol Version 6 (IPv6)
+Addressing Architecture
+2003", shape=ellipse, URL="RFC3513.html", target="_top", tooltip="This specification defines the addressing architecture of the IP Version 6 (IPv6) protocol.  The document includes the IPv6 addressing model, text representations of IPv6 addresses, definition of IPv6 unicast addresses, anycast addresses, and multicast addresses, and an IPv6 node's required addresses. [STANDARDS-TRACK]"];
+  cites -> RFC3513;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC2782 [label="RFC2782
+A DNS RR for specifying the location of
+services (DNS SRV)
+2000", shape=ellipse, URL="RFC2782.html", target="_top", tooltip="This document describes a DNS RR which specifies the location of the server(s) for a specific protocol and domain. [STANDARDS-TRACK]"];
+  cites -> RFC2782;
+  RFC3962 [label="RFC3962
+Advanced Encryption Standard (AES)
+Encryption for Kerberos 5
+2005", shape=ellipse, URL="RFC3962.html", target="_top", tooltip="The United States National Institute of Standards and Technology (NIST) has chosen a new Advanced Encryption Standard (AES), which is significantly faster and (it is believed) more secure than the old Data Encryption Standard (DES) algorithm.  This document is a specification for the addition of this algorithm to the Kerberos cryptosystem suite. [STANDARDS-TRACK]"];
+  cites -> RFC3962;
+  RFC2434 [label="RFC2434
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+1998", shape=ellipse, URL="RFC2434.html", target="_top", tooltip="This document discusses issues that should be considered in formulating a policy for assigning values to a name space and provides guidelines to document authors on the specific text that must be included in documents that place demands on the IANA.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2434;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4120;
+  RFC4121 [label="RFC4121
+The Kerberos Version 5 Generic Security
+Service Application Program Interface
+(GSS-API) Mechanism: Version 2
+2005", shape=ellipse, URL="RFC4121.html", target="_top", tooltip="This document defines protocols, procedures, and conventions to be employed by peers implementing the Generic Security Service Application Program Interface (GSS-API) when using the Kerberos Version 5 mechanism. RFC 1964 is updated and incremental changes are proposed in response to recent developments such as the introduction of Kerberos cryptosystem framework. These changes support the inclusion of new cryptosystems, by defining new per-message tokens along with their encryption and checksum algorithms based on the cryptosystem profiles. [STANDARDS-TRACK]"];
+  RFC4121 -> rev_cites;
+  RFC4251 [label="RFC4251
+The Secure Shell (SSH) Protocol
+Architecture
+2006", shape=ellipse, URL="RFC4251.html", target="_top", tooltip="The Secure Shell (SSH) Protocol is a protocol for secure remote login and other secure network services over an insecure network.  This document describes the architecture of the SSH protocol, as well as the notation and terminology used in SSH protocol documents.  It also discusses the SSH algorithm naming system that allows local extensions.  The SSH protocol consists of three major components: The Transport Layer Protocol provides server authentication, confidentiality, and integrity with perfect forward secrecy.  The User Authentication Protocol authenticates the client to the server.  The Connection Protocol multiplexes the encrypted tunnel into several logical channels.  Details of these protocols are described in separate documents. [STANDARDS-TRACK]"];
+  RFC4251 -> rev_cites;
+  RFC4468 [label="RFC4468
+Message Submission BURL Extension
+2006", shape=ellipse, URL="RFC4468.html", target="_top", tooltip="The submission profile of Simple Mail Transfer Protocol (SMTP) provides a standard way for an email client to submit a complete message for delivery.  This specification extends the submission profile by adding a new BURL command that can be used to fetch submission data from an Internet Message Access Protocol (IMAP) server.  This permits a mail client to inject content from an IMAP server into the SMTP infrastructure without downloading it to the client and uploading it back to the server. [STANDARDS-TRACK]"];
+  RFC4468 -> rev_cites;
+  RFC4507 [label="RFC4507
+Transport Layer Security (TLS) Session
+Resumption without Server-Side State
+2006", shape=ellipse, URL="RFC4507.html", target="_top", tooltip="This document describes a mechanism that enables the Transport Layer Security (TLS) server to resume sessions and avoid keeping \%per-client session state.  The TLS server encapsulates the session state into a ticket and forwards it to the client.  The client can subsequently resume a session using the obtained ticket. [STANDARDS-TRACK]"];
+  RFC4507 -> rev_cites;
+  RFC4537 [label="RFC4537
+Kerberos Cryptosystem Negotiation
+Extension
+2006", shape=ellipse, URL="RFC4537.html", target="_top", tooltip="This document specifies an extension to the Kerberos protocol as defined in RFC 4120, in which the client can send a list of supported encryption types in decreasing preference order, and the server then selects an encryption type that is supported by both the client and the server. [STANDARDS-TRACK]"];
+  RFC4537 -> rev_cites;
+  RFC4545 [label="RFC4545
+Definitions of Managed Objects for IP
+Storage User Identity Authorization
+2006", shape=ellipse, URL="RFC4545.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in TCP/IP-based internets.  In particular, it defines objects for managing user identities and the names, addresses, and credentials required manage access control, for use with various protocols.  This document was motivated by the need for the configuration of authorized user identities for the iSCSI protocol, but has been extended to be useful for other protocols that have similar requirements.  It is important to note that this MIB module provides only the set of identities to be used within access lists; it is the responsibility of other MIB modules making use of this one to tie them to their own access lists or other authorization control methods. [STANDARDS-TRACK]"];
+  RFC4545 -> rev_cites;
+  RFC4556 [label="RFC4556
+Public Key Cryptography for Initial
+Authentication in Kerberos (PKINIT)
+2006", shape=ellipse, URL="RFC4556.html", target="_top", tooltip="This document describes protocol extensions (hereafter called PKINIT) to the Kerberos protocol specification.  These extensions provide a method for integrating public key cryptography into the initial authentication exchange, by using asymmetric-key signature and/or encryption algorithms in pre-authentication data fields. [STANDARDS-TRACK]"];
+  RFC4556 -> rev_cites;
+  RFC4557 [label="RFC4557
+Online Certificate Status Protocol
+(OCSP) Support for Public Key
+Cryptography for Initial Authentication
+in Kerberos (PKINIT)
+2006", shape=ellipse, URL="RFC4557.html", target="_top", tooltip="This document defines a mechanism to enable in-band transmission of Online Certificate Status Protocol (OCSP) responses in the Kerberos network authentication protocol.  These responses are used to verify the validity of the certificates used in Public Key Cryptography for Initial Authentication in Kerberos (PKINIT), which is the Kerberos Version 5 extension that provides for the use of public key cryptography. [STANDARDS-TRACK]"];
+  RFC4557 -> rev_cites;
+  RFC4757 [label="RFC4757
+The RC4-HMAC Kerberos Encryption Types
+Used by Microsoft Windows
+2006", shape=ellipse, URL="RFC4757.html", target="_top", tooltip="The Microsoft Windows 2000 implementation of Kerberos introduces a new encryption type based on the RC4 encryption algorithm and using an MD5 HMAC for checksum. This is offered as an alternative to using the existing DES-based encryption types. The RC4-HMAC encryption types are used to ease upgrade of existing Windows NT environments, provide strong cryptography (128-bit key lengths), and provide exportable (meet United States government export restriction requirements) encryption. This document describes the implementation of those encryption types. This memo provides information for the Internet community."];
+  RFC4757 -> rev_cites;
+  RFC5056 [label="RFC5056
+On the Use of Channel Bindings to Secure
+Channels
+2007", shape=ellipse, URL="RFC5056.html", target="_top", tooltip="The concept of channel binding allows applications to establish that the two end-points of a secure channel at one network layer are the same as at a higher layer by binding authentication at the higher layer to the channel at the lower layer. This allows applications to delegate session protection to lower layers, which has various performance benefits. This document discusses and formalizes the concept of channel binding to secure channels. [STANDARDS-TRACK]"];
+  RFC5056 -> rev_cites;
+  RFC5077 [label="RFC5077
+Transport Layer Security (TLS) Session
+Resumption without Server-Side State
+2008", shape=ellipse, URL="RFC5077.html", target="_top", tooltip="This document describes a mechanism that enables the Transport Layer Security (TLS) server to resume sessions and avoid keeping per-client session state.  The TLS server encapsulates the session state into a ticket and forwards it to the client.  The client can subsequently resume a session using the obtained ticket.  This document obsoletes RFC 4507. [STANDARDS-TRACK]"];
+  RFC5077 -> rev_cites;
+  RFC5179 [label="RFC5179
+Generic Security Service Application
+Program Interface (GSS-API) Domain-Based
+Service Names Mapping for the Kerberos V
+GSS Mechanism
+2008", shape=ellipse, URL="RFC5179.html", target="_top", tooltip="This document describes the mapping of Generic Security Service Application Program Interface (GSS-API) domain-name-based service principal names onto Kerberos V principal names. [STANDARDS-TRACK]"];
+  RFC5179 -> rev_cites;
+  RFC5218 [label="RFC5218
+What Makes for a Successful Protocol?
+2008", shape=ellipse, URL="RFC5218.html", target="_top", tooltip="The Internet community has specified a large number of protocols to date, and these protocols have achieved varying degrees of success.  Based on case studies, this document attempts to ascertain factors that contribute to or hinder a protocol's success.  It is hoped that these observations can serve as guidance for future protocol work.  This memo provides information for the Internet community."];
+  RFC5218 -> rev_cites;
+  RFC5280 [label="RFC5280
+Internet X.509 Public Key Infrastructure
+Certificate and Certificate Revocation
+List (CRL) Profile
+2008", shape=ellipse, URL="RFC5280.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 certificate revocation list (CRL) for use in the Internet.  An overview of this approach and model is provided as an introduction.  The X.509 v3 certificate format is described in detail, with additional information regarding the format and semantics of Internet name forms.  Standard certificate extensions are described and two Internet-specific extensions are defined.  A set of required certificate extensions is specified.  The X.509 v2 CRL format is described in detail along with standard and Internet-specific extensions.  An algorithm for X.509 certification path validation is described.  An ASN.1 module and examples are provided in the appendices. [STANDARDS-TRACK]"];
+  RFC5280 -> rev_cites;
+  RFC5349 [label="RFC5349
+Elliptic Curve Cryptography (ECC)
+Support for Public Key Cryptography for
+Initial Authentication in Kerberos
+(PKINIT)
+2008", shape=ellipse, URL="RFC5349.html", target="_top", tooltip="This document describes the use of Elliptic Curve certificates, Elliptic Curve signature schemes and Elliptic Curve Diffie-Hellman (ECDH) key agreement within the framework of PKINIT -- the Kerberos Version 5 extension that provides for the use of public key cryptography.  This memo provides information for the Internet community."];
+  RFC5349 -> rev_cites;
+  RFC5440 [label="RFC5440
+Path Computation Element (PCE)
+Communication Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5440.html", target="_top", tooltip="This document specifies the Path Computation Element (PCE) Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a PCE, or between two PCEs.  Such interactions include path computation requests and path computation replies as well as notifications of specific states related to the use of a PCE in the context of Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering.  PCEP is designed to be flexible and extensible so as to easily allow for the addition of further messages and objects, should further requirements be expressed in the future. [STANDARDS-TRACK]"];
+  RFC5440 -> rev_cites;
+  RFC5868 [label="RFC5868
+Problem Statement on the Cross-Realm
+Operation of Kerberos
+2010", shape=ellipse, URL="RFC5868.html", target="_top", tooltip="This document provides background information regarding large-scale Kerberos deployments in the industrial sector, with the aim of identifying issues in the current Kerberos cross-realm authentication model as defined in RFC 4120. This document describes some examples of actual large-scale industrial systems, and lists requirements and restrictions regarding authentication operations in such environments. It also identifies a number of requirements derived from the industrial automation field. Although they are found in the field of industrial automation, these requirements are general enough and are applicable to the problem of Kerberos cross-realm operations. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5868 -> rev_cites;
+  RFC5896 [label="RFC5896
+Generic Security Service Application
+Program Interface (GSS-API): Delegate if
+Approved by Policy
+2010", shape=ellipse, URL="RFC5896.html", target="_top", tooltip="Several Generic Security Service Application Program Interface (GSS-API) applications work in a multi-tiered architecture, where the server takes advantage of delegated user credentials to act on behalf of the user and contact additional servers.  In effect, the server acts as an agent on behalf of the user.  Examples include web applications that need to access e-mail or file servers, including CIFS (Common Internet File System) file servers.  However, delegating the user credentials to a party who is not sufficiently trusted is problematic from a security standpoint.  Kerberos provides a flag called OK-AS-DELEGATE that allows the administrator of a Kerberos realm to communicate that a particular service is trusted for delegation.  This specification adds support for this flag and similar facilities in other authentication mechanisms to GSS-API (RFC 2743). [STANDARDS-TRACK]"];
+  RFC5896 -> rev_cites;
+  RFC5981 [label="RFC5981
+Authorization for NSIS Signaling Layer
+Protocols
+2011", shape=ellipse, URL="RFC5981.html", target="_top", tooltip="Signaling layer protocols specified within the Next Steps in Signaling (NSIS) framework may rely on the General Internet Signaling Transport (GIST) protocol to handle authorization.  Still, the signaling layer protocol above GIST itself may require separate authorization to be performed when a node receives a request for a certain kind of service or resources.  This document presents a generic model and object formats for session authorization within the NSIS signaling layer protocols.  The goal of session authorization is to allow the exchange of information between network elements in order to authorize the use of resources for a service and to coordinate actions between the signaling and transport planes.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5981 -> rev_cites;
+  RFC6043 [label="RFC6043
+MIKEY-TICKET: Ticket-Based Modes of Key
+Distribution in Multimedia Internet
+KEYing (MIKEY)
+2011", shape=ellipse, URL="RFC6043.html", target="_top", tooltip="The Multimedia Internet KEYing (MIKEY) specification describes a key management scheme for real-time applications.  In this document, we note that the currently defined MIKEY modes are insufficient to address deployment scenarios built around a centralized key management service.  Interest in such deployments is increasing.  Therefore, a set of new MIKEY modes that work well in such scenarios are defined.  The new modes use a trusted key management service and a ticket concept, similar to that in Kerberos.  The new modes also support features used by many existing applications, where the exact identity of the other endpoint may not be known at the start of the communication session.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6043 -> rev_cites;
+  RFC6111 [label="RFC6111
+Additional Kerberos Naming Constraints
+2011", shape=ellipse, URL="RFC6111.html", target="_top", tooltip="This document defines new naming constraints for well-known Kerberos principal names and well-known Kerberos realm names. [STANDARDS- TRACK]"];
+  RFC6111 -> rev_cites;
+  RFC6112 [label="RFC6112
+Anonymity Support for Kerberos
+2011", shape=ellipse, URL="RFC6112.html", target="_top", tooltip="This document defines extensions to the Kerberos protocol to allow a Kerberos client to securely communicate with a Kerberos application service without revealing its identity, or without revealing more than its Kerberos realm.  It also defines extensions that allow a Kerberos client to obtain anonymous credentials without revealing its identity to the Kerberos Key Distribution Center (KDC).  This document updates RFCs 4120, 4121, and 4556. [STANDARDS-TRACK]"];
+  RFC6112 -> rev_cites;
+  RFC6113 [label="RFC6113
+A Generalized Framework for Kerberos
+Pre-Authentication
+2011", shape=ellipse, URL="RFC6113.html", target="_top", tooltip="Kerberos is a protocol for verifying the identity of principals (e.g., a workstation user or a network server) on an open network. The Kerberos protocol provides a facility called pre-authentication. Pre-authentication mechanisms can use this facility to extend the Kerberos protocol and prove the identity of a principal. This document describes a more formal model for this facility. The model describes what state in the Kerberos request a pre-authentication mechanism is likely to change. It also describes how multiple pre-authentication mechanisms used in the same request will interact. This document also provides common tools needed by multiple pre-authentication mechanisms. One of these tools is a secure channel between the client and the key distribution center with a reply key strengthening mechanism; this secure channel can be used to protect the authentication exchange and thus eliminate offline dictionary attacks. With these tools, it is relatively straightforward to chain multiple authentication mechanisms, utilize a different key management system, or support a new key agreement algorithm. [STANDARDS-TRACK]"];
+  RFC6113 -> rev_cites;
+  RFC6251 [label="RFC6251
+Using Kerberos Version 5 over the
+Transport Layer Security (TLS) Protocol
+2011", shape=ellipse, URL="RFC6251.html", target="_top", tooltip="This document specifies how the Kerberos V5 protocol can be transported over the Transport Layer Security (TLS) protocol in order to provide additional security features.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6251 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6281 [label="RFC6281
+Understanding Apple's Back to My Mac
+(BTMM) Service
+2011", shape=ellipse, URL="RFC6281.html", target="_top", tooltip="This document describes the implementation of Apple Inc.'s Back to My Mac (BTMM) service.  BTMM provides network connectivity between devices so that a user can perform file sharing and screen sharing among multiple computers at home, at work, or on the road.  The implementation of BTMM addresses the issues of single sign-on authentication, secure data communication, service discovery, and end-to-end connectivity in the face of Network Address Translators (NATs) and mobility of devices.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6281 -> rev_cites;
+  RFC6448 [label="RFC6448
+The Unencrypted Form of Kerberos 5 KRB-
+CRED Message
+2011", shape=ellipse, URL="RFC6448.html", target="_top", tooltip="The Kerberos 5 KRB-CRED message is used to transfer Kerberos credentials between applications.  When used with a secure transport, the unencrypted form of the KRB-CRED message may be desirable.  This document describes the unencrypted form of the KRB-CRED message. [STANDARDS-TRACK]"];
+  RFC6448 -> rev_cites;
+  RFC6528 [label="RFC6528
+Defending against Sequence Number
+Attacks
+2012", shape=ellipse, URL="RFC6528.html", target="_top", tooltip="This document specifies an algorithm for the generation of TCP Initial Sequence Numbers (ISNs), such that the chances of an off-path attacker guessing the sequence numbers in use by a target connection are reduced.  This document revises (and formally obsoletes) RFC 1948, and takes the ISN generation algorithm originally proposed in that document to Standards Track, formally updating RFC 793. [STANDARDS-TRACK]"];
+  RFC6528 -> rev_cites;
+  RFC6560 [label="RFC6560
+One-Time Password (OTP) Pre-
+Authentication
+2012", shape=ellipse, URL="RFC6560.html", target="_top", tooltip="The Kerberos protocol provides a framework authenticating a client using the exchange of pre-authentication data.  This document describes the use of this framework to carry out One-Time Password (OTP) authentication. [STANDARDS-TRACK]"];
+  RFC6560 -> rev_cites;
+  RFC6649 [label="RFC6649
+Deprecate DES, RC4-HMAC-EXP, and Other
+Weak Cryptographic Algorithms in
+Kerberos
+2012", shape=ellipse, URL="RFC6649.html", target="_top", tooltip="The Kerberos 5 network authentication protocol, originally specified in RFC 1510, can use the Data Encryption Standard (DES) for encryption.  Almost 30 years after first publishing DES, the National Institute of Standards and Technology (NIST) finally withdrew the standard in 2005, reflecting a long-established consensus that DES is insufficiently secure.  By 2008, commercial hardware costing less than USD 15,000 could break DES keys in less than a day on average.  DES is long past its sell-by date.  Accordingly, this document updates RFC 1964, RFC 4120, RFC 4121, and RFC 4757 to deprecate the use of DES, RC4-HMAC-EXP, and other weak cryptographic algorithms in Kerberos.  Because RFC 1510 (obsoleted by RFC 4120) supports only DES, this document recommends the reclassification of RFC 1510 as Historic.  This memo documents an Internet Best Current Practice."];
+  RFC6649 -> rev_cites;
+  RFC6680 [label="RFC6680
+Generic Security Service Application
+Programming Interface (GSS-API) Naming
+Extensions
+2012", shape=ellipse, URL="RFC6680.html", target="_top", tooltip="The Generic Security Service Application Programming Interface (GSS-API) provides a simple naming architecture that supports name-based authorization.  This document introduces new APIs that extend the GSS-API naming model to support name attribute transfer between GSS-API peers."];
+  RFC6680 -> rev_cites;
+  RFC6717 [label="RFC6717
+kx509 Kerberized Certificate Issuance
+Protocol in Use in 2012
+2012", shape=ellipse, URL="RFC6717.html", target="_top", tooltip="This document describes a protocol, called kx509, for using Kerberos tickets to acquire X.509 certificates. These certificates may be used for many of the same purposes as X.509 certificates acquired by other means, but if a Kerberos infrastructure already exists, then the overhead of using kx509 may be much less. While not standardized, this protocol is already in use at several large organizations, and certificates issued with this protocol are recognized by the International Grid Trust Federation. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6717 -> rev_cites;
+  RFC6784 [label="RFC6784
+Kerberos Options for DHCPv6
+2012", shape=ellipse, URL="RFC6784.html", target="_top", tooltip="This document defines four new options for the Dynamic Host Configuration Protocol for IPv6 (DHCPv6).  These options are used to carry configuration information for Kerberos. [STANDARDS-TRACK]"];
+  RFC6784 -> rev_cites;
+  RFC6806 [label="RFC6806
+Kerberos Principal Name Canonicalization
+and Cross-Realm Referrals
+2012", shape=ellipse, URL="RFC6806.html", target="_top", tooltip="This memo documents a method for a Kerberos Key Distribution Center (KDC) to respond to client requests for Kerberos tickets when the client does not have detailed configuration information on the realms of users or services.  The KDC will handle requests for principals in other realms by returning either a referral error or a cross-realm Ticket-Granting Ticket (TGT) to another realm on the referral path.  The clients will use this referral information to reach the realm of the target principal and then receive the ticket.  This memo also provides a mechanism for verifying that a request has not been tampered with in transit.  This memo updates RFC 4120. [STANDARDS-TRACK]"];
+  RFC6806 -> rev_cites;
+  RFC6819 [label="RFC6819
+OAuth 2.0 Threat Model and Security
+Considerations
+2013", shape=ellipse, URL="RFC6819.html", target="_top", tooltip="This document gives additional security considerations for OAuth, beyond those in the OAuth 2.0 specification, based on a comprehensive threat model for the OAuth 2.0 protocol.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6819 -> rev_cites;
+  RFC6880 [label="RFC6880
+An Information Model for Kerberos
+Version 5
+2013", shape=ellipse, URL="RFC6880.html", target="_top", tooltip="This document describes an information model for Kerberos version 5 from the point of view of an administrative service.  There is no standard for administrating a Kerberos 5 Key Distribution Center (KDC).  This document describes the services exposed by an administrative interface to a KDC."];
+  RFC6880 -> rev_cites;
+  RFC7143 [label="RFC7143
+Internet Small Computer System Interface
+(iSCSI) Protocol (Consolidated)
+2014", shape=ellipse, URL="RFC7143.html", target="_top", tooltip="This document describes a transport protocol for SCSI that works on top of TCP. The iSCSI protocol aims to be fully compliant with the standardized SCSI Architecture Model (SAM-2). RFC 3720 defined the original iSCSI protocol. RFC 3721 discusses iSCSI naming examples and discovery techniques. Subsequently, RFC 3980 added an additional naming format to the iSCSI protocol. RFC 4850 followed up by adding a new public extension key to iSCSI. RFC 5048 offered a number of clarifications as well as a few improvements and corrections to the original iSCSI protocol. This document obsoletes RFCs 3720, 3980, 4850, and 5048 by consolidating them into a single document and making additional updates to the consolidated specification. This document also updates RFC 3721. The text in this document thus supersedes the text in all the noted RFCs wherever there is a difference in semantics."];
+  RFC7143 -> rev_cites;
+  RFC7712 [label="RFC7712
+Domain Name Associations (DNA) in the
+Extensible Messaging and Presence
+Protocol (XMPP)
+2015", shape=ellipse, URL="RFC7712.html", target="_top", tooltip="This document improves the security of the Extensible Messaging and Presence Protocol (XMPP) in two ways.  First, it specifies how to establish a strong association between a domain name and an XML stream, using the concept of prooftypes.  Second, it describes how to securely delegate a service domain name (e.g., example.com) to a target server hostname (e.g., hosting.example.net); this is especially important in multi-tenanted environments where the same target server hosts a large number of domains."];
+  RFC7712 -> rev_cites;
+  RFC7751 [label="RFC7751
+Kerberos Authorization Data Container
+Authenticated by Multiple Message
+Authentication Codes (MACs)
+2016", shape=ellipse, URL="RFC7751.html", target="_top", tooltip="This document specifies a Kerberos authorization data container that supersedes AD-KDC-ISSUED.  It allows for multiple Message Authentication Codes (MACs) or signatures to authenticate the contained authorization data elements.  The multiple MACs are needed to mitigate shortcomings in the existing AD-KDC-ISSUED container.  This document updates RFC 4120."];
+  RFC7751 -> rev_cites;
+  RFC8000 [label="RFC8000
+Requirements for NFSv4 Multi-Domain
+Namespace Deployment
+2016", shape=ellipse, URL="RFC8000.html", target="_top", tooltip="This document presents requirements for the deployment of the NFSv4 protocols for the construction of an NFSv4 file namespace in environments with multiple NFSv4 Domains.  To participate in an NFSv4 multi-domain file namespace, the server must offer a multi-domain-capable file system and support RPCSEC_GSS for user authentication.  In most instances, the server must also support identity-mapping services."];
+  RFC8000 -> rev_cites;
+  RFC8009 [label="RFC8009
+AES Encryption with HMAC-SHA2 for
+Kerberos 5
+2016", shape=ellipse, URL="RFC8009.html", target="_top", tooltip="This document specifies two encryption types and two corresponding checksum types for Kerberos 5.  The new types use AES in CTS mode (CBC mode with ciphertext stealing) for confidentiality and HMAC with a SHA-2 hash for integrity."];
+  RFC8009 -> rev_cites;
+  RFC8062 [label="RFC8062
+Anonymity Support for Kerberos
+2017", shape=ellipse, URL="RFC8062.html", target="_top", tooltip="This document defines extensions to the Kerberos protocol to allow a Kerberos client to securely communicate with a Kerberos application service without revealing its identity, or without revealing more than its Kerberos realm.  It also defines extensions that allow a Kerberos client to obtain anonymous credentials without revealing its identity to the Kerberos Key Distribution Center (KDC).  This document updates RFCs 4120, 4121, and 4556.  This document obsoletes RFC 6112 and reclassifies that document as Historic.  RFC 6112 contained errors, and the protocol described in that specification is not interoperable with any known implementation.  This specification describes a protocol that interoperates with multiple implementations."];
+  RFC8062 -> rev_cites;
+  RFC8070 [label="RFC8070
+Public Key Cryptography for Initial
+Authentication in Kerberos (PKINIT)
+Freshness Extension
+2017", shape=ellipse, URL="RFC8070.html", target="_top", tooltip="This document describes how to further extend the Public Key Cryptography for Initial Authentication in Kerberos (PKINIT) extension (defined in RFC 4556) to exchange an opaque data blob that a Key Distribution Center (KDC) can validate to ensure that the client is currently in possession of the private key during a PKINIT Authentication Service (AS) exchange."];
+  RFC8070 -> rev_cites;
+  RFC8129 [label="RFC8129
+Authentication Indicator in Kerberos
+Tickets
+2017", shape=ellipse, URL="RFC8129.html", target="_top", tooltip="This document updates RFC 4120, as it specifies an extension in the Kerberos protocol.  It defines a new authorization data type, AD-AUTHENTICATION-INDICATOR.  The purpose of introducing this data type is to include an indicator of the strength of a client's authentication in service tickets so that application services can use it as an input into policy decisions."];
+  RFC8129 -> rev_cites;
+  RFC8429 [label="RFC8429
+Deprecate Triple-DES (3DES) and RC4 in
+Kerberos
+2018", shape=ellipse, URL="RFC8429.html", target="_top", tooltip="The triple-DES (3DES) and RC4 encryption types are steadily weakening in cryptographic strength, and the deprecation process should begin for their use in Kerberos.  Accordingly, RFC 4757 has been moved to Historic status, as none of the encryption types it specifies should be used, and RFC 3961 has been updated to note the deprecation of the triple-DES encryption types.  RFC 4120 is likewise updated to remove the recommendation to implement triple-DES encryption and checksum types."];
+  RFC8429 -> rev_cites;
+  RFC8553 [label="RFC8553
+DNS Attrleaf Changes: Fixing
+Specifications That Use Underscored Node
+Names
+2019", shape=ellipse, URL="RFC8553.html", target="_top", tooltip="Using an underscore for a prefix creates a space for constrained interoperation of resource records.  Original uses of an underscore character as a domain node name prefix were specified without the benefit of an IANA registry.  This produced an entirely uncoordinated set of name-creation activities, all drawing from the same namespace.  A registry for these names has now been defined by RFC 8552.  However, the existing specifications that use underscored naming need to be modified in order to be in line with the new registry.  This document specifies those changes.  The changes preserve existing software and operational practice, while adapting the specifications for those practices to the newer underscore registry model."];
+  RFC8553 -> rev_cites;
+  RFC8576 [label="RFC8576
+Internet of Things (IoT) Security: State
+of the Art and Challenges
+2019", shape=ellipse, URL="RFC8576.html", target="_top", tooltip="The Internet of Things (IoT) concept refers to the usage of standard Internet protocols to allow for human-to-thing and thing-to-thing communication. The security needs for IoT systems are well recognized, and many standardization steps to provide security have been taken -- for example, the specification of the Constrained Application Protocol (CoAP) secured with Datagram Transport Layer Security (DTLS). However, security challenges still exist, not only because there are some use cases that lack a suitable solution, but also because many IoT devices and systems have been designed and deployed with very limited security capabilities. In this document, we first discuss the various stages in the lifecycle of a thing. Next, we document the security threats to a thing and the challenges that one might face to protect against these threats. Lastly, we discuss the next steps needed to facilitate the deployment of secure IoT systems. This document can be used by implementers and authors of IoT specifications as a reference for details about security considerations while documenting their specific security challenges, threat models, and mitigations. This document is a product of the IRTF Thing-to-Thing Research Group (T2TRG)."];
+  RFC8576 -> rev_cites;
+  RFC8636 [label="RFC8636
+Public Key Cryptography for Initial
+Authentication in Kerberos (PKINIT)
+Algorithm Agility
+2019", shape=ellipse, URL="RFC8636.html", target="_top", tooltip="This document updates the Public Key Cryptography for Initial Authentication in Kerberos (PKINIT) standard (RFC 4556) to remove protocol structures tied to specific cryptographic algorithms. The PKINIT key derivation function is made negotiable, and the digest algorithms for signing the pre-authentication data and the client's X.509 certificates are made discoverable. These changes provide preemptive protection against vulnerabilities discovered in the future in any specific cryptographic algorithm and allow incremental deployment of newer algorithms."];
+  RFC8636 -> rev_cites;
+  RFC8907 [label="RFC8907
+The Terminal Access Controller Access-
+Control System Plus (TACACS+) Protocol
+2020", shape=ellipse, URL="RFC8907.html", target="_top", tooltip="This document describes the Terminal Access Controller Access-Control System Plus (TACACS+) protocol, which is widely deployed today to provide Device Administration for routers, network access servers, and other networked computing devices via one or more centralized servers."];
+  RFC8907 -> rev_cites;
+  RFC9588 [label="RFC9588
+Kerberos Simple Password-Authenticated
+Key Exchange (SPAKE) Pre-authentication
+2024", shape=ellipse, URL="RFC9588.html", target="_top", tooltip="This document defines a new pre-authentication mechanism for the Kerberos protocol.  The mechanism uses a password-authenticated key exchange (PAKE) to prevent brute-force password attacks, and it may incorporate a second factor."];
+  RFC9588 -> rev_cites;
+}

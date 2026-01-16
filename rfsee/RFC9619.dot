@@ -1,0 +1,83 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9619 [label="RFC9619
+In the DNS, QDCOUNT Is (Usually) One
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document updates RFC 1035 by constraining the allowed value of the QDCOUNT parameter in DNS messages with OPCODE = 0 (QUERY) to a maximum of one, and it specifies the required behavior when values that are not allowed are encountered."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9619;
+
+  obs [label="obsoletes", shape=box];
+  RFC9619 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9619 -> updates;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  updates -> RFC1035;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9619;
+
+  cites [label="cites", shape=box];
+  RFC9619 -> cites;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8906 [label="RFC8906
+A Common Operational Problem in DNS
+Servers: Failure to Communicate
+2020", shape=ellipse, URL="RFC8906.html", target="_top", tooltip="The DNS is a query/response protocol. Failing to respond to queries, or responding incorrectly, causes both immediate operational problems and long-term problems with protocol development. This document identifies a number of common kinds of queries to which some servers either fail to respond or respond incorrectly. This document also suggests procedures for zone operators to apply to identify and remediate the problem. The document does not look at the DNS data itself, just the structure of the responses."];
+  cites -> RFC8906;
+  RFC3425 [label="RFC3425
+Obsoleting IQUERY
+2002", shape=ellipse, URL="RFC3425.html", target="_top", tooltip="The IQUERY method of performing inverse DNS lookups, specified in RFC 1035, has not been generally implemented and has usually been operationally disabled where it has been implemented.  Both reflect a general view in the community that the concept was unwise and that the widely-used alternate approach of using pointer (PTR) queries and reverse-mapping records is preferable.  Consequently, this document deprecates the IQUERY operation, declaring it entirely obsolete.  This document updates RFC 1035. [STANDARDS-TRACK]"];
+  cites -> RFC3425;
+  RFC1996 [label="RFC1996
+A Mechanism for Prompt Notification of
+Zone Changes (DNS NOTIFY)
+1996", shape=ellipse, URL="RFC1996.html", target="_top", tooltip="This memo describes the NOTIFY opcode for DNS, by which a master server advises a set of slave servers that the master's data has been changed and that a query should be initiated to discover the new data. [STANDARDS-TRACK]"];
+  cites -> RFC1996;
+  RFC2136 [label="RFC2136
+Dynamic Updates in the Domain Name
+System (DNS UPDATE)
+1997", shape=ellipse, URL="RFC2136.html", target="_top", tooltip="Using this specification of the UPDATE opcode, it is possible to add or delete RRs or RRsets from a specified zone.  Prerequisites are specified separately from update operations, and can specify a dependency upon either the previous existence or nonexistence of an RRset, or the existence of a single RR. [STANDARDS-TRACK]"];
+  cites -> RFC2136;
+  RFC5936 [label="RFC5936
+DNS Zone Transfer Protocol (AXFR)
+2010", shape=ellipse, URL="RFC5936.html", target="_top", tooltip="The standard means within the Domain Name System protocol for maintaining coherence among a zone's authoritative name servers consists of three mechanisms. Authoritative Transfer (AXFR) is one of the mechanisms and is defined in RFC 1034 and RFC 1035. The definition of AXFR has proven insufficient in detail, thereby forcing implementations intended to be compliant to make assumptions, impeding interoperability. Yet today we have a satisfactory set of implementations that do interoperate. This document is a new definition of AXFR -- new in the sense that it records an accurate definition of an interoperable AXFR mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC5936;
+  RFC7873 [label="RFC7873
+Domain Name System (DNS) Cookies
+2016", shape=ellipse, URL="RFC7873.html", target="_top", tooltip="DNS Cookies are a lightweight DNS transaction security mechanism that provides limited protection to DNS servers and clients against a variety of increasingly common denial-of-service and amplification/ forgery or cache poisoning attacks by off-path attackers.  DNS Cookies are tolerant of NAT, NAT-PT (Network Address Translation - Protocol Translation), and anycast and can be incrementally deployed. (Since DNS Cookies are only returned to the IP address from which they were originally received, they cannot be used to generally track Internet users.)"];
+  cites -> RFC7873;
+  RFC8490 [label="RFC8490
+DNS Stateful Operations
+2019", shape=ellipse, URL="RFC8490.html", target="_top", tooltip="This document defines a new DNS OPCODE for DNS Stateful Operations (DSO).  DSO messages communicate operations within persistent stateful sessions using Type Length Value (TLV) syntax.  Three TLVs are defined that manage session timeouts, termination, and encryption padding, and a framework is defined for extensions to enable new stateful operations.  This document updates RFC 1035 by adding a new DNS header OPCODE that has both different message semantics and a new result code.  This document updates RFC 7766 by redefining a session, providing new guidance on connection reuse, and providing a new mechanism for handling session idle timeouts."];
+  cites -> RFC8490;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9619;
+}

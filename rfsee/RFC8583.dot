@@ -1,0 +1,60 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8583 [label="RFC8583
+Diameter Load Information Conveyance
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC 7068 describes requirements for Overload Control in Diameter.  This includes a requirement to allow Diameter nodes to send load information, even when the node is not overloaded.  The base solution defined in RFC 7683 (Diameter Overload Information Conveyance (DOIC)) describes a mechanism meeting most of the requirements but does not currently include the ability to send load information.  This document defines a mechanism for the conveying of Diameter load information."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8583;
+
+  obs [label="obsoletes", shape=box];
+  RFC8583 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8583 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8583;
+
+  cites [label="cites", shape=box];
+  RFC8583 -> cites;
+  RFC7068 [label="RFC7068
+Diameter Overload Control Requirements
+2013", shape=ellipse, URL="RFC7068.html", target="_top", tooltip="When a Diameter server or agent becomes overloaded, it needs to be able to gracefully reduce its load, typically by advising clients to reduce traffic for some period of time.  Otherwise, it must continue to expend resources parsing and responding to Diameter messages, possibly resulting in a progressively severe overload condition.  The existing Diameter mechanisms are not sufficient for managing overload conditions.  This document describes the limitations of the existing mechanisms.  Requirements for new overload management mechanisms are also provided."];
+  cites -> RFC7068;
+  RFC6733 [label="RFC6733
+Diameter Base Protocol
+2012", shape=ellipse, URL="RFC6733.html", target="_top", tooltip="The Diameter base protocol is intended to provide an Authentication, Authorization, and Accounting (AAA) framework for applications such as network access or IP mobility in both local and roaming situations.  This document specifies the message format, transport, error reporting, accounting, and security services used by all Diameter applications.  The Diameter base protocol as defined in this document obsoletes RFC 3588 and RFC 5719, and it must be supported by all new Diameter implementations. [STANDARDS-TRACK]"];
+  cites -> RFC6733;
+  RFC7683 [label="RFC7683
+Diameter Overload Indication Conveyance
+2015", shape=ellipse, URL="RFC7683.html", target="_top", tooltip="This specification defines a base solution for Diameter overload control, referred to as Diameter Overload Indication Conveyance (DOIC)."];
+  cites -> RFC7683;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC2782 [label="RFC2782
+A DNS RR for specifying the location of
+services (DNS SRV)
+2000", shape=ellipse, URL="RFC2782.html", target="_top", tooltip="This document describes a DNS RR which specifies the location of the server(s) for a specific protocol and domain. [STANDARDS-TRACK]"];
+  cites -> RFC2782;
+  RFC8581 [label="RFC8581
+Diameter Agent Overload and the Peer
+Overload Report
+2019", shape=ellipse, URL="RFC8581.html", target="_top", tooltip="This specification documents an extension to the Diameter Overload Indication Conveyance (DOIC), a base solution for Diameter overload defined in RFC 7683.  The extension defines the Peer Overload report type.  The initial use case for the peer report is the handling of occurrences of overload of a Diameter Agent."];
+  cites -> RFC8581;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8583;
+}

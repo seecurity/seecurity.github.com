@@ -1,0 +1,75 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7999 [label="RFC7999
+BLACKHOLE Community
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the use of a well-known Border Gateway Protocol (BGP) community for destination-based blackholing in IP networks.  This well-known advisory transitive BGP community named BLACKHOLE allows an origin Autonomous System (AS) to specify that a neighboring network should discard any traffic destined towards the tagged IP prefix."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7999;
+
+  obs [label="obsoletes", shape=box];
+  RFC7999 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7999 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7999;
+
+  cites [label="cites", shape=box];
+  RFC7999 -> cites;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC3882 [label="RFC3882
+Configuring BGP to Block Denial-of-
+Service Attacks
+2004", shape=ellipse, URL="RFC3882.html", target="_top", tooltip="This document describes an operational technique that uses BGP communities to remotely trigger black-holing of a particular destination network to block denial-of-service attacks.  Black-holing can be applied on a selection of routers rather than all BGP-speaking routers in the network.  The document also describes a sinkhole tunnel technique using BGP communities and tunnels to pull traffic into a sinkhole router for analysis.  This memo provides information for the Internet community."];
+  cites -> RFC3882;
+  RFC5635 [label="RFC5635
+Remote Triggered Black Hole Filtering
+with Unicast Reverse Path Forwarding
+(uRPF)
+2009", shape=ellipse, URL="RFC5635.html", target="_top", tooltip="Remote Triggered Black Hole (RTBH) filtering is a popular and effective technique for the mitigation of denial-of-service attacks.  This document expands upon destination-based RTBH filtering by outlining a method to enable filtering by source address as well.  This memo provides information for the Internet community."];
+  cites -> RFC5635;
+  RFC1997 [label="RFC1997
+BGP Communities Attribute
+1996", shape=ellipse, URL="RFC1997.html", target="_top", tooltip="This document describes an extension to BGP which may be used to pass additional information to both neighboring and remote BGP peers. [STANDARDS-TRACK]"];
+  cites -> RFC1997;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC7454 [label="RFC7454
+BGP Operations and Security
+2015", shape=ellipse, URL="RFC7454.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is the protocol almost exclusively used in the Internet to exchange routing information between network domains. Due to this central nature, it is important to understand the security measures that can and should be deployed to prevent accidental or intentional routing disturbances. This document describes measures to protect the BGP sessions itself such as Time to Live (TTL), the TCP Authentication Option (TCP-AO), and control-plane filtering. It also describes measures to better control the flow of routing information, using prefix filtering and automation of prefix filters, max-prefix filtering, Autonomous System (AS) path filtering, route flap dampening, and BGP community scrubbing."];
+  cites -> RFC7454;
+  RFC6811 [label="RFC6811
+BGP Prefix Origin Validation
+2013", shape=ellipse, URL="RFC6811.html", target="_top", tooltip="To help reduce well-known threats against BGP including prefix mis- announcing and monkey-in-the-middle attacks, one of the security requirements is the ability to validate the origination Autonomous System (AS) of BGP routes.  More specifically, one needs to validate that the AS number claiming to originate an address prefix (as derived from the AS_PATH attribute of the BGP route) is in fact authorized by the prefix holder to do so.  This document describes a simple validation mechanism to partially satisfy this requirement. [STANDARDS-TRACK]"];
+  cites -> RFC6811;
+  RFC5575 [label="RFC5575
+Dissemination of Flow Specification
+Rules
+2009", shape=ellipse, URL="RFC5575.html", target="_top", tooltip="This document defines a new Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute traffic flow specifications. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. Additionally, it defines two applications of that encoding format: one that can be used to automate inter-domain coordination of traffic filtering, such as what is required in order to mitigate (distributed) denial-of-service attacks, and a second application to provide traffic filtering in the context of a BGP/MPLS VPN service. The information is carried via the BGP, thereby reusing protocol algorithms, operational experience, and administrative processes such as inter-provider peering agreements. [STANDARDS-TRACK]"];
+  cites -> RFC5575;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  cites -> RFC7606;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7999;
+  RFC9319 [label="RFC9319
+The Use of maxLength in the Resource
+Public Key Infrastructure (RPKI)
+2022", shape=ellipse, URL="RFC9319.html", target="_top", tooltip="This document recommends ways to reduce the forged-origin hijack attack surface by prudently limiting the set of IP prefixes that are included in a Route Origin Authorization (ROA).  One recommendation is to avoid using the maxLength attribute in ROAs except in some specific cases.  The recommendations complement and extend those in RFC 7115.  This document also discusses the creation of ROAs for facilitating the use of Distributed Denial of Service (DDoS) mitigation services.  Considerations related to ROAs and RPKI-based Route Origin Validation (RPKI-ROV) in the context of destination-based Remotely Triggered Discard Route (RTDR) (elsewhere referred to as Remotely Triggered Black Hole) filtering are also highlighted."];
+  RFC9319 -> rev_cites;
+}

@@ -1,0 +1,36 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9841 [label="RFC9841
+Shared Brotli Compressed Data Format
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="This specification defines a data format for shared brotli compression, which adds support for shared dictionaries, large window, and a container format to brotli (RFC 7932).  Shared dictionaries and large window support allow significant compression gains compared to regular brotli.  This document specifies an extension to the method defined in RFC 7932."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9841;
+
+  obs [label="obsoletes", shape=box];
+  RFC9841 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9841 -> updates;
+  RFC7932 [label="RFC7932
+Brotli Compressed Data Format
+2016", shape=ellipse, URL="RFC7932.html", target="_top", tooltip="This specification defines a lossless compressed data format that compresses data using a combination of the LZ77 algorithm and Huffman coding, with efficiency comparable to the best currently available general-purpose compression methods."];
+  updates -> RFC7932;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9841;
+
+  cites [label="cites", shape=box];
+  RFC9841 -> cites;
+  RFC7932 [label="RFC7932
+Brotli Compressed Data Format
+2016", shape=ellipse, URL="RFC7932.html", target="_top", tooltip="This specification defines a lossless compressed data format that compresses data using a combination of the LZ77 algorithm and Huffman coding, with efficiency comparable to the best currently available general-purpose compression methods."];
+  cites -> RFC7932;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9841;
+}

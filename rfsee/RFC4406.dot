@@ -1,0 +1,64 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4406 [label="RFC4406
+Sender ID: Authenticating E-Mail
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="Internet mail suffers from the fact that much unwanted mail is sent using spoofed addresses -- spoofed in this case means that the address is used without the permission of the domain owner.  This document describes a family of tests by which SMTP servers can determine whether an e-mail address in a received message was used with the permission of the owner of the domain contained in that e-mail address.  This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4406;
+
+  obs [label="obsoletes", shape=box];
+  RFC4406 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4406 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4406;
+
+  cites [label="cites", shape=box];
+  RFC4406 -> cites;
+  RFC4407 [label="RFC4407
+Purported Responsible Address in E-Mail
+Messages
+2006", shape=ellipse, URL="RFC4407.html", target="_top", tooltip="This document defines an algorithm by which, given an e-mail message, one can extract the identity of the party that appears to have most proximately caused that message to be delivered.  This identity is called the Purported Responsible Address (PRA).This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4407;
+  RFC4408 [label="RFC4408
+Sender Policy Framework (SPF) for
+Authorizing Use of Domains in E-Mail,
+Version 1
+2006", shape=ellipse, URL="RFC4408.html", target="_top", tooltip="E-mail on the Internet can be forged in a number of ways.  In particular, existing protocols place no restriction on what a sending host can use as the reverse-path of a message or the domain given on the SMTP HELO/EHLO commands.  This document describes version 1 of the ender Policy Framework (SPF) protocol, whereby a domain may explicitly authorize the hosts that are allowed to use its domain name, and a receiving host may check such authorization.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4408;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4405 [label="RFC4405
+SMTP Service Extension for Indicating
+the Responsible Submitter of an E-Mail
+Message
+2006", shape=ellipse, URL="RFC4405.html", target="_top", tooltip="This memo defines an extension to the Simple Mail Transfer Protocol (SMTP) service that allows an SMTP client to specify the responsible submitter of an e-mail message.  The responsible submitter is the e-mail address of the entity most recently responsible for introducing a message into the transport stream.  This extension helps receiving e-mail servers efficiently determine whether the SMTP client is authorized to transmit mail on behalf of the responsible submitter's domain.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4405;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4406;
+  RFC4407 [label="RFC4407
+Purported Responsible Address in E-Mail
+Messages
+2006", shape=ellipse, URL="RFC4407.html", target="_top", tooltip="This document defines an algorithm by which, given an e-mail message, one can extract the identity of the party that appears to have most proximately caused that message to be delivered.  This identity is called the Purported Responsible Address (PRA).This memo defines an Experimental Protocol for the Internet community."];
+  RFC4407 -> rev_cites;
+  RFC5518 [label="RFC5518
+Vouch By Reference
+2009", shape=ellipse, URL="RFC5518.html", target="_top", tooltip="This document describes the Vouch By Reference (VBR) protocol.  VBR is a protocol for adding third-party certification to email.  It permits independent third parties to certify the owner of a domain name that is associated with received mail. [STANDARDS-TRACK]"];
+  RFC5518 -> rev_cites;
+  RFC5585 [label="RFC5585
+DomainKeys Identified Mail (DKIM)
+Service Overview
+2009", shape=ellipse, URL="RFC5585.html", target="_top", tooltip="This document provides an overview of the DomainKeys Identified Mail (DKIM) service and describes how it can fit into a messaging service.  It also describes how DKIM relates to other IETF message signature technologies.  It is intended for those who are adopting, developing, or deploying DKIM.  DKIM allows an organization to take responsibility for transmitting a message, in a way that can be verified by a recipient.  The organization can be the author's, the originating sending site, an intermediary, or one of their agents.  A message can contain multiple signatures from the same or different organizations involved with the message.  DKIM defines a domain-level digital signature authentication framework for email, using public-key cryptography, with the domain name service as its key server technology (RFC 4871).  This permits verification of a responsible organization, as well as the integrity of the message contents.  DKIM also enables a mechanism that permits potential email signers to publish information about their email signing practices; this will permit email receivers to make additional assessments about messages.  DKIM's authentication of email identity can assist in the global control of spam and phishing.  This memo provides information for the Internet community."];
+  RFC5585 -> rev_cites;
+}

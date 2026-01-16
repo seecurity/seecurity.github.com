@@ -1,0 +1,59 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6522 [label="RFC6522
+The Multipart/Report Media Type for the
+Reporting of Mail System Administrative
+Messages
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="The multipart/report Multipurpose Internet Mail Extensions (MIME) media type is a general family or container type for electronic mail reports of any kind. Although this memo defines only the use of the multipart/report media type with respect to delivery status reports, mail processing programs will benefit if a single media type is used for all kinds of reports. This memo obsoletes The Multipart/Report Content Type for the Reporting of Mail System Administrative Messages, RFC 3462, and marks RFC 3462 and its predecessor as Historic. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6522;
+
+  obs [label="obsoletes", shape=box];
+  RFC6522 -> obs;
+  RFC3462 [label="RFC3462
+The Multipart/Report Content Type for
+the Reporting of Mail System
+Administrative Messages
+2003", shape=ellipse, URL="RFC3462.html", target="_top", tooltip="The Multipart/Report Multipurpose Internet Mail Extensions (MIME) content-type is a general family or container type for electronic mail reports of any kind.  Although this memo defines only the use of the Multipart/Report content-type with respect to delivery status reports, mail processing programs will benefit if a single content-type is used to for all kinds of reports.  This document is part of a four document set describing the delivery status report service.  This collection includes the Simple Mail Transfer Protocol (SMTP) extensions to request delivery status reports, a MIME content for the reporting of delivery reports, an enumeration of extended status codes, and a multipart container for the delivery report, the original message, and a human-friendly summary of the failure. [STANDARDS-TRACK]"];
+  obs -> RFC3462;
+
+  updates [label="updates", shape=box];
+  RFC6522 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6522;
+  RFC6533 [label="RFC6533
+Internationalized Delivery Status and
+Disposition Notifications
+2012", shape=ellipse, URL="RFC6533.html", target="_top", tooltip="Delivery status notifications (DSNs) are critical to the correct operation of an email system. However, the existing Draft Standards (RFC 3461, RFC 3464, RFC 6522) are presently limited to ASCII text in the machine-readable portions of the protocol. This specification adds a new address type for international email addresses so an original recipient address with non-ASCII characters can be correctly preserved even after downgrading. This also provides updated content return media types for delivery status notifications and message disposition notifications to support use of the new address type. This document extends RFC 3461, RFC 3464, RFC 3798, and RFC 6522. [STANDARDS-TRACK]"];
+  RFC6533 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC6522 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6522;
+  RFC6533 [label="RFC6533
+Internationalized Delivery Status and
+Disposition Notifications
+2012", shape=ellipse, URL="RFC6533.html", target="_top", tooltip="Delivery status notifications (DSNs) are critical to the correct operation of an email system. However, the existing Draft Standards (RFC 3461, RFC 3464, RFC 6522) are presently limited to ASCII text in the machine-readable portions of the protocol. This specification adds a new address type for international email addresses so an original recipient address with non-ASCII characters can be correctly preserved even after downgrading. This also provides updated content return media types for delivery status notifications and message disposition notifications to support use of the new address type. This document extends RFC 3461, RFC 3464, RFC 3798, and RFC 6522. [STANDARDS-TRACK]"];
+  RFC6533 -> rev_cites;
+  RFC8098 [label="RFC8098
+Message Disposition Notification
+2017", shape=ellipse, URL="RFC8098.html", target="_top", tooltip="This memo defines a MIME content type that may be used by a Mail User Agent (MUA) or electronic mail gateway to report the disposition of a message after it has been successfully delivered to a recipient. This content type is intended to be machine processable. Additional message header fields are also defined to permit Message Disposition Notifications (MDNs) to be requested by the sender of a message. The purpose is to extend Internet Mail to support functionality often found in other messaging systems, such as X.400 and the proprietary LAN-based systems, and are often referred to as read receipts, acknowledgements, or receipt notifications. The intention is to do this while respecting privacy concerns, which have often been expressed when such functions have been discussed in the past. Because many messages are sent between the Internet and other messaging systems (such as X.400 or the proprietary LAN-based systems), the MDN protocol is designed to be useful in a multiprotocol messaging environment. To this end, the protocol described in this memo provides for the carriage of foreign addresses, in addition to those normally used in Internet Mail. Additional attributes may also be defined to support tunneling of foreign notifications through Internet Mail. This document is an Internet Standard. It obsoletes RFC 3798 and updates RFC 2046 (message/partial media type handling) and RFC 3461 (Original-Recipient header field generation requirement)."];
+  RFC8098 -> rev_cites;
+  RFC8460 [label="RFC8460
+SMTP TLS Reporting
+2018", shape=ellipse, URL="RFC8460.html", target="_top", tooltip="A number of protocols exist for establishing encrypted channels between SMTP Mail Transfer Agents (MTAs), including STARTTLS, DNS- Based Authentication of Named Entities (DANE) TLSA, and MTA Strict Transport Security (MTA-STS).  These protocols can fail due to misconfiguration or active attack, leading to undelivered messages or delivery over unencrypted or unauthenticated channels.  This document describes a reporting mechanism and format by which sending systems can share statistics and specific information about potential failures with recipient domains.  Recipient domains can then use this information to both detect potential attacks and diagnose unintentional misconfigurations."];
+  RFC8460 -> rev_cites;
+  RFC8494 [label="RFC8494
+Multicast Email (MULE) over Allied
+Communications Publication (ACP) 142
+2018", shape=ellipse, URL="RFC8494.html", target="_top", tooltip="Allied Communications Publication (ACP) 142 defines P_MUL, which is a protocol for reliable multicast suitable for bandwidth-constrained and delayed acknowledgement (Emissions Control or EMCON) environments running over UDP. This document defines MULE (Multicast Email), an application protocol for transferring Internet Mail messages (as described in RFC 5322) over P_MUL (as defined in ACP 142). MULE enables transfer between Message Transfer Agents (MTAs). It doesn't provide a service similar to SMTP Submission (as described in RFC 6409). This document explains how MULE can be used in conjunction with SMTP (RFC 5321), including some common SMTP extensions, to provide an alternate MTA-to-MTA transfer mechanism. This is not an IETF specification; it describes an existing implementation. It is provided in order to facilitate interoperable implementations and third-party diagnostics."];
+  RFC8494 -> rev_cites;
+}

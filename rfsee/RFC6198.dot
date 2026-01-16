@@ -1,0 +1,74 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6198 [label="RFC6198
+Requirements for the Graceful Shutdown
+of BGP Sessions
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Border Gateway Protocol (BGP) is heavily used in Service Provider networks for both Internet and BGP/MPLS VPN services.  For resiliency purposes, redundant routers and BGP sessions can be deployed to reduce the consequences of an Autonomous System Border Router (ASBR) or BGP session breakdown on customers' or peers' traffic.  However, simply taking down or even bringing up a BGP session for maintenance purposes may still induce connectivity losses during the BGP convergence.  This is no longer satisfactory for new applications (e.g., voice over IP, online gaming, VPN).  Therefore, a solution is required for the graceful shutdown of a (set of) BGP session(s) in order to limit the amount of traffic loss during a planned shutdown.  This document expresses requirements for such a solution.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6198;
+
+  obs [label="obsoletes", shape=box];
+  RFC6198 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6198 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6198;
+
+  cites [label="cites", shape=box];
+  RFC6198 -> cites;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC4760 [label="RFC4760
+Multiprotocol Extensions for BGP-4
+2007", shape=ellipse, URL="RFC4760.html", target="_top", tooltip="This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, L3VPN, etc.).  The extensions are backward compatible - a router that supports the extensions can interoperate with a router that doesn't support the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC4760;
+  RFC4456 [label="RFC4456
+BGP Route Reflection: An Alternative to
+Full Mesh Internal BGP (IBGP)
+2006", shape=ellipse, URL="RFC4456.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for TCP/IP internets. Typically, all BGP speakers within a single AS must be fully meshed so that any external routing information must be re-distributed to all other routers within that Autonomous System (AS). This represents a serious scaling problem that has been well documented with several alternatives proposed. This document describes the use and design of a method known as route reflection to alleviate the need for full mesh Internal BGP (IBGP). This document obsoletes RFC 2796 and RFC 1966. [STANDARDS-TRACK]"];
+  cites -> RFC4456;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  cites -> RFC4724;
+  RFC5817 [label="RFC5817
+Graceful Shutdown in MPLS and
+Generalized MPLS Traffic Engineering
+Networks
+2010", shape=ellipse, URL="RFC5817.html", target="_top", tooltip="MPLS-TE Graceful Shutdown is a method for explicitly notifying the nodes in a Traffic Engineering (TE) enabled network that the TE capability on a link or on an entire Label Switching Router (LSR) is going to be disabled. MPLS-TE graceful shutdown mechanisms are tailored toward addressing planned outage in the network. This document provides requirements and protocol mechanisms to reduce or eliminate traffic disruption in the event of a planned shutdown of a network resource. These operations are equally applicable to both MPLS-TE and its Generalized MPLS (GMPLS) extensions. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5817;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5715 [label="RFC5715
+A Framework for Loop-Free Convergence
+2010", shape=ellipse, URL="RFC5715.html", target="_top", tooltip="A micro-loop is a packet forwarding loop that may occur transiently among two or more routers in a hop-by-hop packet forwarding paradigm. This framework provides a summary of the causes and consequences of micro-loops and enables the reader to form a judgement on whether micro-looping is an issue that needs to be addressed in specific networks. It also provides a survey of the currently proposed mechanisms that may be used to prevent or to suppress the formation of micro-loops when an IP or MPLS network undergoes topology change due to failure, repair, or management action. When sufficiently fast convergence is not available and the topology is susceptible to micro-loops, use of one or more of these mechanisms may be desirable. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5715;
+  RFC5714 [label="RFC5714
+IP Fast Reroute Framework
+2010", shape=ellipse, URL="RFC5714.html", target="_top", tooltip="This document provides a framework for the development of IP fast- reroute mechanisms that provide protection against link or router failure by invoking locally determined repair paths.  Unlike MPLS fast-reroute, the mechanisms are applicable to a network employing conventional IP routing and forwarding.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5714;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6198;
+  RFC8326 [label="RFC8326
+Graceful BGP Session Shutdown
+2018", shape=ellipse, URL="RFC8326.html", target="_top", tooltip="This document standardizes a new well-known BGP community, GRACEFUL_SHUTDOWN, to signal the graceful shutdown of paths.  This document also describes operational procedures that use this well-known community to reduce the amount of traffic lost when BGP peering sessions are about to be shut down deliberately, e.g., for planned maintenance."];
+  RFC8326 -> rev_cites;
+}

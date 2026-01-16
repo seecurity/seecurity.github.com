@@ -1,0 +1,40 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4264 [label="RFC4264
+BGP Wedgies
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="It has commonly been assumed that the Border Gateway Protocol (BGP) is a tool for distributing reachability information in a manner that creates forwarding paths in a deterministic manner.  In this memo we will describe a class of BGP configurations for which there is more than one potential outcome, and where forwarding states other than the intended state are equally stable.  Also, the stable state where BGP converges may be selected by BGP in a non-deterministic manner.  These stable, but unintended, BGP states are termed here BGP Wedgies.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4264;
+
+  obs [label="obsoletes", shape=box];
+  RFC4264 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4264 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4264;
+
+  cites [label="cites", shape=box];
+  RFC4264 -> cites;
+  RFC1771 [label="RFC1771
+A Border Gateway Protocol 4 (BGP-4)
+1995", shape=ellipse, URL="RFC1771.html", target="_top", tooltip="This document, together with its companion document, Application of the Border Gateway Protocol in the Internet, define an inter-autonomous system routing protocol for the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC1771;
+  RFC1997 [label="RFC1997
+BGP Communities Attribute
+1996", shape=ellipse, URL="RFC1997.html", target="_top", tooltip="This document describes an extension to BGP which may be used to pass additional information to both neighboring and remote BGP peers. [STANDARDS-TRACK]"];
+  cites -> RFC1997;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4264;
+  RFC8195 [label="RFC8195
+Use of BGP Large Communities
+2017", shape=ellipse, URL="RFC8195.html", target="_top", tooltip="This document presents examples and inspiration for operator application of BGP Large Communities.  Based on operational experience with BGP Communities, this document suggests logical categories of BGP Large Communities and demonstrates an orderly manner of organizing community values within them to achieve typical goals in routing policy.  Any operator can consider using the concepts presented as the basis for their own BGP Large Communities repertoire."];
+  RFC8195 -> rev_cites;
+}

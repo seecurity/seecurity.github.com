@@ -1,0 +1,69 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5991 [label="RFC5991
+Teredo Security Updates
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Teredo protocol defines a set of flags that are embedded in every Teredo IPv6 address.  This document specifies a set of security updates that modify the use of this flags field, but are backward compatible. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5991;
+
+  obs [label="obsoletes", shape=box];
+  RFC5991 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5991 -> updates;
+  RFC4380 [label="RFC4380
+Teredo: Tunneling IPv6 over UDP through
+Network Address Translations (NATs)
+2006", shape=ellipse, URL="RFC4380.html", target="_top", tooltip="We propose here a service that enables nodes located behind one or more IPv4 Network Address Translations (NATs) to obtain IPv6 connectivity by tunneling packets over UDP; we call this the Teredo service.  Running the service requires the help of Teredo servers and Teredo relays.  The Teredo servers are stateless, and only have to manage a small fraction of the traffic between Teredo clients; the Teredo relays act as IPv6 routers between the Teredo service and the native IPv6 Internet.  The relays can also provide interoperability with hosts using other transition mechanisms such as 6to4. [STANDARDS-TRACK]"];
+  updates -> RFC4380;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5991;
+
+  cites [label="cites", shape=box];
+  RFC5991 -> cites;
+  RFC4380 [label="RFC4380
+Teredo: Tunneling IPv6 over UDP through
+Network Address Translations (NATs)
+2006", shape=ellipse, URL="RFC4380.html", target="_top", tooltip="We propose here a service that enables nodes located behind one or more IPv4 Network Address Translations (NATs) to obtain IPv6 connectivity by tunneling packets over UDP; we call this the Teredo service.  Running the service requires the help of Teredo servers and Teredo relays.  The Teredo servers are stateless, and only have to manage a small fraction of the traffic between Teredo clients; the Teredo relays act as IPv6 routers between the Teredo service and the native IPv6 Internet.  The relays can also provide interoperability with hosts using other transition mechanisms such as 6to4. [STANDARDS-TRACK]"];
+  cites -> RFC4380;
+  RFC5157 [label="RFC5157
+IPv6 Implications for Network Scanning
+2008", shape=ellipse, URL="RFC5157.html", target="_top", tooltip="The much larger default 64-bit subnet address space of IPv6 should in principle make traditional network (port) scanning techniques used by certain network worms or scanning tools less effective.  While traditional network scanning probes (whether by individuals or automated via network worms) may become less common, administrators should be aware that attackers may use other techniques to discover IPv6 addresses on a target network, and thus they should also be aware of measures that are available to mitigate them.  This informational document discusses approaches that administrators could take when planning their site address allocation and management strategies as part of a defence-in-depth approach to network security.  This memo provides information for the Internet community."];
+  cites -> RFC5157;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4862 [label="RFC4862
+IPv6 Stateless Address Autoconfiguration
+2007", shape=ellipse, URL="RFC4862.html", target="_top", tooltip="This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6.  The autoconfiguration process includes generating a link-local address, generating global addresses via stateless address autoconfiguration, and the Duplicate Address Detection procedure to verify the uniqueness of the addresses on a link. [STANDARDS-TRACK]"];
+  cites -> RFC4862;
+  RFC4086 [label="RFC4086
+Randomness Requirements for Security
+2005", shape=ellipse, URL="RFC4086.html", target="_top", tooltip="Security systems are built on strong cryptographic algorithms that foil pattern analysis attempts. However, the security of these systems is dependent on generating secret quantities for passwords, cryptographic keys, and similar quantities. The use of pseudo-random processes to generate secret quantities can result in pseudo-security. A sophisticated attacker may find it easier to reproduce the environment that produced the secret quantities and to search the resulting small set of possibilities than to locate the quantities in the whole of the potential number space. Choosing random quantities to foil a resourceful and motivated adversary is surprisingly difficult. This document points out many pitfalls in using poor entropy sources or traditional pseudo-random number generation techniques for generating such quantities. It recommends the use of truly random hardware techniques and shows that the existing hardware on many systems can be used for this purpose. It provides suggestions to ameliorate the problem when a hardware solution is not available, and it gives examples of how large such quantities need to be for some applications. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4086;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5991;
+  RFC6169 [label="RFC6169
+Security Concerns with IP Tunneling
+2011", shape=ellipse, URL="RFC6169.html", target="_top", tooltip="A number of security concerns with IP tunnels are documented in this memo.  The intended audience of this document includes network administrators and future protocol developers.  The primary intent of this document is to raise the awareness level regarding the security issues with IP tunnels as deployed and propose strategies for the mitigation of those issues. [STANDARDS-TRACK]"];
+  RFC6169 -> rev_cites;
+  RFC6751 [label="RFC6751
+Native IPv6 behind IPv4-to-IPv4 NAT
+Customer Premises Equipment (6a44)
+2012", shape=ellipse, URL="RFC6751.html", target="_top", tooltip="In customer sites having IPv4-only Customer Premises Equipment (CPE), Teredo (RFC 4380, RFC 5991, RFC 6081) provides last-resort IPv6 connectivity.  However, because it is designed to work without the involvement of Internet Service Providers, it has significant limitations (connectivity between IPv6 native addresses and Teredo addresses is uncertain; connectivity between Teredo addresses fails for some combinations of NAT types).  6a44 is a complementary solution that, being based on ISP cooperation, avoids these limitations.  At the beginning of 6a44 IPv6 addresses, it replaces the Teredo well-known prefix, present at the beginning of Teredo IPv6 addresses, with network-specific /48 prefixes assigned by local ISPs (an evolution similar to that from 6to4 to 6rd (IPv6 Rapid Deployment on IPv4 Infrastructures)).  The specification is expected to be complete enough for running code to be independently written and the solution to be incrementally deployed and used.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6751 -> rev_cites;
+  RFC7721 [label="RFC7721
+Security and Privacy Considerations for
+IPv6 Address Generation Mechanisms
+2016", shape=ellipse, URL="RFC7721.html", target="_top", tooltip="This document discusses privacy and security considerations for several IPv6 address generation mechanisms, both standardized and non-standardized.  It evaluates how different mechanisms mitigate different threats and the trade-offs that implementors, developers, and users face in choosing different addresses or address generation mechanisms."];
+  RFC7721 -> rev_cites;
+}

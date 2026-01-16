@@ -1,0 +1,38 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2180 [label="RFC2180
+IMAP4 Multi-Accessed Mailbox Practice
+1997", shape=ellipse, fillcolor="#e8f0ff", tooltip="The behavior described in this document reflects the practice of some existing servers or behavior that the consensus of the IMAP mailing list has deemed to be reasonable.  The behavior described within this document is believed to be [RFC-2060] compliant.  However, this document is not meant to define IMAP4 compliance, nor is it an exhaustive list of valid IMAP4 behavior.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2180;
+
+  obs [label="obsoletes", shape=box];
+  RFC2180 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2180 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2180;
+
+  cites [label="cites", shape=box];
+  RFC2180 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2180;
+  RFC5530 [label="RFC5530
+IMAP Response Codes
+2009", shape=ellipse, URL="RFC5530.html", target="_top", tooltip="IMAP responses consist of a response type (OK, NO, BAD), an optional machine-readable response code, and a human-readable text. This document collects and documents a variety of machine-readable response codes, for better interoperation and error reporting. [STANDARDS-TRACK]"];
+  RFC5530 -> rev_cites;
+  RFC7162 [label="RFC7162
+IMAP Extensions: Quick Flag Changes
+Resynchronization (CONDSTORE) and Quick
+Mailbox Resynchronization (QRESYNC)
+2014", shape=ellipse, URL="RFC7162.html", target="_top", tooltip="Often, multiple IMAP (RFC 3501) clients need to coordinate changes to a common IMAP mailbox. Examples include different clients working on behalf of the same user and multiple users accessing shared mailboxes. These clients need a mechanism to efficiently synchronize state changes for messages within the mailbox. Initially defined in RFC 4551, the Conditional Store facility provides a protected update mechanism for message state information and a mechanism for requesting only changes to the message state. This memo updates that mechanism and obsoletes RFC 4551, based on operational experience. This document additionally updates another IMAP extension, Quick Resynchronization, which builds on the Conditional STORE extension to provide an IMAP client the ability to fully resynchronize a mailbox as part of the SELECT/EXAMINE command, without the need for additional server-side state or client round trips. Hence, this memo obsoletes RFC 5162. Finally, this document also updates the line-length recommendation in Section 3.2.1.5 of RFC 2683."];
+  RFC7162 -> rev_cites;
+}

@@ -1,0 +1,735 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2328;
+
+  obs [label="obsoletes", shape=box];
+  RFC2328 -> obs;
+  RFC2178 [label="RFC2178
+OSPF Version 2
+1997", shape=ellipse, URL="RFC2178.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol. OSPF is a link-state routing protocol. It is designed to be run internal to a single Autonomous System. Each OSPF router maintains an identical database describing the Autonomous System's topology. From this database, a routing table is calculated by constructing a shortest-path tree. OSPF recalculates routes quickly in the face of topological changes, utilizing a minimum of routing protocol traffic. OSPF provides support for equal-cost multipath. An area routing capability is provided, enabling an additional level of routing protection and a reduction in routing protocol traffic. In addition, all OSPF routing protocol exchanges are authenticated. [STANDARDS-TRACK]"];
+  obs -> RFC2178;
+
+  updates [label="updates", shape=box];
+  RFC2328 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2328;
+  RFC5709 [label="RFC5709
+OSPFv2 HMAC-SHA Cryptographic
+Authentication
+2009", shape=ellipse, URL="RFC5709.html", target="_top", tooltip="This document describes how the National Institute of Standards and Technology (NIST) Secure Hash Standard family of algorithms can be used with OSPF version 2's built-in, cryptographic authentication mechanism.  This updates, but does not supercede, the cryptographic authentication mechanism specified in RFC 2328. [STANDARDS-TRACK]"];
+  RFC5709 -> updated_by;
+  RFC6549 [label="RFC6549
+OSPFv2 Multi-Instance Extensions
+2012", shape=ellipse, URL="RFC6549.html", target="_top", tooltip="OSPFv3 includes a mechanism to support multiple instances of the protocol running on the same interface. OSPFv2 can utilize such a mechanism in order to support multiple routing domains on the same subnet. This document defines the OSPFv2 Instance ID to enable separate OSPFv2 protocol instances on the same interface. Unlike OSPFv3 where the Instance ID can be used for multiple purposes, such as putting the same interface in multiple areas, the OSPFv2 Instance ID is reserved for identifying protocol instances. This document updates RFC 2328. [STANDARDS-TRACK]"];
+  RFC6549 -> updated_by;
+  RFC6845 [label="RFC6845
+OSPF Hybrid Broadcast and Point-to-
+Multipoint Interface Type
+2013", shape=ellipse, URL="RFC6845.html", target="_top", tooltip="This document describes a mechanism to model a broadcast network as a hybrid of broadcast and point-to-multipoint networks for purposes of OSPF operation. Neighbor discovery and maintenance as well as Link State Advertisement (LSA) database synchronization are performed using the broadcast model, but the network is represented using the point-to-multipoint model in the router-LSAs of the routers connected to it. This allows an accurate representation of the cost of communication between different routers on the network, while maintaining the network efficiency of broadcast operation. This approach is relatively simple and requires minimal changes to OSPF. This document updates both OSPFv2 (RFC 2328) and OSPFv3 (RFC 5340). [STANDARDS-TRACK]"];
+  RFC6845 -> updated_by;
+  RFC6860 [label="RFC6860
+Hiding Transit-Only Networks in OSPF
+2013", shape=ellipse, URL="RFC6860.html", target="_top", tooltip="A transit-only network is defined as a network connecting routers only. In OSPF, transit-only networks are usually configured with routable IP addresses, which are advertised in Link State Advertisements (LSAs) but are not needed for data traffic. In addition, remote attacks can be launched against routers by sending packets to these transit-only networks. This document presents a mechanism to hide transit-only networks to speed up network convergence and reduce vulnerability to remote attacks. In the context of this document, 'hiding' implies that the prefixes are not installed in the routing tables on OSPF routers. In some cases, IP addresses may still be visible when using OSPFv2. This document updates RFCs 2328 and 5340. [STANDARDS-TRACK]"];
+  RFC6860 -> updated_by;
+  RFC7474 [label="RFC7474
+Security Extension for OSPFv2 When Using
+Manual Key Management
+2015", shape=ellipse, URL="RFC7474.html", target="_top", tooltip="The current OSPFv2 cryptographic authentication mechanism as defined in RFCs 2328 and 5709 is vulnerable to both inter-session and intra- session replay attacks when using manual keying. Additionally, the existing cryptographic authentication mechanism does not cover the IP header. This omission can be exploited to carry out various types of attacks. This document defines changes to the authentication sequence number mechanism that will protect OSPFv2 from both inter-session and intra- session replay attacks when using manual keys for securing OSPFv2 protocol packets. Additionally, we also describe some changes in the cryptographic hash computation that will eliminate attacks resulting from OSPFv2 not protecting the IP header."];
+  RFC7474 -> updated_by;
+  RFC8042 [label="RFC8042
+OSPF Two-Part Metric
+2016", shape=ellipse, URL="RFC8042.html", target="_top", tooltip="This document specifies an optional OSPF protocol extension to represent router metrics in a multi-access network in two parts: the metric from the router to the network and the metric from the network to the router.  For such networks, the router-to-router metric for OSPF route computation is the sum of the two parts.  This document updates RFC 2328."];
+  RFC8042 -> updated_by;
+  RFC9355 [label="RFC9355
+OSPF Bidirectional Forwarding Detection
+(BFD) Strict-Mode
+2023", shape=ellipse, URL="RFC9355.html", target="_top", tooltip="This document specifies the extensions to OSPF that enable an OSPF
+router to signal the requirement for a Bidirectional Forwarding
+Detection (BFD) session prior to adjacency formation. Link-Local
+Signaling (LLS) is used to advertise the requirement for strict-mode
+BFD session establishment for an OSPF adjacency. If both OSPF
+neighbors advertise BFD strict-mode, adjacency formation will be
+blocked until a BFD session has been successfully established. This document updates RFC 2328 by augmenting the OSPF neighbor state
+machine with a check for BFD session up before progression from Init
+to 2-Way state when operating in OSPF BFD strict-mode."];
+  RFC9355 -> updated_by;
+  RFC9454 [label="RFC9454
+Update to OSPF Terminology
+2023", shape=ellipse, URL="RFC9454.html", target="_top", tooltip="This document updates some OSPF terminology to be in line with inclusive language used in the industry. The IETF has designated Guidance for NIST Staff on Using Inclusive Language in Documentary Standards by the US National Institute of Standards and Technology (NIST) for its inclusive language guidelines. It is intended that all future OSPF documents use this revised terminology even when they reference the RFCs updated by this document. This document updates RFCs 2328, 4222, 4811, 5243, 5340, 5614, and 5838."];
+  RFC9454 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC2328 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2328;
+  RFC2360 [label="RFC2360
+Guide for Internet Standards Writers
+1998", shape=ellipse, URL="RFC2360.html", target="_top", tooltip="This document is a guide for Internet standard writers.  It defines those characteristics that make standards coherent, unambiguous, and easy to interpret.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC2360 -> rev_cites;
+  RFC2375 [label="RFC2375
+IPv6 Multicast Address Assignments
+1998", shape=ellipse, URL="RFC2375.html", target="_top", tooltip="This document defines the initial assignment of IPv6 multicast addresses.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  RFC2375 -> rev_cites;
+  RFC2642 [label="RFC2642
+Cabletron's VLS Protocol Specification
+1999", shape=ellipse, URL="RFC2642.html", target="_top", tooltip="VLSP provides support for equal-cost multipath routing, and recalculates routes quickly in the face of topological changes, utilizing a minimum of routing protocol traffic.  This memo provides information for the Internet community."];
+  RFC2642 -> rev_cites;
+  RFC3036 [label="RFC3036
+LDP Specification
+2001", shape=ellipse, URL="RFC3036.html", target="_top", tooltip="A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  RFC3036 -> rev_cites;
+  RFC3137 [label="RFC3137
+OSPF Stub Router Advertisement
+2001", shape=ellipse, URL="RFC3137.html", target="_top", tooltip="This memo describes a backward-compatible technique that may be used by OSPF (Open Shortest Path First) implementations to advertise unavailability to forward transit traffic or to lower the preference level for the paths through such a router.  This memo provides information for the Internet community."];
+  RFC3137 -> rev_cites;
+  RFC3171 [label="RFC3171
+IANA Guidelines for IPv4 Multicast
+Address Assignments
+2001", shape=ellipse, URL="RFC3171.html", target="_top", tooltip="This memo provides guidance for the Internet Assigned Numbers Authority (IANA) in assigning IPv4 multicast addresses.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC3171 -> rev_cites;
+  RFC3446 [label="RFC3446
+Anycast Rendevous Point (RP) mechanism
+using Protocol Independent Multicast
+(PIM) and Multicast Source Discovery
+Protocol (MSDP)
+2003", shape=ellipse, URL="RFC3446.html", target="_top", tooltip="This document describes a mechanism to allow for an arbitrary number of Rendevous Points (RPs) per group in a single shared-tree Protocol Independent Multicast-Sparse Mode (PIM-SM) domain.  This memo provides information for the Internet community."];
+  RFC3446 -> rev_cites;
+  RFC3618 [label="RFC3618
+Multicast Source Discovery Protocol
+(MSDP)
+2003", shape=ellipse, URL="RFC3618.html", target="_top", tooltip="The Multicast Source Discovery Protocol (MSDP) describes a mechanism to connect multiple IP Version 4 Protocol Independent Multicast Sparse-Mode (PIM-SM) domains together.  Each PIM-SM domain uses its own independent Rendezvous Point (RP) and does not have to depend on RPs in other domains.  This document reflects existing MSDP implementations."];
+  RFC3618 -> rev_cites;
+  RFC3819 [label="RFC3819
+Advice for Internet Subnetwork Designers
+2004", shape=ellipse, URL="RFC3819.html", target="_top", tooltip="This document provides advice to the designers of digital communication equipment, link-layer protocols, and packet-switched local networks (collectively referred to as subnetworks), who wish to support the Internet protocols but may be unfamiliar with the Internet architecture and the implications of their design choices on the performance and efficiency of the Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC3819 -> rev_cites;
+  RFC3883 [label="RFC3883
+Detecting Inactive Neighbors over OSPF
+Demand Circuits (DC)
+2004", shape=ellipse, URL="RFC3883.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks.  OSPF behavior over demand circuits (DC) is optimized in RFC 1793 to minimize the amount of overhead traffic.  A part of the OSPF demand circuit extensions is the Hello suppression mechanism.  This technique allows a demand circuit to go down when no interesting traffic is going through the link.  However, it also introduces a problem, where it becomes impossible to detect an OSPF-inactive neighbor over such a link.  This memo introduces a new mechanism called neighbor probing to address the above problem. [STANDARDS-TRACK]"];
+  RFC3883 -> rev_cites;
+  RFC4110 [label="RFC4110
+A Framework for Layer 3 Provider-
+Provisioned Virtual Private Networks
+(PPVPNs)
+2005", shape=ellipse, URL="RFC4110.html", target="_top", tooltip="This document provides a framework for Layer 3 Provider-Provisioned Virtual Private Networks (PPVPNs).  This framework is intended to aid in the standardization of protocols and mechanisms for support of layer 3 PPVPNs.  It is the intent of this document to produce a coherent description of the significant technical issues that are important in the design of layer 3 PPVPN solutions.  Selection of specific approaches, making choices regarding engineering tradeoffs, and detailed protocol specification, are outside of the scope of this framework document.  This memo provides information for the Internet community."];
+  RFC4110 -> rev_cites;
+  RFC4632 [label="RFC4632
+Classless Inter-domain Routing (CIDR):
+The Internet Address Assignment and
+Aggregation Plan
+2006", shape=ellipse, URL="RFC4632.html", target="_top", tooltip="This memo discusses the strategy for address assignment of the existing 32-bit IPv4 address space with a view toward conserving the address space and limiting the growth rate of global routing state.  This document obsoletes the original Classless Inter-domain Routing (CIDR) spec in RFC 1519, with changes made both to clarify the concepts it introduced and, after more than twelve years, to update the Internet community on the results of deploying the technology described.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4632 -> rev_cites;
+  RFC4652 [label="RFC4652
+Evaluation of Existing Routing Protocols
+against Automatic Switched Optical
+Network (ASON) Routing Requirements
+2006", shape=ellipse, URL="RFC4652.html", target="_top", tooltip="The Generalized MPLS (GMPLS) suite of protocols has been defined to control different switching technologies as well as different applications. These include support for requesting TDM connections including Synchronous Optical Network/Synchronous Digital Hierarchy (SONET/SDH) and Optical Transport Networks (OTNs). This document provides an evaluation of the IETF Routing Protocols against the routing requirements for an Automatically Switched Optical Network (ASON) as defined by ITU-T. This memo provides information for the Internet community."];
+  RFC4652 -> rev_cites;
+  RFC4750 [label="RFC4750
+OSPF Version 2 Management Information
+Base
+2006", shape=ellipse, URL="RFC4750.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in TCP/IP-based internets. In particular, it defines objects for managing version 2 of the Open Shortest Path First Routing Protocol. Version 2 of the OSPF protocol is specific to the IPv4 address family. Version 3 of the OSPF protocol is specific to the IPv6 address family. This memo obsoletes RFC 1850; however, it is designed to be backwards compatible. The functional differences between this memo and RFC 1850 are explained in Appendix B. [STANDARDS-TRACK]"];
+  RFC4750 -> rev_cites;
+  RFC4811 [label="RFC4811
+OSPF Out-of-Band Link State Database
+(LSDB) Resynchronization
+2007", shape=ellipse, URL="RFC4811.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks. Link State Database (LSDB) synchronization in OSPF is achieved via two methods -- initial LSDB synchronization when an OSPF router has just been connected to the network and asynchronous flooding that ensures continuous LSDB synchronization in the presence of topology changes after the initial procedure was completed. It may sometime be necessary for OSPF routers to resynchronize their LSDBs. The OSPF standard, however, does not allow routers to do so without actually changing the topology view of the network. This memo describes a vendor-specific mechanism to perform such a form of out-of-band LSDB synchronization. The mechanism described in this document was proposed before Graceful OSPF Restart, as described in RFC 3623, came into existence. It is implemented/supported by at least one major vendor and is currently deployed in the field. The purpose of this document is to capture the details of this mechanism for public use. This mechanism is not an IETF standard. This memo provides information for the Internet community."];
+  RFC4811 -> rev_cites;
+  RFC4812 [label="RFC4812
+OSPF Restart Signaling
+2007", shape=ellipse, URL="RFC4812.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks. Routers find new and detect unreachable neighbors via the Hello subprotocol. Hello OSPF packets are also used to ensure two-way connectivity within time. When a router restarts its OSPF software, it may not know its neighbors. If such a router sends a Hello packet on an interface, its neighbors are going to reset the adjacency, which may not be desirable in certain conditions. This memo describes a vendor-specific mechanism that allows OSPF routers to inform their neighbors about the restart process. Note that this mechanism requires support from neighboring routers. The mechanism described in this document was proposed before Graceful OSPF Restart, as described in RFC 3623, came into existence. It is implemented/supported by at least one major vendor and is currently deployed in the field. The purpose of this document is to capture the details of this mechanism for public use. This mechanism is not an IETF standard. This memo provides information for the Internet community."];
+  RFC4812 -> rev_cites;
+  RFC4813 [label="RFC4813
+OSPF Link-Local Signaling
+2007", shape=ellipse, URL="RFC4813.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks.  OSPF routers exchange information on a link using packets that follow a well-defined format.  The format of OSPF packets is not flexible enough to enable applications to exchange arbitrary data, which may be necessary in certain situations.  This memo describes a vendor-specific, backward-compatible technique to perform link-local signaling, i.e., exchange arbitrary data on a link.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC4813 -> rev_cites;
+  RFC4903 [label="RFC4903
+Multi-Link Subnet Issues
+2007", shape=ellipse, URL="RFC4903.html", target="_top", tooltip="There have been several proposals around the notion that a subnet may span multiple links connected by routers.  This memo documents the issues and potential problems that have been raised with such an approach.  This memo provides information for the Internet community."];
+  RFC4903 -> rev_cites;
+  RFC4907 [label="RFC4907
+Architectural Implications of Link
+Indications
+2007", shape=ellipse, URL="RFC4907.html", target="_top", tooltip="A link indication represents information provided by the link layer to higher layers regarding the state of the link.  This document describes the role of link indications within the Internet architecture.  While the judicious use of link indications can provide performance benefits, inappropriate use can degrade both robustness and performance.  This document summarizes current proposals, describes the architectural issues, and provides examples of appropriate and inappropriate uses of link indications.  This memo provides information for the Internet community."];
+  RFC4907 -> rev_cites;
+  RFC4940 [label="RFC4940
+IANA Considerations for OSPF
+2007", shape=ellipse, URL="RFC4940.html", target="_top", tooltip="This memo creates a number of OSPF registries and provides guidance to IANA for assignment of code points within these registries.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4940 -> rev_cites;
+  RFC4972 [label="RFC4972
+Routing Extensions for Discovery of
+Multiprotocol (MPLS) Label Switch Router
+(LSR) Traffic Engineering (TE) Mesh
+Membership
+2007", shape=ellipse, URL="RFC4972.html", target="_top", tooltip="The setup of a full mesh of Multi-Protocol Label Switching (MPLS) Traffic Engineering (TE) Label Switched Paths (LSP) among a set of Label Switch Routers (LSR) is a common deployment scenario of MPLS Traffic Engineering either for bandwidth optimization, bandwidth guarantees or fast rerouting with MPLS Fast Reroute.  Such deployment may require the configuration of a potentially large number of TE LSPs (on the order of the square of the number of LSRs).  This document specifies Interior Gateway Protocol (IGP) routing extensions for Intermediate System-to-Intermediate System (IS-IS) and Open Shortest Path First (OSPF) so as to provide an automatic discovery of the set of LSRs members of a mesh in order to automate the creation of such mesh of TE LSPs. [STANDARDS-TRACK]"];
+  RFC4972 -> rev_cites;
+  RFC4990 [label="RFC4990
+Use of Addresses in Generalized
+Multiprotocol Label Switching (GMPLS)
+Networks
+2007", shape=ellipse, URL="RFC4990.html", target="_top", tooltip="This document clarifies the use of addresses in Generalized Multiprotocol Label Switching (GMPLS) networks. The aim is to facilitate interworking of GMPLS-capable Label Switching Routers (LSRs). The document is based on experience gained in implementation, interoperability testing, and deployment. The document describes how to interpret address and identifier fields within GMPLS protocols, and how to choose which addresses to set in those fields for specific control plane usage models. It also discusses how to handle IPv6 sources and destinations in the MPLS and GMPLS Traffic Engineering (TE) Management Information Base (MIB) modules. This document does not define new procedures or processes. Whenever this document makes requirements statements or recommendations, these are taken from normative text in the referenced RFCs. This memo provides information for the Internet community."];
+  RFC4990 -> rev_cites;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  RFC5036 -> rev_cites;
+  RFC5073 [label="RFC5073
+IGP Routing Protocol Extensions for
+Discovery of Traffic Engineering Node
+Capabilities
+2007", shape=ellipse, URL="RFC5073.html", target="_top", tooltip="It is highly desired, in several cases, to take into account Traffic Engineering (TE) node capabilities during Multi Protocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineered Label Switched Path (TE-LSP) selection, such as, for instance, the capability to act as a branch Label Switching Router (LSR) of a Point-To-MultiPoint (P2MP) LSP.  This requires advertising these capabilities within the Interior Gateway Protocol (IGP).  For that purpose, this document specifies Open Shortest Path First (OSPF) and Intermediate System-Intermediate System (IS-IS) traffic engineering extensions for the advertisement of control plane and data plane traffic engineering node capabilities. [STANDARDS-TRACK]"];
+  RFC5073 -> rev_cites;
+  RFC5088 [label="RFC5088
+OSPF Protocol Extensions for Path
+Computation Element (PCE) Discovery
+2008", shape=ellipse, URL="RFC5088.html", target="_top", tooltip="There are various circumstances where it is highly desirable for a Path Computation Client (PCC) to be able to dynamically and automatically discover a set of Path Computation Elements (PCEs), along with information that can be used by the PCC for PCE selection.  When the PCE is a Label Switching Router (LSR) participating in the Interior Gateway Protocol (IGP), or even a server participating passively in the IGP, a simple and efficient way to announce PCEs consists of using IGP flooding.  For that purpose, this document defines extensions to the Open Shortest Path First (OSPF) routing protocol for the advertisement of PCE Discovery information within an OSPF area or within the entire OSPF routing domain. [STANDARDS-TRACK]"];
+  RFC5088 -> rev_cites;
+  RFC5177 [label="RFC5177
+Network Mobility (NEMO) Extensions for
+Mobile IPv4
+2008", shape=ellipse, URL="RFC5177.html", target="_top", tooltip="This document describes a protocol for supporting Mobile Networks between a Mobile Router and a Home Agent by extending the Mobile IPv4 protocol. A Mobile Router is responsible for the mobility of one or more network segments or subnets moving together. The Mobile Router hides its mobility from the nodes on the Mobile Network. The nodes on the Mobile Network may be fixed in relationship to the Mobile Router and may not have any mobility function. Extensions to Mobile IPv4 are introduced to support Mobile Networks. [STANDARDS-TRACK]"];
+  RFC5177 -> rev_cites;
+  RFC5218 [label="RFC5218
+What Makes for a Successful Protocol?
+2008", shape=ellipse, URL="RFC5218.html", target="_top", tooltip="The Internet community has specified a large number of protocols to date, and these protocols have achieved varying degrees of success.  Based on case studies, this document attempts to ascertain factors that contribute to or hinder a protocol's success.  It is hoped that these observations can serve as guidance for future protocol work.  This memo provides information for the Internet community."];
+  RFC5218 -> rev_cites;
+  RFC5243 [label="RFC5243
+OSPF Database Exchange Summary List
+Optimization
+2008", shape=ellipse, URL="RFC5243.html", target="_top", tooltip="This document describes a backward-compatible optimization for the Database Exchange process in OSPFv2 and OSPFv3.  In this optimization, a router does not list a Link State Advertisement (LSA) in Database Description packets sent to a neighbor, if the same or a more recent instance of the LSA was listed in a Database Description packet already received from the neighbor.  This optimization reduces Database Description overhead by about 50% in large networks.  This optimization does not affect synchronization, since it only omits unnecessary information from Database Description packets.  This memo provides information for the Internet community."];
+  RFC5243 -> rev_cites;
+  RFC5252 [label="RFC5252
+OSPF-Based Layer 1 VPN Auto-Discovery
+2008", shape=ellipse, URL="RFC5252.html", target="_top", tooltip="This document defines an Open Shortest Path First (OSPF) based Layer 1 Virtual Private Network (L1VPN) auto-discovery mechanism.  This mechanism enables provider edge (PE) devices using OSPF to dynamically learn about the existence of each other, and attributes of configured customer edge (CE) links and their associations with L1VPNs.  This document builds on the L1VPN framework and requirements and provides a L1VPN basic mode auto-discovery mechanism. [STANDARDS-TRACK]"];
+  RFC5252 -> rev_cites;
+  RFC5286 [label="RFC5286
+Basic Specification for IP Fast Reroute:
+Loop-Free Alternates
+2008", shape=ellipse, URL="RFC5286.html", target="_top", tooltip="This document describes the use of loop-free alternates to provide local protection for unicast traffic in pure IP and MPLS/LDP networks in the event of a single failure, whether link, node, or shared risk link group (SRLG).  The goal of this technology is to reduce the packet loss that happens while routers converge after a topology change due to a failure.  Rapid failure repair is achieved through use of precalculated backup next-hops that are loop-free and safe to use until the distributed network convergence process completes.  This simple approach does not require any support from other routers.  The extent to which this goal can be met by this specification is dependent on the topology of the network. [STANDARDS-TRACK]"];
+  RFC5286 -> rev_cites;
+  RFC5309 [label="RFC5309
+Point-to-Point Operation over LAN in
+Link State Routing Protocols
+2008", shape=ellipse, URL="RFC5309.html", target="_top", tooltip="The two predominant circuit types used by link state routing protocols are point-to-point and broadcast.  It is important to identify the correct circuit type when forming adjacencies, flooding link state database packets, and representing the circuit topologically.  This document describes a simple mechanism to treat the broadcast network as a point-to-point connection from the standpoint of IP routing.  This memo provides information for the Internet community."];
+  RFC5309 -> rev_cites;
+  RFC5330 [label="RFC5330
+A Link-Type sub-TLV to Convey the Number
+of Traffic Engineering Label Switched
+Paths Signalled with Zero Reserved
+Bandwidth across a Link
+2008", shape=ellipse, URL="RFC5330.html", target="_top", tooltip="Several Link-type sub-Type-Length-Values (sub-TLVs) have been defined for Open Shortest Path First (OSPF) and Intermediate System to Intermediate System (IS-IS) in the context of Multiprotocol Label Switching (MPLS) Traffic Engineering (TE), in order to advertise some link characteristics such as the available bandwidth, traffic engineering metric, administrative group, and so on.  By making statistical assumptions about the aggregated traffic carried onto a set of TE Label Switched Paths (LSPs) signalled with zero bandwidth (referred to as unconstrained TE LSP in this document), algorithms can be designed to load balance (existing or newly configured) unconstrained TE LSP across a set of equal cost paths.  This requires knowledge of the number of unconstrained TE LSPs signalled across a link.  This document specifies a new Link-type Traffic Engineering sub-TLV used to advertise the number of unconstrained TE LSPs signalled across a link. [STANDARDS-TRACK]"];
+  RFC5330 -> rev_cites;
+  RFC5443 [label="RFC5443
+LDP IGP Synchronization
+2009", shape=ellipse, URL="RFC5443.html", target="_top", tooltip="In certain networks, there is dependency on the edge-to-edge Label Switched Paths (LSPs) setup by the Label Distribution Protocol (LDP), e.g., networks that are used for Multiprotocol Label Switching (MPLS) Virtual Private Network (VPN) applications.  For such applications, it is not possible to rely on Internet Protocol (IP) forwarding if the MPLS LSP is not operating appropriately.  Blackholing of labeled traffic can occur in situations where the Interior Gateway Protocol (IGP) is operational on a link on which LDP is not.  While the link could still be used for IP forwarding, it is not useful for MPLS forwarding, for example, MPLS VPN applications or Border Gateway Protocol (BGP) route-free cores.  This document describes a mechanism to avoid traffic loss due to this condition without introducing any protocol changes.  This memo provides information for the Internet community."];
+  RFC5443 -> rev_cites;
+  RFC5449 [label="RFC5449
+OSPF Multipoint Relay (MPR) Extension
+for Ad Hoc Networks
+2009", shape=ellipse, URL="RFC5449.html", target="_top", tooltip="This document specifies an OSPFv3 interface type tailored for mobile ad hoc networks.  This interface type is derived from the broadcast interface type, and is denoted the OSPFv3 MANET interface type.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC5449 -> rev_cites;
+  RFC5565 [label="RFC5565
+Softwire Mesh Framework
+2009", shape=ellipse, URL="RFC5565.html", target="_top", tooltip="The Internet needs to be able to handle both IPv4 and IPv6 packets.  However, it is expected that some constituent networks of the Internet will be single-protocol networks.  One kind of single-protocol network can parse only IPv4 packets and can process only IPv4 routing information; another kind can parse only IPv6 packets and can process only IPv6 routing information.  It is nevertheless required that either kind of single-protocol network be able to provide transit service for the other protocol.  This is done by passing the other kind of routing information from one edge of the single-protocol network to the other, and by tunneling the other kind of data packet from one edge to the other.  The tunnels are known as softwires.  This framework document explains how the routing information and the data packets of one protocol are passed through a single-protocol network of the other protocol.  The document is careful to specify when this can be done with existing technology and when it requires the development of new or modified technology. [STANDARDS-TRACK]"];
+  RFC5565 -> rev_cites;
+  RFC5614 [label="RFC5614
+Mobile Ad Hoc Network (MANET) Extension
+of OSPF Using Connected Dominating Set
+(CDS) Flooding
+2009", shape=ellipse, URL="RFC5614.html", target="_top", tooltip="This document specifies an extension of OSPFv3 to support mobile ad hoc networks (MANETs).  The extension, called OSPF-MDR, is designed as a new OSPF interface type for MANETs.  OSPF-MDR is based on the selection of a subset of MANET routers, consisting of MANET Designated Routers (MDRs) and Backup MDRs.  The MDRs form a connected dominating set (CDS), and the MDRs and Backup MDRs together form a biconnected CDS for robustness.  This CDS is exploited in two ways.  First, to reduce flooding overhead, an optimized flooding procedure is used in which only (Backup) MDRs flood new link state advertisements (LSAs) back out the receiving interface; reliable flooding is ensured by retransmitting LSAs along adjacencies.  Second, adjacencies are formed only between (Backup) MDRs and a subset of their neighbors, allowing for much better scaling in dense networks.  The CDS is constructed using 2-hop neighbor information provided in a Hello protocol extension.  The Hello protocol is further optimized by allowing differential Hellos that report only changes in neighbor states.  Options are specified for originating router-LSAs that provide full or partial topology information, allowing overhead to be reduced by advertising less topology information.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC5614 -> rev_cites;
+  RFC5642 [label="RFC5642
+Dynamic Hostname Exchange Mechanism for
+OSPF
+2009", shape=ellipse, URL="RFC5642.html", target="_top", tooltip="This document defines a new OSPF Router Information (RI) TLV that allows OSPF routers to flood their hostname-to-Router-ID mapping information across an OSPF network to provide a simple and dynamic mechanism for routers running OSPF to learn about symbolic hostnames, just like for routers running IS-IS.  This mechanism is applicable to both OSPFv2 and OSPFv3. [STANDARDS-TRACK]"];
+  RFC5642 -> rev_cites;
+  RFC5643 [label="RFC5643
+Management Information Base for OSPFv3
+2009", shape=ellipse, URL="RFC5643.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in IPv6-based internets.  In particular, it defines objects for managing the Open Shortest Path First (OSPF) Routing Protocol for IPv6, otherwise known as OSPF version 3 (OSPFv3). [STANDARDS-TRACK]"];
+  RFC5643 -> rev_cites;
+  RFC5695 [label="RFC5695
+MPLS Forwarding Benchmarking Methodology
+for IP Flows
+2009", shape=ellipse, URL="RFC5695.html", target="_top", tooltip="This document describes a methodology specific to the benchmarking of Multiprotocol Label Switching (MPLS) forwarding devices, limited to the most common MPLS packet forwarding scenarios and delay measurements for each, considering IP flows.  It builds upon the tenets set forth in RFC 2544, RFC 1242, and other IETF Benchmarking Methodology Working Group (BMWG) efforts.  This document seeks to extend these efforts to the MPLS paradigm.  This memo provides information for the Internet community."];
+  RFC5695 -> rev_cites;
+  RFC5709 [label="RFC5709
+OSPFv2 HMAC-SHA Cryptographic
+Authentication
+2009", shape=ellipse, URL="RFC5709.html", target="_top", tooltip="This document describes how the National Institute of Standards and Technology (NIST) Secure Hash Standard family of algorithms can be used with OSPF version 2's built-in, cryptographic authentication mechanism.  This updates, but does not supercede, the cryptographic authentication mechanism specified in RFC 2328. [STANDARDS-TRACK]"];
+  RFC5709 -> rev_cites;
+  RFC5771 [label="RFC5771
+IANA Guidelines for IPv4 Multicast
+Address Assignments
+2010", shape=ellipse, URL="RFC5771.html", target="_top", tooltip="This document provides guidance for the Internet Assigned Numbers Authority (IANA) in assigning IPv4 multicast addresses.  It obsoletes RFC 3171 and RFC 3138 and updates RFC 2780.  This memo documents an Internet Best Current Practice."];
+  RFC5771 -> rev_cites;
+  RFC5786 [label="RFC5786
+Advertising a Router's Local Addresses
+in OSPF Traffic Engineering (TE)
+Extensions
+2010", shape=ellipse, URL="RFC5786.html", target="_top", tooltip="OSPF Traffic Engineering (TE) extensions are used to advertise TE Link State Advertisements (LSAs) containing information about TE-enabled links. The only addresses belonging to a router that are advertised in TE LSAs are the local addresses corresponding to TE-enabled links, and the local address corresponding to the Router ID. In order to allow other routers in a network to compute Multiprotocol Label Switching (MPLS) Traffic Engineered Label Switched Paths (TE LSPs) to a given router's local addresses, those addresses must also be advertised by OSPF TE. This document describes procedures that enhance OSPF TE to advertise a router's local addresses. [STANDARDS-TRACK]"];
+  RFC5786 -> rev_cites;
+  RFC5787 [label="RFC5787
+OSPFv2 Routing Protocols Extensions for
+Automatically Switched Optical Network
+(ASON) Routing
+2010", shape=ellipse, URL="RFC5787.html", target="_top", tooltip="The ITU-T has defined an architecture and requirements for operating an Automatically Switched Optical Network (ASON). The Generalized Multiprotocol Label Switching (GMPLS) protocol suite is designed to provide a control plane for a range of network technologies including optical networks such as time division multiplexing (TDM) networks including SONET/SDH and Optical Transport Networks (OTNs), and lambda switching optical networks. The requirements for GMPLS routing to satisfy the requirements of ASON routing, and an evaluation of existing GMPLS routing protocols are provided in other documents. This document defines extensions to the OSPFv2 Link State Routing Protocol to meet the requirements for routing in an ASON. Note that this work is scoped to the requirements and evaluation expressed in RFC 4258 and RFC 4652 and the ITU-T Recommendations current when those documents were written. Future extensions of revisions of this work may be necessary if the ITU-T Recommendations are revised or if new requirements are introduced into a revision of RFC 4258. This document defines an Experimental Protocol for the Internet community."];
+  RFC5787 -> rev_cites;
+  RFC5798 [label="RFC5798
+Virtual Router Redundancy Protocol
+(VRRP) Version 3 for IPv4 and IPv6
+2010", shape=ellipse, URL="RFC5798.html", target="_top", tooltip="This memo defines the Virtual Router Redundancy Protocol (VRRP) for IPv4 and IPv6.  It is version three (3) of the protocol, and it is based on VRRP (version 2) for IPv4 that is defined in RFC 3768 and in Virtual Router Redundancy Protocol for IPv6.  VRRP specifies an election protocol that dynamically assigns responsibility for a virtual router to one of the VRRP routers on a LAN.  The VRRP router controlling the IPv4 or IPv6 address(es) associated with a virtual router is called the Master, and it forwards packets sent to these IPv4 or IPv6 addresses.  VRRP Master routers are configured with virtual IPv4 or IPv6 addresses, and VRRP Backup routers infer the address family of the virtual addresses being carried based on the transport protocol.  Within a VRRP router, the virtual routers in each of the IPv4 and IPv6 address families are a domain unto themselves and do not overlap.  The election process provides dynamic failover in the forwarding responsibility should the Master become unavailable.  For IPv4, the advantage gained from using VRRP is a higher-availability default path without requiring configuration of dynamic routing or router discovery protocols on every end-host.  For IPv6, the advantage gained from using VRRP for IPv6 is a quicker switchover to Backup routers than can be obtained with standard IPv6 Neighbor Discovery mechanisms. [STANDARDS-TRACK]"];
+  RFC5798 -> rev_cites;
+  RFC6039 [label="RFC6039
+Issues with Existing Cryptographic
+Protection Methods for Routing Protocols
+2010", shape=ellipse, URL="RFC6039.html", target="_top", tooltip="Routing protocols have been extended over time to use cryptographic mechanisms to ensure that data received from a neighboring router has not been modified in transit and actually originated from an authorized neighboring router. The cryptographic mechanisms defined to date and described in this document rely on a digest produced with a hash algorithm applied to the payload encapsulated in the routing protocol packet. This document outlines some of the limitations of the current mechanism, problems with manual keying of these cryptographic algorithms, and possible vectors for the exploitation of these limitations. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6039 -> rev_cites;
+  RFC6094 [label="RFC6094
+Summary of Cryptographic Authentication
+Algorithm Implementation Requirements
+for Routing Protocols
+2011", shape=ellipse, URL="RFC6094.html", target="_top", tooltip="The routing protocols Open Shortest Path First version 2 (OSPFv2), Intermediate System to Intermediate System (IS-IS), and Routing Information Protocol (RIP) currently define cleartext and MD5 (Message Digest 5) methods for authenticating protocol packets. Recently, effort has been made to add support for the SHA (Secure Hash Algorithm) family of hash functions for the purpose of authenticating routing protocol packets for RIP, IS-IS, and OSPF. To encourage interoperability between disparate implementations, it is imperative that we specify the expected minimal set of algorithms, thereby ensuring that there is at least one algorithm that all implementations will have in common. Similarly, RIP for IPv6 (RIPng) and OSPFv3 support IPsec algorithms for authenticating their protocol packets. This document examines the current set of available algorithms, with interoperability and effective cryptographic authentication protection being the principal considerations. Cryptographic authentication of these routing protocols requires the availability of the same algorithms in disparate implementations. It is desirable that newly specified algorithms should be implemented and available in routing protocol implementations because they may be promoted to requirements at some future time. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6094 -> rev_cites;
+  RFC6107 [label="RFC6107
+Procedures for Dynamically Signaled
+Hierarchical Label Switched Paths
+2011", shape=ellipse, URL="RFC6107.html", target="_top", tooltip="Label Switched Paths (LSPs) set up in Multiprotocol Label Switching (MPLS) or Generalized MPLS (GMPLS) networks can be used to form links to carry traffic in those networks or in other (client) networks. Protocol mechanisms already exist to facilitate the establishment of such LSPs and to bundle traffic engineering (TE) links to reduce the load on routing protocols. This document defines extensions to those mechanisms to support identifying the use to which such LSPs are to be put and to enable the TE link endpoints to be assigned addresses or unnumbered identifiers during the signaling process. [STANDARDS-TRACK]"];
+  RFC6107 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6395 [label="RFC6395
+An Interface Identifier (ID) Hello
+Option for PIM
+2011", shape=ellipse, URL="RFC6395.html", target="_top", tooltip="This document defines a new PIM Hello option to advertise an Interface Identifier that can be used by PIM protocols to uniquely identify an interface of a neighboring router. [STANDARDS-TRACK]"];
+  RFC6395 -> rev_cites;
+  RFC6396 [label="RFC6396
+Multi-Threaded Routing Toolkit (MRT)
+Routing Information Export Format
+2011", shape=ellipse, URL="RFC6396.html", target="_top", tooltip="This document describes the MRT format for routing information export.  This format was developed in concert with the Multi-threaded Routing Toolkit (MRT) from whence the format takes it name.  The format can be used to export routing protocol messages, state changes, and routing information base contents. [STANDARDS-TRACK]"];
+  RFC6396 -> rev_cites;
+  RFC6506 [label="RFC6506
+Supporting Authentication Trailer for
+OSPFv3
+2012", shape=ellipse, URL="RFC6506.html", target="_top", tooltip="Currently, OSPF for IPv6 (OSPFv3) uses IPsec as the only mechanism for authenticating protocol packets.  This behavior is different from authentication mechanisms present in other routing protocols (OSPFv2, Intermediate System to Intermediate System (IS-IS), RIP, and Routing Information Protocol Next Generation (RIPng)).  In some environments, it has been found that IPsec is difficult to configure and maintain and thus cannot be used.  This document defines an alternative mechanism to authenticate OSPFv3 protocol packets so that OSPFv3 does not only depend upon IPsec for authentication. [STANDARDS-TRACK]"];
+  RFC6506 -> rev_cites;
+  RFC6518 [label="RFC6518
+Keying and Authentication for Routing
+Protocols (KARP) Design Guidelines
+2012", shape=ellipse, URL="RFC6518.html", target="_top", tooltip="This document is one of a series concerned with defining a roadmap of protocol specification work for the use of modern cryptographic mechanisms and algorithms for message authentication in routing protocols.  In particular, it defines the framework for a key management protocol that may be used to create and manage session keys for message authentication and integrity.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6518 -> rev_cites;
+  RFC6551 [label="RFC6551
+Routing Metrics Used for Path
+Calculation in Low-Power and Lossy
+Networks
+2012", shape=ellipse, URL="RFC6551.html", target="_top", tooltip="Low-Power and Lossy Networks (LLNs) have unique characteristics compared with traditional wired and ad hoc networks that require the specification of new routing metrics and constraints.  By contrast, with typical Interior Gateway Protocol (IGP) routing metrics using hop counts or link metrics, this document specifies a set of link and node routing metrics and constraints suitable to LLNs to be used by the Routing Protocol for Low-Power and Lossy Networks (RPL). [STANDARDS-TRACK]"];
+  RFC6551 -> rev_cites;
+  RFC6553 [label="RFC6553
+The Routing Protocol for Low-Power and
+Lossy Networks (RPL) Option for Carrying
+RPL Information in Data-Plane Datagrams
+2012", shape=ellipse, URL="RFC6553.html", target="_top", tooltip="The Routing Protocol for Low-Power and Lossy Networks (RPL) includes routing information in data-plane datagrams to quickly identify inconsistencies in the routing topology.  This document describes the RPL Option for use among RPL routers to include such routing information. [STANDARDS-TRACK]"];
+  RFC6553 -> rev_cites;
+  RFC6565 [label="RFC6565
+OSPFv3 as a Provider Edge to Customer
+Edge (PE-CE) Routing Protocol
+2012", shape=ellipse, URL="RFC6565.html", target="_top", tooltip="Many Service Providers (SPs) offer Virtual Private Network (VPN) services to their customers using a technique in which Customer Edge (CE) routers are routing peers of Provider Edge (PE) routers.  The Border Gateway Protocol (BGP) is used to distribute the customer's routes across the provider's IP backbone network, and Multiprotocol Label Switching (MPLS) is used to tunnel customer packets across the provider's backbone.  Support currently exists for both IPv4 and IPv6 VPNs; however, only Open Shortest Path First version 2 (OSPFv2) as PE-CE protocol is specified.  This document extends those specifications to support OSPF version 3 (OSPFv3) as a PE-CE routing protocol.  The OSPFv3 PE-CE functionality is identical to that of OSPFv2 except for the differences described in this document. [STANDARDS-TRACK]"];
+  RFC6565 -> rev_cites;
+  RFC6571 [label="RFC6571
+Loop-Free Alternate (LFA) Applicability
+in Service Provider (SP) Networks
+2012", shape=ellipse, URL="RFC6571.html", target="_top", tooltip="In this document, we analyze the applicability of the Loop-Free Alternate (LFA) method of providing IP fast reroute in both the core and access parts of Service Provider networks.  We consider both the link and node failure cases, and provide guidance on the applicability of LFAs to different network topologies, with special emphasis on the access parts of the network.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6571 -> rev_cites;
+  RFC6601 [label="RFC6601
+Generic Connection Admission Control
+(GCAC) Algorithm Specification for
+IP/MPLS Networks
+2012", shape=ellipse, URL="RFC6601.html", target="_top", tooltip="This document presents a generic connection admission control (GCAC) reference model and algorithm for IP-/MPLS-based networks.  Service provider (SP) IP/MPLS networks need an MPLS GCAC mechanism, as one motivational example, to reject Voice over IP (VoIP) calls when additional calls would adversely affect calls already in progress.  Without MPLS GCAC, connections on congested links will suffer degraded quality.  The MPLS GCAC algorithm can be optionally implemented in vendor equipment and deployed by service providers.  MPLS GCAC interoperates between vendor equipment and across multiple service provider domains.  The MPLS GCAC algorithm uses available standard mechanisms for MPLS-based networks, such as RSVP, Diffserv-aware MPLS Traffic Engineering (DS-TE), Path Computation Element (PCE), Next Steps in Signaling (NSIS), Diffserv, and OSPF.  The MPLS GCAC algorithm does not include aspects of CAC that might be considered vendor proprietary implementations, such as detailed path selection mechanisms.  MPLS GCAC functions are implemented in a distributed manner to deliver the objective Quality of Service (QoS) for specified QoS constraints.  The objective is that the source is able to compute a source route with high likelihood that via-elements along the selected path will in fact admit the request.  In some cases (e.g., multiple Autonomous Systems (ASes)), this objective cannot always be met, but this document summarizes methods that partially meet this objective.  MPLS GCAC is applicable to any service or flow that must meet an objective QoS (delay, jitter, packet loss rate) for a specified quantity of traffic.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6601 -> rev_cites;
+  RFC6825 [label="RFC6825
+Traffic Engineering Database Management
+Information Base in Support of MPLS-
+TE/GMPLS
+2013", shape=ellipse, URL="RFC6825.html", target="_top", tooltip="This memo defines the Management Information Base (MIB) objects for managing the Traffic Engineering Database (TED) information with extensions in support of the Multiprotocol Label Switching (MPLS) with Traffic Engineering (TE) as well as Generalized MPLS (GMPLS) for use with network management protocols. [STANDARDS-TRACK]"];
+  RFC6825 -> rev_cites;
+  RFC6827 [label="RFC6827
+Automatically Switched Optical Network
+(ASON) Routing for OSPFv2 Protocols
+2013", shape=ellipse, URL="RFC6827.html", target="_top", tooltip="The ITU-T has defined an architecture and requirements for operating an Automatically Switched Optical Network (ASON). The Generalized Multiprotocol Label Switching (GMPLS) protocol suite is designed to provide a control plane for a range of network technologies. These include optical networks such as time division multiplexing (TDM) networks including the Synchronous Optical Network/Synchronous Digital Hierarchy (SONET/SDH), Optical Transport Networks (OTNs), and lambda switching optical networks. The requirements for GMPLS routing to satisfy the requirements of ASON routing and an evaluation of existing GMPLS routing protocols are provided in other documents. This document defines extensions to the OSPFv2 Link State Routing Protocol to meet the requirements for routing in an ASON. Note that this work is scoped to the requirements and evaluation expressed in RFC 4258 and RFC 4652 and the ITU-T Recommendations that were current when those documents were written. Future extensions or revisions of this work may be necessary if the ITU-T Recommendations are revised or if new requirements are introduced into a revision of RFC 4258. This document obsoletes RFC 5787 and updates RFC 5786. [STANDARDS-TRACK]"];
+  RFC6827 -> rev_cites;
+  RFC6845 [label="RFC6845
+OSPF Hybrid Broadcast and Point-to-
+Multipoint Interface Type
+2013", shape=ellipse, URL="RFC6845.html", target="_top", tooltip="This document describes a mechanism to model a broadcast network as a hybrid of broadcast and point-to-multipoint networks for purposes of OSPF operation. Neighbor discovery and maintenance as well as Link State Advertisement (LSA) database synchronization are performed using the broadcast model, but the network is represented using the point-to-multipoint model in the router-LSAs of the routers connected to it. This allows an accurate representation of the cost of communication between different routers on the network, while maintaining the network efficiency of broadcast operation. This approach is relatively simple and requires minimal changes to OSPF. This document updates both OSPFv2 (RFC 2328) and OSPFv3 (RFC 5340). [STANDARDS-TRACK]"];
+  RFC6845 -> rev_cites;
+  RFC6862 [label="RFC6862
+Keying and Authentication for Routing
+Protocols (KARP) Overview, Threats, and
+Requirements
+2013", shape=ellipse, URL="RFC6862.html", target="_top", tooltip="Different routing protocols employ different mechanisms for securing protocol packets on the wire.  While most already have some method for accomplishing cryptographic message authentication, in many cases the existing methods are dated, vulnerable to attack, and employ cryptographic algorithms that have been deprecated.  The Keying and Authentication for Routing Protocols (KARP) effort aims to overhaul and improve these mechanisms.  This document does not contain protocol specifications.  Instead, it defines the areas where protocol specification work is needed.  This document is a companion document to RFC 6518, Keying and Authentication for Routing Protocols (KARP) Design Guidelines; together they form the guidance and instruction KARP design teams will use to review and overhaul routing protocol transport security."];
+  RFC6862 -> rev_cites;
+  RFC6863 [label="RFC6863
+Analysis of OSPF Security According to
+the Keying and Authentication for
+Routing Protocols (KARP) Design Guide
+2013", shape=ellipse, URL="RFC6863.html", target="_top", tooltip="This document analyzes OSPFv2 and OSPFv3 according to the guidelines set forth in Section 4.2 of the Keying and Authentication for Routing Protocols (KARP) Design Guidelines (RFC 6518).  Key components of solutions to gaps identified in this document are already underway."];
+  RFC6863 -> rev_cites;
+  RFC6976 [label="RFC6976
+Framework for Loop-Free Convergence
+Using the Ordered Forwarding Information
+Base (oFIB) Approach
+2013", shape=ellipse, URL="RFC6976.html", target="_top", tooltip="This document describes an illustrative framework of a mechanism for use in conjunction with link-state routing protocols that prevents the transient loops that would otherwise occur during topology changes. It does this by correctly sequencing the forwarding information base (FIB) updates on the routers. This mechanism can be used in the case of non-urgent (management action) link or node shutdowns and restarts or link metric changes. It can also be used in conjunction with a fast reroute mechanism that converts a sudden link or node failure into a non-urgent topology change. This is possible where a complete repair path is provided for all affected destinations. After a non-urgent topology change, each router computes a rank that defines the time at which it can safely update its FIB. A method for accelerating this loop-free convergence process by the use of completion messages is also described. The technology described in this document has been subject to extensive simulation using pathological convergence behavior and real network topologies and costs. However, the mechanisms described in this document are purely illustrative of the general approach and do not constitute a protocol specification. This document represents a snapshot of the work of the Routing Area Working Group at the time of publication and is published as a document of record. Further work is needed before implementation or deployment."];
+  RFC6976 -> rev_cites;
+  RFC6987 [label="RFC6987
+OSPF Stub Router Advertisement
+2013", shape=ellipse, URL="RFC6987.html", target="_top", tooltip="This document describes a backward-compatible technique that may be used by OSPF (Open Shortest Path First) implementations to advertise a router's unavailability to forward transit traffic or to lower the preference level for the paths through such a router. This document obsoletes RFC 3137."];
+  RFC6987 -> rev_cites;
+  RFC7038 [label="RFC7038
+Use of OSPF-MDR in Single-Hop Broadcast
+Networks
+2013", shape=ellipse, URL="RFC7038.html", target="_top", tooltip="RFC 5614 (OSPF-MDR) extends OSPF to support mobile ad hoc networks (MANETs) by specifying its operation on the new OSPF interface of type MANET.  This document describes the use of OSPF-MDR (MANET Designated Router) in a single-hop broadcast network, which is a special case of a MANET in which each router is a (one-hop) neighbor of each other router.  Unlike an OSPF broadcast interface, such an interface can have a different cost associated with each neighbor.  The document includes configuration recommendations and simplified mechanisms that can be used in single-hop broadcast networks."];
+  RFC7038 -> rev_cites;
+  RFC7096 [label="RFC7096
+Evaluation of Existing GMPLS Encoding
+against G.709v3 Optical Transport
+Networks (OTNs)
+2014", shape=ellipse, URL="RFC7096.html", target="_top", tooltip="ITU-T recommendation G.709-2012 has introduced new fixed and flexible Optical channel Data Unit (ODU) containers in Optical Transport Networks (OTNs). This document provides an evaluation of existing Generalized Multiprotocol Label Switching (GMPLS) routing and signaling protocols against the G.709 OTNs."];
+  RFC7096 -> rev_cites;
+  RFC7137 [label="RFC7137
+Use of the OSPF-MANET Interface in
+Single-Hop Broadcast Networks
+2014", shape=ellipse, URL="RFC7137.html", target="_top", tooltip="This document describes the use of the OSPF-MANET interface in single-hop broadcast networks. It includes a mechanism to dynamically determine the presence of such a network and specific operational considerations due to its nature. This document updates RFC 5820."];
+  RFC7137 -> rev_cites;
+  RFC7138 [label="RFC7138
+Traffic Engineering Extensions to OSPF
+for GMPLS Control of Evolving G.709
+Optical Transport Networks
+2014", shape=ellipse, URL="RFC7138.html", target="_top", tooltip="This document describes Open Shortest Path First - Traffic Engineering (OSPF-TE) routing protocol extensions to support GMPLS control of Optical Transport Networks (OTNs) specified in ITU-T Recommendation G.709 as published in 2012.  It extends mechanisms defined in RFC 4203."];
+  RFC7138 -> rev_cites;
+  RFC7166 [label="RFC7166
+Supporting Authentication Trailer for
+OSPFv3
+2014", shape=ellipse, URL="RFC7166.html", target="_top", tooltip="Currently, OSPF for IPv6 (OSPFv3) uses IPsec as the only mechanism for authenticating protocol packets. This behavior is different from authentication mechanisms present in other routing protocols (OSPFv2, Intermediate System to Intermediate System (IS-IS), RIP, and Routing Information Protocol Next Generation (RIPng)). In some environments, it has been found that IPsec is difficult to configure and maintain and thus cannot be used. This document defines an alternative mechanism to authenticate OSPFv3 protocol packets so that OSPFv3 does not depend only upon IPsec for authentication. The OSPFv3 Authentication Trailer was originally defined in RFC 6506. This document obsoletes RFC 6506 by providing a revised definition, including clarifications and refinements of the procedures."];
+  RFC7166 -> rev_cites;
+  RFC7211 [label="RFC7211
+Operations Model for Router Keying
+2014", shape=ellipse, URL="RFC7211.html", target="_top", tooltip="The IETF is engaged in an effort to analyze the security of routing protocol authentication according to design guidelines discussed in RFC 6518, Keying and Authentication for Routing Protocols (KARP) Design Guidelines.  Developing an operational and management model for routing protocol security that works with all the routing protocols will be critical to the deployability of these efforts.  This document gives recommendations to operators and implementors regarding management and operation of router authentication.  These recommendations will also assist protocol designers in understanding management issues they will face."];
+  RFC7211 -> rev_cites;
+  RFC7416 [label="RFC7416
+A Security Threat Analysis for the
+Routing Protocol for Low-Power and Lossy
+Networks (RPLs)
+2015", shape=ellipse, URL="RFC7416.html", target="_top", tooltip="This document presents a security threat analysis for the Routing Protocol for Low-Power and Lossy Networks (RPLs).  The development builds upon previous work on routing security and adapts the assessments to the issues and constraints specific to low-power and lossy networks.  A systematic approach is used in defining and evaluating the security threats.  Applicable countermeasures are application specific and are addressed in relevant applicability statements."];
+  RFC7416 -> rev_cites;
+  RFC7474 [label="RFC7474
+Security Extension for OSPFv2 When Using
+Manual Key Management
+2015", shape=ellipse, URL="RFC7474.html", target="_top", tooltip="The current OSPFv2 cryptographic authentication mechanism as defined in RFCs 2328 and 5709 is vulnerable to both inter-session and intra- session replay attacks when using manual keying. Additionally, the existing cryptographic authentication mechanism does not cover the IP header. This omission can be exploited to carry out various types of attacks. This document defines changes to the authentication sequence number mechanism that will protect OSPFv2 from both inter-session and intra- session replay attacks when using manual keys for securing OSPFv2 protocol packets. Additionally, we also describe some changes in the cryptographic hash computation that will eliminate attacks resulting from OSPFv2 not protecting the IP header."];
+  RFC7474 -> rev_cites;
+  RFC7490 [label="RFC7490
+Remote Loop-Free Alternate (LFA) Fast
+Reroute (FRR)
+2015", shape=ellipse, URL="RFC7490.html", target="_top", tooltip="This document describes an extension to the basic IP fast reroute mechanism, described in RFC 5286, that provides additional backup connectivity for point-to-point link failures when none can be provided by the basic mechanisms."];
+  RFC7490 -> rev_cites;
+  RFC7527 [label="RFC7527
+Enhanced Duplicate Address Detection
+2015", shape=ellipse, URL="RFC7527.html", target="_top", tooltip="IPv6 Loopback Suppression and Duplicate Address Detection (DAD) are discussed in Appendix A of RFC 4862.  That specification mentions a hardware-assisted mechanism to detect looped back DAD messages.  If hardware cannot suppress looped back DAD messages, a software solution is required.  Several service provider communities have expressed a need for automated detection of looped back Neighbor Discovery (ND) messages used by DAD.  This document includes mitigation techniques and outlines the Enhanced DAD algorithm to automate the detection of looped back IPv6 ND messages used by DAD.  For network loopback tests, the Enhanced DAD algorithm allows IPv6 to self-heal after a loopback is placed and removed.  Further, for certain access networks, this document automates resolving a specific duplicate address conflict.  This document updates RFCs 4429, 4861, and 4862."];
+  RFC7527 -> rev_cites;
+  RFC7580 [label="RFC7580
+OSPF-TE Extensions for General Network
+Element Constraints
+2015", shape=ellipse, URL="RFC7580.html", target="_top", tooltip="Generalized Multiprotocol Label Switching (GMPLS) can be used to control a wide variety of technologies including packet switching (e.g., MPLS), time division (e.g., Synchronous Optical Network / Synchronous Digital Hierarchy (SONET/SDH) and Optical Transport Network (OTN)), wavelength (lambdas), and spatial switching (e.g., incoming port or fiber to outgoing port or fiber).  In some of these technologies, network elements and links may impose additional routing constraints such as asymmetric switch connectivity, non- local label assignment, and label range limitations on links.  This document describes Open Shortest Path First (OSPF) routing protocol extensions to support these kinds of constraints under the control of GMPLS."];
+  RFC7580 -> rev_cites;
+  RFC7688 [label="RFC7688
+GMPLS OSPF Enhancement for Signal and
+Network Element Compatibility for
+Wavelength Switched Optical Networks
+2015", shape=ellipse, URL="RFC7688.html", target="_top", tooltip="This document provides Generalized Multiprotocol Label Switching (GMPLS) Open Shortest Path First (OSPF) routing enhancements to support signal compatibility constraints associated with Wavelength Switched Optical Network (WSON) elements. These routing enhancements are applicable in common optical or hybrid electro-optical networks where not all the optical signals in the network are compatible with all network elements participating in the network. This compatibility constraint model is applicable to common optical or hybrid electro-optical systems such as optical-electronic-optical (OEO) switches, regenerators, and wavelength converters, since such systems can be limited to processing only certain types of WSON signals."];
+  RFC7688 -> rev_cites;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  RFC7752 -> rev_cites;
+  RFC7777 [label="RFC7777
+Advertising Node Administrative Tags in
+OSPF
+2016", shape=ellipse, URL="RFC7777.html", target="_top", tooltip="This document describes an extension to the OSPF protocol to add an optional operational capability that allows tagging and grouping of the nodes in an OSPF domain. This allows simplification, ease of management and control over route and path selection based on configured policies. This document describes an extension to the OSPF protocol to advertise node administrative tags. The node tags can be used to express and apply locally defined network policies, which are a very useful operational capability. Node tags may be used by either OSPF itself or other applications consuming information propagated via OSPF. This document describes the protocol extensions to disseminate node administrative tags to the OSPFv2 and OSPFv3 protocol. It provides example use cases of administrative node tags."];
+  RFC7777 -> rev_cites;
+  RFC7811 [label="RFC7811
+An Algorithm for Computing IP/LDP Fast
+Reroute Using Maximally Redundant Trees
+(MRT-FRR)
+2016", shape=ellipse, URL="RFC7811.html", target="_top", tooltip="This document supports the solution put forth in An Architecture for IP/LDP Fast Reroute Using Maximally Redundant Trees (MRT-FRR) (RFC 7812) by defining the associated MRT Lowpoint algorithm that is used in the Default MRT Profile to compute both the necessary Maximally Redundant Trees with their associated next hops and the alternates to select for MRT-FRR."];
+  RFC7811 -> rev_cites;
+  RFC7812 [label="RFC7812
+An Architecture for IP/LDP Fast Reroute
+Using Maximally Redundant Trees (MRT-
+FRR)
+2016", shape=ellipse, URL="RFC7812.html", target="_top", tooltip="This document defines the architecture for IP and LDP Fast Reroute using Maximally Redundant Trees (MRT-FRR).  MRT-FRR is a technology that gives link-protection and node-protection with 100% coverage in any network topology that is still connected after the failure."];
+  RFC7812 -> rev_cites;
+  RFC7884 [label="RFC7884
+OSPF Extensions to Advertise Seamless
+Bidirectional Forwarding Detection
+(S-BFD) Target Discriminators
+2016", shape=ellipse, URL="RFC7884.html", target="_top", tooltip="This document defines a new OSPF Router Information (RI) TLV that allows OSPF routers to flood the Seamless Bidirectional Forwarding Detection (S-BFD) Discriminator values associated with a target network identifier.  This mechanism is applicable to both OSPFv2 and OSPFv3."];
+  RFC7884 -> rev_cites;
+  RFC7923 [label="RFC7923
+Requirements for Subscription to YANG
+Datastores
+2016", shape=ellipse, URL="RFC7923.html", target="_top", tooltip="This document provides requirements for a service that allows client applications to subscribe to updates of a YANG datastore.  Based on criteria negotiated as part of a subscription, updates will be pushed to targeted recipients.  Such a capability eliminates the need for periodic polling of YANG datastores by applications and fills a functional gap in existing YANG transports (i.e., Network Configuration Protocol (NETCONF) and RESTCONF).  Such a service can be summarized as a pub/sub service for YANG datastore updates.  Beyond a set of basic requirements for the service, various refinements are addressed.  These refinements include: periodicity of object updates, filtering out of objects underneath a requested a subtree, and delivery QoS guarantees."];
+  RFC7923 -> rev_cites;
+  RFC7938 [label="RFC7938
+Use of BGP for Routing in Large-Scale
+Data Centers
+2016", shape=ellipse, URL="RFC7938.html", target="_top", tooltip="Some network operators build and operate data centers that support over one hundred thousand servers.  In this document, such data centers are referred to as large-scale to differentiate them from smaller infrastructures.  Environments of this scale have a unique set of network requirements with an emphasis on operational simplicity and network stability.  This document summarizes operational experience in designing and operating large-scale data centers using BGP as the only routing protocol.  The intent is to report on a proven and stable routing design that could be leveraged by others in the industry."];
+  RFC7938 -> rev_cites;
+  RFC7949 [label="RFC7949
+OSPFv3 over IPv4 for IPv6 Transition
+2016", shape=ellipse, URL="RFC7949.html", target="_top", tooltip="This document defines a mechanism to use IPv4 to transport OSPFv3 packets.  Using OSPFv3 over IPv4 with the existing OSPFv3 Address Family extension can simplify transition from an OSPFv2 IPv4-only routing domain to an OSPFv3 dual-stack routing domain.  This document updates RFC 5838 to support virtual links in the IPv4 unicast address family when using OSPFv3 over IPv4."];
+  RFC7949 -> rev_cites;
+  RFC7962 [label="RFC7962
+Alternative Network Deployments:
+Taxonomy, Characterization,
+Technologies, and Architectures
+2016", shape=ellipse, URL="RFC7962.html", target="_top", tooltip="This document presents a taxonomy of a set of Alternative Network Deployments that emerged in the last decade with the aim of bringing Internet connectivity to people or providing a local communication infrastructure to serve various complementary needs and objectives. They employ architectures and topologies different from those of mainstream networks and rely on alternative governance and business models. The document also surveys the technologies deployed in these networks, and their differing architectural characteristics, including a set of definitions and shared properties. The classification considers models such as Community Networks, Wireless Internet Service Providers (WISPs), networks owned by individuals but leased out to network operators who use them as a low-cost medium to reach the underserved population, networks that provide connectivity by sharing wireless resources of the users, and rural utility cooperatives."];
+  RFC7962 -> rev_cites;
+  RFC8042 [label="RFC8042
+OSPF Two-Part Metric
+2016", shape=ellipse, URL="RFC8042.html", target="_top", tooltip="This document specifies an optional OSPF protocol extension to represent router metrics in a multi-access network in two parts: the metric from the router to the network and the metric from the network to the router.  For such networks, the router-to-router metric for OSPF route computation is the sum of the two parts.  This document updates RFC 2328."];
+  RFC8042 -> rev_cites;
+  RFC8099 [label="RFC8099
+OSPF Topology-Transparent Zone
+2017", shape=ellipse, URL="RFC8099.html", target="_top", tooltip="This document presents a Topology-Transparent Zone (TTZ) in an OSPF area.  A TTZ comprises a group of routers and a number of links connecting these routers.  Any router outside of the zone is not aware of the zone.  A TTZ hides the internal topology of the TTZ from the outside.  It does not directly advertise any internal information about the TTZ to a router outside of the TTZ.  The information about the links and routers such as a link down inside the TTZ is not advertised to any router outside of the TTZ."];
+  RFC8099 -> rev_cites;
+  RFC8333 [label="RFC8333
+Micro-loop Prevention by Introducing a
+Local Convergence Delay
+2018", shape=ellipse, URL="RFC8333.html", target="_top", tooltip="This document describes a mechanism for link-state routing protocols that prevents local transient forwarding loops in case of link failure. This mechanism proposes a two-step convergence by introducing a delay between the convergence of the node adjacent to the topology change and the network-wide convergence. Because this mechanism delays the IGP convergence, it may only be used for planned maintenance or when Fast Reroute (FRR) protects the traffic during the time between the link failure and the IGP convergence. The mechanism is limited to the link-down event in order to keep the mechanism simple. Simulations using real network topologies have been performed and show that local loops are a significant portion (>50%) of the total forwarding loops."];
+  RFC8333 -> rev_cites;
+  RFC8345 [label="RFC8345
+A YANG Data Model for Network Topologies
+2018", shape=ellipse, URL="RFC8345.html", target="_top", tooltip="This document defines an abstract (generic, or base) YANG data model for network/service topologies and inventories.  The data model serves as a base model that is augmented with technology-specific details in other, more specific topology and inventory data models."];
+  RFC8345 -> rev_cites;
+  RFC8346 [label="RFC8346
+A YANG Data Model for Layer 3 Topologies
+2018", shape=ellipse, URL="RFC8346.html", target="_top", tooltip="This document defines a YANG data model for Layer 3 network topologies."];
+  RFC8346 -> rev_cites;
+  RFC8363 [label="RFC8363
+GMPLS OSPF-TE Extensions in Support of
+Flexi-Grid Dense Wavelength Division
+Multiplexing (DWDM) Networks
+2018", shape=ellipse, URL="RFC8363.html", target="_top", tooltip="The International Telecommunication Union Telecommunication standardization sector (ITU-T) has extended its Recommendations G.694.1 and G.872 to include a new Dense Wavelength Division Multiplexing (DWDM) grid by defining channel spacings, a set of nominal central frequencies, and the concept of the frequency slot. Corresponding techniques for data-plane connections are known as flexi-grid. Based on the characteristics of flexi-grid defined in G.694.1 and in RFCs 7698 and 7699, this document describes the Open Shortest Path First - Traffic Engineering (OSPF-TE) extensions in support of GMPLS control of networks that include devices that use the new flexible optical grid."];
+  RFC8363 -> rev_cites;
+  RFC8367 [label="RFC8367
+Wrongful Termination of Internet
+Protocol (IP) Packets
+2018", shape=ellipse, URL="RFC8367.html", target="_top", tooltip="Routers and middleboxes terminate packets for various reasons.  In some cases, these packets are wrongfully terminated.  This memo describes some of the most common scenarios of wrongful termination of Internet Protocol (IP) packets and presents recommendations for mitigating them."];
+  RFC8367 -> rev_cites;
+  RFC8379 [label="RFC8379
+OSPF Graceful Link Shutdown
+2018", shape=ellipse, URL="RFC8379.html", target="_top", tooltip="When a link is being prepared to be taken out of service, the traffic needs to be diverted from both ends of the link. Increasing the metric to the highest value on one side of the link is not sufficient to divert the traffic flowing in the other direction. It is useful for the routers in an OSPFv2 or OSPFv3 routing domain to be able to advertise a link as being in a graceful-shutdown state to indicate impending maintenance activity on the link. This information can be used by the network devices to reroute the traffic effectively. This document describes the protocol extensions to disseminate graceful-link-shutdown information in OSPFv2 and OSPFv3."];
+  RFC8379 -> rev_cites;
+  RFC8405 [label="RFC8405
+Shortest Path First (SPF) Back-Off Delay
+Algorithm for Link-State IGPs
+2018", shape=ellipse, URL="RFC8405.html", target="_top", tooltip="This document defines a standard algorithm to temporarily postpone or back off link-state IGP Shortest Path First (SPF) computations. This reduces the computational load and churn on IGP nodes when multiple temporally close network events trigger multiple SPF computations. Having one standard algorithm improves interoperability by reducing the probability and/or duration of transient forwarding loops during the IGP convergence when the IGP reacts to multiple temporally close IGP events."];
+  RFC8405 -> rev_cites;
+  RFC8444 [label="RFC8444
+OSPFv2 Extensions for Bit Index Explicit
+Replication (BIER)
+2018", shape=ellipse, URL="RFC8444.html", target="_top", tooltip="Bit Index Explicit Replication (BIER) is an architecture that provides optimal multicast forwarding through a BIER domain without requiring intermediate routers to maintain multicast-related, per- flow state. BIER also does not require an explicit tree-building protocol for its operation. A multicast data packet enters a BIER domain at a Bit-Forwarding Ingress Router (BFIR) and leaves the BIER domain at one or more Bit-Forwarding Egress Routers (BFERs). The BFIR adds a BIER packet header to the packet. The BIER packet header contains a BitString in which each bit represents exactly one BFER to forward the packet to. The set of BFERs to which the multicast packet needs to be forwarded is expressed by the set of bits in the BIER packet header. This document describes the OSPF protocol extension (from RFC 2328) that is required for BIER with MPLS encapsulation (which is defined in RFC 8296). Support for other encapsulation types and the use of multiple encapsulation types are outside the scope of this document."];
+  RFC8444 -> rev_cites;
+  RFC8510 [label="RFC8510
+OSPF Link-Local Signaling (LLS)
+Extensions for Local Interface ID
+Advertisement
+2019", shape=ellipse, URL="RFC8510.html", target="_top", tooltip="Every OSPF interface is assigned an Interface ID that uniquely identifies the interface on the router. In some cases, it is useful to know the assigned Interface ID on the remote side of the adjacency (Remote Interface ID). This document describes the extensions to OSPF link-local signaling (LLS) to advertise the Local Interface ID."];
+  RFC8510 -> rev_cites;
+  RFC8518 [label="RFC8518
+Selection of Loop-Free Alternates for
+Multi-Homed Prefixes
+2019", shape=ellipse, URL="RFC8518.html", target="_top", tooltip="Deployment experience gained from implementing algorithms to determine Loop-Free Alternates (LFAs) for multi-homed prefixes (MHPs) has revealed some avenues for potential improvement.  This document provides explicit inequalities that can be used to evaluate neighbors as potential alternates for MHPs.  It also provides detailed criteria for evaluating potential alternates for external prefixes advertised by OSPF ASBRs.  This document updates Section 6 of RFC 5286 by expanding some of the routing aspects."];
+  RFC8518 -> rev_cites;
+  RFC8541 [label="RFC8541
+Impact of Shortest Path First (SPF)
+Trigger and Delay Strategies on IGP
+Micro-loops
+2019", shape=ellipse, URL="RFC8541.html", target="_top", tooltip="A micro-loop is a packet-forwarding loop that may occur transiently among two or more routers in a hop-by-hop packet-forwarding paradigm. This document analyzes the impact of using different link state IGP implementations in a single network with respect to micro-loops. The analysis is focused on the Shortest Path First (SPF) delay algorithm but also mentions the impact of SPF trigger strategies."];
+  RFC8541 -> rev_cites;
+  RFC8665 [label="RFC8665
+OSPF Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8665.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv2 extensions required for Segment Routing."];
+  RFC8665 -> rev_cites;
+  RFC8687 [label="RFC8687
+OSPF Routing with Cross-Address Family
+Traffic Engineering Tunnels
+2019", shape=ellipse, URL="RFC8687.html", target="_top", tooltip="When using Traffic Engineering (TE) in a dual-stack IPv4/IPv6 network, the Multiprotocol Label Switching (MPLS) TE Label Switched Path (LSP) infrastructure may be duplicated, even if the destination IPv4 and IPv6 addresses belong to the same remote router. In order to achieve an integrated MPLS TE LSP infrastructure, OSPF routes must be computed over MPLS TE tunnels created using information propagated in another OSPF instance. This issue is solved by advertising cross-address family (X-AF) OSPF TE information. This document describes an update to RFC 5786 that allows for the easy identification of a router's local X-AF IP addresses."];
+  RFC8687 -> rev_cites;
+  RFC8770 [label="RFC8770
+Host Router Support for OSPFv2
+2020", shape=ellipse, URL="RFC8770.html", target="_top", tooltip="The Open Shortest Path First Version 2 (OSPFv2) protocol does not have a mechanism for a node to repel transit traffic if it is on the shortest path.  This document defines a bit called the Host-bit (H-bit).  This bit enables a router to advertise that it is a non-transit router.  This document also describes the changes needed to support the H-bit in the domain.  In addition, this document updates RFC 6987 to advertise Type 2 External and Not-So-Stubby Area (NSSA) Link State Advertisements (LSAs) (RFC 3101) with a high cost in order to repel traffic effectively."];
+  RFC8770 -> rev_cites;
+  RFC8900 [label="RFC8900
+IP Fragmentation Considered Fragile
+2020", shape=ellipse, URL="RFC8900.html", target="_top", tooltip="This document describes IP fragmentation and explains how it introduces fragility to Internet communication. This document also proposes alternatives to IP fragmentation and provides recommendations for developers and network operators."];
+  RFC8900 -> rev_cites;
+  RFC8920 [label="RFC8920
+OSPF Application-Specific Link
+Attributes
+2020", shape=ellipse, URL="RFC8920.html", target="_top", tooltip="Existing traffic-engineering-related link attribute advertisements have been defined and are used in RSVP-TE deployments.  Since the original RSVP-TE use case was defined, additional applications (e.g., Segment Routing Policy and Loop-Free Alternates) that also make use of the link attribute advertisements have been defined.  In cases where multiple applications wish to make use of these link attributes, the current advertisements do not support application-specific values for a given attribute, nor do they support indication of which applications are using the advertised value for a given link.  This document introduces new link attribute advertisements in OSPFv2 and OSPFv3 that address both of these shortcomings."];
+  RFC8920 -> rev_cites;
+  RFC9013 [label="RFC9013
+OSPF Advertisement of Tunnel
+Encapsulations
+2021", shape=ellipse, URL="RFC9013.html", target="_top", tooltip="Networks use tunnels for a variety of reasons.  A large variety of tunnel types are defined, and the tunnel encapsulator router needs to select a type of tunnel that is supported by the tunnel decapsulator router.  This document defines how to advertise, in OSPF Router Information Link State Advertisements (LSAs), the list of tunnel encapsulations supported by the tunnel decapsulator."];
+  RFC9013 -> rev_cites;
+  RFC9067 [label="RFC9067
+A YANG Data Model for Routing Policy
+2021", shape=ellipse, URL="RFC9067.html", target="_top", tooltip="This document defines a YANG data model for configuring and managing routing policies in a vendor-neutral way.  The model provides a generic routing policy framework that can be extended for specific routing protocols using the YANG 'augment' mechanism."];
+  RFC9067 -> rev_cites;
+  RFC9084 [label="RFC9084
+OSPF Prefix Originator Extensions
+2021", shape=ellipse, URL="RFC9084.html", target="_top", tooltip="This document defines OSPF extensions to include information associated with the node originating a prefix along with the prefix advertisement.  These extensions do not change the core OSPF route computation functionality but provide useful information for network analysis, troubleshooting, and use cases like traffic engineering."];
+  RFC9084 -> rev_cites;
+  RFC9104 [label="RFC9104
+Distribution of Traffic Engineering
+Extended Administrative Groups Using the
+Border Gateway Protocol - Link State
+(BGP-LS)
+2021", shape=ellipse, URL="RFC9104.html", target="_top", tooltip="Administrative groups are link attributes used for traffic engineering.  This document defines an extension to the Border Gateway Protocol - Link State (BGP-LS) for advertisement of extended administrative groups (EAGs)."];
+  RFC9104 -> rev_cites;
+  RFC9107 [label="RFC9107
+BGP Optimal Route Reflection (BGP ORR)
+2021", shape=ellipse, URL="RFC9107.html", target="_top", tooltip="This document defines an extension to BGP route reflectors. On route reflectors, BGP route selection is modified in order to choose the best route from the standpoint of their clients, rather than from the standpoint of the route reflectors themselves. Depending on the scaling and precision requirements, route selection can be specific for one client, common for a set of clients, or common for all clients of a route reflector. This solution is particularly applicable in deployments using centralized route reflectors, where choosing the best route based on the route reflector's IGP location is suboptimal. This facilitates, for example, a best exit point policy (hot potato routing). The solution relies upon all route reflectors learning all paths that are eligible for consideration. BGP route selection is performed in the route reflectors based on the IGP cost from configured locations in the link-state IGP."];
+  RFC9107 -> rev_cites;
+  RFC9129 [label="RFC9129
+YANG Data Model for the OSPF Protocol
+2022", shape=ellipse, URL="RFC9129.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage OSPF.  The model is based on YANG 1.1 as defined in RFC 7950 and conforms to the Network Management Datastore Architecture (NMDA) as described in RFC 8342."];
+  RFC9129 -> rev_cites;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  RFC9256 -> rev_cites;
+  RFC9259 [label="RFC9259
+Operations, Administration, and
+Maintenance (OAM) in Segment Routing
+over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9259.html", target="_top", tooltip="This document describes how the existing IPv6 mechanisms for ping and traceroute can be used in a Segment Routing over IPv6 (SRv6) network.  The document also specifies the OAM flag (O-flag) in the Segment Routing Header (SRH) for performing controllable and predictable flow sampling from segment endpoints.  In addition, the document describes how a centralized monitoring system performs a path continuity check between any nodes within an SRv6 domain."];
+  RFC9259 -> rev_cites;
+  RFC9294 [label="RFC9294
+Application-Specific Link Attributes
+Advertisement Using the Border Gateway
+Protocol - Link State (BGP-LS)
+2022", shape=ellipse, URL="RFC9294.html", target="_top", tooltip="Extensions have been defined for link-state routing protocols that enable distribution of application-specific link attributes for existing as well as newer applications such as Segment Routing (SR).  This document defines extensions to the Border Gateway Protocol - Link State (BGP-LS) to enable the advertisement of these application-specific attributes as a part of the topology information from the network."];
+  RFC9294 -> rev_cites;
+  RFC9339 [label="RFC9339
+OSPF Reverse Metric
+2022", shape=ellipse, URL="RFC9339.html", target="_top", tooltip="This document specifies the extensions to OSPF that enable a router to use Link-Local Signaling (LLS) to signal the metric that receiving OSPF neighbor(s) should use for a link to the signaling router.  When used on the link to the signaling router, the signaling of this reverse metric (RM) allows a router to influence the amount of traffic flowing towards itself.  In certain use cases, this enables routers to maintain symmetric metrics on both sides of a link between them."];
+  RFC9339 -> rev_cites;
+  RFC9350 [label="RFC9350
+IGP Flexible Algorithm
+2023", shape=ellipse, URL="RFC9350.html", target="_top", tooltip="IGP protocols historically compute the best paths over the network based on the IGP metric assigned to the links.  Many network deployments use RSVP-TE or Segment Routing - Traffic Engineering (SR-TE) to steer traffic over a path that is computed using different metrics or constraints than the shortest IGP path.  This document specifies a solution that allows IGPs themselves to compute constraint-based paths over the network.  This document also specifies a way of using Segment Routing (SR) Prefix-SIDs and SRv6 locators to steer packets along the constraint-based paths."];
+  RFC9350 -> rev_cites;
+  RFC9355 [label="RFC9355
+OSPF Bidirectional Forwarding Detection
+(BFD) Strict-Mode
+2023", shape=ellipse, URL="RFC9355.html", target="_top", tooltip="This document specifies the extensions to OSPF that enable an OSPF
+router to signal the requirement for a Bidirectional Forwarding
+Detection (BFD) session prior to adjacency formation. Link-Local
+Signaling (LLS) is used to advertise the requirement for strict-mode
+BFD session establishment for an OSPF adjacency. If both OSPF
+neighbors advertise BFD strict-mode, adjacency formation will be
+blocked until a BFD session has been successfully established. This document updates RFC 2328 by augmenting the OSPF neighbor state
+machine with a check for BFD session up before progression from Init
+to 2-Way state when operating in OSPF BFD strict-mode."];
+  RFC9355 -> rev_cites;
+  RFC9454 [label="RFC9454
+Update to OSPF Terminology
+2023", shape=ellipse, URL="RFC9454.html", target="_top", tooltip="This document updates some OSPF terminology to be in line with inclusive language used in the industry. The IETF has designated Guidance for NIST Staff on Using Inclusive Language in Documentary Standards by the US National Institute of Standards and Technology (NIST) for its inclusive language guidelines. It is intended that all future OSPF documents use this revised terminology even when they reference the RFCs updated by this document. This document updates RFCs 2328, 4222, 4811, 5243, 5340, 5614, and 5838."];
+  RFC9454 -> rev_cites;
+  RFC9492 [label="RFC9492
+OSPF Application-Specific Link
+Attributes
+2023", shape=ellipse, URL="RFC9492.html", target="_top", tooltip="Existing traffic-engineering-related link attribute advertisements have been defined and are used in RSVP-TE deployments. Since the original RSVP-TE use case was defined, additional applications such as Segment Routing (SR) Policy and Loop-Free Alternates (LFAs) that also make use of the link attribute advertisements have been defined. In cases where multiple applications wish to make use of these link attributes, the current advertisements do not support application-specific values for a given attribute, nor do they support indication of which applications are using the advertised value for a given link. This document introduces link attribute advertisements in OSPFv2 and OSPFv3 that address both of these shortcomings. This document obsoletes RFC 8920."];
+  RFC9492 -> rev_cites;
+  RFC9502 [label="RFC9502
+IGP Flexible Algorithm in IP Networks
+2023", shape=ellipse, URL="RFC9502.html", target="_top", tooltip="This document extends IGP Flexible Algorithm so that it can be used with regular IPv4 and IPv6 forwarding."];
+  RFC9502 -> rev_cites;
+  RFC9552 [label="RFC9552
+Distribution of Link-State and Traffic
+Engineering Information Using BGP
+2023", shape=ellipse, URL="RFC9552.html", target="_top", tooltip="In many environments, a component external to a network is called upon to perform computations based on the network topology and the current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism applies to physical and virtual (e.g., tunnel) IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs). This document obsoletes RFC 7752 by completely replacing that document. It makes some small changes and clarifications to the previous specification. This document also obsoletes RFC 9029 by incorporating the updates that it made to RFC 7752."];
+  RFC9552 -> rev_cites;
+  RFC9568 [label="RFC9568
+Virtual Router Redundancy Protocol
+(VRRP) Version 3 for IPv4 and IPv6
+2024", shape=ellipse, URL="RFC9568.html", target="_top", tooltip="This document defines version 3 of the Virtual Router Redundancy Protocol (VRRP) for IPv4 and IPv6.  It obsoletes RFC 5798, which previously specified VRRP (version 3).  RFC 5798 obsoleted RFC 3768, which specified VRRP (version 2) for IPv4.  VRRP specifies an election protocol that dynamically assigns responsibility for a Virtual Router to one of the VRRP Routers on a LAN.  The VRRP Router controlling the IPv4 or IPv6 address(es) associated with a Virtual Router is called the Active Router, and it forwards packets routed to these IPv4 or IPv6 addresses.  Active Routers are configured with virtual IPv4 or IPv6 addresses, and Backup Routers infer the address family of the virtual addresses being advertised based on the IP protocol version.  Within a VRRP Router, the Virtual Routers in each of the IPv4 and IPv6 address families are independent of one another and always treated as separate Virtual Router instances.  The election process provides dynamic failover in the forwarding responsibility should the Active Router become unavailable.  For IPv4, the advantage gained from using VRRP is a higher-availability default path without requiring configuration of dynamic routing or router discovery protocols on every end-host.  For IPv6, the advantage gained from using VRRP for IPv6 is a quicker switchover to Backup Routers than can be obtained with standard IPv6 Neighbor Discovery mechanisms."];
+  RFC9568 -> rev_cites;
+  RFC9667 [label="RFC9667
+Dynamic Flooding on Dense Graphs
+2024", shape=ellipse, URL="RFC9667.html", target="_top", tooltip="Routing with link-state protocols in dense network topologies can result in suboptimal convergence times due to the overhead associated with flooding. This can be addressed by decreasing the flooding topology so that it is less dense. This document discusses the problem in some depth and an architectural solution. Specific protocol changes for IS-IS, OSPFv2, and OSPFv3 are described in this document."];
+  RFC9667 -> rev_cites;
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, URL="RFC9689.html", target="_top", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."];
+  RFC9689 -> rev_cites;
+  RFC9696 [label="RFC9696
+Routing in Fat Trees (RIFT)
+Applicability and Operational
+Considerations
+2025", shape=ellipse, URL="RFC9696.html", target="_top", tooltip="This document discusses the properties, applicability, and operational considerations of Routing in Fat Trees (RIFT) in different network scenarios with the intention of providing a rough guide on how RIFT can be deployed to simplify routing operations in Clos topologies and their variations."];
+  RFC9696 -> rev_cites;
+  RFC9717 [label="RFC9717
+A Routing Architecture for Satellite
+Networks
+2025", shape=ellipse, URL="RFC9717.html", target="_top", tooltip="Satellite networks present some interesting challenges for packet networking. The entire topology is continually in motion, with links far less reliable than what is common in terrestrial networks. Some changes to link connectivity can be anticipated due to orbital dynamics. This document proposes a scalable routing architecture for satellite networks based on existing routing protocols and mechanisms that is enhanced with scheduled link connectivity change information. This document proposes no protocol changes. This document presents the author's view and is neither the product of the IETF nor a consensus view of the community."];
+  RFC9717 -> rev_cites;
+  RFC9815 [label="RFC9815
+BGP Link State (BGP-LS) Shortest Path
+First (SPF) Routing
+2025", shape=ellipse, URL="RFC9815.html", target="_top", tooltip="Many Massively Scaled Data Centers (MSDCs) have converged on simplified Layer 3 (L3) routing.  Furthermore, requirements for operational simplicity have led many of these MSDCs to converge on BGP as their single routing protocol for both fabric routing and Data Center Interconnect (DCI) routing.  This document describes extensions to BGP for use with BGP Link State (BGP-LS) distribution and the Shortest Path First (SPF) algorithm.  In doing this, it allows BGP to be efficiently used as both the underlay protocol and the overlay protocol in MSDCs."];
+  RFC9815 -> rev_cites;
+  RFC9816 [label="RFC9816
+Usage and Applicability of BGP Link
+State (BGP-LS) Shortest Path First (SPF)
+Routing in Data Centers
+2025", shape=ellipse, URL="RFC9816.html", target="_top", tooltip="This document discusses the usage and applicability of BGP Link State (BGP-LS) Shortest Path First (SPF) extensions in data center networks utilizing Clos or Fat Tree topologies.  The document is intended to provide simplified guidance for the deployment of BGP-LS SPF extensions."];
+  RFC9816 -> rev_cites;
+  RFC9825 [label="RFC9825
+Extensions to OSPF for Advertising
+Prefix Administrative Tags
+2025", shape=ellipse, URL="RFC9825.html", target="_top", tooltip="It is useful for routers in OSPFv2 and OSPFv3 routing domains to be able to associate tags with prefixes.  Previously, OSPFv2 and OSPFv3 were relegated to a single tag and only for Autonomous System (AS) External and Not-So-Stubby-Area (NSSA) prefixes.  With the flexible encodings provided by OSPFv2 Prefix/Link Attribute Advertisement and OSPFv3 Extended Link State Advertisements (LSAs), multiple administrative tags may be advertised for all types of prefixes.  These administrative tags can be used for many applications including route redistribution policy, selective prefix prioritization, selective IP Fast Reroute (IPFRR) prefix protection, and many others."];
+  RFC9825 -> rev_cites;
+  RFC9843 [label="RFC9843
+IGP Flexible Algorithms: Bandwidth,
+Delay, Metrics, and Constraints
+2025", shape=ellipse, URL="RFC9843.html", target="_top", tooltip="Many networks configure the IGP link metric relative to the link capacity, and high bandwidth traffic gets routed per the link capacity. Flexible Algorithms provide mechanisms to create constraint-based paths in an IGP. This specification documents a generic metric-type and a set of bandwidth-related constraints to be used in Flexible Algorithms. This document updates RFC 9350."];
+  RFC9843 -> rev_cites;
+  RFC9857 [label="RFC9857
+Advertisement of Segment Routing
+Policies Using BGP - Link State
+2025", shape=ellipse, URL="RFC9857.html", target="_top", tooltip="This document describes a mechanism used to collect Segment Routing (SR) Policy information that is locally available in a node and advertise it into BGP - Link State (BGP-LS) updates.  Such information can be used by external components for path computation, reoptimization, service placement, network visualization, etc."];
+  RFC9857 -> rev_cites;
+  RFC9903 [label="RFC9903
+A YANG Data Model for OSPF Segment
+Routing over the MPLS Data Plane
+2025", shape=ellipse, URL="RFC9903.html", target="_top", tooltip="This document defines a YANG data model that can be used to manage OSPF extensions for Segment Routing over the MPLS data plane."];
+  RFC9903 -> rev_cites;
+}

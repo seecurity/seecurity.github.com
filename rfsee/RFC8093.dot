@@ -1,0 +1,42 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8093 [label="RFC8093
+Deprecation of BGP Path Attribute Values
+30, 31, 129, 241, 242, and 243
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document requests IANA to mark BGP path attribute values 30, 31, 129, 241, 242, and 243 as Deprecated."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8093;
+
+  obs [label="obsoletes", shape=box];
+  RFC8093 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8093 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8093;
+
+  cites [label="cites", shape=box];
+  RFC8093 -> cites;
+  RFC8092 [label="RFC8092
+BGP Large Communities Attribute
+2017", shape=ellipse, URL="RFC8092.html", target="_top", tooltip="This document describes the BGP Large Communities attribute, an extension to BGP-4.  This attribute provides a mechanism to signal opaque information within separate namespaces to aid in routing management.  The attribute is suitable for use with all Autonomous System Numbers (ASNs) including four-octet ASNs."];
+  cites -> RFC8092;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  cites -> RFC7606;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8093;
+}

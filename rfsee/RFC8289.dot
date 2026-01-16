@@ -1,0 +1,72 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8289 [label="RFC8289
+Controlled Delay Active Queue Management
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes CoDel (Controlled Delay) -- a general framework that controls bufferbloat-generated excess delay in modern networking environments.  CoDel consists of an estimator, a setpoint, and a control loop.  It requires no configuration in normal Internet deployments."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8289;
+
+  obs [label="obsoletes", shape=box];
+  RFC8289 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8289 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8289;
+
+  cites [label="cites", shape=box];
+  RFC8289 -> cites;
+  RFC2309 [label="RFC2309
+Recommendations on Queue Management and
+Congestion Avoidance in the Internet
+1998", shape=ellipse, URL="RFC2309.html", target="_top", tooltip="This memo presents two recommendations to the Internet community concerning measures to improve and preserve Internet performance.  It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management in routers, to improve the performance of today's Internet.  It also urges a concerted effort of research, measurement, and ultimate deployment of router mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  cites -> RFC2309;
+  RFC8290 [label="RFC8290
+The Flow Queue CoDel Packet Scheduler
+and Active Queue Management Algorithm
+2018", shape=ellipse, URL="RFC8290.html", target="_top", tooltip="This memo presents the FQ-CoDel hybrid packet scheduler and Active Queue Management (AQM) algorithm, a powerful tool for fighting bufferbloat and reducing latency. FQ-CoDel mixes packets from multiple flows and reduces the impact of head-of-line blocking from bursty traffic. It provides isolation for low-rate traffic such as DNS, web, and videoconferencing traffic. It improves utilisation across the networking fabric, especially for bidirectional traffic, by keeping queue lengths short, and it can be implemented in a memory- and CPU-efficient fashion across a wide range of hardware."];
+  cites -> RFC8290;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8289;
+  RFC8290 [label="RFC8290
+The Flow Queue CoDel Packet Scheduler
+and Active Queue Management Algorithm
+2018", shape=ellipse, URL="RFC8290.html", target="_top", tooltip="This memo presents the FQ-CoDel hybrid packet scheduler and Active Queue Management (AQM) algorithm, a powerful tool for fighting bufferbloat and reducing latency. FQ-CoDel mixes packets from multiple flows and reduces the impact of head-of-line blocking from bursty traffic. It provides isolation for low-rate traffic such as DNS, web, and videoconferencing traffic. It improves utilisation across the networking fabric, especially for bidirectional traffic, by keeping queue lengths short, and it can be implemented in a memory- and CPU-efficient fashion across a wide range of hardware."];
+  RFC8290 -> rev_cites;
+  RFC8511 [label="RFC8511
+TCP Alternative Backoff with ECN (ABE)
+2018", shape=ellipse, URL="RFC8511.html", target="_top", tooltip="Active Queue Management (AQM) mechanisms allow for burst tolerance while enforcing short queues to minimise the time that packets spend enqueued at a bottleneck.  This can cause noticeable performance degradation for TCP connections traversing such a bottleneck, especially if there are only a few flows or their bandwidth-delay product (BDP) is large.  The reception of a Congestion Experienced (CE) Explicit Congestion Notification (ECN) mark indicates that an AQM mechanism is used at the bottleneck, and the bottleneck network queue is therefore likely to be short.  Feedback of this signal allows the TCP sender-side ECN reaction in congestion avoidance to reduce the Congestion Window (cwnd) by a smaller amount than the congestion control algorithm's reaction to inferred packet loss.  Therefore, this specification defines an experimental change to the TCP reaction specified in RFC 3168, as permitted by RFC 8311."];
+  RFC8511 -> rev_cites;
+  RFC8655 [label="RFC8655
+Deterministic Networking Architecture
+2019", shape=ellipse, URL="RFC8655.html", target="_top", tooltip="This document provides the overall architecture for Deterministic Networking (DetNet), which provides a capability to carry specified unicast or multicast data flows for real-time applications with extremely low data loss rates and bounded latency within a network domain.  Techniques used include 1) reserving data-plane resources for individual (or aggregated) DetNet flows in some or all of the intermediate nodes along the path of the flow, 2) providing explicit routes for DetNet flows that do not immediately change with the network topology, and 3) distributing data from DetNet flow packets over time and/or space to ensure delivery of each packet's data in spite of the loss of a path.  DetNet operates at the IP layer and delivers service over lower-layer technologies such as MPLS and Time- Sensitive Networking (TSN) as defined by IEEE 802.1."];
+  RFC8655 -> rev_cites;
+  RFC9065 [label="RFC9065
+Considerations around Transport Header
+Confidentiality, Network Operations, and
+the Evolution of Internet Transport
+Protocols
+2021", shape=ellipse, URL="RFC9065.html", target="_top", tooltip="To protect user data and privacy, Internet transport protocols have supported payload encryption and authentication for some time. Such encryption and authentication are now also starting to be applied to the transport protocol headers. This helps avoid transport protocol ossification by middleboxes, mitigate attacks against the transport protocol, and protect metadata about the communication. Current operational practice in some networks inspect transport header information within the network, but this is no longer possible when those transport headers are encrypted. This document discusses the possible impact when network traffic uses a protocol with an encrypted transport header. It suggests issues to consider when designing new transport protocols or features."];
+  RFC9065 -> rev_cites;
+}

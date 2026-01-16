@@ -1,0 +1,135 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9195 [label="RFC9195
+A File Format for YANG Instance Data
+2022", shape=ellipse, fillcolor="#e8f0ff", tooltip="There is a need to document data defined in YANG models at design time, implementation time, or when a live server is unavailable.  This document specifies a standard file format for YANG instance data, which follows the syntax and semantics of existing YANG models and annotates it with metadata."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9195;
+
+  obs [label="obsoletes", shape=box];
+  RFC9195 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9195 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9195;
+
+  cites [label="cites", shape=box];
+  RFC9195 -> cites;
+  RFC8342 [label="RFC8342
+Network Management Datastore
+Architecture (NMDA)
+2018", shape=ellipse, URL="RFC8342.html", target="_top", tooltip="Datastores are a fundamental concept binding the data models written in the YANG data modeling language to network management protocols such as the Network Configuration Protocol (NETCONF) and RESTCONF.  This document defines an architectural framework for datastores based on the experience gained with the initial simpler model, addressing requirements that were not well supported in the initial model.  This document updates RFC 7950."];
+  cites -> RFC8342;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7950 [label="RFC7950
+The YANG 1.1 Data Modeling Language
+2016", shape=ellipse, URL="RFC7950.html", target="_top", tooltip="YANG is a data modeling language used to model configuration data, state data, Remote Procedure Calls, and notifications for network management protocols.  This document describes the syntax and semantics of version 1.1 of the YANG language.  YANG version 1.1 is a maintenance release of the YANG language, addressing ambiguities and defects in the original specification.  There are a small number of backward incompatibilities from YANG version 1.  This document also specifies the YANG mappings to the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC7950;
+  RFC7951 [label="RFC7951
+JSON Encoding of Data Modeled with YANG
+2016", shape=ellipse, URL="RFC7951.html", target="_top", tooltip="This document defines encoding rules for representing configuration data, state data, parameters of Remote Procedure Call (RPC) operations or actions, and notifications defined using YANG as JavaScript Object Notation (JSON) text."];
+  cites -> RFC7951;
+  RFC7952 [label="RFC7952
+Defining and Using Metadata with YANG
+2016", shape=ellipse, URL="RFC7952.html", target="_top", tooltip="This document defines a YANG extension that allows for defining metadata annotations in YANG modules.  The document also specifies XML and JSON encoding of annotations and other rules for annotating instances of YANG data nodes."];
+  cites -> RFC7952;
+  RFC8526 [label="RFC8526
+NETCONF Extensions to Support the
+Network Management Datastore
+Architecture
+2019", shape=ellipse, URL="RFC8526.html", target="_top", tooltip="This document extends the Network Configuration Protocol (NETCONF) defined in RFC 6241 in order to support the Network Management Datastore Architecture (NMDA) defined in RFC 8342. This document updates RFCs 6241 and 7950. The update to RFC 6241 adds new <get-data> and <edit-data> operations and augments existing <lock>, <unlock>, and <validate> operations. The update to RFC 7950 requires the usage of the YANG library (described in RFC 8525) by NETCONF servers implementing the NMDA."];
+  cites -> RFC8526;
+  RFC8527 [label="RFC8527
+RESTCONF Extensions to Support the
+Network Management Datastore
+Architecture
+2019", shape=ellipse, URL="RFC8527.html", target="_top", tooltip="This document extends the RESTCONF protocol defined in RFC 8040 in order to support the Network Management Datastore Architecture (NMDA) defined in RFC 8342. This document updates RFC 8040 by introducing new datastore resources, adding a new query parameter, and requiring the usage of the YANG library (described in RFC 8525) by RESTCONF servers implementing the NMDA."];
+  cites -> RFC8527;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+  RFC6243 [label="RFC6243
+With-defaults Capability for NETCONF
+2011", shape=ellipse, URL="RFC6243.html", target="_top", tooltip="The Network Configuration Protocol (NETCONF) defines ways to read and edit configuration data from a NETCONF server.  In some cases, part of this data may not be set by the NETCONF client, but rather a default value known to the server is used instead.  In many situations the NETCONF client has a priori knowledge about default data, so the NETCONF server does not need to save it in a NETCONF configuration datastore or send it to the client in a retrieval operation reply.  In other situations the NETCONF client will need this data from the server.  Not all server implementations treat this default data the same way.  This document defines a capability-based extension to the NETCONF protocol that allows the NETCONF client to identify how defaults are processed by the server, and also defines new mechanisms for client control of server processing of default data. [STANDARDS-TRACK]"];
+  cites -> RFC6243;
+  RFC8525 [label="RFC8525
+YANG Library
+2019", shape=ellipse, URL="RFC8525.html", target="_top", tooltip="This document describes a YANG library that provides information about the YANG modules, datastores, and datastore schemas used by a network management server.  Simple caching mechanisms are provided to allow clients to minimize retrieval of this information.  This version of the YANG library supports the Network Management Datastore Architecture (NMDA) by listing all datastores supported by a network management server and the schema that is used by each of these datastores."];
+  cites -> RFC8525;
+  RFC8792 [label="RFC8792
+Handling Long Lines in Content of
+Internet-Drafts and RFCs
+2020", shape=ellipse, URL="RFC8792.html", target="_top", tooltip="This document defines two strategies for handling long lines in width-bounded text content.  One strategy, called the single backslash strategy, is based on the historical use of a single backslash ('\') character to indicate where line-folding has occurred, with the continuation occurring with the first character that is not a space character (' ') on the next line.  The second strategy, called the double backslash strategy, extends the first strategy by adding a second backslash character to identify where the continuation begins and is thereby able to handle cases not supported by the first strategy.  Both strategies use a self-describing header enabling automated reconstitution of the original content."];
+  cites -> RFC8792;
+  RFC8340 [label="RFC8340
+YANG Tree Diagrams
+2018", shape=ellipse, URL="RFC8340.html", target="_top", tooltip="This document captures the current syntax used in YANG module tree diagrams.  The purpose of this document is to provide a single location for this definition.  This syntax may be updated from time to time based on the evolution of the YANG language."];
+  cites -> RFC8340;
+  RFC6991 [label="RFC6991
+Common YANG Data Types
+2013", shape=ellipse, URL="RFC6991.html", target="_top", tooltip="This document introduces a collection of common data types to be used with the YANG data modeling language.  This document obsoletes RFC 6021."];
+  cites -> RFC6991;
+  RFC8791 [label="RFC8791
+YANG Data Structure Extensions
+2020", shape=ellipse, URL="RFC8791.html", target="_top", tooltip="This document describes YANG mechanisms for defining abstract data structures with YANG."];
+  cites -> RFC8791;
+  RFC8407 [label="RFC8407
+Guidelines for Authors and Reviewers of
+Documents Containing YANG Data Models
+2018", shape=ellipse, URL="RFC8407.html", target="_top", tooltip="This memo provides guidelines for authors and reviewers of specifications containing YANG modules.  Recommendations and procedures are defined, which are intended to increase interoperability and usability of Network Configuration Protocol (NETCONF) and RESTCONF protocol implementations that utilize YANG modules.  This document obsoletes RFC 6087."];
+  cites -> RFC8407;
+  RFC3688 [label="RFC3688
+The IETF XML Registry
+2004", shape=ellipse, URL="RFC3688.html", target="_top", tooltip="This document describes an IANA maintained registry for IETF standards which use Extensible Markup Language (XML) related items such as Namespaces, Document Type Declarations (DTDs), Schemas, and Resource Description Framework (RDF) Schemas."];
+  cites -> RFC3688;
+  RFC6020 [label="RFC6020
+YANG - A Data Modeling Language for the
+Network Configuration Protocol (NETCONF)
+2010", shape=ellipse, URL="RFC6020.html", target="_top", tooltip="YANG is a data modeling language used to model configuration and state data manipulated by the Network Configuration Protocol (NETCONF), NETCONF remote procedure calls, and NETCONF notifications. [STANDARDS-TRACK]"];
+  cites -> RFC6020;
+  RFC8632 [label="RFC8632
+A YANG Data Model for Alarm Management
+2019", shape=ellipse, URL="RFC8632.html", target="_top", tooltip="This document defines a YANG module for alarm management.  It includes functions for alarm-list management, alarm shelving, and notifications to inform management systems.  There are also operations to manage the operator state of an alarm and administrative alarm procedures.  The module carefully maps to relevant alarm standards."];
+  cites -> RFC8632;
+  RFC8641 [label="RFC8641
+Subscription to YANG Notifications for
+Datastore Updates
+2019", shape=ellipse, URL="RFC8641.html", target="_top", tooltip="This document describes a mechanism that allows subscriber applications to request a continuous and customized stream of updates from a YANG datastore.  Providing such visibility into updates enables new capabilities based on the remote mirroring and monitoring of configuration and operational state."];
+  cites -> RFC8641;
+  RFC8808 [label="RFC8808
+A YANG Data Model for Factory Default
+Settings
+2020", shape=ellipse, URL="RFC8808.html", target="_top", tooltip="This document defines a YANG data model with the factory-reset RPC to allow clients to reset a server back to its factory default condition. It also defines an optional factory-default datastore to allow clients to read the factory default configuration for the device. The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in RFC 8342."];
+  cites -> RFC8808;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9195;
+  RFC9196 [label="RFC9196
+YANG Modules Describing Capabilities for
+Systems and Datastore Update
+Notifications
+2022", shape=ellipse, URL="RFC9196.html", target="_top", tooltip="This document defines two YANG modules, ietf-system-capabilities and ietf-notification-capabilities. The module ietf-system-capabilities provides a placeholder structure that can be used to discover YANG-related system capabilities for servers. The module can be used to report capability information from the server at runtime or at implementation time by making use of the YANG instance data file format. The module ietf-notification-capabilities augments ietf-system-capabilities to specify capabilities related to Subscription to YANG Notifications for Datastore Updates (RFC 8641)."];
+  RFC9196 -> rev_cites;
+  RFC9595 [label="RFC9595
+YANG Schema Item iDentifier (YANG SID)
+2024", shape=ellipse, URL="RFC9595.html", target="_top", tooltip="YANG Schema Item iDentifiers (YANG SIDs) are globally unique 63-bit unsigned integers used to identify YANG items.  SIDs provide a more compact method for identifying those YANG items that can be used efficiently, notably in constrained environments (RFC 7228).  This document defines the semantics, registration processes, and assignment processes for YANG SIDs for IETF-managed YANG modules.  To enable the implementation of these processes, this document also defines a file format used to persist and publish assigned YANG SIDs."];
+  RFC9595 -> rev_cites;
+}

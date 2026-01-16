@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8354 [label="RFC8354
+Use Cases for IPv6 Source Packet Routing
+in Networking (SPRING)
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Source Packet Routing in Networking (SPRING) architecture describes how Segment Routing can be used to steer packets through an IPv6 or MPLS network using the source routing paradigm.  This document illustrates some use cases for Segment Routing in an IPv6-only environment."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8354;
+
+  obs [label="obsoletes", shape=box];
+  RFC8354 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8354 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8354;
+
+  cites [label="cites", shape=box];
+  RFC8354 -> cites;
+  RFC7855 [label="RFC7855
+Source Packet Routing in Networking
+(SPRING) Problem Statement and
+Requirements
+2016", shape=ellipse, URL="RFC7855.html", target="_top", tooltip="The ability for a node to specify a forwarding path, other than the normal shortest path, that a particular packet will traverse, benefits a number of network functions. Source-based routing mechanisms have previously been specified for network protocols but have not seen widespread adoption. In this context, the term source means the point at which the explicit route is imposed; therefore, it is not limited to the originator of the packet (i.e., the node imposing the explicit route may be the ingress node of an operator's network). This document outlines various use cases, with their requirements, that need to be taken into account by the Source Packet Routing in Networking (SPRING) architecture for unicast traffic. Multicast use cases and requirements are out of scope for this document."];
+  cites -> RFC7855;
+  RFC5095 [label="RFC5095
+Deprecation of Type 0 Routing Headers in
+IPv6
+2007", shape=ellipse, URL="RFC5095.html", target="_top", tooltip="The functionality provided by IPv6's Type 0 Routing Header can be exploited in order to achieve traffic amplification over a remote path for the purposes of generating denial-of-service traffic.  This document updates the IPv6 specification to deprecate the use of IPv6 Type 0 Routing Headers, in light of this security concern. [STANDARDS-TRACK]"];
+  cites -> RFC5095;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8354;
+  RFC8663 [label="RFC8663
+MPLS Segment Routing over IP
+2019", shape=ellipse, URL="RFC8663.html", target="_top", tooltip="MPLS Segment Routing (SR-MPLS) is a method of source routing a packet through an MPLS data plane by imposing a stack of MPLS labels on the packet to specify the path together with any packet-specific instructions to be executed on it. SR-MPLS can be leveraged to realize a source-routing mechanism across MPLS, IPv4, and IPv6 data planes by using an MPLS label stack as a source-routing instruction set while making no changes to SR-MPLS specifications and interworking with SR-MPLS implementations. This document describes how SR-MPLS-capable routers and IP-only routers can seamlessly coexist and interoperate through the use of SR-MPLS label stacks and IP encapsulation/tunneling such as MPLS-over-UDP as defined in RFC 7510."];
+  RFC8663 -> rev_cites;
+}

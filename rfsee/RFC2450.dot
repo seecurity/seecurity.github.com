@@ -1,0 +1,38 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2450 [label="RFC2450
+Proposed TLA and NLA Assignment Rule
+1998", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document proposes rules for Top-Level Aggregation Identifiers (TLA ID) and Next-Level Aggregation Identifiers (NLA ID).  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2450;
+
+  obs [label="obsoletes", shape=box];
+  RFC2450 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2450 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2450;
+
+  cites [label="cites", shape=box];
+  RFC2450 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2450;
+  RFC3177 [label="RFC3177
+IAB/IESG Recommendations on IPv6 Address
+Allocations to Sites
+2001", shape=ellipse, URL="RFC3177.html", target="_top", tooltip="This document provides recommendations to the addressing registries (APNIC, ARIN and RIPE-NCC) on policies for assigning IPv6 address blocks to end sites.  In particular, it recommends the assignment of /48 in the general case, /64 when it is known that one and only one subnet is needed and /128 when it is absolutely known that one and only one device is connecting."];
+  RFC3177 -> rev_cites;
+}

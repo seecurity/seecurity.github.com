@@ -1,0 +1,87 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6237 [label="RFC6237
+IMAP4 Multimailbox SEARCH Extension
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the round trips and waiting for various searches to complete, and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466.  This document defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6237;
+  RFC7377 [label="RFC7377
+IMAP4 Multimailbox SEARCH Extension
+2014", shape=ellipse, URL="RFC7377.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the delays caused by many round trips and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX, UIDVALIDITY, and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466 and obsoletes RFC 6237."];
+  RFC7377 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC6237 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6237 -> updates;
+  RFC4466 [label="RFC4466
+Collected Extensions to IMAP4 ABNF
+2006", shape=ellipse, URL="RFC4466.html", target="_top", tooltip="Over the years, many documents from IMAPEXT and LEMONADE working groups, as well as many individual documents, have added syntactic extensions to many base IMAP commands described in RFC 3501. For ease of reference, this document collects most of such ABNF changes in one place. This document also suggests a set of standard patterns for adding options and extensions to several existing IMAP commands defined in RFC 3501. The patterns provide for compatibility between existing and future extensions. This document updates ABNF in RFCs 2088, 2342, 3501, 3502, and 3516. It also includes part of the errata to RFC 3501. This document doesn't specify any semantic changes to the listed RFCs. [STANDARDS-TRACK]"];
+  updates -> RFC4466;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6237;
+
+  cites [label="cites", shape=box];
+  RFC6237 -> cites;
+  RFC4466 [label="RFC4466
+Collected Extensions to IMAP4 ABNF
+2006", shape=ellipse, URL="RFC4466.html", target="_top", tooltip="Over the years, many documents from IMAPEXT and LEMONADE working groups, as well as many individual documents, have added syntactic extensions to many base IMAP commands described in RFC 3501. For ease of reference, this document collects most of such ABNF changes in one place. This document also suggests a set of standard patterns for adding options and extensions to several existing IMAP commands defined in RFC 3501. The patterns provide for compatibility between existing and future extensions. This document updates ABNF in RFCs 2088, 2342, 3501, 3502, and 3516. It also includes part of the errata to RFC 3501. This document doesn't specify any semantic changes to the listed RFCs. [STANDARDS-TRACK]"];
+  cites -> RFC4466;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2978 [label="RFC2978
+IANA Charset Registration Procedures
+2000", shape=ellipse, URL="RFC2978.html", target="_top", tooltip="Multipurpose Internet Mail Extensions (MIME) and various other Internet protocols are capable of using many different charsets.  This in turn means that the ability to label different charsets is essential.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2978;
+  RFC3501 [label="RFC3501
+INTERNET MESSAGE ACCESS PROTOCOL -
+VERSION 4rev1
+2003", shape=ellipse, URL="RFC3501.html", target="_top", tooltip="The Internet Message Access Protocol, Version 4rev1 (IMAP4rev1) allows a client to access and manipulate electronic mail messages on a server.  IMAP4rev1 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders.  IMAP4rev1 also provides the capability for an offline client to resynchronize with the server.  IMAP4rev1 includes operations for creating, deleting, and renaming mailboxes, checking for new messages, permanently removing messages, setting and clearing flags, RFC 2822 and RFC 2045 parsing, searching, and selective fetching of message attributes, texts, and portions thereof.  Messages in IMAP4rev1 are accessed by the use of numbers.  These numbers are either message sequence numbers or unique identifiers.  IMAP4rev1 supports a single server.  A mechanism for accessing configuration information to support multiple IMAP4rev1 servers is discussed in RFC 2244.  IMAP4rev1 does not specify a means of posting mail; this function is handled by a mail transfer protocol such as RFC 2821. [STANDARDS-TRACK]"];
+  cites -> RFC3501;
+  RFC4731 [label="RFC4731
+IMAP4 Extension to SEARCH Command for
+Controlling What Kind of Information Is
+Returned
+2006", shape=ellipse, URL="RFC4731.html", target="_top", tooltip="This document extends IMAP (RFC 3501) SEARCH and UID SEARCH commands with several result options, which can control what kind of information is returned.  The following result options are defined: minimal value, maximal value, all found messages, and number of found messages. [STANDARDS-TRACK]"];
+  cites -> RFC4731;
+  RFC5182 [label="RFC5182
+IMAP Extension for Referencing the Last
+SEARCH Result
+2008", shape=ellipse, URL="RFC5182.html", target="_top", tooltip="Many IMAP clients use the result of a SEARCH command as the input to perform another operation, for example, fetching the found messages, deleting them, or copying them to another mailbox. This can be achieved using standard IMAP operations described in RFC 3501; however, this would be suboptimal. The server will send the list of found messages to the client; after that, the client will have to parse the list, reformat it, and send it back to the server. The client can't pipeline the SEARCH command with the subsequent command, and, as a result, the server might not be able to perform some optimizations. This document proposes an IMAP extension that allows a client to tell a server to use the result of a SEARCH (or Unique Identifier (UID) SEARCH) command as an input to any subsequent command. [STANDARDS-TRACK]"];
+  cites -> RFC5182;
+  RFC5465 [label="RFC5465
+The IMAP NOTIFY Extension
+2009", shape=ellipse, URL="RFC5465.html", target="_top", tooltip="This document defines an IMAP extension that allows a client to request specific kinds of unsolicited notifications for specified mailboxes, such as messages being added to or deleted from such mailboxes. [STANDARDS-TRACK]"];
+  cites -> RFC5465;
+  RFC5267 [label="RFC5267
+Contexts for IMAP4
+2008", shape=ellipse, URL="RFC5267.html", target="_top", tooltip="The IMAP4rev1 protocol has powerful search facilities as part of the core protocol, but lacks the ability to create live, updated results that can be easily handled.  This memo provides such an extension, and shows how it can be used to provide a facility similar to virtual mailboxes. [STANDARDS-TRACK]"];
+  cites -> RFC5267;
+  RFC4314 [label="RFC4314
+IMAP4 Access Control List (ACL)
+Extension
+2005", shape=ellipse, URL="RFC4314.html", target="_top", tooltip="The Access Control List (ACL) extension (RFC 2086) of the Internet Message Access Protocol (IMAP) permits mailbox access control lists to be retrieved and manipulated through the IMAP protocol. This document is a revision of RFC 2086. It defines several new access control rights and clarifies which rights are required for different IMAP commands. [STANDARDS-TRACK]"];
+  cites -> RFC4314;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6237;
+  RFC7017 [label="RFC7017
+IMAP Access to IETF Email List Archives
+2013", shape=ellipse, URL="RFC7017.html", target="_top", tooltip="The IETF makes heavy use of email lists to conduct its work.  This often involves accessing the archived history of those email lists.  Participants would like to have the ability to browse and search those archives using standard IMAP clients.  This memo captures the requirements for providing a service that would allow such browsing and searching, and it is intended as input to a later activity for the design and development of such a service."];
+  RFC7017 -> rev_cites;
+}

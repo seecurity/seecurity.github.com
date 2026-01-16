@@ -1,0 +1,83 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6959 [label="RFC6959
+Source Address Validation Improvement
+(SAVI) Threat Scope
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Source Address Validation Improvement (SAVI) effort aims to complement ingress filtering with finer-grained, standardized IP source address validation.  This document describes threats enabled by IP source address spoofing both in the global and finer-grained context, describes currently available solutions and challenges, and provides a starting point analysis for finer-grained (host granularity) anti-spoofing work."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6959;
+
+  obs [label="obsoletes", shape=box];
+  RFC6959 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6959 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6959;
+
+  cites [label="cites", shape=box];
+  RFC6959 -> cites;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC2827 [label="RFC2827
+Network Ingress Filtering: Defeating
+Denial of Service Attacks which employ
+IP Source Address Spoofing
+2000", shape=ellipse, URL="RFC2827.html", target="_top", tooltip="This paper discusses a simple, effective, and straightforward method for using ingress traffic filtering to prohibit DoS (Denial of Service) attacks which use forged IP addresses to be propagated from 'behind' an Internet Service Provider's (ISP) aggregation point.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2827;
+  RFC4953 [label="RFC4953
+Defending TCP Against Spoofing Attacks
+2007", shape=ellipse, URL="RFC4953.html", target="_top", tooltip="Recent analysis of potential attacks on core Internet infrastructure indicates an increased vulnerability of TCP connections to spurious resets (RSTs), sent with forged IP source addresses (spoofing).  TCP has always been susceptible to such RST spoofing attacks, which were indirectly protected by checking that the RST sequence number was inside the current receive window, as well as via the obfuscation of TCP endpoint and port numbers.  For pairs of well-known endpoints often over predictable port pairs, such as BGP or between web servers and well-known large-scale caches, increases in the path bandwidth-delay product of a connection have sufficiently increased the receive window space that off-path third parties can brute-force generate a viable RST sequence number.  The susceptibility to attack increases with the square of the bandwidth, and thus presents a significant vulnerability for recent high-speed networks.  This document addresses this vulnerability, discussing proposed solutions at the transport level and their inherent challenges, as well as existing network level solutions and the feasibility of their deployment.  This document focuses on vulnerabilities due to spoofed TCP segments, and includes a discussion of related ICMP spoofing attacks on TCP connections.  This memo provides information for the Internet community."];
+  cites -> RFC4953;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC3704 [label="RFC3704
+Ingress Filtering for Multihomed
+Networks
+2004", shape=ellipse, URL="RFC3704.html", target="_top", tooltip="BCP 38, RFC 2827, is designed to limit the impact of distributed denial of service attacks, by denying traffic with spoofed addresses access to the network, and to help ensure that traffic is traceable to its correct source network.  As a side effect of protecting the Internet against such attacks, the network implementing the solution also protects itself from this and other attacks, such as spoofed management access to networking equipment.  There are cases when this may create problems, e.g., with multihoming.  This document describes the current ingress filtering operational mechanisms, examines generic issues related to ingress filtering, and delves into the effects on multihoming in particular.  This memo updates RFC 2827.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3704;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC4862 [label="RFC4862
+IPv6 Stateless Address Autoconfiguration
+2007", shape=ellipse, URL="RFC4862.html", target="_top", tooltip="This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6.  The autoconfiguration process includes generating a link-local address, generating global addresses via stateless address autoconfiguration, and the Duplicate Address Detection procedure to verify the uniqueness of the addresses on a link. [STANDARDS-TRACK]"];
+  cites -> RFC4862;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6959;
+  RFC7039 [label="RFC7039
+Source Address Validation Improvement
+(SAVI) Framework
+2013", shape=ellipse, URL="RFC7039.html", target="_top", tooltip="Source Address Validation Improvement (SAVI) methods were developed to prevent nodes attached to the same IP link from spoofing each other's IP addresses, so as to complement ingress filtering with finer-grained, standardized IP source address validation.  This document is a framework document that describes and motivates the design of the SAVI methods.  Particular SAVI methods are described in other documents."];
+  RFC7039 -> rev_cites;
+  RFC7381 [label="RFC7381
+Enterprise IPv6 Deployment Guidelines
+2014", shape=ellipse, URL="RFC7381.html", target="_top", tooltip="Enterprise network administrators worldwide are in various stages of preparing for or deploying IPv6 into their networks.  The administrators face different challenges than operators of Internet access providers and have reasons for different priorities.  The overall problem for many administrators will be to offer Internet- facing services over IPv6 while continuing to support IPv4, and while introducing IPv6 access within the enterprise IT network.  The overall transition will take most networks from an IPv4-only environment to a dual-stack network environment and eventually an IPv6-only operating mode.  This document helps provide a framework for enterprise network architects or administrators who may be faced with many of these challenges as they consider their IPv6 support strategies."];
+  RFC7381 -> rev_cites;
+  RFC8691 [label="RFC8691
+Basic Support for IPv6 Networks
+Operating Outside the Context of a Basic
+Service Set over IEEE Std 802.11
+2019", shape=ellipse, URL="RFC8691.html", target="_top", tooltip="This document provides methods and settings for using IPv6 to communicate among nodes within range of one another over a single IEEE 802.11-OCB link.  Support for these methods and settings require minimal changes to existing stacks.  This document also describes limitations associated with using these methods.  Optimizations and usage of IPv6 over more complex scenarios are not covered in this specification and are a subject for future work."];
+  RFC8691 -> rev_cites;
+  RFC9365 [label="RFC9365
+IPv6 Wireless Access in Vehicular
+Environments (IPWAVE): Problem Statement
+and Use Cases
+2023", shape=ellipse, URL="RFC9365.html", target="_top", tooltip="This document discusses the problem statement and use cases of IPv6-based vehicular networking for Intelligent Transportation Systems (ITS).  The main scenarios of vehicular communications are vehicle-to-vehicle (V2V), vehicle-to-infrastructure (V2I), and vehicle-to-everything (V2X) communications.  First, this document explains use cases using V2V, V2I, and V2X networking.  Next, for IPv6-based vehicular networks, it makes a gap analysis of current IPv6 protocols (e.g., IPv6 Neighbor Discovery, mobility management, as well as security and privacy)."];
+  RFC9365 -> rev_cites;
+}

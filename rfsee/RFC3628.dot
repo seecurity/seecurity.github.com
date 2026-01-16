@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3628 [label="RFC3628
+Policy Requirements for Time-Stamping
+Authorities (TSAs)
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines requirements for a baseline time-stamp policy for Time-Stamping Authorities (TSAs) issuing time-stamp tokens, supported by public key certificates, with an accuracy of one second or better.  A TSA may define its own policy which enhances the policy defined in this document.  Such a policy shall incorporate or further constrain the requirements identified in this document."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3628;
+
+  obs [label="obsoletes", shape=box];
+  RFC3628 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3628 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3628;
+
+  cites [label="cites", shape=box];
+  RFC3628 -> cites;
+  RFC3126 [label="RFC3126
+Electronic Signature Formats for long
+term electronic signatures
+2001", shape=ellipse, URL="RFC3126.html", target="_top", tooltip="This document defines the format of an electronic signature that can remain valid over long periods.  This includes evidence as to its validity even if the signer or verifying party later attempts to deny (i.e., repudiates the validity of the signature).  This memo provides information for the Internet community."];
+  cites -> RFC3126;
+  RFC3161 [label="RFC3161
+Internet X.509 Public Key Infrastructure
+Time-Stamp Protocol (TSP)
+2001", shape=ellipse, URL="RFC3161.html", target="_top", tooltip="This document describes the format of a request sent to a Time Stamping Authority (TSA) and of the response that is returned.  It also establishes several security-relevant requirements for TSA operation, with regards to processing requests to generate responses. [STANDARDS-TRACK]"];
+  cites -> RFC3161;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3628;
+}

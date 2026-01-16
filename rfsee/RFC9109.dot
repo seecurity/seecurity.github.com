@@ -1,0 +1,94 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9109 [label="RFC9109
+Network Time Protocol Version 4: Port
+Randomization
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Network Time Protocol (NTP) can operate in several modes.  Some of these modes are based on the receipt of unsolicited packets and therefore require the use of a well-known port as the local port.  However, in the case of NTP modes where the use of a well-known port is not required, employing such a well-known port unnecessarily facilitates the ability of attackers to perform blind/off-path attacks.  This document formally updates RFC 5905, recommending the use of transport-protocol ephemeral port randomization for those modes where use of the NTP well-known port is not required."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9109;
+
+  obs [label="obsoletes", shape=box];
+  RFC9109 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9109 -> updates;
+  RFC5905 [label="RFC5905
+Network Time Protocol Version 4:
+Protocol and Algorithms Specification
+2010", shape=ellipse, URL="RFC5905.html", target="_top", tooltip="The Network Time Protocol (NTP) is widely used to synchronize computer clocks in the Internet.  This document describes NTP version 4 (NTPv4), which is backwards compatible with NTP version 3 (NTPv3), described in RFC 1305, as well as previous versions of the protocol.  NTPv4 includes a modified protocol header to accommodate the Internet Protocol version 6 address family.  NTPv4 includes fundamental improvements in the mitigation and discipline algorithms that extend the potential accuracy to the tens of microseconds with modern workstations and fast LANs.  It includes a dynamic server discovery scheme, so that in many cases, specific server configuration is not required.  It corrects certain errors in the NTPv3 design and implementation and includes an optional extension mechanism."];
+  updates -> RFC5905;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9109;
+
+  cites [label="cites", shape=box];
+  RFC9109 -> cites;
+  RFC5905 [label="RFC5905
+Network Time Protocol Version 4:
+Protocol and Algorithms Specification
+2010", shape=ellipse, URL="RFC5905.html", target="_top", tooltip="The Network Time Protocol (NTP) is widely used to synchronize computer clocks in the Internet.  This document describes NTP version 4 (NTPv4), which is backwards compatible with NTP version 3 (NTPv3), described in RFC 1305, as well as previous versions of the protocol.  NTPv4 includes a modified protocol header to accommodate the Internet Protocol version 6 address family.  NTPv4 includes fundamental improvements in the mitigation and discipline algorithms that extend the potential accuracy to the tens of microseconds with modern workstations and fast LANs.  It includes a dynamic server discovery scheme, so that in many cases, specific server configuration is not required.  It corrects certain errors in the NTPv3 design and implementation and includes an optional extension mechanism."];
+  cites -> RFC5905;
+  RFC6056 [label="RFC6056
+Recommendations for Transport-Protocol
+Port Randomization
+2011", shape=ellipse, URL="RFC6056.html", target="_top", tooltip="During the last few years, awareness has been raised about a number of blind attacks that can be performed against the Transmission Control Protocol (TCP) and similar protocols.  The consequences of these attacks range from throughput reduction to broken connections or data corruption.  These attacks rely on the attacker's ability to guess or know the five-tuple (Protocol, Source Address, Destination Address, Source Port, Destination Port) that identifies the transport protocol instance to be attacked.  This document describes a number of simple and efficient methods for the selection of the client port number, such that the possibility of an attacker guessing the exact value is reduced.  While this is not a replacement for cryptographic methods for protecting the transport-protocol instance, the aforementioned port selection algorithms provide improved security with very little effort and without any key management overhead.  The algorithms described in this document are local policies that may be incrementally deployed and that do not violate the specifications of any of the transport protocols that may benefit from them, such as TCP, UDP, UDP-lite, Stream Control Transmission Protocol (SCTP), Datagram Congestion Control Protocol (DCCP), and RTP (provided that the RTP application explicitly signals the RTP and RTCP port numbers).  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6056;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC4953 [label="RFC4953
+Defending TCP Against Spoofing Attacks
+2007", shape=ellipse, URL="RFC4953.html", target="_top", tooltip="Recent analysis of potential attacks on core Internet infrastructure indicates an increased vulnerability of TCP connections to spurious resets (RSTs), sent with forged IP source addresses (spoofing).  TCP has always been susceptible to such RST spoofing attacks, which were indirectly protected by checking that the RST sequence number was inside the current receive window, as well as via the obfuscation of TCP endpoint and port numbers.  For pairs of well-known endpoints often over predictable port pairs, such as BGP or between web servers and well-known large-scale caches, increases in the path bandwidth-delay product of a connection have sufficiently increased the receive window space that off-path third parties can brute-force generate a viable RST sequence number.  The susceptibility to attack increases with the square of the bandwidth, and thus presents a significant vulnerability for recent high-speed networks.  This document addresses this vulnerability, discussing proposed solutions at the transport level and their inherent challenges, as well as existing network level solutions and the feasibility of their deployment.  This document focuses on vulnerabilities due to spoofed TCP segments, and includes a discussion of related ICMP spoofing attacks on TCP connections.  This memo provides information for the Internet community."];
+  cites -> RFC4953;
+  RFC5927 [label="RFC5927
+ICMP Attacks against TCP
+2010", shape=ellipse, URL="RFC5927.html", target="_top", tooltip="This document discusses the use of the Internet Control Message Protocol (ICMP) to perform a variety of attacks against the Transmission Control Protocol (TCP).  Additionally, this document describes a number of widely implemented modifications to TCP's handling of ICMP error messages that help to mitigate these issues.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5927;
+  RFC6335 [label="RFC6335
+Internet Assigned Numbers Authority
+(IANA) Procedures for the Management of
+the Service Name and Transport Protocol
+Port Number Registry
+2011", shape=ellipse, URL="RFC6335.html", target="_top", tooltip="This document defines the procedures that the Internet Assigned Numbers Authority (IANA) uses when handling assignment and other requests related to the Service Name and Transport Protocol Port Number registry. It also discusses the rationale and principles behind these procedures and how they facilitate the long-term sustainability of the registry. This document updates IANA's procedures by obsoleting the previous UDP and TCP port assignment procedures defined in Sections 8 and 9.1 of the IANA Allocation Guidelines, and it updates the IANA service name and port assignment procedures for UDP-Lite, the Datagram Congestion Control Protocol (DCCP), and the Stream Control Transmission Protocol (SCTP). It also updates the DNS SRV specification to clarify what a service name is and how it is registered. This memo documents an Internet Best Current Practice."];
+  cites -> RFC6335;
+  RFC2663 [label="RFC2663
+IP Network Address Translator (NAT)
+Terminology and Considerations
+1999", shape=ellipse, URL="RFC2663.html", target="_top", tooltip="This document attempts to describe the operation of NAT devices and the associated considerations in general, and to define the terminology used to identify various flavors of NAT.  This memo provides information for the Internet community."];
+  cites -> RFC2663;
+  RFC3715 [label="RFC3715
+IPsec-Network Address Translation (NAT)
+Compatibility Requirements
+2004", shape=ellipse, URL="RFC3715.html", target="_top", tooltip="This document describes known incompatibilities between Network Address Translation (NAT) and IPsec, and describes the requirements for addressing them.  Perhaps the most common use of IPsec is in providing virtual private networking capabilities.  One very popular use of Virtual Private Networks (VPNs) is to provide telecommuter access to the corporate Intranet.  Today, NATs are widely deployed in home gateways, as well as in other locations likely to be used by telecommuters, such as hotels.  The result is that IPsec-NAT incompatibilities have become a major barrier in the deployment of IPsec in one of its principal uses.  This memo provides information for the Internet community."];
+  cites -> RFC3715;
+  RFC4443 [label="RFC4443
+Internet Control Message Protocol
+(ICMPv6) for the Internet Protocol
+Version 6 (IPv6) Specification
+2006", shape=ellipse, URL="RFC4443.html", target="_top", tooltip="This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC4443;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9109;
+  RFC9414 [label="RFC9414
+Unfortunate History of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9414.html", target="_top", tooltip="This document analyzes the timeline of the specification and implementation of different types of transient numeric identifiers used in IETF protocols and how the security and privacy properties of such protocols have been affected as a result of it.  It provides empirical evidence that advice in this area is warranted.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9414 -> rev_cites;
+  RFC9769 [label="RFC9769
+NTP Interleaved Modes
+2025", shape=ellipse, URL="RFC9769.html", target="_top", tooltip="This document specifies interleaved modes for the Network Time Protocol (NTP).  These new modes improve the accuracy of time synchronization by enabling the use of more accurate transmit timestamps that are available only after the transmission of NTP messages.  These enhancements are intended to improve timekeeping in environments where high accuracy is critical.  This document updates RFC 5905 by defining these new operational modes."];
+  RFC9769 -> rev_cites;
+}

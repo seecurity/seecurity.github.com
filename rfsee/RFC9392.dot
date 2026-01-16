@@ -1,0 +1,166 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9392 [label="RFC9392
+Sending RTP Control Protocol (RTCP)
+Feedback for Congestion Control in
+Interactive Multimedia Conferences
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo discusses the rate at which congestion control feedback can be sent using the RTP Control Protocol (RTCP) and the suitability of RTCP for implementing congestion control for unicast multimedia applications."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9392;
+
+  obs [label="obsoletes", shape=box];
+  RFC9392 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9392 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9392;
+
+  cites [label="cites", shape=box];
+  RFC9392 -> cites;
+  RFC8825 [label="RFC8825
+Overview: Real-Time Protocols for
+Browser-Based Applications
+2021", shape=ellipse, URL="RFC8825.html", target="_top", tooltip="This document gives an overview and context of a protocol suite intended for use with real-time applications that can be deployed in browsers -- real-time communication on the Web. It intends to serve as a starting and coordination point to make sure that (1) all the parts that are needed to achieve this goal are findable and (2) the parts that belong in the Internet protocol suite are fully specified and on the right publication track. This document is an applicability statement -- it does not itself specify any protocol, but it specifies which other specifications implementations are supposed to follow to be compliant with Web Real-Time Communication (WebRTC)."];
+  cites -> RFC8825;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+  RFC8083 [label="RFC8083
+Multimedia Congestion Control: Circuit
+Breakers for Unicast RTP Sessions
+2017", shape=ellipse, URL="RFC8083.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is widely used in telephony, video conferencing, and telepresence applications. Such applications are often run on best-effort UDP/IP networks. If congestion control is not implemented in these applications, then network congestion can lead to uncontrolled packet loss and a resulting deterioration of the user's multimedia experience. The congestion control algorithm acts as a safety measure by stopping RTP flows from using excessive resources and protecting the network from overload. At the time of this writing, however, while there are several proprietary solutions, there is no standard algorithm for congestion control of interactive RTP flows. This document does not propose a congestion control algorithm. It instead defines a minimal set of RTP circuit breakers: conditions under which an RTP sender needs to stop transmitting media data to protect the network from excessive congestion. It is expected that, in the absence of long-lived excessive congestion, RTP applications running on best-effort IP networks will be able to operate without triggering these circuit breakers. To avoid triggering the RTP circuit breaker, any Standards Track congestion control algorithms defined for RTP will need to operate within the envelope set by these RTP circuit breaker algorithms."];
+  cites -> RFC8083;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  cites -> RFC8085;
+  RFC8834 [label="RFC8834
+Media Transport and Use of RTP in WebRTC
+2021", shape=ellipse, URL="RFC8834.html", target="_top", tooltip="The framework for Web Real-Time Communication (WebRTC) provides support for direct interactive rich communication using audio, video, text, collaboration, games, etc.  between two peers' web browsers.  This memo describes the media transport aspects of the WebRTC framework.  It specifies how the Real-time Transport Protocol (RTP) is used in the WebRTC context and gives requirements for which RTP features, profiles, and extensions need to be supported."];
+  cites -> RFC8834;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC5124 [label="RFC5124
+Extended Secure RTP Profile for Real-
+time Transport Control Protocol
+(RTCP)-Based Feedback (RTP/SAVPF)
+2008", shape=ellipse, URL="RFC5124.html", target="_top", tooltip="An RTP profile (SAVP) for secure real-time communications and another profile (AVPF) to provide timely feedback from the receivers to a sender are defined in RFC 3711 and RFC 4585, respectively.  This memo specifies the combination of both profiles to enable secure RTP communications with feedback. [STANDARDS-TRACK]"];
+  cites -> RFC5124;
+  RFC4585 [label="RFC4585
+Extended RTP Profile for Real-time
+Transport Control Protocol (RTCP)-Based
+Feedback (RTP/AVPF)
+2006", shape=ellipse, URL="RFC4585.html", target="_top", tooltip="Real-time media streams that use RTP are, to some degree, resilient against packet losses.  Receivers may use the base mechanisms of the Real-time Transport Control Protocol (RTCP) to report packet reception statistics and thus allow a sender to adapt its transmission behavior in the mid-term.  This is the sole means for feedback and feedback-based error repair (besides a few codec-specific mechanisms).  This document defines an extension to the Audio-visual Profile (AVP) that enables receivers to provide, statistically, more immediate feedback to the senders and thus allows for short-term adaptation and efficient feedback-based repair mechanisms to be implemented.  This early feedback profile (AVPF) maintains the AVP bandwidth constraints for RTCP and preserves scalability to large groups. [STANDARDS-TRACK]"];
+  cites -> RFC4585;
+  RFC8888 [label="RFC8888
+RTP Control Protocol (RTCP) Feedback for
+Congestion Control
+2021", shape=ellipse, URL="RFC8888.html", target="_top", tooltip="An effective RTP congestion control algorithm requires more fine-grained feedback on packet loss, timing, and Explicit Congestion Notification (ECN) marks than is provided by the standard RTP Control Protocol (RTCP) Sender Report (SR) and Receiver Report (RR) packets.  This document describes an RTCP feedback message intended to enable congestion control for interactive real-time traffic using RTP.  The feedback message is designed for use with a sender-based congestion control algorithm, in which the receiver of an RTP flow sends back to the sender RTCP feedback packets containing the information the sender needs to perform congestion control."];
+  cites -> RFC8888;
+  RFC5506 [label="RFC5506
+Support for Reduced-Size Real-Time
+Transport Control Protocol (RTCP):
+Opportunities and Consequences
+2009", shape=ellipse, URL="RFC5506.html", target="_top", tooltip="This memo discusses benefits and issues that arise when allowing Real-time Transport Protocol (RTCP) packets to be transmitted with reduced size.  The size can be reduced if the rules on how to create compound packets outlined in RFC 3550 are removed or changed.  Based on that analysis, this memo defines certain changes to the rules to allow feedback messages to be sent as Reduced-Size RTCP packets under certain conditions when using the RTP/AVPF (Real-time Transport Protocol / Audio-Visual Profile with Feedback) profile (RFC 4585).  This document updates RFC 3550, RFC 3711, and RFC 4585. [STANDARDS-TRACK]"];
+  cites -> RFC5506;
+  RFC8108 [label="RFC8108
+Sending Multiple RTP Streams in a Single
+RTP Session
+2017", shape=ellipse, URL="RFC8108.html", target="_top", tooltip="This memo expands and clarifies the behavior of Real-time Transport Protocol (RTP) endpoints that use multiple synchronization sources (SSRCs).  This occurs, for example, when an endpoint sends multiple RTP streams in a single RTP session.  This memo updates RFC 3550 with regard to handling multiple SSRCs per endpoint in RTP sessions, with a particular focus on RTP Control Protocol (RTCP) behavior.  It also updates RFC 4585 to change and clarify the calculation of the timeout of SSRCs and the inclusion of feedback messages."];
+  cites -> RFC8108;
+  RFC8861 [label="RFC8861
+Sending Multiple RTP Streams in a Single
+RTP Session: Grouping RTP Control
+Protocol (RTCP) Reception Statistics and
+Other Feedback
+2021", shape=ellipse, URL="RFC8861.html", target="_top", tooltip="RTP allows multiple RTP streams to be sent in a single session but requires each Synchronization Source (SSRC) to send RTP Control Protocol (RTCP) reception quality reports for every other SSRC visible in the session.  This causes the number of RTCP reception reports to grow with the number of SSRCs, rather than the number of endpoints.  In many cases, most of these RTCP reception reports are unnecessary, since all SSRCs of an endpoint are normally co-located and see the same reception quality.  This memo defines a Reporting Group extension to RTCP to reduce the reporting overhead in such scenarios."];
+  cites -> RFC8861;
+  RFC8872 [label="RFC8872
+Guidelines for Using the Multiplexing
+Features of RTP to Support Multiple
+Media Streams
+2021", shape=ellipse, URL="RFC8872.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is a flexible protocol that can be used in a wide range of applications, networks, and system topologies.  That flexibility makes for wide applicability but can complicate the application design process.  One particular design question that has received much attention is how to support multiple media streams in RTP.  This memo discusses the available options and design trade-offs, and provides guidelines on how to use the multiplexing features of RTP to support multiple media streams."];
+  cites -> RFC8872;
+  RFC9293 [label="RFC9293
+Transmission Control Protocol (TCP)
+2022", shape=ellipse, URL="RFC9293.html", target="_top", tooltip="This document specifies the Transmission Control Protocol (TCP).  TCP is an important transport-layer protocol in the Internet protocol stack, and it has continuously evolved over decades of use and growth of the Internet.  Over this time, a number of changes have been made to TCP as it was specified in RFC 793, though these have only been documented in a piecemeal fashion.  This document collects and brings those changes together with the protocol specification from RFC 793.  This document obsoletes RFC 793, as well as RFCs 879, 2873, 6093, 6429, 6528, and 6691 that updated parts of RFC 793.  It updates RFCs 1011 and 1122, and it should be considered as a replacement for the portions of those documents dealing with TCP requirements.  It also updates RFC 5961 by adding a small clarification in reset handling while in the SYN-RECEIVED state.  The TCP header control bits from RFC 793 have also been updated based on RFC 3168."];
+  cites -> RFC9293;
+  RFC3449 [label="RFC3449
+TCP Performance Implications of Network
+Path Asymmetry
+2002", shape=ellipse, URL="RFC3449.html", target="_top", tooltip="This document describes TCP performance problems that arise because of asymmetric effects.  These problems arise in several access networks, including bandwidth-asymmetric networks and packet radio subnetworks, for different underlying reasons.  However, the end result on TCP performance is the same in both cases: performance often degrades significantly because of imperfection and variability in the ACK feedback from the receiver to the sender.  The document details several mitigations to these effects, which have either been proposed or evaluated in the literature, or are currently deployed in networks.  These solutions use a combination of local link- layer techniques, subnetwork, and end-to-end mechanisms, consisting of: (i) techniques to manage the channel used for the upstream bottleneck link carrying the ACKs, typically using header compression or reducing the frequency of TCP ACKs, (ii) techniques to handle this reduced ACK frequency to retain the TCP sender's acknowledgment-triggered self- clocking and (iii) techniques to schedule the data and ACK packets in the reverse direction to improve performance in the presence of two-way traffic.  Each technique is described, together with known issues, and recommendations for use.  A summary of the recommendations is provided at the end of the document.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3449;
+  RFC3611 [label="RFC3611
+RTP Control Protocol Extended Reports
+(RTCP XR)
+2003", shape=ellipse, URL="RFC3611.html", target="_top", tooltip="This document defines the Extended Report (XR) packet type for the RTP Control Protocol (RTCP), and defines how the use of XR packets can be signaled by an application if it employs the Session Description Protocol (SDP).  XR packets are composed of report blocks, and seven block types are defined here.  The purpose of the extended reporting format is to convey information that supplements the six statistics that are contained in the report blocks used by RTCP's Sender Report (SR) and Receiver Report (RR) packets.  Some applications, such as multicast inference of network characteristics (MINC) or voice over IP (VoIP) monitoring, require other and more detailed statistics.  In addition to the block types defined here, additional block types may be defined in the future by adhering to the framework that this document provides."];
+  cites -> RFC3611;
+  RFC5348 [label="RFC5348
+TCP Friendly Rate Control (TFRC):
+Protocol Specification
+2008", shape=ellipse, URL="RFC5348.html", target="_top", tooltip="This document specifies TCP Friendly Rate Control (TFRC). TFRC is a congestion control mechanism for unicast flows operating in a best-effort Internet environment. It is reasonably fair when competing for bandwidth with TCP flows, but has a much lower variation of throughput over time compared with TCP, making it more suitable for applications such as streaming media where a relatively smooth sending rate is of importance. This document obsoletes RFC 3448 and updates RFC 4342. [STANDARDS-TRACK]"];
+  cites -> RFC5348;
+  RFC7022 [label="RFC7022
+Guidelines for Choosing RTP Control
+Protocol (RTCP) Canonical Names (CNAMEs)
+2013", shape=ellipse, URL="RFC7022.html", target="_top", tooltip="The RTP Control Protocol (RTCP) Canonical Name (CNAME) is a persistent transport-level identifier for an RTP endpoint. While the Synchronization Source (SSRC) identifier of an RTP endpoint may change if a collision is detected or when the RTP application is restarted, its RTCP CNAME is meant to stay unchanged, so that RTP endpoints can be uniquely identified and associated with their RTP media streams. For proper functionality, RTCP CNAMEs should be unique within the participants of an RTP session. However, the existing guidelines for choosing the RTCP CNAME provided in the RTP standard (RFC 3550) are insufficient to achieve this uniqueness. RFC 6222 was published to update those guidelines to allow endpoints to choose unique RTCP CNAMEs. Unfortunately, later investigations showed that some parts of the new algorithms were unnecessarily complicated and/or ineffective. This document addresses these concerns and replaces RFC 6222."];
+  cites -> RFC7022;
+  RFC8445 [label="RFC8445
+Interactive Connectivity Establishment
+(ICE): A Protocol for Network Address
+Translator (NAT) Traversal
+2018", shape=ellipse, URL="RFC8445.html", target="_top", tooltip="This document describes a protocol for Network Address Translator (NAT) traversal for UDP-based communication. This protocol is called Interactive Connectivity Establishment (ICE). ICE makes use of the Session Traversal Utilities for NAT (STUN) protocol and its extension, Traversal Using Relay NAT (TURN). This document obsoletes RFC 5245."];
+  cites -> RFC8445;
+  RFC8831 [label="RFC8831
+WebRTC Data Channels
+2021", shape=ellipse, URL="RFC8831.html", target="_top", tooltip="The WebRTC framework specifies protocol support for direct, interactive, rich communication using audio, video, and data between two peers' web browsers.  This document specifies the non-media data transport aspects of the WebRTC framework.  It provides an architectural overview of how the Stream Control Transmission Protocol (SCTP) is used in the WebRTC context as a generic transport service that allows web browsers to exchange generic data from peer to peer."];
+  cites -> RFC8831;
+  RFC2508 [label="RFC2508
+Compressing IP/UDP/RTP Headers for Low-
+Speed Serial Links
+1999", shape=ellipse, URL="RFC2508.html", target="_top", tooltip="This document describes a method for compressing the headers of IP/UDP/RTP datagrams to reduce overhead on low-speed serial links. [STANDARDS-TRACK]"];
+  cites -> RFC2508;
+  RFC3545 [label="RFC3545
+Enhanced Compressed RTP (CRTP) for Links
+with High Delay, Packet Loss and
+Reordering
+2003", shape=ellipse, URL="RFC3545.html", target="_top", tooltip="This document describes a header compression scheme for point to point links with packet loss and long delays.  It is based on Compressed Real-time Transport Protocol (CRTP), the IP/UDP/RTP header compression described in RFC 2508.  CRTP does not perform well on such links: packet loss results in context corruption and due to the long delay, many more packets are discarded before the context is repaired.  To correct the behavior of CRTP over such links, a few extensions to the protocol are specified here.  The extensions aim to reduce context corruption by changing the way the compressor updates the context at the decompressor: updates are repeated and include updates to full and differential context parameters.  With these extensions, CRTP performs well over links with packet loss, packet reordering and long delays. [STANDARDS-TRACK]"];
+  cites -> RFC3545;
+  RFC5795 [label="RFC5795
+The RObust Header Compression (ROHC)
+Framework
+2010", shape=ellipse, URL="RFC5795.html", target="_top", tooltip="The Robust Header Compression (ROHC) protocol provides an efficient, flexible, and future-proof header compression concept. It is designed to operate efficiently and robustly over various link technologies with different characteristics. The ROHC framework, along with a set of compression profiles, was initially defined in RFC 3095. To improve and simplify the ROHC specifications, this document explicitly defines the ROHC framework and the profile for uncompressed separately. More specifically, the definition of the framework does not modify or update the definition of the framework specified by RFC 3095. This specification obsoletes RFC 4995. It fixes one interoperability issue that was erroneously introduced in RFC 4995, and adds some minor clarifications. [STANDARDS-TRACK]"];
+  cites -> RFC5795;
+  RFC7667 [label="RFC7667
+RTP Topologies
+2015", shape=ellipse, URL="RFC7667.html", target="_top", tooltip="This document discusses point-to-point and multi-endpoint topologies used in environments based on the Real-time Transport Protocol (RTP).  In particular, centralized topologies commonly employed in the video conferencing industry are mapped to the RTP terminology."];
+  cites -> RFC7667;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  cites -> RFC3711;
+  RFC7201 [label="RFC7201
+Options for Securing RTP Sessions
+2014", shape=ellipse, URL="RFC7201.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is used in a large number of different application domains and environments.  This heterogeneity implies that different security mechanisms are needed to provide services such as confidentiality, integrity, and source authentication of RTP and RTP Control Protocol (RTCP) packets suitable for the various environments.  The range of solutions makes it difficult for RTP-based application developers to pick the most suitable mechanism.  This document provides an overview of a number of security solutions for RTP and gives guidance for developers on how to choose the appropriate security mechanism."];
+  cites -> RFC7201;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9392;
+  RFC9743 [label="RFC9743
+Specifying New Congestion Control
+Algorithms
+2025", shape=ellipse, URL="RFC9743.html", target="_top", tooltip="RFC 5033 discusses the principles and guidelines for standardizing new congestion control algorithms.  This document obsoletes RFC 5033 to reflect changes in the congestion control landscape by providing a framework for the development and assessment of congestion control mechanisms, promoting stability across diverse network paths.  This document seeks to ensure that proposed congestion control algorithms operate efficiently and without harm when used in the global Internet.  It emphasizes the need for comprehensive testing and validation to prevent adverse interactions with existing flows."];
+  RFC9743 -> rev_cites;
+}

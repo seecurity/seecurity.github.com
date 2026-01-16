@@ -1,0 +1,104 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8577 [label="RFC8577
+Signaling RSVP-TE Tunnels on a Shared
+MPLS Forwarding Plane
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="As the scale of MPLS RSVP-TE networks has grown, the number of Label Switched Paths (LSPs) supported by individual network elements has increased. Various implementation recommendations have been proposed to manage the resulting increase in the amount of control-plane state information. However, those changes have had no effect on the number of labels that a transit Label Switching Router (LSR) has to support in the forwarding plane. That number is governed by the number of LSPs transiting or terminated at the LSR and is directly related to the total LSP state in the control plane. This document defines a mechanism to prevent the maximum size of the label space limit on an LSR from being a constraint to control-plane scaling on that node. It introduces the notion of preinstalled 'per-TE link labels' that can be shared by MPLS RSVP-TE LSPs that traverse these TE links. This approach significantly reduces the forwarding-plane state required to support a large number of LSPs. This couples the feature benefits of the RSVP-TE control plane with the simplicity of the Segment Routing (SR) MPLS forwarding plane."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8577;
+
+  obs [label="obsoletes", shape=box];
+  RFC8577 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8577 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8577;
+
+  cites [label="cites", shape=box];
+  RFC8577 -> cites;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC2961 [label="RFC2961
+RSVP Refresh Overhead Reduction
+Extensions
+2001", shape=ellipse, URL="RFC2961.html", target="_top", tooltip="This document describes a number of mechanisms that can be used to reduce processing overhead requirements of refresh messages, eliminate the state synchronization latency incurred when an RSVP (Resource ReserVation Protocol) message is lost and, when desired, refreshing state without the transmission of whole refresh messages. [STANDARDS-TRACK]"];
+  cites -> RFC2961;
+  RFC8370 [label="RFC8370
+Techniques to Improve the Scalability of
+RSVP-TE Deployments
+2018", shape=ellipse, URL="RFC8370.html", target="_top", tooltip="Networks that utilize RSVP-TE LSPs are encountering implementations that have a limited ability to support the growth in the number of LSPs deployed. This document defines two techniques, Refresh-Interval Independent RSVP (RI-RSVP) and Per-Peer Flow Control, that reduce the number of processing cycles required to maintain RSVP-TE LSP state in Label Switching Routers (LSRs) and hence allow implementations to support larger scale deployments."];
+  cites -> RFC8370;
+  RFC3031 [label="RFC3031
+Multiprotocol Label Switching
+Architecture
+2001", shape=ellipse, URL="RFC3031.html", target="_top", tooltip="This document specifies the architecture for Multiprotocol Label Switching (MPLS). [STANDARDS-TRACK]"];
+  cites -> RFC3031;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC4090 [label="RFC4090
+Fast Reroute Extensions to RSVP-TE for
+LSP Tunnels
+2005", shape=ellipse, URL="RFC4090.html", target="_top", tooltip="This document defines RSVP-TE extensions to establish backup label-switched path (LSP) tunnels for local repair of LSP tunnels. These mechanisms enable the re-direction of traffic onto backup LSP tunnels in 10s of milliseconds, in the event of a failure. Two methods are defined here. The one-to-one backup method creates detour LSPs for each protected LSP at each potential point of local repair. The facility backup method creates a bypass tunnel to protect a potential failure point; by taking advantage of MPLS label stacking, this bypass tunnel can protect a set of LSPs that have similar backup constraints. Both methods can be used to protect links and nodes during network failure. The described behavior and extensions to RSVP allow nodes to implement either method or both and to interoperate in a mixed network. [STANDARDS-TRACK]"];
+  cites -> RFC4090;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8491 [label="RFC8491
+Signaling Maximum SID Depth (MSD) Using
+IS-IS
+2018", shape=ellipse, URL="RFC8491.html", target="_top", tooltip="This document defines a way for an Intermediate System to Intermediate System (IS-IS) router to advertise multiple types of supported Maximum SID Depths (MSDs) at node and/or link granularity.  Such advertisements allow entities (e.g., centralized controllers) to determine whether a particular Segment ID (SID) stack can be supported in a given network.  This document only defines one type of MSD: Base MPLS Imposition.  However, it defines an encoding that can support other MSD types.  This document focuses on MSD use in a network that is Segment Routing (SR) enabled, but MSD may also be useful when SR is not enabled."];
+  cites -> RFC8491;
+  RFC7570 [label="RFC7570
+Label Switched Path (LSP) Attribute in
+the Explicit Route Object (ERO)
+2015", shape=ellipse, URL="RFC7570.html", target="_top", tooltip="RFC 5420 extends RSVP-TE to specify or record generic attributes that apply to the whole of the path of a Label Switched Path (LSP).  This document defines an extension to the RSVP Explicit Route Object (ERO) and Record Route Object (RRO) to allow them to specify or record generic attributes that apply to a given hop."];
+  cites -> RFC7570;
+  RFC5420 [label="RFC5420
+Encoding of Attributes for MPLS LSP
+Establishment Using Resource Reservation
+Protocol Traffic Engineering (RSVP-TE)
+2009", shape=ellipse, URL="RFC5420.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs) may be established using the Resource Reservation Protocol Traffic Engineering (RSVP-TE) extensions. This protocol includes an object (the SESSION_ATTRIBUTE object) that carries a Flags field used to indicate options and attributes of the LSP. That Flags field has eight bits, allowing for eight options to be set. Recent proposals in many documents that extend RSVP-TE have suggested uses for each of the previously unused bits. This document defines a new object for RSVP-TE messages that allows the signaling of further attribute bits and also the carriage of arbitrary attribute parameters to make RSVP-TE easily extensible to support new requirements. Additionally, this document defines a way to record the attributes applied to the LSP on a hop-by-hop basis. The object mechanisms defined in this document are equally applicable to Generalized MPLS (GMPLS) Packet Switch Capable (PSC) LSPs and to GMPLS non-PSC LSPs. This document replaces and obsoletes the previous version of this work, published as RFC 4420. The only change is in the encoding of the Type-Length-Variable (TLV) data structures. [STANDARDS-TRACK]"];
+  cites -> RFC5420;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  cites -> RFC8029;
+  RFC2205 [label="RFC2205
+Resource ReSerVation Protocol (RSVP) --
+Version 1 Functional Specification
+1997", shape=ellipse, URL="RFC2205.html", target="_top", tooltip="This memo describes version 1 of RSVP, a resource reservation setup protocol designed for an integrated services Internet.  RSVP provides receiver-initiated setup of resource reservations for multicast or unicast data flows, with good scaling and robustness properties. [STANDARDS-TRACK]"];
+  cites -> RFC2205;
+  RFC5920 [label="RFC5920
+Security Framework for MPLS and GMPLS
+Networks
+2010", shape=ellipse, URL="RFC5920.html", target="_top", tooltip="This document provides a security framework for Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) Networks.  This document addresses the security aspects that are relevant in the context of MPLS and GMPLS.  It describes the security threats, the related defensive techniques, and the mechanisms for detection and reporting.  This document emphasizes RSVP-TE and LDP security considerations, as well as inter-AS and inter-provider security considerations for building and maintaining MPLS and GMPLS networks across different domains or different Service Providers.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5920;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8577;
+  RFC9732 [label="RFC9732
+A Framework for NRP-Based Enhanced
+Virtual Private Networks
+2025", shape=ellipse, URL="RFC9732.html", target="_top", tooltip="This document describes a framework for Enhanced Virtual Private Networks (VPNs) based on Network Resource Partitions (NRPs) in order to support the needs of applications with specific traffic performance requirements (e.g., low latency, bounded jitter).  NRP-based enhanced VPNs leverage the VPN and Traffic Engineering (TE) technologies and add characteristics that specific services require beyond those provided by conventional VPNs.  Typically, an NRP-based enhanced VPN will be used to underpin network slicing, but it could also be of use in its own right providing enhanced connectivity services between customer sites.  This document also provides an overview of relevant technologies in different network layers and identifies some areas for potential new work."];
+  RFC9732 -> rev_cites;
+}

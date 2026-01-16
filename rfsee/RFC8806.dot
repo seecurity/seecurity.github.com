@@ -1,0 +1,104 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8806 [label="RFC8806
+Running a Root Server Local to a
+Resolver
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="Some DNS recursive resolvers have longer-than-desired round-trip times to the closest DNS root server; those resolvers may have difficulty getting responses from the root servers, such as during a network attack. Some DNS recursive resolver operators want to prevent snooping by third parties of requests sent to DNS root servers. In both cases, resolvers can greatly decrease the round-trip time and prevent observation of requests by serving a copy of the full root zone on the same server, such as on a loopback address or in the resolver software. This document shows how to start and maintain such a copy of the root zone that does not cause problems for other users of the DNS, at the cost of adding some operational fragility for the operator. This document obsoletes RFC 7706."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8806;
+
+  obs [label="obsoletes", shape=box];
+  RFC8806 -> obs;
+  RFC7706 [label="RFC7706
+Decreasing Access Time to Root Servers
+by Running One on Loopback
+2015", shape=ellipse, URL="RFC7706.html", target="_top", tooltip="Some DNS recursive resolvers have longer-than-desired round-trip times to the closest DNS root server.  Some DNS recursive resolver operators want to prevent snooping of requests sent to DNS root servers by third parties.  Such resolvers can greatly decrease the round-trip time and prevent observation of requests by running a copy of the full root zone on a loopback address (such as 127.0.0.1).  This document shows how to start and maintain such a copy of the root zone that does not pose a threat to other users of the DNS, at the cost of adding some operational fragility for the operator."];
+  obs -> RFC7706;
+
+  updates [label="updates", shape=box];
+  RFC8806 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8806;
+
+  cites [label="cites", shape=box];
+  RFC8806 -> cites;
+  RFC7706 [label="RFC7706
+Decreasing Access Time to Root Servers
+by Running One on Loopback
+2015", shape=ellipse, URL="RFC7706.html", target="_top", tooltip="Some DNS recursive resolvers have longer-than-desired round-trip times to the closest DNS root server.  Some DNS recursive resolver operators want to prevent snooping of requests sent to DNS root servers by third parties.  Such resolvers can greatly decrease the round-trip time and prevent observation of requests by running a copy of the full root zone on a loopback address (such as 127.0.0.1).  This document shows how to start and maintain such a copy of the root zone that does not pose a threat to other users of the DNS, at the cost of adding some operational fragility for the operator."];
+  cites -> RFC7706;
+  RFC8198 [label="RFC8198
+Aggressive Use of DNSSEC-Validated Cache
+2017", shape=ellipse, URL="RFC8198.html", target="_top", tooltip="The DNS relies upon caching to scale; however, the cache lookup generally requires an exact match. This document specifies the use of NSEC/NSEC3 resource records to allow DNSSEC-validating resolvers to generate negative answers within a range and positive answers from wildcards. This increases performance, decreases latency, decreases resource utilization on both authoritative and recursive servers, and increases privacy. Also, it may help increase resilience to certain DoS attacks in some circumstances. This document updates RFC 4035 by allowing validating resolvers to generate negative answers based upon NSEC/NSEC3 records and positive answers in the presence of wildcards."];
+  cites -> RFC8198;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  cites -> RFC8499;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC5936 [label="RFC5936
+DNS Zone Transfer Protocol (AXFR)
+2010", shape=ellipse, URL="RFC5936.html", target="_top", tooltip="The standard means within the Domain Name System protocol for maintaining coherence among a zone's authoritative name servers consists of three mechanisms. Authoritative Transfer (AXFR) is one of the mechanisms and is defined in RFC 1034 and RFC 1035. The definition of AXFR has proven insufficient in detail, thereby forcing implementations intended to be compliant to make assumptions, impeding interoperability. Yet today we have a satisfactory set of implementations that do interoperate. This document is a new definition of AXFR -- new in the sense that it records an accurate definition of an interoperable AXFR mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC5936;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8806;
+  RFC8932 [label="RFC8932
+Recommendations for DNS Privacy Service
+Operators
+2020", shape=ellipse, URL="RFC8932.html", target="_top", tooltip="This document presents operational, policy, and security considerations for DNS recursive resolver operators who choose to offer DNS privacy services. With these recommendations, the operator can make deliberate decisions regarding which services to provide, as well as understanding how those decisions and the alternatives impact the privacy of users. This document also presents a non-normative framework to assist writers of a Recursive operator Privacy Statement, analogous to DNS Security Extensions (DNSSEC) Policies and DNSSEC Practice Statements described in RFC 6841."];
+  RFC8932 -> rev_cites;
+  RFC8976 [label="RFC8976
+Message Digest for DNS Zones
+2021", shape=ellipse, URL="RFC8976.html", target="_top", tooltip="This document describes a protocol and new DNS Resource Record that provides a cryptographic message digest over DNS zone data at rest. The ZONEMD Resource Record conveys the digest data in the zone itself. When used in combination with DNSSEC, ZONEMD allows recipients to verify the zone contents for data integrity and origin authenticity. This provides assurance that received zone data matches published data, regardless of how the zone data has been transmitted and received. When used without DNSSEC, ZONEMD functions as a checksum, guarding only against unintentional changes. ZONEMD does not replace DNSSEC: DNSSEC protects individual RRsets (DNS data with fine granularity), whereas ZONEMD protects a zone's data as a whole, whether consumed by authoritative name servers, recursive name servers, or any other applications. As specified herein, ZONEMD is impractical for large, dynamic zones due to the time and resources required for digest calculation. However, the ZONEMD record is extensible so that new digest schemes may be added in the future to support large, dynamic zones."];
+  RFC8976 -> rev_cites;
+  RFC9210 [label="RFC9210
+DNS Transport over TCP - Operational
+Requirements
+2022", shape=ellipse, URL="RFC9210.html", target="_top", tooltip="This document updates RFCs 1123 and 1536.  This document requires the operational practice of permitting DNS messages to be carried over TCP on the Internet as a Best Current Practice.  This operational requirement is aligned with the implementation requirements in RFC 7766.  The use of TCP includes both DNS over unencrypted TCP as well as over an encrypted TLS session.  The document also considers the consequences of this form of DNS communication and the potential operational issues that can arise when this Best Current Practice is not upheld."];
+  RFC9210 -> rev_cites;
+  RFC9498 [label="RFC9498
+The GNU Name System
+2023", shape=ellipse, URL="RFC9498.html", target="_top", tooltip="This document provides the GNU Name System (GNS) technical specification. GNS is a decentralized and censorship-resistant domain name resolution protocol that provides a privacy-enhancing alternative to the Domain Name System (DNS) protocols. This document defines the normative wire format of resource records, resolution processes, cryptographic routines, and security and privacy considerations for use by implementers. This specification was developed outside the IETF and does not have IETF consensus. It is published here to inform readers about the function of GNS, guide future GNS implementations, and ensure interoperability among implementations (for example, pre-existing GNUnet implementations)."];
+  RFC9498 -> rev_cites;
+  RFC9539 [label="RFC9539
+Unilateral Opportunistic Deployment of
+Encrypted Recursive-to-Authoritative DNS
+2024", shape=ellipse, URL="RFC9539.html", target="_top", tooltip="This document sets out steps that DNS servers (recursive resolvers and authoritative servers) can take unilaterally (without any coordination with other peers) to defend DNS query privacy against a passive network monitor. The protections provided by the guidance in this document can be defeated by an active attacker, but they should be simpler and less risky to deploy than more powerful defenses. The goal of this document is to simplify and speed up deployment of opportunistic encrypted transport in the recursive-to-authoritative hop of the DNS ecosystem. Wider easy deployment of the underlying encrypted transport on an opportunistic basis may facilitate the future specification of stronger cryptographic protections against more-powerful attacks."];
+  RFC9539 -> rev_cites;
+  RFC9609 [label="RFC9609
+Initializing a DNS Resolver with Priming
+Queries
+2025", shape=ellipse, URL="RFC9609.html", target="_top", tooltip="This document describes the queries that a DNS resolver should emit to initialize its cache. The result is that the resolver gets both a current NS resource record set (RRset) for the root zone and the necessary address information for reaching the root servers. This document obsoletes RFC 8109."];
+  RFC9609 -> rev_cites;
+  RFC9704 [label="RFC9704
+Establishing Local DNS Authority in
+Validated Split-Horizon Environments
+2025", shape=ellipse, URL="RFC9704.html", target="_top", tooltip="When split-horizon DNS is deployed by a network, certain domain names can be resolved authoritatively by a network-provided DNS resolver.  DNS clients that are not configured to use this resolver by default can use it for these specific domains only.  This specification defines a mechanism for domain owners to inform DNS clients about local resolvers that are authorized to answer authoritatively for certain subdomains."];
+  RFC9704 -> rev_cites;
+}

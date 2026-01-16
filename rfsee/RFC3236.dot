@@ -1,0 +1,50 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3236 [label="RFC3236
+The 'application/xhtml+xml' Media Type
+2002", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines the 'application/xhtml+xml' MIME media type for XHTML based markup languages; it is not intended to obsolete any previous IETF documents, in particular RFC 2854 which registers 'text/html'.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3236;
+
+  obs [label="obsoletes", shape=box];
+  RFC3236 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3236 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3236;
+
+  cites [label="cites", shape=box];
+  RFC3236 -> cites;
+  RFC2396 [label="RFC2396
+Uniform Resource Identifiers (URI):
+Generic Syntax
+1998", shape=ellipse, URL="RFC2396.html", target="_top", tooltip="This document defines a grammar that is a superset of all valid URI, such that an implementation can parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier type. [STANDARDS-TRACK]"];
+  cites -> RFC2396;
+  RFC2732 [label="RFC2732
+Format for Literal IPv6 Addresses in
+URL's
+1999", shape=ellipse, URL="RFC2732.html", target="_top", tooltip="This document defines the format for literal IPv6 Addresses in URL's for implementation in World Wide Web browsers. [STANDARDS-TRACK]"];
+  cites -> RFC2732;
+  RFC2854 [label="RFC2854
+The 'text/html' Media Type
+2000", shape=ellipse, URL="RFC2854.html", target="_top", tooltip="This document summarizes the history of HTML development, and defines the text/html MIME type by pointing to the relevant W3C recommendations.  This memo provides information for the Internet community."];
+  cites -> RFC2854;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3236;
+  RFC4329 [label="RFC4329
+Scripting Media Types
+2006", shape=ellipse, URL="RFC4329.html", target="_top", tooltip="This document describes the registration of media types for the ECMAScript and JavaScript programming languages and conformance requirements for implementations of these types.  This memo provides information for the Internet community."];
+  RFC4329 -> rev_cites;
+  RFC9239 [label="RFC9239
+Updates to ECMAScript Media Types
+2022", shape=ellipse, URL="RFC9239.html", target="_top", tooltip="This document describes the registration of media types for the ECMAScript and JavaScript programming languages and conformance requirements for implementations of these types.  This document obsoletes RFC 4329 (Scripting Media Types), replacing the previous registrations with information and requirements aligned with common usage and implementation experiences."];
+  RFC9239 -> rev_cites;
+}

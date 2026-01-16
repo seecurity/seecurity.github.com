@@ -1,0 +1,52 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7669 [label="RFC7669
+Assigning Digital Object Identifiers to
+RFCs
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the way that Digital Object Identifiers (DOIs) are assigned to past and future RFCs.  The DOI is a widely used system that assigns unique identifiers to digital documents that can be queried and managed in a consistent fashion."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7669;
+
+  obs [label="obsoletes", shape=box];
+  RFC7669 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7669 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7669;
+
+  cites [label="cites", shape=box];
+  RFC7669 -> cites;
+  RFC3650 [label="RFC3650
+Handle System Overview
+2003", shape=ellipse, URL="RFC3650.html", target="_top", tooltip="This document provides an overview of the Handle System in terms of its namespace and service architecture, as well as its relationship to other Internet services such as DNS, LDAP/X.500, and URNs.  The Handle System is a general-purpose global name service that allows secured name resolution and administration over networks such as the Internet.  The Handle System manages handles, which are unique names for digital objects and other Internet resources."];
+  cites -> RFC3650;
+  RFC3651 [label="RFC3651
+Handle System Namespace and Service
+Definition
+2003", shape=ellipse, URL="RFC3651.html", target="_top", tooltip="The Handle System is a general-purpose global name service that allows secured name resolution and administration over the public Internet.  This document provides a detailed description of the Handle System namespace, and its data, service, and operation models.  The namespace definition specifies the handle syntax and its semantic structure.  The data model defines the data structures used by the Handle System protocol and any pre-defined data types for carrying out the handle service.  The service model provides definitions of various Handle System components and explains how they work together over the network.  Finally, the Handle System operation model describes its service operation in terms of messages transmitted between client and server, and the client authentication process based on the Handle System authentication protocol."];
+  cites -> RFC3651;
+  RFC3652 [label="RFC3652
+Handle System Protocol (ver 2.1)
+Specification
+2003", shape=ellipse, URL="RFC3652.html", target="_top", tooltip="The Handle System is a general-purpose global name service that allows secured name resolution and administration over the public Internet.  This document describes the protocol used for client software to access the Handle System for both handle resolution and administration.  The protocol specifies the procedure for a client software to locate the responsible handle server of any given handle.  It also defines the messages exchanged between the client and server for any handle operation."];
+  cites -> RFC3652;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7669;
+  RFC7991 [label="RFC7991
+The xml2rfc Version 3 Vocabulary
+2016", shape=ellipse, URL="RFC7991.html", target="_top", tooltip="This document defines the xml2rfc version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts.  It is heavily derived from the version 2 vocabulary that is also under discussion.  This document obsoletes the v2 grammar described in RFC 7749."];
+  RFC7991 -> rev_cites;
+  RFC7998 [label="RFC7998
+xml2rfc Version 3 Preparation Tool
+Description
+2016", shape=ellipse, URL="RFC7998.html", target="_top", tooltip="This document describes some aspects of the prep tool that is expected to be created when the new xml2rfc version 3 specification is deployed."];
+  RFC7998 -> rev_cites;
+}

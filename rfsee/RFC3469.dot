@@ -1,0 +1,91 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3469 [label="RFC3469
+Framework for Multi-Protocol Label
+Switching (MPLS)-based Recovery
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="Multi-protocol label switching (MPLS) integrates the label swapping forwarding paradigm with network layer routing.  To deliver reliable service, MPLS requires a set of procedures to provide protection of the traffic carried on different paths.  This requires that the label switching routers (LSRs) support fault detection, fault notification, and fault recovery mechanisms, and that MPLS signaling support the configuration of recovery.  With these objectives in mind, this document specifies a framework for MPLS based recovery.  Restart issues are not included in this framework.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3469;
+
+  obs [label="obsoletes", shape=box];
+  RFC3469 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3469 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3469;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  RFC5462 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3469 -> cites;
+  RFC3031 [label="RFC3031
+Multiprotocol Label Switching
+Architecture
+2001", shape=ellipse, URL="RFC3031.html", target="_top", tooltip="This document specifies the architecture for Multiprotocol Label Switching (MPLS). [STANDARDS-TRACK]"];
+  cites -> RFC3031;
+  RFC2702 [label="RFC2702
+Requirements for Traffic Engineering
+Over MPLS
+1999", shape=ellipse, URL="RFC2702.html", target="_top", tooltip="This document presents a set of requirements for Traffic Engineering over Multiprotocol Label Switching (MPLS).  It identifies the functional capabilities required to implement policies that facilitate efficient and reliable network operations in an MPLS domain.  This memo provides information for the Internet community."];
+  cites -> RFC2702;
+  RFC2205 [label="RFC2205
+Resource ReSerVation Protocol (RSVP) --
+Version 1 Functional Specification
+1997", shape=ellipse, URL="RFC2205.html", target="_top", tooltip="This memo describes version 1 of RSVP, a resource reservation setup protocol designed for an integrated services Internet.  RSVP provides receiver-initiated setup of resource reservations for multicast or unicast data flows, with good scaling and robustness properties. [STANDARDS-TRACK]"];
+  cites -> RFC2205;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC3212 [label="RFC3212
+Constraint-Based LSP Setup using LDP
+2002", shape=ellipse, URL="RFC3212.html", target="_top", tooltip="This document specifies mechanisms and TLVs (Type/Length/Value) for support of CR-LSPs (constraint-based routed Label Switched Path) using LDP (Label Distribution Protocol). [STANDARDS-TRACK]"];
+  cites -> RFC3212;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3469;
+  RFC3612 [label="RFC3612
+Applicability Statement for Restart
+Mechanisms for the Label Distribution
+Protocol (LDP)
+2003", shape=ellipse, URL="RFC3612.html", target="_top", tooltip="This document provides guidance on when it is advisable to implement some form of Label Distribution Protocol (LDP) restart mechanism and which approach might be more suitable.  The issues and extensions described in this document are equally applicable to RFC 3212, Constraint-Based LSP Setup Using LDP."];
+  RFC3612 -> rev_cites;
+  RFC3945 [label="RFC3945
+Generalized Multi-Protocol Label
+Switching (GMPLS) Architecture
+2004", shape=ellipse, URL="RFC3945.html", target="_top", tooltip="Future data and transmission networks will consist of elements such as routers, switches, Dense Wavelength Division Multiplexing (DWDM) systems, Add-Drop Multiplexors (ADMs), photonic cross-connects (PXCs), optical cross-connects (OXCs), etc. that will use Generalized Multi-Protocol Label Switching (GMPLS) to dynamically provision resources and to provide network survivability using protection and restoration techniques. This document describes the architecture of GMPLS. GMPLS extends MPLS to encompass time-division (e.g., SONET/SDH, PDH, G.709), wavelength (lambdas), and spatial switching (e.g., incoming port or fiber to outgoing port or fiber). The focus of GMPLS is on the control plane of these various layers since each of them can use physically diverse data or forwarding planes. The intention is to cover both the signaling and the routing part of that control plane. [STANDARDS-TRACK]"];
+  RFC3945 -> rev_cites;
+  RFC4920 [label="RFC4920
+Crankback Signaling Extensions for MPLS
+and GMPLS RSVP-TE
+2007", shape=ellipse, URL="RFC4920.html", target="_top", tooltip="In a distributed, constraint-based routing environment, the information used to compute a path may be out of date. This means that Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineered (TE) Label Switched Path (LSP) setup requests may be blocked by links or nodes without sufficient resources. Crankback is a scheme whereby setup failure information is returned from the point of failure to allow new setup attempts to be made avoiding the blocked resources. Crankback can also be applied to LSP recovery to indicate the location of the failed link or node. This document specifies crankback signaling extensions for use in MPLS signaling using RSVP-TE as defined in RSVP-TE: Extensions to RSVP for LSP Tunnels, RFC 3209, and GMPLS signaling as defined in Generalized Multi-Protocol Label Switching (GMPLS) Signaling Functional Description, RFC 3473. These extensions mean that the LSP setup request can be retried on an alternate path that detours around blocked links or nodes. This offers significant improvements in the successful setup and recovery ratios for LSPs, especially in situations where a large number of setup requests are triggered at the same time. [STANDARDS-TRACK]"];
+  RFC4920 -> rev_cites;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  RFC5462 -> rev_cites;
+  RFC6372 [label="RFC6372
+MPLS Transport Profile (MPLS-TP)
+Survivability Framework
+2011", shape=ellipse, URL="RFC6372.html", target="_top", tooltip="Network survivability is the ability of a network to recover traffic delivery following failure or degradation of network resources. Survivability is critical for the delivery of guaranteed network services, such as those subject to strict Service Level Agreements (SLAs) that place maximum bounds on the length of time that services may be degraded or unavailable. The Transport Profile of Multiprotocol Label Switching (MPLS-TP) is a packet-based transport technology based on the MPLS data plane that reuses many aspects of the MPLS management and control planes. This document comprises a framework for the provision of survivability in an MPLS-TP network; it describes recovery elements, types, methods, and topological considerations. To enable data-plane recovery, survivability may be supported by the control plane, management plane, and by Operations, Administration, and Maintenance (OAM) functions. This document describes mechanisms for recovering MPLS-TP Label Switched Paths (LSPs). A detailed description of pseudowire recovery in MPLS-TP networks is beyond the scope of this document. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet-based transport network as defined by the ITU-T. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6372 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+}

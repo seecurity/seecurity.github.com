@@ -1,0 +1,32 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2793 [label="RFC2793
+RTP Payload for Text Conversation
+2000", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo describes how to carry text conversation session contents in RTP packets.  Text conversation session contents are specified in ITU-T Recommendation T.140. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2793;
+  RFC4103 [label="RFC4103
+RTP Payload for Text Conversation
+2005", shape=ellipse, URL="RFC4103.html", target="_top", tooltip="This memo obsoletes RFC 2793; it describes how to carry real-time text conversation session contents in RTP packets. Text conversation session contents are specified in ITU-T Recommendation T.140. One payload format is described for transmitting text on a separate RTP session dedicated for the transmission of text. This RTP payload description recommends a method to include redundant text from already transmitted packets in order to reduce the risk of text loss caused by packet loss. [STANDARDS-TRACK]"];
+  RFC4103 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC2793 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2793 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2793;
+
+  cites [label="cites", shape=box];
+  RFC2793 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2793;
+}

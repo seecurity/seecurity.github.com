@@ -1,0 +1,63 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7387 [label="RFC7387
+A Framework for Ethernet Tree (E-Tree)
+Service over a Multiprotocol Label
+Switching (MPLS) Network
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes an Ethernet-Tree (E-Tree) solution framework for supporting the Metro Ethernet Forum (MEF) E-Tree service over a Multiprotocol Label Switching (MPLS) network.  The objective is to provide a simple and effective approach to emulate E-Tree services in addition to Ethernet LAN (E-LAN) services on an existing MPLS network."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7387;
+
+  obs [label="obsoletes", shape=box];
+  RFC7387 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7387 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7387;
+
+  cites [label="cites", shape=box];
+  RFC7387 -> cites;
+  RFC4664 [label="RFC4664
+Framework for Layer 2 Virtual Private
+Networks (L2VPNs)
+2006", shape=ellipse, URL="RFC4664.html", target="_top", tooltip="This document provides a framework for Layer 2 Provider Provisioned Virtual Private Networks (L2VPNs).  This framework is intended to aid in standardizing protocols and mechanisms to support interoperable L2VPNs.  This memo provides information for the Internet community."];
+  cites -> RFC4664;
+  RFC4761 [label="RFC4761
+Virtual Private LAN Service (VPLS) Using
+BGP for Auto-Discovery and Signaling
+2007", shape=ellipse, URL="RFC4761.html", target="_top", tooltip="Virtual Private LAN Service (VPLS), also known as Transparent LAN Service and Virtual Private Switched Network service, is a useful Service Provider offering. The service offers a Layer 2 Virtual Private Network (VPN); however, in the case of VPLS, the customers in the VPN are connected by a multipoint Ethernet LAN, in contrast to the usual Layer 2 VPNs, which are point-to-point in nature. This document describes the functions required to offer VPLS, a mechanism for signaling a VPLS, and rules for forwarding VPLS frames across a packet switched network. [STANDARDS-TRACK]"];
+  cites -> RFC4761;
+  RFC4762 [label="RFC4762
+Virtual Private LAN Service (VPLS) Using
+Label Distribution Protocol (LDP)
+Signaling
+2007", shape=ellipse, URL="RFC4762.html", target="_top", tooltip="This document describes a Virtual Private LAN Service (VPLS) solution using pseudowires, a service previously implemented over other tunneling technologies and known as Transparent LAN Services (TLS). A VPLS creates an emulated LAN segment for a given set of users; i.e., it creates a Layer 2 broadcast domain that is fully capable of learning and forwarding on Ethernet MAC addresses and that is closed to a given set of users. Multiple VPLS services can be supported from a single Provider Edge (PE) node. This document describes the control plane functions of signaling pseudowire labels using Label Distribution Protocol (LDP), extending RFC 4447. It is agnostic to discovery protocols. The data plane functions of forwarding are also described, focusing in particular on the learning of MAC addresses. The encapsulation of VPLS packets is described by RFC 4448. [STANDARDS-TRACK]"];
+  cites -> RFC4762;
+  RFC7152 [label="RFC7152
+Requirements for Metro Ethernet Forum
+(MEF) Ethernet-Tree (E-Tree) Support in
+Layer 2 Virtual Private Network (L2VPN)
+2014", shape=ellipse, URL="RFC7152.html", target="_top", tooltip="This document provides functional requirements for the support of Metro Ethernet Forum (MEF) Ethernet Tree (E-Tree) in multipoint Layer 2 Virtual Private Network solutions (referred to as simply L2VPN).  It is intended that potential solutions will use these requirements as guidelines."];
+  cites -> RFC7152;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7387;
+  RFC7796 [label="RFC7796
+Ethernet-Tree (E-Tree) Support in
+Virtual Private LAN Service (VPLS)
+2016", shape=ellipse, URL="RFC7796.html", target="_top", tooltip="This document specifies a generic Virtual Private LAN Service (VPLS) solution, which uses VLANs to indicate root or leaf traffic to support Ethernet-Tree (E-Tree) services.  A VPLS Provider Edge (PE) model is illustrated as an example for the solution.  In the solution, E-Tree VPLS PEs are interconnected by Pseudowires (PWs), which carry the VLAN indicating the E-Tree attribute.  The MAC address-based Ethernet forwarding engine and the PW work in the same way as specified in RFC 4762 and RFC 4448, respectively.  A signaling mechanism is described to support E-Tree capability and VLAN mapping negotiation."];
+  RFC7796 -> rev_cites;
+  RFC8317 [label="RFC8317
+Ethernet-Tree (E-Tree) Support in
+Ethernet VPN (EVPN) and Provider
+Backbone Bridging EVPN (PBB-EVPN)
+2018", shape=ellipse, URL="RFC8317.html", target="_top", tooltip="The MEF Forum (MEF) has defined a rooted-multipoint Ethernet service known as Ethernet-Tree (E-Tree).  A solution framework for supporting this service in MPLS networks is described in RFC 7387, A Framework for Ethernet-Tree (E-Tree) Service over a Multiprotocol Label Switching (MPLS) Network.  This document discusses how those functional requirements can be met with a solution based on RFC 7432, BGP MPLS Based Ethernet VPN (EVPN), with some extensions and a description of how such a solution can offer a more efficient implementation of these functions than that of RFC 7796, Ethernet-Tree (E-Tree) Support in Virtual Private LAN Service (VPLS).  This document makes use of the most significant bit of the Tunnel Type field (in the P-Multicast Service Interface (PMSI) Tunnel attribute) governed by the IANA registry created by RFC 7385; hence, it updates RFC 7385 accordingly."];
+  RFC8317 -> rev_cites;
+}

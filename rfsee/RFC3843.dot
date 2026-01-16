@@ -1,0 +1,46 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3843 [label="RFC3843
+RObust Header Compression (ROHC): A
+Compression Profile for IP
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="The original RObust Header Compression (ROHC) RFC (RFC 3095) defines a framework for header compression, along with compression protocols (profiles) for IP/UDP/RTP, IP/ESP (Encapsulating Security Payload), IP/UDP, and also a profile for uncompressed packet streams.  However, no profile was defined for compression of IP only, which has been identified as a missing piece in RFC 3095.  This document defines a ROHC compression profile for IP, similar to the IP/UDP profile defined by RFC 3095, but simplified to exclude UDP, and enhanced to compress IP header chains of arbitrary length. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3843;
+
+  obs [label="obsoletes", shape=box];
+  RFC3843 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3843 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3843;
+  RFC4815 [label="RFC4815
+RObust Header Compression (ROHC):
+Corrections and Clarifications to RFC
+3095
+2007", shape=ellipse, URL="RFC4815.html", target="_top", tooltip="RFC 3095 defines the RObust Header Compression (ROHC) framework and profiles for IP (Internet Protocol), UDP (User Datagram Protocol), RTP (Real-Time Transport Protocol), and ESP (Encapsulating Security Payload).  Some parts of the specification are unclear or contain errors that may lead to misinterpretations that may impair interoperability between different implementations.  This document provides corrections, additions, and clarifications to RFC 3095; this document thus updates RFC 3095.  In addition, other clarifications related to RFC 3241 (ROHC over PPP), RFC 3843 (ROHC IP profile) and RFC 4109 (ROHC UDP-Lite profiles) are also provided. [STANDARDS-TRACK]"];
+  RFC4815 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3843 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3843;
+  RFC4901 [label="RFC4901
+Protocol Extensions for Header
+Compression over MPLS
+2007", shape=ellipse, URL="RFC4901.html", target="_top", tooltip="This specification defines how to use Multi-Protocol Label Switching (MPLS) to route Header-Compressed (HC) packets over an MPLS label switched path.  HC can significantly reduce packet-header overhead and, in combination with MPLS, can also increases bandwidth efficiency and processing scalability in terms of the maximum number of simultaneous compressed flows that use HC at each router).  Here we define how MPLS pseudowires are used to transport the HC context and control messages between the ingress and egress MPLS label switching routers.  This is defined for a specific set of existing HC mechanisms that might be used, for example, to support voice over IP.  This specification also describes extension mechanisms to allow support for future, as yet to be defined, HC protocols.  In this specification, each HC protocol operates independently over a single pseudowire instance, very much as it would over a single point-to-point link. [STANDARDS-TRACK]"];
+  RFC4901 -> rev_cites;
+  RFC5225 [label="RFC5225
+RObust Header Compression Version 2
+(ROHCv2): Profiles for RTP, UDP, IP, ESP
+and UDP-Lite
+2008", shape=ellipse, URL="RFC5225.html", target="_top", tooltip="This document specifies ROHC (Robust Header Compression) profiles that efficiently compress RTP/UDP/IP (Real-Time Transport Protocol, User Datagram Protocol, Internet Protocol), RTP/UDP-Lite/IP (User Datagram Protocol Lite), UDP/IP, UDP-Lite/IP, IP and ESP/IP (Encapsulating Security Payload) headers. This specification defines a second version of the profiles found in RFC 3095, RFC 3843 and RFC 4019; it supersedes their definition, but does not obsolete them. The ROHCv2 profiles introduce a number of simplifications to the rules and algorithms that govern the behavior of the compression endpoints. It also defines robustness mechanisms that may be used by a compressor implementation to increase the probability of decompression success when packets can be lost and/or reordered on the ROHC channel. Finally, the ROHCv2 profiles define their own specific set of header formats, using the ROHC formal notation. [STANDARDS-TRACK]"];
+  RFC5225 -> rev_cites;
+}

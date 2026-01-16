@@ -1,0 +1,126 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8985 [label="RFC8985
+The RACK-TLP Loss Detection Algorithm
+for TCP
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document presents the RACK-TLP loss detection algorithm for TCP.  RACK-TLP uses per-segment transmit timestamps and selective acknowledgments (SACKs) and has two parts.  Recent Acknowledgment (RACK) starts fast recovery quickly using time-based inferences derived from acknowledgment (ACK) feedback, and Tail Loss Probe (TLP) leverages RACK and sends a probe packet to trigger ACK feedback to avoid retransmission timeout (RTO) events.  Compared to the widely used duplicate acknowledgment (DupAck) threshold approach, RACK-TLP detects losses more efficiently when there are application-limited flights of data, lost retransmissions, or data packet reordering events.  It is intended to be an alternative to the DupAck threshold approach."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8985;
+
+  obs [label="obsoletes", shape=box];
+  RFC8985 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8985 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8985;
+
+  cites [label="cites", shape=box];
+  RFC8985 -> cites;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC6675 [label="RFC6675
+A Conservative Loss Recovery Algorithm
+Based on Selective Acknowledgment (SACK)
+for TCP
+2012", shape=ellipse, URL="RFC6675.html", target="_top", tooltip="This document presents a conservative loss recovery algorithm for TCP that is based on the use of the selective acknowledgment (SACK) TCP option.  The algorithm presented in this document conforms to the spirit of the current congestion control specification (RFC 5681), but allows TCP senders to recover more effectively when multiple segments are lost from a single flight of data.  This document obsoletes RFC 3517 and describes changes from it. [STANDARDS-TRACK]"];
+  cites -> RFC6675;
+  RFC6298 [label="RFC6298
+Computing TCP's Retransmission Timer
+2011", shape=ellipse, URL="RFC6298.html", target="_top", tooltip="This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer.  It expands on the discussion in Section 4.2.3.1 of RFC 1122 and upgrades the requirement of supporting the algorithm from a SHOULD to a MUST.  This document obsoletes RFC 2988. [STANDARDS-TRACK]"];
+  cites -> RFC6298;
+  RFC4653 [label="RFC4653
+Improving the Robustness of TCP to Non-
+Congestion Events
+2006", shape=ellipse, URL="RFC4653.html", target="_top", tooltip="This document specifies Non-Congestion Robustness (NCR) for TCP.  In the absence of explicit congestion notification from the network, TCP uses loss as an indication of congestion.  One of the ways TCP detects loss is using the arrival of three duplicate acknowledgments.  However, this heuristic is not always correct, notably in the case when network paths reorder segments (for whatever reason), resulting in degraded performance.  TCP-NCR is designed to mitigate this degraded performance by increasing the number of duplicate acknowledgments required to trigger loss recovery, based on the current state of the connection, in an effort to better disambiguate true segment loss from segment reordering.  This document specifies the changes to TCP, as well as the costs and benefits of these modifications.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4653;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC2018 [label="RFC2018
+TCP Selective Acknowledgment Options
+1996", shape=ellipse, URL="RFC2018.html", target="_top", tooltip="This memo proposes an implementation of SACK and discusses its performance and related issues. [STANDARDS-TRACK]"];
+  cites -> RFC2018;
+  RFC2883 [label="RFC2883
+An Extension to the Selective
+Acknowledgement (SACK) Option for TCP
+2000", shape=ellipse, URL="RFC2883.html", target="_top", tooltip="This note defines an extension of the Selective Acknowledgement (SACK) Option for TCP. [STANDARDS-TRACK]"];
+  cites -> RFC2883;
+  RFC7323 [label="RFC7323
+TCP Extensions for High Performance
+2014", shape=ellipse, URL="RFC7323.html", target="_top", tooltip="This document specifies a set of TCP extensions to improve performance over paths with a large bandwidth * delay product and to provide reliable operation over very high-speed paths. It defines the TCP Window Scale (WS) option and the TCP Timestamps (TS) option and their semantics. The Window Scale option is used to support larger receive windows, while the Timestamps option can be used for at least two distinct mechanisms, Protection Against Wrapped Sequences (PAWS) and Round-Trip Time Measurement (RTTM), that are also described herein. This document obsoletes RFC 1323 and describes changes from it."];
+  cites -> RFC7323;
+  RFC5827 [label="RFC5827
+Early Retransmit for TCP and Stream
+Control Transmission Protocol (SCTP)
+2010", shape=ellipse, URL="RFC5827.html", target="_top", tooltip="This document proposes a new mechanism for TCP and Stream Control Transmission Protocol (SCTP) that can be used to recover lost segments when a connection's congestion window is small.  The Early Retransmit mechanism allows the transport to reduce, in certain special circumstances, the number of duplicate acknowledgments required to trigger a fast retransmission.  This allows the transport to use fast retransmit to recover segment losses that would otherwise require a lengthy retransmission timeout. [STANDARDS-TRACK]"];
+  cites -> RFC5827;
+  RFC3042 [label="RFC3042
+Enhancing TCP's Loss Recovery Using
+Limited Transmit
+2001", shape=ellipse, URL="RFC3042.html", target="_top", tooltip="This document proposes a new Transmission Control Protocol (TCP) mechanism that can be used to more effectively recover lost segments when a connection's congestion window is small, or when a large number of segments are lost in a single transmission window. [STANDARDS-TRACK]"];
+  cites -> RFC3042;
+  RFC5682 [label="RFC5682
+Forward RTO-Recovery (F-RTO): An
+Algorithm for Detecting Spurious
+Retransmission Timeouts with TCP
+2009", shape=ellipse, URL="RFC5682.html", target="_top", tooltip="The purpose of this document is to move the F-RTO (Forward RTO-Recovery) functionality for TCP in RFC 4138 from Experimental to Standards Track status. The F-RTO support for Stream Control Transmission Protocol (SCTP) in RFC 4138 remains with Experimental status. See Appendix B for the differences between this document and RFC 4138. Spurious retransmission timeouts cause suboptimal TCP performance because they often result in unnecessary retransmission of the last window of data. This document describes the F-RTO detection algorithm for detecting spurious TCP retransmission timeouts. F-RTO is a TCP sender-only algorithm that does not require any TCP options to operate. After retransmitting the first unacknowledged segment triggered by a timeout, the F-RTO algorithm of the TCP sender monitors the incoming acknowledgments to determine whether the timeout was spurious. It then decides whether to send new segments or retransmit unacknowledged segments. The algorithm effectively helps to avoid additional unnecessary retransmissions and thereby improves TCP performance in the case of a spurious timeout. [STANDARDS-TRACK]"];
+  cites -> RFC5682;
+  RFC7765 [label="RFC7765
+TCP and Stream Control Transmission
+Protocol (SCTP) RTO Restart
+2016", shape=ellipse, URL="RFC7765.html", target="_top", tooltip="This document describes a modified sender-side algorithm for managing the TCP and Stream Control Transmission Protocol (SCTP) retransmission timers that provides faster loss recovery when there is a small amount of outstanding data for a connection.  The modification, RTO Restart (RTOR), allows the transport to restart its retransmission timer using a smaller timeout duration, so that the effective retransmission timeout (RTO) becomes more aggressive in situations where fast retransmit cannot be used.  This enables faster loss detection and recovery for connections that are short lived or application limited."];
+  cites -> RFC7765;
+  RFC3522 [label="RFC3522
+The Eifel Detection Algorithm for TCP
+2003", shape=ellipse, URL="RFC3522.html", target="_top", tooltip="The Eifel detection algorithm allows a TCP sender to detect a posteriori whether it has entered loss recovery unnecessarily.  It requires that the TCP Timestamps option defined in RFC 1323 be enabled for a connection.  The Eifel detection algorithm makes use of the fact that the TCP Timestamps option eliminates the retransmission ambiguity in TCP.  Based on the timestamp of the first acceptable ACK that arrives during loss recovery, it decides whether loss recovery was entered unnecessarily.  The Eifel detection algorithm provides a basis for future TCP enhancements.  This includes response algorithms to back out of loss recovery by restoring a TCP sender's congestion control state.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3522;
+  RFC6937 [label="RFC6937
+Proportional Rate Reduction for TCP
+2013", shape=ellipse, URL="RFC6937.html", target="_top", tooltip="This document describes an experimental Proportional Rate Reduction (PRR) algorithm as an alternative to the widely deployed Fast Recovery and Rate-Halving algorithms.  These algorithms determine the amount of data sent by TCP during loss recovery.  PRR minimizes excess window adjustments, and the actual window size at the end of recovery will be as close as possible to the ssthresh, as determined by the congestion control algorithm."];
+  cites -> RFC6937;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8985;
+  RFC9002 [label="RFC9002
+QUIC Loss Detection and Congestion
+Control
+2021", shape=ellipse, URL="RFC9002.html", target="_top", tooltip="This document describes loss detection and congestion control mechanisms for QUIC."];
+  RFC9002 -> rev_cites;
+  RFC9330 [label="RFC9330
+Low Latency, Low Loss, and Scalable
+Throughput (L4S) Internet Service:
+Architecture
+2023", shape=ellipse, URL="RFC9330.html", target="_top", tooltip="This document describes the L4S architecture, which enables Internet applications to achieve low queuing latency, low congestion loss, and scalable throughput control. L4S is based on the insight that the root cause of queuing delay is in the capacity-seeking congestion controllers of senders, not in the queue itself. With the L4S architecture, all Internet applications could (but do not have to) transition away from congestion control algorithms that cause substantial queuing delay and instead adopt a new class of congestion controls that can seek capacity with very little queuing. These are aided by a modified form of Explicit Congestion Notification (ECN) from the network. With this new architecture, applications can have both low latency and high throughput. The architecture primarily concerns incremental deployment. It defines mechanisms that allow the new class of L4S congestion controls to coexist with 'Classic' congestion controls in a shared network. The aim is for L4S latency and throughput to be usually much better (and rarely worse) while typically not impacting Classic performance."];
+  RFC9330 -> rev_cites;
+  RFC9331 [label="RFC9331
+The Explicit Congestion Notification
+(ECN) Protocol for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, URL="RFC9331.html", target="_top", tooltip="This specification defines the protocol to be used for a new network service called Low Latency, Low Loss, and Scalable throughput (L4S). L4S uses an Explicit Congestion Notification (ECN) scheme at the IP layer that is similar to the original (or 'Classic') ECN approach, except as specified within. L4S uses 'Scalable' congestion control, which induces much more frequent control signals from the network, and it responds to them with much more fine-grained adjustments so that very low (typically sub-millisecond on average) and consistently low queuing delay becomes possible for L4S traffic without compromising link utilization. Thus, even capacity-seeking (TCP-like) traffic can have high bandwidth and very low delay at the same time, even during periods of high traffic load. The L4S identifier defined in this document distinguishes L4S from 'Classic' (e.g., TCP-Reno-friendly) traffic. Then, network bottlenecks can be incrementally modified to distinguish and isolate existing traffic that still follows the Classic behaviour, to prevent it from degrading the low queuing delay and low loss of L4S traffic. This Experimental specification defines the rules that L4S transports and network elements need to follow, with the intention that L4S flows neither harm each other's performance nor that of Classic traffic. It also suggests open questions to be investigated during experimentation. Examples of new Active Queue Management (AQM) marking algorithms and new transports (whether TCP-like or real time) are specified separately."];
+  RFC9331 -> rev_cites;
+  RFC9438 [label="RFC9438
+CUBIC for Fast and Long-Distance
+Networks
+2023", shape=ellipse, URL="RFC9438.html", target="_top", tooltip="CUBIC is a standard TCP congestion control algorithm that uses a cubic function instead of a linear congestion window increase function to improve scalability and stability over fast and long-distance networks. CUBIC has been adopted as the default TCP congestion control algorithm by the Linux, Windows, and Apple stacks. This document updates the specification of CUBIC to include algorithmic improvements based on these implementations and recent academic work. Based on the extensive deployment experience with CUBIC, this document also moves the specification to the Standards Track and obsoletes RFC 8312. This document also updates RFC 5681, to allow for CUBIC's occasionally more aggressive sending behavior."];
+  RFC9438 -> rev_cites;
+  RFC9937 [label="RFC9937
+Proportional Rate Reduction (PRR)
+2025", shape=ellipse, URL="RFC9937.html", target="_top", tooltip="This document specifies a Standards Track version of the Proportional Rate Reduction (PRR) algorithm that obsoletes the Experimental version described in RFC 6937.  PRR regulates the amount of data sent by TCP or other transport protocols during fast recovery.  PRR accurately regulates the actual flight size through recovery such that at the end of recovery it will be as close as possible to the slow start threshold (ssthresh), as determined by the congestion control algorithm."];
+  RFC9937 -> rev_cites;
+}

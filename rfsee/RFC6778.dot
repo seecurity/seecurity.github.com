@@ -1,0 +1,57 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6778 [label="RFC6778
+Requirements for Archiving IETF Email
+Lists and for Providing Web-Based
+Browsing and Searching
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IETF makes heavy use of email lists to conduct its work.  Participants frequently need to search and browse the archives of these lists and have asked for improved search capabilities.  The current archive mechanism could also be made more efficient.  This memo captures the requirements for improved email list archiving and searching systems.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6778;
+
+  obs [label="obsoletes", shape=box];
+  RFC6778 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6778 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6778;
+
+  cites [label="cites", shape=box];
+  RFC6778 -> cites;
+  RFC5064 [label="RFC5064
+The Archived-At Message Header Field
+2007", shape=ellipse, URL="RFC5064.html", target="_top", tooltip="This memo defines a new email header field, Archived-At:, to provide a direct link to the archived form of an individual email message. [STANDARDS-TRACK]"];
+  cites -> RFC5064;
+  RFC4155 [label="RFC4155
+The application/mbox Media Type
+2005", shape=ellipse, URL="RFC4155.html", target="_top", tooltip="This memo requests that the application/mbox media type be authorized for allocation by the IESG, according to the terms specified in RFC 2048.  This memo also defines a default format for the mbox database, which must be supported by all conformant implementations.  This memo provides information for the Internet community."];
+  cites -> RFC4155;
+  RFC6531 [label="RFC6531
+SMTP Extension for Internationalized
+Email
+2012", shape=ellipse, URL="RFC6531.html", target="_top", tooltip="This document specifies an SMTP extension for transport and delivery of email messages with internationalized email addresses or header information. [STANDARDS-TRACK]"];
+  cites -> RFC6531;
+  RFC6532 [label="RFC6532
+Internationalized Email Headers
+2012", shape=ellipse, URL="RFC6532.html", target="_top", tooltip="Internet mail was originally limited to 7-bit ASCII. MIME added support for the use of 8-bit character sets in body parts, and also defined an encoded-word construct so other character sets could be used in certain header field values. However, full internationalization of electronic mail requires additional enhancements to allow the use of Unicode, including characters outside the ASCII repertoire, in mail addresses as well as direct use of Unicode in header fields like From:, To:, and Subject:, without requiring the use of complex encoded-word constructs. This document specifies an enhancement to the Internet Message Format and to MIME that allows use of Unicode in mail addresses and most header field content. This specification updates Section 6.4 of RFC 2045 to eliminate the restriction prohibiting the use of non-identity content-transfer- encodings on subtypes of message/. [STANDARDS-TRACK]"];
+  cites -> RFC6532;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6778;
+  RFC7017 [label="RFC7017
+IMAP Access to IETF Email List Archives
+2013", shape=ellipse, URL="RFC7017.html", target="_top", tooltip="The IETF makes heavy use of email lists to conduct its work.  This often involves accessing the archived history of those email lists.  Participants would like to have the ability to browse and search those archives using standard IMAP clients.  This memo captures the requirements for providing a service that would allow such browsing and searching, and it is intended as input to a later activity for the design and development of such a service."];
+  RFC7017 -> rev_cites;
+  RFC7842 [label="RFC7842
+Requirements for Improvements to the
+IETF Email List Archiving, Web-Based
+Browsing, and Search Tool
+2016", shape=ellipse, URL="RFC7842.html", target="_top", tooltip="The web-based IETF email archive search tool based on the requirements captured in RFC 6778 was deployed in January 2014.  This memo captures the requirements for a set of improvements that have been identified during its initial years of community use."];
+  RFC7842 -> rev_cites;
+}

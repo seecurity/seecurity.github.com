@@ -1,0 +1,61 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5182 [label="RFC5182
+IMAP Extension for Referencing the Last
+SEARCH Result
+2008", shape=ellipse, fillcolor="#e8f0ff", tooltip="Many IMAP clients use the result of a SEARCH command as the input to perform another operation, for example, fetching the found messages, deleting them, or copying them to another mailbox. This can be achieved using standard IMAP operations described in RFC 3501; however, this would be suboptimal. The server will send the list of found messages to the client; after that, the client will have to parse the list, reformat it, and send it back to the server. The client can't pipeline the SEARCH command with the subsequent command, and, as a result, the server might not be able to perform some optimizations. This document proposes an IMAP extension that allows a client to tell a server to use the result of a SEARCH (or Unique Identifier (UID) SEARCH) command as an input to any subsequent command. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5182;
+
+  obs [label="obsoletes", shape=box];
+  RFC5182 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5182 -> updates;
+  RFC3501 [label="RFC3501
+INTERNET MESSAGE ACCESS PROTOCOL -
+VERSION 4rev1
+2003", shape=ellipse, URL="RFC3501.html", target="_top", tooltip="The Internet Message Access Protocol, Version 4rev1 (IMAP4rev1) allows a client to access and manipulate electronic mail messages on a server.  IMAP4rev1 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders.  IMAP4rev1 also provides the capability for an offline client to resynchronize with the server.  IMAP4rev1 includes operations for creating, deleting, and renaming mailboxes, checking for new messages, permanently removing messages, setting and clearing flags, RFC 2822 and RFC 2045 parsing, searching, and selective fetching of message attributes, texts, and portions thereof.  Messages in IMAP4rev1 are accessed by the use of numbers.  These numbers are either message sequence numbers or unique identifiers.  IMAP4rev1 supports a single server.  A mechanism for accessing configuration information to support multiple IMAP4rev1 servers is discussed in RFC 2244.  IMAP4rev1 does not specify a means of posting mail; this function is handled by a mail transfer protocol such as RFC 2821. [STANDARDS-TRACK]"];
+  updates -> RFC3501;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5182;
+
+  cites [label="cites", shape=box];
+  RFC5182 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5182;
+  RFC6237 [label="RFC6237
+IMAP4 Multimailbox SEARCH Extension
+2011", shape=ellipse, URL="RFC6237.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the round trips and waiting for various searches to complete, and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6237 -> rev_cites;
+  RFC7377 [label="RFC7377
+IMAP4 Multimailbox SEARCH Extension
+2014", shape=ellipse, URL="RFC7377.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the delays caused by many round trips and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX, UIDVALIDITY, and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466 and obsoletes RFC 6237."];
+  RFC7377 -> rev_cites;
+  RFC8437 [label="RFC8437
+IMAP UNAUTHENTICATE Extension for
+Connection Reuse
+2018", shape=ellipse, URL="RFC8437.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to allow an administrative client to reuse the same IMAP connection on behalf of multiple IMAP user identities."];
+  RFC8437 -> rev_cites;
+  RFC8970 [label="RFC8970
+IMAP4 Extension: Message Preview
+Generation
+2020", shape=ellipse, URL="RFC8970.html", target="_top", tooltip="This document specifies an Internet Message Access Protocol (IMAP) protocol extension that allows a client to request a server-generated abbreviated text representation of message data that is useful as a contextual preview of the entire message."];
+  RFC8970 -> rev_cites;
+  RFC9051 [label="RFC9051
+Internet Message Access Protocol (IMAP)
+- Version 4rev2
+2021", shape=ellipse, URL="RFC9051.html", target="_top", tooltip="The Internet Message Access Protocol Version 4rev2 (IMAP4rev2) allows a client to access and manipulate electronic mail messages on a server. IMAP4rev2 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders. IMAP4rev2 also provides the capability for an offline client to resynchronize with the server. IMAP4rev2 includes operations for creating, deleting, and renaming mailboxes; checking for new messages; removing messages permanently; setting and clearing flags; parsing per RFCs 5322, 2045, and 2231; searching; and selective fetching of message attributes, texts, and portions thereof. Messages in IMAP4rev2 are accessed by the use of numbers. These numbers are either message sequence numbers or unique identifiers. IMAP4rev2 does not specify a means of posting mail; this function is handled by a mail submission protocol such as the one specified in RFC 6409."];
+  RFC9051 -> rev_cites;
+  RFC9738 [label="RFC9738
+IMAP MESSAGELIMIT Extension
+2025", shape=ellipse, URL="RFC9738.html", target="_top", tooltip="The MESSAGELIMIT extension of the Internet Message Access Protocol (RFCs 3501 and 9051) allows servers to announce a limit on the number of messages that can be processed in a single FETCH, SEARCH, STORE, COPY, or MOVE command (or their UID variants), or in a single APPEND or UID EXPUNGE command.  This helps servers to control resource usage when performing various IMAP operations.  This helps clients to know the message limit enforced by the corresponding IMAP server and avoid issuing commands that would exceed such limit."];
+  RFC9738 -> rev_cites;
+}

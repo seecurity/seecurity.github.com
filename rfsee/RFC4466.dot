@@ -1,0 +1,129 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4466 [label="RFC4466
+Collected Extensions to IMAP4 ABNF
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="Over the years, many documents from IMAPEXT and LEMONADE working groups, as well as many individual documents, have added syntactic extensions to many base IMAP commands described in RFC 3501. For ease of reference, this document collects most of such ABNF changes in one place. This document also suggests a set of standard patterns for adding options and extensions to several existing IMAP commands defined in RFC 3501. The patterns provide for compatibility between existing and future extensions. This document updates ABNF in RFCs 2088, 2342, 3501, 3502, and 3516. It also includes part of the errata to RFC 3501. This document doesn't specify any semantic changes to the listed RFCs. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4466;
+
+  obs [label="obsoletes", shape=box];
+  RFC4466 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4466 -> updates;
+  RFC2088 [label="RFC2088
+IMAP4 non-synchronizing literals
+1997", shape=ellipse, URL="RFC2088.html", target="_top", tooltip="The Internet Message Access Protocol [STANDARDS-TRACK]"];
+  updates -> RFC2088;
+  RFC2342 [label="RFC2342
+IMAP4 Namespace
+1998", shape=ellipse, URL="RFC2342.html", target="_top", tooltip="This document defines a NAMESPACE command that allows a client to discover the prefixes of namespaces used by a server for personal mailboxes, other users' mailboxes, and shared mailboxes. [STANDARDS-TRACK]"];
+  updates -> RFC2342;
+  RFC3501 [label="RFC3501
+INTERNET MESSAGE ACCESS PROTOCOL -
+VERSION 4rev1
+2003", shape=ellipse, URL="RFC3501.html", target="_top", tooltip="The Internet Message Access Protocol, Version 4rev1 (IMAP4rev1) allows a client to access and manipulate electronic mail messages on a server.  IMAP4rev1 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders.  IMAP4rev1 also provides the capability for an offline client to resynchronize with the server.  IMAP4rev1 includes operations for creating, deleting, and renaming mailboxes, checking for new messages, permanently removing messages, setting and clearing flags, RFC 2822 and RFC 2045 parsing, searching, and selective fetching of message attributes, texts, and portions thereof.  Messages in IMAP4rev1 are accessed by the use of numbers.  These numbers are either message sequence numbers or unique identifiers.  IMAP4rev1 supports a single server.  A mechanism for accessing configuration information to support multiple IMAP4rev1 servers is discussed in RFC 2244.  IMAP4rev1 does not specify a means of posting mail; this function is handled by a mail transfer protocol such as RFC 2821. [STANDARDS-TRACK]"];
+  updates -> RFC3501;
+  RFC3502 [label="RFC3502
+Internet Message Access Protocol (IMAP)
+- MULTIAPPEND Extension
+2003", shape=ellipse, URL="RFC3502.html", target="_top", tooltip="This document describes the multiappending extension to the Internet Message Access Protocol (IMAP) (RFC 3501).  This extension provides substantial performance improvements for IMAP clients which upload multiple messages at a time to a mailbox on the server.  A server which supports this extension indicates this with a capability name of MULTIAPPEND. [STANDARDS-TRACK]"];
+  updates -> RFC3502;
+  RFC3516 [label="RFC3516
+IMAP4 Binary Content Extension
+2003", shape=ellipse, URL="RFC3516.html", target="_top", tooltip="This memo defines the Binary extension to the Internet Message Access Protocol (IMAP4).  It provides a mechanism for IMAP4 clients and servers to exchange message body data without using a MIME content-transfer- encoding. [STANDARDS-TRACK]"];
+  updates -> RFC3516;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4466;
+  RFC6237 [label="RFC6237
+IMAP4 Multimailbox SEARCH Extension
+2011", shape=ellipse, URL="RFC6237.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the round trips and waiting for various searches to complete, and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6237 -> updated_by;
+  RFC7377 [label="RFC7377
+IMAP4 Multimailbox SEARCH Extension
+2014", shape=ellipse, URL="RFC7377.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the delays caused by many round trips and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX, UIDVALIDITY, and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466 and obsoletes RFC 6237."];
+  RFC7377 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4466 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4466;
+  RFC5255 [label="RFC5255
+Internet Message Access Protocol
+Internationalization
+2008", shape=ellipse, URL="RFC5255.html", target="_top", tooltip="Internet Message Access Protocol (IMAP) version 4rev1 has basic support for non-ASCII characters in mailbox names and search substrings.  It also supports non-ASCII message headers and content encoded as specified by Multipurpose Internet Mail Extensions (MIME).  This specification defines a collection of IMAP extensions that improve international support including language negotiation for international error text, translations for namespace prefixes, and comparator negotiation for search, sort, and thread. [STANDARDS-TRACK]"];
+  RFC5255 -> rev_cites;
+  RFC5257 [label="RFC5257
+Internet Message Access Protocol -
+ANNOTATE Extension
+2008", shape=ellipse, URL="RFC5257.html", target="_top", tooltip="The ANNOTATE extension to the Internet Message Access Protocol permits clients and servers to maintain meta data for messages, or individual message parts, stored in a mailbox on the server. For example, this can be used to attach comments and other useful information to a message. It is also possible to attach annotations to specific parts of a message, so that, for example, they could be marked as seen, or important, or a comment added. Note that this document was the product of a WG that had good consensus on how to approach the problem. Nevertheless, the WG felt it did not have enough information on implementation and deployment hurdles to meet all of the requirements of a Proposed Standard. The IETF solicits implementations and implementation reports in order to make further progress. Implementers should be aware that this specification may change in an incompatible manner when going to Proposed Standard status. However, any incompatible changes will result in a new capability name being used to prevent problems with any deployments of the experimental extension. This memo defines an Experimental Protocol for the Internet community."];
+  RFC5257 -> rev_cites;
+  RFC5464 [label="RFC5464
+The IMAP METADATA Extension
+2009", shape=ellipse, URL="RFC5464.html", target="_top", tooltip="The METADATA extension to the Internet Message Access Protocol permits clients and servers to maintain annotations or metadata on IMAP servers.  It is possible to have annotations on a per-mailbox basis or on the server as a whole.  For example, this would allow comments about the purpose of a particular mailbox to be attached to that mailbox, or a message of the day containing server status information to be made available to anyone logging in to the server. [STANDARDS-TRACK]"];
+  RFC5464 -> rev_cites;
+  RFC5465 [label="RFC5465
+The IMAP NOTIFY Extension
+2009", shape=ellipse, URL="RFC5465.html", target="_top", tooltip="This document defines an IMAP extension that allows a client to request specific kinds of unsolicited notifications for specified mailboxes, such as messages being added to or deleted from such mailboxes. [STANDARDS-TRACK]"];
+  RFC5465 -> rev_cites;
+  RFC5738 [label="RFC5738
+IMAP Support for UTF-8
+2010", shape=ellipse, URL="RFC5738.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol version 4rev1 (IMAP4rev1) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5738 -> rev_cites;
+  RFC6154 [label="RFC6154
+IMAP LIST Extension for Special-Use
+Mailboxes
+2011", shape=ellipse, URL="RFC6154.html", target="_top", tooltip="Some IMAP message stores include special-use mailboxes, such as those used to hold draft messages or sent messages.  Many mail clients allow users to specify where draft or sent messages should be put, but configuring them requires that the user know which mailboxes the server has set aside for these purposes.  This extension adds new optional mailbox attributes that a server may include in IMAP LIST command responses to identify special-use mailboxes to the client, easing configuration. [STANDARDS-TRACK]"];
+  RFC6154 -> rev_cites;
+  RFC6237 [label="RFC6237
+IMAP4 Multimailbox SEARCH Extension
+2011", shape=ellipse, URL="RFC6237.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the round trips and waiting for various searches to complete, and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6237 -> rev_cites;
+  RFC6855 [label="RFC6855
+IMAP Support for UTF-8
+2013", shape=ellipse, URL="RFC6855.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This specification replaces RFC 5738."];
+  RFC6855 -> rev_cites;
+  RFC7162 [label="RFC7162
+IMAP Extensions: Quick Flag Changes
+Resynchronization (CONDSTORE) and Quick
+Mailbox Resynchronization (QRESYNC)
+2014", shape=ellipse, URL="RFC7162.html", target="_top", tooltip="Often, multiple IMAP (RFC 3501) clients need to coordinate changes to a common IMAP mailbox. Examples include different clients working on behalf of the same user and multiple users accessing shared mailboxes. These clients need a mechanism to efficiently synchronize state changes for messages within the mailbox. Initially defined in RFC 4551, the Conditional Store facility provides a protected update mechanism for message state information and a mechanism for requesting only changes to the message state. This memo updates that mechanism and obsoletes RFC 4551, based on operational experience. This document additionally updates another IMAP extension, Quick Resynchronization, which builds on the Conditional STORE extension to provide an IMAP client the ability to fully resynchronize a mailbox as part of the SELECT/EXAMINE command, without the need for additional server-side state or client round trips. Hence, this memo obsoletes RFC 5162. Finally, this document also updates the line-length recommendation in Section 3.2.1.5 of RFC 2683."];
+  RFC7162 -> rev_cites;
+  RFC7377 [label="RFC7377
+IMAP4 Multimailbox SEARCH Extension
+2014", shape=ellipse, URL="RFC7377.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the delays caused by many round trips and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX, UIDVALIDITY, and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466 and obsoletes RFC 6237."];
+  RFC7377 -> rev_cites;
+  RFC7888 [label="RFC7888
+IMAP4 Non-synchronizing Literals
+2016", shape=ellipse, URL="RFC7888.html", target="_top", tooltip="The Internet Message Access Protocol (RFC 3501) contains the literal syntactic construct for communicating strings. When sending a literal from client to server, IMAP requires the client to wait for the server to send a command continuation request between sending the octet count and the string data. This document specifies an alternate form of literal that does not require this network round trip. This document specifies 2 IMAP extensions: LITERAL+ and LITERAL-. LITERAL+ allows the alternate form of literals in all IMAP commands. LITERAL- is the same as LITERAL+, but it disallows the alternate form of literals unless they are 4096 bytes or less. This document obsoletes RFC 2088."];
+  RFC7888 -> rev_cites;
+  RFC7889 [label="RFC7889
+The IMAP APPENDLIMIT Extension
+2016", shape=ellipse, URL="RFC7889.html", target="_top", tooltip="This document defines an extension to the IMAP service whereby a server can inform the client about maximum message upload sizes, allowing the client to avoid sending APPEND commands that will fail because the messages are too large."];
+  RFC7889 -> rev_cites;
+  RFC8474 [label="RFC8474
+IMAP Extension for Object Identifiers
+2018", shape=ellipse, URL="RFC8474.html", target="_top", tooltip="This document updates RFC 3501 (IMAP4rev1) with persistent identifiers on mailboxes and messages to allow clients to more efficiently reuse cached data when resources have changed location on the server."];
+  RFC8474 -> rev_cites;
+  RFC8508 [label="RFC8508
+IMAP REPLACE Extension
+2019", shape=ellipse, URL="RFC8508.html", target="_top", tooltip="This document defines an IMAP extension that can be used to replace an existing message in a message store with a new message.  Message replacement is a common operation for clients that automatically save drafts or notes as a user composes them."];
+  RFC8508 -> rev_cites;
+  RFC9051 [label="RFC9051
+Internet Message Access Protocol (IMAP)
+- Version 4rev2
+2021", shape=ellipse, URL="RFC9051.html", target="_top", tooltip="The Internet Message Access Protocol Version 4rev2 (IMAP4rev2) allows a client to access and manipulate electronic mail messages on a server. IMAP4rev2 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders. IMAP4rev2 also provides the capability for an offline client to resynchronize with the server. IMAP4rev2 includes operations for creating, deleting, and renaming mailboxes; checking for new messages; removing messages permanently; setting and clearing flags; parsing per RFCs 5322, 2045, and 2231; searching; and selective fetching of message attributes, texts, and portions thereof. Messages in IMAP4rev2 are accessed by the use of numbers. These numbers are either message sequence numbers or unique identifiers. IMAP4rev2 does not specify a means of posting mail; this function is handled by a mail submission protocol such as the one specified in RFC 6409."];
+  RFC9051 -> rev_cites;
+  RFC9394 [label="RFC9394
+IMAP PARTIAL Extension for Paged SEARCH
+and FETCH
+2023", shape=ellipse, URL="RFC9394.html", target="_top", tooltip="The PARTIAL extension of the Internet Message Access Protocol (see RFCs 3501 and 9051) allows clients to limit the number of SEARCH results returned, as well as to perform incremental (paged) searches. This also helps servers to optimize resource usage when performing searches. This document extends the PARTIAL SEARCH return option originally specified in RFC 5267. It also clarifies some interactions between RFC 5267 and RFCs 4731 and 9051. This document updates RFCs 4731 and 5267."];
+  RFC9394 -> rev_cites;
+}

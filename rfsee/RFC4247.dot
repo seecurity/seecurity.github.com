@@ -1,0 +1,34 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4247 [label="RFC4247
+Requirements for Header Compression over
+MPLS
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="Voice over IP (VoIP) typically uses the encapsulation voice/RTP/UDP/IP.  When MPLS labels are added, this becomes voice/RTP/UDP/IP/MPLS-labels.  For an MPLS VPN, the packet header is typically 48 bytes, while the voice payload is often no more than 30 bytes, for example.  Header compression can significantly reduce the overhead through various compression mechanisms, such as enhanced compressed RTP (ECRTP) and robust header compression (ROHC).  We consider using MPLS to route compressed packets over an MPLS Label Switched Path (LSP) without compression/decompression cycles at each router.  This approach can increase the bandwidth efficiency as well as processing scalability of the maximum number of simultaneous flows that use header compression at each router.  In this document, we give a problem statement, goals and requirements, and an example scenario.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4247;
+
+  obs [label="obsoletes", shape=box];
+  RFC4247 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4247 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4247;
+
+  cites [label="cites", shape=box];
+  RFC4247 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4247;
+  RFC4901 [label="RFC4901
+Protocol Extensions for Header
+Compression over MPLS
+2007", shape=ellipse, URL="RFC4901.html", target="_top", tooltip="This specification defines how to use Multi-Protocol Label Switching (MPLS) to route Header-Compressed (HC) packets over an MPLS label switched path.  HC can significantly reduce packet-header overhead and, in combination with MPLS, can also increases bandwidth efficiency and processing scalability in terms of the maximum number of simultaneous compressed flows that use HC at each router).  Here we define how MPLS pseudowires are used to transport the HC context and control messages between the ingress and egress MPLS label switching routers.  This is defined for a specific set of existing HC mechanisms that might be used, for example, to support voice over IP.  This specification also describes extension mechanisms to allow support for future, as yet to be defined, HC protocols.  In this specification, each HC protocol operates independently over a single pseudowire instance, very much as it would over a single point-to-point link. [STANDARDS-TRACK]"];
+  RFC4901 -> rev_cites;
+}

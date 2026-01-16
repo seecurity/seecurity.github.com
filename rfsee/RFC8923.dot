@@ -1,0 +1,122 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8923 [label="RFC8923
+A Minimal Set of Transport Services for
+End Systems
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document recommends a minimal set of Transport Services offered by end systems and gives guidance on choosing among the available mechanisms and protocols.  It is based on the set of transport features in RFC 8303."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8923;
+
+  obs [label="obsoletes", shape=box];
+  RFC8923 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8923 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8923;
+
+  cites [label="cites", shape=box];
+  RFC8923 -> cites;
+  RFC8095 [label="RFC8095
+Services Provided by IETF Transport
+Protocols and Congestion Control
+Mechanisms
+2017", shape=ellipse, URL="RFC8095.html", target="_top", tooltip="This document describes, surveys, and classifies the protocol mechanisms provided by existing IETF protocols, as background for determining a common set of transport services.  It examines the Transmission Control Protocol (TCP), Multipath TCP, the Stream Control Transmission Protocol (SCTP), the User Datagram Protocol (UDP), UDP-Lite, the Datagram Congestion Control Protocol (DCCP), the Internet Control Message Protocol (ICMP), the Real-Time Transport Protocol (RTP), File Delivery over Unidirectional Transport / Asynchronous Layered Coding (FLUTE/ALC) for Reliable Multicast, NACK- Oriented Reliable Multicast (NORM), Transport Layer Security (TLS), Datagram TLS (DTLS), and the Hypertext Transport Protocol (HTTP), when HTTP is used as a pseudotransport.  This survey provides background for the definition of transport services within the TAPS working group."];
+  cites -> RFC8095;
+  RFC8303 [label="RFC8303
+On the Usage of Transport Features
+Provided by IETF Transport Protocols
+2018", shape=ellipse, URL="RFC8303.html", target="_top", tooltip="This document describes how the transport protocols Transmission Control Protocol (TCP), MultiPath TCP (MPTCP), Stream Control Transmission Protocol (SCTP), User Datagram Protocol (UDP), and Lightweight User Datagram Protocol (UDP-Lite) expose services to applications and how an application can configure and use the features that make up these services.  It also discusses the service provided by the Low Extra Delay Background Transport (LEDBAT) congestion control mechanism.  The description results in a set of transport abstractions that can be exported in a transport services (TAPS) API."];
+  cites -> RFC8303;
+  RFC8304 [label="RFC8304
+Transport Features of the User Datagram
+Protocol (UDP) and Lightweight UDP (UDP-
+Lite)
+2018", shape=ellipse, URL="RFC8304.html", target="_top", tooltip="This is an informational document that describes the transport protocol interface primitives provided by the User Datagram Protocol (UDP) and the Lightweight User Datagram Protocol (UDP-Lite) transport protocols.  It identifies the datagram services exposed to applications and how an application can configure and use the features offered by the Internet datagram transport service.  RFC 8303 documents the usage of transport features provided by IETF transport protocols, describing the way UDP, UDP-Lite, and other transport protocols expose their services to applications and how an application can configure and use the features that make up these services.  This document provides input to and context for that document, as well as offers a road map to documentation that may help users of the UDP and UDP-Lite protocols."];
+  cites -> RFC8304;
+  RFC7305 [label="RFC7305
+Report from the IAB Workshop on Internet
+Technology Adoption and Transition
+(ITAT)
+2014", shape=ellipse, URL="RFC7305.html", target="_top", tooltip="This document provides an overview of a workshop held by the Internet Architecture Board (IAB) on Internet Technology Adoption and Transition (ITAT). The workshop was hosted by the University of Cambridge on December 4th and 5th of 2013 in Cambridge, UK. The goal of the workshop was to facilitate adoption of Internet protocols, through examination of a variety of economic models, with particular emphasis at the waist of the hourglass (e.g., the middle of the protocol stack). This report summarizes contributions and discussions. As the topics were wide ranging, there is no single set of recommendations for IETF participants to pursue at this time. Instead, in the classic sense of early research, the workshop noted areas that deserve further exploration. Note that this document is a report on the proceedings of the workshop. The views and positions documented in this report are those of the workshop participants and do not necessarily reflect IAB views and positions."];
+  cites -> RFC7305;
+  RFC7413 [label="RFC7413
+TCP Fast Open
+2014", shape=ellipse, URL="RFC7413.html", target="_top", tooltip="This document describes an experimental TCP mechanism called TCP Fast Open (TFO).  TFO allows data to be carried in the SYN and SYN-ACK packets and consumed by the receiving end during the initial connection handshake, and saves up to one full round-trip time (RTT) compared to the standard TCP, which requires a three-way handshake (3WHS) to complete before data can be exchanged.  However, TFO deviates from the standard TCP semantics, since the data in the SYN could be replayed to an application in some rare circumstances.  Applications should not use TFO unless they can tolerate this issue, as detailed in the Applicability section."];
+  cites -> RFC7413;
+  RFC8922 [label="RFC8922
+A Survey of the Interaction between
+Security Protocols and Transport
+Services
+2020", shape=ellipse, URL="RFC8922.html", target="_top", tooltip="This document provides a survey of commonly used or notable network security protocols, with a focus on how they interact and integrate with applications and transport protocols.  Its goal is to supplement efforts to define and catalog Transport Services by describing the interfaces required to add security protocols.  This survey is not limited to protocols developed within the scope or context of the IETF, and those included represent a superset of features a Transport Services system may need to support."];
+  cites -> RFC8922;
+  RFC8260 [label="RFC8260
+Stream Schedulers and User Message
+Interleaving for the Stream Control
+Transmission Protocol
+2017", shape=ellipse, URL="RFC8260.html", target="_top", tooltip="The Stream Control Transmission Protocol (SCTP) is a message-oriented transport protocol supporting arbitrarily large user messages. This document adds a new chunk to SCTP for carrying payload data. This allows a sender to interleave different user messages that would otherwise result in head-of-line blocking at the sender. The interleaving of user messages is required for WebRTC data channels. Whenever an SCTP sender is allowed to send user data, it may choose from multiple outgoing SCTP streams. Multiple ways for performing this selection, called stream schedulers, are defined in this document. A stream scheduler can choose to either implement, or not implement, user message interleaving."];
+  cites -> RFC8260;
+  RFC3758 [label="RFC3758
+Stream Control Transmission Protocol
+(SCTP) Partial Reliability Extension
+2004", shape=ellipse, URL="RFC3758.html", target="_top", tooltip="This memo describes an extension to the Stream Control Transmission Protocol (SCTP) that allows an SCTP endpoint to signal to its peer that it should move the cumulative ack point forward.  When both sides of an SCTP association support this extension, it can be used by an SCTP implementation to provide partially reliable data transmission service to an upper layer protocol.  This memo describes the protocol extensions, which consist of a new parameter for INIT and INIT ACK, and a new FORWARD TSN chunk type, and provides one example of a partially reliable service that can be provided to the upper layer via this mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC3758;
+  RFC7496 [label="RFC7496
+Additional Policies for the Partially
+Reliable Stream Control Transmission
+Protocol Extension
+2015", shape=ellipse, URL="RFC7496.html", target="_top", tooltip="This document defines two additional policies for the Partially Reliable Stream Control Transmission Protocol (PR-SCTP) extension.  These policies allow limitation of the number of retransmissions and prioritization of user messages for more efficient usage of the send buffer."];
+  cites -> RFC7496;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  cites -> RFC8085;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  cites -> RFC5925;
+  RFC4895 [label="RFC4895
+Authenticated Chunks for the Stream
+Control Transmission Protocol (SCTP)
+2007", shape=ellipse, URL="RFC4895.html", target="_top", tooltip="This document describes a new chunk type, several parameters, and procedures for the Stream Control Transmission Protocol (SCTP).  This new chunk type can be used to authenticate SCTP chunks by using shared keys between the sender and receiver.  The new parameters are used to establish the shared keys. [STANDARDS-TRACK]"];
+  cites -> RFC4895;
+  RFC4987 [label="RFC4987
+TCP SYN Flooding Attacks and Common
+Mitigations
+2007", shape=ellipse, URL="RFC4987.html", target="_top", tooltip="This document describes TCP SYN flooding attacks, which have been well-known to the community for several years.  Various countermeasures against these attacks, and the trade-offs of each, are described.  This document archives explanations of the attack and common defense techniques for the benefit of TCP implementers and administrators of TCP servers or networks, but does not make any standards-level recommendations.  This memo provides information for the Internet community."];
+  cites -> RFC4987;
+  RFC6897 [label="RFC6897
+Multipath TCP (MPTCP) Application
+Interface Considerations
+2013", shape=ellipse, URL="RFC6897.html", target="_top", tooltip="Multipath TCP (MPTCP) adds the capability of using multiple paths to a regular TCP session.  Even though it is designed to be totally backward compatible to applications, the data transport differs compared to regular TCP, and there are several additional degrees of freedom that applications may wish to exploit.  This document summarizes the impact that MPTCP may have on applications, such as changes in performance.  Furthermore, it discusses compatibility issues of MPTCP in combination with non-MPTCP-aware applications.  Finally, the document describes a basic application interface that is a simple extension of TCP's interface for MPTCP-aware applications."];
+  cites -> RFC6897;
+  RFC8622 [label="RFC8622
+A Lower-Effort Per-Hop Behavior (LE PHB)
+for Differentiated Services
+2019", shape=ellipse, URL="RFC8622.html", target="_top", tooltip="This document specifies properties and characteristics of a Lower- Effort Per-Hop Behavior (LE PHB). The primary objective of this LE PHB is to protect Best-Effort (BE) traffic (packets forwarded with the default PHB) from LE traffic in congestion situations, i.e., when resources become scarce, BE traffic has precedence over LE traffic and may preempt it. Alternatively, packets forwarded by the LE PHB can be associated with a scavenger service class, i.e., they scavenge otherwise-unused resources only. There are numerous uses for this PHB, e.g., for background traffic of low precedence, such as bulk data transfers with low priority in time, non-time-critical backups, larger software updates, web search engines while gathering information from web servers and so on. This document recommends a standard Differentiated Services Code Point (DSCP) value for the LE PHB. This specification obsoletes RFC 3662 and updates the DSCP recommended in RFCs 4594 and 8325 to use the DSCP assigned in this specification."];
+  cites -> RFC8622;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8923;
+  RFC9621 [label="RFC9621
+Architecture and Requirements for
+Transport Services
+2025", shape=ellipse, URL="RFC9621.html", target="_top", tooltip="This document describes an architecture that exposes transport protocol features to applications for network communication.  The Transport Services Application Programming Interface (API) is based on an asynchronous, event-driven interaction pattern.  This API uses Messages for representing data transfer to applications and describes how a Transport Services Implementation can use multiple IP addresses, multiple protocols, and multiple paths and can provide multiple application streams.  This document provides the architecture and requirements.  It defines common terminology and concepts to be used in definitions of a Transport Services API and a Transport Services Implementation."];
+  RFC9621 -> rev_cites;
+  RFC9622 [label="RFC9622
+An Abstract Application Programming
+Interface (API) for Transport Services
+2025", shape=ellipse, URL="RFC9622.html", target="_top", tooltip="This document describes an abstract Application Programming Interface (API) to the transport layer that enables the selection of transport protocols and network paths dynamically at runtime.  This API enables faster deployment of new protocols and protocol features without requiring changes to the applications.  The specified API follows the Transport Services Architecture by providing asynchronous, atomic transmission of Messages.  It is intended to replace the BSD Socket API as the common interface to the transport layer, in an environment where endpoints could select from multiple network paths and potential transport protocols."];
+  RFC9622 -> rev_cites;
+  RFC9623 [label="RFC9623
+Implementing Interfaces to Transport
+Services
+2025", shape=ellipse, URL="RFC9623.html", target="_top", tooltip="The Transport Services System enables applications to use transport protocols flexibly for network communication and defines a protocol-independent Transport Services Application Programming Interface (API) that is based on an asynchronous, event-driven interaction pattern.  This document serves as a guide to implementing such a system."];
+  RFC9623 -> rev_cites;
+}

@@ -1,0 +1,618 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5905 [label="RFC5905
+Network Time Protocol Version 4:
+Protocol and Algorithms Specification
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Network Time Protocol (NTP) is widely used to synchronize computer clocks in the Internet.  This document describes NTP version 4 (NTPv4), which is backwards compatible with NTP version 3 (NTPv3), described in RFC 1305, as well as previous versions of the protocol.  NTPv4 includes a modified protocol header to accommodate the Internet Protocol version 6 address family.  NTPv4 includes fundamental improvements in the mitigation and discipline algorithms that extend the potential accuracy to the tens of microseconds with modern workstations and fast LANs.  It includes a dynamic server discovery scheme, so that in many cases, specific server configuration is not required.  It corrects certain errors in the NTPv3 design and implementation and includes an optional extension mechanism."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5905;
+
+  obs [label="obsoletes", shape=box];
+  RFC5905 -> obs;
+  RFC1305 [label="RFC1305
+Network Time Protocol (Version 3)
+Specification, Implementation and
+Analysis
+1992", shape=ellipse, URL="RFC1305.html", target="_top", tooltip="This document describes the Network Time Protocol (NTP), specifies its formal structure and summarizes information useful for its implementation."];
+  obs -> RFC1305;
+  RFC4330 [label="RFC4330
+Simple Network Time Protocol (SNTP)
+Version 4 for IPv4, IPv6 and OSI
+2006", shape=ellipse, URL="RFC4330.html", target="_top", tooltip="This memorandum describes the Simple Network Time Protocol Version 4 (SNTPv4), which is a subset of the Network Time Protocol (NTP) used to synchronize computer clocks in the Internet. SNTPv4 can be used when the ultimate performance of a full NTP implementation based on RFC 1305 is neither needed nor justified. When operating with current and previous NTP and SNTP versions, SNTPv4 requires no changes to the specifications or known implementations, but rather clarifies certain design features that allow operation in a simple, stateless remote-procedure call (RPC) mode with accuracy and reliability expectations similar to the UDP/TIME protocol described in RFC 868. This memorandum obsoletes RFC 1769, which describes SNTP Version 3 (SNTPv3), and RFC 2030, which describes SNTPv4. Its purpose is to correct certain inconsistencies in the previous documents and to clarify header formats and protocol operations for NTPv3 (IPv4) and SNTPv4 (IPv4, IPv6, and OSI), which are also used for SNTP. A further purpose is to provide guidance for home and business client implementations for routers and other consumer devices to protect the server population from abuse. A working knowledge of the NTPv3 specification, RFC 1305, is not required for an implementation of SNTP. This memo provides information for the Internet community."];
+  obs -> RFC4330;
+
+  updates [label="updates", shape=box];
+  RFC5905 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5905;
+  RFC7822 [label="RFC7822
+Network Time Protocol Version 4 (NTPv4)
+Extension Fields
+2016", shape=ellipse, URL="RFC7822.html", target="_top", tooltip="The Network Time Protocol version 4 (NTPv4) defines the optional usage of extension fields.  An extension field, as defined in RFC 5905, is an optional field that resides at the end of the NTP header and that can be used to add optional capabilities or additional information that is not conveyed in the standard NTP header.  This document updates RFC 5905 by clarifying some points regarding NTP extension fields and their usage with Message Authentication Codes (MACs)."];
+  RFC7822 -> updated_by;
+  RFC8573 [label="RFC8573
+Message Authentication Code for the
+Network Time Protocol
+2019", shape=ellipse, URL="RFC8573.html", target="_top", tooltip="The Network Time Protocol (NTP), as described in RFC 5905, states that NTP packets should be authenticated by appending NTP data to a 128-bit key and hashing the result with MD5 to obtain a 128-bit tag.  This document deprecates MD5-based authentication, which is considered too weak, and recommends the use of AES-CMAC as described in RFC 4493 as a replacement."];
+  RFC8573 -> updated_by;
+  RFC9109 [label="RFC9109
+Network Time Protocol Version 4: Port
+Randomization
+2021", shape=ellipse, URL="RFC9109.html", target="_top", tooltip="The Network Time Protocol (NTP) can operate in several modes.  Some of these modes are based on the receipt of unsolicited packets and therefore require the use of a well-known port as the local port.  However, in the case of NTP modes where the use of a well-known port is not required, employing such a well-known port unnecessarily facilitates the ability of attackers to perform blind/off-path attacks.  This document formally updates RFC 5905, recommending the use of transport-protocol ephemeral port randomization for those modes where use of the NTP well-known port is not required."];
+  RFC9109 -> updated_by;
+  RFC9748 [label="RFC9748
+Updating the NTP Registries
+2025", shape=ellipse, URL="RFC9748.html", target="_top", tooltip="The Network Time Protocol (NTP) and Network Time Security (NTS) documents define a number of registries, collectively called the NTP registries. Some registries are correct, but some include incorrect assignments and some don't follow common practice. For the sake of completeness, this document reviews all NTP and NTS registries, and corrects the registries where necessary. This document updates RFCs 5905, 5906, 7821, 7822, and 8573."];
+  RFC9748 -> updated_by;
+  RFC9769 [label="RFC9769
+NTP Interleaved Modes
+2025", shape=ellipse, URL="RFC9769.html", target="_top", tooltip="This document specifies interleaved modes for the Network Time Protocol (NTP).  These new modes improve the accuracy of time synchronization by enabling the use of more accurate transmit timestamps that are available only after the transmission of NTP messages.  These enhancements are intended to improve timekeeping in environments where high accuracy is critical.  This document updates RFC 5905 by defining these new operational modes."];
+  RFC9769 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5905 -> cites;
+  RFC1305 [label="RFC1305
+Network Time Protocol (Version 3)
+Specification, Implementation and
+Analysis
+1992", shape=ellipse, URL="RFC1305.html", target="_top", tooltip="This document describes the Network Time Protocol (NTP), specifies its formal structure and summarizes information useful for its implementation."];
+  cites -> RFC1305;
+  RFC4330 [label="RFC4330
+Simple Network Time Protocol (SNTP)
+Version 4 for IPv4, IPv6 and OSI
+2006", shape=ellipse, URL="RFC4330.html", target="_top", tooltip="This memorandum describes the Simple Network Time Protocol Version 4 (SNTPv4), which is a subset of the Network Time Protocol (NTP) used to synchronize computer clocks in the Internet. SNTPv4 can be used when the ultimate performance of a full NTP implementation based on RFC 1305 is neither needed nor justified. When operating with current and previous NTP and SNTP versions, SNTPv4 requires no changes to the specifications or known implementations, but rather clarifies certain design features that allow operation in a simple, stateless remote-procedure call (RPC) mode with accuracy and reliability expectations similar to the UDP/TIME protocol described in RFC 868. This memorandum obsoletes RFC 1769, which describes SNTP Version 3 (SNTPv3), and RFC 2030, which describes SNTPv4. Its purpose is to correct certain inconsistencies in the previous documents and to clarify header formats and protocol operations for NTPv3 (IPv4) and SNTPv4 (IPv4, IPv6, and OSI), which are also used for SNTP. A further purpose is to provide guidance for home and business client implementations for routers and other consumer devices to protect the server population from abuse. A working knowledge of the NTPv3 specification, RFC 1305, is not required for an implementation of SNTP. This memo provides information for the Internet community."];
+  cites -> RFC4330;
+  RFC5906 [label="RFC5906
+Network Time Protocol Version 4: Autokey
+Specification
+2010", shape=ellipse, URL="RFC5906.html", target="_top", tooltip="This memo describes the Autokey security model for authenticating servers to clients using the Network Time Protocol (NTP) and public key cryptography. Its design is based on the premise that IPsec schemes cannot be adopted intact, since that would preclude stateless servers and severely compromise timekeeping accuracy. In addition, Public Key Infrastructure (PKI) schemes presume authenticated time values are always available to enforce certificate lifetimes; however, cryptographically verified timestamps require interaction between the timekeeping and authentication functions. This memo includes the Autokey requirements analysis, design principles, and protocol specification. A detailed description of the protocol states, events, and transition functions is included. A prototype of the Autokey design based on this memo has been implemented, tested, and documented in the NTP version 4 (NTPv4) software distribution for the Unix, Windows, and Virtual Memory System (VMS) operating systems at http://www.ntp.org. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5906;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC1345 [label="RFC1345
+Character Mnemonics and Character Sets
+1992", shape=ellipse, URL="RFC1345.html", target="_top", tooltip="This memo lists a selection of characters and their presence in some coded character sets.  This memo provides information for the Internet community.  It does not specify an Internet standard."];
+  cites -> RFC1345;
+  RFC1321 [label="RFC1321
+The MD5 Message-Digest Algorithm
+1992", shape=ellipse, URL="RFC1321.html", target="_top", tooltip="This document describes the MD5 message-digest algorithm.  The algorithm takes as input a message of arbitrary length and produces as output a 128-bit fingerprint or message digest of the input.  This memo provides information for the Internet community.  It does not specify an Internet standard."];
+  cites -> RFC1321;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5905;
+  RFC5906 [label="RFC5906
+Network Time Protocol Version 4: Autokey
+Specification
+2010", shape=ellipse, URL="RFC5906.html", target="_top", tooltip="This memo describes the Autokey security model for authenticating servers to clients using the Network Time Protocol (NTP) and public key cryptography. Its design is based on the premise that IPsec schemes cannot be adopted intact, since that would preclude stateless servers and severely compromise timekeeping accuracy. In addition, Public Key Infrastructure (PKI) schemes presume authenticated time values are always available to enforce certificate lifetimes; however, cryptographically verified timestamps require interaction between the timekeeping and authentication functions. This memo includes the Autokey requirements analysis, design principles, and protocol specification. A detailed description of the protocol states, events, and transition functions is included. A prototype of the Autokey design based on this memo has been implemented, tested, and documented in the NTP version 4 (NTPv4) software distribution for the Unix, Windows, and Virtual Memory System (VMS) operating systems at http://www.ntp.org. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5906 -> rev_cites;
+  RFC5907 [label="RFC5907
+Definitions of Managed Objects for
+Network Time Protocol Version 4 (NTPv4)
+2010", shape=ellipse, URL="RFC5907.html", target="_top", tooltip="The Network Time Protocol (NTP) is used in networks of all types and sizes for time synchronization of servers, workstations, and other networked equipment.  As time synchronization is more and more a mission-critical service, standardized means for monitoring and management of this subsystem of a networked host are required to allow operators of such a service to set up a monitoring system that is platform- and vendor-independent.  This document provides a standardized collection of data objects for monitoring the NTP entity of such a network participant and it is part of the NTP version 4 standardization effort. [STANDARDS-TRACK]"];
+  RFC5907 -> rev_cites;
+  RFC5908 [label="RFC5908
+Network Time Protocol (NTP) Server
+Option for DHCPv6
+2010", shape=ellipse, URL="RFC5908.html", target="_top", tooltip="The NTP Server Option for Dynamic Host Configuration Protocol for IPv6 (DHCPv6) provides NTPv4 (Network Time Protocol version 4) server location information to DHCPv6 hosts. [STANDARDS-TRACK]"];
+  RFC5908 -> rev_cites;
+  RFC5981 [label="RFC5981
+Authorization for NSIS Signaling Layer
+Protocols
+2011", shape=ellipse, URL="RFC5981.html", target="_top", tooltip="Signaling layer protocols specified within the Next Steps in Signaling (NSIS) framework may rely on the General Internet Signaling Transport (GIST) protocol to handle authorization.  Still, the signaling layer protocol above GIST itself may require separate authorization to be performed when a node receives a request for a certain kind of service or resources.  This document presents a generic model and object formats for session authorization within the NSIS signaling layer protocols.  The goal of session authorization is to allow the exchange of information between network elements in order to authorize the use of resources for a service and to coordinate actions between the signaling and transport planes.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5981 -> rev_cites;
+  RFC6051 [label="RFC6051
+Rapid Synchronisation of RTP Flows
+2010", shape=ellipse, URL="RFC6051.html", target="_top", tooltip="This memo outlines how RTP sessions are synchronised, and discusses how rapidly such synchronisation can occur. We show that most RTP sessions can be synchronised immediately, but that the use of video switching multipoint conference units (MCUs) or large source-specific multicast (SSM) groups can greatly increase the synchronisation delay. This increase in delay can be unacceptable to some applications that use layered and/or multi-description codecs. This memo introduces three mechanisms to reduce the synchronisation delay for such sessions. First, it updates the RTP Control Protocol (RTCP) timing rules to reduce the initial synchronisation delay for SSM sessions. Second, a new feedback packet is defined for use with the extended RTP profile for RTCP-based feedback (RTP/AVPF), allowing video switching MCUs to rapidly request resynchronisation. Finally, new RTP header extensions are defined to allow rapid synchronisation of late joiners, and guarantee correct timestamp-based decoding order recovery for layered codecs in the presence of clock skew. [STANDARDS-TRACK]"];
+  RFC6051 -> rev_cites;
+  RFC6098 [label="RFC6098
+Generic Notification Message for Mobile
+IPv4
+2012", shape=ellipse, URL="RFC6098.html", target="_top", tooltip="This document specifies protocol enhancements that allow Mobile IPv4 entities to send and receive explicit notification messages using a Mobile IPv4 message type designed for this purpose. [STANDARDS-TRACK]"];
+  RFC6098 -> rev_cites;
+  RFC6105 [label="RFC6105
+IPv6 Router Advertisement Guard
+2011", shape=ellipse, URL="RFC6105.html", target="_top", tooltip="Routed protocols are often susceptible to spoof attacks.  The canonical solution for IPv6 is Secure Neighbor Discovery (SEND), a solution that is non-trivial to deploy.  This document proposes a light-weight alternative and complement to SEND based on filtering in the layer-2 network fabric, using a variety of filtering criteria, including, for example, SEND status.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6105 -> rev_cites;
+  RFC6222 [label="RFC6222
+Guidelines for Choosing RTP Control
+Protocol (RTCP) Canonical Names (CNAMEs)
+2011", shape=ellipse, URL="RFC6222.html", target="_top", tooltip="The RTP Control Protocol (RTCP) Canonical Name (CNAME) is a persistent transport-level identifier for an RTP endpoint.  While the Synchronization Source (SSRC) identifier of an RTP endpoint may change if a collision is detected or when the RTP application is restarted, its RTCP CNAME is meant to stay unchanged, so that RTP endpoints can be uniquely identified and associated with their RTP media streams.  For proper functionality, RTCP CNAMEs should be unique within the participants of an RTP session.  However, the existing guidelines for choosing the RTCP CNAME provided in the RTP standard are insufficient to achieve this uniqueness.  This memo updates those guidelines to allow endpoints to choose unique RTCP CNAMEs. [STANDARDS-TRACK]"];
+  RFC6222 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6284 [label="RFC6284
+Port Mapping between Unicast and
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6284.html", target="_top", tooltip="This document presents a port mapping solution that allows RTP receivers to choose their own ports for an auxiliary unicast session in RTP applications using both unicast and multicast services.  The solution provides protection against denial-of-service or packet amplification attacks that could be used to cause one or more RTP packets to be sent to a victim client. [STANDARDS-TRACK]"];
+  RFC6284 -> rev_cites;
+  RFC6302 [label="RFC6302
+Logging Recommendations for Internet-
+Facing Servers
+2011", shape=ellipse, URL="RFC6302.html", target="_top", tooltip="In the wake of IPv4 exhaustion and deployment of IP address sharing techniques, this document recommends that Internet-facing servers log port number and accurate timestamps in addition to the incoming IP address.  This memo documents an Internet Best Current Practice."];
+  RFC6302 -> rev_cites;
+  RFC6374 [label="RFC6374
+Packet Loss and Delay Measurement for
+MPLS Networks
+2011", shape=ellipse, URL="RFC6374.html", target="_top", tooltip="Many service provider service level agreements (SLAs) depend on the ability to measure and monitor performance metrics for packet loss and one-way and two-way delay, as well as related metrics such as delay variation and channel throughput.  This measurement capability also provides operators with greater visibility into the performance characteristics of their networks, thereby facilitating planning, troubleshooting, and network performance evaluation.  This document specifies protocol mechanisms to enable the efficient and accurate measurement of these performance metrics in MPLS networks. [STANDARDS-TRACK]"];
+  RFC6374 -> rev_cites;
+  RFC6407 [label="RFC6407
+The Group Domain of Interpretation
+2011", shape=ellipse, URL="RFC6407.html", target="_top", tooltip="This document describes the Group Domain of Interpretation (GDOI) protocol specified in RFC 3547.  The GDOI provides group key management to support secure group communications according to the architecture specified in RFC 4046.  The GDOI manages group security associations, which are used by IPsec and potentially other data security protocols.  This document replaces RFC 3547. [STANDARDS-TRACK]"];
+  RFC6407 -> rev_cites;
+  RFC6450 [label="RFC6450
+Multicast Ping Protocol
+2011", shape=ellipse, URL="RFC6450.html", target="_top", tooltip="The Multicast Ping Protocol specified in this document allows for checking whether an endpoint can receive multicast -- both Source-Specific Multicast (SSM) and Any-Source Multicast (ASM).  It can also be used to obtain additional multicast-related information, such as multicast tree setup time.  This protocol is based on an implementation of tools called ssmping and asmping. [STANDARDS-TRACK]"];
+  RFC6450 -> rev_cites;
+  RFC6622 [label="RFC6622
+Integrity Check Value and Timestamp TLV
+Definitions for Mobile Ad Hoc Networks
+(MANETs)
+2012", shape=ellipse, URL="RFC6622.html", target="_top", tooltip="This document describes general and flexible TLVs for representing cryptographic Integrity Check Values (ICVs) (i.e., digital signatures or Message Authentication Codes (MACs)) as well as timestamps, using the generalized Mobile Ad Hoc Network (MANET) packet/message format defined in RFC 5444.  It defines two Packet TLVs, two Message TLVs, and two Address Block TLVs for affixing ICVs and timestamps to a packet, a message, and an address, respectively. [STANDARDS-TRACK]"];
+  RFC6622 -> rev_cites;
+  RFC6726 [label="RFC6726
+FLUTE - File Delivery over
+Unidirectional Transport
+2012", shape=ellipse, URL="RFC6726.html", target="_top", tooltip="This document defines File Delivery over Unidirectional Transport (FLUTE), a protocol for the unidirectional delivery of files over the Internet, which is particularly suited to multicast networks.  The specification builds on Asynchronous Layered Coding, the base protocol designed for massively scalable multicast distribution.  This document obsoletes RFC 3926. [STANDARDS-TRACK]"];
+  RFC6726 -> rev_cites;
+  RFC6733 [label="RFC6733
+Diameter Base Protocol
+2012", shape=ellipse, URL="RFC6733.html", target="_top", tooltip="The Diameter base protocol is intended to provide an Authentication, Authorization, and Accounting (AAA) framework for applications such as network access or IP mobility in both local and roaming situations.  This document specifies the message format, transport, error reporting, accounting, and security services used by all Diameter applications.  The Diameter base protocol as defined in this document obsoletes RFC 3588 and RFC 5719, and it must be supported by all new Diameter implementations. [STANDARDS-TRACK]"];
+  RFC6733 -> rev_cites;
+  RFC6754 [label="RFC6754
+Protocol Independent Multicast Equal-
+Cost Multipath (ECMP) Redirect
+2012", shape=ellipse, URL="RFC6754.html", target="_top", tooltip="A Protocol Independent Multicast (PIM) router uses the Reverse Path Forwarding (RPF) procedure to select an upstream interface and router in order to build forwarding state.  When there are equal cost multipaths (ECMPs), existing implementations often use hash algorithms to select a path.  Such algorithms do not allow the spread of traffic among the ECMPs according to administrative metrics.  This usually leads to inefficient or ineffective use of network resources.  This document introduces the ECMP Redirect, a mechanism to improve the RPF procedure over ECMPs.  It allows ECMP selection to be based on administratively selected metrics, such as data transmission delays, path preferences, and routing metrics. [STANDARDS-TRACK]"];
+  RFC6754 -> rev_cites;
+  RFC6765 [label="RFC6765
+xDSL Multi-Pair Bonding (G.Bond) MIB
+2013", shape=ellipse, URL="RFC6765.html", target="_top", tooltip="This document defines a Management Information Base (MIB) module for use with network management protocols in TCP/IP-based internets.  This document defines an extension to the Interfaces Group MIB with a set of common objects for managing multi-pair bonded Digital Subscriber Line (xDSL) interfaces, as defined in ITU-T Recommendations G.998.1, G.998.2, and G.998.3.  The textual conventions defining the bonding schemes are contained in a separate MIB module maintained by Internet Assigned Numbers Authority (IANA).  The MIB modules specific to each bonding technology are defined in G9981-MIB, G9982-MIB, and G9983-MIB, respectively."];
+  RFC6765 -> rev_cites;
+  RFC6776 [label="RFC6776
+Measurement Identity and Information
+Reporting Using a Source Description
+(SDES) Item and an RTCP Extended Report
+(XR) Block
+2012", shape=ellipse, URL="RFC6776.html", target="_top", tooltip="This document defines an RTP Control Protocol (RTCP) Source Description (SDES) item and an RTCP Extended Report (XR) block carrying parameters that identify and describe a measurement period to which one or more other RTCP XR blocks may refer. [STANDARDS-TRACK]"];
+  RFC6776 -> rev_cites;
+  RFC6787 [label="RFC6787
+Media Resource Control Protocol Version
+2 (MRCPv2)
+2012", shape=ellipse, URL="RFC6787.html", target="_top", tooltip="The Media Resource Control Protocol Version 2 (MRCPv2) allows client hosts to control media service resources such as speech synthesizers, recognizers, verifiers, and identifiers residing in servers on the network.  MRCPv2 is not a stand-alone protocol -- it relies on other protocols, such as the Session Initiation Protocol (SIP), to coordinate MRCPv2 clients and servers and manage sessions between them, and the Session Description Protocol (SDP) to describe, discover, and exchange capabilities.  It also depends on SIP and SDP to establish the media sessions and associated parameters between the media source or sink and the media server.  Once this is done, the MRCPv2 exchange operates over the control session established above, allowing the client to control the media processing resources on the speech resource server. [STANDARDS-TRACK]"];
+  RFC6787 -> rev_cites;
+  RFC6797 [label="RFC6797
+HTTP Strict Transport Security (HSTS)
+2012", shape=ellipse, URL="RFC6797.html", target="_top", tooltip="This specification defines a mechanism enabling web sites to declare themselves accessible only via secure connections and/or for users to be able to direct their user agent(s) to interact with given sites only over secure connections.  This overall policy is referred to as HTTP Strict Transport Security (HSTS).  The policy is declared by web sites via the Strict-Transport-Security HTTP response header field and/or by other means, such as user agent configuration, for example. [STANDARDS-TRACK]"];
+  RFC6797 -> rev_cites;
+  RFC6812 [label="RFC6812
+Cisco Service-Level Assurance Protocol
+2013", shape=ellipse, URL="RFC6812.html", target="_top", tooltip="Cisco's Service-Level Assurance Protocol (Cisco's SLA Protocol) is a Performance Measurement protocol that has been widely deployed.  The protocol is used to measure service-level parameters such as network latency, delay variation, and packet/frame loss.  This document describes the Cisco SLA Protocol Measurement-Type UDP-Measurement, to enable vendor interoperability.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6812 -> rev_cites;
+  RFC6817 [label="RFC6817
+Low Extra Delay Background Transport
+(LEDBAT)
+2012", shape=ellipse, URL="RFC6817.html", target="_top", tooltip="Low Extra Delay Background Transport (LEDBAT) is an experimental delay-based congestion control algorithm that seeks to utilize the available bandwidth on an end-to-end path while limiting the consequent increase in queueing delay on that path.  LEDBAT uses changes in one-way delay measurements to limit congestion that the flow itself induces in the network.  LEDBAT is designed for use by background bulk-transfer applications to be no more aggressive than standard TCP congestion control (as specified in RFC 5681) and to yield in the presence of competing flows, thus limiting interference with the network performance of competing flows.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6817 -> rev_cites;
+  RFC6843 [label="RFC6843
+RTP Control Protocol (RTCP) Extended
+Report (XR) Block for Delay Metric
+Reporting
+2013", shape=ellipse, URL="RFC6843.html", target="_top", tooltip="This document defines an RTP Control Protocol (RTCP) Extended Report (XR) block that allows the reporting of delay metrics for use in a range of Real-time Transport Protocol (RTP) applications. [STANDARDS-TRACK]"];
+  RFC6843 -> rev_cites;
+  RFC6962 [label="RFC6962
+Certificate Transparency
+2013", shape=ellipse, URL="RFC6962.html", target="_top", tooltip="This document describes an experimental protocol for publicly logging the existence of Transport Layer Security (TLS) certificates as they are issued or observed, in a manner that allows anyone to audit certificate authority (CA) activity and notice the issuance of suspect certificates as well as to audit the certificate logs themselves. The intent is that eventually clients would refuse to honor certificates that do not appear in a log, effectively forcing CAs to add all issued certificates to the logs. Logs are network services that implement the protocol operations for submissions and queries that are defined in this document."];
+  RFC6962 -> rev_cites;
+  RFC6988 [label="RFC6988
+Requirements for Energy Management
+2013", shape=ellipse, URL="RFC6988.html", target="_top", tooltip="This document defines requirements for standards specifications for Energy Management. The requirements defined in this document are concerned with monitoring functions as well as control functions. Monitoring functions include identifying energy-managed devices and their components, as well as monitoring their Power States, Power Inlets, Power Outlets, actual power, Power Attributes, received energy, provided energy, and contained batteries. Control functions include such functions as controlling power supply and Power State of energy-managed devices and their components. This document does not specify the features that must be implemented by compliant implementations but rather lists features that must be supported by standards for Energy Management."];
+  RFC6988 -> rev_cites;
+  RFC7011 [label="RFC7011
+Specification of the IP Flow Information
+Export (IPFIX) Protocol for the Exchange
+of Flow Information
+2013", shape=ellipse, URL="RFC7011.html", target="_top", tooltip="This document specifies the IP Flow Information Export (IPFIX) protocol, which serves as a means for transmitting Traffic Flow information over the network.  In order to transmit Traffic Flow information from an Exporting Process to a Collecting Process, a common representation of flow data and a standard means of communicating them are required.  This document describes how the IPFIX Data and Template Records are carried over a number of transport protocols from an IPFIX Exporting Process to an IPFIX Collecting Process.  This document obsoletes RFC 5101."];
+  RFC7011 -> rev_cites;
+  RFC7084 [label="RFC7084
+Basic Requirements for IPv6 Customer
+Edge Routers
+2013", shape=ellipse, URL="RFC7084.html", target="_top", tooltip="This document specifies requirements for an IPv6 Customer Edge (CE) router.  Specifically, the current version of this document focuses on the basic provisioning of an IPv6 CE router and the provisioning of IPv6 hosts attached to it.  The document also covers IP transition technologies.  Two transition technologies in RFC 5969's IPv6 Rapid Deployment on IPv4 Infrastructures (6rd) and RFC 6333's Dual-Stack Lite (DS-Lite) are covered in the document.  The document obsoletes RFC 6204."];
+  RFC7084 -> rev_cites;
+  RFC7094 [label="RFC7094
+Architectural Considerations of IP
+Anycast
+2014", shape=ellipse, URL="RFC7094.html", target="_top", tooltip="This memo discusses architectural implications of IP anycast and provides some historical analysis of anycast use by various IETF protocols."];
+  RFC7094 -> rev_cites;
+  RFC7115 [label="RFC7115
+Origin Validation Operation Based on the
+Resource Public Key Infrastructure
+(RPKI)
+2014", shape=ellipse, URL="RFC7115.html", target="_top", tooltip="Deployment of BGP origin validation that is based on the Resource Public Key Infrastructure (RPKI) has many operational considerations.  This document attempts to collect and present those that are most critical.  It is expected to evolve as RPKI-based origin validation continues to be deployed and the dynamics are better understood."];
+  RFC7115 -> rev_cites;
+  RFC7182 [label="RFC7182
+Integrity Check Value and Timestamp TLV
+Definitions for Mobile Ad Hoc Networks
+(MANETs)
+2014", shape=ellipse, URL="RFC7182.html", target="_top", tooltip="This document revises, extends, and replaces RFC 6622.  It describes general and flexible TLVs for representing cryptographic Integrity Check Values (ICVs) and timestamps, using the generalized Mobile Ad Hoc Network (MANET) packet/message format defined in RFC 5444.  It defines two Packet TLVs, two Message TLVs, and two Address Block TLVs for affixing ICVs and timestamps to a packet, a message, and one or more addresses, respectively."];
+  RFC7182 -> rev_cites;
+  RFC7212 [label="RFC7212
+MPLS Generic Associated Channel (G-ACh)
+Advertisement Protocol
+2014", shape=ellipse, URL="RFC7212.html", target="_top", tooltip="The MPLS Generic Associated Channel (G-ACh) provides an auxiliary logical data channel associated with a Label Switched Path (LSP), a pseudowire, or a section (link) over which a variety of protocols may flow.  These protocols are commonly used to provide Operations, Administration, and Maintenance (OAM) mechanisms associated with the primary data channel.  This document specifies simple procedures by which an endpoint of an LSP, pseudowire, or section may inform the other endpoints of its capabilities and configuration parameters, or other application-specific information.  This information may then be used by the receiver to validate or adjust its local configuration, and by the network operator for diagnostic purposes."];
+  RFC7212 -> rev_cites;
+  RFC7231 [label="RFC7231
+Hypertext Transfer Protocol (HTTP/1.1):
+Semantics and Content
+2014", shape=ellipse, URL="RFC7231.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless \%application- level protocol for distributed, collaborative, hypertext information systems.  This document defines the semantics of HTTP/1.1 messages, as expressed by request methods, request header fields, response status codes, and response header fields, along with the payload of messages (metadata and body content) and mechanisms for content negotiation."];
+  RFC7231 -> rev_cites;
+  RFC7234 [label="RFC7234
+Hypertext Transfer Protocol (HTTP/1.1):
+Caching
+2014", shape=ellipse, URL="RFC7234.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless \%application- level protocol for distributed, collaborative, hypertext information systems.  This document defines HTTP caches and the associated header fields that control cache behavior or indicate cacheable response messages."];
+  RFC7234 -> rev_cites;
+  RFC7244 [label="RFC7244
+RTP Control Protocol (RTCP) Extended
+Report (XR) Blocks for Synchronization
+Delay and Offset Metrics Reporting
+2014", shape=ellipse, URL="RFC7244.html", target="_top", tooltip="This document defines two RTP Control Protocol (RTCP) Extended Report (XR) blocks that allow the reporting of initial synchronization delay and synchronization offset metrics for use in a range of RTP applications."];
+  RFC7244 -> rev_cites;
+  RFC7272 [label="RFC7272
+Inter-Destination Media Synchronization
+(IDMS) Using the RTP Control Protocol
+(RTCP)
+2014", shape=ellipse, URL="RFC7272.html", target="_top", tooltip="This document defines a new RTP Control Protocol (RTCP) Packet Type and an RTCP Extended Report (XR) Block Type to be used for achieving Inter-Destination Media Synchronization (IDMS). IDMS is the process of synchronizing playout across multiple media receivers. Using the RTCP XR IDMS Report Block defined in this document, media playout information from participants in a synchronization group can be collected. Based on the collected information, an RTCP IDMS Settings Packet can then be sent to distribute a common target playout point to which all the distributed receivers, sharing a media experience, can synchronize. Typical use cases in which IDMS is useful are social TV, shared service control (i.e., applications where two or more geographically separated users are watching a media stream together), distance learning, networked video walls, networked loudspeakers, etc."];
+  RFC7272 -> rev_cites;
+  RFC7273 [label="RFC7273
+RTP Clock Source Signalling
+2014", shape=ellipse, URL="RFC7273.html", target="_top", tooltip="NTP format timestamps are used by several RTP protocols for synchronisation and statistical measurements.  This memo specifies Session Description Protocol (SDP) signalling that identifies timestamp reference clock sources and SDP signalling that identifies the media clock sources in a multimedia session."];
+  RFC7273 -> rev_cites;
+  RFC7325 [label="RFC7325
+MPLS Forwarding Compliance and
+Performance Requirements
+2014", shape=ellipse, URL="RFC7325.html", target="_top", tooltip="This document provides guidelines for implementers regarding MPLS forwarding and a basis for evaluations of forwarding implementations.  Guidelines cover many aspects of MPLS forwarding.  Topics are highlighted where implementers might otherwise overlook practical requirements which are unstated or under emphasized or are optional for conformance to RFCs but are often considered mandatory by providers."];
+  RFC7325 -> rev_cites;
+  RFC7574 [label="RFC7574
+Peer-to-Peer Streaming Peer Protocol
+(PPSPP)
+2015", shape=ellipse, URL="RFC7574.html", target="_top", tooltip="The Peer-to-Peer Streaming Peer Protocol (PPSPP) is a protocol for disseminating the same content to a group of interested parties in a streaming fashion.  PPSPP supports streaming of both prerecorded (on- demand) and live audio/video content.  It is based on the peer-to- peer paradigm, where clients consuming the content are put on equal footing with the servers initially providing the content, to create a system where everyone can potentially provide upload bandwidth.  It has been designed to provide short time-till-playback for the end user and to prevent disruption of the streams by malicious peers.  PPSPP has also been designed to be flexible and extensible.  It can use different mechanisms to optimize peer uploading, prevent freeriding, and work with different peer discovery schemes (centralized trackers or Distributed Hash Tables).  It supports multiple methods for content integrity protection and chunk addressing.  Designed as a generic protocol that can run on top of various transport protocols, it currently runs on top of UDP using Low Extra Delay Background Transport (LEDBAT) for congestion control."];
+  RFC7574 -> rev_cites;
+  RFC7576 [label="RFC7576
+General Gap Analysis for Autonomic
+Networking
+2015", shape=ellipse, URL="RFC7576.html", target="_top", tooltip="This document provides a problem statement and general gap analysis for an IP-based Autonomic Network that is mainly based on distributed network devices. The document provides background by reviewing the current status of autonomic aspects of IP networks and the extent to which current network management depends on centralization and human administrators. Finally, the document outlines the general features that are missing from current network abilities and are needed in the ideal Autonomic Network concept. This document is a product of the IRTF's Network Management Research Group."];
+  RFC7576 -> rev_cites;
+  RFC7602 [label="RFC7602
+IS-IS Extended Sequence Number TLV
+2015", shape=ellipse, URL="RFC7602.html", target="_top", tooltip="This document defines the Extended Sequence Number TLV to protect Intermediate System to Intermediate System (IS-IS) PDUs from replay attacks."];
+  RFC7602 -> rev_cites;
+  RFC7656 [label="RFC7656
+A Taxonomy of Semantics and Mechanisms
+for Real-Time Transport Protocol (RTP)
+Sources
+2015", shape=ellipse, URL="RFC7656.html", target="_top", tooltip="The terminology about, and associations among, Real-time Transport Protocol (RTP) sources can be complex and somewhat opaque.  This document describes a number of existing and proposed properties and relationships among RTP sources and defines common terminology for discussing protocol entities and their relationships."];
+  RFC7656 -> rev_cites;
+  RFC7758 [label="RFC7758
+Time Capability in NETCONF
+2016", shape=ellipse, URL="RFC7758.html", target="_top", tooltip="This document defines a capability-based extension to the Network Configuration Protocol (NETCONF) that allows time-triggered configuration and management operations.  This extension allows NETCONF clients to invoke configuration updates according to scheduled times and allows NETCONF servers to attach timestamps to the data they send to NETCONF clients."];
+  RFC7758 -> rev_cites;
+  RFC7826 [label="RFC7826
+Real-Time Streaming Protocol Version 2.0
+2016", shape=ellipse, URL="RFC7826.html", target="_top", tooltip="This memorandum defines the Real-Time Streaming Protocol (RTSP) version 2.0, which obsoletes RTSP version 1.0 defined in RFC 2326. RTSP is an application-layer protocol for the setup and control of the delivery of data with real-time properties. RTSP provides an extensible framework to enable controlled, on-demand delivery of real-time data, such as audio and video. Sources of data can include both live data feeds and stored clips. This protocol is intended to control multiple data delivery sessions; provide a means for choosing delivery channels such as UDP, multicast UDP, and TCP; and provide a means for choosing delivery mechanisms based upon RTP (RFC 3550)."];
+  RFC7826 -> rev_cites;
+  RFC7851 [label="RFC7851
+Peer-to-Peer (P2P) Overlay Diagnostics
+2016", shape=ellipse, URL="RFC7851.html", target="_top", tooltip="This document describes mechanisms for Peer-to-Peer (P2P) overlay diagnostics.  It defines extensions to the REsource LOcation And Discovery (RELOAD) base protocol to collect diagnostic information and details the protocol specifications for these extensions.  Useful diagnostic information for connection and node status monitoring is also defined.  The document also describes the usage scenarios and provides examples of how these methods are used to perform diagnostics."];
+  RFC7851 -> rev_cites;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  RFC8029 -> rev_cites;
+  RFC8088 [label="RFC8088
+How to Write an RTP Payload Format
+2017", shape=ellipse, URL="RFC8088.html", target="_top", tooltip="This document contains information on how best to write an RTP payload format specification.  It provides reading tips, design practices, and practical tips on how to produce an RTP payload format specification quickly and with good results.  A template is also included with instructions."];
+  RFC8088 -> rev_cites;
+  RFC8169 [label="RFC8169
+Residence Time Measurement in MPLS
+Networks
+2017", shape=ellipse, URL="RFC8169.html", target="_top", tooltip="This document specifies a new Generic Associated Channel (G-ACh) for Residence Time Measurement (RTM) and describes how it can be used by time synchronization protocols within an MPLS domain. Residence time is the variable part of the propagation delay of timing and synchronization messages; knowing this delay for each message allows for a more accurate determination of the delay to be taken into account when applying the value included in a Precision Time Protocol event message."];
+  RFC8169 -> rev_cites;
+  RFC8173 [label="RFC8173
+Precision Time Protocol Version 2
+(PTPv2) Management Information Base
+2017", shape=ellipse, URL="RFC8173.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in internets based on TCP or IP. In particular, it defines objects for managing networks using the Precision Time Protocol (PTP), specified in IEEE Std. 1588-2008. This memo specifies a MIB module in a manner that is both compliant to the Structure of Management Information version 2 (SMIv2) and semantically identical to the peer SMIv1 definitions."];
+  RFC8173 -> rev_cites;
+  RFC8186 [label="RFC8186
+Support of the IEEE 1588 Timestamp
+Format in a Two-Way Active Measurement
+Protocol (TWAMP)
+2017", shape=ellipse, URL="RFC8186.html", target="_top", tooltip="This document describes an OPTIONAL feature for active performance measurement protocols that allows use of the Precision Time Protocol timestamp format defined in IEEE 1588v2, as an alternative to the Network Time Protocol that is currently used."];
+  RFC8186 -> rev_cites;
+  RFC8207 [label="RFC8207
+BGPsec Operational Considerations
+2017", shape=ellipse, URL="RFC8207.html", target="_top", tooltip="Deployment of the BGPsec architecture and protocols has many operational considerations.  This document attempts to collect and present the most critical and universal.  Operational practices are expected to evolve as BGPsec is formalized and initially deployed."];
+  RFC8207 -> rev_cites;
+  RFC8286 [label="RFC8286
+RTP/RTCP Extension for RTP Splicing
+Notification
+2017", shape=ellipse, URL="RFC8286.html", target="_top", tooltip="Content splicing is a process that replaces the content of a main multimedia stream with other multimedia content and that delivers the substitutive multimedia content to the receivers for a period of time. The splicer is designed to handle RTP splicing and needs to know when to start and end the splicing. This memo defines two RTP/RTCP extensions to indicate the splicing-related information to the splicer: an RTP header extension that conveys the information in band and an RTP Control Protocol (RTCP) packet that conveys the information out of band."];
+  RFC8286 -> rev_cites;
+  RFC8321 [label="RFC8321
+Alternate-Marking Method for Passive and
+Hybrid Performance Monitoring
+2018", shape=ellipse, URL="RFC8321.html", target="_top", tooltip="This document describes a method to perform packet loss, delay, and jitter measurements on live traffic.  This method is based on an Alternate-Marking (coloring) technique.  A report is provided in order to explain an example and show the method applicability.  This technology can be applied in various situations, as detailed in this document, and could be considered Passive or Hybrid depending on the application."];
+  RFC8321 -> rev_cites;
+  RFC8387 [label="RFC8387
+Practical Considerations and
+Implementation Experiences in Securing
+Smart Object Networks
+2018", shape=ellipse, URL="RFC8387.html", target="_top", tooltip="This memo describes challenges associated with securing resource- constrained smart object devices.  The memo describes a possible deployment model where resource-constrained devices sign message objects, discusses the availability of cryptographic libraries for resource-constrained devices, and presents some preliminary experiences with those libraries for message signing on resource- constrained devices.  Lastly, the memo discusses trade-offs involving different types of security approaches."];
+  RFC8387 -> rev_cites;
+  RFC8415 [label="RFC8415
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2018", shape=ellipse, URL="RFC8415.html", target="_top", tooltip="This document describes the Dynamic Host Configuration Protocol for IPv6 (DHCPv6): an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly, or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC). This document updates the text from RFC 3315 (the original DHCPv6 specification) and incorporates prefix delegation (RFC 3633), stateless DHCPv6 (RFC 3736), an option to specify an upper bound for how long a client should wait before refreshing information (RFC 4242), a mechanism for throttling DHCPv6 clients when DHCPv6 service is not available (RFC 7083), and relay agent handling of unknown messages (RFC 7283). In addition, this document clarifies the interactions between models of operation (RFC 7550). As such, this document obsoletes RFC 3315, RFC 3633, RFC 3736, RFC 4242, RFC 7083, RFC 7283, and RFC 7550."];
+  RFC8415 -> rev_cites;
+  RFC8520 [label="RFC8520
+Manufacturer Usage Description
+Specification
+2019", shape=ellipse, URL="RFC8520.html", target="_top", tooltip="This memo specifies a component-based architecture for Manufacturer Usage Descriptions (MUDs). The goal of MUD is to provide a means for end devices to signal to the network what sort of access and network functionality they require to properly function. The initial focus is on access control. Later work can delve into other aspects. This memo specifies two YANG modules, IPv4 and IPv6 DHCP options, a Link Layer Discovery Protocol (LLDP) TLV, a URL, an X.509 certificate extension, and a means to sign and verify the descriptions."];
+  RFC8520 -> rev_cites;
+  RFC8532 [label="RFC8532
+Generic YANG Data Model for the
+Management of Operations,
+Administration, and Maintenance (OAM)
+Protocols That Use Connectionless
+Communications
+2019", shape=ellipse, URL="RFC8532.html", target="_top", tooltip="This document presents a base YANG Data model for the management of Operations, Administration, and Maintenance (OAM) protocols that use connectionless communications. The data model is defined using the YANG data modeling language, as specified in RFC 7950. It provides a technology-independent abstraction of key OAM constructs for OAM protocols that use connectionless communication. The base model presented here can be extended to include technology-specific details. There are two key benefits of this approach: First, it leads to uniformity between OAM protocols. Second, it supports both nested OAM workflows (i.e., performing OAM functions at the same level or different levels through a unified interface) as well as interactive OAM workflows (i.e., performing OAM functions at the same level through a unified interface)."];
+  RFC8532 -> rev_cites;
+  RFC8573 [label="RFC8573
+Message Authentication Code for the
+Network Time Protocol
+2019", shape=ellipse, URL="RFC8573.html", target="_top", tooltip="The Network Time Protocol (NTP), as described in RFC 5905, states that NTP packets should be authenticated by appending NTP data to a 128-bit key and hashing the result with MD5 to obtain a 128-bit tag.  This document deprecates MD5-based authentication, which is considered too weak, and recommends the use of AES-CMAC as described in RFC 4493 as a replacement."];
+  RFC8573 -> rev_cites;
+  RFC8578 [label="RFC8578
+Deterministic Networking Use Cases
+2019", shape=ellipse, URL="RFC8578.html", target="_top", tooltip="This document presents use cases for diverse industries that have in common a need for deterministic flows. Deterministic in this context means that such flows provide guaranteed bandwidth, bounded latency, and other properties germane to the transport of time-sensitive data.  These use cases differ notably in their network topologies and specific desired behavior, providing as a group broad industry context for Deterministic Networking (DetNet).  For each use case, this document will identify the use case, identify representative solutions used today, and describe potential improvements that DetNet can enable."];
+  RFC8578 -> rev_cites;
+  RFC8592 [label="RFC8592
+Key Performance Indicator (KPI) Stamping
+for the Network Service Header (NSH)
+2019", shape=ellipse, URL="RFC8592.html", target="_top", tooltip="This document describes methods of carrying Key Performance Indicators (KPIs) using the Network Service Header (NSH).  These methods may be used, for example, to monitor latency and QoS marking to identify problems on some links or service functions."];
+  RFC8592 -> rev_cites;
+  RFC8633 [label="RFC8633
+Network Time Protocol Best Current
+Practices
+2019", shape=ellipse, URL="RFC8633.html", target="_top", tooltip="The Network Time Protocol (NTP) is one of the oldest protocols on the Internet and has been widely used since its initial publication.  This document is a collection of best practices for the general operation of NTP servers and clients on the Internet.  It includes recommendations for the stable, accurate, and secure operation of NTP infrastructure.  This document is targeted at NTP version 4 as described in RFC 5905."];
+  RFC8633 -> rev_cites;
+  RFC8762 [label="RFC8762
+Simple Two-Way Active Measurement
+Protocol
+2020", shape=ellipse, URL="RFC8762.html", target="_top", tooltip="This document describes the Simple Two-way Active Measurement Protocol (STAMP), which enables the measurement of both one-way and round-trip performance metrics, like delay, delay variation, and packet loss."];
+  RFC8762 -> rev_cites;
+  RFC8877 [label="RFC8877
+Guidelines for Defining Packet
+Timestamps
+2020", shape=ellipse, URL="RFC8877.html", target="_top", tooltip="Various network protocols make use of binary-encoded timestamps that are incorporated in the protocol packet format, referred to as packet timestamps for short.  This document specifies guidelines for defining packet timestamp formats in networking protocols at various layers.  It also presents three recommended timestamp formats.  The target audience of this document includes network protocol designers.  It is expected that a new network protocol that requires a packet timestamp will, in most cases, use one of the recommended timestamp formats.  If none of the recommended formats fits the protocol requirements, the new protocol specification should specify the format of the packet timestamp according to the guidelines in this document."];
+  RFC8877 -> rev_cites;
+  RFC8908 [label="RFC8908
+Captive Portal API
+2020", shape=ellipse, URL="RFC8908.html", target="_top", tooltip="This document describes an HTTP API that allows clients to interact with a Captive Portal system.  With this API, clients can discover how to get out of captivity and fetch state about their Captive Portal sessions."];
+  RFC8908 -> rev_cites;
+  RFC8912 [label="RFC8912
+Initial Performance Metrics Registry
+Entries
+2021", shape=ellipse, URL="RFC8912.html", target="_top", tooltip="This memo defines the set of initial entries for the IANA Registry of
+Performance Metrics.  The set includes UDP Round-Trip Latency and
+Loss, Packet Delay Variation, DNS Response Latency and Loss, UDP
+Poisson One-Way Delay and Loss, UDP Periodic One-Way Delay and Loss,
+ICMP Round-Trip Latency and Loss, and TCP Round-Trip Delay and Loss."];
+  RFC8912 -> rev_cites;
+  RFC8913 [label="RFC8913
+Two-Way Active Measurement Protocol
+(TWAMP) YANG Data Model
+2021", shape=ellipse, URL="RFC8913.html", target="_top", tooltip="This document specifies a data model for client and server
+implementations of the Two-Way Active Measurement Protocol (TWAMP).
+This document defines the TWAMP data model through Unified Modeling
+Language (UML) class diagrams and formally specifies it using the
+YANG data modeling language (RFC 7950).  The data model is compliant
+with the Network Management Datastore Architecture (NMDA)."];
+  RFC8913 -> rev_cites;
+  RFC8915 [label="RFC8915
+Network Time Security for the Network
+Time Protocol
+2020", shape=ellipse, URL="RFC8915.html", target="_top", tooltip="This memo specifies Network Time Security (NTS), a mechanism for using Transport Layer Security (TLS) and Authenticated Encryption with Associated Data (AEAD) to provide cryptographic security for the client-server mode of the Network Time Protocol (NTP). NTS is structured as a suite of two loosely coupled sub-protocols. The first (NTS Key Establishment (NTS-KE)) handles initial authentication and key establishment over TLS. The second (NTS Extension Fields for NTPv4) handles encryption and authentication during NTP time synchronization via extension fields in the NTP packets, and holds all required state only on the client via opaque cookies."];
+  RFC8915 -> rev_cites;
+  RFC8934 [label="RFC8934
+PCE Communication Protocol (PCEP)
+Extensions for Label Switched Path (LSP)
+Scheduling with Stateful PCE
+2020", shape=ellipse, URL="RFC8934.html", target="_top", tooltip="This document defines a set of extensions to the stateful PCE Communication Protocol (PCEP) to enable Label Switched Path (LSP) path computation, activation, setup, and deletion based on scheduled time intervals for the LSP and the actual network resource usage in a centralized network environment, as stated in RFC 8413."];
+  RFC8934 -> rev_cites;
+  RFC8962 [label="RFC8962
+Establishing the Protocol Police
+2021", shape=ellipse, URL="RFC8962.html", target="_top", tooltip="One mantra of the IETF is, We are not the Protocol Police. However, to ensure that protocols are implemented and deployed in full compliance with the IETF's standards, it is important to set up a body that is responsible for assessing and enforcing correct protocol behavior. This document formally establishes the Protocol Police. It defines the body and sets out what aspects of IETF protocols they will police. This document acts as a point of reference for networking engineers, law enforcement officials, government representatives, and others. It also provides advice on how to report issues to the Protocol Police."];
+  RFC8962 -> rev_cites;
+  RFC8972 [label="RFC8972
+Simple Two-Way Active Measurement
+Protocol Optional Extensions
+2021", shape=ellipse, URL="RFC8972.html", target="_top", tooltip="This document describes optional extensions to Simple Two-way Active Measurement Protocol (STAMP) that enable measurement of performance metrics.  The document also defines a STAMP Test Session Identifier and thus updates RFC 8762."];
+  RFC8972 -> rev_cites;
+  RFC8994 [label="RFC8994
+An Autonomic Control Plane (ACP)
+2021", shape=ellipse, URL="RFC8994.html", target="_top", tooltip="Autonomic functions need a control plane to communicate, which depends on some addressing and routing.  This Autonomic Control Plane should ideally be self-managing and be as independent as possible of configuration.  This document defines such a plane and calls it the Autonomic Control Plane, with the primary use as a control plane for autonomic functions.  It also serves as a virtual out-of-band channel for Operations, Administration, and Management (OAM) communications over a network that provides automatically configured, hop-by-hop authenticated and encrypted communications via automatically configured IPv6 even when the network is not configured or is misconfigured."];
+  RFC8994 -> rev_cites;
+  RFC9005 [label="RFC9005
+Path Computation Element Communication
+Protocol (PCEP) Extension for
+Associating Policies and Label Switched
+Paths (LSPs)
+2021", shape=ellipse, URL="RFC9005.html", target="_top", tooltip="This document introduces a simple mechanism to associate policies with a group of Label Switched Paths (LSPs) via an extension to the Path Computation Element Communication Protocol (PCEP).  The extension allows a PCEP speaker to advertise to a PCEP peer that a particular LSP belongs to a particular Policy Association Group (PAG)."];
+  RFC9005 -> rev_cites;
+  RFC9034 [label="RFC9034
+Packet Delivery Deadline Time in the
+Routing Header for IPv6 over Low-Power
+Wireless Personal Area Networks
+(6LoWPANs)
+2021", shape=ellipse, URL="RFC9034.html", target="_top", tooltip="This document specifies a new type for the 6LoWPAN routing header containing the deadline time for data packets, designed for use over constrained networks.  The deadline time enables forwarding and scheduling decisions for time-critical machine-to-machine (M2M) applications running on Internet-enabled devices that operate within time-synchronized networks.  This document also specifies a representation for the deadline time values in such networks."];
+  RFC9034 -> rev_cites;
+  RFC9055 [label="RFC9055
+Deterministic Networking (DetNet)
+Security Considerations
+2021", shape=ellipse, URL="RFC9055.html", target="_top", tooltip="A DetNet (deterministic network) provides specific performance guarantees to its data flows, such as extremely low data loss rates and bounded latency (including bounded latency variation, i.e., jitter). As a result, securing a DetNet requires that in addition to the best practice security measures taken for any mission-critical network, additional security measures may be needed to secure the intended operation of these novel service properties. This document addresses DetNet-specific security considerations from the perspectives of both the DetNet system-level designer and component designer. System considerations include a taxonomy of relevant threats and attacks, and associations of threats versus use cases and service properties. Component-level considerations include ingress filtering and packet arrival-time violation detection. This document also addresses security considerations specific to the IP and MPLS data plane technologies, thereby complementing the Security Considerations sections of those documents."];
+  RFC9055 -> rev_cites;
+  RFC9102 [label="RFC9102
+TLS DNSSEC Chain Extension
+2021", shape=ellipse, URL="RFC9102.html", target="_top", tooltip="This document describes an experimental TLS extension for the in-band transport of the complete set of records that can be validated by DNSSEC and that are needed to perform DNS-Based Authentication of Named Entities (DANE) of a TLS server. This extension obviates the need to perform separate, out-of-band DNS lookups. When the requisite DNS records do not exist, the extension conveys a denial-of-existence proof that can be validated. This experimental extension is developed outside the IETF and is published here to guide implementation of the extension and to ensure interoperability among implementations."];
+  RFC9102 -> rev_cites;
+  RFC9109 [label="RFC9109
+Network Time Protocol Version 4: Port
+Randomization
+2021", shape=ellipse, URL="RFC9109.html", target="_top", tooltip="The Network Time Protocol (NTP) can operate in several modes.  Some of these modes are based on the receipt of unsolicited packets and therefore require the use of a well-known port as the local port.  However, in the case of NTP modes where the use of a well-known port is not required, employing such a well-known port unnecessarily facilitates the ability of attackers to perform blind/off-path attacks.  This document formally updates RFC 5905, recommending the use of transport-protocol ephemeral port randomization for those modes where use of the NTP well-known port is not required."];
+  RFC9109 -> rev_cites;
+  RFC9110 [label="RFC9110
+HTTP Semantics
+2022", shape=ellipse, URL="RFC9110.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems. This document describes the overall architecture of HTTP, establishes common terminology, and defines aspects of the protocol that are shared by all versions. In this definition are core protocol elements, extensibility mechanisms, and the http and https Uniform Resource Identifier (URI) schemes. This document updates RFC 3864 and obsoletes RFCs 2818, 7231, 7232, 7233, 7235, 7538, 7615, 7694, and portions of 7230."];
+  RFC9110 -> rev_cites;
+  RFC9145 [label="RFC9145
+Integrity Protection for the Network
+Service Header (NSH) and Encryption of
+Sensitive Context Headers
+2021", shape=ellipse, URL="RFC9145.html", target="_top", tooltip="This specification presents an optional method to add integrity protection directly to the Network Service Header (NSH) used for Service Function Chaining (SFC).  Also, this specification allows for the encryption of sensitive metadata (MD) that is carried in the NSH."];
+  RFC9145 -> rev_cites;
+  RFC9182 [label="RFC9182
+A YANG Network Data Model for Layer 3
+VPNs
+2022", shape=ellipse, URL="RFC9182.html", target="_top", tooltip="As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), which is used for communication between customers and service providers, this document defines an L3VPN Network Model (L3NM) that can be used for the provisioning of Layer 3 Virtual Private Network (L3VPN) services within a service provider network. The model provides a network-centric view of L3VPN services. The L3NM is meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. The model can also facilitate communication between a service orchestrator and a network controller/orchestrator."];
+  RFC9182 -> rev_cites;
+  RFC9192 [label="RFC9192
+Network Service Header (NSH) Fixed-
+Length Context Header Allocation
+2022", shape=ellipse, URL="RFC9192.html", target="_top", tooltip="The Network Service Header (NSH) specification defines two possible methods of including metadata (MD): MD Type 0x1 and MD Type 0x2. MD Type 0x1 uses a fixed-length Context Header. The allocation of this Context Header, i.e., its structure and semantics, has not been standardized. This memo defines the Timestamp Context Header, which is an NSH fixed-length Context Header that incorporates the packet's timestamp, a sequence number, and a source interface identifier. Although the definition of the Context Header presented in this document has not been standardized by the IETF, it has been implemented in silicon by several manufacturers and is published here to facilitate interoperability."];
+  RFC9192 -> rev_cites;
+  RFC9197 [label="RFC9197
+Data Fields for In Situ Operations,
+Administration, and Maintenance (IOAM)
+2022", shape=ellipse, URL="RFC9197.html", target="_top", tooltip="In situ Operations, Administration, and Maintenance (IOAM) collects operational and telemetry information in the packet while the packet traverses a path between two points in the network.  This document discusses the data fields and associated data types for IOAM.  IOAM-Data-Fields can be encapsulated into a variety of protocols, such as Network Service Header (NSH), Segment Routing, Generic Network Virtualization Encapsulation (Geneve), or IPv6.  IOAM can be used to complement OAM mechanisms based on, e.g., ICMP or other types of probe packets."];
+  RFC9197 -> rev_cites;
+  RFC9246 [label="RFC9246
+URI Signing for Content Delivery Network
+Interconnection (CDNI)
+2022", shape=ellipse, URL="RFC9246.html", target="_top", tooltip="This document describes how the concept of URI Signing supports the content access control requirements of Content Delivery Network Interconnection (CDNI) and proposes a URI Signing method as a JSON Web Token (JWT) profile. The proposed URI Signing method specifies the information needed to be included in the URI to transmit the signed JWT, as well as the claims needed by the signed JWT to authorize a User Agent (UA). The mechanism described can be used both in CDNI and single Content Delivery Network (CDN) scenarios."];
+  RFC9246 -> rev_cites;
+  RFC9249 [label="RFC9249
+A YANG Data Model for NTP
+2022", shape=ellipse, URL="RFC9249.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage Network Time Protocol (NTP) version 4.  It can also be used to configure and manage version 3.  The data model includes configuration data and state data."];
+  RFC9249 -> rev_cites;
+  RFC9308 [label="RFC9308
+Applicability of the QUIC Transport
+Protocol
+2022", shape=ellipse, URL="RFC9308.html", target="_top", tooltip="This document discusses the applicability of the QUIC transport protocol, focusing on caveats impacting application protocol development and deployment over QUIC.  Its intended audience is designers of application protocol mappings to QUIC and implementors of these application protocols."];
+  RFC9308 -> rev_cites;
+  RFC9327 [label="RFC9327
+Control Messages Protocol for Use with
+Network Time Protocol Version 4
+2022", shape=ellipse, URL="RFC9327.html", target="_top", tooltip="This document describes the structure of the control messages that were historically used with the Network Time Protocol (NTP) before the advent of more modern control and management approaches. These control messages have been used to monitor and control the NTP application running on any IP network attached computer. The information in this document was originally described in Appendix B of RFC 1305. The goal of this document is to provide an updated description of the control messages described in RFC 1305 in order to conform with the updated NTP specification documented in RFC 5905. The publication of this document is not meant to encourage the development and deployment of these control messages. This document is only providing a current reference for these control messages given the current status of RFC 1305."];
+  RFC9327 -> rev_cites;
+  RFC9341 [label="RFC9341
+Alternate-Marking Method
+2022", shape=ellipse, URL="RFC9341.html", target="_top", tooltip="This document describes the Alternate-Marking technique to perform packet loss, delay, and jitter measurements on live traffic.  This technology can be applied in various situations and for different protocols.  According to the classification defined in RFC 7799, it could be considered Passive or Hybrid depending on the application.  This document obsoletes RFC 8321."];
+  RFC9341 -> rev_cites;
+  RFC9378 [label="RFC9378
+In Situ Operations, Administration, and
+Maintenance (IOAM) Deployment
+2023", shape=ellipse, URL="RFC9378.html", target="_top", tooltip="In situ Operations, Administration, and Maintenance (IOAM) collects operational and telemetry information in the packet while the packet traverses a path between two points in the network.  This document provides a framework for IOAM deployment and provides IOAM deployment considerations and guidance."];
+  RFC9378 -> rev_cites;
+  RFC9414 [label="RFC9414
+Unfortunate History of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9414.html", target="_top", tooltip="This document analyzes the timeline of the specification and implementation of different types of transient numeric identifiers used in IETF protocols and how the security and privacy properties of such protocols have been affected as a result of it.  It provides empirical evidence that advice in this area is warranted.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9414 -> rev_cites;
+  RFC9415 [label="RFC9415
+On the Generation of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9415.html", target="_top", tooltip="This document performs an analysis of the security and privacy implications of different types of transient numeric identifiers used in IETF protocols and tries to categorize them based on their interoperability requirements and their associated failure severity when such requirements are not met.  Subsequently, it provides advice on possible algorithms that could be employed to satisfy the interoperability requirements of each identifier category while minimizing the negative security and privacy implications, thus providing guidance to protocol designers and protocol implementers.  Finally, it describes a number of algorithms that have been employed in real implementations to generate transient numeric identifiers and analyzes their security and privacy properties.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9415 -> rev_cites;
+  RFC9416 [label="RFC9416
+Security Considerations for Transient
+Numeric Identifiers Employed in Network
+Protocols
+2023", shape=ellipse, URL="RFC9416.html", target="_top", tooltip="Poor selection of transient numerical identifiers in protocols such as the TCP/IP suite has historically led to a number of attacks on implementations, ranging from Denial of Service (DoS) or data injection to information leakages that can be exploited by pervasive monitoring.  Due diligence in the specification of transient numeric identifiers is required even when cryptographic techniques are employed, since these techniques might not mitigate all the associated issues.  This document formally updates RFC 3552, incorporating requirements for transient numeric identifiers, to prevent flaws in future protocols and implementations."];
+  RFC9416 -> rev_cites;
+  RFC9417 [label="RFC9417
+Service Assurance for Intent-Based
+Networking Architecture
+2023", shape=ellipse, URL="RFC9417.html", target="_top", tooltip="This document describes an architecture that provides some assurance that service instances are running as expected.  As services rely upon multiple subservices provided by a variety of elements, including the underlying network devices and functions, getting the assurance of a healthy service is only possible with a holistic view of all involved elements.  This architecture not only helps to correlate the service degradation with symptoms of a specific network component but, it also lists the services impacted by the failure or degradation of a specific network component."];
+  RFC9417 -> rev_cites;
+  RFC9420 [label="RFC9420
+The Messaging Layer Security (MLS)
+Protocol
+2023", shape=ellipse, URL="RFC9420.html", target="_top", tooltip="Messaging applications are increasingly making use of end-to-end security mechanisms to ensure that messages are only accessible to the communicating endpoints, and not to any servers involved in delivering messages.  Establishing keys to provide such protections is challenging for group chat settings, in which more than two clients need to agree on a key but may not be online at the same time.  In this document, we specify a key establishment protocol that provides efficient asynchronous group key establishment with forward secrecy (FS) and post-compromise security (PCS) for groups in size ranging from two to thousands."];
+  RFC9420 -> rev_cites;
+  RFC9523 [label="RFC9523
+A Secure Selection and Filtering
+Mechanism for the Network Time Protocol
+with Khronos
+2024", shape=ellipse, URL="RFC9523.html", target="_top", tooltip="The Network Time Protocol version 4 (NTPv4), as defined in RFC 5905, is the mechanism used by NTP clients to synchronize with NTP servers across the Internet.  This document describes a companion application to the NTPv4 client, named Khronos, that is used as a watchdog alongside NTPv4 and that provides improved security against time-shifting attacks.  Khronos involves changes to the NTP client's system process only.  Since it does not affect the wire protocol, the Khronos mechanism is applicable to current and future time protocols."];
+  RFC9523 -> rev_cites;
+  RFC9557 [label="RFC9557
+Date and Time on the Internet:
+Timestamps with Additional Information
+2024", shape=ellipse, URL="RFC9557.html", target="_top", tooltip="This document defines an extension to the timestamp format defined in RFC 3339 for representing additional information, including a time zone. It updates RFC 3339 in the specific interpretation of the local offset Z, which is no longer understood to imply that UTC is the preferred reference point for the specified time."];
+  RFC9557 -> rev_cites;
+  RFC9581 [label="RFC9581
+Concise Binary Object Representation
+(CBOR) Tags for Time, Duration, and
+Period
+2024", shape=ellipse, URL="RFC9581.html", target="_top", tooltip="The Concise Binary Object Representation (CBOR, RFC 8949) is a data format whose design goals include the possibility of extremely small code size, fairly small message size, and extensibility without the need for version negotiation. In CBOR, one point of extensibility is the definition of CBOR tags. RFC 8949 defines two tags for time: CBOR tag 0 (RFC 3339 time as a string) and tag 1 (POSIX time as int or float). Since then, additional requirements have become known. The present document defines a CBOR tag for time that allows a more elaborate representation of time, as well as related CBOR tags for duration and time period. This document is intended as the reference document for the IANA registration of the CBOR tags defined."];
+  RFC9581 -> rev_cites;
+  RFC9616 [label="RFC9616
+Delay-Based Metric Extension for the
+Babel Routing Protocol
+2024", shape=ellipse, URL="RFC9616.html", target="_top", tooltip="This document defines an extension to the Babel routing protocol that measures the round-trip time (RTT) between routers and makes it possible to prefer lower-latency links over higher-latency ones."];
+  RFC9616 -> rev_cites;
+  RFC9692 [label="RFC9692
+RIFT: Routing in Fat Trees
+2025", shape=ellipse, URL="RFC9692.html", target="_top", tooltip="This document defines a specialized, dynamic routing protocol for Clos, fat tree, and variants thereof.  These topologies were initially used within crossbar interconnects and consequently router and switch backplanes, but their characteristics make them ideal for constructing IP fabrics as well.  The protocol specified by this document is optimized towards the minimization of control plane state to support very large substrates as well as the minimization of configuration and operational complexity to allow for a simplified deployment of said topologies."];
+  RFC9692 -> rev_cites;
+  RFC9696 [label="RFC9696
+Routing in Fat Trees (RIFT)
+Applicability and Operational
+Considerations
+2025", shape=ellipse, URL="RFC9696.html", target="_top", tooltip="This document discusses the properties, applicability, and operational considerations of Routing in Fat Trees (RIFT) in different network scenarios with the intention of providing a rough guide on how RIFT can be deployed to simplify routing operations in Clos topologies and their variations."];
+  RFC9696 -> rev_cites;
+  RFC9722 [label="RFC9722
+Fast Recovery for EVPN Designated
+Forwarder Election
+2025", shape=ellipse, URL="RFC9722.html", target="_top", tooltip="The Ethernet Virtual Private Network (EVPN) solution in RFC 7432 provides Designated Forwarder (DF) election procedures for multihomed Ethernet Segments. These procedures have been enhanced further by applying the Highest Random Weight (HRW) algorithm for DF election to avoid unnecessary DF status changes upon a failure. This document improves these procedures by providing a fast DF election upon recovery of the failed link or node associated with the multihomed Ethernet Segment. This document updates RFC 8584 by optionally introducing delays between some of the events therein. The solution is independent of the number of EVPN Instances (EVIs) associated with that Ethernet Segment, and it is performed via a simple signaling in BGP between the recovered node and each of the other nodes in the multihoming group."];
+  RFC9722 -> rev_cites;
+  RFC9748 [label="RFC9748
+Updating the NTP Registries
+2025", shape=ellipse, URL="RFC9748.html", target="_top", tooltip="The Network Time Protocol (NTP) and Network Time Security (NTS) documents define a number of registries, collectively called the NTP registries. Some registries are correct, but some include incorrect assignments and some don't follow common practice. For the sake of completeness, this document reviews all NTP and NTS registries, and corrects the registries where necessary. This document updates RFCs 5905, 5906, 7821, 7822, and 8573."];
+  RFC9748 -> rev_cites;
+  RFC9760 [label="RFC9760
+Enterprise Profile for the Precision
+Time Protocol with Mixed Multicast and
+Unicast Messages
+2025", shape=ellipse, URL="RFC9760.html", target="_top", tooltip="This document describes a Precision Time Protocol (PTP) Profile (IEEE Standard 1588-2019) for use in an IPv4 or IPv6 enterprise information system environment.  The PTP Profile uses the End-to-End delay measurement mechanism, allowing both multicast and unicast Delay Request and Delay Response messages."];
+  RFC9760 -> rev_cites;
+  RFC9769 [label="RFC9769
+NTP Interleaved Modes
+2025", shape=ellipse, URL="RFC9769.html", target="_top", tooltip="This document specifies interleaved modes for the Network Time Protocol (NTP).  These new modes improve the accuracy of time synchronization by enabling the use of more accurate transmit timestamps that are available only after the transmission of NTP messages.  These enhancements are intended to improve timekeeping in environments where high accuracy is critical.  This document updates RFC 5905 by defining these new operational modes."];
+  RFC9769 -> rev_cites;
+}

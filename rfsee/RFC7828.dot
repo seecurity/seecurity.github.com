@@ -1,0 +1,101 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7828 [label="RFC7828
+The edns-tcp-keepalive EDNS0 Option
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="DNS messages between clients and servers may be received over either UDP or TCP. UDP transport involves keeping less state on a busy server, but can cause truncation and retries over TCP. Additionally, UDP can be exploited for reflection attacks. Using TCP would reduce retransmits and amplification. However, clients commonly use TCP only for retries and servers typically use idle timeouts on the order of seconds. This document defines an EDNS0 option (edns-tcp-keepalive) that allows DNS servers to signal a variable idle timeout. This signalling encourages the use of long-lived TCP connections by allowing the state associated with TCP transport to be managed effectively with minimal impact on the DNS transaction time."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7828;
+
+  obs [label="obsoletes", shape=box];
+  RFC7828 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7828 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7828;
+
+  cites [label="cites", shape=box];
+  RFC7828 -> cites;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC6891 [label="RFC6891
+Extension Mechanisms for DNS (EDNS(0))
+2013", shape=ellipse, URL="RFC6891.html", target="_top", tooltip="The Domain Name System's wire protocol includes a number of fixed fields whose range has been or soon will be exhausted and does not allow requestors to advertise their capabilities to responders. This document describes backward-compatible mechanisms for allowing the protocol to grow. This document updates the Extension Mechanisms for DNS (EDNS(0)) specification (and obsoletes RFC 2671) based on feedback from deployment experience in several implementations. It also obsoletes RFC 2673 (Binary Labels in the Domain Name System) and adds considerations on the use of extended labels in the DNS."];
+  cites -> RFC6891;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC7766 [label="RFC7766
+DNS Transport over TCP - Implementation
+Requirements
+2016", shape=ellipse, URL="RFC7766.html", target="_top", tooltip="This document specifies the requirement for support of TCP as a transport protocol for DNS implementations and provides guidelines towards DNS-over-TCP performance on par with that of DNS-over-UDP.  This document obsoletes RFC 5966 and therefore updates RFC 1035 and RFC 1123."];
+  cites -> RFC7766;
+  RFC7230 [label="RFC7230
+Hypertext Transfer Protocol (HTTP/1.1):
+Message Syntax and Routing
+2014", shape=ellipse, URL="RFC7230.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems.  This document provides an overview of HTTP architecture and its associated terminology, defines the http and https Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations."];
+  cites -> RFC7230;
+  RFC4786 [label="RFC4786
+Operation of Anycast Services
+2006", shape=ellipse, URL="RFC4786.html", target="_top", tooltip="As the Internet has grown, and as systems and networked services within enterprises have become more pervasive, many services with high availability requirements have emerged. These requirements have increased the demands on the reliability of the infrastructure on which those services rely. Various techniques have been employed to increase the availability of services deployed on the Internet. This document presents commentary and recommendations for distribution of services using anycast. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4786;
+  RFC6824 [label="RFC6824
+TCP Extensions for Multipath Operation
+with Multiple Addresses
+2013", shape=ellipse, URL="RFC6824.html", target="_top", tooltip="TCP/IP communication is currently restricted to a single path per connection, yet multiple paths often exist between peers. The simultaneous use of these multiple paths for a TCP/IP session would improve resource usage within the network and, thus, improve user experience through higher throughput and improved resilience to network failure. Multipath TCP provides the ability to simultaneously use multiple paths between peers. This document presents a set of extensions to traditional TCP to support multipath operation. The protocol offers the same type of service to applications as TCP (i.e., reliable bytestream), and it provides the components necessary to establish and use multiple TCP flows across potentially disjoint paths. This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6824;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7828;
+  RFC7858 [label="RFC7858
+Specification for DNS over Transport
+Layer Security (TLS)
+2016", shape=ellipse, URL="RFC7858.html", target="_top", tooltip="This document describes the use of Transport Layer Security (TLS) to provide privacy for DNS. Encryption provided by TLS eliminates opportunities for eavesdropping and on-path tampering with DNS queries in the network, such as discussed in RFC 7626. In addition, this document specifies two usage profiles for DNS over TLS and provides advice on performance considerations to minimize overhead from using TCP and TLS with DNS. This document focuses on securing stub-to-recursive traffic, as per the charter of the DPRIVE Working Group. It does not prevent future applications of the protocol to recursive-to-authoritative traffic."];
+  RFC7858 -> rev_cites;
+  RFC7901 [label="RFC7901
+CHAIN Query Requests in DNS
+2016", shape=ellipse, URL="RFC7901.html", target="_top", tooltip="This document defines an EDNS0 extension that can be used by a security-aware validating resolver configured to use a forwarding resolver to send a single query, requesting a complete validation path along with the regular query answer.  The reduction in queries potentially lowers the latency and reduces the need to send multiple queries at once.  This extension mandates the use of source-IP- verified transport such as TCP or UDP with EDNS-COOKIE, so it cannot be abused in amplification attacks."];
+  RFC7901 -> rev_cites;
+  RFC8484 [label="RFC8484
+DNS Queries over HTTPS (DoH)
+2018", shape=ellipse, URL="RFC8484.html", target="_top", tooltip="This document defines a protocol for sending DNS queries and getting DNS responses over HTTPS.  Each DNS query-response pair is mapped into an HTTP exchange."];
+  RFC8484 -> rev_cites;
+  RFC8490 [label="RFC8490
+DNS Stateful Operations
+2019", shape=ellipse, URL="RFC8490.html", target="_top", tooltip="This document defines a new DNS OPCODE for DNS Stateful Operations (DSO).  DSO messages communicate operations within persistent stateful sessions using Type Length Value (TLV) syntax.  Three TLVs are defined that manage session timeouts, termination, and encryption padding, and a framework is defined for extensions to enable new stateful operations.  This document updates RFC 1035 by adding a new DNS header OPCODE that has both different message semantics and a new result code.  This document updates RFC 7766 by redefining a session, providing new guidance on connection reuse, and providing a new mechanism for handling session idle timeouts."];
+  RFC8490 -> rev_cites;
+  RFC8932 [label="RFC8932
+Recommendations for DNS Privacy Service
+Operators
+2020", shape=ellipse, URL="RFC8932.html", target="_top", tooltip="This document presents operational, policy, and security considerations for DNS recursive resolver operators who choose to offer DNS privacy services. With these recommendations, the operator can make deliberate decisions regarding which services to provide, as well as understanding how those decisions and the alternatives impact the privacy of users. This document also presents a non-normative framework to assist writers of a Recursive operator Privacy Statement, analogous to DNS Security Extensions (DNSSEC) Policies and DNSSEC Practice Statements described in RFC 6841."];
+  RFC8932 -> rev_cites;
+  RFC9103 [label="RFC9103
+DNS Zone Transfer over TLS
+2021", shape=ellipse, URL="RFC9103.html", target="_top", tooltip="DNS zone transfers are transmitted in cleartext, which gives attackers the opportunity to collect the content of a zone by eavesdropping on network connections.  The DNS Transaction Signature (TSIG) mechanism is specified to restrict direct zone transfer to authorized clients only, but it does not add confidentiality.  This document specifies the use of TLS, rather than cleartext, to prevent zone content collection via passive monitoring of zone transfers: XFR over TLS (XoT).  Additionally, this specification updates RFC 1995 and RFC 5936 with respect to efficient use of TCP connections and RFC 7766 with respect to the recommended number of connections between a client and server for each transport."];
+  RFC9103 -> rev_cites;
+  RFC9210 [label="RFC9210
+DNS Transport over TCP - Operational
+Requirements
+2022", shape=ellipse, URL="RFC9210.html", target="_top", tooltip="This document updates RFCs 1123 and 1536.  This document requires the operational practice of permitting DNS messages to be carried over TCP on the Internet as a Best Current Practice.  This operational requirement is aligned with the implementation requirements in RFC 7766.  The use of TCP includes both DNS over unencrypted TCP as well as over an encrypted TLS session.  The document also considers the consequences of this form of DNS communication and the potential operational issues that can arise when this Best Current Practice is not upheld."];
+  RFC9210 -> rev_cites;
+  RFC9250 [label="RFC9250
+DNS over Dedicated QUIC Connections
+2022", shape=ellipse, URL="RFC9250.html", target="_top", tooltip="This document describes the use of QUIC to provide transport confidentiality for DNS.  The encryption provided by QUIC has similar properties to those provided by TLS, while QUIC transport eliminates the head-of-line blocking issues inherent with TCP and provides more efficient packet-loss recovery than UDP.  DNS over QUIC (DoQ) has privacy properties similar to DNS over TLS (DoT) specified in RFC 7858, and latency characteristics similar to classic DNS over UDP.  This specification describes the use of DoQ as a general-purpose transport for DNS and includes the use of DoQ for stub to recursive, recursive to authoritative, and zone transfer scenarios."];
+  RFC9250 -> rev_cites;
+}

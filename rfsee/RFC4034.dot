@@ -1,0 +1,769 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4034;
+
+  obs [label="obsoletes", shape=box];
+  RFC4034 -> obs;
+  RFC2535 [label="RFC2535
+Domain Name System Security Extensions
+1999", shape=ellipse, URL="RFC2535.html", target="_top", tooltip="This document incorporates feedback on RFC 2065 from early implementers and potential users. [STANDARDS-TRACK]"];
+  obs -> RFC2535;
+  RFC3008 [label="RFC3008
+Domain Name System Security (DNSSEC)
+Signing Authority
+2000", shape=ellipse, URL="RFC3008.html", target="_top", tooltip="This document proposes a revised model of Domain Name System Security (DNSSEC) Signing Authority.  The revised model is designed to clarify earlier documents and add additional restrictions to simplify the secure resolution process.  Specifically, this affects the authorization of keys to sign sets of records. [STANDARDS-TRACK]"];
+  obs -> RFC3008;
+  RFC3090 [label="RFC3090
+DNS Security Extension Clarification on
+Zone Status
+2001", shape=ellipse, URL="RFC3090.html", target="_top", tooltip="The definition of a secured zone is presented, clarifying and updating sections of RFC 2535.  RFC 2535 defines a zone to be secured based on a per algorithm basis, e.g., a zone can be secured with RSA keys, and not secured with DSA keys.  This document changes this to define a zone to be secured or not secured regardless of the key algorithm used (or not used).  To further simplify the determination of a zone's status, experimentally secure status is deprecated. [STANDARDS-TRACK]"];
+  obs -> RFC3090;
+  RFC3445 [label="RFC3445
+Limiting the Scope of the KEY Resource
+Record (RR)
+2002", shape=ellipse, URL="RFC3445.html", target="_top", tooltip="This document limits the Domain Name System (DNS) KEY Resource Record (RR) to only keys used by the Domain Name System Security Extensions (DNSSEC).  The original KEY RR used sub-typing to store both DNSSEC keys and arbitrary application keys.  Storing both DNSSEC and application keys with the same record type is a mistake.  This document removes application keys from the KEY record by redefining the Protocol Octet field in the KEY RR Data.  As a result of removing application keys, all but one of the flags in the KEY record become unnecessary and are redefined.  Three existing application key sub-types are changed to reserved, but the format of the KEY record is not changed.  This document updates RFC 2535. [STANDARDS-TRACK]"];
+  obs -> RFC3445;
+  RFC3655 [label="RFC3655
+Redefinition of DNS Authenticated Data
+(AD) bit
+2003", shape=ellipse, URL="RFC3655.html", target="_top", tooltip="This document alters the specification defined in RFC 2535.  Based on implementation experience, the Authenticated Data (AD) bit in the DNS header is not useful.  This document redefines the AD bit such that it is only set if all answers or records proving that no answers exist in the response has been cryptographically verified or otherwise meets the server's local security policy."];
+  obs -> RFC3655;
+  RFC3658 [label="RFC3658
+Delegation Signer (DS) Resource Record
+(RR)
+2003", shape=ellipse, URL="RFC3658.html", target="_top", tooltip="The delegation signer (DS) resource record (RR) is inserted at a zone cut (i.e., a delegation point) to indicate that the delegated zone is digitally signed and that the delegated zone recognizes the indicated key as a valid zone key for the delegated zone.  The DS RR is a modification to the DNS Security Extensions definition, motivated by operational considerations.  The intent is to use this resource record as an explicit statement about the delegation, rather than relying on inference.  This document defines the DS RR, gives examples of how it is used and describes the implications on resolvers.  This change is not backwards compatible with RFC 2535.  This document updates RFC 1035, RFC 2535, RFC 3008 and RFC 3090."];
+  obs -> RFC3658;
+  RFC3755 [label="RFC3755
+Legacy Resolver Compatibility for
+Delegation Signer (DS)
+2004", shape=ellipse, URL="RFC3755.html", target="_top", tooltip="As the DNS Security (DNSSEC) specifications have evolved, the syntax and semantics of the DNSSEC resource records (RRs) have changed.  Many deployed nameservers understand variants of these semantics.  Dangerous interactions can occur when a resolver that understands an earlier version of these semantics queries an authoritative server that understands the new delegation signer semantics, including at least one failure scenario that will cause an unsecured zone to be unresolvable.  This document changes the type codes and mnemonics of the DNSSEC RRs (SIG, KEY, and NXT) to avoid those interactions. [STANDARDS-TRACK]"];
+  obs -> RFC3755;
+  RFC3757 [label="RFC3757
+Domain Name System KEY (DNSKEY) Resource
+Record (RR) Secure Entry Point (SEP)
+Flag
+2004", shape=ellipse, URL="RFC3757.html", target="_top", tooltip="With the Delegation Signer (DS) resource record (RR), the concept of a public key acting as a secure entry point (SEP) has been introduced.  During exchanges of public keys with the parent there is a need to differentiate SEP keys from other public keys in the Domain Name System KEY (DNSKEY) resource record set.  A flag bit in the DNSKEY RR is defined to indicate that DNSKEY is to be used as a SEP.  The flag bit is intended to assist in operational procedures to correctly generate DS resource records, or to indicate what DNSKEYs are intended for static configuration.  The flag bit is not to be used in the DNS verification protocol.  This document updates RFC 2535 and RFC 3755. [STANDARDS-TRACK]"];
+  obs -> RFC3757;
+  RFC3845 [label="RFC3845
+DNS Security (DNSSEC) NextSECure (NSEC)
+RDATA Format
+2004", shape=ellipse, URL="RFC3845.html", target="_top", tooltip="This document redefines the wire format of the Type Bit Map field in the DNS NextSECure (NSEC) resource record RDATA format to cover the full resource record (RR) type space. [STANDARDS-TRACK]"];
+  obs -> RFC3845;
+
+  updates [label="updates", shape=box];
+  RFC4034 -> updates;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  updates -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  updates -> RFC1035;
+  RFC2136 [label="RFC2136
+Dynamic Updates in the Domain Name
+System (DNS UPDATE)
+1997", shape=ellipse, URL="RFC2136.html", target="_top", tooltip="Using this specification of the UPDATE opcode, it is possible to add or delete RRs or RRsets from a specified zone.  Prerequisites are specified separately from update operations, and can specify a dependency upon either the previous existence or nonexistence of an RRset, or the existence of a single RR. [STANDARDS-TRACK]"];
+  updates -> RFC2136;
+  RFC2181 [label="RFC2181
+Clarifications to the DNS Specification
+1997", shape=ellipse, URL="RFC2181.html", target="_top", tooltip="This document considers some areas that have been identified as problems with the specification of the Domain Name System, and proposes remedies for the defects identified. [STANDARDS-TRACK]"];
+  updates -> RFC2181;
+  RFC2308 [label="RFC2308
+Negative Caching of DNS Queries (DNS
+NCACHE)
+1998", shape=ellipse, URL="RFC2308.html", target="_top", tooltip="RFC1034 provided a description of how to cache negative responses.  It however had a fundamental flaw in that it did not allow a name server to hand out those cached responses to other resolvers, thereby greatly reducing the effect of the caching.  This document addresses issues raise in the light of experience and replaces RFC1034 Section 4.3.4. [STANDARDS-TRACK]"];
+  updates -> RFC2308;
+  RFC3225 [label="RFC3225
+Indicating Resolver Support of DNSSEC
+2001", shape=ellipse, URL="RFC3225.html", target="_top", tooltip="In order to deploy DNSSEC (Domain Name System Security Extensions) operationally, DNSSEC aware servers should only perform automatic inclusion of DNSSEC RRs when there is an explicit indication that the resolver can understand those RRs.  This document proposes the use of a bit in the EDNS0 header to provide that explicit indication and describes the necessary protocol changes to implement that notification. [STANDARDS-TRACK]"];
+  updates -> RFC3225;
+  RFC3597 [label="RFC3597
+Handling of Unknown DNS Resource Record
+(RR) Types
+2003", shape=ellipse, URL="RFC3597.html", target="_top", tooltip="Extending the Domain Name System (DNS) with new Resource Record (RR) types currently requires changes to name server software.  This document specifies the changes necessary to allow future DNS implementations to handle new RR types transparently. [STANDARDS-TRACK]"];
+  updates -> RFC3597;
+  RFC3226 [label="RFC3226
+DNSSEC and IPv6 A6 aware server/resolver
+message size requirements
+2001", shape=ellipse, URL="RFC3226.html", target="_top", tooltip="This document mandates support for EDNS0 (Extension Mechanisms for DNS) in DNS entities claiming to support either DNS Security Extensions or A6 records.  This requirement is necessary because these new features increase the size of DNS messages.  If EDNS0 is not supported fall back to TCP will happen, having a detrimental impact on query latency and DNS server load.  This document updates RFC 2535 and RFC 2874, by adding new requirements. [STANDARDS-TRACK]"];
+  updates -> RFC3226;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4034;
+  RFC4470 [label="RFC4470
+Minimally Covering NSEC Records and
+DNSSEC On-line Signing
+2006", shape=ellipse, URL="RFC4470.html", target="_top", tooltip="This document describes how to construct DNSSEC NSEC resource records that cover a smaller range of names than called for by RFC 4034.  By generating and signing these records on demand, authoritative name servers can effectively stop the disclosure of zone contents otherwise made possible by walking the chain of NSEC records in a signed zone. [STANDARDS-TRACK]"];
+  RFC4470 -> updated_by;
+  RFC6014 [label="RFC6014
+Cryptographic Algorithm Identifier
+Allocation for DNSSEC
+2010", shape=ellipse, URL="RFC6014.html", target="_top", tooltip="This document specifies how DNSSEC cryptographic algorithm identifiers in the IANA registries are allocated.  It changes the requirement from standard required to RFC Required.  It does not change the list of algorithms that are recommended or required for DNSSEC implementations. [STANDARDS-TRACK]"];
+  RFC6014 -> updated_by;
+  RFC6840 [label="RFC6840
+Clarifications and Implementation Notes
+for DNS Security (DNSSEC)
+2013", shape=ellipse, URL="RFC6840.html", target="_top", tooltip="This document is a collection of technical clarifications to the DNS Security (DNSSEC) document set. It is meant to serve as a resource to implementors as well as a collection of DNSSEC errata that existed at the time of writing. This document updates the core DNSSEC documents (RFC 4033, RFC 4034, and RFC 4035) as well as the NSEC3 specification (RFC 5155). It also defines NSEC3 and SHA-2 (RFC 4509 and RFC 5702) as core parts of the DNSSEC specification."];
+  RFC6840 -> updated_by;
+  RFC6944 [label="RFC6944
+Applicability Statement: DNS Security
+(DNSSEC) DNSKEY Algorithm Implementation
+Status
+2013", shape=ellipse, URL="RFC6944.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) requires the use of cryptographic algorithm suites for generating digital signatures over DNS data.  There is currently an IANA registry for these algorithms, but there is no record of the recommended implementation status of each algorithm.  This document provides an applicability statement on algorithm implementation status for DNSSEC component software.  This document lists each algorithm's status based on the current reference.  In the case that an algorithm is specified without an implementation status, this document assigns one.  This document updates RFCs 2536, 2539, 3110, 4034, 4398, 5155, 5702, and 5933."];
+  RFC6944 -> updated_by;
+  RFC9077 [label="RFC9077
+NSEC and NSEC3: TTLs and Aggressive Use
+2021", shape=ellipse, URL="RFC9077.html", target="_top", tooltip="Due to a combination of unfortunate wording in earlier documents, aggressive use of NSEC and NSEC3 records may deny the existence of names far beyond the intended lifetime of a denial.  This document changes the definition of the NSEC and NSEC3 TTL to correct that situation.  This document updates RFCs 4034, 4035, 5155, and 8198."];
+  RFC9077 -> updated_by;
+  RFC9824 [label="RFC9824
+Compact Denial of Existence in DNSSEC
+2025", shape=ellipse, URL="RFC9824.html", target="_top", tooltip="This document describes a technique to generate a signed DNS response on demand for a nonexistent name by claiming that the name exists but doesn't have any data for the queried record type. Such responses require only one minimally covering NSEC or NSEC3 record, allow online signing servers to minimize signing operations and response sizes, and prevent zone content disclosure. This document updates RFCs 4034 and 4035."];
+  RFC9824 -> updated_by;
+  RFC9905 [label="RFC9905
+Deprecating the Use of SHA-1 in DNSSEC
+Signature Algorithms
+2025", shape=ellipse, URL="RFC9905.html", target="_top", tooltip="This document deprecates the use of the RSASHA1 and
+RSASHA1-NSEC3-SHA1 algorithms for the creation of DNS Public Key
+(DNSKEY) and Resource Record Signature (RRSIG) records. It updates RFCs 4034 and 5155 as it deprecates the use of these
+algorithms."];
+  RFC9905 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4034 -> cites;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  cites -> RFC4035;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC2181 [label="RFC2181
+Clarifications to the DNS Specification
+1997", shape=ellipse, URL="RFC2181.html", target="_top", tooltip="This document considers some areas that have been identified as problems with the specification of the Domain Name System, and proposes remedies for the defects identified. [STANDARDS-TRACK]"];
+  cites -> RFC2181;
+  RFC2308 [label="RFC2308
+Negative Caching of DNS Queries (DNS
+NCACHE)
+1998", shape=ellipse, URL="RFC2308.html", target="_top", tooltip="RFC1034 provided a description of how to cache negative responses.  It however had a fundamental flaw in that it did not allow a name server to hand out those cached responses to other resolvers, thereby greatly reducing the effect of the caching.  This document addresses issues raise in the light of experience and replaces RFC1034 Section 4.3.4. [STANDARDS-TRACK]"];
+  cites -> RFC2308;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3757 [label="RFC3757
+Domain Name System KEY (DNSKEY) Resource
+Record (RR) Secure Entry Point (SEP)
+Flag
+2004", shape=ellipse, URL="RFC3757.html", target="_top", tooltip="With the Delegation Signer (DS) resource record (RR), the concept of a public key acting as a secure entry point (SEP) has been introduced.  During exchanges of public keys with the parent there is a need to differentiate SEP keys from other public keys in the Domain Name System KEY (DNSKEY) resource record set.  A flag bit in the DNSKEY RR is defined to indicate that DNSKEY is to be used as a SEP.  The flag bit is intended to assist in operational procedures to correctly generate DS resource records, or to indicate what DNSKEYs are intended for static configuration.  The flag bit is not to be used in the DNS verification protocol.  This document updates RFC 2535 and RFC 3755. [STANDARDS-TRACK]"];
+  cites -> RFC3757;
+  RFC3548 [label="RFC3548
+The Base16, Base32, and Base64 Data
+Encodings
+2003", shape=ellipse, URL="RFC3548.html", target="_top", tooltip="This document describes the commonly used base 64, base 32, and base 16 encoding schemes.  It also discusses the use of line-feeds in encoded data, use of padding in encoded data, use of non-alphabet characters in encoded data, and use of different encoding alphabets.  This memo provides information for the Internet community."];
+  cites -> RFC3548;
+  RFC3110 [label="RFC3110
+RSA/SHA-1 SIGs and RSA KEYs in the
+Domain Name System (DNS)
+2001", shape=ellipse, URL="RFC3110.html", target="_top", tooltip="This document describes how to produce RSA/SHA1 SIG resource records (RRs) in Section 3 and, so as to completely replace RFC 2537, describes how to produce RSA KEY RRs in Section 2. [STANDARDS-TRACK]"];
+  cites -> RFC3110;
+  RFC1982 [label="RFC1982
+Serial Number Arithmetic
+1996", shape=ellipse, URL="RFC1982.html", target="_top", tooltip="The DNS has long relied upon serial number arithmetic, a concept which has never really been defined, certainly not in an IETF document, though which has been widely understood.  This memo supplies the missing definition.  It is intended to update RFC1034 and RFC1035. [STANDARDS-TRACK]"];
+  cites -> RFC1982;
+  RFC3597 [label="RFC3597
+Handling of Unknown DNS Resource Record
+(RR) Types
+2003", shape=ellipse, URL="RFC3597.html", target="_top", tooltip="Extending the Domain Name System (DNS) with new Resource Record (RR) types currently requires changes to name server software.  This document specifies the changes necessary to allow future DNS implementations to handle new RR types transparently. [STANDARDS-TRACK]"];
+  cites -> RFC3597;
+  RFC3845 [label="RFC3845
+DNS Security (DNSSEC) NextSECure (NSEC)
+RDATA Format
+2004", shape=ellipse, URL="RFC3845.html", target="_top", tooltip="This document redefines the wire format of the Type Bit Map field in the DNS NextSECure (NSEC) resource record RDATA format to cover the full resource record (RR) type space. [STANDARDS-TRACK]"];
+  cites -> RFC3845;
+  RFC2535 [label="RFC2535
+Domain Name System Security Extensions
+1999", shape=ellipse, URL="RFC2535.html", target="_top", tooltip="This document incorporates feedback on RFC 2065 from early implementers and potential users. [STANDARDS-TRACK]"];
+  cites -> RFC2535;
+  RFC3658 [label="RFC3658
+Delegation Signer (DS) Resource Record
+(RR)
+2003", shape=ellipse, URL="RFC3658.html", target="_top", tooltip="The delegation signer (DS) resource record (RR) is inserted at a zone cut (i.e., a delegation point) to indicate that the delegated zone is digitally signed and that the delegated zone recognizes the indicated key as a valid zone key for the delegated zone.  The DS RR is a modification to the DNS Security Extensions definition, motivated by operational considerations.  The intent is to use this resource record as an explicit statement about the delegation, rather than relying on inference.  This document defines the DS RR, gives examples of how it is used and describes the implications on resolvers.  This change is not backwards compatible with RFC 2535.  This document updates RFC 1035, RFC 2535, RFC 3008 and RFC 3090."];
+  cites -> RFC3658;
+  RFC3755 [label="RFC3755
+Legacy Resolver Compatibility for
+Delegation Signer (DS)
+2004", shape=ellipse, URL="RFC3755.html", target="_top", tooltip="As the DNS Security (DNSSEC) specifications have evolved, the syntax and semantics of the DNSSEC resource records (RRs) have changed.  Many deployed nameservers understand variants of these semantics.  Dangerous interactions can occur when a resolver that understands an earlier version of these semantics queries an authoritative server that understands the new delegation signer semantics, including at least one failure scenario that will cause an unsecured zone to be unresolvable.  This document changes the type codes and mnemonics of the DNSSEC RRs (SIG, KEY, and NXT) to avoid those interactions. [STANDARDS-TRACK]"];
+  cites -> RFC3755;
+  RFC2931 [label="RFC2931
+DNS Request and Transaction Signatures (
+SIG(0)s )
+2000", shape=ellipse, URL="RFC2931.html", target="_top", tooltip="This document describes the minor but non-interoperable changes in Request and Transaction signature resource records ( SIG(0)s ) that implementation experience has deemed necessary. [STANDARDS-TRACK]"];
+  cites -> RFC2931;
+  RFC2930 [label="RFC2930
+Secret Key Establishment for DNS (TKEY
+RR)
+2000", shape=ellipse, URL="RFC2930.html", target="_top", tooltip="This document describes a Transaction Key (TKEY) RR that can be used in a number of different modes to establish shared secret keys between a DNS resolver and server. [STANDARDS-TRACK]"];
+  cites -> RFC2930;
+  RFC3445 [label="RFC3445
+Limiting the Scope of the KEY Resource
+Record (RR)
+2002", shape=ellipse, URL="RFC3445.html", target="_top", tooltip="This document limits the Domain Name System (DNS) KEY Resource Record (RR) to only keys used by the Domain Name System Security Extensions (DNSSEC).  The original KEY RR used sub-typing to store both DNSSEC keys and arbitrary application keys.  Storing both DNSSEC and application keys with the same record type is a mistake.  This document removes application keys from the KEY record by redefining the Protocol Octet field in the KEY RR Data.  As a result of removing application keys, all but one of the flags in the KEY record become unnecessary and are redefined.  Three existing application key sub-types are changed to reserved, but the format of the KEY record is not changed.  This document updates RFC 2535. [STANDARDS-TRACK]"];
+  cites -> RFC3445;
+  RFC2536 [label="RFC2536
+DSA KEYs and SIGs in the Domain Name
+System (DNS)
+1999", shape=ellipse, URL="RFC2536.html", target="_top", tooltip="A standard method for storing US Government Digital Signature Algorithm keys and signatures in the Domain Name System is described which utilizes DNS KEY and SIG resource records. [STANDARDS-TRACK]"];
+  cites -> RFC2536;
+  RFC2537 [label="RFC2537
+RSA/MD5 KEYs and SIGs in the Domain Name
+System (DNS)
+1999", shape=ellipse, URL="RFC2537.html", target="_top", tooltip="A standard method for storing RSA keys and and RSA/MD5 based signatures in the Domain Name System is described which utilizes DNS KEY and SIG resource records. [STANDARDS-TRACK]"];
+  cites -> RFC2537;
+  RFC2539 [label="RFC2539
+Storage of Diffie-Hellman Keys in the
+Domain Name System (DNS)
+1999", shape=ellipse, URL="RFC2539.html", target="_top", tooltip="A standard method for storing Diffie-Hellman keys in the Domain Name System is described which utilizes DNS KEY resource records. [STANDARDS-TRACK]"];
+  cites -> RFC2539;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4034;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  RFC4033 -> rev_cites;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4035 -> rev_cites;
+  RFC4185 [label="RFC4185
+National and Local Characters for DNS
+Top Level Domain (TLD) Names
+2005", shape=ellipse, URL="RFC4185.html", target="_top", tooltip="In the context of work on internationalizing the Domain Name System (DNS), there have been extensive discussions about multilingual or internationalized top level domain names (TLDs), especially for countries whose predominant language is not written in a Roman-based script.  This document reviews some of the motivations for such domains, several suggestions that have been made to provide needed functionality, and the constraints that the DNS imposes.  It then suggests an alternative, local translation, that may solve a superset of the problem while avoiding protocol changes, serious deployment delays, and other difficulties.  The suggestion utilizes a localization technique in applications to permit any TLD to be accessed using the vocabulary and characters of any language.  It is not restricted to language- or country-specific multilingual TLDs in the language(s) and script(s) of that country.  This memo provides information for the Internet community."];
+  RFC4185 -> rev_cites;
+  RFC4192 [label="RFC4192
+Procedures for Renumbering an IPv6
+Network without a Flag Day
+2005", shape=ellipse, URL="RFC4192.html", target="_top", tooltip="This document describes a procedure that can be used to renumber a network from one prefix to another.  It uses IPv6's intrinsic ability to assign multiple addresses to a network interface to provide continuity of network service through a make-before-break transition, as well as addresses naming and configuration management issues.  It also uses other IPv6 features to minimize the effort and time required to complete the transition from the old prefix to the new prefix.  This memo provides information for the Internet community."];
+  RFC4192 -> rev_cites;
+  RFC4343 [label="RFC4343
+Domain Name System (DNS) Case
+Insensitivity Clarification
+2006", shape=ellipse, URL="RFC4343.html", target="_top", tooltip="Domain Name System (DNS) names are case insensitive.  This document explains exactly what that means and provides a clear specification of the rules.  This clarification updates RFCs 1034, 1035, and 2181. [STANDARDS-TRACK]"];
+  RFC4343 -> rev_cites;
+  RFC4471 [label="RFC4471
+Derivation of DNS Name Predecessor and
+Successor
+2006", shape=ellipse, URL="RFC4471.html", target="_top", tooltip="This document describes two methods for deriving the canonically-ordered predecessor and successor of a DNS name.  These methods may be used for dynamic NSEC resource record synthesis, enabling security-aware name servers to provide authenticated denial of existence without disclosing other owner names in a DNSSEC secured zone.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC4471 -> rev_cites;
+  RFC4509 [label="RFC4509
+Use of SHA-256 in DNSSEC Delegation
+Signer (DS) Resource Records (RRs)
+2006", shape=ellipse, URL="RFC4509.html", target="_top", tooltip="This document specifies how to use the SHA-256 digest type in DNS Delegation Signer (DS) Resource Records (RRs).  DS records, when stored in a parent zone, point to DNSKEYs in a child zone. [STANDARDS-TRACK]"];
+  RFC4509 -> rev_cites;
+  RFC4592 [label="RFC4592
+The Role of Wildcards in the Domain Name
+System
+2006", shape=ellipse, URL="RFC4592.html", target="_top", tooltip="This is an update to the wildcard definition of RFC 1034.  The interaction with wildcards and CNAME is changed, an error condition is removed, and the words defining some concepts central to wildcards are changed.  The overall goal is not to change wildcards, but to refine the definition of RFC 1034. [STANDARDS-TRACK]"];
+  RFC4592 -> rev_cites;
+  RFC5011 [label="RFC5011
+Automated Updates of DNS Security
+(DNSSEC) Trust Anchors
+2007", shape=ellipse, URL="RFC5011.html", target="_top", tooltip="This document describes a means for automated, authenticated, and authorized updating of DNSSEC trust anchors. The method provides protection against N-1 key compromises of N keys in the trust point key set. Based on the trust established by the presence of a current anchor, other anchors may be added at the same place in the hierarchy, and, ultimately, supplant the existing anchor(s). This mechanism will require changes to resolver management behavior (but not resolver resolution behavior), and the addition of a single flag bit to the DNSKEY record. [STANDARDS-TRACK]"];
+  RFC5011 -> rev_cites;
+  RFC5074 [label="RFC5074
+DNSSEC Lookaside Validation (DLV)
+2007", shape=ellipse, URL="RFC5074.html", target="_top", tooltip="DNSSEC Lookaside Validation (DLV) is a mechanism for publishing DNS Security (DNSSEC) trust anchors outside of the DNS delegation chain.  It allows validating resolvers to validate DNSSEC-signed data from zones whose ancestors either aren't signed or don't publish Delegation Signer (DS) records for their children.  This memo provides information for the Internet community."];
+  RFC5074 -> rev_cites;
+  RFC5155 [label="RFC5155
+DNS Security (DNSSEC) Hashed
+Authenticated Denial of Existence
+2008", shape=ellipse, URL="RFC5155.html", target="_top", tooltip="The Domain Name System Security (DNSSEC) Extensions introduced the NSEC resource record (RR) for authenticated denial of existence.  This document introduces an alternative resource record, NSEC3, which similarly provides authenticated denial of existence.  However, it also provides measures against zone enumeration and permits gradual expansion of delegation-centric zones. [STANDARDS-TRACK]"];
+  RFC5155 -> rev_cites;
+  RFC5201 [label="RFC5201
+Host Identity Protocol
+2008", shape=ellipse, URL="RFC5201.html", target="_top", tooltip="This memo specifies the details of the Host Identity Protocol (HIP).  HIP allows consenting hosts to securely establish and maintain shared IP-layer state, allowing separation of the identifier and locator roles of IP addresses, thereby enabling continuity of communications across IP address changes.  HIP is based on a Sigma-compliant Diffie- Hellman key exchange, using public key identifiers from a new Host Identity namespace for mutual peer authentication.  The protocol is designed to be resistant to denial-of-service (DoS) and man-in-the- middle (MitM) attacks.  When used together with another suitable security protocol, such as the Encapsulated Security Payload (ESP), it provides integrity protection and optional encryption for upper- layer protocols, such as TCP and UDP.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC5201 -> rev_cites;
+  RFC5205 [label="RFC5205
+Host Identity Protocol (HIP) Domain Name
+System (DNS) Extensions
+2008", shape=ellipse, URL="RFC5205.html", target="_top", tooltip="This document specifies a new resource record (RR) for the Domain Name System (DNS), and how to use it with the Host Identity Protocol (HIP).  This RR allows a HIP node to store in the DNS its Host Identity (HI, the public component of the node public-private key pair), Host Identity Tag (HIT, a truncated hash of its public key), and the Domain Names of its rendezvous servers (RVSs).  This memo defines an Experimental Protocol for the Internet community."];
+  RFC5205 -> rev_cites;
+  RFC5395 [label="RFC5395
+Domain Name System (DNS) IANA
+Considerations
+2008", shape=ellipse, URL="RFC5395.html", target="_top", tooltip="Internet Assigned Number Authority (IANA) parameter assignment considerations are specified for the allocation of Domain Name System (DNS) resource record types, CLASSes, operation codes, error codes, DNS protocol message header bits, and AFSDB resource record subtypes.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC5395 -> rev_cites;
+  RFC5507 [label="RFC5507
+Design Choices When Expanding the DNS
+2009", shape=ellipse, URL="RFC5507.html", target="_top", tooltip="This note discusses how to extend the DNS with new data for a new application.  DNS extension discussions too often focus on reuse of the TXT Resource Record Type.  This document lists different mechanisms to extend the DNS, and concludes that the use of a new DNS Resource Record Type is the best solution.  This memo provides information for the Internet community."];
+  RFC5507 -> rev_cites;
+  RFC5702 [label="RFC5702
+Use of SHA-2 Algorithms with RSA in
+DNSKEY and RRSIG Resource Records for
+DNSSEC
+2009", shape=ellipse, URL="RFC5702.html", target="_top", tooltip="This document describes how to produce RSA/SHA-256 and RSA/SHA-512 DNSKEY and RRSIG resource records for use in the Domain Name System Security Extensions (RFC 4033, RFC 4034, and RFC 4035). [STANDARDS TRACK]"];
+  RFC5702 -> rev_cites;
+  RFC5863 [label="RFC5863
+DomainKeys Identified Mail (DKIM)
+Development, Deployment, and Operations
+2010", shape=ellipse, URL="RFC5863.html", target="_top", tooltip="DomainKeys Identified Mail (DKIM) allows an organization to claim responsibility for transmitting a message, in a way that can be validated by a recipient.  The organization can be the author's, the originating sending site, an intermediary, or one of their agents.  A message can contain multiple signatures, from the same or different organizations involved with the message.  DKIM defines a domain-level digital signature authentication framework for email, using public key cryptography and using the domain name service as its key server technology.  This permits verification of a responsible organization, as well as the integrity of the message content.  DKIM will also provide a mechanism that permits potential email signers to publish information about their email signing practices; this will permit email receivers to make additional assessments about messages.  DKIM's authentication of email identity can assist in the global control of spam and phishing.  This document provides implementation, deployment, operational, and migration considerations for DKIM.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5863 -> rev_cites;
+  RFC5887 [label="RFC5887
+Renumbering Still Needs Work
+2010", shape=ellipse, URL="RFC5887.html", target="_top", tooltip="This document reviews the existing mechanisms for site renumbering for both IPv4 and IPv6, and it identifies operational issues with those mechanisms.  It also summarises current technical proposals for additional mechanisms.  Finally, there is a gap analysis identifying possible areas for future work.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5887 -> rev_cites;
+  RFC5910 [label="RFC5910
+Domain Name System (DNS) Security
+Extensions Mapping for the Extensible
+Provisioning Protocol (EPP)
+2010", shape=ellipse, URL="RFC5910.html", target="_top", tooltip="This document describes an Extensible Provisioning Protocol (EPP) extension mapping for the provisioning and management of Domain Name System security (DNSSEC) extensions for domain names stored in a shared central repository.  Specified in XML, this mapping extends the EPP domain name mapping to provide additional features required for the provisioning of DNS security extensions.  This document obsoletes RFC 4310. [STANDARDS-TRACK]"];
+  RFC5910 -> rev_cites;
+  RFC5933 [label="RFC5933
+Use of GOST Signature Algorithms in
+DNSKEY and RRSIG Resource Records for
+DNSSEC
+2010", shape=ellipse, URL="RFC5933.html", target="_top", tooltip="This document describes how to produce digital signatures and hash functions using the GOST R 34.10-2001 and GOST R 34.11-94 algorithms for DNSKEY, RRSIG, and DS resource records, for use in the Domain Name System Security Extensions (DNSSEC)."];
+  RFC5933 -> rev_cites;
+  RFC5936 [label="RFC5936
+DNS Zone Transfer Protocol (AXFR)
+2010", shape=ellipse, URL="RFC5936.html", target="_top", tooltip="The standard means within the Domain Name System protocol for maintaining coherence among a zone's authoritative name servers consists of three mechanisms. Authoritative Transfer (AXFR) is one of the mechanisms and is defined in RFC 1034 and RFC 1035. The definition of AXFR has proven insufficient in detail, thereby forcing implementations intended to be compliant to make assumptions, impeding interoperability. Yet today we have a satisfactory set of implementations that do interoperate. This document is a new definition of AXFR -- new in the sense that it records an accurate definition of an interoperable AXFR mechanism. [STANDARDS-TRACK]"];
+  RFC5936 -> rev_cites;
+  RFC6014 [label="RFC6014
+Cryptographic Algorithm Identifier
+Allocation for DNSSEC
+2010", shape=ellipse, URL="RFC6014.html", target="_top", tooltip="This document specifies how DNSSEC cryptographic algorithm identifiers in the IANA registries are allocated.  It changes the requirement from standard required to RFC Required.  It does not change the list of algorithms that are recommended or required for DNSSEC implementations. [STANDARDS-TRACK]"];
+  RFC6014 -> rev_cites;
+  RFC6115 [label="RFC6115
+Recommendation for a Routing
+Architecture
+2011", shape=ellipse, URL="RFC6115.html", target="_top", tooltip="It is commonly recognized that the Internet routing and addressing architecture is facing challenges in scalability, multihoming, and inter-domain traffic engineering.  This document presents, as a recommendation of future directions for the IETF, solutions that could aid the future scalability of the Internet.  To this end, this document surveys many of the proposals that were brought forward for discussion in this activity, as well as some of the subsequent analysis and the architectural recommendation of the chairs.  This document is a product of the Routing Research Group.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6115 -> rev_cites;
+  RFC6147 [label="RFC6147
+DNS64: DNS Extensions for Network
+Address Translation from IPv6 Clients to
+IPv4 Servers
+2011", shape=ellipse, URL="RFC6147.html", target="_top", tooltip="DNS64 is a mechanism for synthesizing AAAA records from A records.  DNS64 is used with an IPv6/IPv4 translator to enable client-server communication between an IPv6-only client and an IPv4-only server, without requiring any changes to either the IPv6 or the IPv4 node, for the class of applications that work through NATs.  This document specifies DNS64, and provides suggestions on how it should be deployed in conjunction with IPv6/IPv4 translators. [STANDARDS-TRACK]"];
+  RFC6147 -> rev_cites;
+  RFC6168 [label="RFC6168
+Requirements for Management of Name
+Servers for the DNS
+2011", shape=ellipse, URL="RFC6168.html", target="_top", tooltip="Management of name servers for the Domain Name System (DNS) has traditionally been done using vendor-specific monitoring, configuration, and control methods. Although some service monitoring platforms can test the functionality of the DNS itself, there is not an interoperable way to manage (monitor, control, and configure) the internal aspects of a name server itself. This document discusses the requirements of a management system for name servers and can be used as a shopping list of needed features for such a system. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6168 -> rev_cites;
+  RFC6195 [label="RFC6195
+Domain Name System (DNS) IANA
+Considerations
+2011", shape=ellipse, URL="RFC6195.html", target="_top", tooltip="This document specifies Internet Assigned Number Authority (IANA) parameter assignment considerations for the allocation of Domain Name System (DNS) resource record types, CLASSes, operation codes, error codes, DNS protocol message header bits, and AFSDB resource record subtypes.  This memo documents an Internet Best Current Practice."];
+  RFC6195 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6404 [label="RFC6404
+Session PEERing for Multimedia
+INTerconnect (SPEERMINT) Security
+Threats and Suggested Countermeasures
+2011", shape=ellipse, URL="RFC6404.html", target="_top", tooltip="The Session PEERing for Multimedia INTerconnect (SPEERMINT) working group (WG) provides a peering framework that leverages the building blocks of existing IETF-defined protocols such as SIP and ENUM for the interconnection between SIP Service Providers (SSPs).  The objective of this document is to identify and enumerate SPEERMINT- specific threat vectors and to give guidance for implementers on selecting appropriate countermeasures.  Security requirements for SPEERMINT that have been derived from the threats detailed in this document can be found in RFC 6271; this document provides concrete countermeasures to meet those SPEERMINT security requirements.  In this document, the different security threats related to SPEERMINT are classified into threats to the Lookup Function (LUF), the Location Routing Function (LRF), the Signaling Function (SF), and the Media Function (MF) of a specific SIP Service Provider.  Various instances of the threats are briefly introduced inside the classification.  Finally, existing security solutions for SIP and RTP/RTCP (Real-time Transport Control Protocol) are presented to describe countermeasures currently available for such threats.  Each SSP may have connections to one or more remote SSPs through peering or transit contracts.  A potentially compromised remote SSP that attacks other SSPs is out of the scope of this document; this document focuses on attacks on an SSP from outside the trust domain such an SSP may have with other SSPs.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6404 -> rev_cites;
+  RFC6434 [label="RFC6434
+IPv6 Node Requirements
+2011", shape=ellipse, URL="RFC6434.html", target="_top", tooltip="This document defines requirements for IPv6 nodes.  It is expected that IPv6 will be deployed in a wide range of devices and situations.  Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6434 -> rev_cites;
+  RFC6589 [label="RFC6589
+Considerations for Transitioning Content
+to IPv6
+2012", shape=ellipse, URL="RFC6589.html", target="_top", tooltip="This document describes considerations for the transition of end-user content on the Internet to IPv6.  While this is tailored to address end-user content, which is typically web-based, many aspects of this document may be more broadly applicable to the transition to IPv6 of other applications and services.  This document explores the challenges involved in the transition to IPv6, potential migration tactics, possible migration phases, and other considerations.  The audience for this document is the Internet community generally, particularly IPv6 implementers.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6589 -> rev_cites;
+  RFC6594 [label="RFC6594
+Use of the SHA-256 Algorithm with RSA,
+Digital Signature Algorithm (DSA), and
+Elliptic Curve DSA (ECDSA) in SSHFP
+Resource Records
+2012", shape=ellipse, URL="RFC6594.html", target="_top", tooltip="This document updates the IANA registries in RFC 4255, which defines SSHFP, a DNS Resource Record (RR) that contains a standard Secure Shell (SSH) key fingerprint used to verify SSH host keys using DNS Security Extensions (DNSSEC).  This document defines additional options supporting SSH public keys applying the Elliptic Curve Digital Signature Algorithm (ECDSA) and the implementation of fingerprints computed using the SHA-256 message digest algorithm in SSHFP Resource Records. [STANDARDS-TRACK]"];
+  RFC6594 -> rev_cites;
+  RFC6605 [label="RFC6605
+Elliptic Curve Digital Signature
+Algorithm (DSA) for DNSSEC
+2012", shape=ellipse, URL="RFC6605.html", target="_top", tooltip="This document describes how to specify Elliptic Curve Digital Signature Algorithm (DSA) keys and signatures in DNS Security (DNSSEC).  It lists curves of different sizes and uses the SHA-2 family of hashes for signatures. [STANDARDS-TRACK]"];
+  RFC6605 -> rev_cites;
+  RFC6672 [label="RFC6672
+DNAME Redirection in the DNS
+2012", shape=ellipse, URL="RFC6672.html", target="_top", tooltip="The DNAME record provides redirection for a subtree of the domain name tree in the DNS.  That is, all names that end with a particular suffix are redirected to another part of the DNS.  This document obsoletes the original specification in RFC 2672 as well as updates the document on representing IPv6 addresses in DNS (RFC 3363). [STANDARDS-TRACK]"];
+  RFC6672 -> rev_cites;
+  RFC6698 [label="RFC6698
+The DNS-Based Authentication of Named
+Entities (DANE) Transport Layer Security
+(TLS) Protocol: TLSA
+2012", shape=ellipse, URL="RFC6698.html", target="_top", tooltip="Encrypted communication on the Internet often uses Transport Layer Security (TLS), which depends on third parties to certify the keys used.  This document improves on that situation by enabling the administrators of domain names to specify the keys used in that domain's TLS servers.  This requires matching improvements in TLS client software, but no change in TLS server software. [STANDARDS-TRACK]"];
+  RFC6698 -> rev_cites;
+  RFC6725 [label="RFC6725
+DNS Security (DNSSEC) DNSKEY Algorithm
+IANA Registry Updates
+2012", shape=ellipse, URL="RFC6725.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) require the use of cryptographic algorithm suites for generating digital signatures over DNS data.  The algorithms specified for use with DNSSEC are reflected in an IANA-maintained registry.  This document presents a set of changes for some entries of the registry. [STANDARDS-TRACK]"];
+  RFC6725 -> rev_cites;
+  RFC6762 [label="RFC6762
+Multicast DNS
+2013", shape=ellipse, URL="RFC6762.html", target="_top", tooltip="As networked devices become smaller, more portable, and more ubiquitous, the ability to operate with less configured infrastructure is increasingly important. In particular, the ability to look up DNS resource record data types (including, but not limited to, host names) in the absence of a conventional managed DNS server is useful. Multicast DNS (mDNS) provides the ability to perform DNS-like operations on the local link in the absence of any conventional Unicast DNS server. In addition, Multicast DNS designates a portion of the DNS namespace to be free for local use, without the need to pay any annual fee, and without the need to set up delegations or otherwise configure a conventional DNS server to answer for those names. The primary benefits of Multicast DNS names are that (i) they require little or no administration or configuration to set them up, (ii) they work when no infrastructure is present, and (iii) they work during infrastructure failures."];
+  RFC6762 -> rev_cites;
+  RFC6781 [label="RFC6781
+DNSSEC Operational Practices, Version 2
+2012", shape=ellipse, URL="RFC6781.html", target="_top", tooltip="This document describes a set of practices for operating the DNS with security extensions (DNSSEC). The target audience is zone administrators deploying DNSSEC. The document discusses operational aspects of using keys and signatures in the DNS. It discusses issues of key generation, key storage, signature generation, key rollover, and related policies. This document obsoletes RFC 4641, as it covers more operational ground and gives more up-to-date requirements with respect to key sizes and the DNSSEC operations."];
+  RFC6781 -> rev_cites;
+  RFC6840 [label="RFC6840
+Clarifications and Implementation Notes
+for DNS Security (DNSSEC)
+2013", shape=ellipse, URL="RFC6840.html", target="_top", tooltip="This document is a collection of technical clarifications to the DNS Security (DNSSEC) document set. It is meant to serve as a resource to implementors as well as a collection of DNSSEC errata that existed at the time of writing. This document updates the core DNSSEC documents (RFC 4033, RFC 4034, and RFC 4035) as well as the NSEC3 specification (RFC 5155). It also defines NSEC3 and SHA-2 (RFC 4509 and RFC 5702) as core parts of the DNSSEC specification."];
+  RFC6840 -> rev_cites;
+  RFC6841 [label="RFC6841
+A Framework for DNSSEC Policies and
+DNSSEC Practice Statements
+2013", shape=ellipse, URL="RFC6841.html", target="_top", tooltip="This document presents a framework to assist writers of DNS Security Extensions (DNSSEC) Policies and DNSSEC Practice Statements, such as domain managers and zone operators on both the top level and secondary level, who are managing and operating a DNS zone with Security Extensions implemented. In particular, the framework provides a comprehensive list of topics that should be considered for inclusion into a DNSSEC Policy definition and Practice Statement. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6841 -> rev_cites;
+  RFC6844 [label="RFC6844
+DNS Certification Authority
+Authorization (CAA) Resource Record
+2013", shape=ellipse, URL="RFC6844.html", target="_top", tooltip="The Certification Authority Authorization (CAA) DNS Resource Record allows a DNS domain name holder to specify one or more Certification Authorities (CAs) authorized to issue certificates for that domain.  CAA Resource Records allow a public Certification Authority to implement additional controls to reduce the risk of unintended certificate mis-issue.  This document defines the syntax of the CAA record and rules for processing CAA records by certificate issuers. [STANDARDS-TRACK]"];
+  RFC6844 -> rev_cites;
+  RFC6895 [label="RFC6895
+Domain Name System (DNS) IANA
+Considerations
+2013", shape=ellipse, URL="RFC6895.html", target="_top", tooltip="This document specifies Internet Assigned Numbers Authority (IANA) parameter assignment considerations for the allocation of Domain Name System (DNS) resource record types, CLASSes, operation codes, error codes, DNS protocol message header bits, and AFSDB resource record subtypes.  It obsoletes RFC 6195 and updates RFCs 1183, 2845, 2930, and 3597."];
+  RFC6895 -> rev_cites;
+  RFC6944 [label="RFC6944
+Applicability Statement: DNS Security
+(DNSSEC) DNSKEY Algorithm Implementation
+Status
+2013", shape=ellipse, URL="RFC6944.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) requires the use of cryptographic algorithm suites for generating digital signatures over DNS data.  There is currently an IANA registry for these algorithms, but there is no record of the recommended implementation status of each algorithm.  This document provides an applicability statement on algorithm implementation status for DNSSEC component software.  This document lists each algorithm's status based on the current reference.  In the case that an algorithm is specified without an implementation status, this document assigns one.  This document updates RFCs 2536, 2539, 3110, 4034, 4398, 5155, 5702, and 5933."];
+  RFC6944 -> rev_cites;
+  RFC6975 [label="RFC6975
+Signaling Cryptographic Algorithm
+Understanding in DNS Security Extensions
+(DNSSEC)
+2013", shape=ellipse, URL="RFC6975.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) were developed to provide origin authentication and integrity protection for DNS data by using digital signatures.  These digital signatures can be generated using different algorithms.  This document specifies a way for validating end-system resolvers to signal to a server which digital signature and hash algorithms they support.  The extensions allow the signaling of new algorithm uptake in client code to allow zone administrators to know when it is possible to complete an algorithm rollover in a DNSSEC-signed zone."];
+  RFC6975 -> rev_cites;
+  RFC7129 [label="RFC7129
+Authenticated Denial of Existence in the
+DNS
+2014", shape=ellipse, URL="RFC7129.html", target="_top", tooltip="Authenticated denial of existence allows a resolver to validate that a certain domain name does not exist. It is also used to signal that a domain name exists but does not have the specific resource record (RR) type you were asking for. When returning a negative DNS Security Extensions (DNSSEC) response, a name server usually includes up to two NSEC records. With NSEC version 3 (NSEC3), this amount is three. This document provides additional background commentary and some context for the NSEC and NSEC3 mechanisms used by DNSSEC to provide authenticated denial-of-existence responses."];
+  RFC7129 -> rev_cites;
+  RFC7225 [label="RFC7225
+Discovering NAT64 IPv6 Prefixes Using
+the Port Control Protocol (PCP)
+2014", shape=ellipse, URL="RFC7225.html", target="_top", tooltip="This document defines a new Port Control Protocol (PCP) option to learn the IPv6 prefix(es) used by a PCP-controlled NAT64 device to build IPv4-converted IPv6 addresses.  This option is needed for successful communications when IPv4 addresses are used in referrals."];
+  RFC7225 -> rev_cites;
+  RFC7305 [label="RFC7305
+Report from the IAB Workshop on Internet
+Technology Adoption and Transition
+(ITAT)
+2014", shape=ellipse, URL="RFC7305.html", target="_top", tooltip="This document provides an overview of a workshop held by the Internet Architecture Board (IAB) on Internet Technology Adoption and Transition (ITAT). The workshop was hosted by the University of Cambridge on December 4th and 5th of 2013 in Cambridge, UK. The goal of the workshop was to facilitate adoption of Internet protocols, through examination of a variety of economic models, with particular emphasis at the waist of the hourglass (e.g., the middle of the protocol stack). This report summarizes contributions and discussions. As the topics were wide ranging, there is no single set of recommendations for IETF participants to pursue at this time. Instead, in the classic sense of early research, the workshop noted areas that deserve further exploration. Note that this document is a report on the proceedings of the workshop. The views and positions documented in this report are those of the workshop participants and do not necessarily reflect IAB views and positions."];
+  RFC7305 -> rev_cites;
+  RFC7344 [label="RFC7344
+Automating DNSSEC Delegation Trust
+Maintenance
+2014", shape=ellipse, URL="RFC7344.html", target="_top", tooltip="This document describes a method to allow DNS Operators to more easily update DNSSEC Key Signing Keys using the DNS as a communication channel.  The technique described is aimed at delegations in which it is currently hard to move information from the Child to Parent."];
+  RFC7344 -> rev_cites;
+  RFC7401 [label="RFC7401
+Host Identity Protocol Version 2 (HIPv2)
+2015", shape=ellipse, URL="RFC7401.html", target="_top", tooltip="This document specifies the details of the Host Identity Protocol (HIP). HIP allows consenting hosts to securely establish and maintain shared IP-layer state, allowing separation of the identifier and locator roles of IP addresses, thereby enabling continuity of communications across IP address changes. HIP is based on a Diffie-Hellman key exchange, using public key identifiers from a new Host Identity namespace for mutual peer authentication. The protocol is designed to be resistant to denial-of-service (DoS) and man-in-the-middle (MitM) attacks. When used together with another suitable security protocol, such as the Encapsulating Security Payload (ESP), it provides integrity protection and optional encryption for upper-layer protocols, such as TCP and UDP. This document obsoletes RFC 5201 and addresses the concerns raised by the IESG, particularly that of crypto agility. It also incorporates lessons learned from the implementations of RFC 5201."];
+  RFC7401 -> rev_cites;
+  RFC7477 [label="RFC7477
+Child-to-Parent Synchronization in DNS
+2015", shape=ellipse, URL="RFC7477.html", target="_top", tooltip="This document specifies how a child zone in the DNS can publish a record to indicate to a parental agent that the parental agent may copy and process certain records from the child zone.  The existence of the record and any change in its value can be monitored by a parental agent and acted on depending on local policy."];
+  RFC7477 -> rev_cites;
+  RFC7483 [label="RFC7483
+JSON Responses for the Registration Data
+Access Protocol (RDAP)
+2015", shape=ellipse, URL="RFC7483.html", target="_top", tooltip="This document describes JSON data structures representing registration information maintained by Regional Internet Registries (RIRs) and Domain Name Registries (DNRs).  These data structures are used to form Registration Data Access Protocol (RDAP) query responses."];
+  RFC7483 -> rev_cites;
+  RFC7574 [label="RFC7574
+Peer-to-Peer Streaming Peer Protocol
+(PPSPP)
+2015", shape=ellipse, URL="RFC7574.html", target="_top", tooltip="The Peer-to-Peer Streaming Peer Protocol (PPSPP) is a protocol for disseminating the same content to a group of interested parties in a streaming fashion.  PPSPP supports streaming of both prerecorded (on- demand) and live audio/video content.  It is based on the peer-to- peer paradigm, where clients consuming the content are put on equal footing with the servers initially providing the content, to create a system where everyone can potentially provide upload bandwidth.  It has been designed to provide short time-till-playback for the end user and to prevent disruption of the streams by malicious peers.  PPSPP has also been designed to be flexible and extensible.  It can use different mechanisms to optimize peer uploading, prevent freeriding, and work with different peer discovery schemes (centralized trackers or Distributed Hash Tables).  It supports multiple methods for content integrity protection and chunk addressing.  Designed as a generic protocol that can run on top of various transport protocols, it currently runs on top of UDP using Low Extra Delay Background Transport (LEDBAT) for congestion control."];
+  RFC7574 -> rev_cites;
+  RFC7583 [label="RFC7583
+DNSSEC Key Rollover Timing
+Considerations
+2015", shape=ellipse, URL="RFC7583.html", target="_top", tooltip="This document describes the issues surrounding the timing of events in the rolling of a key in a DNSSEC-secured zone.  It presents timelines for the key rollover and explicitly identifies the relationships between the various parameters affecting the process."];
+  RFC7583 -> rev_cites;
+  RFC7671 [label="RFC7671
+The DNS-Based Authentication of Named
+Entities (DANE) Protocol: Updates and
+Operational Guidance
+2015", shape=ellipse, URL="RFC7671.html", target="_top", tooltip="This document clarifies and updates the DNS-Based Authentication of Named Entities (DANE) TLSA specification (RFC 6698), based on subsequent implementation experience.  It also contains guidance for implementers, operators, and protocol developers who want to use DANE records."];
+  RFC7671 -> rev_cites;
+  RFC7672 [label="RFC7672
+SMTP Security via Opportunistic DNS-
+Based Authentication of Named Entities
+(DANE) Transport Layer Security (TLS)
+2015", shape=ellipse, URL="RFC7672.html", target="_top", tooltip="This memo describes a downgrade-resistant protocol for SMTP transport security between Message Transfer Agents (MTAs), based on the DNS-Based Authentication of Named Entities (DANE) TLSA DNS record.  Adoption of this protocol enables an incremental transition of the Internet email backbone to one using encrypted and authenticated Transport Layer Security (TLS)."];
+  RFC7672 -> rev_cites;
+  RFC7719 [label="RFC7719
+DNS Terminology
+2015", shape=ellipse, URL="RFC7719.html", target="_top", tooltip="The DNS is defined in literally dozens of different RFCs.  The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined.  This document gives current definitions for many of the terms used in the DNS in a single document."];
+  RFC7719 -> rev_cites;
+  RFC7817 [label="RFC7817
+Updated Transport Layer Security (TLS)
+Server Identity Check Procedure for
+Email-Related Protocols
+2016", shape=ellipse, URL="RFC7817.html", target="_top", tooltip="This document describes the Transport Layer Security (TLS) server identity verification procedure for SMTP Submission, IMAP, POP, and ManageSieve clients.  It replaces Section 2.4 (Server Identity Check) of RFC 2595 and updates Section 4.1 (Processing After the STARTTLS Command) of RFC 3207, Section 11.1 (STARTTLS Security Considerations) of RFC 3501, and Section 2.2.1 (Server Identity Check) of RFC 5804."];
+  RFC7817 -> rev_cites;
+  RFC7849 [label="RFC7849
+An IPv6 Profile for 3GPP Mobile Devices
+2016", shape=ellipse, URL="RFC7849.html", target="_top", tooltip="This document defines a profile that is a superset of the connection to IPv6 cellular networks defined in the IPv6 for Third Generation Partnership Project (3GPP) Cellular Hosts document. This document defines a profile that is a superset of the connections to IPv6 cellular networks defined in IPv6 for Third Generation Partnership Project (3GPP) Cellular Hosts (RFC 7066). Both mobile hosts and mobile devices with the capability to share their 3GPP mobile connectivity are in scope."];
+  RFC7849 -> rev_cites;
+  RFC7871 [label="RFC7871
+Client Subnet in DNS Queries
+2016", shape=ellipse, URL="RFC7871.html", target="_top", tooltip="This document describes an Extension Mechanisms for DNS (EDNS0) option that is in active use to carry information about the network that originated a DNS query and the network for which the subsequent response can be cached.  Since it has some known operational and privacy shortcomings, a revision will be worked through the IETF for improvement."];
+  RFC7871 -> rev_cites;
+  RFC7873 [label="RFC7873
+Domain Name System (DNS) Cookies
+2016", shape=ellipse, URL="RFC7873.html", target="_top", tooltip="DNS Cookies are a lightweight DNS transaction security mechanism that provides limited protection to DNS servers and clients against a variety of increasingly common denial-of-service and amplification/ forgery or cache poisoning attacks by off-path attackers.  DNS Cookies are tolerant of NAT, NAT-PT (Network Address Translation - Protocol Translation), and anycast and can be incrementally deployed. (Since DNS Cookies are only returned to the IP address from which they were originally received, they cannot be used to generally track Internet users.)"];
+  RFC7873 -> rev_cites;
+  RFC7901 [label="RFC7901
+CHAIN Query Requests in DNS
+2016", shape=ellipse, URL="RFC7901.html", target="_top", tooltip="This document defines an EDNS0 extension that can be used by a security-aware validating resolver configured to use a forwarding resolver to send a single query, requesting a complete validation path along with the regular query answer.  The reduction in queries potentially lowers the latency and reduces the need to send multiple queries at once.  This extension mandates the use of source-IP- verified transport such as TCP or UDP with EDNS-COOKIE, so it cannot be abused in amplification attacks."];
+  RFC7901 -> rev_cites;
+  RFC7929 [label="RFC7929
+DNS-Based Authentication of Named
+Entities (DANE) Bindings for OpenPGP
+2016", shape=ellipse, URL="RFC7929.html", target="_top", tooltip="OpenPGP is a message format for email (and file) encryption that lacks a standardized lookup mechanism to securely obtain OpenPGP public keys.  DNS-Based Authentication of Named Entities (DANE) is a method for publishing public keys in DNS.  This document specifies a DANE method for publishing and locating OpenPGP public keys in DNS for a specific email address using a new OPENPGPKEY DNS resource record.  Security is provided via Secure DNS, however the OPENPGPKEY record is not a replacement for verification of authenticity via the web of trust or manual verification.  The OPENPGPKEY record can be used to encrypt an email that would otherwise have to be sent unencrypted."];
+  RFC7929 -> rev_cites;
+  RFC7958 [label="RFC7958
+DNSSEC Trust Anchor Publication for the
+Root Zone
+2016", shape=ellipse, URL="RFC7958.html", target="_top", tooltip="The root zone of the Domain Name System (DNS) has been cryptographically signed using DNS Security Extensions (DNSSEC). In order to obtain secure answers from the root zone of the DNS using DNSSEC, a client must configure a suitable trust anchor. This document describes the format and publication mechanisms IANA has used to distribute the DNSSEC trust anchors."];
+  RFC7958 -> rev_cites;
+  RFC8005 [label="RFC8005
+Host Identity Protocol (HIP) Domain Name
+System (DNS) Extension
+2016", shape=ellipse, URL="RFC8005.html", target="_top", tooltip="This document specifies a resource record (RR) for the Domain Name System (DNS) and how to use it with the Host Identity Protocol (HIP).  This RR allows a HIP node to store in the DNS its Host Identity (HI), the public component of the node public-private key pair; its Host Identity Tag (HIT), a truncated hash of its public key (PK); and the domain names of its rendezvous servers (RVSs).  This document obsoletes RFC 5205."];
+  RFC8005 -> rev_cites;
+  RFC8027 [label="RFC8027
+DNSSEC Roadblock Avoidance
+2016", shape=ellipse, URL="RFC8027.html", target="_top", tooltip="This document describes problems that a Validating DNS resolver, stub-resolver, or application might run into within a non-compliant infrastructure.  It outlines potential detection and mitigation techniques.  The scope of the document is to create a shared approach to detect and overcome network issues that a DNSSEC software/system may face."];
+  RFC8027 -> rev_cites;
+  RFC8078 [label="RFC8078
+Managing DS Records from the Parent via
+CDS/CDNSKEY
+2017", shape=ellipse, URL="RFC8078.html", target="_top", tooltip="RFC 7344 specifies how DNS trust can be maintained across key rollovers in-band between parent and child. This document elevates RFC 7344 from Informational to Standards Track. It also adds a method for initial trust setup and removal of a secure entry point. Changing a domain's DNSSEC status can be a complicated matter involving multiple unrelated parties. Some of these parties, such as the DNS operator, might not even be known by all the organizations involved. The inability to disable DNSSEC via in-band signaling is seen as a problem or liability that prevents some DNSSEC adoption at a large scale. This document adds a method for in-band signaling of these DNSSEC status changes. This document describes reasonable policies to ease deployment of the initial acceptance of new secure entry points (DS records). It is preferable that operators collaborate on the transfer or move of a domain. The best method is to perform a Key Signing Key (KSK) plus Zone Signing Key (ZSK) rollover. If that is not possible, the method using an unsigned intermediate state described in this document can be used to move the domain between two parties. This leaves the domain temporarily unsigned and vulnerable to DNS spoofing, but that is preferred over the alternative of validation failures due to a mismatched DS and DNSKEY record."];
+  RFC8078 -> rev_cites;
+  RFC8080 [label="RFC8080
+Edwards-Curve Digital Security Algorithm
+(EdDSA) for DNSSEC
+2017", shape=ellipse, URL="RFC8080.html", target="_top", tooltip="This document describes how to specify Edwards-curve Digital Security Algorithm (EdDSA) keys and signatures in DNS Security (DNSSEC).  It uses EdDSA with the choice of two curves: Ed25519 and Ed448."];
+  RFC8080 -> rev_cites;
+  RFC8145 [label="RFC8145
+Signaling Trust Anchor Knowledge in DNS
+Security Extensions (DNSSEC)
+2017", shape=ellipse, URL="RFC8145.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) were developed to provide origin authentication and integrity protection for DNS data by using digital signatures.  These digital signatures can be verified by building a chain of trust starting from a trust anchor and proceeding down to a particular node in the DNS.  This document specifies two different ways for validating resolvers to signal to a server which keys are referenced in their chain of trust.  The data from such signaling allow zone administrators to monitor the progress of rollovers in a DNSSEC-signed zone."];
+  RFC8145 -> rev_cites;
+  RFC8162 [label="RFC8162
+Using Secure DNS to Associate
+Certificates with Domain Names for
+S/MIME
+2017", shape=ellipse, URL="RFC8162.html", target="_top", tooltip="This document describes how to use secure DNS to associate an S/MIME user's certificate with the intended domain name, similar to the way that DNS-Based Authentication of Named Entities (DANE), RFC 6698, does for TLS."];
+  RFC8162 -> rev_cites;
+  RFC8324 [label="RFC8324
+DNS Privacy, Authorization, Special
+Uses, Encoding, Characters, Matching,
+and Root Structure: Time for Another
+Look?
+2018", shape=ellipse, URL="RFC8324.html", target="_top", tooltip="The basic design of the Domain Name System was completed almost 30 years ago.  The last half of that period has been characterized by significant changes in requirements and expectations, some of which either require changes to how the DNS is used or can be accommodated only poorly or not at all.  This document asks the question of whether it is time to either redesign and replace the DNS to match contemporary requirements and expectations (rather than continuing to try to design and implement incremental patches that are not fully satisfactory) or draw some clear lines about functionality that is not really needed or that should be performed in some other way."];
+  RFC8324 -> rev_cites;
+  RFC8375 [label="RFC8375
+Special-Use Domain 'home.arpa.'
+2018", shape=ellipse, URL="RFC8375.html", target="_top", tooltip="This document specifies the behavior that is expected from the Domain Name System with regard to DNS queries for names ending with '.home.arpa.' and designates this domain as a special-use domain name. 'home.arpa.' is designated for non-unique use in residential home networks.  The Home Networking Control Protocol (HNCP) is updated to use the 'home.arpa.' domain instead of '.home'."];
+  RFC8375 -> rev_cites;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  RFC8499 -> rev_cites;
+  RFC8504 [label="RFC8504
+IPv6 Node Requirements
+2019", shape=ellipse, URL="RFC8504.html", target="_top", tooltip="This document defines requirements for IPv6 nodes. It is expected that IPv6 will be deployed in a wide range of devices and situations. Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments. This document obsoletes RFC 6434, and in turn RFC 4294."];
+  RFC8504 -> rev_cites;
+  RFC8509 [label="RFC8509
+A Root Key Trust Anchor Sentinel for
+DNSSEC
+2018", shape=ellipse, URL="RFC8509.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) were developed to provide origin authentication and integrity protection for DNS data by using digital signatures.  These digital signatures can be verified by building a chain of trust starting from a trust anchor and proceeding down to a particular node in the DNS.  This document specifies a mechanism that will allow an end user and third parties to determine the trusted key state for the root key of the resolvers that handle that user's DNS queries.  Note that this method is only applicable for determining which keys are in the trust store for the root key."];
+  RFC8509 -> rev_cites;
+  RFC8598 [label="RFC8598
+Split DNS Configuration for the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2019", shape=ellipse, URL="RFC8598.html", target="_top", tooltip="This document defines two Configuration Payload Attribute Types (INTERNAL_DNS_DOMAIN and INTERNAL_DNSSEC_TA) for the Internet Key Exchange Protocol version 2 (IKEv2).  These payloads add support for private (internal-only) DNS domains.  These domains are intended to be resolved using non-public DNS servers that are only reachable through the IPsec connection.  DNS resolution for other domains remains unchanged.  These Configuration Payloads only apply to split- tunnel configurations."];
+  RFC8598 -> rev_cites;
+  RFC8624 [label="RFC8624
+Algorithm Implementation Requirements
+and Usage Guidance for DNSSEC
+2019", shape=ellipse, URL="RFC8624.html", target="_top", tooltip="The DNSSEC protocol makes use of various cryptographic algorithms in order to provide authentication of DNS data and proof of nonexistence.  To ensure interoperability between DNS resolvers and DNS authoritative servers, it is necessary to specify a set of algorithm implementation requirements and usage guidelines to ensure that there is at least one algorithm that all implementations support.  This document defines the current algorithm implementation requirements and usage guidance for DNSSEC.  This document obsoletes RFC 6944."];
+  RFC8624 -> rev_cites;
+  RFC8659 [label="RFC8659
+DNS Certification Authority
+Authorization (CAA) Resource Record
+2019", shape=ellipse, URL="RFC8659.html", target="_top", tooltip="The Certification Authority Authorization (CAA) DNS Resource Record allows a DNS domain name holder to specify one or more Certification Authorities (CAs) authorized to issue certificates for that domain name. CAA Resource Records allow a public CA to implement additional controls to reduce the risk of unintended certificate mis-issue. This document defines the syntax of the CAA record and rules for processing CAA records by CAs. This document obsoletes RFC 6844."];
+  RFC8659 -> rev_cites;
+  RFC8689 [label="RFC8689
+SMTP Require TLS Option
+2019", shape=ellipse, URL="RFC8689.html", target="_top", tooltip="The SMTP STARTTLS option, used in negotiating transport-level encryption of SMTP connections, is not as useful from a security standpoint as it might be because of its opportunistic nature; message delivery is, by default, prioritized over security.  This document describes an SMTP service extension, REQUIRETLS, and a message header field, TLS-Required.  If the REQUIRETLS option or TLS-Required message header field is used when sending a message, it asserts a request on the part of the message sender to override the default negotiation of TLS, either by requiring that TLS be negotiated when the message is relayed or by requesting that recipient-side policy mechanisms such as MTA-STS and DNS-Based Authentication of Named Entities (DANE) be ignored when relaying a message for which security is unimportant."];
+  RFC8689 -> rev_cites;
+  RFC8749 [label="RFC8749
+Moving DNSSEC Lookaside Validation (DLV)
+to Historic Status
+2020", shape=ellipse, URL="RFC8749.html", target="_top", tooltip="This document retires DNSSEC Lookaside Validation (DLV) and reclassifies RFCs 4431 and 5074 as Historic.  Furthermore, this document updates RFC 6698 by excluding the DLV resource record from certificates and updates RFC 6840 by excluding the DLV registries from the trust anchor selection."];
+  RFC8749 -> rev_cites;
+  RFC8766 [label="RFC8766
+Discovery Proxy for Multicast DNS-Based
+Service Discovery
+2020", shape=ellipse, URL="RFC8766.html", target="_top", tooltip="This document specifies a network proxy that uses Multicast DNS to automatically populate the wide-area unicast Domain Name System namespace with records describing devices and services found on the local link."];
+  RFC8766 -> rev_cites;
+  RFC8782 [label="RFC8782
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2020", shape=ellipse, URL="RFC8782.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes."];
+  RFC8782 -> rev_cites;
+  RFC8783 [label="RFC8783
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Data Channel
+Specification
+2020", shape=ellipse, URL="RFC8783.html", target="_top", tooltip="The document specifies a Distributed Denial-of-Service Open Threat Signaling (DOTS) data channel used for bulk exchange of data that cannot easily or appropriately communicated through the DOTS signal channel under attack conditions. This is a companion document to Distributed Denial-of-Service Open Threat Signaling (DOTS) Signal Channel Specification (RFC 8782)."];
+  RFC8783 -> rev_cites;
+  RFC8901 [label="RFC8901
+Multi-Signer DNSSEC Models
+2020", shape=ellipse, URL="RFC8901.html", target="_top", tooltip="Many enterprises today employ the service of multiple DNS providers to distribute their authoritative DNS service.  Deploying DNSSEC in such an environment may present some challenges, depending on the configuration and feature set in use.  In particular, when each DNS provider independently signs zone data with their own keys, additional key-management mechanisms are necessary.  This document presents deployment models that accommodate this scenario and describes these key-management requirements.  These models do not require any changes to the behavior of validating resolvers, nor do they impose the new key-management requirements on authoritative servers not involved in multi-signer configurations."];
+  RFC8901 -> rev_cites;
+  RFC8932 [label="RFC8932
+Recommendations for DNS Privacy Service
+Operators
+2020", shape=ellipse, URL="RFC8932.html", target="_top", tooltip="This document presents operational, policy, and security considerations for DNS recursive resolver operators who choose to offer DNS privacy services. With these recommendations, the operator can make deliberate decisions regarding which services to provide, as well as understanding how those decisions and the alternatives impact the privacy of users. This document also presents a non-normative framework to assist writers of a Recursive operator Privacy Statement, analogous to DNS Security Extensions (DNSSEC) Policies and DNSSEC Practice Statements described in RFC 6841."];
+  RFC8932 -> rev_cites;
+  RFC8945 [label="RFC8945
+Secret Key Transaction Authentication
+for DNS (TSIG)
+2020", shape=ellipse, URL="RFC8945.html", target="_top", tooltip="This document describes a protocol for transaction-level authentication using shared secrets and one-way hashing. It can be used to authenticate dynamic updates to a DNS zone as coming from an approved client or to authenticate responses as coming from an approved name server. No recommendation is made here for distributing the shared secrets; it is expected that a network administrator will statically configure name servers and clients using some out-of-band mechanism. This document obsoletes RFCs 2845 and 4635."];
+  RFC8945 -> rev_cites;
+  RFC8976 [label="RFC8976
+Message Digest for DNS Zones
+2021", shape=ellipse, URL="RFC8976.html", target="_top", tooltip="This document describes a protocol and new DNS Resource Record that provides a cryptographic message digest over DNS zone data at rest. The ZONEMD Resource Record conveys the digest data in the zone itself. When used in combination with DNSSEC, ZONEMD allows recipients to verify the zone contents for data integrity and origin authenticity. This provides assurance that received zone data matches published data, regardless of how the zone data has been transmitted and received. When used without DNSSEC, ZONEMD functions as a checksum, guarding only against unintentional changes. ZONEMD does not replace DNSSEC: DNSSEC protects individual RRsets (DNS data with fine granularity), whereas ZONEMD protects a zone's data as a whole, whether consumed by authoritative name servers, recursive name servers, or any other applications. As specified herein, ZONEMD is impractical for large, dynamic zones due to the time and resources required for digest calculation. However, the ZONEMD record is extensible so that new digest schemes may be added in the future to support large, dynamic zones."];
+  RFC8976 -> rev_cites;
+  RFC9077 [label="RFC9077
+NSEC and NSEC3: TTLs and Aggressive Use
+2021", shape=ellipse, URL="RFC9077.html", target="_top", tooltip="Due to a combination of unfortunate wording in earlier documents, aggressive use of NSEC and NSEC3 records may deny the existence of names far beyond the intended lifetime of a denial.  This document changes the definition of the NSEC and NSEC3 TTL to correct that situation.  This document updates RFCs 4034, 4035, 5155, and 8198."];
+  RFC9077 -> rev_cites;
+  RFC9083 [label="RFC9083
+JSON Responses for the Registration Data
+Access Protocol (RDAP)
+2021", shape=ellipse, URL="RFC9083.html", target="_top", tooltip="This document describes JSON data structures representing registration information maintained by Regional Internet Registries (RIRs) and Domain Name Registries (DNRs).  These data structures are used to form Registration Data Access Protocol (RDAP) query responses.  This document obsoletes RFC 7483."];
+  RFC9083 -> rev_cites;
+  RFC9102 [label="RFC9102
+TLS DNSSEC Chain Extension
+2021", shape=ellipse, URL="RFC9102.html", target="_top", tooltip="This document describes an experimental TLS extension for the in-band transport of the complete set of records that can be validated by DNSSEC and that are needed to perform DNS-Based Authentication of Named Entities (DANE) of a TLS server. This extension obviates the need to perform separate, out-of-band DNS lookups. When the requisite DNS records do not exist, the extension conveys a denial-of-existence proof that can be validated. This experimental extension is developed outside the IETF and is published here to guide implementation of the extension and to ensure interoperability among implementations."];
+  RFC9102 -> rev_cites;
+  RFC9132 [label="RFC9132
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2021", shape=ellipse, URL="RFC9132.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes. This document obsoletes RFC 8782."];
+  RFC9132 -> rev_cites;
+  RFC9157 [label="RFC9157
+Revised IANA Considerations for DNSSEC
+2021", shape=ellipse, URL="RFC9157.html", target="_top", tooltip="This document changes the review requirements needed to get DNSSEC algorithms and resource records added to IANA registries.  It updates RFC 6014 to include hash algorithms for Delegation Signer (DS) records and NextSECure version 3 (NSEC3) parameters (for Hashed Authenticated Denial of Existence).  It also updates RFCs 5155 and 6014, which have requirements for DNSSEC algorithms, and updates RFC 8624 to clarify the implementation recommendation related to the algorithms described in RFCs that are not on the standards track.  The rationale for these changes is to bring the requirements for DS records and hash algorithms used in NSEC3 in line with the requirements for all other DNSSEC algorithms."];
+  RFC9157 -> rev_cites;
+  RFC9199 [label="RFC9199
+Considerations for Large Authoritative
+DNS Server Operators
+2022", shape=ellipse, URL="RFC9199.html", target="_top", tooltip="Recent research work has explored the deployment characteristics and configuration of the Domain Name System (DNS). This document summarizes the conclusions from these research efforts and offers specific, tangible considerations or advice to authoritative DNS server operators. Authoritative server operators may wish to follow these considerations to improve their DNS services. It is possible that the results presented in this document could be applicable in a wider context than just the DNS protocol, as some of the results may generically apply to any stateless/short-duration anycasted service. This document is not an IETF consensus document: it is published for informational purposes."];
+  RFC9199 -> rev_cites;
+  RFC9364 [label="RFC9364
+DNS Security Extensions (DNSSEC)
+2023", shape=ellipse, URL="RFC9364.html", target="_top", tooltip="This document describes the DNS Security Extensions (commonly called DNSSEC) that are specified in RFCs 4033, 4034, and 4035, as well as a handful of others.  One purpose is to introduce all of the RFCs in one place so that the reader can understand the many aspects of DNSSEC.  This document does not update any of those RFCs.  A second purpose is to state that using DNSSEC for origin authentication of DNS data is the best current practice.  A third purpose is to provide a single reference for other documents that want to refer to DNSSEC."];
+  RFC9364 -> rev_cites;
+  RFC9374 [label="RFC9374
+DRIP Entity Tag (DET) for Unmanned
+Aircraft System Remote ID (UAS RID)
+2023", shape=ellipse, URL="RFC9374.html", target="_top", tooltip="This document describes the use of Hierarchical Host Identity Tags (HHITs) as self-asserting IPv6 addresses, which makes them trustable identifiers for use in Unmanned Aircraft System Remote Identification (UAS RID) and tracking. Within the context of RID, HHITs will be called DRIP Entity Tags (DETs). HHITs provide claims to the included explicit hierarchy that provides registry (via, for example, DNS, RDAP) discovery for third-party identifier endorsement. This document updates RFCs 7401 and 7343."];
+  RFC9374 -> rev_cites;
+  RFC9471 [label="RFC9471
+DNS Glue Requirements in Referral
+Responses
+2023", shape=ellipse, URL="RFC9471.html", target="_top", tooltip="The DNS uses glue records to allow iterative clients to find the addresses of name servers that are contained within a delegated zone.  Authoritative servers are expected to return all available glue records for in-domain name servers in a referral response.  If message size constraints prevent the inclusion of all glue records for in-domain name servers, the server must set the TC (Truncated) flag to inform the client that the response is incomplete and that the client should use another transport to retrieve the full response.  This document updates RFC 1034 to clarify correct server behavior."];
+  RFC9471 -> rev_cites;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+  RFC9526 [label="RFC9526
+Simple Provisioning of Public Names for
+Residential Networks
+2024", shape=ellipse, URL="RFC9526.html", target="_top", tooltip="Home network owners may have devices or services hosted on their home network that they wish to access from the Internet (i.e., from a network outside of the home network). Home networks are increasingly numbered using IPv6 addresses, which in principle makes this access simpler, but accessing home networks from the Internet requires the names and IP addresses of these devices and services to be made available in the public DNS. This document describes how a Home Naming Authority (NHA) instructs the outsourced infrastructure to publish these pieces of information in the public DNS. The names and IP addresses of the home network are set in the Public Homenet Zone by the Homenet Naming Authority (HNA), which in turn instructs an outsourced infrastructure to publish the zone on behalf of the home network owner."];
+  RFC9526 -> rev_cites;
+  RFC9558 [label="RFC9558
+Use of GOST 2012 Signature Algorithms in
+DNSKEY and RRSIG Resource Records for
+DNSSEC
+2024", shape=ellipse, URL="RFC9558.html", target="_top", tooltip="This document describes how to produce digital signatures and hash functions using the GOST R 34.10-2012 and GOST R 34.11-2012 algorithms for DNSKEY, RRSIG, and DS resource records, for use in the Domain Name System Security Extensions (DNSSEC)."];
+  RFC9558 -> rev_cites;
+  RFC9563 [label="RFC9563
+SM2 Digital Signature Algorithm for
+DNSSEC
+2024", shape=ellipse, URL="RFC9563.html", target="_top", tooltip="This document specifies the use of the SM2 digital signature algorithm and SM3 hash algorithm for DNS Security (DNSSEC). This document is an Independent Submission to the RFC series and does not have consensus of the IETF community."];
+  RFC9563 -> rev_cites;
+  RFC9665 [label="RFC9665
+Service Registration Protocol for DNS-
+Based Service Discovery
+2025", shape=ellipse, URL="RFC9665.html", target="_top", tooltip="The Service Registration Protocol (SRP) for DNS-based Service Discovery (DNS-SD) uses the standard DNS Update mechanism to enable DNS-SD using only unicast packets.  This makes it possible to deploy DNS-SD without multicast, which greatly improves scalability and improves performance on networks where multicast service is not an optimal choice, particularly IEEE 802.11 (Wi-Fi) and IEEE 802.15.4 networks.  DNS-SD Service registration uses public keys and SIG(0) to allow services to defend their registrations."];
+  RFC9665 -> rev_cites;
+  RFC9704 [label="RFC9704
+Establishing Local DNS Authority in
+Validated Split-Horizon Environments
+2025", shape=ellipse, URL="RFC9704.html", target="_top", tooltip="When split-horizon DNS is deployed by a network, certain domain names can be resolved authoritatively by a network-provided DNS resolver.  DNS clients that are not configured to use this resolver by default can use it for these specific domains only.  This specification defines a mechanism for domain owners to inform DNS clients about local resolvers that are authorized to answer authoritatively for certain subdomains."];
+  RFC9704 -> rev_cites;
+  RFC9718 [label="RFC9718
+DNSSEC Trust Anchor Publication for the
+Root Zone
+2025", shape=ellipse, URL="RFC9718.html", target="_top", tooltip="The root zone of the global Domain Name System (DNS) is cryptographically signed using DNS Security Extensions (DNSSEC). In order to obtain secure answers from the root zone of the DNS using DNSSEC, a client must configure a suitable trust anchor. This document describes the format and publication mechanisms IANA uses to distribute the DNSSEC trust anchors. This document obsoletes RFC 7958."];
+  RFC9718 -> rev_cites;
+  RFC9824 [label="RFC9824
+Compact Denial of Existence in DNSSEC
+2025", shape=ellipse, URL="RFC9824.html", target="_top", tooltip="This document describes a technique to generate a signed DNS response on demand for a nonexistent name by claiming that the name exists but doesn't have any data for the queried record type. Such responses require only one minimally covering NSEC or NSEC3 record, allow online signing servers to minimize signing operations and response sizes, and prevent zone content disclosure. This document updates RFCs 4034 and 4035."];
+  RFC9824 -> rev_cites;
+  RFC9904 [label="RFC9904
+DNSSEC Cryptographic Algorithm
+Recommendation Update Process
+2025", shape=ellipse, URL="RFC9904.html", target="_top", tooltip="The DNSSEC protocol makes use of various cryptographic algorithms to provide authentication of DNS data and proof of nonexistence. To ensure interoperability between DNS resolvers and DNS authoritative servers, it is necessary to specify both a set of algorithm implementation requirements and usage guidelines to ensure that there is at least one algorithm that all implementations support. This document replaces and obsoletes RFC 8624 and moves the canonical source of algorithm implementation requirements and usage guidance for DNSSEC from RFC 8624 to the IANA DNSSEC algorithm registries. This is done to allow the list of requirements to be more easily updated and referenced. Extensions to these registries can be made in future RFCs. This document also updates RFC 9157 and incorporates the revised IANA DNSSEC considerations from that RFC. This document does not change the recommendation status (MUST, MAY, RECOMMENDED, etc.) of the algorithms listed in RFC 8624; that is the work of future documents."];
+  RFC9904 -> rev_cites;
+  RFC9905 [label="RFC9905
+Deprecating the Use of SHA-1 in DNSSEC
+Signature Algorithms
+2025", shape=ellipse, URL="RFC9905.html", target="_top", tooltip="This document deprecates the use of the RSASHA1 and
+RSASHA1-NSEC3-SHA1 algorithms for the creation of DNS Public Key
+(DNSKEY) and Resource Record Signature (RRSIG) records. It updates RFCs 4034 and 5155 as it deprecates the use of these
+algorithms."];
+  RFC9905 -> rev_cites;
+}

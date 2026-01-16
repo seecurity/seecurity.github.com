@@ -1,0 +1,168 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9332 [label="RFC9332
+Dual-Queue Coupled Active Queue
+Management (AQM) for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="This specification defines a framework for coupling the Active Queue Management (AQM) algorithms in two queues intended for flows with different responses to congestion. This provides a way for the Internet to transition from the scaling problems of standard TCP-Reno-friendly ('Classic') congestion controls to the family of 'Scalable' congestion controls. These are designed for consistently very low queuing latency, very low congestion loss, and scaling of per-flow throughput by using Explicit Congestion Notification (ECN) in a modified way. Until the Coupled Dual Queue (DualQ), these Scalable L4S congestion controls could only be deployed where a clean-slate environment could be arranged, such as in private data centres. This specification first explains how a Coupled DualQ works. It then gives the normative requirements that are necessary for it to work well. All this is independent of which two AQMs are used, but pseudocode examples of specific AQMs are given in appendices."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9332;
+
+  obs [label="obsoletes", shape=box];
+  RFC9332 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9332 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9332;
+
+  cites [label="cites", shape=box];
+  RFC9332 -> cites;
+  RFC9330 [label="RFC9330
+Low Latency, Low Loss, and Scalable
+Throughput (L4S) Internet Service:
+Architecture
+2023", shape=ellipse, URL="RFC9330.html", target="_top", tooltip="This document describes the L4S architecture, which enables Internet applications to achieve low queuing latency, low congestion loss, and scalable throughput control. L4S is based on the insight that the root cause of queuing delay is in the capacity-seeking congestion controllers of senders, not in the queue itself. With the L4S architecture, all Internet applications could (but do not have to) transition away from congestion control algorithms that cause substantial queuing delay and instead adopt a new class of congestion controls that can seek capacity with very little queuing. These are aided by a modified form of Explicit Congestion Notification (ECN) from the network. With this new architecture, applications can have both low latency and high throughput. The architecture primarily concerns incremental deployment. It defines mechanisms that allow the new class of L4S congestion controls to coexist with 'Classic' congestion controls in a shared network. The aim is for L4S latency and throughput to be usually much better (and rarely worse) while typically not impacting Classic performance."];
+  cites -> RFC9330;
+  RFC3246 [label="RFC3246
+An Expedited Forwarding PHB (Per-Hop
+Behavior)
+2002", shape=ellipse, URL="RFC3246.html", target="_top", tooltip="This document defines a PHB (per-hop behavior) called Expedited Forwarding (EF).  The PHB is a basic building block in the Differentiated Services architecture.  EF is intended to provide a building block for low delay, low jitter and low loss services by ensuring that the EF aggregate is served at a certain configured rate.  This document obsoletes RFC 2598. [STANDARDS-TRACK]"];
+  cites -> RFC3246;
+  RFC8290 [label="RFC8290
+The Flow Queue CoDel Packet Scheduler
+and Active Queue Management Algorithm
+2018", shape=ellipse, URL="RFC8290.html", target="_top", tooltip="This memo presents the FQ-CoDel hybrid packet scheduler and Active Queue Management (AQM) algorithm, a powerful tool for fighting bufferbloat and reducing latency. FQ-CoDel mixes packets from multiple flows and reduces the impact of head-of-line blocking from bursty traffic. It provides isolation for low-rate traffic such as DNS, web, and videoconferencing traffic. It improves utilisation across the networking fabric, especially for bidirectional traffic, by keeping queue lengths short, and it can be implemented in a memory- and CPU-efficient fashion across a wide range of hardware."];
+  cites -> RFC8290;
+  RFC8033 [label="RFC8033
+Proportional Integral Controller
+Enhanced (PIE): A Lightweight Control
+Scheme to Address the Bufferbloat
+Problem
+2017", shape=ellipse, URL="RFC8033.html", target="_top", tooltip="Bufferbloat is a phenomenon in which excess buffers in the network cause high latency and latency variation. As more and more interactive applications (e.g., voice over IP, real-time video streaming, and financial transactions) run in the Internet, high latency and latency variation degrade application performance. There is a pressing need to design intelligent queue management schemes that can control latency and latency variation, and hence provide desirable quality of service to users. This document presents a lightweight active queue management design called PIE (Proportional Integral controller Enhanced) that can effectively control the average queuing latency to a target value. Simulation results, theoretical analysis, and Linux testbed results have shown that PIE can ensure low latency and achieve high link utilization under various congestion situations. The design does not require per-packet timestamps, so it incurs very little overhead and is simple enough to implement in both hardware and software."];
+  cites -> RFC8033;
+  RFC8257 [label="RFC8257
+Data Center TCP (DCTCP): TCP Congestion
+Control for Data Centers
+2017", shape=ellipse, URL="RFC8257.html", target="_top", tooltip="This Informational RFC describes Data Center TCP (DCTCP): a TCP congestion control scheme for data-center traffic.  DCTCP extends the Explicit Congestion Notification (ECN) processing to estimate the fraction of bytes that encounter congestion rather than simply detecting that some congestion has occurred.  DCTCP then scales the TCP congestion window based on this estimate.  This method achieves high-burst tolerance, low latency, and high throughput with shallow- buffered switches.  This memo also discusses deployment issues related to the coexistence of DCTCP and conventional TCP, discusses the lack of a negotiating mechanism between sender and receiver, and presents some possible mitigations.  This memo documents DCTCP as currently implemented by several major operating systems.  DCTCP, as described in this specification, is applicable to deployments in controlled environments like data centers, but it must not be deployed over the public Internet without additional measures."];
+  cites -> RFC8257;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC8312 [label="RFC8312
+CUBIC for Fast Long-Distance Networks
+2018", shape=ellipse, URL="RFC8312.html", target="_top", tooltip="CUBIC is an extension to the current TCP standards.  It differs from the current TCP standards only in the congestion control algorithm on the sender side.  In particular, it uses a cubic function instead of a linear window increase function of the current TCP standards to improve scalability and stability under fast and long-distance networks.  CUBIC and its predecessor algorithm have been adopted as defaults by Linux and have been used for many years.  This document provides a specification of CUBIC to enable third-party implementations and to solicit community feedback through experimentation on the performance of CUBIC."];
+  cites -> RFC8312;
+  RFC9331 [label="RFC9331
+The Explicit Congestion Notification
+(ECN) Protocol for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, URL="RFC9331.html", target="_top", tooltip="This specification defines the protocol to be used for a new network service called Low Latency, Low Loss, and Scalable throughput (L4S). L4S uses an Explicit Congestion Notification (ECN) scheme at the IP layer that is similar to the original (or 'Classic') ECN approach, except as specified within. L4S uses 'Scalable' congestion control, which induces much more frequent control signals from the network, and it responds to them with much more fine-grained adjustments so that very low (typically sub-millisecond on average) and consistently low queuing delay becomes possible for L4S traffic without compromising link utilization. Thus, even capacity-seeking (TCP-like) traffic can have high bandwidth and very low delay at the same time, even during periods of high traffic load. The L4S identifier defined in this document distinguishes L4S from 'Classic' (e.g., TCP-Reno-friendly) traffic. Then, network bottlenecks can be incrementally modified to distinguish and isolate existing traffic that still follows the Classic behaviour, to prevent it from degrading the low queuing delay and low loss of L4S traffic. This Experimental specification defines the rules that L4S transports and network elements need to follow, with the intention that L4S flows neither harm each other's performance nor that of Classic traffic. It also suggests open questions to be investigated during experimentation. Examples of new Active Queue Management (AQM) marking algorithms and new transports (whether TCP-like or real time) are specified separately."];
+  cites -> RFC9331;
+  RFC8311 [label="RFC8311
+Relaxing Restrictions on Explicit
+Congestion Notification (ECN)
+Experimentation
+2018", shape=ellipse, URL="RFC8311.html", target="_top", tooltip="This memo updates RFC 3168, which specifies Explicit Congestion Notification (ECN) as an alternative to packet drops for indicating network congestion to endpoints.  It relaxes restrictions in RFC 3168 that hinder experimentation towards benefits beyond just removal of loss.  This memo summarizes the anticipated areas of experimentation and updates RFC 3168 to enable experimentation in these areas.  An Experimental RFC in the IETF document stream is required to take advantage of any of these enabling updates.  In addition, this memo makes related updates to the ECN specifications for RTP in RFC 6679 and for the Datagram Congestion Control Protocol (DCCP) in RFCs 4341, 4342, and 5622.  This memo also records the conclusion of the ECN nonce experiment in RFC 3540 and provides the rationale for reclassification of RFC 3540 from Experimental to Historic; this reclassification enables new experimental use of the ECT(1) codepoint."];
+  cites -> RFC8311;
+  RFC8298 [label="RFC8298
+Self-Clocked Rate Adaptation for
+Multimedia
+2017", shape=ellipse, URL="RFC8298.html", target="_top", tooltip="This memo describes a rate adaptation algorithm for conversational media services such as interactive video.  The solution conforms to the packet conservation principle and uses a hybrid loss-and-delay- based congestion control algorithm.  The algorithm is evaluated over both simulated Internet bottleneck scenarios as well as in a Long Term Evolution (LTE) system simulator and is shown to achieve both low latency and high video throughput in these scenarios."];
+  cites -> RFC8298;
+  RFC3649 [label="RFC3649
+HighSpeed TCP for Large Congestion
+Windows
+2003", shape=ellipse, URL="RFC3649.html", target="_top", tooltip="The proposals in this document are experimental.  While they may be deployed in the current Internet, they do not represent a consensus that this is the best method for high-speed congestion control.  In particular, we note that alternative experimental proposals are likely to be forthcoming, and it is not well understood how the proposals in this document will interact with such alternative proposals.  This document proposes HighSpeed TCP, a modification to TCP's congestion control mechanism for use with TCP connections with large congestion windows.  The congestion control mechanisms of the current Standard TCP constrains the congestion windows that can be achieved by TCP in realistic environments.  For example, for a Standard TCP connection with 1500-byte packets and a 100 ms round-trip time, achieving a steady-state throughput of 10 Gbps would require an average congestion window of 83,333 segments, and a packet drop rate of at most one congestion event every 5,000,000,000 packets (or equivalently, at most one congestion event every 1 2/3 hours).  This is widely acknowledged as an unrealistic constraint.  To address his limitation of TCP, this document proposes HighSpeed TCP, and solicits experimentation and feedback from the wider community."];
+  cites -> RFC3649;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC5348 [label="RFC5348
+TCP Friendly Rate Control (TFRC):
+Protocol Specification
+2008", shape=ellipse, URL="RFC5348.html", target="_top", tooltip="This document specifies TCP Friendly Rate Control (TFRC). TFRC is a congestion control mechanism for unicast flows operating in a best-effort Internet environment. It is reasonably fair when competing for bandwidth with TCP flows, but has a much lower variation of throughput over time compared with TCP, making it more suitable for applications such as streaming media where a relatively smooth sending rate is of importance. This document obsoletes RFC 3448 and updates RFC 4342. [STANDARDS-TRACK]"];
+  cites -> RFC5348;
+  RFC5033 [label="RFC5033
+Specifying New Congestion Control
+Algorithms
+2007", shape=ellipse, URL="RFC5033.html", target="_top", tooltip="The IETF's standard congestion control schemes have been widely shown to be inadequate for various environments (e.g., high-speed networks).  Recent research has yielded many alternate congestion control schemes that significantly differ from the IETF's congestion control principles.  Using these new congestion control schemes in the global Internet has possible ramifications to both the traffic using the new congestion control and to traffic using the currently standardized congestion control.  Therefore, the IETF must proceed with caution when dealing with alternate congestion control proposals.  The goal of this document is to provide guidance for considering alternate congestion control algorithms within the IETF.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5033;
+  RFC9000 [label="RFC9000
+QUIC: A UDP-Based Multiplexed and Secure
+Transport
+2021", shape=ellipse, URL="RFC9000.html", target="_top", tooltip="This document defines the core of the QUIC transport protocol.  QUIC provides applications with flow-controlled streams for structured communication, low-latency connection establishment, and network path migration.  QUIC includes security measures that ensure confidentiality, integrity, and availability in a range of deployment circumstances.  Accompanying documents describe the integration of TLS for key negotiation, loss detection, and an exemplary congestion control algorithm."];
+  cites -> RFC9000;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  cites -> RFC7567;
+  RFC5706 [label="RFC5706
+Guidelines for Considering Operations
+and Management of New Protocols and
+Protocol Extensions
+2009", shape=ellipse, URL="RFC5706.html", target="_top", tooltip="New protocols or protocol extensions are best designed with due consideration of the functionality needed to operate and manage the protocols.  Retrofitting operations and management is sub-optimal.  The purpose of this document is to provide guidance to authors and reviewers of documents that define new protocols or protocol extensions regarding aspects of operations and management that should be considered.  This memo provides information for the Internet community."];
+  cites -> RFC5706;
+  RFC8404 [label="RFC8404
+Effects of Pervasive Encryption on
+Operators
+2018", shape=ellipse, URL="RFC8404.html", target="_top", tooltip="Pervasive monitoring attacks on the privacy of Internet users are of serious concern to both user and operator communities.  RFC 7258 discusses the critical need to protect users' privacy when developing IETF specifications and also recognizes that making networks unmanageable to mitigate pervasive monitoring is not an acceptable outcome: an appropriate balance is needed.  This document discusses current security and network operations as well as management practices that may be impacted by the shift to increased use of encryption to help guide protocol development in support of manageable and secure networks."];
+  cites -> RFC8404;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+  RFC8034 [label="RFC8034
+Active Queue Management (AQM) Based on
+Proportional Integral Controller
+Enhanced (PIE) for Data-Over-Cable
+Service Interface Specifications
+(DOCSIS) Cable Modems
+2017", shape=ellipse, URL="RFC8034.html", target="_top", tooltip="Cable modems based on Data-Over-Cable Service Interface Specifications (DOCSIS) provide broadband Internet access to over one hundred million users worldwide.  In some cases, the cable modem connection is the bottleneck (lowest speed) link between the customer and the Internet.  As a result, the impact of buffering and bufferbloat in the cable modem can have a significant effect on user experience.  The CableLabs DOCSIS 3.1 specification introduces requirements for cable modems to support an Active Queue Management (AQM) algorithm that is intended to alleviate the impact that buffering has on latency-sensitive traffic, while preserving bulk throughput performance.  In addition, the CableLabs DOCSIS 3.0 specifications have also been amended to contain similar requirements.  This document describes the requirements on AQM that apply to DOCSIS equipment, including a description of the DOCSIS-PIE algorithm that is required on DOCSIS 3.1 cable modems."];
+  cites -> RFC8034;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9332;
+  RFC9330 [label="RFC9330
+Low Latency, Low Loss, and Scalable
+Throughput (L4S) Internet Service:
+Architecture
+2023", shape=ellipse, URL="RFC9330.html", target="_top", tooltip="This document describes the L4S architecture, which enables Internet applications to achieve low queuing latency, low congestion loss, and scalable throughput control. L4S is based on the insight that the root cause of queuing delay is in the capacity-seeking congestion controllers of senders, not in the queue itself. With the L4S architecture, all Internet applications could (but do not have to) transition away from congestion control algorithms that cause substantial queuing delay and instead adopt a new class of congestion controls that can seek capacity with very little queuing. These are aided by a modified form of Explicit Congestion Notification (ECN) from the network. With this new architecture, applications can have both low latency and high throughput. The architecture primarily concerns incremental deployment. It defines mechanisms that allow the new class of L4S congestion controls to coexist with 'Classic' congestion controls in a shared network. The aim is for L4S latency and throughput to be usually much better (and rarely worse) while typically not impacting Classic performance."];
+  RFC9330 -> rev_cites;
+  RFC9331 [label="RFC9331
+The Explicit Congestion Notification
+(ECN) Protocol for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, URL="RFC9331.html", target="_top", tooltip="This specification defines the protocol to be used for a new network service called Low Latency, Low Loss, and Scalable throughput (L4S). L4S uses an Explicit Congestion Notification (ECN) scheme at the IP layer that is similar to the original (or 'Classic') ECN approach, except as specified within. L4S uses 'Scalable' congestion control, which induces much more frequent control signals from the network, and it responds to them with much more fine-grained adjustments so that very low (typically sub-millisecond on average) and consistently low queuing delay becomes possible for L4S traffic without compromising link utilization. Thus, even capacity-seeking (TCP-like) traffic can have high bandwidth and very low delay at the same time, even during periods of high traffic load. The L4S identifier defined in this document distinguishes L4S from 'Classic' (e.g., TCP-Reno-friendly) traffic. Then, network bottlenecks can be incrementally modified to distinguish and isolate existing traffic that still follows the Classic behaviour, to prevent it from degrading the low queuing delay and low loss of L4S traffic. This Experimental specification defines the rules that L4S transports and network elements need to follow, with the intention that L4S flows neither harm each other's performance nor that of Classic traffic. It also suggests open questions to be investigated during experimentation. Examples of new Active Queue Management (AQM) marking algorithms and new transports (whether TCP-like or real time) are specified separately."];
+  RFC9331 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+  RFC9743 [label="RFC9743
+Specifying New Congestion Control
+Algorithms
+2025", shape=ellipse, URL="RFC9743.html", target="_top", tooltip="RFC 5033 discusses the principles and guidelines for standardizing new congestion control algorithms.  This document obsoletes RFC 5033 to reflect changes in the congestion control landscape by providing a framework for the development and assessment of congestion control mechanisms, promoting stability across diverse network paths.  This document seeks to ensure that proposed congestion control algorithms operate efficiently and without harm when used in the global Internet.  It emphasizes the need for comprehensive testing and validation to prevent adverse interactions with existing flows."];
+  RFC9743 -> rev_cites;
+}

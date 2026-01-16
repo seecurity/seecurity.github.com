@@ -1,0 +1,145 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8950 [label="RFC8950
+Advertising IPv4 Network Layer
+Reachability Information (NLRI) with an
+IPv6 Next Hop
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="Multiprotocol BGP (MP-BGP) specifies that the set of usable next-hop address families is determined by the Address Family Identifier (AFI) and the Subsequent Address Family Identifier (SAFI). The AFI/SAFI definitions for the IPv4 address family only have provisions for advertising a next-hop address that belongs to the IPv4 protocol when advertising IPv4 Network Layer Reachability Information (NLRI) or VPN-IPv4 NLRI. This document specifies the extensions necessary to allow the advertising of IPv4 NLRI or VPN-IPv4 NLRI with a next-hop address that belongs to the IPv6 protocol. This comprises an extension of the AFI/SAFI definitions to allow the address of the next hop for IPv4 NLRI or VPN-IPv4 NLRI to also belong to the IPv6 protocol, the encoding of the next hop to determine which of the protocols the address actually belongs to, and a BGP Capability allowing MP-BGP peers to dynamically discover whether they can exchange IPv4 NLRI and VPN-IPv4 NLRI with an IPv6 next hop. This document obsoletes RFC 5549."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8950;
+
+  obs [label="obsoletes", shape=box];
+  RFC8950 -> obs;
+  RFC5549 [label="RFC5549
+Advertising IPv4 Network Layer
+Reachability Information with an IPv6
+Next Hop
+2009", shape=ellipse, URL="RFC5549.html", target="_top", tooltip="Multiprotocol BGP (MP-BGP) specifies that the set of network-layer protocols to which the address carried in the Next Hop field may belong is determined by the Address Family Identifier (AFI) and the Subsequent Address Family Identifier (SAFI).  The current AFI/SAFI definitions for the IPv4 address family only have provisions for advertising a Next Hop address that belongs to the IPv4 protocol when advertising IPv4 Network Layer Reachability Information (NLRI) or VPN-IPv4 NLRI.  This document specifies the extensions necessary to allow advertising IPv4 NLRI or VPN-IPv4 NLRI with a Next Hop address that belongs to the IPv6 protocol.  This comprises an extension of the AFI/SAFI definitions to allow the address of the Next Hop for IPv4 NLRI or VPN-IPv4 NLRI to also belong to the IPv6 protocol, the encoding of the Next Hop in order to determine which of the protocols the address actually belongs to, and a new BGP Capability allowing MP-BGP Peers to dynamically discover whether they can exchange IPv4 NLRI and VPN-IPv4 NLRI with an IPv6 Next Hop. [STANDARDS-TRACK]"];
+  obs -> RFC5549;
+
+  updates [label="updates", shape=box];
+  RFC8950 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8950;
+
+  cites [label="cites", shape=box];
+  RFC8950 -> cites;
+  RFC4760 [label="RFC4760
+Multiprotocol Extensions for BGP-4
+2007", shape=ellipse, URL="RFC4760.html", target="_top", tooltip="This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, L3VPN, etc.).  The extensions are backward compatible - a router that supports the extensions can interoperate with a router that doesn't support the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC4760;
+  RFC6074 [label="RFC6074
+Provisioning, Auto-Discovery, and
+Signaling in Layer 2 Virtual Private
+Networks (L2VPNs)
+2011", shape=ellipse, URL="RFC6074.html", target="_top", tooltip="Provider Provisioned Layer 2 Virtual Private Networks (L2VPNs) may have different provisioning models, i.e., models for what information needs to be configured in what entities.  Once configured, the provisioning information is distributed by a discovery process.  When the discovery process is complete, a signaling protocol is automatically invoked to set up the mesh of pseudowires (PWs) that form the (virtual) backbone of the L2VPN.  This document specifies a number of L2VPN provisioning models, and further specifies the semantic structure of the endpoint identifiers required by each model.  It discusses the distribution of these identifiers by the discovery process, especially when discovery is based on the Border Gateway Protocol (BGP).  It then specifies how the endpoint identifiers are carried in the two signaling protocols that are used to set up PWs, the Label Distribution Protocol (LDP), and the Layer 2 Tunneling Protocol version 3 (L2TPv3). [STANDARDS- TRACK]"];
+  cites -> RFC6074;
+  RFC4684 [label="RFC4684
+Constrained Route Distribution for
+Border Gateway Protocol/MultiProtocol
+Label Switching (BGP/MPLS) Internet
+Protocol (IP) Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4684.html", target="_top", tooltip="This document defines Multi-Protocol BGP (MP-BGP) procedures that allow BGP speakers to exchange Route Target reachability information.  This information can be used to build a route distribution graph in order to limit the propagation of Virtual Private Network (VPN) Network Layer Reachability Information (NLRI) between different autonomous systems or distinct clusters of the same autonomous system.  This document updates RFC 4364. [STANDARDS-TRACK]"];
+  cites -> RFC4684;
+  RFC4925 [label="RFC4925
+Softwire Problem Statement
+2007", shape=ellipse, URL="RFC4925.html", target="_top", tooltip="This document captures the problem statement for the Softwires Working Group, which is developing standards for the discovery, control, and encapsulation methods for connecting IPv4 networks across IPv6-only networks as well as IPv6 networks across IPv4-only networks.  The standards will encourage multiple, inter-operable vendor implementations by identifying, and extending where necessary, existing standard protocols to resolve a selected set of IPv4/IPv6 and IPv6/IPv4 transition problems.  This document describes the specific problems (Hubs and Spokes and Mesh) that will be solved by the standards developed by the Softwires Working Group.  Some requirements (and non-requirements) are also identified to better describe the specific problem scope.  This memo provides information for the Internet community."];
+  cites -> RFC4925;
+  RFC5565 [label="RFC5565
+Softwire Mesh Framework
+2009", shape=ellipse, URL="RFC5565.html", target="_top", tooltip="The Internet needs to be able to handle both IPv4 and IPv6 packets.  However, it is expected that some constituent networks of the Internet will be single-protocol networks.  One kind of single-protocol network can parse only IPv4 packets and can process only IPv4 routing information; another kind can parse only IPv6 packets and can process only IPv6 routing information.  It is nevertheless required that either kind of single-protocol network be able to provide transit service for the other protocol.  This is done by passing the other kind of routing information from one edge of the single-protocol network to the other, and by tunneling the other kind of data packet from one edge to the other.  The tunnels are known as softwires.  This framework document explains how the routing information and the data packets of one protocol are passed through a single-protocol network of the other protocol.  The document is careful to specify when this can be done with existing technology and when it requires the development of new or modified technology. [STANDARDS-TRACK]"];
+  cites -> RFC5565;
+  RFC2545 [label="RFC2545
+Use of BGP-4 Multiprotocol Extensions
+for IPv6 Inter-Domain Routing
+1999", shape=ellipse, URL="RFC2545.html", target="_top", tooltip="BGP-4 Multiprotocol Extensions (BGP-MP) defines the format of two BGP attributes (MP_REACH_NLRI and MP_UNREACH_NLRI) that can be used to announce and withdraw the announcement of reachability information.  This document defines how compliant systems should make use of those attributes for the purpose of conveying IPv6 routing information. [STANDARDS-TRACK]"];
+  cites -> RFC2545;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  cites -> RFC8277;
+  RFC4659 [label="RFC4659
+BGP-MPLS IP Virtual Private Network
+(VPN) Extension for IPv6 VPN
+2006", shape=ellipse, URL="RFC4659.html", target="_top", tooltip="This document describes a method by which a Service Provider may use its packet-switched backbone to provide Virtual Private Network (VPN) services for its IPv6 customers. This method reuses, and extends where necessary, the BGP/MPLS IP VPN method for support of IPv6. In BGP/MPLS IP VPN, Multiprotocol BGP is used for distributing IPv4 VPN routes over the service provider backbone, and MPLS is used to forward IPv4 VPN packets over the backbone. This document defines an IPv6 VPN address family and describes the corresponding IPv6 VPN route distribution in Multiprotocol BGP. This document defines support of the IPv6 VPN service over both an IPv4 and an IPv6 backbone, and for using various tunneling techniques over the core, including MPLS, IP-in-IP, Generic Routing Encapsulation (GRE) and IPsec protected tunnels. The inter-working between an IPv4 site and an IPv6 site is outside the scope of this document. [STANDARDS-TRACK]"];
+  cites -> RFC4659;
+  RFC4798 [label="RFC4798
+Connecting IPv6 Islands over IPv4 MPLS
+Using IPv6 Provider Edge Routers (6PE)
+2007", shape=ellipse, URL="RFC4798.html", target="_top", tooltip="This document explains how to interconnect IPv6 islands over a Multiprotocol Label Switching (MPLS)-enabled IPv4 cloud.  This approach relies on IPv6 Provider Edge routers (6PE), which are Dual Stack in order to connect to IPv6 islands and to the MPLS core, which is only required to run IPv4 MPLS.  The 6PE routers exchange the IPv6 reachability information transparently over the core using the Multiprotocol Border Gateway Protocol (MP-BGP) over IPv4.  In doing so, the BGP Next Hop field is used to convey the IPv4 address of the 6PE router so that dynamically established IPv4-signaled MPLS Label Switched Paths (LSPs) can be used without explicit tunnel configuration. [STANDARDS-TRACK]"];
+  cites -> RFC4798;
+  RFC4291 [label="RFC4291
+IP Version 6 Addressing Architecture
+2006", shape=ellipse, URL="RFC4291.html", target="_top", tooltip="This specification defines the addressing architecture of the IP Version 6 (IPv6) protocol. The document includes the IPv6 addressing model, text representations of IPv6 addresses, definition of IPv6 unicast addresses, anycast addresses, and multicast addresses, and an IPv6 node's required addresses. This document obsoletes RFC 3513, IP Version 6 Addressing Architecture. [STANDARDS-TRACK]"];
+  cites -> RFC4291;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC6513 [label="RFC6513
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6513.html", target="_top", tooltip="In order for IP multicast traffic within a BGP/MPLS IP VPN (Virtual Private Network) to travel from one VPN site to another, special protocols and procedures must be implemented by the VPN Service Provider.  These protocols and procedures are specified in this document. [STANDARDS-TRACK]"];
+  cites -> RFC6513;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  cites -> RFC6514;
+  RFC5549 [label="RFC5549
+Advertising IPv4 Network Layer
+Reachability Information with an IPv6
+Next Hop
+2009", shape=ellipse, URL="RFC5549.html", target="_top", tooltip="Multiprotocol BGP (MP-BGP) specifies that the set of network-layer protocols to which the address carried in the Next Hop field may belong is determined by the Address Family Identifier (AFI) and the Subsequent Address Family Identifier (SAFI).  The current AFI/SAFI definitions for the IPv4 address family only have provisions for advertising a Next Hop address that belongs to the IPv4 protocol when advertising IPv4 Network Layer Reachability Information (NLRI) or VPN-IPv4 NLRI.  This document specifies the extensions necessary to allow advertising IPv4 NLRI or VPN-IPv4 NLRI with a Next Hop address that belongs to the IPv6 protocol.  This comprises an extension of the AFI/SAFI definitions to allow the address of the Next Hop for IPv4 NLRI or VPN-IPv4 NLRI to also belong to the IPv6 protocol, the encoding of the Next Hop in order to determine which of the protocols the address actually belongs to, and a new BGP Capability allowing MP-BGP Peers to dynamically discover whether they can exchange IPv4 NLRI and VPN-IPv4 NLRI with an IPv6 Next Hop. [STANDARDS-TRACK]"];
+  cites -> RFC5549;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC5492 [label="RFC5492
+Capabilities Advertisement with BGP-4
+2009", shape=ellipse, URL="RFC5492.html", target="_top", tooltip="This document defines an Optional Parameter, called Capabilities, that is expected to facilitate the introduction of new capabilities in the Border Gateway Protocol (BGP) by providing graceful capability advertisement without requiring that BGP peering be terminated. This document obsoletes RFC 3392. [STANDARDS-TRACK]"];
+  cites -> RFC5492;
+  RFC4272 [label="RFC4272
+BGP Security Vulnerabilities Analysis
+2006", shape=ellipse, URL="RFC4272.html", target="_top", tooltip="Border Gateway Protocol 4 (BGP-4), along with a host of other infrastructure protocols designed before the Internet environment became perilous, was originally designed with little consideration for protection of the information it carries. There are no mechanisms internal to BGP that protect against attacks that modify, delete, forge, or replay data, any of which has the potential to disrupt overall network routing behavior. This document discusses some of the security issues with BGP routing data dissemination. This document does not discuss security issues with forwarding of packets. This memo provides information for the Internet community."];
+  cites -> RFC4272;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8950;
+  RFC9252 [label="RFC9252
+BGP Overlay Services Based on Segment
+Routing over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9252.html", target="_top", tooltip="This document defines procedures and messages for SRv6-based BGP services, including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and Internet services.  It builds on BGP/MPLS IP Virtual Private Networks (VPNs) (RFC 4364) and BGP MPLS-Based Ethernet VPN (RFC 7432)."];
+  RFC9252 -> rev_cites;
+  RFC9386 [label="RFC9386
+IPv6 Deployment Status
+2023", shape=ellipse, URL="RFC9386.html", target="_top", tooltip="This document provides an overview of the status of IPv6 deployment in 2022.  Specifically, it looks at the degree of adoption of IPv6 in the industry, analyzes the remaining challenges, and proposes further investigations in areas where the industry has not yet taken a clear and unified approach in the transition to IPv6.  It obsoletes RFC 6036."];
+  RFC9386 -> rev_cites;
+  RFC9696 [label="RFC9696
+Routing in Fat Trees (RIFT)
+Applicability and Operational
+Considerations
+2025", shape=ellipse, URL="RFC9696.html", target="_top", tooltip="This document discusses the properties, applicability, and operational considerations of Routing in Fat Trees (RIFT) in different network scenarios with the intention of providing a rough guide on how RIFT can be deployed to simplify routing operations in Clos topologies and their variations."];
+  RFC9696 -> rev_cites;
+  RFC9816 [label="RFC9816
+Usage and Applicability of BGP Link
+State (BGP-LS) Shortest Path First (SPF)
+Routing in Data Centers
+2025", shape=ellipse, URL="RFC9816.html", target="_top", tooltip="This document discusses the usage and applicability of BGP Link State (BGP-LS) Shortest Path First (SPF) extensions in data center networks utilizing Clos or Fat Tree topologies.  The document is intended to provide simplified guidance for the deployment of BGP-LS SPF extensions."];
+  RFC9816 -> rev_cites;
+}

@@ -1,0 +1,161 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5998 [label="RFC5998
+An Extension for EAP-Only Authentication
+in IKEv2
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="IKEv2 specifies that Extensible Authentication Protocol (EAP) authentication must be used together with responder authentication based on public key signatures. This is necessary with old EAP methods that provide only unilateral authentication using, e.g., one- time passwords or token cards. This document specifies how EAP methods that provide mutual authentication and key agreement can be used to provide extensible responder authentication for IKEv2 based on methods other than public key signatures. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5998;
+
+  obs [label="obsoletes", shape=box];
+  RFC5998 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5998 -> updates;
+  RFC5996 [label="RFC5996
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2010", shape=ellipse, URL="RFC5996.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document replaces and updates RFC 4306, and includes all of the clarifications from RFC 4718. [STANDARDS-TRACK]"];
+  updates -> RFC5996;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5998;
+
+  cites [label="cites", shape=box];
+  RFC5998 -> cites;
+  RFC3748 [label="RFC3748
+Extensible Authentication Protocol (EAP)
+2004", shape=ellipse, URL="RFC3748.html", target="_top", tooltip="This document defines the Extensible Authentication Protocol (EAP), an authentication framework which supports multiple authentication methods.  EAP typically runs directly over data link layers such as Point-to-Point Protocol (PPP) or IEEE 802, without requiring IP.  EAP provides its own support for duplicate elimination and retransmission, but is reliant on lower layer ordering guarantees.  Fragmentation is not supported within EAP itself; however, individual EAP methods may support this.  This document obsoletes RFC 2284.  A summary of the changes between this document and RFC 2284 is available in Appendix A. [STANDARDS-TRACK]"];
+  cites -> RFC3748;
+  RFC1661 [label="RFC1661
+The Point-to-Point Protocol (PPP)
+1994", shape=ellipse, URL="RFC1661.html", target="_top", tooltip="This document defines the PPP organization and methodology, and the PPP encapsulation, together with an extensible option negotiation mechanism which is able to negotiate a rich assortment of configuration parameters and provides additional management functions. [STANDARDS-TRACK]"];
+  cites -> RFC1661;
+  RFC4306 [label="RFC4306
+Internet Key Exchange (IKEv2) Protocol
+2005", shape=ellipse, URL="RFC4306.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol. IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining security associations (SAs). This version of the IKE specification combines the contents of what were previously separate documents, including Internet Security Association and Key Management Protocol (ISAKMP, RFC 2408), IKE (RFC 2409), the Internet Domain of Interpretation (DOI, RFC 2407), Network Address Translation (NAT) Traversal, Legacy authentication, and remote address acquisition. Version 2 of IKE does not interoperate with version 1, but it has enough of the header format in common that both versions can unambiguously run over the same UDP port. [STANDARDS-TRACK]"];
+  cites -> RFC4306;
+  RFC5996 [label="RFC5996
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2010", shape=ellipse, URL="RFC5996.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document replaces and updates RFC 4306, and includes all of the clarifications from RFC 4718. [STANDARDS-TRACK]"];
+  cites -> RFC5996;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4072 [label="RFC4072
+Diameter Extensible Authentication
+Protocol (EAP) Application
+2005", shape=ellipse, URL="RFC4072.html", target="_top", tooltip="The Extensible Authentication Protocol (EAP) provides a standard mechanism for support of various authentication methods.  This document defines the Command-Codes and AVPs necessary to carry EAP packets between a Network Access Server (NAS) and a back-end authentication server. [STANDARDS-TRACK]"];
+  cites -> RFC4072;
+  RFC3579 [label="RFC3579
+RADIUS (Remote Authentication Dial In
+User Service) Support For Extensible
+Authentication Protocol (EAP)
+2003", shape=ellipse, URL="RFC3579.html", target="_top", tooltip="This document defines Remote Authentication Dial In User Service (RADIUS) support for the Extensible Authentication Protocol (EAP), an authentication framework which supports multiple authentication mechanisms.  In the proposed scheme, the Network Access Server (NAS) forwards EAP packets to and from the RADIUS server, encapsulated within EAP-Message attributes.  This has the advantage of allowing the NAS to support any EAP authentication method, without the need for method- specific code, which resides on the RADIUS server.  While EAP was originally developed for use with PPP, it is now also in use with IEEE 802.  This memo provides information for the Internet community."];
+  cites -> RFC3579;
+  RFC5723 [label="RFC5723
+Internet Key Exchange Protocol Version 2
+(IKEv2) Session Resumption
+2010", shape=ellipse, URL="RFC5723.html", target="_top", tooltip="The Internet Key Exchange version 2 (IKEv2) protocol has a certain computational and communication overhead with respect to the number of round trips required and the cryptographic operations involved. In remote access situations, the Extensible Authentication Protocol (EAP) is used for authentication, which adds several more round trips and consequently latency. To re-establish security associations (SAs) upon a failure recovery condition is time consuming especially when an IPsec peer (such as a VPN gateway) needs to re-establish a large number of SAs with various endpoints. A high number of concurrent sessions might cause additional problems for an IPsec peer during SA re-establishment. In order to avoid the need to re-run the key exchange protocol from scratch, it would be useful to provide an efficient way to resume an IKE/IPsec session. This document proposes an extension to IKEv2 that allows a client to re-establish an IKE SA with a gateway in a highly efficient manner, utilizing a previously established IKE SA. A client can reconnect to a gateway from which it was disconnected. The proposed approach encodes partial IKE state into an opaque ticket, which can be stored on the client or in a centralized store, and is later made available to the IKEv2 responder for re-authentication. We use the term ticket to refer to the opaque data that is created by the IKEv2 responder. This document does not specify the format of the ticket but examples are provided. [STANDARDS-TRACK]"];
+  cites -> RFC5723;
+  RFC4186 [label="RFC4186
+Extensible Authentication Protocol
+Method for Global System for Mobile
+Communications (GSM) Subscriber Identity
+Modules (EAP-SIM)
+2006", shape=ellipse, URL="RFC4186.html", target="_top", tooltip="This document specifies an Extensible Authentication Protocol (EAP) mechanism for authentication and session key distribution using the Global System for Mobile Communications (GSM) Subscriber Identity Module (SIM).  GSM is a second generation mobile network standard.  The EAP-SIM mechanism specifies enhancements to GSM authentication and key agreement whereby multiple authentication triplets can be combined to create authentication responses and session keys of greater strength than the individual GSM triplets.  The mechanism also includes network authentication, user anonymity support, result indications, and a fast re-authentication procedure.  This memo provides information for the Internet community."];
+  cites -> RFC4186;
+  RFC4187 [label="RFC4187
+Extensible Authentication Protocol
+Method for 3rd Generation Authentication
+and Key Agreement (EAP-AKA)
+2006", shape=ellipse, URL="RFC4187.html", target="_top", tooltip="This document specifies an Extensible Authentication Protocol (EAP) mechanism for authentication and session key distribution that uses the Authentication and Key Agreement (AKA) mechanism. AKA is used in the 3rd generation mobile networks Universal Mobile Telecommunications System (UMTS) and CDMA2000. AKA is based on symmetric keys, and typically runs in a Subscriber Identity Module, which is a UMTS Subscriber Identity Module, USIM, or a (Removable) User Identity Module, (R)UIM, similar to a smart card. EAP-AKA includes optional identity privacy support, optional result indications, and an optional fast re-authentication procedure. This memo provides information for the Internet community."];
+  cites -> RFC4187;
+  RFC5448 [label="RFC5448
+Improved Extensible Authentication
+Protocol Method for 3rd Generation
+Authentication and Key Agreement (EAP-
+AKA')
+2009", shape=ellipse, URL="RFC5448.html", target="_top", tooltip="This specification defines a new EAP method, EAP-AKA', which is a small revision of the EAP-AKA (Extensible Authentication Protocol Method for 3rd Generation Authentication and Key Agreement) method. The change is a new key derivation function that binds the keys derived within the method to the name of the access network. The new key derivation mechanism has been defined in the 3rd Generation Partnership Project (3GPP). This specification allows its use in EAP in an interoperable manner. In addition, EAP-AKA' employs SHA-256 instead of SHA-1. This specification also updates RFC 4187, EAP-AKA, to prevent bidding down attacks from EAP-AKA'. This memo provides information for the Internet community."];
+  cites -> RFC5448;
+  RFC5433 [label="RFC5433
+Extensible Authentication Protocol -
+Generalized Pre-Shared Key (EAP-GPSK)
+Method
+2009", shape=ellipse, URL="RFC5433.html", target="_top", tooltip="This memo defines an Extensible Authentication Protocol (EAP) method called EAP Generalized Pre-Shared Key (EAP-GPSK).  This method is a lightweight shared-key authentication protocol supporting mutual authentication and key derivation. [STANDARDS-TRACK]"];
+  cites -> RFC5433;
+  RFC5931 [label="RFC5931
+Extensible Authentication Protocol (EAP)
+Authentication Using Only a Password
+2010", shape=ellipse, URL="RFC5931.html", target="_top", tooltip="This memo describes an Extensible Authentication Protocol (EAP) method, EAP-pwd, which uses a shared password for authentication.  The password may be a low-entropy one and may be drawn from some set of possible passwords, like a dictionary, which is available to an attacker.  The underlying key exchange is resistant to active attack, passive attack, and dictionary attack.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5931;
+  RFC4746 [label="RFC4746
+Extensible Authentication Protocol (EAP)
+Password Authenticated Exchange
+2006", shape=ellipse, URL="RFC4746.html", target="_top", tooltip="This document defines an Extensible Authentication Protocol (EAP) method called EAP-PAX (Password Authenticated eXchange).  This method is a lightweight shared-key authentication protocol with optional support for key provisioning, key management, identity protection, and authenticated data exchange.  This memo provides information for the Internet community."];
+  cites -> RFC4746;
+  RFC4763 [label="RFC4763
+Extensible Authentication Protocol
+Method for Shared-secret Authentication
+and Key Establishment (EAP-SAKE)
+2006", shape=ellipse, URL="RFC4763.html", target="_top", tooltip="This document specifies an Extensible Authentication Protocol (EAP) mechanism for Shared-secret Authentication and Key Establishment (SAKE).  This RFC is published as documentation for the IANA assignment of an EAP Type for a vendor's EAP method per RFC 3748.  The specification has passed Designated Expert review for this IANA assignment.  This memo provides information for the Internet community."];
+  cites -> RFC4763;
+  RFC4793 [label="RFC4793
+The EAP Protected One-Time Password
+Protocol (EAP-POTP)
+2007", shape=ellipse, URL="RFC4793.html", target="_top", tooltip="This document describes a general Extensible Authentication Protocol (EAP) method suitable for use with One-Time Password (OTP) tokens, and offers particular advantages for tokens with direct electronic interfaces to their associated clients.  The method can be used to provide unilateral or mutual authentication, and key material, in protocols utilizing EAP, such as PPP, IEEE 802.1X, and Internet Key Exchange Protocol Version 2 (IKEv2).  This memo provides information for the Internet community."];
+  cites -> RFC4793;
+  RFC5216 [label="RFC5216
+The EAP-TLS Authentication Protocol
+2008", shape=ellipse, URL="RFC5216.html", target="_top", tooltip="The Extensible Authentication Protocol (EAP), defined in RFC 3748, provides support for multiple authentication methods. Transport Layer Security (TLS) provides for mutual authentication, integrity-protected ciphersuite negotiation, and key exchange between two endpoints. This document defines EAP-TLS, which includes support for certificate-based mutual authentication and key derivation. This document obsoletes RFC 2716. A summary of the changes between this document and RFC 2716 is available in Appendix A. [STANDARDS-TRACK]"];
+  cites -> RFC5216;
+  RFC4851 [label="RFC4851
+The Flexible Authentication via Secure
+Tunneling Extensible Authentication
+Protocol Method (EAP-FAST)
+2007", shape=ellipse, URL="RFC4851.html", target="_top", tooltip="This document defines the Extensible Authentication Protocol (EAP) based Flexible Authentication via Secure Tunneling (EAP-FAST) protocol.  EAP-FAST is an EAP method that enables secure communication between a peer and a server by using the Transport Layer Security (TLS) to establish a mutually authenticated tunnel.  Within the tunnel, Type-Length-Value (TLV) objects are used to convey authentication related data between the peer and the EAP server.  This memo provides information for the Internet community."];
+  cites -> RFC4851;
+  RFC5281 [label="RFC5281
+Extensible Authentication Protocol
+Tunneled Transport Layer Security
+Authenticated Protocol Version 0 (EAP-
+TTLSv0)
+2008", shape=ellipse, URL="RFC5281.html", target="_top", tooltip="EAP-TTLS is an EAP (Extensible Authentication Protocol) method that encapsulates a TLS (Transport Layer Security) session, consisting of a handshake phase and a data phase.  During the handshake phase, the server is authenticated to the client (or client and server are mutually authenticated) using standard TLS procedures, and keying material is generated in order to create a cryptographically secure tunnel for information exchange in the subsequent data phase.  During the data phase, the client is authenticated to the server (or client and server are mutually authenticated) using an arbitrary authentication mechanism encapsulated within the secure tunnel.  The encapsulated authentication mechanism may itself be EAP, or it may be another authentication protocol such as PAP, CHAP, MS-CHAP, or MS-CHAP-V2.  Thus, EAP-TTLS allows legacy password-based authentication protocols to be used against existing authentication databases, while protecting the security of these legacy protocols against eavesdropping, man-in-the-middle, and other attacks.  The data phase may also be used for additional, arbitrary data exchange.  This memo provides information for the Internet community."];
+  cites -> RFC5281;
+  RFC5247 [label="RFC5247
+Extensible Authentication Protocol (EAP)
+Key Management Framework
+2008", shape=ellipse, URL="RFC5247.html", target="_top", tooltip="The Extensible Authentication Protocol (EAP), defined in RFC 3748, enables extensible network access authentication.  This document specifies the EAP key hierarchy and provides a framework for the transport and usage of keying material and parameters generated by EAP authentication algorithms, known as methods.  It also provides a detailed system-level security analysis, describing the conditions under which the key management guidelines described in RFC 4962 can be satisfied. [STANDARDS-TRACK]"];
+  cites -> RFC5247;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5998;
+  RFC6071 [label="RFC6071
+IP Security (IPsec) and Internet Key
+Exchange (IKE) Document Roadmap
+2011", shape=ellipse, URL="RFC6071.html", target="_top", tooltip="Over the past few years, the number of RFCs that define and use IPsec and Internet Key Exchange (IKE) has greatly proliferated. This is complicated by the fact that these RFCs originate from numerous IETF working groups: the original IPsec WG, its various spin-offs, and other WGs that use IPsec and/or IKE to protect their protocols' traffic. This document is a snapshot of IPsec- and IKE-related RFCs. It includes a brief description of each RFC, along with background information explaining the motivation and context of IPsec's outgrowths and extensions. It obsoletes RFC 2411, the previous IP Security Document Roadmap. The obsoleted IPsec roadmap (RFC 2411) briefly described the interrelationship of the various classes of base IPsec documents. The major focus of RFC 2411 was to specify the recommended contents of documents specifying additional encryption and authentication algorithms. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6071 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6631 [label="RFC6631
+Password Authenticated Connection
+Establishment with the Internet Key
+Exchange Protocol version 2 (IKEv2)
+2012", shape=ellipse, URL="RFC6631.html", target="_top", tooltip="The Internet Key Exchange protocol version 2 (IKEv2) does not allow secure peer authentication when using short credential strings, i.e., passwords.  Several proposals have been made to integrate password-authentication protocols into IKE.  This document provides an adaptation of Password Authenticated Connection Establishment (PACE) to the setting of IKEv2 and demonstrates the advantages of this integration.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6631 -> rev_cites;
+  RFC9838 [label="RFC9838
+Group Key Management Using the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2025", shape=ellipse, URL="RFC9838.html", target="_top", tooltip="This document presents an extension to the Internet Key Exchange Protocol Version 2 (IKEv2) for the purpose of group key management. The protocol is in conformance with the Multicast Security (MSEC) Group Key Management architecture, which contains two components: member registration and group rekeying. Both components are required for a Group Controller/Key Server (GCKS) to provide authorized Group Members (GMs) with IPsec Group Security Associations (GSAs). The GMs then exchange IP multicast or other group traffic as IPsec packets. This document obsoletes RFC 6407."];
+  RFC9838 -> rev_cites;
+}

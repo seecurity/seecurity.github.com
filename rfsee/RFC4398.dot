@@ -1,0 +1,70 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4398 [label="RFC4398
+Storing Certificates in the Domain Name
+System (DNS)
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="Cryptographic public keys are frequently published, and their authenticity is demonstrated by certificates.  A CERT resource record (RR) is defined so that such certificates and related certificate revocation lists can be stored in the Domain Name System (DNS). [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4398;
+
+  obs [label="obsoletes", shape=box];
+  RFC4398 -> obs;
+  RFC2538 [label="RFC2538
+Storing Certificates in the Domain Name
+System (DNS)
+1999", shape=ellipse, URL="RFC2538.html", target="_top", tooltip="Cryptographic public key are frequently published and their authenticity demonstrated by certificates.  A CERT resource record (RR) is defined so that such certificates and related certificate revocation lists can be stored in the Domain Name System (DNS). [STANDARDS-TRACK]"];
+  obs -> RFC2538;
+
+  updates [label="updates", shape=box];
+  RFC4398 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4398;
+  RFC6944 [label="RFC6944
+Applicability Statement: DNS Security
+(DNSSEC) DNSKEY Algorithm Implementation
+Status
+2013", shape=ellipse, URL="RFC6944.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) requires the use of cryptographic algorithm suites for generating digital signatures over DNS data.  There is currently an IANA registry for these algorithms, but there is no record of the recommended implementation status of each algorithm.  This document provides an applicability statement on algorithm implementation status for DNSSEC component software.  This document lists each algorithm's status based on the current reference.  In the case that an algorithm is specified without an implementation status, this document assigns one.  This document updates RFCs 2536, 2539, 3110, 4034, 4398, 5155, 5702, and 5933."];
+  RFC6944 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4398 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4398;
+  RFC6725 [label="RFC6725
+DNS Security (DNSSEC) DNSKEY Algorithm
+IANA Registry Updates
+2012", shape=ellipse, URL="RFC6725.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) require the use of cryptographic algorithm suites for generating digital signatures over DNS data.  The algorithms specified for use with DNSSEC are reflected in an IANA-maintained registry.  This document presents a set of changes for some entries of the registry. [STANDARDS-TRACK]"];
+  RFC6725 -> rev_cites;
+  RFC6944 [label="RFC6944
+Applicability Statement: DNS Security
+(DNSSEC) DNSKEY Algorithm Implementation
+Status
+2013", shape=ellipse, URL="RFC6944.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) requires the use of cryptographic algorithm suites for generating digital signatures over DNS data.  There is currently an IANA registry for these algorithms, but there is no record of the recommended implementation status of each algorithm.  This document provides an applicability statement on algorithm implementation status for DNSSEC component software.  This document lists each algorithm's status based on the current reference.  In the case that an algorithm is specified without an implementation status, this document assigns one.  This document updates RFCs 2536, 2539, 3110, 4034, 4398, 5155, 5702, and 5933."];
+  RFC6944 -> rev_cites;
+  RFC6950 [label="RFC6950
+Architectural Considerations on
+Application Features in the DNS
+2013", shape=ellipse, URL="RFC6950.html", target="_top", tooltip="A number of Internet applications rely on the Domain Name System (DNS) to support their operations.  Many applications use the DNS to locate services for a domain; some, for example, transform identifiers other than domain names into formats that the DNS can process, and then fetch application data or service location data from the DNS.  Proposals incorporating sophisticated application behavior using DNS as a substrate have raised questions about the role of the DNS as an application platform.  This document explores the architectural consequences of using the DNS to implement certain application features, and it provides guidance to future application designers as to the limitations of the DNS as a substrate and the situations in which alternative designs should be considered."];
+  RFC6950 -> rev_cites;
+  RFC7929 [label="RFC7929
+DNS-Based Authentication of Named
+Entities (DANE) Bindings for OpenPGP
+2016", shape=ellipse, URL="RFC7929.html", target="_top", tooltip="OpenPGP is a message format for email (and file) encryption that lacks a standardized lookup mechanism to securely obtain OpenPGP public keys.  DNS-Based Authentication of Named Entities (DANE) is a method for publishing public keys in DNS.  This document specifies a DANE method for publishing and locating OpenPGP public keys in DNS for a specific email address using a new OPENPGPKEY DNS resource record.  Security is provided via Secure DNS, however the OPENPGPKEY record is not a replacement for verification of authenticity via the web of trust or manual verification.  The OPENPGPKEY record can be used to encrypt an email that would otherwise have to be sent unencrypted."];
+  RFC7929 -> rev_cites;
+  RFC8078 [label="RFC8078
+Managing DS Records from the Parent via
+CDS/CDNSKEY
+2017", shape=ellipse, URL="RFC8078.html", target="_top", tooltip="RFC 7344 specifies how DNS trust can be maintained across key rollovers in-band between parent and child. This document elevates RFC 7344 from Informational to Standards Track. It also adds a method for initial trust setup and removal of a secure entry point. Changing a domain's DNSSEC status can be a complicated matter involving multiple unrelated parties. Some of these parties, such as the DNS operator, might not even be known by all the organizations involved. The inability to disable DNSSEC via in-band signaling is seen as a problem or liability that prevents some DNSSEC adoption at a large scale. This document adds a method for in-band signaling of these DNSSEC status changes. This document describes reasonable policies to ease deployment of the initial acceptance of new secure entry points (DS records). It is preferable that operators collaborate on the transfer or move of a domain. The best method is to perform a Key Signing Key (KSK) plus Zone Signing Key (ZSK) rollover. If that is not possible, the method using an unsigned intermediate state described in this document can be used to move the domain between two parties. This leaves the domain temporarily unsigned and vulnerable to DNS spoofing, but that is preferred over the alternative of validation failures due to a mismatched DS and DNSKEY record."];
+  RFC8078 -> rev_cites;
+  RFC8567 [label="RFC8567
+Customer Management DNS Resource Records
+2019", shape=ellipse, URL="RFC8567.html", target="_top", tooltip="Maintaining high Quality of Experience (QoE) increasingly requires end-to-end, holistic network management, including managed Customer Premises Equipment (CPE). Because customer management is a shared global responsibility, the Domain Name System (DNS) provides an ideal existing infrastructure for maintaining authoritative customer information that must be readily, reliably, and publicly accessible. This document describes four new DNS resource record types for encoding customer information in the DNS. These records are intended to better facilitate high customer QoE via inter-provider cooperation and management of customer data."];
+  RFC8567 -> rev_cites;
+}

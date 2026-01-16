@@ -1,0 +1,60 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3502 [label="RFC3502
+Internet Message Access Protocol (IMAP)
+- MULTIAPPEND Extension
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the multiappending extension to the Internet Message Access Protocol (IMAP) (RFC 3501).  This extension provides substantial performance improvements for IMAP clients which upload multiple messages at a time to a mailbox on the server.  A server which supports this extension indicates this with a capability name of MULTIAPPEND. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3502;
+
+  obs [label="obsoletes", shape=box];
+  RFC3502 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3502 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3502;
+  RFC4466 [label="RFC4466
+Collected Extensions to IMAP4 ABNF
+2006", shape=ellipse, URL="RFC4466.html", target="_top", tooltip="Over the years, many documents from IMAPEXT and LEMONADE working groups, as well as many individual documents, have added syntactic extensions to many base IMAP commands described in RFC 3501. For ease of reference, this document collects most of such ABNF changes in one place. This document also suggests a set of standard patterns for adding options and extensions to several existing IMAP commands defined in RFC 3501. The patterns provide for compatibility between existing and future extensions. This document updates ABNF in RFCs 2088, 2342, 3501, 3502, and 3516. It also includes part of the errata to RFC 3501. This document doesn't specify any semantic changes to the listed RFCs. [STANDARDS-TRACK]"];
+  RFC4466 -> updated_by;
+  RFC4469 [label="RFC4469
+Internet Message Access Protocol (IMAP)
+CATENATE Extension
+2006", shape=ellipse, URL="RFC4469.html", target="_top", tooltip="The CATENATE extension to the Internet Message Access Protocol (IMAP) extends the APPEND command to allow clients to create messages on the IMAP server that may contain a combination of new data along with parts of (or entire) messages already on the server.  Using this extension, the client can catenate parts of an already existing message onto a new message without having to first download the data and then upload it back to the server. [STANDARDS-TRACK]"];
+  RFC4469 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3502 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3502;
+  RFC5257 [label="RFC5257
+Internet Message Access Protocol -
+ANNOTATE Extension
+2008", shape=ellipse, URL="RFC5257.html", target="_top", tooltip="The ANNOTATE extension to the Internet Message Access Protocol permits clients and servers to maintain meta data for messages, or individual message parts, stored in a mailbox on the server. For example, this can be used to attach comments and other useful information to a message. It is also possible to attach annotations to specific parts of a message, so that, for example, they could be marked as seen, or important, or a comment added. Note that this document was the product of a WG that had good consensus on how to approach the problem. Nevertheless, the WG felt it did not have enough information on implementation and deployment hurdles to meet all of the requirements of a Proposed Standard. The IETF solicits implementations and implementation reports in order to make further progress. Implementers should be aware that this specification may change in an incompatible manner when going to Proposed Standard status. However, any incompatible changes will result in a new capability name being used to prevent problems with any deployments of the experimental extension. This memo defines an Experimental Protocol for the Internet community."];
+  RFC5257 -> rev_cites;
+  RFC6785 [label="RFC6785
+Support for Internet Message Access
+Protocol (IMAP) Events in Sieve
+2012", shape=ellipse, URL="RFC6785.html", target="_top", tooltip="Sieve defines an email filtering language that can, in principle, plug into any point in the processing of an email message.  As defined in the base specification, it plugs into mail delivery.  This document defines how Sieve can plug into points in IMAP where messages are created or changed, adding the option of user-defined or installation-defined filtering (or, with Sieve extensions, features such as notifications).  Because this requires future Sieve extensions to specify their interactions with this one, this document updates the base Sieve specification, RFC 5228. [STANDARDS-TRACK]"];
+  RFC6785 -> rev_cites;
+  RFC7888 [label="RFC7888
+IMAP4 Non-synchronizing Literals
+2016", shape=ellipse, URL="RFC7888.html", target="_top", tooltip="The Internet Message Access Protocol (RFC 3501) contains the literal syntactic construct for communicating strings. When sending a literal from client to server, IMAP requires the client to wait for the server to send a command continuation request between sending the octet count and the string data. This document specifies an alternate form of literal that does not require this network round trip. This document specifies 2 IMAP extensions: LITERAL+ and LITERAL-. LITERAL+ allows the alternate form of literals in all IMAP commands. LITERAL- is the same as LITERAL+, but it disallows the alternate form of literals unless they are 4096 bytes or less. This document obsoletes RFC 2088."];
+  RFC7888 -> rev_cites;
+  RFC8508 [label="RFC8508
+IMAP REPLACE Extension
+2019", shape=ellipse, URL="RFC8508.html", target="_top", tooltip="This document defines an IMAP extension that can be used to replace an existing message in a message store with a new message.  Message replacement is a common operation for clients that automatically save drafts or notes as a user composes them."];
+  RFC8508 -> rev_cites;
+  RFC9738 [label="RFC9738
+IMAP MESSAGELIMIT Extension
+2025", shape=ellipse, URL="RFC9738.html", target="_top", tooltip="The MESSAGELIMIT extension of the Internet Message Access Protocol (RFCs 3501 and 9051) allows servers to announce a limit on the number of messages that can be processed in a single FETCH, SEARCH, STORE, COPY, or MOVE command (or their UID variants), or in a single APPEND or UID EXPUNGE command.  This helps servers to control resource usage when performing various IMAP operations.  This helps clients to know the message limit enforced by the corresponding IMAP server and avoid issuing commands that would exceed such limit."];
+  RFC9738 -> rev_cites;
+}

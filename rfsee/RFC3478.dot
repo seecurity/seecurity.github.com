@@ -1,0 +1,83 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3478 [label="RFC3478
+Graceful Restart Mechanism for Label
+Distribution Protocol
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a mechanism that helps to minimize the negative effects on MPLS traffic caused by Label Switching Router's (LSR's) control plane restart, specifically by the restart of its Label Distribution Protocol (LDP) component, on LSRs that are capable of preserving the MPLS forwarding component across the restart.  The mechanism described in this document is applicable to all LSRs, both those with the ability to preserve forwarding state during LDP restart and those without (although the latter needs to implement only a subset of the mechanism described in this document).  Supporting (a subset of) the mechanism described here by the LSRs that can not preserve their MPLS forwarding state across the restart would not reduce the negative impact on MPLS traffic caused by their control plane restart, but it would minimize the impact if their neighbor(s) are capable of preserving the forwarding state across the restart of their control plane and implement the mechanism described here.  The mechanism makes minimalistic assumptions on what has to be preserved across restart - the mechanism assumes that only the actual MPLS forwarding state has to be preserved; the mechanism does not require any of the LDP-related states to be preserved across the restart.  The procedures described in this document apply to downstream unsolicited label distribution.  Extending these procedures to downstream on demand label distribution is for further study. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3478;
+
+  obs [label="obsoletes", shape=box];
+  RFC3478 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3478 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3478;
+
+  cites [label="cites", shape=box];
+  RFC3478 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3036 [label="RFC3036
+LDP Specification
+2001", shape=ellipse, URL="RFC3036.html", target="_top", tooltip="A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  cites -> RFC3036;
+  RFC2026 [label="RFC2026
+The Internet Standards Process --
+Revision 3
+1996", shape=ellipse, URL="RFC2026.html", target="_top", tooltip="This memo documents the process used by the Internet community for the standardization of protocols and procedures.  It defines the stages in the standardization process, the requirements for moving a document between stages and the types of documents used during this process.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2026;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3478;
+  RFC3479 [label="RFC3479
+Fault Tolerance for the Label
+Distribution Protocol (LDP)
+2003", shape=ellipse, URL="RFC3479.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) systems will be used in core networks where system downtime must be kept to an absolute minimum.  Many MPLS Label Switching Routers (LSRs) may, therefore, exploit Fault Tolerant (FT) hardware or software to provide high availability of the core networks.  The details of how FT is achieved for the various components of an FT LSR, including Label Distribution Protocol (LDP), the switching hardware and TCP, are implementation specific.  This document identifies issues in the LDP specification in RFC 3036, LDP Specification, that make it difficult to implement an FT LSR using the current LDP protocols, and defines enhancements to the LDP specification to ease such FT LSR implementations.  The issues and extensions described here are equally applicable to RFC 3212, Constraint-Based LSP Setup Using LDP (CR-LDP). [STANDARDS-TRACK]"];
+  RFC3479 -> rev_cites;
+  RFC3612 [label="RFC3612
+Applicability Statement for Restart
+Mechanisms for the Label Distribution
+Protocol (LDP)
+2003", shape=ellipse, URL="RFC3612.html", target="_top", tooltip="This document provides guidance on when it is advisable to implement some form of Label Distribution Protocol (LDP) restart mechanism and which approach might be more suitable.  The issues and extensions described in this document are equally applicable to RFC 3212, Constraint-Based LSP Setup Using LDP."];
+  RFC3612 -> rev_cites;
+  RFC4928 [label="RFC4928
+Avoiding Equal Cost Multipath Treatment
+in MPLS Networks
+2007", shape=ellipse, URL="RFC4928.html", target="_top", tooltip="This document describes the Equal Cost Multipath (ECMP) behavior of currently deployed MPLS networks.  This document makes best practice recommendations for anyone defining an application to run over an MPLS network that wishes to avoid the reordering that can result from transmission of different packets from the same flow over multiple different equal cost paths.  These recommendations rely on inspection of the IP version number field in packets.  Despite the heuristic nature of the recommendations, they provide a relatively safe way to operate MPLS networks, even if future allocations of IP version numbers were made for some purpose.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4928 -> rev_cites;
+  RFC5561 [label="RFC5561
+LDP Capabilities
+2009", shape=ellipse, URL="RFC5561.html", target="_top", tooltip="A number of enhancements to the Label Distribution Protocol (LDP) have been proposed.  Some have been implemented, and some are advancing toward standardization.  It is likely that additional enhancements will be proposed in the future.  This document defines a mechanism for advertising LDP enhancements at session initialization time, as well as a mechanism to enable and disable enhancements after LDP session establishment. [STANDARDS-TRACK]"];
+  RFC5561 -> rev_cites;
+  RFC5919 [label="RFC5919
+Signaling LDP Label Advertisement
+Completion
+2010", shape=ellipse, URL="RFC5919.html", target="_top", tooltip="There are situations following Label Distribution Protocol (LDP) session establishment where it would be useful for an LDP speaker to know when its peer has advertised all of its labels.  The LDP specification provides no mechanism for an LDP speaker to notify a peer when it has completed its initial label advertisements to that peer.  This document specifies means for an LDP speaker to signal completion of its initial label advertisements following session establishment. [STANDARDS-TRACK]"];
+  RFC5919 -> rev_cites;
+  RFC6348 [label="RFC6348
+Requirements for Point-to-Multipoint
+Extensions to the Label Distribution
+Protocol
+2011", shape=ellipse, URL="RFC6348.html", target="_top", tooltip="This document lists a set of functional requirements that served as input to the design of Label Distribution Protocol (LDP) extensions for setting up point-to-multipoint (P2MP) Label Switched Paths (LSP), in order to deliver point-to-multipoint applications over a Multiprotocol Label Switching (MPLS) infrastructure. This work was overtaken by the protocol solution developed by the MPLS working group, but that solution did not closely follow the requirements documented here. This document is published as a historic record of the ideas and requirements that shaped the protocol work. This document defines a Historic Document for the Internet community."];
+  RFC6348 -> rev_cites;
+  RFC6373 [label="RFC6373
+MPLS Transport Profile (MPLS-TP) Control
+Plane Framework
+2011", shape=ellipse, URL="RFC6373.html", target="_top", tooltip="The MPLS Transport Profile (MPLS-TP) supports static provisioning of transport paths via a Network Management System (NMS) and dynamic provisioning of transport paths via a control plane. This document provides the framework for MPLS-TP dynamic provisioning and covers control-plane addressing, routing, path computation, signaling, traffic engineering, and path recovery. MPLS-TP uses GMPLS as the control plane for MPLS-TP Label Switched Paths (LSPs). MPLS-TP also uses the pseudowire (PW) control plane for pseudowires. Management-plane functions are out of scope of this document. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network as defined by the ITU-T. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6373 -> rev_cites;
+  RFC9070 [label="RFC9070
+YANG Data Model for MPLS LDP
+2022", shape=ellipse, URL="RFC9070.html", target="_top", tooltip="This document describes a YANG data model for the Multiprotocol Label Switching (MPLS) Label Distribution Protocol (LDP). The model also serves as the base model to define the Multipoint LDP (mLDP) model. The YANG modules in this document conform to the Network Management Datastore Architecture (NMDA)."];
+  RFC9070 -> rev_cites;
+}

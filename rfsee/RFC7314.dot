@@ -1,0 +1,52 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7314 [label="RFC7314
+Extension Mechanisms for DNS (EDNS)
+EXPIRE Option
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies a method for secondary DNS servers to honour the SOA EXPIRE field as if they were always transferring from the primary, even when using other secondaries to perform indirect transfers and refresh queries."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7314;
+
+  obs [label="obsoletes", shape=box];
+  RFC7314 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7314 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7314;
+
+  cites [label="cites", shape=box];
+  RFC7314 -> cites;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC6891 [label="RFC6891
+Extension Mechanisms for DNS (EDNS(0))
+2013", shape=ellipse, URL="RFC6891.html", target="_top", tooltip="The Domain Name System's wire protocol includes a number of fixed fields whose range has been or soon will be exhausted and does not allow requestors to advertise their capabilities to responders. This document describes backward-compatible mechanisms for allowing the protocol to grow. This document updates the Extension Mechanisms for DNS (EDNS(0)) specification (and obsoletes RFC 2671) based on feedback from deployment experience in several implementations. It also obsoletes RFC 2673 (Binary Labels in the Domain Name System) and adds considerations on the use of extended labels in the DNS."];
+  cites -> RFC6891;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7314;
+  RFC8906 [label="RFC8906
+A Common Operational Problem in DNS
+Servers: Failure to Communicate
+2020", shape=ellipse, URL="RFC8906.html", target="_top", tooltip="The DNS is a query/response protocol. Failing to respond to queries, or responding incorrectly, causes both immediate operational problems and long-term problems with protocol development. This document identifies a number of common kinds of queries to which some servers either fail to respond or respond incorrectly. This document also suggests procedures for zone operators to apply to identify and remediate the problem. The document does not look at the DNS data itself, just the structure of the responses."];
+  RFC8906 -> rev_cites;
+}

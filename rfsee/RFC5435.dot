@@ -1,0 +1,71 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5435 [label="RFC5435
+Sieve Email Filtering: Extension for
+Notifications
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="Users go to great lengths to be notified as quickly as possible that they have received new mail.  Most of these methods involve polling to check for new messages periodically.  A push method handled by the final delivery agent gives users quicker notifications and saves server resources.  This document does not specify the notification method, but it is expected that using existing instant messaging infrastructure such as Extensible Messaging and Presence Protocol (XMPP), or Global System for Mobile Communications (GSM) Short Message Service (SMS) messages will be popular.  This document describes an extension to the Sieve mail filtering language that allows users to give specific rules for how and when notifications should be sent. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5435;
+
+  obs [label="obsoletes", shape=box];
+  RFC5435 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5435 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5435;
+  RFC8580 [label="RFC8580
+Sieve Extension: File Carbon Copy (FCC)
+2019", shape=ellipse, URL="RFC8580.html", target="_top", tooltip="The Sieve email filtering language provides a number of action commands, some of which can generate additional messages on behalf of the user. This document defines an extension to such commands to allow a copy of any generated message to be filed into a target mailbox. This document updates RFCs 5230 and 5435 by adding a new tagged argument to the Vacation and Notify actions, respectively."];
+  RFC8580 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5435 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5435;
+  RFC6132 [label="RFC6132
+Sieve Notification Using Presence
+Information
+2011", shape=ellipse, URL="RFC6132.html", target="_top", tooltip="This is a further extension to the Sieve mail filtering language Notification extension, defining presence information that may be checked through the notify_method_capability feature. [STANDARDS-TRACK]"];
+  RFC6132 -> rev_cites;
+  RFC6133 [label="RFC6133
+Sieve Email Filtering: Use of Presence
+Information with Auto-Responder
+Functionality
+2011", shape=ellipse, URL="RFC6133.html", target="_top", tooltip="This document describes how the Sieve email filtering language, along with some extensions, can be used to create automatic replies to incoming electronic mail messages based on the address book and presence information of the recipient.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6133 -> rev_cites;
+  RFC6134 [label="RFC6134
+Sieve Extension: Externally Stored Lists
+2011", shape=ellipse, URL="RFC6134.html", target="_top", tooltip="The Sieve email filtering language can be used to implement email whitelisting, blacklisting, personal distribution lists, and other sorts of list matching. Currently, this requires that all members of such lists be hard-coded in the script itself. Whenever a member of a list is added or deleted, the script needs to be updated and possibly uploaded to a mail server. This document defines a Sieve extension for accessing externally stored lists -- lists whose members are stored externally to the script, such as using the Lightweight Directory Access Protocol (LDAP), the Application Configuration Access Protocol (ACAP), vCard Extensions to WebDAV (CardDAV), or relational databases. [STANDARDS-TRACK]"];
+  RFC6134 -> rev_cites;
+  RFC6468 [label="RFC6468
+Sieve Notification Mechanism: SIP
+MESSAGE
+2012", shape=ellipse, URL="RFC6468.html", target="_top", tooltip="This document describes a profile of the Sieve extension for notifications, to allow notifications to be sent over SIP MESSAGE. [STANDARDS-TRACK]"];
+  RFC6468 -> rev_cites;
+  RFC6785 [label="RFC6785
+Support for Internet Message Access
+Protocol (IMAP) Events in Sieve
+2012", shape=ellipse, URL="RFC6785.html", target="_top", tooltip="Sieve defines an email filtering language that can, in principle, plug into any point in the processing of an email message.  As defined in the base specification, it plugs into mail delivery.  This document defines how Sieve can plug into points in IMAP where messages are created or changed, adding the option of user-defined or installation-defined filtering (or, with Sieve extensions, features such as notifications).  Because this requires future Sieve extensions to specify their interactions with this one, this document updates the base Sieve specification, RFC 5228. [STANDARDS-TRACK]"];
+  RFC6785 -> rev_cites;
+  RFC8580 [label="RFC8580
+Sieve Extension: File Carbon Copy (FCC)
+2019", shape=ellipse, URL="RFC8580.html", target="_top", tooltip="The Sieve email filtering language provides a number of action commands, some of which can generate additional messages on behalf of the user. This document defines an extension to such commands to allow a copy of any generated message to be filed into a target mailbox. This document updates RFCs 5230 and 5435 by adding a new tagged argument to the Vacation and Notify actions, respectively."];
+  RFC8580 -> rev_cites;
+  RFC9122 [label="RFC9122
+IANA Registry for Sieve Actions
+2023", shape=ellipse, URL="RFC9122.html", target="_top", tooltip="The Sieve Email Filtering Language (RFC 5228) is a popular email filtering language used upon final mail delivery.  This document creates a registry for Sieve actions to help developers and Sieve extension writers track interactions between different extensions."];
+  RFC9122 -> rev_cites;
+  RFC9661 [label="RFC9661
+The JSON Meta Application Protocol
+(JMAP) for Sieve Scripts
+2024", shape=ellipse, URL="RFC9661.html", target="_top", tooltip="This document specifies a data model for managing Sieve scripts on a server using the JSON Meta Application Protocol (JMAP).  Clients can use this protocol to efficiently search, access, organize, and validate Sieve scripts."];
+  RFC9661 -> rev_cites;
+}

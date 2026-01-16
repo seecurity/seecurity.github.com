@@ -1,0 +1,51 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6769 [label="RFC6769
+Simple Virtual Aggregation (S-VA)
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="All BGP routers in the Default-Free Zone (DFZ) are required to carry all routes in the Default-Free Routing Table (DFRT). This document describes a technique, Simple Virtual Aggregation (S-VA), that allows some BGP routers not to install all of those routes into the Forwarding Information Base (FIB). Some routers in an Autonomous System (AS) announce an aggregate (the VA prefix) in addition to the routes they already announce. This enables other routers not to install the routes covered by the VA prefix into the FIB as long as those routes have the same next-hop as the VA prefix. The VA prefixes that are announced within an AS are not announced to any other AS. The described functionality is of very low operational complexity, as it proposes a confined BGP speaker solution without any dependency on network-wide configuration or requirement for any form of intra-domain tunneling. This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6769;
+
+  obs [label="obsoletes", shape=box];
+  RFC6769 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6769 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6769;
+
+  cites [label="cites", shape=box];
+  RFC6769 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC1997 [label="RFC1997
+BGP Communities Attribute
+1996", shape=ellipse, URL="RFC1997.html", target="_top", tooltip="This document describes an extension to BGP which may be used to pass additional information to both neighboring and remote BGP peers. [STANDARDS-TRACK]"];
+  cites -> RFC1997;
+  RFC5082 [label="RFC5082
+The Generalized TTL Security Mechanism
+(GTSM)
+2007", shape=ellipse, URL="RFC5082.html", target="_top", tooltip="The use of a packet's Time to Live (TTL) (IPv4) or Hop Limit (IPv6) to verify whether the packet was originated by an adjacent node on a connected link has been used in many recent protocols.  This document generalizes this technique.  This document obsoletes Experimental RFC 3682. [STANDARDS-TRACK]"];
+  cites -> RFC5082;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6769;
+  RFC7938 [label="RFC7938
+Use of BGP for Routing in Large-Scale
+Data Centers
+2016", shape=ellipse, URL="RFC7938.html", target="_top", tooltip="Some network operators build and operate data centers that support over one hundred thousand servers.  In this document, such data centers are referred to as large-scale to differentiate them from smaller infrastructures.  Environments of this scale have a unique set of network requirements with an emphasis on operational simplicity and network stability.  This document summarizes operational experience in designing and operating large-scale data centers using BGP as the only routing protocol.  The intent is to report on a proven and stable routing design that could be leveraged by others in the industry."];
+  RFC7938 -> rev_cites;
+}

@@ -1,0 +1,81 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6978 [label="RFC6978
+A TCP Authentication Option Extension
+for NAT Traversal
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes an extension to the TCP Authentication Option (TCP-AO) to support its use over connections that pass through Network Address Translators and/or Network Address and Port Translators (NATs/NAPTs).  This extension changes the data used to compute traffic keys, but it does not alter TCP-AO's packet processing or key generation algorithms."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6978;
+
+  obs [label="obsoletes", shape=box];
+  RFC6978 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6978 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6978;
+
+  cites [label="cites", shape=box];
+  RFC6978 -> cites;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  cites -> RFC5925;
+  RFC2663 [label="RFC2663
+IP Network Address Translator (NAT)
+Terminology and Considerations
+1999", shape=ellipse, URL="RFC2663.html", target="_top", tooltip="This document attempts to describe the operation of NAT devices and the associated considerations in general, and to define the terminology used to identify various flavors of NAT.  This memo provides information for the Internet community."];
+  cites -> RFC2663;
+  RFC6824 [label="RFC6824
+TCP Extensions for Multipath Operation
+with Multiple Addresses
+2013", shape=ellipse, URL="RFC6824.html", target="_top", tooltip="TCP/IP communication is currently restricted to a single path per connection, yet multiple paths often exist between peers. The simultaneous use of these multiple paths for a TCP/IP session would improve resource usage within the network and, thus, improve user experience through higher throughput and improved resilience to network failure. Multipath TCP provides the ability to simultaneously use multiple paths between peers. This document presents a set of extensions to traditional TCP to support multipath operation. The protocol offers the same type of service to applications as TCP (i.e., reliable bytestream), and it provides the components necessary to establish and use multiple TCP flows across potentially disjoint paths. This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6824;
+  RFC5926 [label="RFC5926
+Cryptographic Algorithms for the TCP
+Authentication Option (TCP-AO)
+2010", shape=ellipse, URL="RFC5926.html", target="_top", tooltip="The TCP Authentication Option (TCP-AO) relies on security algorithms to provide authentication between two end-points.  There are many such algorithms available, and two TCP-AO systems cannot interoperate unless they are using the same algorithms.  This document specifies the algorithms and attributes that can be used in TCP-AO's current manual keying mechanism and provides the interface for future message authentication codes (MACs). [STANDARDS-TRACK]"];
+  cites -> RFC5926;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5389 [label="RFC5389
+Session Traversal Utilities for NAT
+(STUN)
+2008", shape=ellipse, URL="RFC5389.html", target="_top", tooltip="Session Traversal Utilities for NAT (STUN) is a protocol that serves as a tool for other protocols in dealing with Network Address Translator (NAT) traversal. It can be used by an endpoint to determine the IP address and port allocated to it by a NAT. It can also be used to check connectivity between two endpoints, and as a keep-alive protocol to maintain NAT bindings. STUN works with many existing NATs, and does not require any special behavior from them. STUN is not a NAT traversal solution by itself. Rather, it is a tool to be used in the context of a NAT traversal solution. This is an important change from the previous version of this specification (RFC 3489), which presented STUN as a complete solution. This document obsoletes RFC 3489. [STANDARDS-TRACK]"];
+  cites -> RFC5389;
+  RFC6056 [label="RFC6056
+Recommendations for Transport-Protocol
+Port Randomization
+2011", shape=ellipse, URL="RFC6056.html", target="_top", tooltip="During the last few years, awareness has been raised about a number of blind attacks that can be performed against the Transmission Control Protocol (TCP) and similar protocols.  The consequences of these attacks range from throughput reduction to broken connections or data corruption.  These attacks rely on the attacker's ability to guess or know the five-tuple (Protocol, Source Address, Destination Address, Source Port, Destination Port) that identifies the transport protocol instance to be attacked.  This document describes a number of simple and efficient methods for the selection of the client port number, such that the possibility of an attacker guessing the exact value is reduced.  While this is not a replacement for cryptographic methods for protecting the transport-protocol instance, the aforementioned port selection algorithms provide improved security with very little effort and without any key management overhead.  The algorithms described in this document are local policies that may be incrementally deployed and that do not violate the specifications of any of the transport protocols that may benefit from them, such as TCP, UDP, UDP-lite, Stream Control Transmission Protocol (SCTP), Datagram Congestion Control Protocol (DCCP), and RTP (provided that the RTP application explicitly signals the RTP and RTCP port numbers).  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6056;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6978;
+  RFC7974 [label="RFC7974
+An Experimental TCP Option for Host
+Identification
+2016", shape=ellipse, URL="RFC7974.html", target="_top", tooltip="Recent RFCs have discussed issues with host identification in IP address-sharing systems, such as address/prefix-sharing devices and application-layer proxies.  Potential solutions for revealing a host identifier in shared address deployments have also been discussed.  This memo describes the design, deployment, and privacy considerations for one such solution in operational use on the Internet today that uses a TCP option to transmit a host identifier."];
+  RFC7974 -> rev_cites;
+  RFC8803 [label="RFC8803
+0-RTT TCP Convert Protocol
+2020", shape=ellipse, URL="RFC8803.html", target="_top", tooltip="This document specifies an application proxy, called Transport Converter, to assist the deployment of TCP extensions such as Multipath TCP. A Transport Converter may provide conversion service for one or more TCP extensions. The conversion service is provided by means of the 0-RTT TCP Convert Protocol (Convert). This protocol provides 0-RTT (Zero Round-Trip Time) conversion service since no extra delay is induced by the protocol compared to connections that are not proxied. Also, the Convert Protocol does not require any encapsulation (no tunnels whatsoever). This specification assumes an explicit model, where the Transport Converter is explicitly configured on hosts. As a sample applicability use case, this document specifies how the Convert Protocol applies for Multipath TCP."];
+  RFC8803 -> rev_cites;
+  RFC9235 [label="RFC9235
+TCP Authentication Option (TCP-AO) Test
+Vectors
+2022", shape=ellipse, URL="RFC9235.html", target="_top", tooltip="This document provides test vectors to validate implementations of the two mandatory authentication algorithms specified for the TCP Authentication Option over both IPv4 and IPv6.  This includes validation of the key derivation function (KDF) based on a set of test connection parameters as well as validation of the message authentication code (MAC).  Vectors are provided for both currently required pairs of KDF and MAC algorithms: KDF_HMAC_SHA1 and HMAC- SHA-1-96, and KDF_AES_128_CMAC and AES-128-CMAC-96.  The vectors also validate both whole TCP segments as well as segments whose options are excluded for middlebox traversal."];
+  RFC9235 -> rev_cites;
+  RFC9868 [label="RFC9868
+Transport Options for UDP
+2025", shape=ellipse, URL="RFC9868.html", target="_top", tooltip="Transport protocols are extended through the use of transport header options.  This document updates RFC 768 (UDP) by indicating the location, syntax, and semantics for UDP transport layer options within the surplus area after the end of the UDP user data but before the end of the IP datagram."];
+  RFC9868 -> rev_cites;
+}

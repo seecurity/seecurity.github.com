@@ -1,0 +1,50 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4697 [label="RFC4697
+Observed DNS Resolution Misbehavior
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo describes DNS iterative resolver behavior that results in a significant query volume sent to the root and top-level domain (TLD) name servers.  We offer implementation advice to iterative resolver developers to alleviate these unnecessary queries.  The recommendations made in this document are a direct byproduct of observation and analysis of abnormal query traffic patterns seen at two of the thirteen root name servers and all thirteen com/net TLD name servers.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4697;
+
+  obs [label="obsoletes", shape=box];
+  RFC4697 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4697 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4697;
+  RFC9520 [label="RFC9520
+Negative Caching of DNS Resolution
+Failures
+2023", shape=ellipse, URL="RFC9520.html", target="_top", tooltip="In the DNS, resolvers employ caching to reduce both latency for end users and load on authoritative name servers. The process of resolution may result in one of three types of responses: (1) a response containing the requested data, (2) a response indicating the requested data does not exist, or (3) a non-response due to a resolution failure in which the resolver does not receive any useful information regarding the data's existence. This document concerns itself only with the third type. RFC 2308 specifies requirements for DNS negative caching. There, caching of TYPE 2 responses is mandatory and caching of TYPE 3 responses is optional. This document updates RFC 2308 to require negative caching for DNS resolution failures. RFC 4035 allows DNSSEC validation failure caching. This document updates RFC 4035 to require caching for DNSSEC validation failures. RFC 4697 prohibits aggressive requerying for NS records at a failed zone's parent zone. This document updates RFC 4697 to expand this requirement to all query types and to all ancestor zones."];
+  RFC9520 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4697 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4697;
+  RFC7719 [label="RFC7719
+DNS Terminology
+2015", shape=ellipse, URL="RFC7719.html", target="_top", tooltip="The DNS is defined in literally dozens of different RFCs.  The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined.  This document gives current definitions for many of the terms used in the DNS in a single document."];
+  RFC7719 -> rev_cites;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  RFC8499 -> rev_cites;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+  RFC9520 [label="RFC9520
+Negative Caching of DNS Resolution
+Failures
+2023", shape=ellipse, URL="RFC9520.html", target="_top", tooltip="In the DNS, resolvers employ caching to reduce both latency for end users and load on authoritative name servers. The process of resolution may result in one of three types of responses: (1) a response containing the requested data, (2) a response indicating the requested data does not exist, or (3) a non-response due to a resolution failure in which the resolver does not receive any useful information regarding the data's existence. This document concerns itself only with the third type. RFC 2308 specifies requirements for DNS negative caching. There, caching of TYPE 2 responses is mandatory and caching of TYPE 3 responses is optional. This document updates RFC 2308 to require negative caching for DNS resolution failures. RFC 4035 allows DNSSEC validation failure caching. This document updates RFC 4035 to require caching for DNSSEC validation failures. RFC 4697 prohibits aggressive requerying for NS records at a failed zone's parent zone. This document updates RFC 4697 to expand this requirement to all query types and to all ancestor zones."];
+  RFC9520 -> rev_cites;
+}

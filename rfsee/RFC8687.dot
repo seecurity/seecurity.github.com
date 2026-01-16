@@ -1,0 +1,90 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8687 [label="RFC8687
+OSPF Routing with Cross-Address Family
+Traffic Engineering Tunnels
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="When using Traffic Engineering (TE) in a dual-stack IPv4/IPv6 network, the Multiprotocol Label Switching (MPLS) TE Label Switched Path (LSP) infrastructure may be duplicated, even if the destination IPv4 and IPv6 addresses belong to the same remote router. In order to achieve an integrated MPLS TE LSP infrastructure, OSPF routes must be computed over MPLS TE tunnels created using information propagated in another OSPF instance. This issue is solved by advertising cross-address family (X-AF) OSPF TE information. This document describes an update to RFC 5786 that allows for the easy identification of a router's local X-AF IP addresses."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8687;
+
+  obs [label="obsoletes", shape=box];
+  RFC8687 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8687 -> updates;
+  RFC5786 [label="RFC5786
+Advertising a Router's Local Addresses
+in OSPF Traffic Engineering (TE)
+Extensions
+2010", shape=ellipse, URL="RFC5786.html", target="_top", tooltip="OSPF Traffic Engineering (TE) extensions are used to advertise TE Link State Advertisements (LSAs) containing information about TE-enabled links. The only addresses belonging to a router that are advertised in TE LSAs are the local addresses corresponding to TE-enabled links, and the local address corresponding to the Router ID. In order to allow other routers in a network to compute Multiprotocol Label Switching (MPLS) Traffic Engineered Label Switched Paths (TE LSPs) to a given router's local addresses, those addresses must also be advertised by OSPF TE. This document describes procedures that enhance OSPF TE to advertise a router's local addresses. [STANDARDS-TRACK]"];
+  updates -> RFC5786;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8687;
+
+  cites [label="cites", shape=box];
+  RFC8687 -> cites;
+  RFC3630 [label="RFC3630
+Traffic Engineering (TE) Extensions to
+OSPF Version 2
+2003", shape=ellipse, URL="RFC3630.html", target="_top", tooltip="This document describes extensions to the OSPF protocol version 2 to support intra-area Traffic Engineering (TE), using Opaque Link State Advertisements."];
+  cites -> RFC3630;
+  RFC5329 [label="RFC5329
+Traffic Engineering Extensions to OSPF
+Version 3
+2008", shape=ellipse, URL="RFC5329.html", target="_top", tooltip="This document describes extensions to OSPFv3 to support intra-area Traffic Engineering (TE).  This document extends OSPFv2 TE to handle IPv6 networks.  A new TLV and several new sub-TLVs are defined to support IPv6 networks. [STANDARDS-TRACK]"];
+  cites -> RFC5329;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC3906 [label="RFC3906
+Calculating Interior Gateway Protocol
+(IGP) Routes Over Traffic Engineering
+Tunnels
+2004", shape=ellipse, URL="RFC3906.html", target="_top", tooltip="This document describes how conventional hop-by-hop link-state routing protocols interact with new Traffic Engineering capabilities to create Interior Gateway Protocol (IGP) shortcuts.  In particular, this document describes how Dijkstra's Shortest Path First (SPF) algorithm can be adapted so that link-state IGPs will calculate IP routes to forward traffic over tunnels that are set up by Traffic Engineering.  This memo provides information for the Internet community."];
+  cites -> RFC3906;
+  RFC5786 [label="RFC5786
+Advertising a Router's Local Addresses
+in OSPF Traffic Engineering (TE)
+Extensions
+2010", shape=ellipse, URL="RFC5786.html", target="_top", tooltip="OSPF Traffic Engineering (TE) extensions are used to advertise TE Link State Advertisements (LSAs) containing information about TE-enabled links. The only addresses belonging to a router that are advertised in TE LSAs are the local addresses corresponding to TE-enabled links, and the local address corresponding to the Router ID. In order to allow other routers in a network to compute Multiprotocol Label Switching (MPLS) Traffic Engineered Label Switched Paths (TE LSPs) to a given router's local addresses, those addresses must also be advertised by OSPF TE. This document describes procedures that enhance OSPF TE to advertise a router's local addresses. [STANDARDS-TRACK]"];
+  cites -> RFC5786;
+  RFC4461 [label="RFC4461
+Signaling Requirements for Point-to-
+Multipoint Traffic-Engineered MPLS Label
+Switched Paths (LSPs)
+2006", shape=ellipse, URL="RFC4461.html", target="_top", tooltip="This document presents a set of requirements for the establishment and maintenance of Point-to-Multipoint (P2MP) Traffic-Engineered (TE) Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). There is no intent to specify solution-specific details or application-specific requirements in this document. The requirements presented in this document not only apply to packet-switched networks under the control of MPLS protocols, but also encompass the requirements of Layer Two Switching (L2SC), Time Division Multiplexing (TDM), lambda, and port switching networks managed by Generalized MPLS (GMPLS) protocols. Protocol solutions developed to meet the requirements set out in this document must attempt to be equally applicable to MPLS and GMPLS. This memo provides information for the Internet community."];
+  cites -> RFC4461;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC5838 [label="RFC5838
+Support of Address Families in OSPFv3
+2010", shape=ellipse, URL="RFC5838.html", target="_top", tooltip="This document describes a mechanism for supporting multiple address families (AFs) in OSPFv3 using multiple instances.  It maps an AF to an OSPFv3 instance using the Instance ID field in the OSPFv3 packet header.  This approach is fairly simple and minimizes extensions to OSPFv3 for supporting multiple AFs. [STANDARDS-TRACK]"];
+  cites -> RFC5838;
+  RFC6827 [label="RFC6827
+Automatically Switched Optical Network
+(ASON) Routing for OSPFv2 Protocols
+2013", shape=ellipse, URL="RFC6827.html", target="_top", tooltip="The ITU-T has defined an architecture and requirements for operating an Automatically Switched Optical Network (ASON). The Generalized Multiprotocol Label Switching (GMPLS) protocol suite is designed to provide a control plane for a range of network technologies. These include optical networks such as time division multiplexing (TDM) networks including the Synchronous Optical Network/Synchronous Digital Hierarchy (SONET/SDH), Optical Transport Networks (OTNs), and lambda switching optical networks. The requirements for GMPLS routing to satisfy the requirements of ASON routing and an evaluation of existing GMPLS routing protocols are provided in other documents. This document defines extensions to the OSPFv2 Link State Routing Protocol to meet the requirements for routing in an ASON. Note that this work is scoped to the requirements and evaluation expressed in RFC 4258 and RFC 4652 and the ITU-T Recommendations that were current when those documents were written. Future extensions or revisions of this work may be necessary if the ITU-T Recommendations are revised or if new requirements are introduced into a revision of RFC 4258. This document obsoletes RFC 5787 and updates RFC 5786. [STANDARDS-TRACK]"];
+  cites -> RFC6827;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8687;
+}

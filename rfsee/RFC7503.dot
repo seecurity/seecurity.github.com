@@ -1,0 +1,36 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7503 [label="RFC7503
+OSPFv3 Autoconfiguration
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="OSPFv3 is a candidate for deployments in environments where autoconfiguration is a requirement.  One such environment is the IPv6 home network where users expect to simply plug in a router and have it automatically use OSPFv3 for intra-domain routing.  This document describes the necessary mechanisms for OSPFv3 to be self-configuring.  This document updates RFC 5340 by relaxing the HelloInterval/ RouterDeadInterval checking during OSPFv3 adjacency formation and adding hysteresis to the update of self-originated Link State Advertisements (LSAs)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7503;
+
+  obs [label="obsoletes", shape=box];
+  RFC7503 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7503 -> updates;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  updates -> RFC5340;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7503;
+
+  cites [label="cites", shape=box];
+  RFC7503 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7503;
+  RFC8196 [label="RFC8196
+IS-IS Autoconfiguration
+2017", shape=ellipse, URL="RFC8196.html", target="_top", tooltip="This document specifies IS-IS autoconfiguration mechanisms.  The key components are IS-IS System ID self-generation, duplication detection, and duplication resolution.  These mechanisms provide limited IS-IS functions and are therefore suitable for networks where plug-and-play configuration is expected."];
+  RFC8196 -> rev_cites;
+}

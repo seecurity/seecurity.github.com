@@ -1,0 +1,155 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5033 [label="RFC5033
+Specifying New Congestion Control
+Algorithms
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IETF's standard congestion control schemes have been widely shown to be inadequate for various environments (e.g., high-speed networks).  Recent research has yielded many alternate congestion control schemes that significantly differ from the IETF's congestion control principles.  Using these new congestion control schemes in the global Internet has possible ramifications to both the traffic using the new congestion control and to traffic using the currently standardized congestion control.  Therefore, the IETF must proceed with caution when dealing with alternate congestion control proposals.  The goal of this document is to provide guidance for considering alternate congestion control algorithms within the IETF.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5033;
+  RFC9743 [label="RFC9743
+Specifying New Congestion Control
+Algorithms
+2025", shape=ellipse, URL="RFC9743.html", target="_top", tooltip="RFC 5033 discusses the principles and guidelines for standardizing new congestion control algorithms.  This document obsoletes RFC 5033 to reflect changes in the congestion control landscape by providing a framework for the development and assessment of congestion control mechanisms, promoting stability across diverse network paths.  This document seeks to ensure that proposed congestion control algorithms operate efficiently and without harm when used in the global Internet.  It emphasizes the need for comprehensive testing and validation to prevent adverse interactions with existing flows."];
+  RFC9743 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC5033 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5033 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5033;
+
+  cites [label="cites", shape=box];
+  RFC5033 -> cites;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+  RFC3649 [label="RFC3649
+HighSpeed TCP for Large Congestion
+Windows
+2003", shape=ellipse, URL="RFC3649.html", target="_top", tooltip="The proposals in this document are experimental.  While they may be deployed in the current Internet, they do not represent a consensus that this is the best method for high-speed congestion control.  In particular, we note that alternative experimental proposals are likely to be forthcoming, and it is not well understood how the proposals in this document will interact with such alternative proposals.  This document proposes HighSpeed TCP, a modification to TCP's congestion control mechanism for use with TCP connections with large congestion windows.  The congestion control mechanisms of the current Standard TCP constrains the congestion windows that can be achieved by TCP in realistic environments.  For example, for a Standard TCP connection with 1500-byte packets and a 100 ms round-trip time, achieving a steady-state throughput of 10 Gbps would require an average congestion window of 83,333 segments, and a packet drop rate of at most one congestion event every 5,000,000,000 packets (or equivalently, at most one congestion event every 1 2/3 hours).  This is widely acknowledged as an unrealistic constraint.  To address his limitation of TCP, this document proposes HighSpeed TCP, and solicits experimentation and feedback from the wider community."];
+  cites -> RFC3649;
+  RFC4782 [label="RFC4782
+Quick-Start for TCP and IP
+2007", shape=ellipse, URL="RFC4782.html", target="_top", tooltip="This document specifies an optional Quick-Start mechanism for transport protocols, in cooperation with routers, to determine an allowed sending rate at the start and, at times, in the middle of a data transfer (e.g., after an idle period). While Quick-Start is designed to be used by a range of transport protocols, in this document we only specify its use with TCP. Quick-Start is designed to allow connections to use higher sending rates when there is significant unused bandwidth along the path, and the sender and all of the routers along the path approve the Quick-Start Request. This document describes many paths where Quick-Start Requests would not be approved. These paths include all paths containing routers, IP tunnels, MPLS paths, and the like that do not support Quick- Start. These paths also include paths with routers or middleboxes that drop packets containing IP options. Quick-Start Requests could be difficult to approve over paths that include multi-access layer- two networks. This document also describes environments where the Quick-Start process could fail with false positives, with the sender incorrectly assuming that the Quick-Start Request had been approved by all of the routers along the path. As a result of these concerns, and as a result of the difficulties and seeming absence of motivation for routers, such as core routers to deploy Quick-Start, Quick-Start is being proposed as a mechanism that could be of use in controlled environments, and not as a mechanism that would be intended or appropriate for ubiquitous deployment in the global Internet. This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4782;
+  RFC2960 [label="RFC2960
+Stream Control Transmission Protocol
+2000", shape=ellipse, URL="RFC2960.html", target="_top", tooltip="This document describes the Stream Control Transmission Protocol (SCTP). [STANDARDS-TRACK]"];
+  cites -> RFC2960;
+  RFC4340 [label="RFC4340
+Datagram Congestion Control Protocol
+(DCCP)
+2006", shape=ellipse, URL="RFC4340.html", target="_top", tooltip="The Datagram Congestion Control Protocol (DCCP) is a transport protocol that provides bidirectional unicast connections of congestion-controlled unreliable datagrams.  DCCP is suitable for applications that transfer fairly large amounts of data and that can benefit from control over the tradeoff between timeliness and reliability. [STANDARDS-TRACK]"];
+  cites -> RFC4340;
+  RFC2581 [label="RFC2581
+TCP Congestion Control
+1999", shape=ellipse, URL="RFC2581.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods. [STANDARDS-TRACK]"];
+  cites -> RFC2581;
+  RFC3819 [label="RFC3819
+Advice for Internet Subnetwork Designers
+2004", shape=ellipse, URL="RFC3819.html", target="_top", tooltip="This document provides advice to the designers of digital communication equipment, link-layer protocols, and packet-switched local networks (collectively referred to as subnetworks), who wish to support the Internet protocols but may be unfamiliar with the Internet architecture and the implications of their design choices on the performance and efficiency of the Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3819;
+  RFC2488 [label="RFC2488
+Enhancing TCP Over Satellite Channels
+using Standard Mechanisms
+1999", shape=ellipse, URL="RFC2488.html", target="_top", tooltip="The Transmission Control Protocol (TCP) provides reliable delivery of data across any network path, including network paths containing satellite channels.  While TCP works over satellite channels there are several IETF standardized mechanisms that enable TCP to more effectively utilize the available capacity of the network path.  This document outlines some of these TCP mitigations.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2488;
+  RFC3155 [label="RFC3155
+End-to-end Performance Implications of
+Links with Errors
+2001", shape=ellipse, URL="RFC3155.html", target="_top", tooltip="This document discusses the specific TCP mechanisms that are problematic in environments with high uncorrected error rates, and discusses what can be done to mitigate the problems without introducing intermediate devices into the connection.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3155;
+  RFC4653 [label="RFC4653
+Improving the Robustness of TCP to Non-
+Congestion Events
+2006", shape=ellipse, URL="RFC4653.html", target="_top", tooltip="This document specifies Non-Congestion Robustness (NCR) for TCP.  In the absence of explicit congestion notification from the network, TCP uses loss as an indication of congestion.  One of the ways TCP detects loss is using the arrival of three duplicate acknowledgments.  However, this heuristic is not always correct, notably in the case when network paths reorder segments (for whatever reason), resulting in degraded performance.  TCP-NCR is designed to mitigate this degraded performance by increasing the number of duplicate acknowledgments required to trigger loss recovery, based on the current state of the connection, in an effort to better disambiguate true segment loss from segment reordering.  This document specifies the changes to TCP, as well as the costs and benefits of these modifications.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4653;
+  RFC3150 [label="RFC3150
+End-to-end Performance Implications of
+Slow Links
+2001", shape=ellipse, URL="RFC3150.html", target="_top", tooltip="This document makes performance-related recommendations for users of network paths that traverse very low bit-rate links.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3150;
+  RFC3714 [label="RFC3714
+IAB Concerns Regarding Congestion
+Control for Voice Traffic in the
+Internet
+2004", shape=ellipse, URL="RFC3714.html", target="_top", tooltip="This document discusses IAB concerns about effective end-to-end congestion control for best-effort voice traffic in the Internet.  These concerns have to do with fairness, user quality, and with the dangers of congestion collapse.  The concerns are particularly relevant in light of the absence of a widespread Quality of Service (QoS) deployment in the Internet, and the likelihood that this situation will not change much in the near term.  This document is not making any recommendations about deployment paths for Voice over Internet Protocol (VoIP) in terms of QoS support, and is not claiming that best-effort service can be relied upon to give acceptable performance for VoIP.  We are merely observing that voice traffic is occasionally deployed as best-effort traffic over some links in the Internet, that we expect this occasional deployment to continue, and that we have concerns about the lack of effective end-to-end congestion control for this best-effort voice traffic.  This memo provides information for the Internet community."];
+  cites -> RFC3714;
+  RFC2988 [label="RFC2988
+Computing TCP's Retransmission Timer
+2000", shape=ellipse, URL="RFC2988.html", target="_top", tooltip="This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer. [STANDARDS-TRACK]"];
+  cites -> RFC2988;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5033;
+  RFC5783 [label="RFC5783
+Congestion Control in the RFC Series
+2010", shape=ellipse, URL="RFC5783.html", target="_top", tooltip="This document is an informational snapshot taken by the IRTF\'s Internet Congestion Control Research Group (ICCRG) in October 2008.  It provides a survey of congestion control topics described by documents in the RFC series.  This does not modify or update the specifications or status of the RFC documents that are discussed.  It may be used as a reference or starting point for the future work of the research group, especially in noting gaps or open issues in the current IETF standards.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5783 -> rev_cites;
+  RFC6077 [label="RFC6077
+Open Research Issues in Internet
+Congestion Control
+2011", shape=ellipse, URL="RFC6077.html", target="_top", tooltip="This document describes some of the open problems in Internet congestion control that are known today.  This includes several new challenges that are becoming important as the network grows, as well as some issues that have been known for many years.  These challenges are generally considered to be open research topics that may require more study or application of innovative techniques before Internet-scale solutions can be confidently engineered and deployed.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6077 -> rev_cites;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+  RFC7893 [label="RFC7893
+Pseudowire Congestion Considerations
+2016", shape=ellipse, URL="RFC7893.html", target="_top", tooltip="Pseudowires (PWs) have become a common mechanism for tunneling traffic and may be found in unmanaged scenarios competing for network resources both with other PWs and with non-PW traffic, such as TCP/IP flows.  Thus, it is worthwhile specifying under what conditions such competition is acceptable, i.e., the PW traffic does not significantly harm other traffic or contribute more than it should to congestion.  We conclude that PWs transporting responsive traffic behave as desired without the need for additional mechanisms.  For inelastic PWs (such as Time Division Multiplexing (TDM) PWs), we derive a bound under which such PWs consume no more network capacity than a TCP flow.  For TDM PWs, we find that the level of congestion at which the PW can no longer deliver acceptable TDM service is never significantly greater, and is typically much lower, than this bound.  Therefore, as long as the PW is shut down when it can no longer deliver acceptable TDM service, it will never do significantly more harm than even a single TCP flow.  If the TDM service does not automatically shut down, a mechanism to block persistently unacceptable TDM pseudowires is required."];
+  RFC7893 -> rev_cites;
+  RFC8312 [label="RFC8312
+CUBIC for Fast Long-Distance Networks
+2018", shape=ellipse, URL="RFC8312.html", target="_top", tooltip="CUBIC is an extension to the current TCP standards.  It differs from the current TCP standards only in the congestion control algorithm on the sender side.  In particular, it uses a cubic function instead of a linear window increase function of the current TCP standards to improve scalability and stability under fast and long-distance networks.  CUBIC and its predecessor algorithm have been adopted as defaults by Linux and have been used for many years.  This document provides a specification of CUBIC to enable third-party implementations and to solicit community feedback through experimentation on the performance of CUBIC."];
+  RFC8312 -> rev_cites;
+  RFC8868 [label="RFC8868
+Evaluating Congestion Control for
+Interactive Real-Time Media
+2021", shape=ellipse, URL="RFC8868.html", target="_top", tooltip="The Real-Time Transport Protocol (RTP) is used to transmit media in telephony and video conferencing applications.  This document describes the guidelines to evaluate new congestion control algorithms for interactive point-to-point real-time media."];
+  RFC8868 -> rev_cites;
+  RFC8931 [label="RFC8931
+IPv6 over Low-Power Wireless Personal
+Area Network (6LoWPAN) Selective
+Fragment Recovery
+2020", shape=ellipse, URL="RFC8931.html", target="_top", tooltip="This document updates RFC 4944 with a protocol that forwards individual fragments across a route-over mesh and recovers them end to end, with congestion control capabilities to protect the network."];
+  RFC8931 -> rev_cites;
+  RFC9330 [label="RFC9330
+Low Latency, Low Loss, and Scalable
+Throughput (L4S) Internet Service:
+Architecture
+2023", shape=ellipse, URL="RFC9330.html", target="_top", tooltip="This document describes the L4S architecture, which enables Internet applications to achieve low queuing latency, low congestion loss, and scalable throughput control. L4S is based on the insight that the root cause of queuing delay is in the capacity-seeking congestion controllers of senders, not in the queue itself. With the L4S architecture, all Internet applications could (but do not have to) transition away from congestion control algorithms that cause substantial queuing delay and instead adopt a new class of congestion controls that can seek capacity with very little queuing. These are aided by a modified form of Explicit Congestion Notification (ECN) from the network. With this new architecture, applications can have both low latency and high throughput. The architecture primarily concerns incremental deployment. It defines mechanisms that allow the new class of L4S congestion controls to coexist with 'Classic' congestion controls in a shared network. The aim is for L4S latency and throughput to be usually much better (and rarely worse) while typically not impacting Classic performance."];
+  RFC9330 -> rev_cites;
+  RFC9331 [label="RFC9331
+The Explicit Congestion Notification
+(ECN) Protocol for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, URL="RFC9331.html", target="_top", tooltip="This specification defines the protocol to be used for a new network service called Low Latency, Low Loss, and Scalable throughput (L4S). L4S uses an Explicit Congestion Notification (ECN) scheme at the IP layer that is similar to the original (or 'Classic') ECN approach, except as specified within. L4S uses 'Scalable' congestion control, which induces much more frequent control signals from the network, and it responds to them with much more fine-grained adjustments so that very low (typically sub-millisecond on average) and consistently low queuing delay becomes possible for L4S traffic without compromising link utilization. Thus, even capacity-seeking (TCP-like) traffic can have high bandwidth and very low delay at the same time, even during periods of high traffic load. The L4S identifier defined in this document distinguishes L4S from 'Classic' (e.g., TCP-Reno-friendly) traffic. Then, network bottlenecks can be incrementally modified to distinguish and isolate existing traffic that still follows the Classic behaviour, to prevent it from degrading the low queuing delay and low loss of L4S traffic. This Experimental specification defines the rules that L4S transports and network elements need to follow, with the intention that L4S flows neither harm each other's performance nor that of Classic traffic. It also suggests open questions to be investigated during experimentation. Examples of new Active Queue Management (AQM) marking algorithms and new transports (whether TCP-like or real time) are specified separately."];
+  RFC9331 -> rev_cites;
+  RFC9332 [label="RFC9332
+Dual-Queue Coupled Active Queue
+Management (AQM) for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, URL="RFC9332.html", target="_top", tooltip="This specification defines a framework for coupling the Active Queue Management (AQM) algorithms in two queues intended for flows with different responses to congestion. This provides a way for the Internet to transition from the scaling problems of standard TCP-Reno-friendly ('Classic') congestion controls to the family of 'Scalable' congestion controls. These are designed for consistently very low queuing latency, very low congestion loss, and scaling of per-flow throughput by using Explicit Congestion Notification (ECN) in a modified way. Until the Coupled Dual Queue (DualQ), these Scalable L4S congestion controls could only be deployed where a clean-slate environment could be arranged, such as in private data centres. This specification first explains how a Coupled DualQ works. It then gives the normative requirements that are necessary for it to work well. All this is independent of which two AQMs are used, but pseudocode examples of specific AQMs are given in appendices."];
+  RFC9332 -> rev_cites;
+  RFC9438 [label="RFC9438
+CUBIC for Fast and Long-Distance
+Networks
+2023", shape=ellipse, URL="RFC9438.html", target="_top", tooltip="CUBIC is a standard TCP congestion control algorithm that uses a cubic function instead of a linear congestion window increase function to improve scalability and stability over fast and long-distance networks. CUBIC has been adopted as the default TCP congestion control algorithm by the Linux, Windows, and Apple stacks. This document updates the specification of CUBIC to include algorithmic improvements based on these implementations and recent academic work. Based on the extensive deployment experience with CUBIC, this document also moves the specification to the Standards Track and obsoletes RFC 8312. This document also updates RFC 5681, to allow for CUBIC's occasionally more aggressive sending behavior."];
+  RFC9438 -> rev_cites;
+  RFC9743 [label="RFC9743
+Specifying New Congestion Control
+Algorithms
+2025", shape=ellipse, URL="RFC9743.html", target="_top", tooltip="RFC 5033 discusses the principles and guidelines for standardizing new congestion control algorithms.  This document obsoletes RFC 5033 to reflect changes in the congestion control landscape by providing a framework for the development and assessment of congestion control mechanisms, promoting stability across diverse network paths.  This document seeks to ensure that proposed congestion control algorithms operate efficiently and without harm when used in the global Internet.  It emphasizes the need for comprehensive testing and validation to prevent adverse interactions with existing flows."];
+  RFC9743 -> rev_cites;
+}

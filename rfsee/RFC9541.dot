@@ -1,0 +1,61 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9541 [label="RFC9541
+Flush Mechanism for Customer MAC
+Addresses Based on Service Instance
+Identifier (I-SID) in Provider Backbone
+Bridging EVPN (PBB-EVPN)
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="Provider Backbone Bridging (PBB) can be combined with Ethernet Virtual Private Networks (EVPNs) to deploy Ethernet Local Area Network (E-LAN) services in large Multiprotocol Label Switching (MPLS) networks.  That combination is what we refer to as PBB-EVPN. Single-Active multihoming and per Service Instance Identifier (I-SID) load-balancing can be provided to access devices and aggregation networks.  In order to speed up the network convergence in case of failures on Single-Active multihomed Ethernet Segments (ESs), PBB-EVPN defines a flush mechanism for Customer MACs (C-MACs) called C-MAC flush that works for different Ethernet Segment Backbone MAC (B-MAC) address allocation models.  This document complements those C-MAC flush procedures for cases in which no PBB-EVPN ESs are defined (i.e., the attachment circuit is associated with a zero Ethernet Segment Identifier (ESI)) and the C-MAC flush requires I-SID-level granularity."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9541;
+
+  obs [label="obsoletes", shape=box];
+  RFC9541 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9541 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9541;
+
+  cites [label="cites", shape=box];
+  RFC9541 -> cites;
+  RFC7623 [label="RFC7623
+Provider Backbone Bridging Combined with
+Ethernet VPN (PBB-EVPN)
+2015", shape=ellipse, URL="RFC7623.html", target="_top", tooltip="This document discusses how Ethernet Provider Backbone Bridging (PBB) can be combined with Ethernet VPN (EVPN) in order to reduce the number of BGP MAC Advertisement routes by aggregating Customer/Client MAC (C-MAC) addresses via Provider Backbone MAC (B-MAC) address, provide client MAC address mobility using C-MAC aggregation, confine the scope of C-MAC learning to only active flows, offer per-site policies, and avoid C-MAC address flushing on topology changes.  The combined solution is referred to as PBB-EVPN."];
+  cites -> RFC7623;
+  RFC4762 [label="RFC4762
+Virtual Private LAN Service (VPLS) Using
+Label Distribution Protocol (LDP)
+Signaling
+2007", shape=ellipse, URL="RFC4762.html", target="_top", tooltip="This document describes a Virtual Private LAN Service (VPLS) solution using pseudowires, a service previously implemented over other tunneling technologies and known as Transparent LAN Services (TLS). A VPLS creates an emulated LAN segment for a given set of users; i.e., it creates a Layer 2 broadcast domain that is fully capable of learning and forwarding on Ethernet MAC addresses and that is closed to a given set of users. Multiple VPLS services can be supported from a single Provider Edge (PE) node. This document describes the control plane functions of signaling pseudowire labels using Label Distribution Protocol (LDP), extending RFC 4447. It is agnostic to discovery protocols. The data plane functions of forwarding are also described, focusing in particular on the learning of MAC addresses. The encapsulation of VPLS packets is described by RFC 4448. [STANDARDS-TRACK]"];
+  cites -> RFC4762;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  cites -> RFC7432;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9541;
+  RFC9784 [label="RFC9784
+Virtual Ethernet Segments for EVPN and
+Provider Backbone Bridge EVPN
+2025", shape=ellipse, URL="RFC9784.html", target="_top", tooltip="Ethernet VPN (EVPN) and Provider Backbone Bridge EVPN (PBB-EVPN) introduce a comprehensive suite of solutions for delivering Ethernet services over MPLS/IP networks.  These solutions offer advanced multihoming capabilities.  Specifically, they support Single-Active and All-Active redundancy modes for an Ethernet Segment (ES), which is defined as a collection of physical links connecting a multihomed device or network to a set of Provider Edge (PE) devices.  This document extends the concept of an ES by allowing an ES to be associated with a set of Ethernet Virtual Circuits (EVCs), such as VLANs, or other entities, including MPLS Label Switched Paths (LSPs) or pseudowires (PWs).  This extended concept is referred to as virtual Ethernet Segments (vESes).  This document lists the requirements and specifies the necessary extensions to support vES in both EVPN and PBB-EVPN."];
+  RFC9784 -> rev_cites;
+}

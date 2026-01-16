@@ -1,0 +1,89 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8360 [label="RFC8360
+Resource Public Key Infrastructure
+(RPKI) Validation Reconsidered
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies an alternative to the certificate validation procedure specified in RFC 6487 that reduces aspects of operational fragility in the management of certificates in the Resource Public Key Infrastructure (RPKI), while retaining essential security features. The procedure specified in RFC 6487 requires that Resource Certificates are rejected entirely if they are found to overclaim any resources not contained on the issuing certificate, whereas the validation process defined here allows an issuing Certification Authority (CA) to chose to communicate that such Resource Certificates should be accepted for the intersection of their resources and the issuing certificate. It should be noted that the validation process defined here considers validation under a single trust anchor (TA) only. In particular, concerns regarding overclaims where multiple configured TAs claim overlapping resources are considered out of scope for this document. This choice is signaled by a set of alternative Object Identifiers (OIDs) per X.509 Extensions for IP Addresses and AS Identifiers (RFC 3779) and Certificate Policy (CP) for the Resource Public Key Infrastructure (RPKI) (RFC 6484). It should be noted that in case these OIDs are not used for any certificate under a trust anchor, the validation procedure defined here has the same outcome as the procedure defined in RFC 6487. Furthermore, this document provides an alternative to Route Origin Authorization (ROA) (RFC 6482) and BGPsec Router Certificate (BGPsec PKI Profiles -- publication requested) validation."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8360;
+
+  obs [label="obsoletes", shape=box];
+  RFC8360 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8360 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8360;
+
+  cites [label="cites", shape=box];
+  RFC8360 -> cites;
+  RFC6482 [label="RFC6482
+A Profile for Route Origin
+Authorizations (ROAs)
+2012", shape=ellipse, URL="RFC6482.html", target="_top", tooltip="This document defines a standard profile for Route Origin Authorizations (ROAs).  A ROA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block. [STANDARDS-TRACK]"];
+  cites -> RFC6482;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6487 [label="RFC6487
+A Profile for X.509 PKIX Resource
+Certificates
+2012", shape=ellipse, URL="RFC6487.html", target="_top", tooltip="This document defines a standard profile for X.509 certificates for the purpose of supporting validation of assertions of right-of-use of Internet Number Resources (INRs).  The certificates issued under this profile are used to convey the issuer's authorization of the subject to be regarded as the current holder of a right-of-use of the INRs that are described in the certificate.  This document contains the normative specification of Certificate and Certificate Revocation List (CRL) syntax in the Resource Public Key Infrastructure (RPKI).  This document also specifies profiles for the format of certificate requests and specifies the Relying Party RPKI certificate path validation procedure. [STANDARDS-TRACK]"];
+  cites -> RFC6487;
+  RFC3779 [label="RFC3779
+X.509 Extensions for IP Addresses and AS
+Identifiers
+2004", shape=ellipse, URL="RFC3779.html", target="_top", tooltip="This document defines two X.509 v3 certificate extensions.  The first binds a list of IP address blocks, or prefixes, to the subject of a certificate.  The second binds a list of autonomous system identifiers to the subject of a certificate.  These extensions may be used to convey the authorization of the subject to use the IP addresses and autonomous system identifiers contained in the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC3779;
+  RFC6484 [label="RFC6484
+Certificate Policy (CP) for the Resource
+Public Key Infrastructure (RPKI)
+2012", shape=ellipse, URL="RFC6484.html", target="_top", tooltip="This document describes the certificate policy for a Public Key Infrastructure (PKI) used to support attestations about Internet Number Resource (INR) holdings.  Each organization that distributes IP addresses or Autonomous System (AS) numbers to an organization will, in parallel, issue a (public key) certificate reflecting this distribution.  These certificates will enable verification that the resources indicated in the certificate have been distributed to the holder of the associated private key and that this organization is the current, unique holder of these resources.  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6484;
+  RFC5280 [label="RFC5280
+Internet X.509 Public Key Infrastructure
+Certificate and Certificate Revocation
+List (CRL) Profile
+2008", shape=ellipse, URL="RFC5280.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 certificate revocation list (CRL) for use in the Internet.  An overview of this approach and model is provided as an introduction.  The X.509 v3 certificate format is described in detail, with additional information regarding the format and semantics of Internet name forms.  Standard certificate extensions are described and two Internet-specific extensions are defined.  A set of required certificate extensions is specified.  The X.509 v2 CRL format is described in detail along with standard and Internet-specific extensions.  An algorithm for X.509 certification path validation is described.  An ASN.1 module and examples are provided in the appendices. [STANDARDS-TRACK]"];
+  cites -> RFC5280;
+  RFC6268 [label="RFC6268
+Additional New ASN.1 Modules for the
+Cryptographic Message Syntax (CMS) and
+the Public Key Infrastructure Using
+X.509 (PKIX)
+2011", shape=ellipse, URL="RFC6268.html", target="_top", tooltip="The Cryptographic Message Syntax (CMS) format, and many associated formats, are expressed using ASN.1.  The current ASN.1 modules conform to the 1988 version of ASN.1.  This document updates some auxiliary ASN.1 modules to conform to the 2008 version of ASN.1; the 1988 ASN.1 modules remain the normative version.  There are no bits- on-the-wire changes to any of the formats; this is simply a change to the syntax.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6268;
+  RFC8209 [label="RFC8209
+A Profile for BGPsec Router
+Certificates, Certificate Revocation
+Lists, and Certification Requests
+2017", shape=ellipse, URL="RFC8209.html", target="_top", tooltip="This document defines a standard profile for X.509 certificates used to enable validation of Autonomous System (AS) paths in the Border Gateway Protocol (BGP), as part of an extension to that protocol known as BGPsec.  BGP is the standard for inter-domain routing in the Internet; it is the glue that holds the Internet together.  BGPsec is being developed as one component of a solution that addresses the requirement to provide security for BGP.  The goal of BGPsec is to provide full AS path validation based on the use of strong cryptographic primitives.  The end entity (EE) certificates specified by this profile are issued to routers within an AS.  Each of these certificates is issued under a Resource Public Key Infrastructure (RPKI) Certification Authority (CA) certificate.  These CA certificates and EE certificates both contain the AS Resource extension.  An EE certificate of this type asserts that the router or routers holding the corresponding private key are authorized to emit secure route advertisements on behalf of the AS(es) specified in the certificate.  This document also profiles the format of certification requests and specifies Relying Party (RP) certificate path validation procedures for these EE certificates.  This document extends the RPKI; therefore, this document updates the RPKI Resource Certificates Profile (RFC 6487)."];
+  cites -> RFC8209;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8360;
+  RFC8488 [label="RFC8488
+RIPE NCC's Implementation of Resource
+Public Key Infrastructure (RPKI)
+Certificate Tree Validation
+2018", shape=ellipse, URL="RFC8488.html", target="_top", tooltip="This document describes an approach to validating the content of the Resource Public Key Infrastructure (RPKI) certificate tree, as it is implemented in the RIPE NCC RPKI Validator.  This approach is independent of a particular object retrieval mechanism, which allows it to be used with repositories available over the rsync protocol, the RPKI Repository Delta Protocol (RRDP), and repositories that use a mix of both."];
+  RFC8488 -> rev_cites;
+  RFC8897 [label="RFC8897
+Requirements for Resource Public Key
+Infrastructure (RPKI) Relying Parties
+2020", shape=ellipse, URL="RFC8897.html", target="_top", tooltip="This document provides a single reference point for requirements for Relying Party (RP) software for use in the Resource Public Key Infrastructure (RPKI).  It cites requirements that appear in several RPKI RFCs, making it easier for implementers to become aware of these requirements.  Over time, this RFC will be updated to reflect changes to the requirements and guidance specified in the RFCs discussed herein."];
+  RFC8897 -> rev_cites;
+}

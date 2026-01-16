@@ -1,0 +1,135 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8337 [label="RFC8337
+Model-Based Metrics for Bulk Transport
+Capacity
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document introduces a new class of Model-Based Metrics designed to assess if a complete Internet path can be expected to meet a predefined Target Transport Performance by applying a suite of IP diagnostic tests to successive subpaths. The subpath-at-a-time tests can be robustly applied to critical infrastructure, such as network interconnections or even individual devices, to accurately detect if any part of the infrastructure will prevent paths traversing it from meeting the Target Transport Performance. Model-Based Metrics rely on mathematical models to specify a Targeted IP Diagnostic Suite, a set of IP diagnostic tests designed to assess whether common transport protocols can be expected to meet a predetermined Target Transport Performance over an Internet path. For Bulk Transport Capacity, the IP diagnostics are built using test streams and statistical criteria for evaluating the packet transfer that mimic TCP over the complete path. The temporal structure of the test stream (e.g., bursts) mimics TCP or other transport protocols carrying bulk data over a long path. However, they are constructed to be independent of the details of the subpath under test, end systems, or applications. Likewise, the success criteria evaluates the packet transfer statistics of the subpath against criteria determined by protocol performance models applied to the Target Transport Performance of the complete path. The success criteria also does not depend on the details of the subpath, end systems, or applications."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8337;
+
+  obs [label="obsoletes", shape=box];
+  RFC8337 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8337 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8337;
+
+  cites [label="cites", shape=box];
+  RFC8337 -> cites;
+  RFC3148 [label="RFC3148
+A Framework for Defining Empirical Bulk
+Transfer Capacity Metrics
+2001", shape=ellipse, URL="RFC3148.html", target="_top", tooltip="This document defines a framework for standardizing multiple BTC (Bulk Transport Capacity) metrics that parallel the permitted transport diversity.  This memo provides information for the Internet community."];
+  cites -> RFC3148;
+  RFC6049 [label="RFC6049
+Spatial Composition of Metrics
+2011", shape=ellipse, URL="RFC6049.html", target="_top", tooltip="This memo utilizes IP performance metrics that are applicable to both complete paths and sub-paths, and it defines relationships to compose a complete path metric from the sub-path metrics with some accuracy with regard to the actual metrics.  This is called spatial composition in RFC 2330.  The memo refers to the framework for metric composition, and provides background and motivation for combining metrics to derive others.  The descriptions of several composed metrics and statistics follow. [STANDARDS-TRACK]"];
+  cites -> RFC6049;
+  RFC2330 [label="RFC2330
+Framework for IP Performance Metrics
+1998", shape=ellipse, URL="RFC2330.html", target="_top", tooltip="The purpose of this memo is to define a general framework for particular metrics to be developed by the IETF's IP Performance Metrics effort.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  cites -> RFC2330;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC7680 [label="RFC7680
+A One-Way Loss Metric for IP Performance
+Metrics (IPPM)
+2016", shape=ellipse, URL="RFC7680.html", target="_top", tooltip="This memo defines a metric for one-way loss of packets across Internet paths.  It builds on notions introduced and discussed in the IP Performance Metrics (IPPM) Framework document, RFC 2330; the reader is assumed to be familiar with that document.  This memo makes RFC 2680 obsolete."];
+  cites -> RFC7680;
+  RFC5835 [label="RFC5835
+Framework for Metric Composition
+2010", shape=ellipse, URL="RFC5835.html", target="_top", tooltip="This memo describes a detailed framework for composing and aggregating metrics (both in time and in space) originally defined by the IP Performance Metrics (IPPM), RFC 2330, and developed by the IETF.  This new framework memo describes the generic composition and aggregation mechanisms.  The memo provides a basis for additional documents that implement the framework to define detailed compositions and aggregations of metrics that are useful in practice.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5835;
+  RFC7398 [label="RFC7398
+A Reference Path and Measurement Points
+for Large-Scale Measurement of Broadband
+Performance
+2015", shape=ellipse, URL="RFC7398.html", target="_top", tooltip="This document defines a reference path for Large-scale Measurement of Broadband Access Performance (LMAP) and measurement points for commonly used performance metrics.  Other similar measurement projects may also be able to use the extensions described here for measurement point location.  The purpose is to create an efficient way to describe the location of the measurement point(s) used to conduct a particular measurement."];
+  cites -> RFC7398;
+  RFC5136 [label="RFC5136
+Defining Network Capacity
+2008", shape=ellipse, URL="RFC5136.html", target="_top", tooltip="Measuring capacity is a task that sounds simple, but in reality can be quite complex.  In addition, the lack of a unified nomenclature on this subject makes it increasingly difficult to properly build, test, and use techniques and tools built around these constructs.  This document provides definitions for the terms 'Capacity' and 'Available Capacity' related to IP traffic traveling between a source and destination in an IP network.  By doing so, we hope to provide a common framework for the discussion and analysis of a diverse set of current and future estimation techniques.  This memo provides information for the Internet community."];
+  cites -> RFC5136;
+  RFC6576 [label="RFC6576
+IP Performance Metrics (IPPM) Standard
+Advancement Testing
+2012", shape=ellipse, URL="RFC6576.html", target="_top", tooltip="This document specifies tests to determine if multiple independent instantiations of a performance-metric RFC have implemented the specifications in the same way.  This is the performance-metric equivalent of interoperability, required to advance RFCs along the Standards Track.  Results from different implementations of metric RFCs will be collected under the same underlying network conditions and compared using statistical methods.  The goal is an evaluation of the metric RFC itself to determine whether its definitions are clear and unambiguous to implementors and therefore a candidate for advancement on the IETF Standards Track.  This document is an Internet Best Current Practice."];
+  cites -> RFC6576;
+  RFC6928 [label="RFC6928
+Increasing TCP's Initial Window
+2013", shape=ellipse, URL="RFC6928.html", target="_top", tooltip="This document proposes an experiment to increase the permitted TCP initial window (IW) from between 2 and 4 segments, as specified in RFC 3390, to 10 segments with a fallback to the existing recommendation when performance issues are detected.  It discusses the motivation behind the increase, the advantages and disadvantages of the higher initial window, and presents results from several large-scale experiments showing that the higher initial window improves the overall performance of many web services without resulting in a congestion collapse.  The document closes with a discussion of usage and deployment for further experimental purposes recommended by the IETF TCP Maintenance and Minor Extensions (TCPM) working group."];
+  cites -> RFC6928;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  cites -> RFC7567;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC3465 [label="RFC3465
+TCP Congestion Control with Appropriate
+Byte Counting (ABC)
+2003", shape=ellipse, URL="RFC3465.html", target="_top", tooltip="This document proposes a small modification to the way TCP increases its congestion window.  Rather than the traditional method of increasing the congestion window by a constant amount for each arriving acknowledgment, the document suggests basing the increase on the number of previously unacknowledged bytes each ACK covers.  This change improves the performance of TCP, as well as closes a security hole TCP receivers can use to induce the sender into increasing the sending rate too rapidly.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3465;
+  RFC7312 [label="RFC7312
+Advanced Stream and Sampling Framework
+for IP Performance Metrics (IPPM)
+2014", shape=ellipse, URL="RFC7312.html", target="_top", tooltip="To obtain repeatable results in modern networks, test descriptions need an expanded stream parameter framework that also augments aspects specified as Type-P for test packets.  This memo updates the IP Performance Metrics (IPPM) Framework, RFC 2330, with advanced considerations for measurement methodology and testing.  The existing framework mostly assumes deterministic connectivity, and that a single test stream will represent the characteristics of the path when it is aggregated with other flows.  Networks have evolved and test stream descriptions must evolve with them; otherwise, unexpected network features may dominate the measured performance.  This memo describes new stream parameters for both network characterization and support of application design using IPPM metrics."];
+  cites -> RFC7312;
+  RFC4898 [label="RFC4898
+TCP Extended Statistics MIB
+2007", shape=ellipse, URL="RFC4898.html", target="_top", tooltip="This document describes extended performance statistics for TCP.  They are designed to use TCP's ideal vantage point to diagnose performance problems in both the network and the application.  If a network-based application is performing poorly, TCP can determine if the bottleneck is in the sender, the receiver, or the network itself.  If the bottleneck is in the network, TCP can provide specific information about its nature. [STANDARDS-TRACK]"];
+  cites -> RFC4898;
+  RFC4737 [label="RFC4737
+Packet Reordering Metrics
+2006", shape=ellipse, URL="RFC4737.html", target="_top", tooltip="This memo defines metrics to evaluate whether a network has maintained packet order on a packet-by-packet basis.  It provides motivations for the new metrics and discusses the measurement issues, including the context information required for all metrics.  The memo first defines a reordered singleton, and then uses it as the basis for sample metrics to quantify the extent of reordering in several useful dimensions for network characterization or receiver design.  Additional metrics quantify the frequency of reordering and the distance between separate occurrences.  We then define a metric oriented toward assessment of reordering effects on TCP.  Several examples of evaluation using the various sample metrics are included.  An appendix gives extended definitions for evaluating order with packet fragmentation. [STANDARDS-TRACK]"];
+  cites -> RFC4737;
+  RFC5827 [label="RFC5827
+Early Retransmit for TCP and Stream
+Control Transmission Protocol (SCTP)
+2010", shape=ellipse, URL="RFC5827.html", target="_top", tooltip="This document proposes a new mechanism for TCP and Stream Control Transmission Protocol (SCTP) that can be used to recover lost segments when a connection's congestion window is small.  The Early Retransmit mechanism allows the transport to reduce, in certain special circumstances, the number of duplicate acknowledgments required to trigger a fast retransmission.  This allows the transport to use fast retransmit to recover segment losses that would otherwise require a lengthy retransmission timeout. [STANDARDS-TRACK]"];
+  cites -> RFC5827;
+  RFC6673 [label="RFC6673
+Round-Trip Packet Loss Metrics
+2012", shape=ellipse, URL="RFC6673.html", target="_top", tooltip="Many user applications (and the transport protocols that make them possible) require two-way communications. To assess this capability, and to achieve test system simplicity, round-trip loss measurements are frequently conducted in practice. The Two-Way Active Measurement Protocol specified in RFC 5357 establishes a round-trip loss measurement capability for the Internet. However, there is currently no round-trip packet loss metric specified according to the RFC 2330 framework. This memo adds round-trip loss to the set of IP Performance Metrics (IPPM). [STANDARDS-TRACK]"];
+  cites -> RFC6673;
+  RFC2861 [label="RFC2861
+TCP Congestion Window Validation
+2000", shape=ellipse, URL="RFC2861.html", target="_top", tooltip="This document describes a simple modification to TCP's congestion control algorithms to decay the congestion window cwnd after the transition from a sufficiently-long application-limited period, while using the slow-start threshold ssthresh to save information about the previous value of the congestion window.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC2861;
+  RFC7661 [label="RFC7661
+Updating TCP to Support Rate-Limited
+Traffic
+2015", shape=ellipse, URL="RFC7661.html", target="_top", tooltip="This document provides a mechanism to address issues that arise when TCP is used for traffic that exhibits periods where the sending rate is limited by the application rather than the congestion window. It provides an experimental update to TCP that allows a TCP sender to restart quickly following a rate-limited interval. This method is expected to benefit applications that send rate-limited traffic using TCP while also providing an appropriate response if congestion is experienced. This document also evaluates the Experimental specification of TCP Congestion Window Validation (CWV) defined in RFC 2861 and concludes that RFC 2861 sought to address important issues but failed to deliver a widely used solution. This document therefore reclassifies the status of RFC 2861 from Experimental to Historic. This document obsoletes RFC 2861."];
+  cites -> RFC7661;
+  RFC7799 [label="RFC7799
+Active and Passive Metrics and Methods
+(with Hybrid Types In-Between)
+2016", shape=ellipse, URL="RFC7799.html", target="_top", tooltip="This memo provides clear definitions for Active and Passive performance assessment.  The construction of Metrics and Methods can be described as either Active or Passive.  Some methods may use a subset of both Active and Passive attributes, and we refer to these as Hybrid Methods.  This memo also describes multiple dimensions to help evaluate new methods as they emerge."];
+  cites -> RFC7799;
+  RFC7594 [label="RFC7594
+A Framework for Large-Scale Measurement
+of Broadband Performance (LMAP)
+2015", shape=ellipse, URL="RFC7594.html", target="_top", tooltip="Measuring broadband service on a large scale requires a description of the logical architecture and standardisation of the key protocols that coordinate interactions between the components.  This document presents an overall framework for large-scale measurements.  It also defines terminology for LMAP (Large-Scale Measurement of Broadband Performance)."];
+  cites -> RFC7594;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8337;
+  RFC9097 [label="RFC9097
+Metrics and Methods for One-Way IP
+Capacity
+2021", shape=ellipse, URL="RFC9097.html", target="_top", tooltip="This memo revisits the problem of Network Capacity Metrics first examined in RFC 5136.  This memo specifies a more practical Maximum IP-Layer Capacity Metric definition catering to measurement and outlines the corresponding Methods of Measurement."];
+  RFC9097 -> rev_cites;
+}

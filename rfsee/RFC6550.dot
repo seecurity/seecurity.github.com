@@ -1,0 +1,487 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6550 [label="RFC6550
+RPL: IPv6 Routing Protocol for Low-Power
+and Lossy Networks
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="Low-Power and Lossy Networks (LLNs) are a class of network in which both the routers and their interconnect are constrained.  LLN routers typically operate with constraints on processing power, memory, and energy (battery power).  Their interconnects are characterized by high loss rates, low data rates, and instability.  LLNs are comprised of anything from a few dozen to thousands of routers.  Supported traffic flows include point-to-point (between devices inside the LLN), point-to-multipoint (from a central control point to a subset of devices inside the LLN), and multipoint-to-point (from devices inside the LLN towards a central control point).  This document specifies the IPv6 Routing Protocol for Low-Power and Lossy Networks (RPL), which provides a mechanism whereby multipoint-to-point traffic from devices inside the LLN towards a central control point as well as point-to-multipoint traffic from the central control point to the devices inside the LLN are supported.  Support for point-to-point traffic is also available. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6550;
+
+  obs [label="obsoletes", shape=box];
+  RFC6550 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6550 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6550;
+  RFC9008 [label="RFC9008
+Using RPI Option Type, Routing Header
+for Source Routes, and IPv6-in-IPv6
+Encapsulation in the RPL Data Plane
+2021", shape=ellipse, URL="RFC9008.html", target="_top", tooltip="This document looks at different data flows through Low-Power and Lossy Networks (LLN) where RPL (IPv6 Routing Protocol for Low-Power and Lossy Networks) is used to establish routing.  The document enumerates the cases where RPL Packet Information (RPI) Option Type (RFC 6553), RPL Source Route Header (RFC 6554), and IPv6-in-IPv6 encapsulation are required in the data plane.  This analysis provides the basis upon which to design efficient compression of these headers.  This document updates RFC 6553 by adding a change to the RPI Option Type.  Additionally, this document updates RFC 6550 by defining a flag in the DODAG Information Object (DIO) Configuration option to indicate this change and updates RFC 8138 as well to consider the new Option Type when the RPL Option is decompressed."];
+  RFC9008 -> updated_by;
+  RFC9010 [label="RFC9010
+Routing for RPL (Routing Protocol for
+Low-Power and Lossy Networks) Leaves
+2021", shape=ellipse, URL="RFC9010.html", target="_top", tooltip="This specification provides a mechanism for a host that implements a routing-agnostic interface based on IPv6 over Low-Power Wireless Personal Area Network (6LoWPAN) Neighbor Discovery to obtain reachability services across a network that leverages RFC 6550 for its routing operations.  It updates RFCs 6550, 6775, and 8505."];
+  RFC9010 -> updated_by;
+  RFC9685 [label="RFC9685
+Listener Subscription for IPv6 Neighbor
+Discovery Multicast and Anycast
+Addresses
+2024", shape=ellipse, URL="RFC9685.html", target="_top", tooltip="This document updates the 6LoWPAN extensions to IPv6 Neighbor Discovery (specified in RFCs 4861 and 8505) to enable a listener to subscribe to an IPv6 anycast or multicast address.  This document also updates the Routing Protocol for Low-Power and Lossy Networks (RPL) (specified in RFCs 6550 and 6553) to add a new Non-Storing multicast mode and new support for anycast addresses in Storing and Non-Storing modes.  This document extends RFC 9010 to enable a 6LoWPAN Router (6LR) to inject the anycast and multicast addresses in RPL."];
+  RFC9685 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC6550 -> cites;
+  RFC5867 [label="RFC5867
+Building Automation Routing Requirements
+in Low-Power and Lossy Networks
+2010", shape=ellipse, URL="RFC5867.html", target="_top", tooltip="The Routing Over Low-Power and Lossy (ROLL) networks Working Group has been chartered to work on routing solutions for Low-Power and Lossy Networks (LLNs) in various markets: industrial, commercial (building), home, and urban networks.  Pursuant to this effort, this document defines the IPv6 routing requirements for building automation.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5867;
+  RFC5826 [label="RFC5826
+Home Automation Routing Requirements in
+Low-Power and Lossy Networks
+2010", shape=ellipse, URL="RFC5826.html", target="_top", tooltip="This document presents requirements specific to home control and automation applications for Routing Over Low power and Lossy (ROLL) networks.  In the near future, many homes will contain high numbers of wireless devices for a wide set of purposes.  Examples include actuators (relay, light dimmer, heating valve), sensors (wall switch, water leak, blood pressure), and advanced controllers (radio-frequency-based AV remote control, central server for light and heat control).  Because such devices only cover a limited radio range, routing is often required.  The aim of this document is to specify the routing requirements for networks comprising such constrained devices in a home-control and automation environment.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5826;
+  RFC5673 [label="RFC5673
+Industrial Routing Requirements in Low-
+Power and Lossy Networks
+2009", shape=ellipse, URL="RFC5673.html", target="_top", tooltip="The wide deployment of lower-cost wireless devices will significantly improve the productivity and safety of industrial plants while increasing the efficiency of plant workers by extending the information set available about the plant operations.  The aim of this document is to analyze the functional requirements for a routing protocol used in industrial Low-power and Lossy Networks (LLNs) of field devices.  This memo provides information for the Internet community."];
+  cites -> RFC5673;
+  RFC5548 [label="RFC5548
+Routing Requirements for Urban Low-Power
+and Lossy Networks
+2009", shape=ellipse, URL="RFC5548.html", target="_top", tooltip="The application-specific routing requirements for Urban Low-Power and Lossy Networks (U-LLNs) are presented in this document.  In the near future, sensing and actuating nodes will be placed outdoors in urban environments so as to improve people's living conditions as well as to monitor compliance with increasingly strict environmental laws.  These field nodes are expected to measure and report a wide gamut of data (for example, the data required by applications that perform smart-metering or that monitor meteorological, pollution, and allergy conditions).  The majority of these nodes are expected to communicate wirelessly over a variety of links such as IEEE 802.15.4, low-power IEEE 802.11, or IEEE 802.15.1 (Bluetooth), which given the limited radio range and the large number of nodes requires the use of suitable routing protocols.  The design of such protocols will be mainly impacted by the limited resources of the nodes (memory, processing power, battery, etc.) and the particularities of the outdoor urban application scenarios.  As such, for a wireless solution for Routing Over Low-Power and Lossy (ROLL) networks to be useful, the protocol(s) ought to be energy-efficient, scalable, and autonomous.  This documents aims to specify a set of IPv6 routing requirements reflecting these and further U-LLNs' tailored characteristics.  This memo provides information for the Internet community."];
+  cites -> RFC5548;
+  RFC5881 [label="RFC5881
+Bidirectional Forwarding Detection (BFD)
+for IPv4 and IPv6 (Single Hop)
+2010", shape=ellipse, URL="RFC5881.html", target="_top", tooltip="This document describes the use of the Bidirectional Forwarding Detection (BFD) protocol over IPv4 and IPv6 for single IP hops. [STANDARDS-TRACK]"];
+  cites -> RFC5881;
+  RFC5184 [label="RFC5184
+Unified Layer 2 (L2) Abstractions for
+Layer 3 (L3)-Driven Fast Handover
+2008", shape=ellipse, URL="RFC5184.html", target="_top", tooltip="This document proposes unified Layer 2 (L2) abstractions for Layer 3 (L3)-driven fast handovers.  For efficient network communication, it is vital for a protocol layer to know or utilize other layers' information, such as the form of L2 triggers.  However, each protocol layer is basically designed independently.  Since each protocol layer is also implemented independently in current operating systems, it is very hard to exchange control information between protocol layers.  This document defines nine kinds of L2 abstractions in the form of primitives to achieve fast handovers in the network layer as a means of solving the problem.  This mechanism is called L3-driven fast handovers because the network layer initiates L2 and L3 handovers by using the primitives.  This document is a product of the IP Mobility Optimizations (MobOpts) Research Group.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC5184;
+  RFC6553 [label="RFC6553
+The Routing Protocol for Low-Power and
+Lossy Networks (RPL) Option for Carrying
+RPL Information in Data-Plane Datagrams
+2012", shape=ellipse, URL="RFC6553.html", target="_top", tooltip="The Routing Protocol for Low-Power and Lossy Networks (RPL) includes routing information in data-plane datagrams to quickly identify inconsistencies in the routing topology.  This document describes the RPL Option for use among RPL routers to include such routing information. [STANDARDS-TRACK]"];
+  cites -> RFC6553;
+  RFC6206 [label="RFC6206
+The Trickle Algorithm
+2011", shape=ellipse, URL="RFC6206.html", target="_top", tooltip="The Trickle algorithm allows nodes in a lossy shared medium (e.g., low-power and lossy networks) to exchange information in a highly robust, energy efficient, simple, and scalable manner.  Dynamically adjusting transmission windows allows Trickle to spread new information on the scale of link-layer transmission times while sending only a few messages per hour when information does not change.  A simple suppression mechanism and transmission point selection allow Trickle's communication rate to scale logarithmically with density.  This document describes the Trickle algorithm and considerations in its use. [STANDARDS-TRACK]"];
+  cites -> RFC6206;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC4191 [label="RFC4191
+Default Router Preferences and More-
+Specific Routes
+2005", shape=ellipse, URL="RFC4191.html", target="_top", tooltip="This document describes an optional extension to Router Advertisement messages for communicating default router preferences and more-specific routes from routers to hosts.  This improves the ability of hosts to pick an appropriate router, especially when the host is multi-homed and the routers are on different links.  The preference values and specific routes advertised to hosts require administrative configuration; they are not automatically derived from routing tables. [STANDARDS-TRACK]"];
+  cites -> RFC4191;
+  RFC4862 [label="RFC4862
+IPv6 Stateless Address Autoconfiguration
+2007", shape=ellipse, URL="RFC4862.html", target="_top", tooltip="This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6.  The autoconfiguration process includes generating a link-local address, generating global addresses via stateless address autoconfiguration, and the Duplicate Address Detection procedure to verify the uniqueness of the addresses on a link. [STANDARDS-TRACK]"];
+  cites -> RFC4862;
+  RFC6275 [label="RFC6275
+Mobility Support in IPv6
+2011", shape=ellipse, URL="RFC6275.html", target="_top", tooltip="This document specifies Mobile IPv6, a protocol that allows nodes to remain reachable while moving around in the IPv6 Internet.  Each mobile node is always identified by its home address, regardless of its current point of attachment to the Internet.  While situated away from its home, a mobile node is also associated with a care-of address, which provides information about the mobile node's current location.  IPv6 packets addressed to a mobile node's home address are transparently routed to its care-of address.  The protocol enables IPv6 nodes to cache the binding of a mobile node's home address with its care-of address, and to then send any packets destined for the mobile node directly to it at this care-of address.  To support this operation, Mobile IPv6 defines a new IPv6 protocol and a new destination option.  All IPv6 nodes, whether mobile or stationary, can communicate with mobile nodes.  This document obsoletes RFC 3775. [STANDARDS-TRACK]"];
+  cites -> RFC6275;
+  RFC3819 [label="RFC3819
+Advice for Internet Subnetwork Designers
+2004", shape=ellipse, URL="RFC3819.html", target="_top", tooltip="This document provides advice to the designers of digital communication equipment, link-layer protocols, and packet-switched local networks (collectively referred to as subnetworks), who wish to support the Internet protocols but may be unfamiliar with the Internet architecture and the implications of their design choices on the performance and efficiency of the Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3819;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4101 [label="RFC4101
+Writing Protocol Models
+2005", shape=ellipse, URL="RFC4101.html", target="_top", tooltip="The IETF process depends on peer review.  However, IETF documents are generally written to be useful for implementors, not reviewers.  In particular, while great care is generally taken to provide a complete description of the state machines and bits on the wire, this level of detail tends to get in the way of initial understanding.  This document describes an approach for providing protocol models that allow reviewers to quickly grasp the essence of a system.  This memo provides information for the Internet community."];
+  cites -> RFC4101;
+  RFC6551 [label="RFC6551
+Routing Metrics Used for Path
+Calculation in Low-Power and Lossy
+Networks
+2012", shape=ellipse, URL="RFC6551.html", target="_top", tooltip="Low-Power and Lossy Networks (LLNs) have unique characteristics compared with traditional wired and ad hoc networks that require the specification of new routing metrics and constraints.  By contrast, with typical Interior Gateway Protocol (IGP) routing metrics using hop counts or link metrics, this document specifies a set of link and node routing metrics and constraints suitable to LLNs to be used by the Routing Protocol for Low-Power and Lossy Networks (RPL). [STANDARDS-TRACK]"];
+  cites -> RFC6551;
+  RFC6552 [label="RFC6552
+Objective Function Zero for the Routing
+Protocol for Low-Power and Lossy
+Networks (RPL)
+2012", shape=ellipse, URL="RFC6552.html", target="_top", tooltip="The Routing Protocol for Low-Power and Lossy Networks (RPL) specification defines a generic Distance Vector protocol that is adapted to a variety of network types by the application of specific Objective Functions (OFs). An OF states the outcome of the process used by a RPL node to select and optimize routes within a RPL Instance based on the Information Objects available; an OF is not an algorithm. This document specifies a basic Objective Function that relies only on the objects that are defined in the RPL and does not use any protocol extensions. [STANDARDS-TRACK]"];
+  cites -> RFC6552;
+  RFC5120 [label="RFC5120
+M-ISIS: Multi Topology (MT) Routing in
+Intermediate System to Intermediate
+Systems (IS-ISs)
+2008", shape=ellipse, URL="RFC5120.html", target="_top", tooltip="This document describes an optional mechanism within Intermediate System to Intermediate Systems (IS-ISs) used today by many ISPs for IGP routing within their clouds.  This document describes how to run, within a single IS-IS domain, a set of independent IP topologies that we call Multi-Topologies (MTs).  This MT extension can be used for a variety of purposes, such as an in-band management network on top of the original IGP topology, maintaining separate IGP routing domains for isolated multicast or IPv6 islands within the backbone, or forcing a subset of an address space to follow a different topology. [STANDARDS-TRACK]"];
+  cites -> RFC5120;
+  RFC4915 [label="RFC4915
+Multi-Topology (MT) Routing in OSPF
+2007", shape=ellipse, URL="RFC4915.html", target="_top", tooltip="This document describes an extension to Open Shortest Path First (OSPF) in order to define independent IP topologies called Multi- Topologies (MTs). The Multi-Topologies extension can be used for computing different paths for unicast traffic, multicast traffic, different classes of service based on flexible criteria, or an in- band network management topology. An optional extension to exclude selected links from the default topology is also described. [STANDARDS-TRACK]"];
+  cites -> RFC4915;
+  RFC4443 [label="RFC4443
+Internet Control Message Protocol
+(ICMPv6) for the Internet Protocol
+Version 6 (IPv6) Specification
+2006", shape=ellipse, URL="RFC4443.html", target="_top", tooltip="This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC4443;
+  RFC1982 [label="RFC1982
+Serial Number Arithmetic
+1996", shape=ellipse, URL="RFC1982.html", target="_top", tooltip="The DNS has long relied upon serial number arithmetic, a concept which has never really been defined, certainly not in an IETF document, though which has been widely understood.  This memo supplies the missing definition.  It is intended to update RFC1034 and RFC1035. [STANDARDS-TRACK]"];
+  cites -> RFC1982;
+  RFC6554 [label="RFC6554
+An IPv6 Routing Header for Source Routes
+with the Routing Protocol for Low-Power
+and Lossy Networks (RPL)
+2012", shape=ellipse, URL="RFC6554.html", target="_top", tooltip="In Low-Power and Lossy Networks (LLNs), memory constraints on routers may limit them to maintaining, at most, a few routes.  In some configurations, it is necessary to use these memory-constrained routers to deliver datagrams to nodes within the LLN.  The Routing Protocol for Low-Power and Lossy Networks (RPL) can be used in some deployments to store most, if not all, routes on one (e.g., the Directed Acyclic Graph (DAG) root) or a few routers and forward the IPv6 datagram using a source routing technique to avoid large routing tables on memory-constrained routers.  This document specifies a new IPv6 Routing header type for delivering datagrams within a RPL routing domain. [STANDARDS-TRACK]"];
+  cites -> RFC6554;
+  RFC3610 [label="RFC3610
+Counter with CBC-MAC (CCM)
+2003", shape=ellipse, URL="RFC3610.html", target="_top", tooltip="Counter with CBC-MAC (CCM) is a generic authenticated encryption block cipher mode.  CCM is defined for use with 128-bit block ciphers, such as the Advanced Encryption Standard (AES)."];
+  cites -> RFC3610;
+  RFC4302 [label="RFC4302
+IP Authentication Header
+2005", shape=ellipse, URL="RFC4302.html", target="_top", tooltip="This document describes an updated version of the IP Authentication Header (AH), which is designed to provide authentication services in IPv4 and IPv6.  This document obsoletes RFC 2402 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4302;
+  RFC3447 [label="RFC3447
+Public-Key Cryptography Standards (PKCS)
+#1: RSA Cryptography Specifications
+Version 2.1
+2003", shape=ellipse, URL="RFC3447.html", target="_top", tooltip="This memo represents a republication of PKCS #1 v2.1 from RSA Laboratories' Public-Key Cryptography Standards (PKCS) series, and change control is retained within the PKCS process.  The body of this document is taken directly from the PKCS #1 v2.1 document, with certain corrections made during the publication process.  This memo provides information for the Internet community."];
+  cites -> RFC3447;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC6130 [label="RFC6130
+Mobile Ad Hoc Network (MANET)
+Neighborhood Discovery Protocol (NHDP)
+2011", shape=ellipse, URL="RFC6130.html", target="_top", tooltip="This document describes a 1-hop and symmetric 2-hop neighborhood discovery protocol (NHDP) for mobile ad hoc networks (MANETs). [STANDARDS-TRACK]"];
+  cites -> RFC6130;
+  RFC5706 [label="RFC5706
+Guidelines for Considering Operations
+and Management of New Protocols and
+Protocol Extensions
+2009", shape=ellipse, URL="RFC5706.html", target="_top", tooltip="New protocols or protocol extensions are best designed with due consideration of the functionality needed to operate and manage the protocols.  Retrofitting operations and management is sub-optimal.  The purpose of this document is to provide guidance to authors and reviewers of documents that define new protocols or protocol extensions regarding aspects of operations and management that should be considered.  This memo provides information for the Internet community."];
+  cites -> RFC5706;
+  RFC3410 [label="RFC3410
+Introduction and Applicability
+Statements for Internet-Standard
+Management Framework
+2002", shape=ellipse, URL="RFC3410.html", target="_top", tooltip="The purpose of this document is to provide an overview of the third version of the Internet-Standard Management Framework, termed the SNMP version 3 Framework (SNMPv3).  This Framework is derived from and builds upon both the original Internet-Standard Management Framework (SNMPv1) and the second Internet-Standard Management Framework (SNMPv2).  The architecture is designed to be modular to allow the evolution of the Framework over time.  The document explains why using SNMPv3 instead of SNMPv1 or SNMPv2 is strongly recommended.  The document also recommends that RFCs 1157, 1441, 1901, 1909 and 1910 be retired by moving them to Historic status.  This document obsoletes RFC 2570.  This memo provides information for the Internet community."];
+  cites -> RFC3410;
+  RFC2578 [label="RFC2578
+Structure of Management Information
+Version 2 (SMIv2)
+1999", shape=ellipse, URL="RFC2578.html", target="_top", tooltip="It is the purpose of this document, the Structure of Management Information Version 2 (SMIv2), to define that adapted subset, and to assign a set of associated administrative values. [STANDARDS-TRACK]"];
+  cites -> RFC2578;
+  RFC3535 [label="RFC3535
+Overview of the 2002 IAB Network
+Management Workshop
+2003", shape=ellipse, URL="RFC3535.html", target="_top", tooltip="This document provides an overview of a workshop held by the Internet Architecture Board (IAB) on Network Management.  The workshop was hosted by CNRI in Reston, VA, USA on June 4 thru June 6, 2002.  The goal of the workshop was to continue the important dialog started between network operators and protocol developers, and to guide the IETFs focus on future work regarding network management.  This report summarizes the discussions and lists the conclusions and recommendations to the Internet Engineering Task Force (IETF) community.  This memo provides information for the Internet community."];
+  cites -> RFC3535;
+  RFC1958 [label="RFC1958
+Architectural Principles of the Internet
+1996", shape=ellipse, URL="RFC1958.html", target="_top", tooltip="The Internet and its architecture have grown in evolutionary fashion from modest beginnings, rather than from a Grand Plan.  While this process of evolution is one of the main reasons for the technology's success, it nevertheless seems useful to record a snapshot of the current principles of the Internet architecture.  This is intended for general guidance and general interest, and is in no way intended to be a formal or invariant reference model.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1958;
+  RFC3307 [label="RFC3307
+Allocation Guidelines for IPv6 Multicast
+Addresses
+2002", shape=ellipse, URL="RFC3307.html", target="_top", tooltip="None"];
+  cites -> RFC3307;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6550;
+  RFC6551 [label="RFC6551
+Routing Metrics Used for Path
+Calculation in Low-Power and Lossy
+Networks
+2012", shape=ellipse, URL="RFC6551.html", target="_top", tooltip="Low-Power and Lossy Networks (LLNs) have unique characteristics compared with traditional wired and ad hoc networks that require the specification of new routing metrics and constraints.  By contrast, with typical Interior Gateway Protocol (IGP) routing metrics using hop counts or link metrics, this document specifies a set of link and node routing metrics and constraints suitable to LLNs to be used by the Routing Protocol for Low-Power and Lossy Networks (RPL). [STANDARDS-TRACK]"];
+  RFC6551 -> rev_cites;
+  RFC6552 [label="RFC6552
+Objective Function Zero for the Routing
+Protocol for Low-Power and Lossy
+Networks (RPL)
+2012", shape=ellipse, URL="RFC6552.html", target="_top", tooltip="The Routing Protocol for Low-Power and Lossy Networks (RPL) specification defines a generic Distance Vector protocol that is adapted to a variety of network types by the application of specific Objective Functions (OFs). An OF states the outcome of the process used by a RPL node to select and optimize routes within a RPL Instance based on the Information Objects available; an OF is not an algorithm. This document specifies a basic Objective Function that relies only on the objects that are defined in the RPL and does not use any protocol extensions. [STANDARDS-TRACK]"];
+  RFC6552 -> rev_cites;
+  RFC6553 [label="RFC6553
+The Routing Protocol for Low-Power and
+Lossy Networks (RPL) Option for Carrying
+RPL Information in Data-Plane Datagrams
+2012", shape=ellipse, URL="RFC6553.html", target="_top", tooltip="The Routing Protocol for Low-Power and Lossy Networks (RPL) includes routing information in data-plane datagrams to quickly identify inconsistencies in the routing topology.  This document describes the RPL Option for use among RPL routers to include such routing information. [STANDARDS-TRACK]"];
+  RFC6553 -> rev_cites;
+  RFC6554 [label="RFC6554
+An IPv6 Routing Header for Source Routes
+with the Routing Protocol for Low-Power
+and Lossy Networks (RPL)
+2012", shape=ellipse, URL="RFC6554.html", target="_top", tooltip="In Low-Power and Lossy Networks (LLNs), memory constraints on routers may limit them to maintaining, at most, a few routes.  In some configurations, it is necessary to use these memory-constrained routers to deliver datagrams to nodes within the LLN.  The Routing Protocol for Low-Power and Lossy Networks (RPL) can be used in some deployments to store most, if not all, routes on one (e.g., the Directed Acyclic Graph (DAG) root) or a few routers and forward the IPv6 datagram using a source routing technique to avoid large routing tables on memory-constrained routers.  This document specifies a new IPv6 Routing header type for delivering datagrams within a RPL routing domain. [STANDARDS-TRACK]"];
+  RFC6554 -> rev_cites;
+  RFC6687 [label="RFC6687
+Performance Evaluation of the Routing
+Protocol for Low-Power and Lossy
+Networks (RPL)
+2012", shape=ellipse, URL="RFC6687.html", target="_top", tooltip="This document presents a performance evaluation of the Routing Protocol for Low-Power and Lossy Networks (RPL) for a small outdoor deployment of sensor nodes and for a large-scale smart meter network.  Detailed simulations are carried out to produce several routing performance metrics using these real-life deployment scenarios.  Please refer to the PDF version of this document, which includes several plots for the performance metrics not shown in the plain-text version.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6687 -> rev_cites;
+  RFC6719 [label="RFC6719
+The Minimum Rank with Hysteresis
+Objective Function
+2012", shape=ellipse, URL="RFC6719.html", target="_top", tooltip="The Routing Protocol for Low-Power and Lossy Networks (RPL) constructs routes by using Objective Functions that optimize or constrain the routes it selects and uses.  This specification describes the Minimum Rank with Hysteresis Objective Function (MRHOF), an Objective Function that selects routes that minimize a metric, while using hysteresis to reduce churn in response to small metric changes.  MRHOF works with additive metrics along a route, and the metrics it uses are determined by the metrics that the RPL Destination Information Object (DIO) messages advertise. [STANDARDS-TRACK]"];
+  RFC6719 -> rev_cites;
+  RFC6997 [label="RFC6997
+Reactive Discovery of Point-to-Point
+Routes in Low-Power and Lossy Networks
+2013", shape=ellipse, URL="RFC6997.html", target="_top", tooltip="This document specifies a point-to-point route discovery mechanism, complementary to the Routing Protocol for Low-power and Lossy Networks (RPL) core functionality.  This mechanism allows an IPv6 router to discover on demand routes to one or more IPv6 routers in a Low-power and Lossy Network (LLN) such that the discovered routes meet specified metrics constraints."];
+  RFC6997 -> rev_cites;
+  RFC6998 [label="RFC6998
+A Mechanism to Measure the Routing
+Metrics along a Point-to-Point Route in
+a Low-Power and Lossy Network
+2013", shape=ellipse, URL="RFC6998.html", target="_top", tooltip="This document specifies a mechanism that enables a Routing Protocol for Low-power and Lossy Networks (RPL) router to measure the aggregated values of given routing metrics along an existing route towards another RPL router, thereby allowing the router to decide if it wants to initiate the discovery of a better route."];
+  RFC6998 -> rev_cites;
+  RFC7228 [label="RFC7228
+Terminology for Constrained-Node
+Networks
+2014", shape=ellipse, URL="RFC7228.html", target="_top", tooltip="The Internet Protocol Suite is increasingly used on small devices with severe constraints on power, memory, and processing resources, creating constrained-node networks.  This document provides a number of basic terms that have been useful in the standardization work for constrained-node networks."];
+  RFC7228 -> rev_cites;
+  RFC7279 [label="RFC7279
+An Acceptable Use Policy for New ICMP
+Types and Codes
+2014", shape=ellipse, URL="RFC7279.html", target="_top", tooltip="In this document we provide a basic description of ICMP's role in the IP stack and some guidelines for future use. This document is motivated by concerns about lack of clarity concerning when to add new Internet Control Message Protocol (ICMP) types and/or codes. These concerns have highlighted a need to describe policies for when adding new features to ICMP is desirable and when it is not."];
+  RFC7279 -> rev_cites;
+  RFC7390 [label="RFC7390
+Group Communication for the Constrained
+Application Protocol (CoAP)
+2014", shape=ellipse, URL="RFC7390.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for constrained devices and constrained networks.  It is anticipated that constrained devices will often naturally operate in groups (e.g., in a building automation scenario, all lights in a given room may need to be switched on/off as a group).  This specification defines how CoAP should be used in a group communication context.  An approach for using CoAP on top of IP multicast is detailed based on existing CoAP functionality as well as new features introduced in this specification.  Also, various use cases and corresponding protocol flows are provided to illustrate important concepts.  Finally, guidance is provided for deployment in various network topologies."];
+  RFC7390 -> rev_cites;
+  RFC7400 [label="RFC7400
+6LoWPAN-GHC: Generic Header Compression
+for IPv6 over Low-Power Wireless
+Personal Area Networks (6LoWPANs)
+2014", shape=ellipse, URL="RFC7400.html", target="_top", tooltip="RFC 6282 defines header compression in 6LoWPAN packets (where 6LoWPAN refers to IPv6 over Low-Power Wireless Personal Area Network).  The present document specifies a simple addition that enables the compression of generic headers and header-like payloads, without a need to define a new header compression scheme for each such new header or header-like payload."];
+  RFC7400 -> rev_cites;
+  RFC7416 [label="RFC7416
+A Security Threat Analysis for the
+Routing Protocol for Low-Power and Lossy
+Networks (RPLs)
+2015", shape=ellipse, URL="RFC7416.html", target="_top", tooltip="This document presents a security threat analysis for the Routing Protocol for Low-Power and Lossy Networks (RPLs).  The development builds upon previous work on routing security and adapts the assessments to the issues and constraints specific to low-power and lossy networks.  A systematic approach is used in defining and evaluating the security threats.  Applicable countermeasures are application specific and are addressed in relevant applicability statements."];
+  RFC7416 -> rev_cites;
+  RFC7428 [label="RFC7428
+Transmission of IPv6 Packets over ITU-T
+G.9959 Networks
+2015", shape=ellipse, URL="RFC7428.html", target="_top", tooltip="This document describes the frame format for transmission of IPv6 packets as well as a method of forming IPv6 link-local addresses and statelessly autoconfigured IPv6 addresses on ITU-T G.9959 networks."];
+  RFC7428 -> rev_cites;
+  RFC7547 [label="RFC7547
+Management of Networks with Constrained
+Devices: Problem Statement and
+Requirements
+2015", shape=ellipse, URL="RFC7547.html", target="_top", tooltip="This document provides a problem statement, deployment and management topology options, as well as requirements addressing the different use cases of the management of networks where constrained devices are involved."];
+  RFC7547 -> rev_cites;
+  RFC7554 [label="RFC7554
+Using IEEE 802.15.4e Time-Slotted
+Channel Hopping (TSCH) in the Internet
+of Things (IoT): Problem Statement
+2015", shape=ellipse, URL="RFC7554.html", target="_top", tooltip="This document describes the environment, problem statement, and goals for using the Time-Slotted Channel Hopping (TSCH) Medium Access Control (MAC) protocol of IEEE 802.14.4e in the context of Low-Power and Lossy Networks (LLNs).  The set of goals enumerated in this document form an initial set only."];
+  RFC7554 -> rev_cites;
+  RFC7558 [label="RFC7558
+Requirements for Scalable DNS-Based
+Service Discovery (DNS-SD) / Multicast
+DNS (mDNS) Extensions
+2015", shape=ellipse, URL="RFC7558.html", target="_top", tooltip="DNS-based Service Discovery (DNS-SD) over Multicast DNS (mDNS) is widely used today for discovery and resolution of services and names on a local link, but there are use cases to extend DNS-SD/mDNS to enable service discovery beyond the local link.  This document provides a problem statement and a list of requirements for scalable DNS-SD."];
+  RFC7558 -> rev_cites;
+  RFC7731 [label="RFC7731
+Multicast Protocol for Low-Power and
+Lossy Networks (MPL)
+2016", shape=ellipse, URL="RFC7731.html", target="_top", tooltip="This document specifies the Multicast Protocol for Low-Power and Lossy Networks (MPL), which provides IPv6 multicast forwarding in constrained networks. MPL avoids the need to construct or maintain any multicast forwarding topology, disseminating messages to all MPL Forwarders in an MPL Domain. MPL has two modes of operation. One mode uses the Trickle algorithm to manage control-plane and data-plane message transmissions and is applicable for deployments with few multicast sources. The other mode uses classic flooding. By providing both modes and parameterization of the Trickle algorithm, an MPL implementation can be used in a variety of multicast deployments and can trade between dissemination latency and transmission efficiency."];
+  RFC7731 -> rev_cites;
+  RFC7733 [label="RFC7733
+Applicability Statement: The Use of the
+Routing Protocol for Low-Power and Lossy
+Networks (RPL) Protocol Suite in Home
+Automation and Building Control
+2016", shape=ellipse, URL="RFC7733.html", target="_top", tooltip="The purpose of this document is to provide guidance in the selection and use of protocols from the Routing Protocol for Low-Power and Lossy Networks (RPL) protocol suite to implement the features required for control in building and home environments."];
+  RFC7733 -> rev_cites;
+  RFC8036 [label="RFC8036
+Applicability Statement for the Routing
+Protocol for Low-Power and Lossy
+Networks (RPL) in Advanced Metering
+Infrastructure (AMI) Networks
+2017", shape=ellipse, URL="RFC8036.html", target="_top", tooltip="This document discusses the applicability of the Routing Protocol for Low-Power and Lossy Networks (RPL) in Advanced Metering Infrastructure (AMI) networks."];
+  RFC8036 -> rev_cites;
+  RFC8138 [label="RFC8138
+IPv6 over Low-Power Wireless Personal
+Area Network (6LoWPAN) Routing Header
+2017", shape=ellipse, URL="RFC8138.html", target="_top", tooltip="This specification introduces a new IPv6 over Low-Power Wireless Personal Area Network (6LoWPAN) dispatch type for use in 6LoWPAN route-over topologies, which initially covers the needs of Routing Protocol for Low-Power and Lossy Networks (RPL) data packet compression (RFC 6550).  Using this dispatch type, this specification defines a method to compress the RPL Option (RFC 6553) information and Routing Header type 3 (RFC 6554), an efficient IP-in-IP technique, and is extensible for more applications."];
+  RFC8138 -> rev_cites;
+  RFC8180 [label="RFC8180
+Minimal IPv6 over the TSCH Mode of IEEE
+802.15.4e (6TiSCH) Configuration
+2017", shape=ellipse, URL="RFC8180.html", target="_top", tooltip="This document describes a minimal mode of operation for an IPv6 over the TSCH mode of IEEE 802.15.4e (6TiSCH) network.  This minimal mode of operation specifies the baseline set of protocols that need to be supported and the recommended configurations and modes of operation sufficient to enable a 6TiSCH functional network.  6TiSCH provides IPv6 connectivity over a Time-Slotted Channel Hopping (TSCH) mesh composed of IEEE Std 802.15.4 TSCH links.  This minimal mode uses a collection of protocols with the respective configurations, including the IPv6 Low-Power Wireless Personal Area Network (6LoWPAN) framework, enabling interoperable IPv6 connectivity over IEEE Std 802.15.4 TSCH.  This minimal configuration provides the necessary bandwidth for network and security bootstrapping and defines the proper link between the IETF protocols that interface to IEEE Std 802.15.4 TSCH.  This minimal mode of operation should be implemented by all 6TiSCH-compliant devices."];
+  RFC8180 -> rev_cites;
+  RFC8352 [label="RFC8352
+Energy-Efficient Features of Internet of
+Things Protocols
+2018", shape=ellipse, URL="RFC8352.html", target="_top", tooltip="This document describes the challenges for energy-efficient protocol operation on constrained devices and the current practices used to overcome those challenges.  It summarizes the main link-layer techniques used for energy-efficient networking, and it highlights the impact of such techniques on the upper-layer protocols so that they can together achieve an energy-efficient behavior.  The document also provides an overview of energy-efficient mechanisms available at each layer of the IETF protocol suite specified for constrained-node networks."];
+  RFC8352 -> rev_cites;
+  RFC8505 [label="RFC8505
+Registration Extensions for IPv6 over
+Low-Power Wireless Personal Area Network
+(6LoWPAN) Neighbor Discovery
+2018", shape=ellipse, URL="RFC8505.html", target="_top", tooltip="This specification updates RFC 6775 -- the Low-Power Wireless Personal Area Network (6LoWPAN) Neighbor Discovery specification -- to clarify the role of the protocol as a registration technique and simplify the registration operation in 6LoWPAN routers, as well as to provide enhancements to the registration capabilities and mobility detection for different network topologies, including the Routing Registrars performing routing for host routes and/or proxy Neighbor Discovery in a low-power network."];
+  RFC8505 -> rev_cites;
+  RFC8576 [label="RFC8576
+Internet of Things (IoT) Security: State
+of the Art and Challenges
+2019", shape=ellipse, URL="RFC8576.html", target="_top", tooltip="The Internet of Things (IoT) concept refers to the usage of standard Internet protocols to allow for human-to-thing and thing-to-thing communication. The security needs for IoT systems are well recognized, and many standardization steps to provide security have been taken -- for example, the specification of the Constrained Application Protocol (CoAP) secured with Datagram Transport Layer Security (DTLS). However, security challenges still exist, not only because there are some use cases that lack a suitable solution, but also because many IoT devices and systems have been designed and deployed with very limited security capabilities. In this document, we first discuss the various stages in the lifecycle of a thing. Next, we document the security threats to a thing and the challenges that one might face to protect against these threats. Lastly, we discuss the next steps needed to facilitate the deployment of secure IoT systems. This document can be used by implementers and authors of IoT specifications as a reference for details about security considerations while documenting their specific security challenges, threat models, and mitigations. This document is a product of the IRTF Thing-to-Thing Research Group (T2TRG)."];
+  RFC8576 -> rev_cites;
+  RFC8578 [label="RFC8578
+Deterministic Networking Use Cases
+2019", shape=ellipse, URL="RFC8578.html", target="_top", tooltip="This document presents use cases for diverse industries that have in common a need for deterministic flows. Deterministic in this context means that such flows provide guaranteed bandwidth, bounded latency, and other properties germane to the transport of time-sensitive data.  These use cases differ notably in their network topologies and specific desired behavior, providing as a group broad industry context for Deterministic Networking (DetNet).  For each use case, this document will identify the use case, identify representative solutions used today, and describe potential improvements that DetNet can enable."];
+  RFC8578 -> rev_cites;
+  RFC8929 [label="RFC8929
+IPv6 Backbone Router
+2020", shape=ellipse, URL="RFC8929.html", target="_top", tooltip="This document updates RFCs 6775 and 8505 in order to enable proxy services for IPv6 Neighbor Discovery by Routing Registrars called Backbone Routers.  Backbone Routers are placed along the wireless edge of a backbone and federate multiple wireless links to form a single Multi-Link Subnet (MLSN)."];
+  RFC8929 -> rev_cites;
+  RFC8930 [label="RFC8930
+On Forwarding 6LoWPAN Fragments over a
+Multi-Hop IPv6 Network
+2020", shape=ellipse, URL="RFC8930.html", target="_top", tooltip="This document provides generic rules to enable the forwarding of an IPv6 over Low-Power Wireless Personal Area Network (6LoWPAN) fragment over a route-over network.  Forwarding fragments can improve both end-to-end latency and reliability as well as reduce the buffer requirements in intermediate nodes; it may be implemented using RFC 4944 and Virtual Reassembly Buffers (VRBs)."];
+  RFC8930 -> rev_cites;
+  RFC8931 [label="RFC8931
+IPv6 over Low-Power Wireless Personal
+Area Network (6LoWPAN) Selective
+Fragment Recovery
+2020", shape=ellipse, URL="RFC8931.html", target="_top", tooltip="This document updates RFC 4944 with a protocol that forwards individual fragments across a route-over mesh and recovers them end to end, with congestion control capabilities to protect the network."];
+  RFC8931 -> rev_cites;
+  RFC8965 [label="RFC8965
+Applicability of the Babel Routing
+Protocol
+2021", shape=ellipse, URL="RFC8965.html", target="_top", tooltip="Babel is a routing protocol based on the distance-vector algorithm augmented with mechanisms for loop avoidance and starvation avoidance.  This document describes a number of niches where Babel has been found to be useful and that are arguably not adequately served by more mature protocols."];
+  RFC8965 -> rev_cites;
+  RFC8994 [label="RFC8994
+An Autonomic Control Plane (ACP)
+2021", shape=ellipse, URL="RFC8994.html", target="_top", tooltip="Autonomic functions need a control plane to communicate, which depends on some addressing and routing.  This Autonomic Control Plane should ideally be self-managing and be as independent as possible of configuration.  This document defines such a plane and calls it the Autonomic Control Plane, with the primary use as a control plane for autonomic functions.  It also serves as a virtual out-of-band channel for Operations, Administration, and Management (OAM) communications over a network that provides automatically configured, hop-by-hop authenticated and encrypted communications via automatically configured IPv6 even when the network is not configured or is misconfigured."];
+  RFC8994 -> rev_cites;
+  RFC9006 [label="RFC9006
+TCP Usage Guidance in the Internet of
+Things (IoT)
+2021", shape=ellipse, URL="RFC9006.html", target="_top", tooltip="This document provides guidance on how to implement and use the Transmission Control Protocol (TCP) in Constrained-Node Networks (CNNs), which are a characteristic of the Internet of Things (IoT).  Such environments require a lightweight TCP implementation and may not make use of optional functionality.  This document explains a number of known and deployed techniques to simplify a TCP stack as well as corresponding trade-offs.  The objective is to help embedded developers with decisions on which TCP features to use."];
+  RFC9006 -> rev_cites;
+  RFC9008 [label="RFC9008
+Using RPI Option Type, Routing Header
+for Source Routes, and IPv6-in-IPv6
+Encapsulation in the RPL Data Plane
+2021", shape=ellipse, URL="RFC9008.html", target="_top", tooltip="This document looks at different data flows through Low-Power and Lossy Networks (LLN) where RPL (IPv6 Routing Protocol for Low-Power and Lossy Networks) is used to establish routing.  The document enumerates the cases where RPL Packet Information (RPI) Option Type (RFC 6553), RPL Source Route Header (RFC 6554), and IPv6-in-IPv6 encapsulation are required in the data plane.  This analysis provides the basis upon which to design efficient compression of these headers.  This document updates RFC 6553 by adding a change to the RPI Option Type.  Additionally, this document updates RFC 6550 by defining a flag in the DODAG Information Object (DIO) Configuration option to indicate this change and updates RFC 8138 as well to consider the new Option Type when the RPL Option is decompressed."];
+  RFC9008 -> rev_cites;
+  RFC9009 [label="RFC9009
+Efficient Route Invalidation
+2021", shape=ellipse, URL="RFC9009.html", target="_top", tooltip="This document explains the problems associated with the use of No-Path Destination Advertisement Object (NPDAO) messaging in RFC 6550 and also discusses the requirements for an optimized route invalidation messaging scheme.  Further, this document specifies a new proactive route invalidation message called the Destination Cleanup Object (DCO), which fulfills requirements for optimized route invalidation messaging."];
+  RFC9009 -> rev_cites;
+  RFC9010 [label="RFC9010
+Routing for RPL (Routing Protocol for
+Low-Power and Lossy Networks) Leaves
+2021", shape=ellipse, URL="RFC9010.html", target="_top", tooltip="This specification provides a mechanism for a host that implements a routing-agnostic interface based on IPv6 over Low-Power Wireless Personal Area Network (6LoWPAN) Neighbor Discovery to obtain reachability services across a network that leverages RFC 6550 for its routing operations.  It updates RFCs 6550, 6775, and 8505."];
+  RFC9010 -> rev_cites;
+  RFC9030 [label="RFC9030
+An Architecture for IPv6 over the Time-
+Slotted Channel Hopping Mode of IEEE
+802.15.4 (6TiSCH)
+2021", shape=ellipse, URL="RFC9030.html", target="_top", tooltip="This document describes a network architecture that provides low-latency, low-jitter, and high-reliability packet delivery.  It combines a high-speed powered backbone and subnetworks using IEEE 802.15.4 time-slotted channel hopping (TSCH) to meet the requirements of low-power wireless deterministic applications."];
+  RFC9030 -> rev_cites;
+  RFC9031 [label="RFC9031
+Constrained Join Protocol (CoJP) for
+6TiSCH
+2021", shape=ellipse, URL="RFC9031.html", target="_top", tooltip="This document describes the minimal framework required for a new device, called a pledge, to securely join a 6TiSCH (IPv6 over the Time-Slotted Channel Hopping mode of IEEE 802.15.4) network.  The framework requires that the pledge and the JRC (Join Registrar/Coordinator, a central entity), share a symmetric key.  How this key is provisioned is out of scope of this document.  Through a single CoAP (Constrained Application Protocol) request-response exchange secured by OSCORE (Object Security for Constrained RESTful Environments), the pledge requests admission into the network, and the JRC configures it with link-layer keying material and other parameters.  The JRC may at any time update the parameters through another request-response exchange secured by OSCORE.  This specification defines the Constrained Join Protocol and its CBOR (Concise Binary Object Representation) data structures, and it describes how to configure the rest of the 6TiSCH communication stack for this join process to occur in a secure manner.  Additional security mechanisms may be added on top of this minimal framework."];
+  RFC9031 -> rev_cites;
+  RFC9032 [label="RFC9032
+Encapsulation of 6TiSCH Join and
+Enrollment Information Elements
+2021", shape=ellipse, URL="RFC9032.html", target="_top", tooltip="In the Time-Slotted Channel Hopping (TSCH) mode of IEEE Std 802.15.4, opportunities for broadcasts are limited to specific times and specific channels.  Routers in a TSCH network transmit Enhanced Beacon (EB) frames to announce the presence of the network.  This document provides a mechanism by which additional information critical for new nodes (pledges) and long-sleeping nodes may be carried within the EB in order to conserve use of broadcast opportunities."];
+  RFC9032 -> rev_cites;
+  RFC9033 [label="RFC9033
+6TiSCH Minimal Scheduling Function (MSF)
+2021", shape=ellipse, URL="RFC9033.html", target="_top", tooltip="This specification defines the IPv6 over the TSCH mode of IEEE 802.15.4 (6TiSCH) Minimal Scheduling Function (MSF).  This Scheduling Function describes both the behavior of a node when joining the network and how the communication schedule is managed in a distributed fashion.  MSF is built upon the 6TiSCH Operation Sublayer Protocol (6P) and the minimal security framework for 6TiSCH."];
+  RFC9033 -> rev_cites;
+  RFC9034 [label="RFC9034
+Packet Delivery Deadline Time in the
+Routing Header for IPv6 over Low-Power
+Wireless Personal Area Networks
+(6LoWPANs)
+2021", shape=ellipse, URL="RFC9034.html", target="_top", tooltip="This document specifies a new type for the 6LoWPAN routing header containing the deadline time for data packets, designed for use over constrained networks.  The deadline time enables forwarding and scheduling decisions for time-critical machine-to-machine (M2M) applications running on Internet-enabled devices that operate within time-synchronized networks.  This document also specifies a representation for the deadline time values in such networks."];
+  RFC9034 -> rev_cites;
+  RFC9035 [label="RFC9035
+A Routing Protocol for Low-Power and
+Lossy Networks (RPL) Destination-
+Oriented Directed Acyclic Graph (DODAG)
+Configuration Option for the 6LoWPAN
+Routing Header
+2021", shape=ellipse, URL="RFC9035.html", target="_top", tooltip="This document updates RFC 8138 by defining a bit in the Routing Protocol for Low-Power and Lossy Networks (RPL) Destination-Oriented Directed Acyclic Graph (DODAG) Configuration option to indicate whether compression is used within the RPL Instance and to specify the behavior of nodes compliant with RFC 8138 when the bit is set and unset."];
+  RFC9035 -> rev_cites;
+  RFC9288 [label="RFC9288
+Recommendations on the Filtering of IPv6
+Packets Containing IPv6 Extension
+Headers at Transit Routers
+2022", shape=ellipse, URL="RFC9288.html", target="_top", tooltip="This document analyzes the security implications of IPv6 Extension Headers and associated IPv6 options.  Additionally, it discusses the operational and interoperability implications of discarding packets based on the IPv6 Extension Headers and IPv6 options they contain.  Finally, it provides advice on the filtering of such IPv6 packets at transit routers for traffic not directed to them, for those cases where such filtering is deemed as necessary."];
+  RFC9288 -> rev_cites;
+  RFC9354 [label="RFC9354
+Transmission of IPv6 Packets over Power
+Line Communication (PLC) Networks
+2023", shape=ellipse, URL="RFC9354.html", target="_top", tooltip="Power Line Communication (PLC), namely using electric power lines for indoor and outdoor communications, has been widely applied to support Advanced Metering Infrastructure (AMI), especially smart meters for electricity.  The existing electricity infrastructure facilitates the expansion of PLC deployments due to its potential advantages in terms of cost and convenience.  Moreover, a wide variety of accessible devices raises the potential demand of IPv6 for future applications.  This document describes how IPv6 packets are transported over constrained PLC networks, such as those described in ITU-T G.9903, IEEE 1901.1, and IEEE 1901.2."];
+  RFC9354 -> rev_cites;
+  RFC9365 [label="RFC9365
+IPv6 Wireless Access in Vehicular
+Environments (IPWAVE): Problem Statement
+and Use Cases
+2023", shape=ellipse, URL="RFC9365.html", target="_top", tooltip="This document discusses the problem statement and use cases of IPv6-based vehicular networking for Intelligent Transportation Systems (ITS).  The main scenarios of vehicular communications are vehicle-to-vehicle (V2V), vehicle-to-infrastructure (V2I), and vehicle-to-everything (V2X) communications.  First, this document explains use cases using V2V, V2I, and V2X networking.  Next, for IPv6-based vehicular networks, it makes a gap analysis of current IPv6 protocols (e.g., IPv6 Neighbor Discovery, mobility management, as well as security and privacy)."];
+  RFC9365 -> rev_cites;
+  RFC9453 [label="RFC9453
+Applicability and Use Cases for IPv6
+over Networks of Resource-constrained
+Nodes (6lo)
+2023", shape=ellipse, URL="RFC9453.html", target="_top", tooltip="This document describes the applicability of IPv6 over constrained-node networks (6lo) and provides practical deployment examples.  In addition to IEEE Std 802.15.4, various link-layer technologies are used as examples, such as ITU-T G.9959 (Z-Wave), Bluetooth Low Energy (Bluetooth LE), Digital Enhanced Cordless Telecommunications - Ultra Low Energy (DECT-ULE), Master-Slave/Token Passing (MS/TP), Near Field Communication (NFC), and Power Line Communication (PLC).  This document targets an audience who would like to understand and evaluate running end-to-end IPv6 over the constrained-node networks for local or Internet connectivity."];
+  RFC9453 -> rev_cites;
+  RFC9685 [label="RFC9685
+Listener Subscription for IPv6 Neighbor
+Discovery Multicast and Anycast
+Addresses
+2024", shape=ellipse, URL="RFC9685.html", target="_top", tooltip="This document updates the 6LoWPAN extensions to IPv6 Neighbor Discovery (specified in RFCs 4861 and 8505) to enable a listener to subscribe to an IPv6 anycast or multicast address.  This document also updates the Routing Protocol for Low-Power and Lossy Networks (RPL) (specified in RFCs 6550 and 6553) to add a new Non-Storing multicast mode and new support for anycast addresses in Storing and Non-Storing modes.  This document extends RFC 9010 to enable a 6LoWPAN Router (6LR) to inject the anycast and multicast addresses in RPL."];
+  RFC9685 -> rev_cites;
+  RFC9692 [label="RFC9692
+RIFT: Routing in Fat Trees
+2025", shape=ellipse, URL="RFC9692.html", target="_top", tooltip="This document defines a specialized, dynamic routing protocol for Clos, fat tree, and variants thereof.  These topologies were initially used within crossbar interconnects and consequently router and switch backplanes, but their characteristics make them ideal for constructing IP fabrics as well.  The protocol specified by this document is optimized towards the minimization of control plane state to support very large substrates as well as the minimization of configuration and operational complexity to allow for a simplified deployment of said topologies."];
+  RFC9692 -> rev_cites;
+  RFC9696 [label="RFC9696
+Routing in Fat Trees (RIFT)
+Applicability and Operational
+Considerations
+2025", shape=ellipse, URL="RFC9696.html", target="_top", tooltip="This document discusses the properties, applicability, and operational considerations of Routing in Fat Trees (RIFT) in different network scenarios with the intention of providing a rough guide on how RIFT can be deployed to simplify routing operations in Clos topologies and their variations."];
+  RFC9696 -> rev_cites;
+  RFC9854 [label="RFC9854
+AODV-RPL: The Routing Protocol for Low-
+Power and Lossy Networks (RPL) Based on
+Ad Hoc On-Demand Distance Vector (AODV)
+Routing
+2025", shape=ellipse, URL="RFC9854.html", target="_top", tooltip="Route discovery for symmetric and asymmetric Peer-to-Peer (P2P) traffic flows is a desirable feature in Low-Power and Lossy Networks (LLNs).  For that purpose, this document specifies AODV-RPL -- the Routing Protocol for Low-Power and Lossy Networks (RPL) based on Ad hoc On-demand Distance Vector (AODV) routing.  AODV-RPL is a reactive P2P route discovery mechanism for both hop-by-hop routes and source routing.  Paired instances are used to construct directional paths for cases where there are asymmetric links between source and target nodes."];
+  RFC9854 -> rev_cites;
+  RFC9866 [label="RFC9866
+Root Node Failure Detector (RNFD): Fast
+Detection of Border Router Crashes in
+the Routing Protocol for Low-Power and
+Lossy Networks (RPL)
+2025", shape=ellipse, URL="RFC9866.html", target="_top", tooltip="By and large, correct operation of a network running the Routing Protocol for Low-Power and Lossy Networks (RPL) requires border routers to be up.  In many applications, it is beneficial for the nodes to detect a failure of a border router as soon as possible to trigger fallback actions.  This document specifies the Root Node Failure Detector (RNFD), an extension to RPL that expedites detection of border router crashes by having nodes collaboratively monitor the status of a given border router.  The extension introduces an additional state at each node, a new type of RPL Control Message Option for synchronizing this state among different nodes, and the coordination algorithm itself."];
+  RFC9866 -> rev_cites;
+}

@@ -1,0 +1,85 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8558 [label="RFC8558
+Transport Protocol Path Signals
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document discusses the nature of signals seen by on-path elements examining transport protocols, contrasting implicit and explicit signals.  For example, TCP's state machine uses a series of well-known messages that are exchanged in the clear.  Because these are visible to network elements on the path between the two nodes setting up the transport connection, they are often used as signals by those network elements.  In transports that do not exchange these messages in the clear, on-path network elements lack those signals.  Often, the removal of those signals is intended by those moving the messages to confidential channels.  Where the endpoints desire that network elements along the path receive these signals, this document recommends explicit signals be used."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8558;
+
+  obs [label="obsoletes", shape=box];
+  RFC8558 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8558 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8558;
+
+  cites [label="cites", shape=box];
+  RFC8558 -> cites;
+  RFC1958 [label="RFC1958
+Architectural Principles of the Internet
+1996", shape=ellipse, URL="RFC1958.html", target="_top", tooltip="The Internet and its architecture have grown in evolutionary fashion from modest beginnings, rather than from a Grand Plan.  While this process of evolution is one of the main reasons for the technology's success, it nevertheless seems useful to record a snapshot of the current principles of the Internet architecture.  This is intended for general guidance and general interest, and is in no way intended to be a formal or invariant reference model.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1958;
+  RFC3234 [label="RFC3234
+Middleboxes: Taxonomy and Issues
+2002", shape=ellipse, URL="RFC3234.html", target="_top", tooltip="This document is intended as part of an IETF discussion about middleboxes - defined as any intermediary box performing functions apart from normal, standard functions of an IP router on the data path between a source host and destination host.  This document establishes a catalogue or taxonomy of middleboxes, cites previous and current IETF work concerning middleboxes, and attempts to identify some preliminary conclusions.  It does not, however, claim to be definitive.  This memo provides information for the Internet community."];
+  cites -> RFC3234;
+  RFC7857 [label="RFC7857
+Updates to Network Address Translation
+(NAT) Behavioral Requirements
+2016", shape=ellipse, URL="RFC7857.html", target="_top", tooltip="This document clarifies and updates several requirements of RFCs 4787, 5382, and 5508 based on operational and development experience. The focus of this document is Network Address Translation from IPv4 to IPv4 (NAT44). This document updates RFCs 4787, 5382, and 5508."];
+  cites -> RFC7857;
+  RFC7045 [label="RFC7045
+Transmission and Processing of IPv6
+Extension Headers
+2013", shape=ellipse, URL="RFC7045.html", target="_top", tooltip="Various IPv6 extension headers have been standardised since the IPv6 standard was first published.  This document updates RFC 2460 to clarify how intermediate nodes should deal with such extension headers and with any that are defined in the future.  It also specifies how extension headers should be registered by IANA, with a corresponding minor update to RFC 2780."];
+  cites -> RFC7045;
+  RFC8164 [label="RFC8164
+Opportunistic Security for HTTP/2
+2017", shape=ellipse, URL="RFC8164.html", target="_top", tooltip="This document describes how http URIs can be accessed using Transport Layer Security (TLS) and HTTP/2 to mitigate pervasive monitoring attacks.  This mechanism not a replacement for https URIs; it is vulnerable to active attacks."];
+  cites -> RFC8164;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8558;
+  RFC8546 [label="RFC8546
+The Wire Image of a Network Protocol
+2019", shape=ellipse, URL="RFC8546.html", target="_top", tooltip="This document defines the wire image, an abstraction of the information available to an on-path non-participant in a networking protocol.  This abstraction is intended to shed light on the implications that increased encryption has for network functions that use the wire image."];
+  RFC8546 -> rev_cites;
+  RFC9065 [label="RFC9065
+Considerations around Transport Header
+Confidentiality, Network Operations, and
+the Evolution of Internet Transport
+Protocols
+2021", shape=ellipse, URL="RFC9065.html", target="_top", tooltip="To protect user data and privacy, Internet transport protocols have supported payload encryption and authentication for some time. Such encryption and authentication are now also starting to be applied to the transport protocol headers. This helps avoid transport protocol ossification by middleboxes, mitigate attacks against the transport protocol, and protect metadata about the communication. Current operational practice in some networks inspect transport header information within the network, but this is no longer possible when those transport headers are encrypted. This document discusses the possible impact when network traffic uses a protocol with an encrypted transport header. It suggests issues to consider when designing new transport protocols or features."];
+  RFC9065 -> rev_cites;
+  RFC9217 [label="RFC9217
+Current Open Questions in Path-Aware
+Networking
+2022", shape=ellipse, URL="RFC9217.html", target="_top", tooltip="In contrast to the present Internet architecture, a path-aware internetworking architecture has two important properties: it exposes the properties of available Internet paths to endpoints, and it provides for endpoints and applications to use these properties to select paths through the Internet for their traffic. While this property of path awareness already exists in many Internet-connected networks within single domains and via administrative interfaces to the network layer, a fully path-aware internetwork expands these concepts across layers and across the Internet. This document poses questions in path-aware networking, open as of 2021, that must be answered in the design, development, and deployment of path-aware internetworks. It was originally written to frame discussions in the Path Aware Networking Research Group (PANRG), and has been published to snapshot current thinking in this space."];
+  RFC9217 -> rev_cites;
+  RFC9419 [label="RFC9419
+Considerations on Application - Network
+Collaboration Using Path Signals
+2023", shape=ellipse, URL="RFC9419.html", target="_top", tooltip="This document discusses principles for designing mechanisms that use or provide path signals and calls for standards action in specific valuable cases.  RFC 8558 describes path signals as messages to or from on-path elements and points out that visible information will be used whether or not it is intended as a signal.  The principles in this document are intended as guidance for the design of explicit path signals, which are encouraged to be authenticated and include a minimal set of parties to minimize information sharing.  These principles can be achieved through mechanisms like encryption of information and establishing trust relationships between entities on a path."];
+  RFC9419 -> rev_cites;
+  RFC9473 [label="RFC9473
+A Vocabulary of Path Properties
+2023", shape=ellipse, URL="RFC9473.html", target="_top", tooltip="Path properties express information about paths across a network and the services provided via such paths.  In a path-aware network, path properties may be fully or partially available to entities such as endpoints.  This document defines and categorizes path properties.  Furthermore, the document identifies several path properties that might be useful to endpoints or other entities, e.g., for selecting between paths or for invoking some of the provided services.  This document is a product of the Path Aware Networking Research Group (PANRG)."];
+  RFC9473 -> rev_cites;
+  RFC9506 [label="RFC9506
+Explicit Host-to-Network Flow
+Measurements Techniques
+2023", shape=ellipse, URL="RFC9506.html", target="_top", tooltip="This document describes protocol-independent methods called Explicit Host-to-Network Flow Measurement Techniques that can be applicable to transport-layer protocols between the client and server.  These methods employ just a few marking bits inside the header of each packet for performance measurements and require the client and server to collaborate.  Both endpoints cooperate by marking packets and, possibly, mirroring the markings on the round-trip connection.  The techniques are especially valuable when applied to protocols that encrypt transport headers since they enable loss and delay measurements by passive, on-path network devices.  This document describes several methods that can be used separately or jointly depending of the availability of marking bits, desired measurements, and properties of the protocol to which the methods are applied."];
+  RFC9506 -> rev_cites;
+  RFC9620 [label="RFC9620
+Guidelines for Human Rights Protocol and
+Architecture Considerations
+2024", shape=ellipse, URL="RFC9620.html", target="_top", tooltip="This document sets guidelines for human rights considerations for developers working on network protocols and architectures, similar to the work done on the guidelines for privacy considerations (RFC 6973). This is an updated version of the guidelines for human rights considerations in RFC 8280. This document is a product of the Human Right Protocol Considerations (HRPC) Research Group in the IRTF."];
+  RFC9620 -> rev_cites;
+}

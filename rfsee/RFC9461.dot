@@ -1,0 +1,74 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9461 [label="RFC9461
+Service Binding Mapping for DNS Servers
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="The SVCB DNS resource record type expresses a bound collection of endpoint metadata, for use when establishing a connection to a named service.  DNS itself can be such a service, when the server is identified by a domain name.  This document provides the SVCB mapping for named DNS servers, allowing them to indicate support for encrypted transport protocols."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9461;
+
+  obs [label="obsoletes", shape=box];
+  RFC9461 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9461 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9461;
+
+  cites [label="cites", shape=box];
+  RFC9461 -> cites;
+  RFC7858 [label="RFC7858
+Specification for DNS over Transport
+Layer Security (TLS)
+2016", shape=ellipse, URL="RFC7858.html", target="_top", tooltip="This document describes the use of Transport Layer Security (TLS) to provide privacy for DNS. Encryption provided by TLS eliminates opportunities for eavesdropping and on-path tampering with DNS queries in the network, such as discussed in RFC 7626. In addition, this document specifies two usage profiles for DNS over TLS and provides advice on performance considerations to minimize overhead from using TCP and TLS with DNS. This document focuses on securing stub-to-recursive traffic, as per the charter of the DPRIVE Working Group. It does not prevent future applications of the protocol to recursive-to-authoritative traffic."];
+  cites -> RFC7858;
+  RFC8484 [label="RFC8484
+DNS Queries over HTTPS (DoH)
+2018", shape=ellipse, URL="RFC8484.html", target="_top", tooltip="This document defines a protocol for sending DNS queries and getting DNS responses over HTTPS.  Each DNS query-response pair is mapped into an HTTP exchange."];
+  cites -> RFC8484;
+  RFC9250 [label="RFC9250
+DNS over Dedicated QUIC Connections
+2022", shape=ellipse, URL="RFC9250.html", target="_top", tooltip="This document describes the use of QUIC to provide transport confidentiality for DNS.  The encryption provided by QUIC has similar properties to those provided by TLS, while QUIC transport eliminates the head-of-line blocking issues inherent with TCP and provides more efficient packet-loss recovery than UDP.  DNS over QUIC (DoQ) has privacy properties similar to DNS over TLS (DoT) specified in RFC 7858, and latency characteristics similar to classic DNS over UDP.  This specification describes the use of DoQ as a general-purpose transport for DNS and includes the use of DoQ for stub to recursive, recursive to authoritative, and zone transfer scenarios."];
+  cites -> RFC9250;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6570 [label="RFC6570
+URI Template
+2012", shape=ellipse, URL="RFC6570.html", target="_top", tooltip="A URI Template is a compact sequence of characters for describing a range of Uniform Resource Identifiers through variable expansion.  This specification defines the URI Template syntax and the process for expanding a URI Template into a URI reference, along with guidelines for the use of URI Templates on the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC6570;
+  RFC3629 [label="RFC3629
+UTF-8, a transformation format of ISO
+10646
+2003", shape=ellipse, URL="RFC3629.html", target="_top", tooltip="ISO/IEC 10646-1 defines a large character set called the Universal Character Set (UCS) which encompasses most of the world's writing systems.  The originally proposed encodings of the UCS, however, were not compatible with many current applications and protocols, and this has led to the development of UTF-8, the object of this memo.  UTF-8 has the characteristic of preserving the full US-ASCII range, providing compatibility with file systems, parsers and other software that rely on US-ASCII values but are transparent to other values.  This memo obsoletes and replaces RFC 2279."];
+  cites -> RFC3629;
+  RFC9113 [label="RFC9113
+HTTP/2
+2022", shape=ellipse, URL="RFC9113.html", target="_top", tooltip="This specification describes an optimized expression of the semantics of the Hypertext Transfer Protocol (HTTP), referred to as HTTP version 2 (HTTP/2). HTTP/2 enables a more efficient use of network resources and a reduced latency by introducing field compression and allowing multiple concurrent exchanges on the same connection. This document obsoletes RFCs 7540 and 8740."];
+  cites -> RFC9113;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9461;
+  RFC9462 [label="RFC9462
+Discovery of Designated Resolvers
+2023", shape=ellipse, URL="RFC9462.html", target="_top", tooltip="This document defines Discovery of Designated Resolvers (DDR), a set of mechanisms for DNS clients to use DNS records to discover a resolver's encrypted DNS configuration.  An Encrypted DNS Resolver discovered in this manner is referred to as a Designated Resolver.  These mechanisms can be used to move from unencrypted DNS to encrypted DNS when only the IP address of a resolver is known.  These mechanisms are designed to be limited to cases where Unencrypted DNS Resolvers and their Designated Resolvers are operated by the same entity or cooperating entities.  It can also be used to discover support for encrypted DNS protocols when the name of an Encrypted DNS Resolver is known."];
+  RFC9462 -> rev_cites;
+  RFC9463 [label="RFC9463
+DHCP and Router Advertisement Options
+for the Discovery of Network-designated
+Resolvers (DNR)
+2023", shape=ellipse, URL="RFC9463.html", target="_top", tooltip="This document specifies new DHCP and IPv6 Router Advertisement options to discover encrypted DNS resolvers (e.g., DNS over HTTPS, DNS over TLS, and DNS over QUIC).  Particularly, it allows a host to learn an Authentication Domain Name together with a list of IP addresses and a set of service parameters to reach such encrypted DNS resolvers."];
+  RFC9463 -> rev_cites;
+}

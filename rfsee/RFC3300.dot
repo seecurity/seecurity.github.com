@@ -1,0 +1,49 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3300 [label="RFC3300
+Internet Official Protocol Standards
+2002", shape=ellipse, fillcolor="#e8f0ff", tooltip="None"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3300;
+  RFC3600 [label="RFC3600
+Internet Official Protocol Standards
+2003", shape=ellipse, URL="RFC3600.html", target="_top", tooltip="This memo contains a snapshot of the state of standardization of protocols used in the Internet as of October 2, 2003.  It lists official protocol standards and Best Current Practice RFCs; it is not a complete index to the RFC series.  The latest version of this memo is designated STD 1."];
+  RFC3600 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC3300 -> obs;
+  RFC3000 [label="RFC3000
+Internet Official Protocol Standards
+2001", shape=ellipse, URL="RFC3000.html", target="_top", tooltip="This memo contains a snapshot of the state of standardization of protocols used in the Internet as of October 25, 2001.  It lists official protocol standards and Best Current Practice RFCs; it is not a complete index to the RFC series.  The latest version of this memo is designated STD 1. [STANDARDS-TRACK]"];
+  obs -> RFC3000;
+
+  updates [label="updates", shape=box];
+  RFC3300 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3300;
+
+  cites [label="cites", shape=box];
+  RFC3300 -> cites;
+  RFC1700 [label="RFC1700
+Assigned Numbers
+1994", shape=ellipse, URL="RFC1700.html", target="_top", tooltip="This RFC is a snapshot of the ongoing process of the assignment of protocol parameters for the Internet protocol suite.  To make the current information readily available the assignments are kept up-to- date in a set of online text files.  This memo is a status report on the parameters (i.e., numbers and keywords) used in protocols in the Internet community."];
+  cites -> RFC1700;
+  RFC3232 [label="RFC3232
+Assigned Numbers: RFC 1700 is Replaced
+by an On-line Database
+2002", shape=ellipse, URL="RFC3232.html", target="_top", tooltip="This memo obsoletes RFC 1700 (STD 2) Assigned Numbers, which contained an October 1994 snapshot of assigned Internet protocol parameters.  This memo provides information for the Internet community."];
+  cites -> RFC3232;
+  RFC1812 [label="RFC1812
+Requirements for IP Version 4 Routers
+1995", shape=ellipse, URL="RFC1812.html", target="_top", tooltip="This memo defines and discusses requirements for devices that perform the network layer forwarding function of the Internet protocol suite. [STANDARDS-TRACK]"];
+  cites -> RFC1812;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3300;
+}

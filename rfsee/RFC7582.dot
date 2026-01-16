@@ -1,0 +1,125 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7582 [label="RFC7582
+Multicast Virtual Private Network
+(MVPN): Using Bidirectional P-Tunnels
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="A set of prior RFCs specify procedures for supporting multicast in BGP/MPLS IP VPNs.  These procedures allow customer multicast data to travel across a service provider's backbone network through a set of multicast tunnels.  The tunnels are advertised in certain BGP multicast auto-discovery routes, by means of a BGP attribute known as the Provider Multicast Service Interface (PMSI) Tunnel attribute.  Encodings have been defined that allow the PMSI Tunnel attribute to identify bidirectional (multipoint-to-multipoint) multicast distribution trees.  However, the prior RFCs do not provide all the necessary procedures for using bidirectional tunnels to support multicast VPNs.  This document updates RFCs 6513, 6514, and 6625 by specifying those procedures.  In particular, it specifies the procedures for assigning customer multicast flows (unidirectional or bidirectional) to specific bidirectional tunnels in the provider backbone, for advertising such assignments, and for determining which flows have been assigned to which tunnels."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7582;
+
+  obs [label="obsoletes", shape=box];
+  RFC7582 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7582 -> updates;
+  RFC6513 [label="RFC6513
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6513.html", target="_top", tooltip="In order for IP multicast traffic within a BGP/MPLS IP VPN (Virtual Private Network) to travel from one VPN site to another, special protocols and procedures must be implemented by the VPN Service Provider.  These protocols and procedures are specified in this document. [STANDARDS-TRACK]"];
+  updates -> RFC6513;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  updates -> RFC6514;
+  RFC6625 [label="RFC6625
+Wildcards in Multicast VPN Auto-
+Discovery Routes
+2012", shape=ellipse, URL="RFC6625.html", target="_top", tooltip="In Multicast Virtual Private Networks (MVPNs), customer multicast flows are carried in tunnels through a service provider's network.  The base specifications for MVPN define BGP multicast VPN auto-discovery routes and specify how to use an auto-discovery route to advertise the fact that an individual customer multicast flow is being carried in a particular tunnel.  However, those specifications do not provide a way to specify, in a single such route, that multiple customer flows are being carried in a single tunnel.  Those specifications also do not provide a way to advertise that a particular tunnel is to be used by default to carry all customer flows, except in the case where that tunnel is joined by all the provider edge routers of the MVPN.  This document eliminates these restrictions by specifying the use of wildcard elements in the customer flow identifiers.  With wildcard elements, a single auto-discovery route can refer to multiple customer flows or even to all customer flows. [STANDARDS-TRACK]"];
+  updates -> RFC6625;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7582;
+  RFC8534 [label="RFC8534
+Explicit Tracking with Wildcard Routes
+in Multicast VPN
+2019", shape=ellipse, URL="RFC8534.html", target="_top", tooltip="The base Multicast VPN (MVPN) specifications (RFCs 6513 and 6514) provide procedures to allow a multicast ingress node to invoke explicit tracking for a multicast flow or set of flows, thus learning the egress nodes for that flow or set of flows.  However, the specifications are not completely clear about how the explicit tracking procedures work in certain scenarios.  This document provides the necessary clarifications.  It also specifies a new, optimized explicit-tracking procedure.  This new procedure allows an ingress node, by sending a single message, to request explicit tracking of each of a set of flows, where the set of flows is specified using a wildcard mechanism.  This document updates RFCs 6514, 6625, 7524, 7582, and 7900."];
+  RFC8534 -> updated_by;
+  RFC9573 [label="RFC9573
+MVPN/EVPN Tunnel Aggregation with Common
+Labels
+2024", shape=ellipse, URL="RFC9573.html", target="_top", tooltip="The Multicast VPN (MVPN) specifications allow a single Point-to-Multipoint (P2MP) tunnel to carry traffic of multiple IP VPNs (referred to as VPNs in this document).  The EVPN specifications allow a single P2MP tunnel to carry traffic of multiple Broadcast Domains (BDs).  These features require the ingress router of the P2MP tunnel to allocate an upstream-assigned MPLS label for each VPN or for each BD.  A packet sent on a P2MP tunnel then carries the label that is mapped to its VPN or BD (in some cases, a distinct upstream-assigned label is needed for each flow.) Since each ingress router allocates labels independently, with no coordination among the ingress routers, the egress routers may need to keep track of a large number of labels.  The number of labels may need to be as large as, or larger than, the product of the number of ingress routers times the number of VPNs or BDs.  However, the number of labels can be greatly reduced if the association between a label and a VPN or BD is made by provisioning, so that all ingress routers assign the same label to a particular VPN or BD.  New procedures are needed in order to take advantage of such provisioned labels.  These new procedures also apply to Multipoint-to-Multipoint (MP2MP) tunnels.  This document updates RFCs 6514, 7432, and 7582 by specifying the necessary procedures."];
+  RFC9573 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC7582 -> cites;
+  RFC6513 [label="RFC6513
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6513.html", target="_top", tooltip="In order for IP multicast traffic within a BGP/MPLS IP VPN (Virtual Private Network) to travel from one VPN site to another, special protocols and procedures must be implemented by the VPN Service Provider.  These protocols and procedures are specified in this document. [STANDARDS-TRACK]"];
+  cites -> RFC6513;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  cites -> RFC6514;
+  RFC6625 [label="RFC6625
+Wildcards in Multicast VPN Auto-
+Discovery Routes
+2012", shape=ellipse, URL="RFC6625.html", target="_top", tooltip="In Multicast Virtual Private Networks (MVPNs), customer multicast flows are carried in tunnels through a service provider's network.  The base specifications for MVPN define BGP multicast VPN auto-discovery routes and specify how to use an auto-discovery route to advertise the fact that an individual customer multicast flow is being carried in a particular tunnel.  However, those specifications do not provide a way to specify, in a single such route, that multiple customer flows are being carried in a single tunnel.  Those specifications also do not provide a way to advertise that a particular tunnel is to be used by default to carry all customer flows, except in the case where that tunnel is joined by all the provider edge routers of the MVPN.  This document eliminates these restrictions by specifying the use of wildcard elements in the customer flow identifiers.  With wildcard elements, a single auto-discovery route can refer to multiple customer flows or even to all customer flows. [STANDARDS-TRACK]"];
+  cites -> RFC6625;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC4601 [label="RFC4601
+Protocol Independent Multicast - Sparse
+Mode (PIM-SM): Protocol Specification
+(Revised)
+2006", shape=ellipse, URL="RFC4601.html", target="_top", tooltip="This document specifies Protocol Independent Multicast - Sparse Mode (PIM-SM). PIM-SM is a multicast routing protocol that can use the underlying unicast routing information base or a separate multicast-capable routing information base. It builds unidirectional shared trees rooted at a Rendezvous Point (RP) per group, and optionally creates shortest-path trees per source. This document obsoletes RFC 2362, an Experimental version of PIM-SM. [STANDARDS-TRACK]"];
+  cites -> RFC4601;
+  RFC5015 [label="RFC5015
+Bidirectional Protocol Independent
+Multicast (BIDIR-PIM)
+2007", shape=ellipse, URL="RFC5015.html", target="_top", tooltip="This document discusses Bidirectional PIM (BIDIR-PIM), a variant of PIM Sparse-Mode that builds bidirectional shared trees connecting multicast sources and receivers.  Bidirectional trees are built using a fail-safe Designated Forwarder (DF) election mechanism operating on each link of a multicast topology.  With the assistance of the DF, multicast data is natively forwarded from sources to the Rendezvous-Point (RP) and hence along the shared tree to receivers without requiring source-specific state.  The DF election takes place at RP discovery time and provides the route to the RP, thus eliminating the requirement for data-driven protocol events. [STANDARDS-TRACK]"];
+  cites -> RFC5015;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC6388 [label="RFC6388
+Label Distribution Protocol Extensions
+for Point-to-Multipoint and Multipoint-
+to-Multipoint Label Switched Paths
+2011", shape=ellipse, URL="RFC6388.html", target="_top", tooltip="This document describes extensions to the Label Distribution Protocol (LDP) for the setup of point-to-multipoint (P2MP) and multipoint-to-multipoint (MP2MP) Label Switched Paths (LSPs) in MPLS networks.  These extensions are also referred to as multipoint LDP.  Multipoint LDP constructs the P2MP or MP2MP LSPs without interacting with or relying upon any other multicast tree construction protocol.  Protocol elements and procedures for this solution are described for building such LSPs in a receiver-initiated manner.  There can be various applications for multipoint LSPs, for example IP multicast or support for multicast in BGP/MPLS Layer 3 Virtual Private Networks (L3VPNs).  Specification of how such applications can use an LDP signaled multipoint LSP is outside the scope of this document. [STANDARDS-TRACK]"];
+  cites -> RFC6388;
+  RFC6517 [label="RFC6517
+Mandatory Features in a Layer 3
+Multicast BGP/MPLS VPN Solution
+2012", shape=ellipse, URL="RFC6517.html", target="_top", tooltip="More that one set of mechanisms to support multicast in a layer 3 BGP/MPLS VPN has been defined. These are presented in the documents that define them as optional building blocks. To enable interoperability between implementations, this document defines a subset of features that is considered mandatory for a multicast BGP/MPLS VPN implementation. This will help implementers and deployers understand which L3VPN multicast requirements are best satisfied by each option. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6517;
+  RFC5331 [label="RFC5331
+MPLS Upstream Label Assignment and
+Context-Specific Label Space
+2008", shape=ellipse, URL="RFC5331.html", target="_top", tooltip="RFC 3031 limits the MPLS architecture to downstream-assigned MPLS labels.  This document introduces the notion of upstream-assigned MPLS labels.  It describes the procedures for upstream MPLS label assignment and introduces the concept of a Context-Specific Label Space. [STANDARDS-TRACK]"];
+  cites -> RFC5331;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7582;
+  RFC7740 [label="RFC7740
+Simulating Partial Mesh of Multipoint-
+to-Multipoint (MP2MP) Provider Tunnels
+with Ingress Replication
+2016", shape=ellipse, URL="RFC7740.html", target="_top", tooltip="RFC 6513 (Multicast in MPLS/BGP IP VPNs) describes a method to support bidirectional customer multicast flows using a partial mesh of Multipoint-to-Multipoint (MP2MP) tunnels.  This document specifies how a partial mesh of MP2MP tunnels can be simulated using Ingress Replication.  This solution enables a service provider to use Ingress Replication to offer transparent bidirectional multicast service to its VPN customers."];
+  RFC7740 -> rev_cites;
+  RFC7988 [label="RFC7988
+Ingress Replication Tunnels in Multicast
+VPN
+2016", shape=ellipse, URL="RFC7988.html", target="_top", tooltip="RFCs 6513, 6514, and other RFCs describe procedures by which a Service Provider may offer Multicast VPN (MVPN) service to its customers.  These procedures create point-to-multipoint (P2MP) or multipoint-to-multipoint (MP2MP) trees across the Service Provider's backbone.  One type of P2MP tree that may be used is known as an Ingress Replication (IR) tunnel.  In an IR tunnel, a parent node need not be directly connected to its child nodes.  When a parent node has to send a multicast data packet to its n child nodes, it does not use Layer 2 multicast, IP multicast, or MPLS multicast to do so.  Rather, it makes n individual copies, and then unicasts each copy, through an IP or MPLS unicast tunnel, to exactly one child node.  While the prior MVPN specifications allow the use of IR tunnels, those specifications are not always very clear or explicit about how the MVPN protocol elements and procedures are applied to IR tunnels.  This document updates RFCs 6513 and 6514 by adding additional details that are specific to the use of IR tunnels."];
+  RFC7988 -> rev_cites;
+  RFC8534 [label="RFC8534
+Explicit Tracking with Wildcard Routes
+in Multicast VPN
+2019", shape=ellipse, URL="RFC8534.html", target="_top", tooltip="The base Multicast VPN (MVPN) specifications (RFCs 6513 and 6514) provide procedures to allow a multicast ingress node to invoke explicit tracking for a multicast flow or set of flows, thus learning the egress nodes for that flow or set of flows.  However, the specifications are not completely clear about how the explicit tracking procedures work in certain scenarios.  This document provides the necessary clarifications.  It also specifies a new, optimized explicit-tracking procedure.  This new procedure allows an ingress node, by sending a single message, to request explicit tracking of each of a set of flows, where the set of flows is specified using a wildcard mechanism.  This document updates RFCs 6514, 6625, 7524, 7582, and 7900."];
+  RFC8534 -> rev_cites;
+  RFC9573 [label="RFC9573
+MVPN/EVPN Tunnel Aggregation with Common
+Labels
+2024", shape=ellipse, URL="RFC9573.html", target="_top", tooltip="The Multicast VPN (MVPN) specifications allow a single Point-to-Multipoint (P2MP) tunnel to carry traffic of multiple IP VPNs (referred to as VPNs in this document).  The EVPN specifications allow a single P2MP tunnel to carry traffic of multiple Broadcast Domains (BDs).  These features require the ingress router of the P2MP tunnel to allocate an upstream-assigned MPLS label for each VPN or for each BD.  A packet sent on a P2MP tunnel then carries the label that is mapped to its VPN or BD (in some cases, a distinct upstream-assigned label is needed for each flow.) Since each ingress router allocates labels independently, with no coordination among the ingress routers, the egress routers may need to keep track of a large number of labels.  The number of labels may need to be as large as, or larger than, the product of the number of ingress routers times the number of VPNs or BDs.  However, the number of labels can be greatly reduced if the association between a label and a VPN or BD is made by provisioning, so that all ingress routers assign the same label to a particular VPN or BD.  New procedures are needed in order to take advantage of such provisioned labels.  These new procedures also apply to Multipoint-to-Multipoint (MP2MP) tunnels.  This document updates RFCs 6514, 7432, and 7582 by specifying the necessary procedures."];
+  RFC9573 -> rev_cites;
+}

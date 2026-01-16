@@ -1,0 +1,54 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3913 [label="RFC3913
+Border Gateway Multicast Protocol
+(BGMP): Protocol Specification
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the Border Gateway Multicast Protocol (BGMP), a protocol for inter-domain multicast routing.  BGMP builds shared trees for active multicast groups, and optionally allows receiver domains to build source-specific, inter-domain, distribution branches where needed.  BGMP natively supports source-specific multicast (SSM).  To also support any-source multicast (ASM), BGMP requires that each multicast group be associated with a single root (in BGMP it is referred to as the root domain).  It requires that different ranges of the multicast address space are associated (e.g., with Unicast-Prefix-Based Multicast addressing) with different domains.  Each of these domains then becomes the root of the shared domain-trees for all groups in its range.  Multicast participants will generally receive better multicast service if the session initiator's address allocator selects addresses from its own domain's part of the space, thereby causing the root domain to be local to at least one of the session participants.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3913;
+
+  obs [label="obsoletes", shape=box];
+  RFC3913 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3913 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3913;
+
+  cites [label="cites", shape=box];
+  RFC3913 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2385 [label="RFC2385
+Protection of BGP Sessions via the TCP
+MD5 Signature Option
+1998", shape=ellipse, URL="RFC2385.html", target="_top", tooltip="This memo describes a TCP extension to enhance security for BGP. [STANDARDS-TRACK]"];
+  cites -> RFC2385;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3913;
+  RFC5110 [label="RFC5110
+Overview of the Internet Multicast
+Routing Architecture
+2008", shape=ellipse, URL="RFC5110.html", target="_top", tooltip="This document describes multicast routing architectures that are currently deployed on the Internet. This document briefly describes those protocols and references their specifications. This memo also reclassifies several older RFCs to Historic. These RFCs describe multicast routing protocols that were never widely deployed or have fallen into disuse. This memo provides information for the Internet community."];
+  RFC5110 -> rev_cites;
+  RFC5773 [label="RFC5773
+Analysis of Inter-Domain Routing
+Requirements and History
+2010", shape=ellipse, URL="RFC5773.html", target="_top", tooltip="This document analyzes the state of the Internet domain-based routing system, concentrating on Inter-Domain Routing (IDR) and also considering the relationship between inter-domain and intra-domain routing.  The analysis is carried out with respect to RFC 1126 and other IDR requirements and design efforts looking at the routing system as it appeared to be in 2001 with editorial additions reflecting developments up to 2006.  It is the companion document to A Set of Possible Requirements for a Future Routing Architecture (RFC 5772), which is a discussion of requirements for the future routing architecture, addressing systems developments and future routing protocols.  This document summarizes discussions held several years ago by members of the IRTF Routing Research Group (IRTF RRG) and other interested parties.  The document is published with the support of the IRTF RRG as a record of the work completed at that time, but with the understanding that it does not necessarily represent either the latest technical understanding or the technical consensus of the research group at the date of publication.  This document defines a Historic Document for the Internet community."];
+  RFC5773 -> rev_cites;
+  RFC8815 [label="RFC8815
+Deprecating Any-Source Multicast (ASM)
+for Interdomain Multicast
+2020", shape=ellipse, URL="RFC8815.html", target="_top", tooltip="This document recommends deprecation of the use of Any-Source Multicast (ASM) for interdomain multicast.  It recommends the use of Source-Specific Multicast (SSM) for interdomain multicast applications and recommends that hosts and routers in these deployments fully support SSM.  The recommendations in this document do not preclude the continued use of ASM within a single organization or domain and are especially easy to adopt in existing deployments of intradomain ASM using PIM Sparse Mode (PIM-SM)."];
+  RFC8815 -> rev_cites;
+}

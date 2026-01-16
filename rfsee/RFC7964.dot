@@ -1,0 +1,56 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7964 [label="RFC7964
+Solutions for BGP Persistent Route
+Oscillation
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="Routing information reduction by BGP Route Reflection or Confederation can result in persistent internal BGP route oscillations with certain routing setups and network topologies.  This document specifies two sets of additional paths that can be used to eliminate these route oscillations in a network."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7964;
+
+  obs [label="obsoletes", shape=box];
+  RFC7964 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7964 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7964;
+
+  cites [label="cites", shape=box];
+  RFC7964 -> cites;
+  RFC3345 [label="RFC3345
+Border Gateway Protocol (BGP) Persistent
+Route Oscillation Condition
+2002", shape=ellipse, URL="RFC3345.html", target="_top", tooltip="None"];
+  cites -> RFC3345;
+  RFC4456 [label="RFC4456
+BGP Route Reflection: An Alternative to
+Full Mesh Internal BGP (IBGP)
+2006", shape=ellipse, URL="RFC4456.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for TCP/IP internets. Typically, all BGP speakers within a single AS must be fully meshed so that any external routing information must be re-distributed to all other routers within that Autonomous System (AS). This represents a serious scaling problem that has been well documented with several alternatives proposed. This document describes the use and design of a method known as route reflection to alleviate the need for full mesh Internal BGP (IBGP). This document obsoletes RFC 2796 and RFC 1966. [STANDARDS-TRACK]"];
+  cites -> RFC4456;
+  RFC5065 [label="RFC5065
+Autonomous System Confederations for BGP
+2007", shape=ellipse, URL="RFC5065.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for Transmission Control Protocol/Internet Protocol (TCP/IP) networks. BGP requires that all BGP speakers within a single autonomous system (AS) must be fully meshed. This represents a serious scaling problem that has been well documented in a number of proposals. This document describes an extension to BGP that may be used to create a confederation of autonomous systems that is represented as a single autonomous system to BGP peers external to the confederation, thereby removing the full mesh requirement. The intention of this extension is to aid in policy administration and reduce the management complexity of maintaining a large autonomous system. This document obsoletes RFC 3065. [STANDARDS-TRACK]"];
+  cites -> RFC5065;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC7911 [label="RFC7911
+Advertisement of Multiple Paths in BGP
+2016", shape=ellipse, URL="RFC7911.html", target="_top", tooltip="This document defines a BGP extension that allows the advertisement of multiple paths for the same address prefix without the new paths implicitly replacing any previous ones.  The essence of the extension is that each path is identified by a Path Identifier in addition to the address prefix."];
+  cites -> RFC7911;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7964;
+}

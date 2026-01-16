@@ -1,0 +1,1152 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4271;
+
+  obs [label="obsoletes", shape=box];
+  RFC4271 -> obs;
+  RFC1771 [label="RFC1771
+A Border Gateway Protocol 4 (BGP-4)
+1995", shape=ellipse, URL="RFC1771.html", target="_top", tooltip="This document, together with its companion document, Application of the Border Gateway Protocol in the Internet, define an inter-autonomous system routing protocol for the Internet. [STANDARDS-TRACK]"];
+  obs -> RFC1771;
+
+  updates [label="updates", shape=box];
+  RFC4271 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4271;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  RFC4724 -> updated_by;
+  RFC6286 [label="RFC6286
+Autonomous-System-Wide Unique BGP
+Identifier for BGP-4
+2011", shape=ellipse, URL="RFC6286.html", target="_top", tooltip="To accommodate situations where the current requirements for the BGP Identifier are not met, this document relaxes the definition of the BGP Identifier to be a 4-octet, unsigned, non-zero integer and relaxes the uniqueness requirement so that only Autonomous-System-wide (AS-wide) uniqueness of the BGP Identifiers is required.  These revisions to the base BGP specification do not introduce any backward compatibility issues.  This document updates RFC 4271. [STANDARDS-TRACK]"];
+  RFC6286 -> updated_by;
+  RFC6608 [label="RFC6608
+Subcodes for BGP Finite State Machine
+Error
+2012", shape=ellipse, URL="RFC6608.html", target="_top", tooltip="This document defines several subcodes for the BGP Finite State Machine (FSM) Error that could provide more information to help network operators in diagnosing BGP FSM issues and correlating network events.  This document updates RFC 4271. [STANDARDS-TRACK]"];
+  RFC6608 -> updated_by;
+  RFC6793 [label="RFC6793
+BGP Support for Four-Octet Autonomous
+System (AS) Number Space
+2012", shape=ellipse, URL="RFC6793.html", target="_top", tooltip="The Autonomous System number is encoded as a two-octet entity in the base BGP specification.  This document describes extensions to BGP to carry the Autonomous System numbers as four-octet entities.  This document obsoletes RFC 4893 and updates RFC 4271. [STANDARDS-TRACK]"];
+  RFC6793 -> updated_by;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  RFC7606 -> updated_by;
+  RFC7607 [label="RFC7607
+Codification of AS 0 Processing
+2015", shape=ellipse, URL="RFC7607.html", target="_top", tooltip="This document updates RFC 4271 and proscribes the use of Autonomous System (AS) 0 in the Border Gateway Protocol (BGP) OPEN, AS_PATH, AS4_PATH, AGGREGATOR, and AS4_AGGREGATOR attributes in the BGP UPDATE message."];
+  RFC7607 -> updated_by;
+  RFC7705 [label="RFC7705
+Autonomous System Migration Mechanisms
+and Their Effects on the BGP AS_PATH
+Attribute
+2015", shape=ellipse, URL="RFC7705.html", target="_top", tooltip="This document discusses some existing commonly used BGP mechanisms for Autonomous System Number (ASN) migration that are not formally part of the BGP4 protocol specification.  It is necessary to document these de facto standards to ensure that they are properly supported in future BGP protocol work."];
+  RFC7705 -> updated_by;
+  RFC8212 [label="RFC8212
+Default External BGP (EBGP) Route
+Propagation Behavior without Policies
+2017", shape=ellipse, URL="RFC8212.html", target="_top", tooltip="This document updates RFC 4271 by defining the default behavior of a BGP speaker when there is no Import or Export Policy associated with an External BGP session."];
+  RFC8212 -> updated_by;
+  RFC8654 [label="RFC8654
+Extended Message Support for BGP
+2019", shape=ellipse, URL="RFC8654.html", target="_top", tooltip="The BGP specification (RFC 4271) mandates a maximum BGP message size of 4,096 octets.  As BGP is extended to support new Address Family Identifiers (AFIs), Subsequent AFIs (SAFIs), and other features, there is a need to extend the maximum message size beyond 4,096 octets.  This document updates the BGP specification by extending the maximum message size from 4,096 octets to 65,535 octets for all messages except for OPEN and KEEPALIVE messages."];
+  RFC8654 -> updated_by;
+  RFC9072 [label="RFC9072
+Extended Optional Parameters Length for
+BGP OPEN Message
+2021", shape=ellipse, URL="RFC9072.html", target="_top", tooltip="The Optional Parameters in the BGP OPEN message as defined in the base BGP specification are limited to 255 octets due to a one-octet length field. BGP capabilities are carried in this field and may foreseeably exceed 255 octets in the future, leading to concerns about this limitation. This document updates RFC 4271 by extending, in a backward-compatible manner, the length of the Optional Parameters in a BGP OPEN message. The Parameter Length field of individual Optional Parameters is also extended."];
+  RFC9072 -> updated_by;
+  RFC9687 [label="RFC9687
+Border Gateway Protocol 4 (BGP-4) Send
+Hold Timer
+2024", shape=ellipse, URL="RFC9687.html", target="_top", tooltip="This document defines the SendHoldTimer, along with the SendHoldTimer_Expires event, for the Border Gateway Protocol (BGP) Finite State Machine (FSM).  Implementation of the SendHoldTimer helps overcome situations where a BGP connection is not terminated after the local system detects that the remote system is not processing BGP messages.  This document specifies that the local system should close the BGP connection and not solely rely on the remote system for connection closure when the SendHoldTimer expires.  This document updates RFC 4271."];
+  RFC9687 -> updated_by;
+  RFC9774 [label="RFC9774
+Deprecation of AS_SET and AS_CONFED_SET
+in BGP
+2025", shape=ellipse, URL="RFC9774.html", target="_top", tooltip="BCP 172 (i.e., RFC 6472) recommends not using AS_SET and AS_CONFED_SET AS_PATH segment types in the Border Gateway Protocol (BGP).  This document advances that recommendation to a standards requirement in BGP; it prohibits the use of the AS_SET and AS_CONFED_SET path segment types in the AS_PATH.  This is done to simplify the design and implementation of BGP and to make the semantics of the originator of a BGP route clearer.  This will also simplify the design, implementation, and deployment of various BGP security mechanisms.  This document updates RFC 4271 by deprecating the origination of BGP routes with AS_SET (Type 1 AS_PATH segment) and updates RFC 5065 by deprecating the origination of BGP routes with AS_CONFED_SET (Type 4 AS_PATH segment).  Finally, it obsoletes RFC 6472."];
+  RFC9774 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4271 -> cites;
+  RFC1518 [label="RFC1518
+An Architecture for IP Address
+Allocation with CIDR
+1993", shape=ellipse, URL="RFC1518.html", target="_top", tooltip="This paper provides an architecture and a plan for allocating IP addresses in the Internet.  This architecture and the plan are intended to play an important role in steering the Internet towards the Address Assignment and Aggregating Strategy. [STANDARDS-TRACK]"];
+  cites -> RFC1518;
+  RFC1519 [label="RFC1519
+Classless Inter-Domain Routing (CIDR):
+an Address Assignment and Aggregation
+Strategy
+1993", shape=ellipse, URL="RFC1519.html", target="_top", tooltip="This memo discusses strategies for address assignment of the existing IP address space with a view to conserve the address space and stem the explosive growth of routing tables in default-route-free routers. [STANDARDS-TRACK]"];
+  cites -> RFC1519;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC1267 [label="RFC1267
+Border Gateway Protocol 3 (BGP-3)
+1991", shape=ellipse, URL="RFC1267.html", target="_top", tooltip="This memo, together with its companion document, Application of the Border Gateway Protocol in the Internet, define an inter-autonomous system routing protocol for the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC1267;
+  RFC1092 [label="RFC1092
+EGP and policy based routing in the new
+NSFNET backbone
+1989", shape=ellipse, URL="RFC1092.html", target="_top", tooltip="This memo discusses implementation decisions for routing issues in the NSFNET, especially in the NSFNET Backbone.  Of special concern is the restriction of routing information to advertize the best route as established by a policy decision."];
+  cites -> RFC1092;
+  RFC1093 [label="RFC1093
+NSFNET routing architecture
+1989", shape=ellipse, URL="RFC1093.html", target="_top", tooltip="This document describes the routing architecture for the NSFNET centered around the new NSFNET Backbone, with specific emphasis on the interface between the backbone and its attached networks."];
+  cites -> RFC1093;
+  RFC1772 [label="RFC1772
+Application of the Border Gateway
+Protocol in the Internet
+1995", shape=ellipse, URL="RFC1772.html", target="_top", tooltip="This document, together with its companion document, A Border Gateway Protocol 4 (BGP-4), define an inter-autonomous system routing protocol for the Internet.  This document describes the usage of the BGP in the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC1772;
+  RFC1930 [label="RFC1930
+Guidelines for creation, selection, and
+registration of an Autonomous System
+(AS)
+1996", shape=ellipse, URL="RFC1930.html", target="_top", tooltip="This memo discusses when it is appropriate to register and utilize an Autonomous System (AS), and lists criteria for such.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC1930;
+  RFC1997 [label="RFC1997
+BGP Communities Attribute
+1996", shape=ellipse, URL="RFC1997.html", target="_top", tooltip="This document describes an extension to BGP which may be used to pass additional information to both neighboring and remote BGP peers. [STANDARDS-TRACK]"];
+  cites -> RFC1997;
+  RFC2858 [label="RFC2858
+Multiprotocol Extensions for BGP-4
+2000", shape=ellipse, URL="RFC2858.html", target="_top", tooltip="This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, etc...). [STANDARDS-TRACK]"];
+  cites -> RFC2858;
+  RFC2918 [label="RFC2918
+Route Refresh Capability for BGP-4
+2000", shape=ellipse, URL="RFC2918.html", target="_top", tooltip="This document defines a new Border Gateway Protocol (BGP) capability termed 'Route Refresh Capability', which would allow the dynamic exchange of route refresh request between BGP speakers and subsequent re-advertisement of the respective Adj-RIB-Out. [STANDARDS-TRACK]"];
+  cites -> RFC2918;
+  RFC3392 [label="RFC3392
+Capabilities Advertisement with BGP-4
+2002", shape=ellipse, URL="RFC3392.html", target="_top", tooltip="None"];
+  cites -> RFC3392;
+  RFC3065 [label="RFC3065
+Autonomous System Confederations for BGP
+2001", shape=ellipse, URL="RFC3065.html", target="_top", tooltip="This document describes an extension to BGP which may be used to create a confederation of autonomous systems that is represented as a single autonomous system to BGP peers external to the confederation, thereby removing the full mesh requirement.  The intention of this extension is to aid in policy administration and reduce the management complexity of maintaining a large autonomous system. [STANDARDS-TRACK]"];
+  cites -> RFC3065;
+  RFC4272 [label="RFC4272
+BGP Security Vulnerabilities Analysis
+2006", shape=ellipse, URL="RFC4272.html", target="_top", tooltip="Border Gateway Protocol 4 (BGP-4), along with a host of other infrastructure protocols designed before the Internet environment became perilous, was originally designed with little consideration for protection of the information it carries. There are no mechanisms internal to BGP that protect against attacks that modify, delete, forge, or replay data, any of which has the potential to disrupt overall network routing behavior. This document discusses some of the security issues with BGP routing data dissemination. This document does not discuss security issues with forwarding of packets. This memo provides information for the Internet community."];
+  cites -> RFC4272;
+  RFC2796 [label="RFC2796
+BGP Route Reflection - An Alternative to
+Full Mesh IBGP
+2000", shape=ellipse, URL="RFC2796.html", target="_top", tooltip="This document describes the use and design of a method known as Route Reflection to alleviate the the need for full mesh IBGP. [STANDARDS-TRACK]"];
+  cites -> RFC2796;
+  RFC2439 [label="RFC2439
+BGP Route Flap Damping
+1998", shape=ellipse, URL="RFC2439.html", target="_top", tooltip="A usage of the BGP routing protocol is described which is capable of reducing the routing traffic passed on to routing peers and therefore the load on these peers without adversely affecting route convergence time for relatively stable routes. [STANDARDS-TRACK]"];
+  cites -> RFC2439;
+  RFC1771 [label="RFC1771
+A Border Gateway Protocol 4 (BGP-4)
+1995", shape=ellipse, URL="RFC1771.html", target="_top", tooltip="This document, together with its companion document, Application of the Border Gateway Protocol in the Internet, define an inter-autonomous system routing protocol for the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC1771;
+  RFC2385 [label="RFC2385
+Protection of BGP Sessions via the TCP
+MD5 Signature Option
+1998", shape=ellipse, URL="RFC2385.html", target="_top", tooltip="This memo describes a TCP extension to enhance security for BGP. [STANDARDS-TRACK]"];
+  cites -> RFC2385;
+  RFC1105 [label="RFC1105
+Border Gateway Protocol (BGP)
+1989", shape=ellipse, URL="RFC1105.html", target="_top", tooltip="This RFC outlines a specific approach for the exchange of network reachability information between Autonomous Systems.  Updated by RFCs 1163 and 1164. [STANDARDS-TRACK]"];
+  cites -> RFC1105;
+  RFC1163 [label="RFC1163
+Border Gateway Protocol (BGP)
+1990", shape=ellipse, URL="RFC1163.html", target="_top", tooltip="This RFC, together with its companion RFC-1164, Application of the Border Gateway Protocol in the Internet, specify an inter-autonomous system routing protocol for the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC1163;
+  RFC2474 [label="RFC2474
+Definition of the Differentiated
+Services Field (DS Field) in the IPv4
+and IPv6 Headers
+1998", shape=ellipse, URL="RFC2474.html", target="_top", tooltip="This document defines the IP header field, called the DS (for differentiated services) field. [STANDARDS-TRACK]"];
+  cites -> RFC2474;
+  RFC3562 [label="RFC3562
+Key Management Considerations for the
+TCP MD5 Signature Option
+2003", shape=ellipse, URL="RFC3562.html", target="_top", tooltip="The TCP MD5 Signature Option (RFC 2385), used predominantly by BGP, has seen significant deployment in critical areas of Internet infrastructure.  The security of this option relies heavily on the quality of the keying material used to compute the MD5 signature.  This document addresses the security requirements of that keying material.  This memo provides information for the Internet community."];
+  cites -> RFC3562;
+  RFC2434 [label="RFC2434
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+1998", shape=ellipse, URL="RFC2434.html", target="_top", tooltip="This document discusses issues that should be considered in formulating a policy for assigning values to a name space and provides guidelines to document authors on the specific text that must be included in documents that place demands on the IANA.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2434;
+  RFC4020 [label="RFC4020
+Early IANA Allocation of Standards Track
+Code Points
+2005", shape=ellipse, URL="RFC4020.html", target="_top", tooltip="This memo discusses earlier allocation of code points by IANA as a remedy to the problem created by the Standards Action IANA policy for protocols for which, by the IETF process, implementation and deployment experience is desired or required prior to publication.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4020;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4271;
+  RFC4272 [label="RFC4272
+BGP Security Vulnerabilities Analysis
+2006", shape=ellipse, URL="RFC4272.html", target="_top", tooltip="Border Gateway Protocol 4 (BGP-4), along with a host of other infrastructure protocols designed before the Internet environment became perilous, was originally designed with little consideration for protection of the information it carries. There are no mechanisms internal to BGP that protect against attacks that modify, delete, forge, or replay data, any of which has the potential to disrupt overall network routing behavior. This document discusses some of the security issues with BGP routing data dissemination. This document does not discuss security issues with forwarding of packets. This memo provides information for the Internet community."];
+  RFC4272 -> rev_cites;
+  RFC4275 [label="RFC4275
+BGP-4 MIB Implementation Survey
+2006", shape=ellipse, URL="RFC4275.html", target="_top", tooltip="This document provides a survey of implementations of BGP-4 that support RFC 1657 MIB agents according to the BGP-4 v1 MIB specification.  This memo provides information for the Internet community."];
+  RFC4275 -> rev_cites;
+  RFC4276 [label="RFC4276
+BGP-4 Implementation Report
+2006", shape=ellipse, URL="RFC4276.html", target="_top", tooltip="This document reports the results of the BGP-4 implementation survey. The survey had 259 questions about implementations' support of BGP-4 as specified in RFC 4271. After a brief summary of the results, each response is listed. This document contains responses from the four implementers that completed the survey (Alcatel, Cisco, Laurel, and NextHop) and brief information from three that did not (Avici, Data Connection Ltd., and Nokia). The editors did not use exterior means to verify the accuracy of the information submitted by the respondents. The respondents are experts with the products they reported on. This memo provides information for the Internet community."];
+  RFC4276 -> rev_cites;
+  RFC4277 [label="RFC4277
+Experience with the BGP-4 Protocol
+2006", shape=ellipse, URL="RFC4277.html", target="_top", tooltip="The purpose of this memo is to document how the requirements for publication of a routing protocol as an Internet Draft Standard have been satisfied by Border Gateway Protocol version 4 (BGP-4). This report satisfies the requirement for the second report, as described in Section 6.0 of RFC 1264. In order to fulfill the requirement, this report augments RFC 1773 and describes additional knowledge and understanding gained in the time between when the protocol was made a Draft Standard and when it was submitted for Standard. This memo provides information for the Internet community."];
+  RFC4277 -> rev_cites;
+  RFC4278 [label="RFC4278
+Standards Maturity Variance Regarding
+the TCP MD5 Signature Option (RFC 2385)
+and the BGP-4 Specification
+2006", shape=ellipse, URL="RFC4278.html", target="_top", tooltip="The IETF Standards Process requires that all normative references for a document be at the same or higher level of standardization.  RFC 2026 section 9.1 allows the IESG to grant a variance to the standard practices of the IETF.  This document explains why the IESG is considering doing so for the revised version of the BGP-4 specification, which refers normatively to RFC 2385, Protection of BGP Sessions via the TCP MD5 Signature Option.  RFC 2385 will remain at the Proposed Standard level.  This memo provides information for the Internet community."];
+  RFC4278 -> rev_cites;
+  RFC4611 [label="RFC4611
+Multicast Source Discovery Protocol
+(MSDP) Deployment Scenarios
+2006", shape=ellipse, URL="RFC4611.html", target="_top", tooltip="This document describes best current practices for intra-domain and inter-domain deployment of the Multicast Source Discovery Protocol (MSDP) in conjunction with Protocol Independent Multicast Sparse Mode (PIM-SM).  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4611 -> rev_cites;
+  RFC4632 [label="RFC4632
+Classless Inter-domain Routing (CIDR):
+The Internet Address Assignment and
+Aggregation Plan
+2006", shape=ellipse, URL="RFC4632.html", target="_top", tooltip="This memo discusses the strategy for address assignment of the existing 32-bit IPv4 address space with a view toward conserving the address space and limiting the growth rate of global routing state.  This document obsoletes the original Classless Inter-domain Routing (CIDR) spec in RFC 1519, with changes made both to clarify the concepts it introduced and, after more than twelve years, to update the Internet community on the results of deploying the technology described.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4632 -> rev_cites;
+  RFC4781 [label="RFC4781
+Graceful Restart Mechanism for BGP with
+MPLS
+2007", shape=ellipse, URL="RFC4781.html", target="_top", tooltip="A mechanism for BGP that helps minimize the negative effects on routing caused by BGP restart has already been developed and is described in a separate document (Graceful Restart Mechanism for BGP). This document extends this mechanism to minimize the negative effects on MPLS forwarding caused by the Label Switching Router's (LSR's) control plane restart, and specifically by the restart of its BGP component when BGP is used to carry MPLS labels and the LSR is capable of preserving the MPLS forwarding state across the restart. The mechanism described in this document is agnostic with respect to the types of the addresses carried in the BGP Network Layer Reachability Information (NLRI) field. As such, it works in conjunction with any of the address families that could be carried in BGP (e.g., IPv4, IPv6, etc.). [STANDARDS-TRACK]"];
+  RFC4781 -> rev_cites;
+  RFC4786 [label="RFC4786
+Operation of Anycast Services
+2006", shape=ellipse, URL="RFC4786.html", target="_top", tooltip="As the Internet has grown, and as systems and networked services within enterprises have become more pervasive, many services with high availability requirements have emerged. These requirements have increased the demands on the reliability of the infrastructure on which those services rely. Various techniques have been employed to increase the availability of services deployed on the Internet. This document presents commentary and recommendations for distribution of services using anycast. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC4786 -> rev_cites;
+  RFC4798 [label="RFC4798
+Connecting IPv6 Islands over IPv4 MPLS
+Using IPv6 Provider Edge Routers (6PE)
+2007", shape=ellipse, URL="RFC4798.html", target="_top", tooltip="This document explains how to interconnect IPv6 islands over a Multiprotocol Label Switching (MPLS)-enabled IPv4 cloud.  This approach relies on IPv6 Provider Edge routers (6PE), which are Dual Stack in order to connect to IPv6 islands and to the MPLS core, which is only required to run IPv4 MPLS.  The 6PE routers exchange the IPv6 reachability information transparently over the core using the Multiprotocol Border Gateway Protocol (MP-BGP) over IPv4.  In doing so, the BGP Next Hop field is used to convey the IPv4 address of the 6PE router so that dynamically established IPv4-signaled MPLS Label Switched Paths (LSPs) can be used without explicit tunnel configuration. [STANDARDS-TRACK]"];
+  RFC4798 -> rev_cites;
+  RFC4808 [label="RFC4808
+Key Change Strategies for TCP-MD5
+2007", shape=ellipse, URL="RFC4808.html", target="_top", tooltip="The TCP-MD5 option is most commonly used to secure BGP sessions between routers.  However, changing the long-term key is difficult, since the change needs to be synchronized between different organizations.  We describe single-ended strategies that will permit (mostly) unsynchronized key changes.  This memo provides information for the Internet community."];
+  RFC4808 -> rev_cites;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  RFC5036 -> rev_cites;
+  RFC5082 [label="RFC5082
+The Generalized TTL Security Mechanism
+(GTSM)
+2007", shape=ellipse, URL="RFC5082.html", target="_top", tooltip="The use of a packet's Time to Live (TTL) (IPv4) or Hop Limit (IPv6) to verify whether the packet was originated by an adjacent node on a connected link has been used in many recent protocols.  This document generalizes this technique.  This document obsoletes Experimental RFC 3682. [STANDARDS-TRACK]"];
+  RFC5082 -> rev_cites;
+  RFC5102 [label="RFC5102
+Information Model for IP Flow
+Information Export
+2008", shape=ellipse, URL="RFC5102.html", target="_top", tooltip="This memo defines an information model for the IP Flow Information eXport (IPFIX) protocol.  It is used by the IPFIX protocol for encoding measured traffic information and information related to the traffic Observation Point, the traffic Metering Process, and the Exporting Process.  Although developed for the IPFIX protocol, the model is defined in an open way that easily allows using it in other protocols, interfaces, and applications. [STANDARDS-TRACK]"];
+  RFC5102 -> rev_cites;
+  RFC5115 [label="RFC5115
+Telephony Routing over IP (TRIP)
+Attribute for Resource Priority
+2008", shape=ellipse, URL="RFC5115.html", target="_top", tooltip="This document defines a new attribute for the Telephony Routing over IP (TRIP) protocol.  The attribute associates protocols/services in the PSTN offering authorized prioritization during call setup that are reachable through a TRIP gateway.  Current examples of preferential service in the Public Switched Telephone Network (PSTN) are Government Emergency Telecommunications Service (GETS) in the U.S.  and Government Telephone Preference Scheme (GTPS) in the U.K.  The proposed attribute for TRIP is based on the NameSpace.Value tuple defined for the SIP Resource-Priority field. [STANDARDS-TRACK]"];
+  RFC5115 -> rev_cites;
+  RFC5123 [label="RFC5123
+Considerations in Validating the Path in
+BGP
+2008", shape=ellipse, URL="RFC5123.html", target="_top", tooltip="This document examines the implications of hop-by-hop forwarding, route aggregation, and route filtering on the concept of validation within a BGP Autonomous System (AS) Path.  This memo provides information for the Internet community."];
+  RFC5123 -> rev_cites;
+  RFC5160 [label="RFC5160
+Considerations of Provider-to-Provider
+Agreements for Internet-Scale Quality of
+Service (QoS)
+2008", shape=ellipse, URL="RFC5160.html", target="_top", tooltip="This memo analyzes provider-to-provider Quality of Service (QoS) agreements suitable for a global QoS-enabled Internet.  It defines terminology relevant to inter-domain QoS models.  It proposes a new concept denoted by Meta-QoS-Class (MQC).  This concept could potentially drive and federate the way QoS inter-domain relationships are built between providers.  It opens up new perspectives for a QoS- enabled Internet that retains, as much as possible, the openness of the existing best-effort Internet.  This memo provides information for the Internet community."];
+  RFC5160 -> rev_cites;
+  RFC5177 [label="RFC5177
+Network Mobility (NEMO) Extensions for
+Mobile IPv4
+2008", shape=ellipse, URL="RFC5177.html", target="_top", tooltip="This document describes a protocol for supporting Mobile Networks between a Mobile Router and a Home Agent by extending the Mobile IPv4 protocol. A Mobile Router is responsible for the mobility of one or more network segments or subnets moving together. The Mobile Router hides its mobility from the nodes on the Mobile Network. The nodes on the Mobile Network may be fixed in relationship to the Mobile Router and may not have any mobility function. Extensions to Mobile IPv4 are introduced to support Mobile Networks. [STANDARDS-TRACK]"];
+  RFC5177 -> rev_cites;
+  RFC5218 [label="RFC5218
+What Makes for a Successful Protocol?
+2008", shape=ellipse, URL="RFC5218.html", target="_top", tooltip="The Internet community has specified a large number of protocols to date, and these protocols have achieved varying degrees of success.  Based on case studies, this document attempts to ascertain factors that contribute to or hinder a protocol's success.  It is hoped that these observations can serve as guidance for future protocol work.  This memo provides information for the Internet community."];
+  RFC5218 -> rev_cites;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC5226 -> rev_cites;
+  RFC5375 [label="RFC5375
+IPv6 Unicast Address Assignment
+Considerations
+2008", shape=ellipse, URL="RFC5375.html", target="_top", tooltip="One fundamental aspect of any IP communications infrastructure is its addressing plan.  With its new address architecture and allocation policies, the introduction of IPv6 into a network means that network designers and operators need to reconsider their existing approaches to network addressing.  Lack of guidelines on handling this aspect of network design could slow down the deployment and integration of IPv6.  This document aims to provide the information and recommendations relevant to planning the addressing aspects of IPv6 deployments.  The document also provides IPv6 addressing case studies for both an enterprise and an ISP network.  This memo provides information for the Internet community."];
+  RFC5375 -> rev_cites;
+  RFC5406 [label="RFC5406
+Guidelines for Specifying the Use of
+IPsec Version 2
+2009", shape=ellipse, URL="RFC5406.html", target="_top", tooltip="The Security Considerations sections of many Internet Drafts say, in effect, just use IPsec.  While this is sometimes correct, more often it will leave users without real, interoperable security mechanisms.  This memo offers some guidance on when IPsec Version 2 should and should not be specified.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC5406 -> rev_cites;
+  RFC5474 [label="RFC5474
+A Framework for Packet Selection and
+Reporting
+2009", shape=ellipse, URL="RFC5474.html", target="_top", tooltip="This document specifies a framework for the PSAMP (Packet SAMPling) protocol.  The functions of this protocol are to select packets from a stream according to a set of standardized Selectors, to form a stream of reports on the selected packets, and to export the reports to a Collector.  This framework details the components of this architecture, then describes some generic requirements, motivated by the dual aims of ubiquitous deployment and utility of the reports for applications.  Detailed requirements for selection, reporting, and exporting are described, along with configuration requirements of the PSAMP functions.  This memo provides information for the Internet community."];
+  RFC5474 -> rev_cites;
+  RFC5475 [label="RFC5475
+Sampling and Filtering Techniques for IP
+Packet Selection
+2009", shape=ellipse, URL="RFC5475.html", target="_top", tooltip="This document describes Sampling and Filtering techniques for IP packet selection.  It provides a categorization of schemes and defines what parameters are needed to describe the most common selection schemes.  Furthermore, it shows how techniques can be combined to build more elaborate packet Selectors.  The document provides the basis for the definition of information models for configuring selection techniques in Metering Processes and for reporting the technique in use to a Collector. [STANDARDS-TRACK]"];
+  RFC5475 -> rev_cites;
+  RFC5476 [label="RFC5476
+Packet Sampling (PSAMP) Protocol
+Specifications
+2009", shape=ellipse, URL="RFC5476.html", target="_top", tooltip="This document specifies the export of packet information from a Packet SAMPling (PSAMP) Exporting Process to a PSAMP Collecting Process.  For export of packet information, the IP Flow Information eXport (IPFIX) protocol is used, as both the IPFIX and PSAMP architecture match very well, and the means provided by the IPFIX protocol are sufficient.  The document specifies in detail how the IPFIX protocol is used for PSAMP export of packet information. [STANDARDS-TRACK]"];
+  RFC5476 -> rev_cites;
+  RFC5492 [label="RFC5492
+Capabilities Advertisement with BGP-4
+2009", shape=ellipse, URL="RFC5492.html", target="_top", tooltip="This document defines an Optional Parameter, called Capabilities, that is expected to facilitate the introduction of new capabilities in the Border Gateway Protocol (BGP) by providing graceful capability advertisement without requiring that BGP peering be terminated. This document obsoletes RFC 3392. [STANDARDS-TRACK]"];
+  RFC5492 -> rev_cites;
+  RFC5512 [label="RFC5512
+The BGP Encapsulation Subsequent Address
+Family Identifier (SAFI) and the BGP
+Tunnel Encapsulation Attribute
+2009", shape=ellipse, URL="RFC5512.html", target="_top", tooltip="In certain situations, transporting a packet from one Border Gateway Protocol (BGP) speaker to another (the BGP next hop) requires that the packet be encapsulated by the first BGP speaker and decapsulated by the second. To support these situations, there needs to be some agreement between the two BGP speakers with regard to the encapsulation information, i.e., the format of the encapsulation header as well as the contents of various fields of the header. The encapsulation information need not be signaled for all encapsulation types. In cases where signaling is required (such as Layer Two Tunneling Protocol - Version 3 (L2TPv3) or Generic Routing Encapsulation (GRE) with key), this document specifies a method by which BGP speakers can signal encapsulation information to each other. The signaling is done by sending BGP updates using the Encapsulation Subsequent Address Family Identifier (SAFI) and the IPv4 or IPv6 Address Family Identifier (AFI). In cases where no encapsulation information needs to be signaled (such as GRE without key), this document specifies a BGP extended community that can be attached to BGP UPDATE messages that carry payload prefixes in order to indicate the encapsulation protocol type to be used. [STANDARDS-TRACK]"];
+  RFC5512 -> rev_cites;
+  RFC5543 [label="RFC5543
+BGP Traffic Engineering Attribute
+2009", shape=ellipse, URL="RFC5543.html", target="_top", tooltip="This document defines a new BGP attribute, the Traffic Engineering attribute, that enables BGP to carry Traffic Engineering information. The scope and applicability of this attribute currently excludes its use for non-VPN reachability information. [STANDARDS-TRACK]"];
+  RFC5543 -> rev_cites;
+  RFC5565 [label="RFC5565
+Softwire Mesh Framework
+2009", shape=ellipse, URL="RFC5565.html", target="_top", tooltip="The Internet needs to be able to handle both IPv4 and IPv6 packets.  However, it is expected that some constituent networks of the Internet will be single-protocol networks.  One kind of single-protocol network can parse only IPv4 packets and can process only IPv4 routing information; another kind can parse only IPv6 packets and can process only IPv6 routing information.  It is nevertheless required that either kind of single-protocol network be able to provide transit service for the other protocol.  This is done by passing the other kind of routing information from one edge of the single-protocol network to the other, and by tunneling the other kind of data packet from one edge to the other.  The tunnels are known as softwires.  This framework document explains how the routing information and the data packets of one protocol are passed through a single-protocol network of the other protocol.  The document is careful to specify when this can be done with existing technology and when it requires the development of new or modified technology. [STANDARDS-TRACK]"];
+  RFC5565 -> rev_cites;
+  RFC5566 [label="RFC5566
+BGP IPsec Tunnel Encapsulation Attribute
+2009", shape=ellipse, URL="RFC5566.html", target="_top", tooltip="The BGP Encapsulation Subsequent Address Family Identifier (SAFI) provides a method for the dynamic exchange of encapsulation information and for the indication of encapsulation protocol types to be used for different next hops.  Currently, support for Generic Routing Encapsulation (GRE), Layer 2 Tunneling Protocol (L2TPv3), and IP in IP tunnel types are defined.  This document defines support for IPsec tunnel types. [STANDARDS-TRACK]"];
+  RFC5566 -> rev_cites;
+  RFC5575 [label="RFC5575
+Dissemination of Flow Specification
+Rules
+2009", shape=ellipse, URL="RFC5575.html", target="_top", tooltip="This document defines a new Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute traffic flow specifications. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. Additionally, it defines two applications of that encoding format: one that can be used to automate inter-domain coordination of traffic filtering, such as what is required in order to mitigate (distributed) denial-of-service attacks, and a second application to provide traffic filtering in the context of a BGP/MPLS VPN service. The information is carried via the BGP, thereby reusing protocol algorithms, operational experience, and administrative processes such as inter-provider peering agreements. [STANDARDS-TRACK]"];
+  RFC5575 -> rev_cites;
+  RFC5695 [label="RFC5695
+MPLS Forwarding Benchmarking Methodology
+for IP Flows
+2009", shape=ellipse, URL="RFC5695.html", target="_top", tooltip="This document describes a methodology specific to the benchmarking of Multiprotocol Label Switching (MPLS) forwarding devices, limited to the most common MPLS packet forwarding scenarios and delay measurements for each, considering IP flows.  It builds upon the tenets set forth in RFC 2544, RFC 1242, and other IETF Benchmarking Methodology Working Group (BMWG) efforts.  This document seeks to extend these efforts to the MPLS paradigm.  This memo provides information for the Internet community."];
+  RFC5695 -> rev_cites;
+  RFC5747 [label="RFC5747
+4over6 Transit Solution Using IP
+Encapsulation and MP-BGP Extensions
+2010", shape=ellipse, URL="RFC5747.html", target="_top", tooltip="The emerging and growing deployment of IPv6 networks will introduce cases where connectivity with IPv4 networks crossing IPv6 transit backbones is desired.  This document describes a mechanism for automatic discovery and creation of IPv4-over-IPv6 tunnels via extensions to multiprotocol BGP.  It is targeted at connecting islands of IPv4 networks across an IPv6-only backbone without the need for a manually configured overlay of tunnels.  The mechanisms described in this document have been implemented, tested, and deployed on the large research IPv6 network in China.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5747 -> rev_cites;
+  RFC5773 [label="RFC5773
+Analysis of Inter-Domain Routing
+Requirements and History
+2010", shape=ellipse, URL="RFC5773.html", target="_top", tooltip="This document analyzes the state of the Internet domain-based routing system, concentrating on Inter-Domain Routing (IDR) and also considering the relationship between inter-domain and intra-domain routing.  The analysis is carried out with respect to RFC 1126 and other IDR requirements and design efforts looking at the routing system as it appeared to be in 2001 with editorial additions reflecting developments up to 2006.  It is the companion document to A Set of Possible Requirements for a Future Routing Architecture (RFC 5772), which is a discussion of requirements for the future routing architecture, addressing systems developments and future routing protocols.  This document summarizes discussions held several years ago by members of the IRTF Routing Research Group (IRTF RRG) and other interested parties.  The document is published with the support of the IRTF RRG as a record of the work completed at that time, but with the understanding that it does not necessarily represent either the latest technical understanding or the technical consensus of the research group at the date of publication.  This document defines a Historic Document for the Internet community."];
+  RFC5773 -> rev_cites;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  RFC5925 -> rev_cites;
+  RFC5927 [label="RFC5927
+ICMP Attacks against TCP
+2010", shape=ellipse, URL="RFC5927.html", target="_top", tooltip="This document discusses the use of the Internet Control Message Protocol (ICMP) to perform a variety of attacks against the Transmission Control Protocol (TCP).  Additionally, this document describes a number of widely implemented modifications to TCP's handling of ICMP error messages that help to mitigate these issues.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5927 -> rev_cites;
+  RFC5961 [label="RFC5961
+Improving TCP's Robustness to Blind In-
+Window Attacks
+2010", shape=ellipse, URL="RFC5961.html", target="_top", tooltip="TCP has historically been considered to be protected against spoofed off-path packet injection attacks by relying on the fact that it is difficult to guess the 4-tuple (the source and destination IP addresses and the source and destination ports) in combination with the 32-bit sequence number(s).  A combination of increasing window sizes and applications using longer-term connections (e.g., H-323 or Border Gateway Protocol (BGP) [STANDARDS-TRACK]"];
+  RFC5961 -> rev_cites;
+  RFC6021 [label="RFC6021
+Common YANG Data Types
+2010", shape=ellipse, URL="RFC6021.html", target="_top", tooltip="This document introduces a collection of common data types to be used with the YANG data modeling language. [STANDARDS-TRACK]"];
+  RFC6021 -> rev_cites;
+  RFC6039 [label="RFC6039
+Issues with Existing Cryptographic
+Protection Methods for Routing Protocols
+2010", shape=ellipse, URL="RFC6039.html", target="_top", tooltip="Routing protocols have been extended over time to use cryptographic mechanisms to ensure that data received from a neighboring router has not been modified in transit and actually originated from an authorized neighboring router. The cryptographic mechanisms defined to date and described in this document rely on a digest produced with a hash algorithm applied to the payload encapsulated in the routing protocol packet. This document outlines some of the limitations of the current mechanism, problems with manual keying of these cryptographic algorithms, and possible vectors for the exploitation of these limitations. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6039 -> rev_cites;
+  RFC6052 [label="RFC6052
+IPv6 Addressing of IPv4/IPv6 Translators
+2010", shape=ellipse, URL="RFC6052.html", target="_top", tooltip="This document discusses the algorithmic translation of an IPv6 address to a corresponding IPv4 address, and vice versa, using only statically configured information.  It defines a well-known prefix for use in algorithmic translations, while allowing organizations to also use network-specific prefixes when appropriate.  Algorithmic translation is used in IPv4/IPv6 translators, as well as other types of proxies and gateways (e.g., for DNS) used in IPv4/IPv6 scenarios. [STANDARDS-TRACK]"];
+  RFC6052 -> rev_cites;
+  RFC6139 [label="RFC6139
+Routing and Addressing in Networks with
+Global Enterprise Recursion (RANGER)
+Scenarios
+2011", shape=ellipse, URL="RFC6139.html", target="_top", tooltip="Routing and Addressing in Networks with Global Enterprise Recursion (RANGER) (RFC 5720) provides an architectural framework for scalable routing and addressing.  It provides an incrementally deployable approach for scalability, provider independence, mobility, multihoming, traffic engineering, and security.  This document describes a series of use cases in order to showcase the architectural capabilities.  It further shows how the RANGER architecture restores the network-within-network principles originally intended for the sustained growth of the Internet.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6139 -> rev_cites;
+  RFC6150 [label="RFC6150
+MD4 to Historic Status
+2011", shape=ellipse, URL="RFC6150.html", target="_top", tooltip="This document retires RFC 1320, which documents the MD4 algorithm, and discusses the reasons for doing so.  This document moves RFC 1320 to Historic status.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6150 -> rev_cites;
+  RFC6164 [label="RFC6164
+Using 127-Bit IPv6 Prefixes on Inter-
+Router Links
+2011", shape=ellipse, URL="RFC6164.html", target="_top", tooltip="On inter-router point-to-point links, it is useful, for security and other reasons, to use 127-bit IPv6 prefixes.  Such a practice parallels the use of 31-bit prefixes in IPv4.  This document specifies the motivation for, and usages of, 127-bit IPv6 prefix lengths on inter-router point-to-point links. [STANDARDS-TRACK]"];
+  RFC6164 -> rev_cites;
+  RFC6179 [label="RFC6179
+The Internet Routing Overlay Network
+(IRON)
+2011", shape=ellipse, URL="RFC6179.html", target="_top", tooltip="Since the Internet must continue to support escalating growth due to increasing demand, it is clear that current routing architectures and operational practices must be updated.  This document proposes an Internet Routing Overlay Network (IRON) that supports sustainable growth while requiring no changes to end systems and no changes to the existing routing system.  IRON further addresses other important issues including routing scaling, mobility management, multihoming, traffic engineering and NAT traversal.  While business considerations are an important determining factor for widespread adoption, they are out of scope for this document.  This document is a product of the IRTF Routing Research Group.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6179 -> rev_cites;
+  RFC6198 [label="RFC6198
+Requirements for the Graceful Shutdown
+of BGP Sessions
+2011", shape=ellipse, URL="RFC6198.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is heavily used in Service Provider networks for both Internet and BGP/MPLS VPN services.  For resiliency purposes, redundant routers and BGP sessions can be deployed to reduce the consequences of an Autonomous System Border Router (ASBR) or BGP session breakdown on customers' or peers' traffic.  However, simply taking down or even bringing up a BGP session for maintenance purposes may still induce connectivity losses during the BGP convergence.  This is no longer satisfactory for new applications (e.g., voice over IP, online gaming, VPN).  Therefore, a solution is required for the graceful shutdown of a (set of) BGP session(s) in order to limit the amount of traffic loss during a planned shutdown.  This document expresses requirements for such a solution.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6198 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6286 [label="RFC6286
+Autonomous-System-Wide Unique BGP
+Identifier for BGP-4
+2011", shape=ellipse, URL="RFC6286.html", target="_top", tooltip="To accommodate situations where the current requirements for the BGP Identifier are not met, this document relaxes the definition of the BGP Identifier to be a 4-octet, unsigned, non-zero integer and relaxes the uniqueness requirement so that only Autonomous-System-wide (AS-wide) uniqueness of the BGP Identifiers is required.  These revisions to the base BGP specification do not introduce any backward compatibility issues.  This document updates RFC 4271. [STANDARDS-TRACK]"];
+  RFC6286 -> rev_cites;
+  RFC6304 [label="RFC6304
+AS112 Nameserver Operations
+2011", shape=ellipse, URL="RFC6304.html", target="_top", tooltip="Many sites connected to the Internet make use of IPv4 addresses that are not globally unique. Examples are the addresses designated in RFC 1918 for private use within individual sites. Devices in such environments may occasionally originate Domain Name System (DNS) queries (so-called reverse lookups) corresponding to those private-use addresses. Since the addresses concerned have only local significance, it is good practice for site administrators to ensure that such queries are answered locally. However, it is not uncommon for such queries to follow the normal delegation path in the public DNS instead of being answered within the site. It is not possible for public DNS servers to give useful answers to such queries. In addition, due to the wide deployment of private-use addresses and the continuing growth of the Internet, the volume of such queries is large and growing. The AS112 project aims to provide a distributed sink for such queries in order to reduce the load on the IN-ADDR.ARPA authoritative servers. The AS112 project is named after the Autonomous System Number (ASN) that was assigned to it. This document describes the steps required to install a new AS112 node and offers advice relating to such a node's operation. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6304 -> rev_cites;
+  RFC6368 [label="RFC6368
+Internal BGP as the Provider/Customer
+Edge Protocol for BGP/MPLS IP Virtual
+Private Networks (VPNs)
+2011", shape=ellipse, URL="RFC6368.html", target="_top", tooltip="This document defines protocol extensions and procedures for BGP Provider/Customer Edge router iteration in BGP/MPLS IP VPNs.  These extensions and procedures have the objective of making the usage of the BGP/MPLS IP VPN transparent to the customer network, as far as routing information is concerned. [STANDARDS-TRACK]"];
+  RFC6368 -> rev_cites;
+  RFC6395 [label="RFC6395
+An Interface Identifier (ID) Hello
+Option for PIM
+2011", shape=ellipse, URL="RFC6395.html", target="_top", tooltip="This document defines a new PIM Hello option to advertise an Interface Identifier that can be used by PIM protocols to uniquely identify an interface of a neighboring router. [STANDARDS-TRACK]"];
+  RFC6395 -> rev_cites;
+  RFC6396 [label="RFC6396
+Multi-Threaded Routing Toolkit (MRT)
+Routing Information Export Format
+2011", shape=ellipse, URL="RFC6396.html", target="_top", tooltip="This document describes the MRT format for routing information export.  This format was developed in concert with the Multi-threaded Routing Toolkit (MRT) from whence the format takes it name.  The format can be used to export routing protocol messages, state changes, and routing information base contents. [STANDARDS-TRACK]"];
+  RFC6396 -> rev_cites;
+  RFC6397 [label="RFC6397
+Multi-Threaded Routing Toolkit (MRT)
+Border Gateway Protocol (BGP) Routing
+Information Export Format with Geo-
+Location Extensions
+2011", shape=ellipse, URL="RFC6397.html", target="_top", tooltip="This document updates the Multi-threaded Routing Toolkit (MRT) export format for Border Gateway Protocol (BGP) routing information by extending it to include optional terrestrial coordinates of a BGP collector and its BGP peers. [STANDARDS-TRACK]"];
+  RFC6397 -> rev_cites;
+  RFC6472 [label="RFC6472
+Recommendation for Not Using AS_SET and
+AS_CONFED_SET in BGP
+2011", shape=ellipse, URL="RFC6472.html", target="_top", tooltip="This document recommends against the use of the AS_SET and AS_CONFED_SET types of the AS_PATH in BGPv4.  This is done to simplify the design and implementation of BGP and to make the semantics of the originator of a route more clear.  This will also simplify the design, implementation, and deployment of ongoing work in the Secure Inter-Domain Routing Working Group.  This memo documents an Internet Best Current Practice."];
+  RFC6472 -> rev_cites;
+  RFC6480 [label="RFC6480
+An Infrastructure to Support Secure
+Internet Routing
+2012", shape=ellipse, URL="RFC6480.html", target="_top", tooltip="This document describes an architecture for an infrastructure to support improved security of Internet routing.  The foundation of this architecture is a Resource Public Key Infrastructure (RPKI) that represents the allocation hierarchy of IP address space and Autonomous System (AS) numbers; and a distributed repository system for storing and disseminating the data objects that comprise the RPKI, as well as other signed objects necessary for improved routing security.  As an initial application of this architecture, the document describes how a legitimate holder of IP address space can explicitly and verifiably authorize one or more ASes to originate routes to that address space.  Such verifiable authorizations could be used, for example, to more securely construct BGP route filters.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6480 -> rev_cites;
+  RFC6483 [label="RFC6483
+Validation of Route Origination Using
+the Resource Certificate Public Key
+Infrastructure (PKI) and Route Origin
+Authorizations (ROAs)
+2012", shape=ellipse, URL="RFC6483.html", target="_top", tooltip="This document defines the semantics of a Route Origin Authorization (ROA) in terms of the context of an application of the Resource Public Key Infrastructure to validate the origination of routes advertised in the Border Gateway Protocol.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6483 -> rev_cites;
+  RFC6491 [label="RFC6491
+Resource Public Key Infrastructure
+(RPKI) Objects Issued by IANA
+2012", shape=ellipse, URL="RFC6491.html", target="_top", tooltip="This document provides specific direction to IANA as to the Resource Public Key Infrastructure (RPKI) objects it should issue. [STANDARDS-TRACK]"];
+  RFC6491 -> rev_cites;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  RFC6514 -> rev_cites;
+  RFC6518 [label="RFC6518
+Keying and Authentication for Routing
+Protocols (KARP) Design Guidelines
+2012", shape=ellipse, URL="RFC6518.html", target="_top", tooltip="This document is one of a series concerned with defining a roadmap of protocol specification work for the use of modern cryptographic mechanisms and algorithms for message authentication in routing protocols.  In particular, it defines the framework for a key management protocol that may be used to create and manage session keys for message authentication and integrity.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6518 -> rev_cites;
+  RFC6608 [label="RFC6608
+Subcodes for BGP Finite State Machine
+Error
+2012", shape=ellipse, URL="RFC6608.html", target="_top", tooltip="This document defines several subcodes for the BGP Finite State Machine (FSM) Error that could provide more information to help network operators in diagnosing BGP FSM issues and correlating network events.  This document updates RFC 4271. [STANDARDS-TRACK]"];
+  RFC6608 -> rev_cites;
+  RFC6769 [label="RFC6769
+Simple Virtual Aggregation (S-VA)
+2012", shape=ellipse, URL="RFC6769.html", target="_top", tooltip="All BGP routers in the Default-Free Zone (DFZ) are required to carry all routes in the Default-Free Routing Table (DFRT). This document describes a technique, Simple Virtual Aggregation (S-VA), that allows some BGP routers not to install all of those routes into the Forwarding Information Base (FIB). Some routers in an Autonomous System (AS) announce an aggregate (the VA prefix) in addition to the routes they already announce. This enables other routers not to install the routes covered by the VA prefix into the FIB as long as those routes have the same next-hop as the VA prefix. The VA prefixes that are announced within an AS are not announced to any other AS. The described functionality is of very low operational complexity, as it proposes a confined BGP speaker solution without any dependency on network-wide configuration or requirement for any form of intra-domain tunneling. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6769 -> rev_cites;
+  RFC6774 [label="RFC6774
+Distribution of Diverse BGP Paths
+2012", shape=ellipse, URL="RFC6774.html", target="_top", tooltip="The BGP4 protocol specifies the selection and propagation of a single best path for each prefix. As defined and widely deployed today, BGP has no mechanisms to distribute alternate paths that are not considered best path between its speakers. This behavior results in a number of disadvantages for new applications and services. The main objective of this document is to observe that by simply adding a new session between a route reflector and its client, the Nth best path can be distributed. This document also compares existing solutions and proposed ideas that enable distribution of more paths than just the best path. This proposal does not specify any changes to the BGP protocol definition. It does not require a software upgrade of provider edge (PE) routers acting as route reflector clients. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6774 -> rev_cites;
+  RFC6790 [label="RFC6790
+The Use of Entropy Labels in MPLS
+Forwarding
+2012", shape=ellipse, URL="RFC6790.html", target="_top", tooltip="Load balancing is a powerful tool for engineering traffic across a network.  This memo suggests ways of improving load balancing across MPLS networks using the concept of entropy labels.  It defines the concept, describes why entropy labels are useful, enumerates properties of entropy labels that allow maximal benefit, and shows how they can be signaled and used for various applications.  This document updates RFCs 3031, 3107, 3209, and 5036. [STANDARDS-TRACK]"];
+  RFC6790 -> rev_cites;
+  RFC6793 [label="RFC6793
+BGP Support for Four-Octet Autonomous
+System (AS) Number Space
+2012", shape=ellipse, URL="RFC6793.html", target="_top", tooltip="The Autonomous System number is encoded as a two-octet entity in the base BGP specification.  This document describes extensions to BGP to carry the Autonomous System numbers as four-octet entities.  This document obsoletes RFC 4893 and updates RFC 4271. [STANDARDS-TRACK]"];
+  RFC6793 -> rev_cites;
+  RFC6811 [label="RFC6811
+BGP Prefix Origin Validation
+2013", shape=ellipse, URL="RFC6811.html", target="_top", tooltip="To help reduce well-known threats against BGP including prefix mis- announcing and monkey-in-the-middle attacks, one of the security requirements is the ability to validate the origination Autonomous System (AS) of BGP routes.  More specifically, one needs to validate that the AS number claiming to originate an address prefix (as derived from the AS_PATH attribute of the BGP route) is in fact authorized by the prefix holder to do so.  This document describes a simple validation mechanism to partially satisfy this requirement. [STANDARDS-TRACK]"];
+  RFC6811 -> rev_cites;
+  RFC6836 [label="RFC6836
+Locator/ID Separation Protocol
+Alternative Logical Topology (LISP+ALT)
+2013", shape=ellipse, URL="RFC6836.html", target="_top", tooltip="This document describes a simple distributed index system to be used by a Locator/ID Separation Protocol (LISP) Ingress Tunnel Router (ITR) or Map-Resolver (MR) to find the Egress Tunnel Router (ETR) that holds the mapping information for a particular Endpoint Identifier (EID).  The MR can then query that ETR to obtain the actual mapping information, which consists of a list of Routing Locators (RLOCs) for the EID.  Termed the Alternative Logical Topology (ALT), the index is built as an overlay network on the public Internet using the Border Gateway Protocol (BGP) and Generic Routing Encapsulation (GRE).  This document defines an Experimental Protocol for the Internet community."];
+  RFC6836 -> rev_cites;
+  RFC6837 [label="RFC6837
+NERD: A Not-so-novel Endpoint ID (EID)
+to Routing Locator (RLOC) Database
+2013", shape=ellipse, URL="RFC6837.html", target="_top", tooltip="The Locator/ID Separation Protocol (LISP) is a protocol to encapsulate IP packets in order to allow end sites to route to one another without injecting routes from one end of the Internet to another.  This memo presents an experimental database and a discussion of methods to transport the mapping of Endpoint IDs (EIDs) to Routing Locators (RLOCs) to routers in a reliable, scalable, and secure manner.  Our analysis concludes that transport of all EID-to- RLOC mappings scales well to at least 10^8 entries.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6837 -> rev_cites;
+  RFC6862 [label="RFC6862
+Keying and Authentication for Routing
+Protocols (KARP) Overview, Threats, and
+Requirements
+2013", shape=ellipse, URL="RFC6862.html", target="_top", tooltip="Different routing protocols employ different mechanisms for securing protocol packets on the wire.  While most already have some method for accomplishing cryptographic message authentication, in many cases the existing methods are dated, vulnerable to attack, and employ cryptographic algorithms that have been deprecated.  The Keying and Authentication for Routing Protocols (KARP) effort aims to overhaul and improve these mechanisms.  This document does not contain protocol specifications.  Instead, it defines the areas where protocol specification work is needed.  This document is a companion document to RFC 6518, Keying and Authentication for Routing Protocols (KARP) Design Guidelines; together they form the guidance and instruction KARP design teams will use to review and overhaul routing protocol transport security."];
+  RFC6862 -> rev_cites;
+  RFC6907 [label="RFC6907
+Use Cases and Interpretations of
+Resource Public Key Infrastructure
+(RPKI) Objects for Issuers and Relying
+Parties
+2013", shape=ellipse, URL="RFC6907.html", target="_top", tooltip="This document describes a number of use cases together with directions and interpretations for organizations and relying parties when creating or encountering Resource Public Key Infrastructure (RPKI) object scenarios in the public RPKI.  All of these items are discussed here in relation to the Internet routing system."];
+  RFC6907 -> rev_cites;
+  RFC6952 [label="RFC6952
+Analysis of BGP, LDP, PCEP, and MSDP
+Issues According to the Keying and
+Authentication for Routing Protocols
+(KARP) Design Guide
+2013", shape=ellipse, URL="RFC6952.html", target="_top", tooltip="This document analyzes TCP-based routing protocols, the Border Gateway Protocol (BGP), the Label Distribution Protocol (LDP), the Path Computation Element Communication Protocol (PCEP), and the Multicast Source Distribution Protocol (MSDP), according to guidelines set forth in Section 4.2 of Keying and Authentication for Routing Protocols Design Guidelines, RFC 6518."];
+  RFC6952 -> rev_cites;
+  RFC6959 [label="RFC6959
+Source Address Validation Improvement
+(SAVI) Threat Scope
+2013", shape=ellipse, URL="RFC6959.html", target="_top", tooltip="The Source Address Validation Improvement (SAVI) effort aims to complement ingress filtering with finer-grained, standardized IP source address validation.  This document describes threats enabled by IP source address spoofing both in the global and finer-grained context, describes currently available solutions and challenges, and provides a starting point analysis for finer-grained (host granularity) anti-spoofing work."];
+  RFC6959 -> rev_cites;
+  RFC6991 [label="RFC6991
+Common YANG Data Types
+2013", shape=ellipse, URL="RFC6991.html", target="_top", tooltip="This document introduces a collection of common data types to be used with the YANG data modeling language.  This document obsoletes RFC 6021."];
+  RFC6991 -> rev_cites;
+  RFC6996 [label="RFC6996
+Autonomous System (AS) Reservation for
+Private Use
+2013", shape=ellipse, URL="RFC6996.html", target="_top", tooltip="This document describes the reservation of Autonomous System Numbers (ASNs) that are for Private Use only, known as Private Use ASNs, and provides operational guidance on their use.  This document enlarges the total space available for Private Use ASNs by documenting the reservation of a second, larger range and updates RFC 1930 by replacing Section 10 of that document."];
+  RFC6996 -> rev_cites;
+  RFC7115 [label="RFC7115
+Origin Validation Operation Based on the
+Resource Public Key Infrastructure
+(RPKI)
+2014", shape=ellipse, URL="RFC7115.html", target="_top", tooltip="Deployment of BGP origin validation that is based on the Resource Public Key Infrastructure (RPKI) has many operational considerations.  This document attempts to collect and present those that are most critical.  It is expected to evolve as RPKI-based origin validation continues to be deployed and the dynamics are better understood."];
+  RFC7115 -> rev_cites;
+  RFC7132 [label="RFC7132
+Threat Model for BGP Path Security
+2014", shape=ellipse, URL="RFC7132.html", target="_top", tooltip="This document describes a threat model for the context in which External Border Gateway Protocol (EBGP) path security mechanisms will be developed. The threat model includes an analysis of the Resource Public Key Infrastructure (RPKI) and focuses on the ability of an Autonomous System (AS) to verify the authenticity of the AS path info received in a BGP update. We use the term PATHSEC to refer to any BGP path security technology that makes use of the RPKI. PATHSEC will secure BGP, consistent with the inter-AS security focus of the RPKI. The document characterizes classes of potential adversaries that are considered to be threats and examines classes of attacks that might be launched against PATHSEC. It does not revisit attacks against unprotected BGP, as that topic has already been addressed in the BGP-4 standard. It concludes with a brief discussion of residual vulnerabilities."];
+  RFC7132 -> rev_cites;
+  RFC7196 [label="RFC7196
+Making Route Flap Damping Usable
+2014", shape=ellipse, URL="RFC7196.html", target="_top", tooltip="Route Flap Damping (RFD) was first proposed to reduce BGP churn in routers.  Unfortunately, RFD was found to severely penalize sites for being well connected because topological richness amplifies the number of update messages exchanged.  Many operators have turned RFD off.  Based on experimental measurement, this document recommends adjusting a few RFD algorithmic constants and limits in order to reduce the high risks with RFD.  The result is damping a non-trivial amount of long-term churn without penalizing well-behaved prefixes' normal convergence process."];
+  RFC7196 -> rev_cites;
+  RFC7267 [label="RFC7267
+Dynamic Placement of Multi-Segment
+Pseudowires
+2014", shape=ellipse, URL="RFC7267.html", target="_top", tooltip="RFC 5254 describes the service provider requirements for extending the reach of pseudowires (PWs) across multiple Packet Switched Network domains.  A multi-segment PW is defined as a set of two or more contiguous PW segments that behave and function as a single point-to-point PW.  This document describes extensions to the PW control protocol to dynamically place the segments of the multi-segment pseudowire among a set of Provider Edge (PE) routers.  This document also updates RFC 6073 by updating the value of the Length field of the PW Switching Point PE Sub-TLV Type 0x06 to 14."];
+  RFC7267 -> rev_cites;
+  RFC7297 [label="RFC7297
+IP Connectivity Provisioning Profile
+(CPP)
+2014", shape=ellipse, URL="RFC7297.html", target="_top", tooltip="This document describes the Connectivity Provisioning Profile (CPP) and proposes a CPP template to capture IP/MPLS connectivity requirements to be met within a service delivery context (e.g., Voice over IP or IP TV). The CPP defines the set of IP transfer parameters to be supported by the underlying transport network together with a reachability scope and bandwidth/capacity needs. Appropriate performance metrics, such as one-way delay or one-way delay variation, are used to characterize an IP transfer service. Both global and restricted reachability scopes can be captured in the CPP. Such a generic CPP template is meant to (1) facilitate the automation of the service negotiation and activation procedures, thus accelerating service provisioning, (2) set (traffic) objectives of Traffic Engineering functions and service management functions, and (3) improve service and network management systems with 'decision- making' capabilities based upon negotiated/offered CPPs."];
+  RFC7297 -> rev_cites;
+  RFC7300 [label="RFC7300
+Reservation of Last Autonomous System
+(AS) Numbers
+2014", shape=ellipse, URL="RFC7300.html", target="_top", tooltip="This document reserves two Autonomous System Numbers (ASNs) at the end of the 16-bit and 32-bit ranges, described in this document as Last ASNs, and provides guidance to implementers and operators on their use.  This document updates Section 10 of RFC 1930."];
+  RFC7300 -> rev_cites;
+  RFC7313 [label="RFC7313
+Enhanced Route Refresh Capability for
+BGP-4
+2014", shape=ellipse, URL="RFC7313.html", target="_top", tooltip="In this document, we enhance the existing BGP route refresh mechanisms to provide for the demarcation of the beginning and the ending of a route refresh.  The enhancement can be used to facilitate correction of BGP Routing Information Base (RIB) inconsistencies in a non-disruptive manner.  This document updates RFC 2918."];
+  RFC7313 -> rev_cites;
+  RFC7353 [label="RFC7353
+Security Requirements for BGP Path
+Validation
+2014", shape=ellipse, URL="RFC7353.html", target="_top", tooltip="This document describes requirements for a BGP security protocol design to provide cryptographic assurance that the origin Autonomous System (AS) has the right to announce the prefix and to provide assurance of the AS Path of the announcement."];
+  RFC7353 -> rev_cites;
+  RFC7404 [label="RFC7404
+Using Only Link-Local Addressing inside
+an IPv6 Network
+2014", shape=ellipse, URL="RFC7404.html", target="_top", tooltip="In an IPv6 network, it is possible to use only link-local addresses on infrastructure links between routers.  This document discusses the advantages and disadvantages of this approach to facilitate the decision process for a given network."];
+  RFC7404 -> rev_cites;
+  RFC7426 [label="RFC7426
+Software-Defined Networking (SDN):
+Layers and Architecture Terminology
+2015", shape=ellipse, URL="RFC7426.html", target="_top", tooltip="Software-Defined Networking (SDN) refers to a new approach for network programmability, that is, the capacity to initialize, control, change, and manage network behavior dynamically via open interfaces.  SDN emphasizes the role of software in running networks through the introduction of an abstraction for the data forwarding plane and, by doing so, separates it from the control plane.  This separation allows faster innovation cycles at both planes as experience has already shown.  However, there is increasing confusion as to what exactly SDN is, what the layer structure is in an SDN architecture, and how layers interface with each other.  This document, a product of the IRTF Software-Defined Networking Research Group (SDNRG), addresses these questions and provides a concise reference for the SDN research community based on relevant peer-reviewed literature, the RFC series, and relevant documents by other standards organizations."];
+  RFC7426 -> rev_cites;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  RFC7432 -> rev_cites;
+  RFC7447 [label="RFC7447
+Deprecation of BGP Entropy Label
+Capability Attribute
+2015", shape=ellipse, URL="RFC7447.html", target="_top", tooltip="The BGP Entropy Label Capability attribute is defined in RFC 6790.  Regrettably, it has a bug: although RFC 6790 mandates that routers incapable of processing Entropy Labels must remove the attribute, fulfillment of this requirement cannot be guaranteed in practice.  This specification deprecates the attribute.  A forthcoming document will propose a replacement."];
+  RFC7447 -> rev_cites;
+  RFC7450 [label="RFC7450
+Automatic Multicast Tunneling
+2015", shape=ellipse, URL="RFC7450.html", target="_top", tooltip="This document describes Automatic Multicast Tunneling (AMT), a protocol for delivering multicast traffic from sources in a multicast-enabled network to receivers that lack multicast connectivity to the source network. The protocol uses UDP encapsulation and unicast replication to provide this functionality. The AMT protocol is specifically designed to support rapid deployment by requiring minimal changes to existing network infrastructure."];
+  RFC7450 -> rev_cites;
+  RFC7534 [label="RFC7534
+AS112 Nameserver Operations
+2015", shape=ellipse, URL="RFC7534.html", target="_top", tooltip="Many sites connected to the Internet make use of IPv4 addresses that are not globally unique. Examples are the addresses designated in RFC 1918 for private use within individual sites. Devices in such environments may occasionally originate Domain Name System (DNS) queries (so-called reverse lookups) corresponding to those private-use addresses. Since the addresses concerned have only local significance, it is good practice for site administrators to ensure that such queries are answered locally. However, it is not uncommon for such queries to follow the normal delegation path in the public DNS instead of being answered within the site. It is not possible for public DNS servers to give useful answers to such queries. In addition, due to the wide deployment of private-use addresses and the continuing growth of the Internet, the volume of such queries is large and growing. The AS112 project aims to provide a distributed sink for such queries in order to reduce the load on the corresponding authoritative servers. The AS112 project is named after the Autonomous System Number (ASN) that was assigned to it. This document describes the steps required to install a new AS112 node and offers advice relating to such a node's operation. This document obsoletes RFC 6304."];
+  RFC7534 -> rev_cites;
+  RFC7543 [label="RFC7543
+Covering Prefixes Outbound Route Filter
+for BGP-4
+2015", shape=ellipse, URL="RFC7543.html", target="_top", tooltip="This document defines a new Outbound Route Filter (ORF) type, called the Covering Prefixes ORF (CP-ORF).  CP-ORF is applicable in Virtual Hub-and-Spoke VPNs.  It also is applicable in BGP/MPLS Ethernet VPN (EVPN) networks."];
+  RFC7543 -> rev_cites;
+  RFC7600 [label="RFC7600
+IPv4 Residual Deployment via IPv6 - A
+Stateless Solution (4rd)
+2015", shape=ellipse, URL="RFC7600.html", target="_top", tooltip="This document specifies a stateless solution for service providers to progressively deploy IPv6-only network domains while still offering IPv4 service to customers.  The solution's distinctive properties are that TCP/UDP IPv4 packets are valid TCP/UDP IPv6 packets during domain traversal and that IPv4 fragmentation rules are fully preserved end to end.  Each customer can be assigned one public IPv4 address, several public IPv4 addresses, or a shared address with a restricted port set."];
+  RFC7600 -> rev_cites;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  RFC7606 -> rev_cites;
+  RFC7607 [label="RFC7607
+Codification of AS 0 Processing
+2015", shape=ellipse, URL="RFC7607.html", target="_top", tooltip="This document updates RFC 4271 and proscribes the use of Autonomous System (AS) 0 in the Border Gateway Protocol (BGP) OPEN, AS_PATH, AS4_PATH, AGGREGATOR, and AS4_AGGREGATOR attributes in the BGP UPDATE message."];
+  RFC7607 -> rev_cites;
+  RFC7611 [label="RFC7611
+BGP ACCEPT_OWN Community Attribute
+2015", shape=ellipse, URL="RFC7611.html", target="_top", tooltip="Under certain conditions, it is desirable for a Border Gateway Protocol (BGP) route reflector to be able to modify the Route Target (RT) list of a Virtual Private Network (VPN) route that the route reflector distributes, enabling the route reflector to control how a route originated within one VPN Routing and Forwarding table (VRF) is imported into other VRFs.  This technique works effectively as long as the VRF that exports the route is not on the same Provider Edge (PE) router as the VRF(s) that imports the route.  However, due to the constraints of BGP, it does not work if the two are on the same PE.  This document describes a modification to BGP allowing this technique to work when the VRFs are on the same PE and to be used in a standard manner throughout an autonomous system."];
+  RFC7611 -> rev_cites;
+  RFC7705 [label="RFC7705
+Autonomous System Migration Mechanisms
+and Their Effects on the BGP AS_PATH
+Attribute
+2015", shape=ellipse, URL="RFC7705.html", target="_top", tooltip="This document discusses some existing commonly used BGP mechanisms for Autonomous System Number (ASN) migration that are not formally part of the BGP4 protocol specification.  It is necessary to document these de facto standards to ensure that they are properly supported in future BGP protocol work."];
+  RFC7705 -> rev_cites;
+  RFC7747 [label="RFC7747
+Basic BGP Convergence Benchmarking
+Methodology for Data-Plane Convergence
+2016", shape=ellipse, URL="RFC7747.html", target="_top", tooltip="BGP is widely deployed and used by several service providers as the default inter-AS (Autonomous System) routing protocol.  It is of utmost importance to ensure that when a BGP peer or a downstream link of a BGP peer fails, the alternate paths are rapidly used and routes via these alternate paths are installed.  This document provides the basic BGP benchmarking methodology using existing BGP convergence terminology as defined in RFC 4098."];
+  RFC7747 -> rev_cites;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  RFC7752 -> rev_cites;
+  RFC7854 [label="RFC7854
+BGP Monitoring Protocol (BMP)
+2016", shape=ellipse, URL="RFC7854.html", target="_top", tooltip="This document defines the BGP Monitoring Protocol (BMP), which can be used to monitor BGP sessions.  BMP is intended to provide a convenient interface for obtaining route views.  Prior to the introduction of BMP, screen scraping was the most commonly used approach to obtaining such views.  The design goals are to keep BMP simple, useful, easily implemented, and minimally service affecting.  BMP is not suitable for use as a routing protocol."];
+  RFC7854 -> rev_cites;
+  RFC7911 [label="RFC7911
+Advertisement of Multiple Paths in BGP
+2016", shape=ellipse, URL="RFC7911.html", target="_top", tooltip="This document defines a BGP extension that allows the advertisement of multiple paths for the same address prefix without the new paths implicitly replacing any previous ones.  The essence of the extension is that each path is identified by a Path Identifier in addition to the address prefix."];
+  RFC7911 -> rev_cites;
+  RFC7926 [label="RFC7926
+Problem Statement and Architecture for
+Information Exchange between
+Interconnected Traffic-Engineered
+Networks
+2016", shape=ellipse, URL="RFC7926.html", target="_top", tooltip="In Traffic-Engineered (TE) systems, it is sometimes desirable to establish an end-to-end TE path with a set of constraints (such as bandwidth) across one or more networks from a source to a destination. TE information is the data relating to nodes and TE links that is used in the process of selecting a TE path. TE information is usually only available within a network. We call such a zone of visibility of TE information a domain. An example of a domain may be an IGP area or an Autonomous System. In order to determine the potential to establish a TE path through a series of connected networks, it is necessary to have available a certain amount of TE information about each network. This need not be the full set of TE information available within each network but does need to express the potential of providing TE connectivity. This subset of TE information is called TE reachability information. This document sets out the problem statement for the exchange of TE information between interconnected TE networks in support of end-to-end TE path establishment and describes the best current practice architecture to meet this problem statement. For reasons that are explained in this document, this work is limited to simple TE constraints and information that determine TE reachability."];
+  RFC7926 -> rev_cites;
+  RFC7938 [label="RFC7938
+Use of BGP for Routing in Large-Scale
+Data Centers
+2016", shape=ellipse, URL="RFC7938.html", target="_top", tooltip="Some network operators build and operate data centers that support over one hundred thousand servers.  In this document, such data centers are referred to as large-scale to differentiate them from smaller infrastructures.  Environments of this scale have a unique set of network requirements with an emphasis on operational simplicity and network stability.  This document summarizes operational experience in designing and operating large-scale data centers using BGP as the only routing protocol.  The intent is to report on a proven and stable routing design that could be leveraged by others in the industry."];
+  RFC7938 -> rev_cites;
+  RFC7947 [label="RFC7947
+Internet Exchange BGP Route Server
+2016", shape=ellipse, URL="RFC7947.html", target="_top", tooltip="This document outlines a specification for multilateral interconnections at Internet Exchange Points (IXPs).  Multilateral interconnection is a method of exchanging routing information among three or more External BGP (EBGP) speakers using a single intermediate broker system, referred to as a route server.  Route servers are typically used on shared access media networks, such as IXPs, to facilitate simplified interconnection among multiple Internet routers."];
+  RFC7947 -> rev_cites;
+  RFC7948 [label="RFC7948
+Internet Exchange BGP Route Server
+Operations
+2016", shape=ellipse, URL="RFC7948.html", target="_top", tooltip="The popularity of Internet Exchange Points (IXPs) brings new challenges to interconnecting networks. While bilateral External BGP (EBGP) sessions between exchange participants were historically the most common means of exchanging reachability information over an IXP, the overhead associated with this interconnection method causes serious operational and administrative scaling problems for IXP participants. Multilateral interconnection using Internet route servers can dramatically reduce the administrative and operational overhead associated with connecting to IXPs; in some cases, route servers are used by IXP participants as their preferred means of exchanging routing information. This document describes operational considerations for multilateral interconnections at IXPs."];
+  RFC7948 -> rev_cites;
+  RFC7949 [label="RFC7949
+OSPFv3 over IPv4 for IPv6 Transition
+2016", shape=ellipse, URL="RFC7949.html", target="_top", tooltip="This document defines a mechanism to use IPv4 to transport OSPFv3 packets.  Using OSPFv3 over IPv4 with the existing OSPFv3 Address Family extension can simplify transition from an OSPFv2 IPv4-only routing domain to an OSPFv3 dual-stack routing domain.  This document updates RFC 5838 to support virtual links in the IPv4 unicast address family when using OSPFv3 over IPv4."];
+  RFC7949 -> rev_cites;
+  RFC7962 [label="RFC7962
+Alternative Network Deployments:
+Taxonomy, Characterization,
+Technologies, and Architectures
+2016", shape=ellipse, URL="RFC7962.html", target="_top", tooltip="This document presents a taxonomy of a set of Alternative Network Deployments that emerged in the last decade with the aim of bringing Internet connectivity to people or providing a local communication infrastructure to serve various complementary needs and objectives. They employ architectures and topologies different from those of mainstream networks and rely on alternative governance and business models. The document also surveys the technologies deployed in these networks, and their differing architectural characteristics, including a set of definitions and shared properties. The classification considers models such as Community Networks, Wireless Internet Service Providers (WISPs), networks owned by individuals but leased out to network operators who use them as a low-cost medium to reach the underserved population, networks that provide connectivity by sharing wireless resources of the users, and rural utility cooperatives."];
+  RFC7962 -> rev_cites;
+  RFC7964 [label="RFC7964
+Solutions for BGP Persistent Route
+Oscillation
+2016", shape=ellipse, URL="RFC7964.html", target="_top", tooltip="Routing information reduction by BGP Route Reflection or Confederation can result in persistent internal BGP route oscillations with certain routing setups and network topologies.  This document specifies two sets of additional paths that can be used to eliminate these route oscillations in a network."];
+  RFC7964 -> rev_cites;
+  RFC7999 [label="RFC7999
+BLACKHOLE Community
+2016", shape=ellipse, URL="RFC7999.html", target="_top", tooltip="This document describes the use of a well-known Border Gateway Protocol (BGP) community for destination-based blackholing in IP networks.  This well-known advisory transitive BGP community named BLACKHOLE allows an origin Autonomous System (AS) to specify that a neighboring network should discard any traffic destined towards the tagged IP prefix."];
+  RFC7999 -> rev_cites;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  RFC8029 -> rev_cites;
+  RFC8092 [label="RFC8092
+BGP Large Communities Attribute
+2017", shape=ellipse, URL="RFC8092.html", target="_top", tooltip="This document describes the BGP Large Communities attribute, an extension to BGP-4.  This attribute provides a mechanism to signal opaque information within separate namespaces to aid in routing management.  The attribute is suitable for use with all Autonomous System Numbers (ASNs) including four-octet ASNs."];
+  RFC8092 -> rev_cites;
+  RFC8093 [label="RFC8093
+Deprecation of BGP Path Attribute Values
+30, 31, 129, 241, 242, and 243
+2017", shape=ellipse, URL="RFC8093.html", target="_top", tooltip="This document requests IANA to mark BGP path attribute values 30, 31, 129, 241, 242, and 243 as Deprecated."];
+  RFC8093 -> rev_cites;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  RFC8126 -> rev_cites;
+  RFC8203 [label="RFC8203
+BGP Administrative Shutdown
+Communication
+2017", shape=ellipse, URL="RFC8203.html", target="_top", tooltip="This document enhances the BGP Cease NOTIFICATION message Administrative Shutdown and Administrative Reset subcodes for operators to transmit a short freeform message to describe why a BGP session was shutdown or reset.  This document updates RFC 4486."];
+  RFC8203 -> rev_cites;
+  RFC8205 [label="RFC8205
+BGPsec Protocol Specification
+2017", shape=ellipse, URL="RFC8205.html", target="_top", tooltip="This document describes BGPsec, an extension to the Border Gateway Protocol (BGP) that provides security for the path of Autonomous Systems (ASes) through which a BGP UPDATE message passes.  BGPsec is implemented via an optional non-transitive BGP path attribute that carries digital signatures produced by each AS that propagates the UPDATE message.  The digital signatures provide confidence that every AS on the path of ASes listed in the UPDATE message has explicitly authorized the advertisement of the route."];
+  RFC8205 -> rev_cites;
+  RFC8206 [label="RFC8206
+BGPsec Considerations for Autonomous
+System (AS) Migration
+2017", shape=ellipse, URL="RFC8206.html", target="_top", tooltip="This document discusses considerations and methods for supporting and securing a common method for Autonomous System (AS) migration within the BGPsec protocol."];
+  RFC8206 -> rev_cites;
+  RFC8207 [label="RFC8207
+BGPsec Operational Considerations
+2017", shape=ellipse, URL="RFC8207.html", target="_top", tooltip="Deployment of the BGPsec architecture and protocols has many operational considerations.  This document attempts to collect and present the most critical and universal.  Operational practices are expected to evolve as BGPsec is formalized and initially deployed."];
+  RFC8207 -> rev_cites;
+  RFC8209 [label="RFC8209
+A Profile for BGPsec Router
+Certificates, Certificate Revocation
+Lists, and Certification Requests
+2017", shape=ellipse, URL="RFC8209.html", target="_top", tooltip="This document defines a standard profile for X.509 certificates used to enable validation of Autonomous System (AS) paths in the Border Gateway Protocol (BGP), as part of an extension to that protocol known as BGPsec.  BGP is the standard for inter-domain routing in the Internet; it is the glue that holds the Internet together.  BGPsec is being developed as one component of a solution that addresses the requirement to provide security for BGP.  The goal of BGPsec is to provide full AS path validation based on the use of strong cryptographic primitives.  The end entity (EE) certificates specified by this profile are issued to routers within an AS.  Each of these certificates is issued under a Resource Public Key Infrastructure (RPKI) Certification Authority (CA) certificate.  These CA certificates and EE certificates both contain the AS Resource extension.  An EE certificate of this type asserts that the router or routers holding the corresponding private key are authorized to emit secure route advertisements on behalf of the AS(es) specified in the certificate.  This document also profiles the format of certification requests and specifies Relying Party (RP) certificate path validation procedures for these EE certificates.  This document extends the RPKI; therefore, this document updates the RPKI Resource Certificates Profile (RFC 6487)."];
+  RFC8209 -> rev_cites;
+  RFC8212 [label="RFC8212
+Default External BGP (EBGP) Route
+Propagation Behavior without Policies
+2017", shape=ellipse, URL="RFC8212.html", target="_top", tooltip="This document updates RFC 4271 by defining the default behavior of a BGP speaker when there is no Import or Export Policy associated with an External BGP session."];
+  RFC8212 -> rev_cites;
+  RFC8214 [label="RFC8214
+Virtual Private Wire Service Support in
+Ethernet VPN
+2017", shape=ellipse, URL="RFC8214.html", target="_top", tooltip="This document describes how Ethernet VPN (EVPN) can be used to support the Virtual Private Wire Service (VPWS) in MPLS/IP networks.  EVPN accomplishes the following for VPWS: provides Single-Active as well as All-Active multihoming with flow-based load-balancing, eliminates the need for Pseudowire (PW) signaling, and provides fast protection convergence upon node or link failure."];
+  RFC8214 -> rev_cites;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  RFC8277 -> rev_cites;
+  RFC8327 [label="RFC8327
+Mitigating the Negative Impact of
+Maintenance through BGP Session Culling
+2018", shape=ellipse, URL="RFC8327.html", target="_top", tooltip="This document outlines an approach to mitigate the negative impact on networks resulting from maintenance activities.  It includes guidance for both IP networks and Internet Exchange Points (IXPs).  The approach is to ensure BGP-4 sessions that will be affected by maintenance are forcefully torn down before the actual maintenance activities commence."];
+  RFC8327 -> rev_cites;
+  RFC8365 [label="RFC8365
+A Network Virtualization Overlay
+Solution Using Ethernet VPN (EVPN)
+2018", shape=ellipse, URL="RFC8365.html", target="_top", tooltip="This document specifies how Ethernet VPN (EVPN) can be used as a Network Virtualization Overlay (NVO) solution and explores the various tunnel encapsulation options over IP and their impact on the EVPN control plane and procedures.  In particular, the following encapsulation options are analyzed: Virtual Extensible LAN (VXLAN), Network Virtualization using Generic Routing Encapsulation (NVGRE), and MPLS over GRE.  This specification is also applicable to Generic Network Virtualization Encapsulation (GENEVE); however, some incremental work is required, which will be covered in a separate document.  This document also specifies new multihoming procedures for split-horizon filtering and mass withdrawal.  It also specifies EVPN route constructions for VXLAN/NVGRE encapsulations and Autonomous System Border Router (ASBR) procedures for multihoming of Network Virtualization Edge (NVE) devices."];
+  RFC8365 -> rev_cites;
+  RFC8374 [label="RFC8374
+BGPsec Design Choices and Summary of
+Supporting Discussions
+2018", shape=ellipse, URL="RFC8374.html", target="_top", tooltip="This document captures the design rationale of the initial draft version of what became RFC 8205 (the BGPsec protocol specification).  The designers needed to balance many competing factors, and this document lists the decisions that were made in favor of or against each design choice.  This document also presents brief summaries of the arguments that aided the decision process.  Where appropriate, this document also provides brief notes on design decisions that changed as the specification was reviewed and updated by the IETF SIDR Working Group and that resulted in RFC 8205.  These notes highlight the differences and provide pointers to details and rationale regarding those design changes."];
+  RFC8374 -> rev_cites;
+  RFC8395 [label="RFC8395
+Extensions to BGP-Signaled Pseudowires
+to Support Flow-Aware Transport Labels
+2018", shape=ellipse, URL="RFC8395.html", target="_top", tooltip="This document defines protocol extensions required to synchronize flow label states among Provider Edges (PEs) when using the BGP-based signaling procedures.  These protocol extensions are equally applicable to point-to-point Layer 2 Virtual Private Networks (L2VPNs).  This document updates RFC 4761 by defining new flags in the Control Flags field of the Layer2 Info Extended Community."];
+  RFC8395 -> rev_cites;
+  RFC8405 [label="RFC8405
+Shortest Path First (SPF) Back-Off Delay
+Algorithm for Link-State IGPs
+2018", shape=ellipse, URL="RFC8405.html", target="_top", tooltip="This document defines a standard algorithm to temporarily postpone or back off link-state IGP Shortest Path First (SPF) computations. This reduces the computational load and churn on IGP nodes when multiple temporally close network events trigger multiple SPF computations. Having one standard algorithm improves interoperability by reducing the probability and/or duration of transient forwarding loops during the IGP convergence when the IGP reacts to multiple temporally close IGP events."];
+  RFC8405 -> rev_cites;
+  RFC8481 [label="RFC8481
+Clarifications to BGP Origin Validation
+Based on Resource Public Key
+Infrastructure (RPKI)
+2018", shape=ellipse, URL="RFC8481.html", target="_top", tooltip="Deployment of BGP origin validation based on Resource Public Key Infrastructure (RPKI) is hampered by, among other things, vendor misimplementations in two critical areas: which routes are validated and whether policy is applied when not specified by configuration.  This document is meant to clarify possible misunderstandings causing those misimplementations; it thus updates RFC 6811 by clarifying that all prefixes should have their validation state set and that policy must not be applied without operator configuration."];
+  RFC8481 -> rev_cites;
+  RFC8538 [label="RFC8538
+Notification Message Support for BGP
+Graceful Restart
+2019", shape=ellipse, URL="RFC8538.html", target="_top", tooltip="The BGP Graceful Restart mechanism defined in RFC 4724 limits the usage of BGP Graceful Restart to BGP messages other than BGP NOTIFICATION messages.  This document updates RFC 4724 by defining an extension that permits the Graceful Restart procedures to be performed when the BGP speaker receives a BGP NOTIFICATION message or the Hold Time expires.  This document also defines a new subcode for BGP Cease NOTIFICATION messages; this new subcode requests a full session restart instead of a Graceful Restart."];
+  RFC8538 -> rev_cites;
+  RFC8549 [label="RFC8549
+Export of BGP Community Information in
+IP Flow Information Export (IPFIX)
+2019", shape=ellipse, URL="RFC8549.html", target="_top", tooltip="By introducing new Information Elements (IEs), this document extends the existing BGP-related IEs to enable IP Flow Information Export (IPFIX) to export BGP community information, including the BGP Standard Communities defined in RFC 1997, BGP Extended Communities defined in RFC 4360, and BGP Large Communities defined in RFC 8092.  According to the network operator's BGP community planning, network traffic information can then be accumulated and analyzed at the BGP community granularity, which represents the traffic of different kinds of customers, services, or geographical regions.  Network traffic information at the BGP community granularity is useful for network traffic analysis and engineering."];
+  RFC8549 -> rev_cites;
+  RFC8571 [label="RFC8571
+BGP - Link State (BGP-LS) Advertisement
+of IGP Traffic Engineering Performance
+Metric Extensions
+2019", shape=ellipse, URL="RFC8571.html", target="_top", tooltip="This document defines new BGP - Link State (BGP-LS) TLVs in order to carry the IGP Traffic Engineering Metric Extensions defined in the IS-IS and OSPF protocols."];
+  RFC8571 -> rev_cites;
+  RFC8608 [label="RFC8608
+BGPsec Algorithms, Key Formats, and
+Signature Formats
+2019", shape=ellipse, URL="RFC8608.html", target="_top", tooltip="This document specifies the algorithms, algorithm parameters, asymmetric key formats, asymmetric key sizes, and signature formats used in BGPsec (Border Gateway Protocol Security). This document updates RFC 7935 (The Profile for Algorithms and Key Sizes for Use in the Resource Public Key Infrastructure) and obsoletes RFC 8208 (BGPsec Algorithms, Key Formats, and Signature Formats) by adding Documentation and Experimentation Algorithm IDs, correcting the range of unassigned algorithms IDs to fill the complete range, and restructuring the document for better reading. This document also includes example BGPsec UPDATE messages as well as the private keys used to generate the messages and the certificates necessary to validate those signatures."];
+  RFC8608 -> rev_cites;
+  RFC8654 [label="RFC8654
+Extended Message Support for BGP
+2019", shape=ellipse, URL="RFC8654.html", target="_top", tooltip="The BGP specification (RFC 4271) mandates a maximum BGP message size of 4,096 octets.  As BGP is extended to support new Address Family Identifiers (AFIs), Subsequent AFIs (SAFIs), and other features, there is a need to extend the maximum message size beyond 4,096 octets.  This document updates the BGP specification by extending the maximum message size from 4,096 octets to 65,535 octets for all messages except for OPEN and KEEPALIVE messages."];
+  RFC8654 -> rev_cites;
+  RFC8669 [label="RFC8669
+Segment Routing Prefix Segment
+Identifier Extensions for BGP
+2019", shape=ellipse, URL="RFC8669.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm. A node steers a packet through an ordered list of instructions called segments. A segment can represent any instruction, topological or service based. The ingress node prepends an SR header to a packet containing a set of segment identifiers (SIDs). Each SID represents a topological or service-based instruction. Per-flow state is maintained only on the ingress node of the SR domain. An SR domain is defined as a single administrative domain for global SID assignment. This document defines an optional, transitive BGP attribute for announcing information about BGP Prefix Segment Identifiers (BGP Prefix-SIDs) and the specification for SR-MPLS SIDs."];
+  RFC8669 -> rev_cites;
+  RFC8670 [label="RFC8670
+BGP Prefix Segment in Large-Scale Data
+Centers
+2019", shape=ellipse, URL="RFC8670.html", target="_top", tooltip="This document describes the motivation for, and benefits of, applying Segment Routing (SR) in BGP-based large-scale data centers.  It describes the design to deploy SR in those data centers for both the MPLS and IPv6 data planes."];
+  RFC8670 -> rev_cites;
+  RFC8671 [label="RFC8671
+Support for Adj-RIB-Out in the BGP
+Monitoring Protocol (BMP)
+2019", shape=ellipse, URL="RFC8671.html", target="_top", tooltip="The BGP Monitoring Protocol (BMP) only defines access to the Adj-RIB-In Routing Information Bases (RIBs).  This document updates BMP (RFC 7854) by adding access to the Adj-RIB-Out RIBs.  It also adds a new flag to the peer header to distinguish between Adj-RIB-In and Adj-RIB-Out."];
+  RFC8671 -> rev_cites;
+  RFC8704 [label="RFC8704
+Enhanced Feasible-Path Unicast Reverse
+Path Forwarding
+2020", shape=ellipse, URL="RFC8704.html", target="_top", tooltip="This document identifies a need for and proposes improvement of the unicast Reverse Path Forwarding (uRPF) techniques (see RFC 3704) for detection and mitigation of source address spoofing (see BCP 38).  Strict uRPF is inflexible about directionality, the loose uRPF is oblivious to directionality, and the current feasible-path uRPF attempts to strike a balance between the two (see RFC 3704).  However, as shown in this document, the existing feasible-path uRPF still has shortcomings.  This document describes enhanced feasible-path uRPF (EFP-uRPF) techniques that are more flexible (in a meaningful way) about directionality than the feasible-path uRPF (RFC 3704).  The proposed EFP-uRPF methods aim to significantly reduce false positives regarding invalid detection in source address validation (SAV).  Hence, they can potentially alleviate ISPs' concerns about the possibility of disrupting service for their customers and encourage greater deployment of uRPF techniques.  This document updates RFC 3704."];
+  RFC8704 -> rev_cites;
+  RFC8810 [label="RFC8810
+Revision to Capability Codes
+Registration Procedures
+2020", shape=ellipse, URL="RFC8810.html", target="_top", tooltip="This document updates RFC 5492 by making a change to the registration procedures for BGP Capability Codes.  Specifically, the range formerly designated Private Use is divided into three new ranges: First Come First Served, Experimental Use, and Reserved."];
+  RFC8810 -> rev_cites;
+  RFC8811 [label="RFC8811
+DDoS Open Threat Signaling (DOTS)
+Architecture
+2020", shape=ellipse, URL="RFC8811.html", target="_top", tooltip="This document describes an architecture for establishing and maintaining Distributed Denial-of-Service (DDoS) Open Threat Signaling (DOTS) within and between domains.  The document does not specify protocols or protocol extensions, instead focusing on defining architectural relationships, components, and concepts used in a DOTS deployment."];
+  RFC8811 -> rev_cites;
+  RFC8814 [label="RFC8814
+Signaling Maximum SID Depth (MSD) Using
+the Border Gateway Protocol - Link State
+2020", shape=ellipse, URL="RFC8814.html", target="_top", tooltip="This document defines a way for a Border Gateway Protocol - Link
+State (BGP-LS) speaker to advertise multiple types of supported
+Maximum SID Depths (MSDs) at node and/or link granularity. Such advertisements allow entities (e.g., centralized controllers) to
+determine whether a particular Segment Identifier (SID) stack can be
+supported in a given network."];
+  RFC8814 -> rev_cites;
+  RFC8821 [label="RFC8821
+PCE-Based Traffic Engineering (TE) in
+Native IP Networks
+2021", shape=ellipse, URL="RFC8821.html", target="_top", tooltip="This document defines an architecture for providing traffic engineering in a native IP network using multiple BGP sessions and a Path Computation Element (PCE)-based central control mechanism.  It defines the Centralized Control Dynamic Routing (CCDR) procedures and identifies needed extensions for the Path Computation Element Communication Protocol (PCEP)."];
+  RFC8821 -> rev_cites;
+  RFC8893 [label="RFC8893
+Resource Public Key Infrastructure
+(RPKI) Origin Validation for BGP Export
+2020", shape=ellipse, URL="RFC8893.html", target="_top", tooltip="A BGP speaker may perform Resource Public Key Infrastructure (RPKI) origin validation not only on routes received from BGP neighbors and routes that are redistributed from other routing protocols, but also on routes it sends to BGP neighbors.  For egress policy, it is important that the classification use the 'effective origin AS' of the processed route, which may specifically be altered by the commonly available knobs, such as removing private ASes, confederation handling, and other modifications of the origin AS.  This document updates RFC 6811."];
+  RFC8893 -> rev_cites;
+  RFC8916 [label="RFC8916
+A YANG Data Model for the Multicast
+Source Discovery Protocol (MSDP)
+2020", shape=ellipse, URL="RFC8916.html", target="_top", tooltip="This document defines a YANG data model for the configuration and management of Multicast Source Discovery Protocol (MSDP) protocol operations."];
+  RFC8916 -> rev_cites;
+  RFC8929 [label="RFC8929
+IPv6 Backbone Router
+2020", shape=ellipse, URL="RFC8929.html", target="_top", tooltip="This document updates RFCs 6775 and 8505 in order to enable proxy services for IPv6 Neighbor Discovery by Routing Registrars called Backbone Routers.  Backbone Routers are placed along the wireless edge of a backbone and federate multiple wireless links to form a single Multi-Link Subnet (MLSN)."];
+  RFC8929 -> rev_cites;
+  RFC8955 [label="RFC8955
+Dissemination of Flow Specification
+Rules
+2020", shape=ellipse, URL="RFC8955.html", target="_top", tooltip="This document defines a Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute (intra-domain and inter-domain) traffic Flow Specifications for IPv4 unicast and IPv4 BGP/MPLS VPN services. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. It also specifies BGP Extended Community encoding formats, which can be used to propagate Traffic Filtering Actions along with the Flow Specification NLRI. Those Traffic Filtering Actions encode actions a routing system can take if the packet matches the Flow Specification. This document obsoletes both RFC 5575 and RFC 7674."];
+  RFC8955 -> rev_cites;
+  RFC8956 [label="RFC8956
+Dissemination of Flow Specification
+Rules for IPv6
+2020", shape=ellipse, URL="RFC8956.html", target="_top", tooltip="Dissemination of Flow Specification Rules (RFC 8955) provides a Border Gateway Protocol (BGP) extension for the propagation of traffic flow information for the purpose of rate limiting or filtering IPv4 protocol data packets. This document extends RFC 8955 with IPv6 functionality. It also updates RFC 8955 by changing the IANA Flow Spec Component Types registry."];
+  RFC8956 -> rev_cites;
+  RFC8980 [label="RFC8980
+Report from the IAB Workshop on Design
+Expectations vs. Deployment Reality in
+Protocol Development
+2021", shape=ellipse, URL="RFC8980.html", target="_top", tooltip="The Design Expectations vs. Deployment Reality in Protocol Development Workshop was convened by the Internet Architecture Board (IAB) in June 2019. This report summarizes the workshop's significant points of discussion and identifies topics that may warrant further consideration. Note that this document is a report on the proceedings of the workshop. The views and positions documented in this report are those of the workshop participants and do not necessarily reflect IAB views and positions."];
+  RFC8980 -> rev_cites;
+  RFC9003 [label="RFC9003
+Extended BGP Administrative Shutdown
+Communication
+2021", shape=ellipse, URL="RFC9003.html", target="_top", tooltip="This document enhances the BGP Cease NOTIFICATION message Administrative Shutdown and Administrative Reset subcodes for operators to transmit a short free-form message to describe why a BGP session was shut down or reset.  This document updates RFC 4486 and obsoletes RFC 8203 by defining an Extended BGP Administrative Shutdown Communication of up to 255 octets to improve communication using multibyte character sets."];
+  RFC9003 -> rev_cites;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  RFC9012 -> rev_cites;
+  RFC9015 [label="RFC9015
+BGP Control Plane for the Network
+Service Header in Service Function
+Chaining
+2021", shape=ellipse, URL="RFC9015.html", target="_top", tooltip="This document describes the use of BGP as a control plane for networks that support service function chaining. The document introduces a new BGP address family called the Service Function Chain (SFC) Address Family Identifier / Subsequent Address Family Identifier (SFC AFI/SAFI) with two Route Types. One Route Type is originated by a node to advertise that it hosts a particular instance of a specified service function. This Route Type also provides instructions on how to send a packet to the hosting node in a way that indicates that the service function has to be applied to the packet. The other Route Type is used by a controller to advertise the paths of chains of service functions and give a unique designator to each such path so that they can be used in conjunction with the Network Service Header (NSH) defined in RFC 8300. This document adopts the service function chaining architecture described in RFC 7665."];
+  RFC9015 -> rev_cites;
+  RFC9026 [label="RFC9026
+Multicast VPN Fast Upstream Failover
+2021", shape=ellipse, URL="RFC9026.html", target="_top", tooltip="This document defines Multicast Virtual Private Network (VPN) extensions and procedures that allow fast failover for upstream failures by allowing downstream Provider Edges (PEs) to consider the status of Provider-Tunnels (P-tunnels) when selecting the Upstream PE for a VPN multicast flow.  The fast failover is enabled by using Bidirectional Forwarding Detection (BFD) for Multipoint Networks (RFC 8562) and the new BGP Attribute, BFD Discriminator.  Also, this document introduces a new BGP Community, Standby PE, extending BGP Multicast VPN (MVPN) routing so that a C-multicast route can be advertised toward a Standby Upstream PE."];
+  RFC9026 -> rev_cites;
+  RFC9067 [label="RFC9067
+A YANG Data Model for Routing Policy
+2021", shape=ellipse, URL="RFC9067.html", target="_top", tooltip="This document defines a YANG data model for configuring and managing routing policies in a vendor-neutral way.  The model provides a generic routing policy framework that can be extended for specific routing protocols using the YANG 'augment' mechanism."];
+  RFC9067 -> rev_cites;
+  RFC9069 [label="RFC9069
+Support for Local RIB in the BGP
+Monitoring Protocol (BMP)
+2022", shape=ellipse, URL="RFC9069.html", target="_top", tooltip="The BGP Monitoring Protocol (BMP) defines access to local Routing Information Bases (RIBs).  This document updates BMP (RFC 7854) by adding access to the Local Routing Information Base (Loc-RIB), as defined in RFC 4271.  The Loc-RIB contains the routes that have been selected by the local BGP speaker's Decision Process."];
+  RFC9069 -> rev_cites;
+  RFC9072 [label="RFC9072
+Extended Optional Parameters Length for
+BGP OPEN Message
+2021", shape=ellipse, URL="RFC9072.html", target="_top", tooltip="The Optional Parameters in the BGP OPEN message as defined in the base BGP specification are limited to 255 octets due to a one-octet length field. BGP capabilities are carried in this field and may foreseeably exceed 255 octets in the future, leading to concerns about this limitation. This document updates RFC 4271 by extending, in a backward-compatible manner, the length of the Optional Parameters in a BGP OPEN message. The Parameter Length field of individual Optional Parameters is also extended."];
+  RFC9072 -> rev_cites;
+  RFC9104 [label="RFC9104
+Distribution of Traffic Engineering
+Extended Administrative Groups Using the
+Border Gateway Protocol - Link State
+(BGP-LS)
+2021", shape=ellipse, URL="RFC9104.html", target="_top", tooltip="Administrative groups are link attributes used for traffic engineering.  This document defines an extension to the Border Gateway Protocol - Link State (BGP-LS) for advertisement of extended administrative groups (EAGs)."];
+  RFC9104 -> rev_cites;
+  RFC9107 [label="RFC9107
+BGP Optimal Route Reflection (BGP ORR)
+2021", shape=ellipse, URL="RFC9107.html", target="_top", tooltip="This document defines an extension to BGP route reflectors. On route reflectors, BGP route selection is modified in order to choose the best route from the standpoint of their clients, rather than from the standpoint of the route reflectors themselves. Depending on the scaling and precision requirements, route selection can be specific for one client, common for a set of clients, or common for all clients of a route reflector. This solution is particularly applicable in deployments using centralized route reflectors, where choosing the best route based on the route reflector's IGP location is suboptimal. This facilitates, for example, a best exit point policy (hot potato routing). The solution relies upon all route reflectors learning all paths that are eligible for consideration. BGP route selection is performed in the route reflectors based on the IGP cost from configured locations in the link-state IGP."];
+  RFC9107 -> rev_cites;
+  RFC9117 [label="RFC9117
+Revised Validation Procedure for BGP
+Flow Specifications
+2021", shape=ellipse, URL="RFC9117.html", target="_top", tooltip="This document describes a modification to the validation procedure defined for the dissemination of BGP Flow Specifications. The dissemination of BGP Flow Specifications as specified in RFC 8955 requires that the originator of the Flow Specification match the originator of the best-match unicast route for the destination prefix embedded in the Flow Specification. For an Internal Border Gateway Protocol (iBGP) received route, the originator is typically a border router within the same autonomous system (AS). The objective is to allow only BGP speakers within the data forwarding path to originate BGP Flow Specifications. Sometimes it is desirable to originate the BGP Flow Specification from any place within the autonomous system itself, for example, from a centralized BGP route controller. However, the validation procedure described in RFC 8955 will fail in this scenario. The modification proposed herein relaxes the validation rule to enable Flow Specifications to be originated within the same autonomous system as the BGP speaker performing the validation. Additionally, this document revises the AS_PATH validation rules so Flow Specifications received from an External Border Gateway Protocol (eBGP) peer can be validated when such a peer is a BGP route server. This document updates the validation procedure in RFC 8955."];
+  RFC9117 -> rev_cites;
+  RFC9125 [label="RFC9125
+Gateway Auto-Discovery and Route
+Advertisement for Site Interconnection
+Using Segment Routing
+2021", shape=ellipse, URL="RFC9125.html", target="_top", tooltip="Data centers are attached to the Internet or a backbone network by gateway routers. One data center typically has more than one gateway for commercial, load-balancing, and resiliency reasons. Other sites, such as access networks, also need to be connected across backbone networks through gateways. This document defines a mechanism using the BGP Tunnel Encapsulation attribute to allow data center gateway routers to advertise routes to the prefixes reachable in the site, including advertising them on behalf of other gateways at the same site. This allows segment routing to be used to identify multiple paths across the Internet or backbone network between different gateways. The paths can be selected for load-balancing, resilience, and quality purposes."];
+  RFC9125 -> rev_cites;
+  RFC9181 [label="RFC9181
+A Common YANG Data Model for Layer 2 and
+Layer 3 VPNs
+2022", shape=ellipse, URL="RFC9181.html", target="_top", tooltip="This document defines a common YANG module that is meant to be reused by various VPN-related modules such as Layer 3 VPN and Layer 2 VPN network models."];
+  RFC9181 -> rev_cites;
+  RFC9182 [label="RFC9182
+A YANG Network Data Model for Layer 3
+VPNs
+2022", shape=ellipse, URL="RFC9182.html", target="_top", tooltip="As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), which is used for communication between customers and service providers, this document defines an L3VPN Network Model (L3NM) that can be used for the provisioning of Layer 3 Virtual Private Network (L3VPN) services within a service provider network. The model provides a network-centric view of L3VPN services. The L3NM is meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. The model can also facilitate communication between a service orchestrator and a network controller/orchestrator."];
+  RFC9182 -> rev_cites;
+  RFC9234 [label="RFC9234
+Route Leak Prevention and Detection
+Using Roles in UPDATE and OPEN Messages
+2022", shape=ellipse, URL="RFC9234.html", target="_top", tooltip="Route leaks are the propagation of BGP prefixes that violate assumptions of BGP topology relationships, e.g., announcing a route learned from one transit provider to another transit provider or a lateral (i.e., non-transit) peer or announcing a route learned from one lateral peer to another lateral peer or a transit provider.  These are usually the result of misconfigured or absent BGP route filtering or lack of coordination between autonomous systems (ASes).  Existing approaches to leak prevention rely on marking routes by operator configuration, with no check that the configuration corresponds to that of the External BGP (eBGP) neighbor, or enforcement of the two eBGP speakers agreeing on the peering relationship.  This document enhances the BGP OPEN message to establish an agreement of the peering relationship on each eBGP session between autonomous systems in order to enforce appropriate configuration on both sides.  Propagated routes are then marked according to the agreed relationship, allowing both prevention and detection of route leaks."];
+  RFC9234 -> rev_cites;
+  RFC9252 [label="RFC9252
+BGP Overlay Services Based on Segment
+Routing over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9252.html", target="_top", tooltip="This document defines procedures and messages for SRv6-based BGP services, including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and Internet services.  It builds on BGP/MPLS IP Virtual Private Networks (VPNs) (RFC 4364) and BGP MPLS-Based Ethernet VPN (RFC 7432)."];
+  RFC9252 -> rev_cites;
+  RFC9275 [label="RFC9275
+An Extension for Application-Layer
+Traffic Optimization (ALTO): Path Vector
+2022", shape=ellipse, URL="RFC9275.html", target="_top", tooltip="This document is an extension to the base Application-Layer Traffic Optimization (ALTO) protocol.  It extends the ALTO cost map and ALTO property map services so that an application can decide to which endpoint(s) to connect based not only on numerical/ordinal cost values but also on fine-grained abstract information regarding the paths.  This is useful for applications whose performance is impacted by specific components of a network on the end-to-end paths, e.g., they may infer that several paths share common links and prevent traffic bottlenecks by avoiding such paths.  This extension introduces a new abstraction called the Abstract Network Element (ANE) to represent these components and encodes a network path as a vector of ANEs.  Thus, it provides a more complete but still abstract graph representation of the underlying network(s) for informed traffic optimization among endpoints."];
+  RFC9275 -> rev_cites;
+  RFC9319 [label="RFC9319
+The Use of maxLength in the Resource
+Public Key Infrastructure (RPKI)
+2022", shape=ellipse, URL="RFC9319.html", target="_top", tooltip="This document recommends ways to reduce the forged-origin hijack attack surface by prudently limiting the set of IP prefixes that are included in a Route Origin Authorization (ROA).  One recommendation is to avoid using the maxLength attribute in ROAs except in some specific cases.  The recommendations complement and extend those in RFC 7115.  This document also discusses the creation of ROAs for facilitating the use of Distributed Denial of Service (DDoS) mitigation services.  Considerations related to ROAs and RPKI-based Route Origin Validation (RPKI-ROV) in the context of destination-based Remotely Triggered Discard Route (RTDR) (elsewhere referred to as Remotely Triggered Black Hole) filtering are also highlighted."];
+  RFC9319 -> rev_cites;
+  RFC9324 [label="RFC9324
+Policy Based on the Resource Public Key
+Infrastructure (RPKI) without Route
+Refresh
+2022", shape=ellipse, URL="RFC9324.html", target="_top", tooltip="A BGP speaker performing policy based on the Resource Public Key Infrastructure (RPKI) should not issue route refresh to its neighbors because it has received new RPKI data.  This document updates RFC 8481 by describing how to avoid doing so by either keeping a full Adj-RIB-In or saving paths dropped due to ROV (Route Origin Validation) so they may be reevaluated with respect to new RPKI data."];
+  RFC9324 -> rev_cites;
+  RFC9346 [label="RFC9346
+IS-IS Extensions in Support of Inter-
+Autonomous System (AS) MPLS and GMPLS
+Traffic Engineering
+2023", shape=ellipse, URL="RFC9346.html", target="_top", tooltip="This document describes extensions to the Intermediate System to Intermediate System (IS-IS) protocol to support Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering (TE) for multiple Autonomous Systems (ASes). It defines IS-IS extensions for the flooding of TE information about inter-AS links, which can be used to perform inter-AS TE path computation. No support for flooding information from within one AS to another AS is proposed or defined in this document. This document builds on RFC 5316 by adding support for IPv6-only operation. This document obsoletes RFC 5316."];
+  RFC9346 -> rev_cites;
+  RFC9377 [label="RFC9377
+IS-IS Flood Reflection
+2023", shape=ellipse, URL="RFC9377.html", target="_top", tooltip="This document describes a backward-compatible, optional IS-IS extension that allows the creation of IS-IS flood reflection topologies.  Flood reflection permits topologies in which IS-IS Level 1 (L1) areas provide transit-forwarding for IS-IS Level 2 (L2) areas using all available L1 nodes internally.  It accomplishes this by creating L2 flood reflection adjacencies within each L1 area.  Those adjacencies are used to flood L2 Link State Protocol Data Units (LSPs) and are used in the L2 Shortest Path First (SPF) computation.  However, they are not ordinarily utilized for forwarding within the flood reflection cluster.  This arrangement gives the L2 topology significantly better scaling properties than prevalently used flat designs.  As an additional benefit, only those routers directly participating in flood reflection are required to support the feature.  This allows for incremental deployment of scalable L1 transit areas in an existing, previously flat network design, without the necessity of upgrading all routers in the network."];
+  RFC9377 -> rev_cites;
+  RFC9384 [label="RFC9384
+A BGP Cease NOTIFICATION Subcode for
+Bidirectional Forwarding Detection (BFD)
+2023", shape=ellipse, URL="RFC9384.html", target="_top", tooltip="The Bidirectional Forwarding Detection (BFD) protocol (RFC 5880) is used to detect loss of connectivity between two forwarding engines, typically with low latency. BFD is leveraged by routing protocols, including the Border Gateway Protocol (BGP), to bring down routing protocol connections more quickly than the original protocol timers. This document defines a subcode for the BGP Cease NOTIFICATION message (Section 6.7 of RFC 4271) for use when a BGP connection is being closed due to a BFD session going down."];
+  RFC9384 -> rev_cites;
+  RFC9387 [label="RFC9387
+Use Cases for DDoS Open Threat Signaling
+(DOTS) Telemetry
+2023", shape=ellipse, URL="RFC9387.html", target="_top", tooltip="DDoS Open Threat Signaling (DOTS) telemetry enriches the base DOTS protocols to assist the mitigator in using efficient DDoS attack mitigation techniques in a network.  This document presents sample use cases for DOTS telemetry.  It discusses what components are deployed in the network, how they cooperate, and what information is exchanged to effectively use these techniques."];
+  RFC9387 -> rev_cites;
+  RFC9468 [label="RFC9468
+Unsolicited Bidirectional Forwarding
+Detection (BFD) for Sessionless
+Applications
+2023", shape=ellipse, URL="RFC9468.html", target="_top", tooltip="For operational simplification of sessionless applications using Bidirectional Forwarding Detection (BFD), in this document, we present procedures for unsolicited BFD that allow a BFD session to be initiated by only one side and established without explicit per-session configuration or registration by the other side (subject to certain per-interface or global policies). We also introduce a new YANG module to configure and manage unsolicited BFD. The YANG module in this document is based on YANG 1.1, as defined in RFC 7950, and conforms to the Network Management Datastore Architecture (NMDA), as described in RFC 8342. This document augments RFC 9314."];
+  RFC9468 -> rev_cites;
+  RFC9469 [label="RFC9469
+Applicability of Ethernet Virtual
+Private Network (EVPN) to Network
+Virtualization over Layer 3 (NVO3)
+Networks
+2023", shape=ellipse, URL="RFC9469.html", target="_top", tooltip="An Ethernet Virtual Private Network (EVPN) provides a unified control plane that solves the issues of Network Virtualization Edge (NVE) auto-discovery, tenant Media Access Control (MAC) / IP dissemination, and advanced features in a scablable way as required by Network Virtualization over Layer 3 (NVO3) networks.  EVPN is a scalable solution for NVO3 networks and keeps the independence of the underlay IP Fabric, i.e., there is no need to enable Protocol Independent Multicast (PIM) in the underlay network and maintain multicast states for tenant Broadcast Domains.  This document describes the use of EVPN for NVO3 networks and discusses its applicability to basic Layer 2 and Layer 3 connectivity requirements and to advanced features such as MAC Mobility, MAC Protection and Loop Protection, multihoming, Data Center Interconnect (DCI), and much more.  No new EVPN procedures are introduced."];
+  RFC9469 -> rev_cites;
+  RFC9473 [label="RFC9473
+A Vocabulary of Path Properties
+2023", shape=ellipse, URL="RFC9473.html", target="_top", tooltip="Path properties express information about paths across a network and the services provided via such paths.  In a path-aware network, path properties may be fully or partially available to entities such as endpoints.  This document defines and categorizes path properties.  Furthermore, the document identifies several path properties that might be useful to endpoints or other entities, e.g., for selecting between paths or for invoking some of the provided services.  This document is a product of the Path Aware Networking Research Group (PANRG)."];
+  RFC9473 -> rev_cites;
+  RFC9494 [label="RFC9494
+Long-Lived Graceful Restart for BGP
+2023", shape=ellipse, URL="RFC9494.html", target="_top", tooltip="This document introduces a BGP capability called the Long-Lived Graceful Restart Capability (or LLGR Capability). The benefit of this capability is that stale routes can be retained for a longer time upon session failure than is provided for by BGP Graceful Restart (as described in RFC 4724). A well-known BGP community called LLGR_STALE is introduced for marking stale routes retained for a longer time. A second well-known BGP community called NO_LLGR is introduced for marking routes for which these procedures should not be applied. We also specify that such long-lived stale routes be treated as the least preferred and that their advertisements be limited to BGP speakers that have advertised the capability. Use of this extension is not advisable in all cases, and we provide guidelines to help determine if it is. This memo updates RFC 6368 by specifying that the LLGR_STALE community must be propagated into, or out of, the path attributes exchanged between the Provider Edge (PE) and Customer Edge (CE) routers."];
+  RFC9494 -> rev_cites;
+  RFC9518 [label="RFC9518
+Centralization, Decentralization, and
+Internet Standards
+2023", shape=ellipse, URL="RFC9518.html", target="_top", tooltip="This document discusses aspects of centralization that relate to Internet standards efforts.  It argues that, while standards bodies have a limited ability to prevent many forms of centralization, they can still make contributions that assist in the decentralization of the Internet."];
+  RFC9518 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+  RFC9552 [label="RFC9552
+Distribution of Link-State and Traffic
+Engineering Information Using BGP
+2023", shape=ellipse, URL="RFC9552.html", target="_top", tooltip="In many environments, a component external to a network is called upon to perform computations based on the network topology and the current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism applies to physical and virtual (e.g., tunnel) IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs). This document obsoletes RFC 7752 by completely replacing that document. It makes some small changes and clarifications to the previous specification. This document also obsoletes RFC 9029 by incorporating the updates that it made to RFC 7752."];
+  RFC9552 -> rev_cites;
+  RFC9631 [label="RFC9631
+The IPv6 Compact Routing Header (CRH)
+2024", shape=ellipse, URL="RFC9631.html", target="_top", tooltip="This document describes an experiment in which two new IPv6 Routing headers are implemented and deployed. Collectively, they are called the Compact Routing Header (CRH). Individually, they are called CRH-16 and CRH-32. One purpose of this experiment is to demonstrate that the CRH can be implemented and deployed in a production network. Another purpose is to demonstrate that the security considerations described in this document can be addressed with Access Control Lists (ACLs). Finally, this document encourages replication of the experiment."];
+  RFC9631 -> rev_cites;
+  RFC9687 [label="RFC9687
+Border Gateway Protocol 4 (BGP-4) Send
+Hold Timer
+2024", shape=ellipse, URL="RFC9687.html", target="_top", tooltip="This document defines the SendHoldTimer, along with the SendHoldTimer_Expires event, for the Border Gateway Protocol (BGP) Finite State Machine (FSM).  Implementation of the SendHoldTimer helps overcome situations where a BGP connection is not terminated after the local system detects that the remote system is not processing BGP messages.  This document specifies that the local system should close the BGP connection and not solely rely on the remote system for connection closure when the SendHoldTimer expires.  This document updates RFC 4271."];
+  RFC9687 -> rev_cites;
+  RFC9696 [label="RFC9696
+Routing in Fat Trees (RIFT)
+Applicability and Operational
+Considerations
+2025", shape=ellipse, URL="RFC9696.html", target="_top", tooltip="This document discusses the properties, applicability, and operational considerations of Routing in Fat Trees (RIFT) in different network scenarios with the intention of providing a rough guide on how RIFT can be deployed to simplify routing operations in Clos topologies and their variations."];
+  RFC9696 -> rev_cites;
+  RFC9703 [label="RFC9703
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+Egress Peer Engineering (EPE) Segment
+Identifiers (SIDs) with MPLS Data Plane
+2024", shape=ellipse, URL="RFC9703.html", target="_top", tooltip="Egress Peer Engineering (EPE) is an application of Segment Routing (SR) that solves the problem of egress peer selection.  The SR-based BGP-EPE solution allows a centralized controller, e.g., a Software-Defined Network (SDN) controller, to program any egress peer.  The EPE solution requires the node or the SDN controller to program 1) the PeerNode Segment Identifier (SID) describing a session between two nodes, 2) the PeerAdj SID describing the link or links that are used by the sessions between peer nodes, and 3) the PeerSet SID describing any connected interface to any peer in the related group.  This document provides new sub-TLVs for EPE-SIDs that are used in the Target FEC Stack TLV (Type 1) in MPLS Ping and Traceroute procedures."];
+  RFC9703 -> rev_cites;
+  RFC9717 [label="RFC9717
+A Routing Architecture for Satellite
+Networks
+2025", shape=ellipse, URL="RFC9717.html", target="_top", tooltip="Satellite networks present some interesting challenges for packet networking. The entire topology is continually in motion, with links far less reliable than what is common in terrestrial networks. Some changes to link connectivity can be anticipated due to orbital dynamics. This document proposes a scalable routing architecture for satellite networks based on existing routing protocols and mechanisms that is enhanced with scheduled link connectivity change information. This document proposes no protocol changes. This document presents the author's view and is neither the product of the IETF nor a consensus view of the community."];
+  RFC9717 -> rev_cites;
+  RFC9723 [label="RFC9723
+BGP Colored Prefix Routing (CPR) for
+Services Based on Segment Routing over
+IPv6 (SRv6)
+2025", shape=ellipse, URL="RFC9723.html", target="_top", tooltip="This document describes a mechanism to advertise IPv6 prefixes in BGP that are associated with Color Extended Communities to establish end-to-end intent-aware paths for Segment Routing over IPv6 (SRv6) services. Such IPv6 prefixes are called Colored Prefixes, and this mechanism is called Colored Prefix Routing (CPR). In SRv6 networks, the Colored Prefixes are the SRv6 locators associated with different intents. SRv6 services (e.g., SRv6 VPN services) with a specific intent could be assigned with SRv6 Segment Identifiers (SIDs) under the corresponding SRv6 locators, which are advertised as Colored Prefixes. This operational methodology allows the SRv6 service traffic to be steered into end-to-end intent-aware paths based on the longest prefix matching of SRv6 Service SIDs to the Colored Prefixes. The existing IPv6 Address Family and Color Extended Community are reused to advertise IPv6 Colored Prefixes without new BGP extensions; thus, this mechanism is easy to interoperate and can be deployed incrementally in multi-Autonomous System (AS) networks that belong to the same trusted domain."];
+  RFC9723 -> rev_cites;
+  RFC9757 [label="RFC9757
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Native IP
+Networks
+2025", shape=ellipse, URL="RFC9757.html", target="_top", tooltip="This document introduces extensions to the Path Computation Element Communication Protocol (PCEP) to support path computation in Native IP networks through a PCE-based central control mechanism known as Centralized Control Dynamic Routing (CCDR).  These extensions empower a PCE to calculate and manage paths specifically for Native IP networks, thereby expanding PCEP's capabilities beyond its past use in MPLS and GMPLS networks.  By implementing these extensions, IP network resources can be utilized more efficiently, facilitating the deployment of traffic engineering in Native IP environments."];
+  RFC9757 -> rev_cites;
+  RFC9774 [label="RFC9774
+Deprecation of AS_SET and AS_CONFED_SET
+in BGP
+2025", shape=ellipse, URL="RFC9774.html", target="_top", tooltip="BCP 172 (i.e., RFC 6472) recommends not using AS_SET and AS_CONFED_SET AS_PATH segment types in the Border Gateway Protocol (BGP).  This document advances that recommendation to a standards requirement in BGP; it prohibits the use of the AS_SET and AS_CONFED_SET path segment types in the AS_PATH.  This is done to simplify the design and implementation of BGP and to make the semantics of the originator of a BGP route clearer.  This will also simplify the design, implementation, and deployment of various BGP security mechanisms.  This document updates RFC 4271 by deprecating the origination of BGP routes with AS_SET (Type 1 AS_PATH segment) and updates RFC 5065 by deprecating the origination of BGP routes with AS_CONFED_SET (Type 4 AS_PATH segment).  Finally, it obsoletes RFC 6472."];
+  RFC9774 -> rev_cites;
+  RFC9793 [label="RFC9793
+BGP Extensions for Bit Index Explicit
+Replication (BIER)
+2025", shape=ellipse, URL="RFC9793.html", target="_top", tooltip="Bit Index Explicit Replication (BIER) is a multicast forwarding architecture that doesn't require an explicit tree-building protocol and doesn't require intermediate routers to maintain per-tree multicast states.  Some BIER-specific information and states, which are only in proportion to the number of BIER routers but not per-tree, do need to be advertised, calculated, and maintained.  This document describes BGP extensions for advertising the BIER information and methods for calculating BIER states based on the advertisements."];
+  RFC9793 -> rev_cites;
+  RFC9815 [label="RFC9815
+BGP Link State (BGP-LS) Shortest Path
+First (SPF) Routing
+2025", shape=ellipse, URL="RFC9815.html", target="_top", tooltip="Many Massively Scaled Data Centers (MSDCs) have converged on simplified Layer 3 (L3) routing.  Furthermore, requirements for operational simplicity have led many of these MSDCs to converge on BGP as their single routing protocol for both fabric routing and Data Center Interconnect (DCI) routing.  This document describes extensions to BGP for use with BGP Link State (BGP-LS) distribution and the Shortest Path First (SPF) algorithm.  In doing this, it allows BGP to be efficiently used as both the underlay protocol and the overlay protocol in MSDCs."];
+  RFC9815 -> rev_cites;
+  RFC9816 [label="RFC9816
+Usage and Applicability of BGP Link
+State (BGP-LS) Shortest Path First (SPF)
+Routing in Data Centers
+2025", shape=ellipse, URL="RFC9816.html", target="_top", tooltip="This document discusses the usage and applicability of BGP Link State (BGP-LS) Shortest Path First (SPF) extensions in data center networks utilizing Clos or Fat Tree topologies.  The document is intended to provide simplified guidance for the deployment of BGP-LS SPF extensions."];
+  RFC9816 -> rev_cites;
+  RFC9825 [label="RFC9825
+Extensions to OSPF for Advertising
+Prefix Administrative Tags
+2025", shape=ellipse, URL="RFC9825.html", target="_top", tooltip="It is useful for routers in OSPFv2 and OSPFv3 routing domains to be able to associate tags with prefixes.  Previously, OSPFv2 and OSPFv3 were relegated to a single tag and only for Autonomous System (AS) External and Not-So-Stubby-Area (NSSA) prefixes.  With the flexible encodings provided by OSPFv2 Prefix/Link Attribute Advertisement and OSPFv3 Extended Link State Advertisements (LSAs), multiple administrative tags may be advertised for all types of prefixes.  These administrative tags can be used for many applications including route redistribution policy, selective prefix prioritization, selective IP Fast Reroute (IPFRR) prefix protection, and many others."];
+  RFC9825 -> rev_cites;
+  RFC9830 [label="RFC9830
+Advertising Segment Routing Policies in
+BGP
+2025", shape=ellipse, URL="RFC9830.html", target="_top", tooltip="A Segment Routing (SR) Policy is an ordered list of segments (also referred to as instructions) that define a source-routed policy. An SR Policy consists of one or more Candidate Paths (CPs), each comprising one or more segment lists. A headend can be provisioned with these CPs using various mechanisms such as Command-Line Interface (CLI), Network Configuration Protocol (NETCONF), Path Computation Element Communication Protocol (PCEP), or BGP. This document specifies how BGP can be used to distribute SR Policy CPs. It introduces a BGP SAFI for advertising a CP of an SR Policy and defines sub-TLVs for the Tunnel Encapsulation Attribute to signal information related to these CPs. Furthermore, this document updates RFC 9012 by extending the Color Extended Community to support additional steering modes over SR Policy."];
+  RFC9830 -> rev_cites;
+  RFC9832 [label="RFC9832
+BGP Classful Transport Planes
+2025", shape=ellipse, URL="RFC9832.html", target="_top", tooltip="This document specifies a mechanism referred to as Intent-Driven Service Mapping. The mechanism uses BGP to express Intent-based association of overlay routes with underlay routes having specific Traffic Engineering (TE) characteristics satisfying a certain Service Level Agreement (SLA). This is achieved by defining new constructs to group underlay routes with sufficiently similar TE characteristics into identifiable classes (called Transport Classes or TCs), that overlay routes use as an ordered set to resolve reachability (Resolution Schemes) towards service endpoints. These constructs can be used, for example, to realize the IETF Network Slice defined in the TEAS Network Slices framework (RFC 9543). Additionally, this document specifies protocol procedures for BGP that enable dissemination of service mapping information in a network that may span multiple cooperating administrative domains. These domains may be administered either by the same provider or by closely coordinating providers. A new BGP address family that leverages the procedures described in RFC 4364 (BGP/MPLS IP Virtual Private Networks (VPNs)) and follows the NLRI encoding described in RFC 8277 (Using BGP to Bind MPLS Labels to Address Prefixes) is defined to enable each advertised underlay route to be identified by its class. This new address family is called BGP Classful Transport (or BGP CT)."];
+  RFC9832 -> rev_cites;
+  RFC9833 [label="RFC9833
+A Common YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9833.html", target="_top", tooltip="The document specifies a common attachment circuits (ACs) YANG data
+model, which is designed to be reusable by other models.  This design
+is meant to ensure consistent AC structures among models that
+manipulate ACs.  For example, this common model can be reused by
+service models to expose ACs as a service, service models that
+require binding a service to a set of ACs, network and device models
+to provision ACs, etc."];
+  RFC9833 -> rev_cites;
+  RFC9834 [label="RFC9834
+YANG Data Models for Bearers and
+Attachment Circuits as a Service (ACaaS)
+2025", shape=ellipse, URL="RFC9834.html", target="_top", tooltip="Delivery of network services assumes that appropriate setup is
+provisioned over the links that connect customer termination points
+and a provider network. The required setup to allow successful data
+exchange over these links is referred to as an attachment circuit
+(AC), while the underlying link is referred to as a bearer. This document specifies a YANG service data model for ACs. This model
+can be used for the provisioning of ACs before or during service
+provisioning (e.g., RFC 9543 Network Slice Service). The document also specifies a YANG service data model for managing
+bearers over which ACs are established."];
+  RFC9834 -> rev_cites;
+  RFC9835 [label="RFC9835
+A Network YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9835.html", target="_top", tooltip="This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in the YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf- opsawg-teas-attachment-circuit). The module augments the base network ('ietf-network') and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs)."];
+  RFC9835 -> rev_cites;
+  RFC9871 [label="RFC9871
+BGP Color-Aware Routing (CAR)
+2025", shape=ellipse, URL="RFC9871.html", target="_top", tooltip="This document describes a BGP-based routing solution to establish end-to-end intent-aware paths across a multi-domain transport network. The transport network can span multiple service provider and customer network domains. The BGP intent-aware paths can be used to steer traffic flows for service routes that need a specific intent. This solution is called BGP Color-Aware Routing (BGP CAR). This document describes the routing framework and BGP extensions to enable intent-aware routing using the BGP CAR solution. The solution defines two new BGP SAFIs (BGP CAR SAFI and BGP VPN CAR SAFI) for IPv4 and IPv6. It also defines an extensible Network Layer Reachability Information (NLRI) model for both SAFIs that allows multiple NLRI types to be defined for different use cases. Each type of NLRI contains key and TLV-based non-key fields for efficient encoding of different per-prefix information. This specification defines two NLRI types: Color-Aware Route NLRI and IP Prefix NLRI. It defines non-key TLV types for the MPLS label stack, SR-MPLS label index, and Segment Routing over IPv6 (SRv6) Segment Identifiers (SIDs). This solution also defines a new Local Color Mapping (LCM) Extended Community."];
+  RFC9871 -> rev_cites;
+  RFC9911 [label="RFC9911
+Common YANG Data Types
+2025", shape=ellipse, URL="RFC9911.html", target="_top", tooltip="This document defines a collection of common data types to be used with the YANG data modeling language.  It includes several new type definitions and obsoletes RFC 6991."];
+  RFC9911 -> rev_cites;
+}

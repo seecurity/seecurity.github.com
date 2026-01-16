@@ -1,0 +1,63 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8091 [label="RFC8091
+A Media Type Structured Syntax Suffix
+for JSON Text Sequences
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="Structured syntax suffixes for media types allow other media types to build on them and make it explicit that they are built on an existing media type as their foundation.  This specification defines and registers +json-seq as a structured syntax suffix for JSON text sequences."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8091;
+
+  obs [label="obsoletes", shape=box];
+  RFC8091 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8091 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8091;
+
+  cites [label="cites", shape=box];
+  RFC8091 -> cites;
+  RFC6838 [label="RFC6838
+Media Type Specifications and
+Registration Procedures
+2013", shape=ellipse, URL="RFC6838.html", target="_top", tooltip="This document defines procedures for the specification and registration of media types for use in HTTP, MIME, and other Internet protocols.  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6838;
+  RFC6839 [label="RFC6839
+Additional Media Type Structured Syntax
+Suffixes
+2013", shape=ellipse, URL="RFC6839.html", target="_top", tooltip="A content media type name sometimes includes partitioned meta- information distinguished by a structured syntax to permit noting an attribute of the media as a suffix to the name.  This document defines several structured syntax suffixes for use with media type registrations.  In particular, it defines and registers the +json, +ber, +der, +fastinfoset, +wbxml and +zip structured syntax suffixes, and provides a media type structured syntax suffix registration form for the +xml structured syntax suffix.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6839;
+  RFC7159 [label="RFC7159
+The JavaScript Object Notation (JSON)
+Data Interchange Format
+2014", shape=ellipse, URL="RFC7159.html", target="_top", tooltip="JavaScript Object Notation (JSON) is a lightweight, text-based, language-independent data interchange format. It was derived from the ECMAScript Programming Language Standard. JSON defines a small set of formatting rules for the portable representation of structured data. This document removes inconsistencies with other specifications of JSON, repairs specification errors, and offers experience-based interoperability guidance."];
+  cites -> RFC7159;
+  RFC7464 [label="RFC7464
+JavaScript Object Notation (JSON) Text
+Sequences
+2015", shape=ellipse, URL="RFC7464.html", target="_top", tooltip="This document describes the JavaScript Object Notation (JSON) text sequence format and associated media type application/json-seq.  A JSON text sequence consists of any number of JSON texts, all encoded in UTF-8, each prefixed by an ASCII Record Separator (0x1E), and each ending with an ASCII Line Feed character (0x0A)."];
+  cites -> RFC7464;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8091;
+  RFC8142 [label="RFC8142
+GeoJSON Text Sequences
+2017", shape=ellipse, URL="RFC8142.html", target="_top", tooltip="This document describes the GeoJSON text sequence format and application/geo+json-seq media type.  This format is based on JavaScript Object Notation (JSON) text sequences and GeoJSON, and it makes arbitrarily large geographic datasets incrementally parseable without restricting the form of GeoJSON texts within a sequence."];
+  RFC8142 -> rev_cites;
+  RFC8742 [label="RFC8742
+Concise Binary Object Representation
+(CBOR) Sequences
+2020", shape=ellipse, URL="RFC8742.html", target="_top", tooltip="This document describes the Concise Binary Object Representation (CBOR) Sequence format and associated media type application/cbor-seq. A CBOR Sequence consists of any number of encoded CBOR data items, simply concatenated in sequence. Structured syntax suffixes for media types allow other media types to build on them and make it explicit that they are built on an existing media type as their foundation. This specification defines and registers +cbor-seq as a structured syntax suffix for CBOR Sequences."];
+  RFC8742 -> rev_cites;
+}

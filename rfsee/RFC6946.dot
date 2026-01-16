@@ -1,0 +1,104 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6946 [label="RFC6946
+Processing of IPv6 Atomic Fragments
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IPv6 specification allows packets to contain a Fragment Header without the packet being actually fragmented into multiple pieces (we refer to these packets as atomic fragments).  Such packets are typically sent by hosts that have received an ICMPv6 Packet Too Big error message that advertises a Next-Hop MTU smaller than 1280 bytes, and are currently processed by some implementations as normal fragmented traffic (i.e., they are reassembled with any other queued fragments that supposedly correspond to the same original packet).  Thus, an attacker can cause hosts to employ atomic fragments by forging ICMPv6 Packet Too Big error messages, and then launch any fragmentation-based attacks against such traffic.  This document discusses the generation of the aforementioned atomic fragments and the corresponding security implications.  Additionally, this document formally updates RFC 2460 and RFC 5722, such that IPv6 atomic fragments are processed independently of any other fragments, thus completely eliminating the aforementioned attack vector."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6946;
+
+  obs [label="obsoletes", shape=box];
+  RFC6946 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6946 -> updates;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  updates -> RFC2460;
+  RFC5722 [label="RFC5722
+Handling of Overlapping IPv6 Fragments
+2009", shape=ellipse, URL="RFC5722.html", target="_top", tooltip="The fragmentation and reassembly algorithm specified in the base IPv6 specification allows fragments to overlap.  This document demonstrates the security issues associated with allowing overlapping fragments and updates the IPv6 specification to explicitly forbid overlapping fragments. [STANDARDS-TRACK]"];
+  updates -> RFC5722;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6946;
+
+  cites [label="cites", shape=box];
+  RFC6946 -> cites;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC5722 [label="RFC5722
+Handling of Overlapping IPv6 Fragments
+2009", shape=ellipse, URL="RFC5722.html", target="_top", tooltip="The fragmentation and reassembly algorithm specified in the base IPv6 specification allows fragments to overlap.  This document demonstrates the security issues associated with allowing overlapping fragments and updates the IPv6 specification to explicitly forbid overlapping fragments. [STANDARDS-TRACK]"];
+  cites -> RFC5722;
+  RFC6274 [label="RFC6274
+Security Assessment of the Internet
+Protocol Version 4
+2011", shape=ellipse, URL="RFC6274.html", target="_top", tooltip="This document contains a security assessment of the IETF specifications of the Internet Protocol version 4 and of a number of mechanisms and policies in use by popular IPv4 implementations.  It is based on the results of a project carried out by the UK's Centre for the Protection of National Infrastructure (CPNI).  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6274;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4443 [label="RFC4443
+Internet Control Message Protocol
+(ICMPv6) for the Internet Protocol
+Version 6 (IPv6) Specification
+2006", shape=ellipse, URL="RFC4443.html", target="_top", tooltip="This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC4443;
+  RFC5927 [label="RFC5927
+ICMP Attacks against TCP
+2010", shape=ellipse, URL="RFC5927.html", target="_top", tooltip="This document discusses the use of the Internet Control Message Protocol (ICMP) to perform a variety of attacks against the Transmission Control Protocol (TCP).  Additionally, this document describes a number of widely implemented modifications to TCP's handling of ICMP error messages that help to mitigate these issues.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5927;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6946;
+  RFC7269 [label="RFC7269
+NAT64 Deployment Options and Experience
+2014", shape=ellipse, URL="RFC7269.html", target="_top", tooltip="This document summarizes NAT64 function deployment scenarios and operational experience.  Both NAT64 Carrier-Grade NAT (NAT64-CGN) and NAT64 server Front End (NAT64-FE) are considered in this document."];
+  RFC7269 -> rev_cites;
+  RFC7739 [label="RFC7739
+Security Implications of Predictable
+Fragment Identification Values
+2016", shape=ellipse, URL="RFC7739.html", target="_top", tooltip="IPv6 specifies the Fragment Header, which is employed for the fragmentation and reassembly mechanisms.  The Fragment Header contains an Identification field that, together with the IPv6 Source Address and the IPv6 Destination Address of a packet, identifies fragments that correspond to the same original datagram, such that they can be reassembled together by the receiving host.  The only requirement for setting the Identification field is that the corresponding value must be different than that employed for any other fragmented datagram sent recently with the same Source Address and Destination Address.  Some implementations use a simple global counter for setting the Identification field, thus leading to predictable Identification values.  This document analyzes the security implications of predictable Identification values, and provides implementation guidance for setting the Identification field of the Fragment Header, such that the aforementioned security implications are mitigated."];
+  RFC7739 -> rev_cites;
+  RFC7755 [label="RFC7755
+SIIT-DC: Stateless IP/ICMP Translation
+for IPv6 Data Center Environments
+2016", shape=ellipse, URL="RFC7755.html", target="_top", tooltip="This document describes the use of the Stateless IP/ICMP Translation Algorithm (SIIT) in an IPv6 Internet Data Center (IDC). In this deployment model, traffic from legacy IPv4-only clients on the Internet is translated to IPv6 upon reaching the IDC operator's network infrastructure. From that point on, it may be treated the same as traffic from native IPv6 end users. The IPv6 endpoints may be numbered using arbitrary (non-IPv4-translatable) IPv6 addresses. This facilitates a single-stack IPv6-only network infrastructure, as well as efficient utilization of public IPv4 addresses. The primary audience is IDC operators who are deploying IPv6, running out of available IPv4 addresses, and/or feeling that dual stack causes undesirable operational complexity."];
+  RFC7755 -> rev_cites;
+  RFC8021 [label="RFC8021
+Generation of IPv6 Atomic Fragments
+Considered Harmful
+2017", shape=ellipse, URL="RFC8021.html", target="_top", tooltip="This document discusses the security implications of the generation of IPv6 atomic fragments and a number of interoperability issues associated with IPv6 atomic fragments.  It concludes that the aforementioned functionality is undesirable and thus documents the motivation for removing this functionality from an upcoming revision of the core IPv6 protocol specification (RFC 2460)."];
+  RFC8021 -> rev_cites;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  RFC8200 -> rev_cites;
+  RFC8504 [label="RFC8504
+IPv6 Node Requirements
+2019", shape=ellipse, URL="RFC8504.html", target="_top", tooltip="This document defines requirements for IPv6 nodes. It is expected that IPv6 will be deployed in a wide range of devices and situations. Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments. This document obsoletes RFC 6434, and in turn RFC 4294."];
+  RFC8504 -> rev_cites;
+  RFC9098 [label="RFC9098
+Operational Implications of IPv6 Packets
+with Extension Headers
+2021", shape=ellipse, URL="RFC9098.html", target="_top", tooltip="This document summarizes the operational implications of IPv6 extension headers specified in the IPv6 protocol specification (RFC 8200) and attempts to analyze reasons why packets with IPv6 extension headers are often dropped in the public Internet."];
+  RFC9098 -> rev_cites;
+}

@@ -1,0 +1,41 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2192 [label="RFC2192
+IMAP URL Scheme
+1997", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a URL scheme for referencing objects on an IMAP server. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2192;
+  RFC5092 [label="RFC5092
+IMAP URL Scheme
+2007", shape=ellipse, URL="RFC5092.html", target="_top", tooltip="IMAP (RFC 3501) is a rich protocol for accessing remote message stores. It provides an ideal mechanism for accessing public mailing list archives as well as private and shared message stores. This document defines a URL scheme for referencing objects on an IMAP server. This document obsoletes RFC 2192. It also updates RFC 4467. [STANDARDS-TRACK]"];
+  RFC5092 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC2192 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2192 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2192;
+
+  cites [label="cites", shape=box];
+  RFC2192 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2192;
+  RFC3987 [label="RFC3987
+Internationalized Resource Identifiers
+(IRIs)
+2005", shape=ellipse, URL="RFC3987.html", target="_top", tooltip="This document defines a new protocol element, the Internationalized Resource Identifier (IRI), as a complement of the Uniform Resource Identifier (URI). An IRI is a sequence of characters from the Universal Character Set (Unicode/ISO 10646). A mapping from IRIs to URIs is defined, which means that IRIs can be used instead of URIs, where appropriate, to identify resources. The approach of defining a new protocol element was chosen instead of extending or changing the definition of URIs. This was done in order to allow a clear distinction and to avoid incompatibilities with existing software. Guidelines are provided for the use and deployment of IRIs in various protocols, formats, and software components that currently deal with URIs."];
+  RFC3987 -> rev_cites;
+  RFC4468 [label="RFC4468
+Message Submission BURL Extension
+2006", shape=ellipse, URL="RFC4468.html", target="_top", tooltip="The submission profile of Simple Mail Transfer Protocol (SMTP) provides a standard way for an email client to submit a complete message for delivery.  This specification extends the submission profile by adding a new BURL command that can be used to fetch submission data from an Internet Message Access Protocol (IMAP) server.  This permits a mail client to inject content from an IMAP server into the SMTP infrastructure without downloading it to the client and uploading it back to the server. [STANDARDS-TRACK]"];
+  RFC4468 -> rev_cites;
+}

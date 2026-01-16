@@ -1,0 +1,205 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2560 [label="RFC2560
+X.509 Internet Public Key Infrastructure
+Online Certificate Status Protocol -
+OCSP
+1999", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies a protocol useful in determining the current status of a digital certificate without requiring CRLs. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2560;
+  RFC6960 [label="RFC6960
+X.509 Internet Public Key Infrastructure
+Online Certificate Status Protocol -
+OCSP
+2013", shape=ellipse, URL="RFC6960.html", target="_top", tooltip="This document specifies a protocol useful in determining the current status of a digital certificate without requiring Certificate Revocation Lists (CRLs).  Additional mechanisms addressing PKIX operational requirements are specified in separate documents.  This document obsoletes RFCs 2560 and 6277.  It also updates RFC 5912."];
+  RFC6960 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC2560 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2560 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2560;
+  RFC6277 [label="RFC6277
+Online Certificate Status Protocol
+Algorithm Agility
+2011", shape=ellipse, URL="RFC6277.html", target="_top", tooltip="The Online Certificate Status Protocol (OCSP) requires server responses to be signed but does not specify a mechanism for selecting the signature algorithm to be used.  This may lead to avoidable interoperability failures in contexts where multiple signature algorithms are in use.  This document specifies rules for server signature algorithm selection and an extension that allows a client to advise a server that specific signature algorithms are supported. [STANDARDS-TRACK]"];
+  RFC6277 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC2560 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2459 [label="RFC2459
+Internet X.509 Public Key Infrastructure
+Certificate and CRL Profile
+1999", shape=ellipse, URL="RFC2459.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 CRL for use in the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC2459;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2560;
+  RFC3029 [label="RFC3029
+Internet X.509 Public Key Infrastructure
+Data Validation and Certification Server
+Protocols
+2001", shape=ellipse, URL="RFC3029.html", target="_top", tooltip="This document describes a general Data Validation and Certification Server (DVCS) and the protocols to be used when communicating with it.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC3029 -> rev_cites;
+  RFC3280 [label="RFC3280
+Internet X.509 Public Key Infrastructure
+Certificate and Certificate Revocation
+List (CRL) Profile
+2002", shape=ellipse, URL="RFC3280.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 Certificate Revocation List (CRL) for use in the Internet. [STANDARDS-TRACK]"];
+  RFC3280 -> rev_cites;
+  RFC4158 [label="RFC4158
+Internet X.509 Public Key
+Infrastructure: Certification Path
+Building
+2005", shape=ellipse, URL="RFC4158.html", target="_top", tooltip="This document provides guidance and recommendations to developers building X.509 public-key certification paths within their applications.  By following the guidance and recommendations defined in this document, an application developer is more likely to develop a robust X.509 certificate-enabled application that can build valid certification paths across a wide range of PKI environments.  This memo provides information for the Internet community."];
+  RFC4158 -> rev_cites;
+  RFC4386 [label="RFC4386
+Internet X.509 Public Key Infrastructure
+Repository Locator Service
+2006", shape=ellipse, URL="RFC4386.html", target="_top", tooltip="This document defines a Public Key Infrastructure (PKI) repository locator service.  The service makes use of DNS SRV records defined in accordance with RFC 2782.  The service enables certificate-using systems to locate PKI repositories.This memo defines an Experimental Protocol for the Internet community."];
+  RFC4386 -> rev_cites;
+  RFC4557 [label="RFC4557
+Online Certificate Status Protocol
+(OCSP) Support for Public Key
+Cryptography for Initial Authentication
+in Kerberos (PKINIT)
+2006", shape=ellipse, URL="RFC4557.html", target="_top", tooltip="This document defines a mechanism to enable in-band transmission of Online Certificate Status Protocol (OCSP) responses in the Kerberos network authentication protocol.  These responses are used to verify the validity of the certificates used in Public Key Cryptography for Initial Authentication in Kerberos (PKINIT), which is the Kerberos Version 5 extension that provides for the use of public key cryptography. [STANDARDS-TRACK]"];
+  RFC4557 -> rev_cites;
+  RFC4738 [label="RFC4738
+MIKEY-RSA-R: An Additional Mode of Key
+Distribution in Multimedia Internet
+KEYing (MIKEY)
+2006", shape=ellipse, URL="RFC4738.html", target="_top", tooltip="The Multimedia Internet Keying (MIKEY) specification describes several modes of key distribution solution that address multimedia scenarios (e.g., SIP calls and Real Time Streaming Protocol (RTSP) sessions) using pre-shared keys, public keys, and optionally a Diffie-Hellman key exchange.  In the public-key mode, the Initiator encrypts a random key with the Responder's public key and sends it to the Responder.  In many communication scenarios, the Initiator may not know the Responder's public key, or in some cases the Responder's ID (e.g., call forwarding) in advance.  We propose a new MIKEY mode that works well in such scenarios.  This mode also enhances the group key management support in MIKEY; it supports member-initiated group key download (in contrast to group manager pushing the group keys to all members).  This document updates RFC 3830 with the RSA-R mode. [STANDARDS-TRACK]"];
+  RFC4738 -> rev_cites;
+  RFC4806 [label="RFC4806
+Online Certificate Status Protocol
+(OCSP) Extensions to IKEv2
+2007", shape=ellipse, URL="RFC4806.html", target="_top", tooltip="While the Internet Key Exchange Protocol version 2 (IKEv2) supports public key based authentication, the corresponding use of in-band Certificate Revocation Lists (CRL) is problematic due to unbounded CRL size. The size of an Online Certificate Status Protocol (OCSP) response is however well-bounded and small. This document defines the OCSP Content extension to IKEv2. A CERTREQ payload with OCSP Content identifies zero or more trusted OCSP responders and is a request for inclusion of an OCSP response in the IKEv2 handshake. A cooperative recipient of such a request responds with a CERT payload containing the appropriate OCSP response. This content is recognizable via the same OCSP Content identifier. When certificates are used with IKEv2, the communicating peers need a mechanism to determine the revocation status of the peer's certificate. OCSP is one such mechanism. This document applies when OCSP is desired and security policy prevents one of the IKEv2 peers from accessing the relevant OCSP responder directly. Firewalls are often deployed in a manner that prevents such access by IKEv2 peers outside of an enterprise network. [STANDARDS-TRACK]"];
+  RFC4806 -> rev_cites;
+  RFC5216 [label="RFC5216
+The EAP-TLS Authentication Protocol
+2008", shape=ellipse, URL="RFC5216.html", target="_top", tooltip="The Extensible Authentication Protocol (EAP), defined in RFC 3748, provides support for multiple authentication methods. Transport Layer Security (TLS) provides for mutual authentication, integrity-protected ciphersuite negotiation, and key exchange between two endpoints. This document defines EAP-TLS, which includes support for certificate-based mutual authentication and key derivation. This document obsoletes RFC 2716. A summary of the changes between this document and RFC 2716 is available in Appendix A. [STANDARDS-TRACK]"];
+  RFC5216 -> rev_cites;
+  RFC5280 [label="RFC5280
+Internet X.509 Public Key Infrastructure
+Certificate and Certificate Revocation
+List (CRL) Profile
+2008", shape=ellipse, URL="RFC5280.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 certificate revocation list (CRL) for use in the Internet.  An overview of this approach and model is provided as an introduction.  The X.509 v3 certificate format is described in detail, with additional information regarding the format and semantics of Internet name forms.  Standard certificate extensions are described and two Internet-specific extensions are defined.  A set of required certificate extensions is specified.  The X.509 v2 CRL format is described in detail along with standard and Internet-specific extensions.  An algorithm for X.509 certification path validation is described.  An ASN.1 module and examples are provided in the appendices. [STANDARDS-TRACK]"];
+  RFC5280 -> rev_cites;
+  RFC5281 [label="RFC5281
+Extensible Authentication Protocol
+Tunneled Transport Layer Security
+Authenticated Protocol Version 0 (EAP-
+TTLSv0)
+2008", shape=ellipse, URL="RFC5281.html", target="_top", tooltip="EAP-TTLS is an EAP (Extensible Authentication Protocol) method that encapsulates a TLS (Transport Layer Security) session, consisting of a handshake phase and a data phase.  During the handshake phase, the server is authenticated to the client (or client and server are mutually authenticated) using standard TLS procedures, and keying material is generated in order to create a cryptographically secure tunnel for information exchange in the subsequent data phase.  During the data phase, the client is authenticated to the server (or client and server are mutually authenticated) using an arbitrary authentication mechanism encapsulated within the secure tunnel.  The encapsulated authentication mechanism may itself be EAP, or it may be another authentication protocol such as PAP, CHAP, MS-CHAP, or MS-CHAP-V2.  Thus, EAP-TTLS allows legacy password-based authentication protocols to be used against existing authentication databases, while protecting the security of these legacy protocols against eavesdropping, man-in-the-middle, and other attacks.  The data phase may also be used for additional, arbitrary data exchange.  This memo provides information for the Internet community."];
+  RFC5281 -> rev_cites;
+  RFC5698 [label="RFC5698
+Data Structure for the Security
+Suitability of Cryptographic Algorithms
+(DSSC)
+2009", shape=ellipse, URL="RFC5698.html", target="_top", tooltip="Since cryptographic algorithms can become weak over the years, it is necessary to evaluate their security suitability.  When signing or verifying data, or when encrypting or decrypting data, these evaluations must be considered.  This document specifies a data structure that enables an automated analysis of the security suitability of a given cryptographic algorithm at a given point of time, which may be in the past, the present, or the future. [STANDARDS-TRACK]"];
+  RFC5698 -> rev_cites;
+  RFC5912 [label="RFC5912
+New ASN.1 Modules for the Public Key
+Infrastructure Using X.509 (PKIX)
+2010", shape=ellipse, URL="RFC5912.html", target="_top", tooltip="The Public Key Infrastructure using X.509 (PKIX) certificate format, and many associated formats, are expressed using ASN.1.  The current ASN.1 modules conform to the 1988 version of ASN.1.  This document updates those ASN.1 modules to conform to the 2002 version of ASN.1.  There are no bits-on-the-wire changes to any of the formats; this is simply a change to the syntax.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5912 -> rev_cites;
+  RFC6024 [label="RFC6024
+Trust Anchor Management Requirements
+2010", shape=ellipse, URL="RFC6024.html", target="_top", tooltip="A trust anchor represents an authoritative entity via a public key and associated data.  The public key is used to verify digital signatures, and the associated data is used to constrain the types of information for which the trust anchor is authoritative.  A relying party uses trust anchors to determine if a digitally signed object is valid by verifying a digital signature using the trust anchor's public key, and by enforcing the constraints expressed in the associated data for the trust anchor.  This document describes some of the problems associated with the lack of a standard trust anchor management mechanism and defines requirements for data formats and push-based protocols designed to address these problems.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6024 -> rev_cites;
+  RFC6025 [label="RFC6025
+ASN.1 Translation
+2010", shape=ellipse, URL="RFC6025.html", target="_top", tooltip="Abstract Syntax Notation One (ASN.1) is widely used throughout the IETF Security Area and has been for many years.  Some specifications were written using a now deprecated version of ASN.1 and some were written using the current version of ASN.1.  Not all ASN.1 compilers support both older and current syntax.  This document is intended to provide guidance to specification authors and to implementers converting ASN.1 modules from one version of ASN.1 to another version without causing changes to the bits on the wire.  This document does not provide a comprehensive tutorial of any version of ASN.1.  Instead, it addresses ASN.1 features that are used in IETF Security Area specifications with a focus on items that vary with the ASN.1 version.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6025 -> rev_cites;
+  RFC6066 [label="RFC6066
+Transport Layer Security (TLS)
+Extensions: Extension Definitions
+2011", shape=ellipse, URL="RFC6066.html", target="_top", tooltip="This document provides specifications for existing TLS extensions.  It is a companion document for RFC 5246, The Transport Layer Security (TLS) Protocol Version 1.2.  The extensions specified are server_name, max_fragment_length, client_certificate_url, trusted_ca_keys, truncated_hmac, and status_request. [STANDARDS-TRACK]"];
+  RFC6066 -> rev_cites;
+  RFC6187 [label="RFC6187
+X.509v3 Certificates for Secure Shell
+Authentication
+2011", shape=ellipse, URL="RFC6187.html", target="_top", tooltip="X.509 public key certificates use a signature by a trusted certification authority to bind a given public key to a given digital identity.  This document specifies how to use X.509 version 3 public key certificates in public key algorithms in the Secure Shell protocol. [STANDARDS-TRACK]"];
+  RFC6187 -> rev_cites;
+  RFC6216 [label="RFC6216
+Example Call Flows Using Session
+Initiation Protocol (SIP) Security
+Mechanisms
+2011", shape=ellipse, URL="RFC6216.html", target="_top", tooltip="This document shows example call flows demonstrating the use of Transport Layer Security (TLS), and Secure/Multipurpose Internet Mail Extensions (S/MIME) in Session Initiation Protocol (SIP).  It also provides information that helps implementers build interoperable SIP software.  To help facilitate interoperability testing, it includes certificates used in the example call flows and processes to create certificates for testing.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6216 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6277 [label="RFC6277
+Online Certificate Status Protocol
+Algorithm Agility
+2011", shape=ellipse, URL="RFC6277.html", target="_top", tooltip="The Online Certificate Status Protocol (OCSP) requires server responses to be signed but does not specify a mechanism for selecting the signature algorithm to be used.  This may lead to avoidable interoperability failures in contexts where multiple signature algorithms are in use.  This document specifies rules for server signature algorithm selection and an extension that allows a client to advise a server that specific signature algorithms are supported. [STANDARDS-TRACK]"];
+  RFC6277 -> rev_cites;
+  RFC6283 [label="RFC6283
+Extensible Markup Language Evidence
+Record Syntax (XMLERS)
+2011", shape=ellipse, URL="RFC6283.html", target="_top", tooltip="In many scenarios, users must be able to demonstrate the (time of) existence, integrity, and validity of data including signed data for long or undetermined periods of time.  This document specifies XML syntax and processing rules for creating evidence for long-term non- repudiation of existence and integrity of data.  The Extensible Markup Language Evidence Record Syntax XMLERS provides alternative syntax and processing rules to the ASN.1 (Abstract Syntax Notation One) ERS (Evidence Record Syntax) (RFC 4998) syntax by using XML. [STANDARDS-TRACK]"];
+  RFC6283 -> rev_cites;
+  RFC6484 [label="RFC6484
+Certificate Policy (CP) for the Resource
+Public Key Infrastructure (RPKI)
+2012", shape=ellipse, URL="RFC6484.html", target="_top", tooltip="This document describes the certificate policy for a Public Key Infrastructure (PKI) used to support attestations about Internet Number Resource (INR) holdings.  Each organization that distributes IP addresses or Autonomous System (AS) numbers to an organization will, in parallel, issue a (public key) certificate reflecting this distribution.  These certificates will enable verification that the resources indicated in the certificate have been distributed to the holder of the associated private key and that this organization is the current, unique holder of these resources.  This memo documents an Internet Best Current Practice."];
+  RFC6484 -> rev_cites;
+  RFC6494 [label="RFC6494
+Certificate Profile and Certificate
+Management for SEcure Neighbor Discovery
+(SEND)
+2012", shape=ellipse, URL="RFC6494.html", target="_top", tooltip="SEcure Neighbor Discovery (SEND) utilizes X.509v3 certificates for performing router authorization.  This document specifies a certificate profile for SEND based on resource certificates along with extended key usage values required for SEND. [STANDARDS-TRACK]"];
+  RFC6494 -> rev_cites;
+  RFC6678 [label="RFC6678
+Requirements for a Tunnel-Based
+Extensible Authentication Protocol (EAP)
+Method
+2012", shape=ellipse, URL="RFC6678.html", target="_top", tooltip="This memo defines the requirements for a tunnel-based Extensible Authentication Protocol (EAP) Method.  This tunnel method will use Transport Layer Security (TLS) to establish a secure tunnel.  The tunnel will provide support for password authentication, EAP authentication, and the transport of additional data for other purposes.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6678 -> rev_cites;
+  RFC6797 [label="RFC6797
+HTTP Strict Transport Security (HSTS)
+2012", shape=ellipse, URL="RFC6797.html", target="_top", tooltip="This specification defines a mechanism enabling web sites to declare themselves accessible only via secure connections and/or for users to be able to direct their user agent(s) to interact with given sites only over secure connections.  This overall policy is referred to as HTTP Strict Transport Security (HSTS).  The policy is declared by web sites via the Strict-Transport-Security HTTP response header field and/or by other means, such as user agent configuration, for example. [STANDARDS-TRACK]"];
+  RFC6797 -> rev_cites;
+  RFC6960 [label="RFC6960
+X.509 Internet Public Key Infrastructure
+Online Certificate Status Protocol -
+OCSP
+2013", shape=ellipse, URL="RFC6960.html", target="_top", tooltip="This document specifies a protocol useful in determining the current status of a digital certificate without requiring Certificate Revocation Lists (CRLs).  Additional mechanisms addressing PKIX operational requirements are specified in separate documents.  This document obsoletes RFCs 2560 and 6277.  It also updates RFC 5912."];
+  RFC6960 -> rev_cites;
+  RFC6961 [label="RFC6961
+The Transport Layer Security (TLS)
+Multiple Certificate Status Request
+Extension
+2013", shape=ellipse, URL="RFC6961.html", target="_top", tooltip="This document defines the Transport Layer Security (TLS) Certificate Status Version 2 Extension to allow clients to specify and support several certificate status methods. (The use of the Certificate Status extension is commonly referred to as OCSP stapling.) Also defined is a new method based on the Online Certificate Status Protocol (OCSP) that servers can use to provide status information about not only the server's own certificate but also the status of intermediate certificates in the chain."];
+  RFC6961 -> rev_cites;
+  RFC6962 [label="RFC6962
+Certificate Transparency
+2013", shape=ellipse, URL="RFC6962.html", target="_top", tooltip="This document describes an experimental protocol for publicly logging the existence of Transport Layer Security (TLS) certificates as they are issued or observed, in a manner that allows anyone to audit certificate authority (CA) activity and notice the issuance of suspect certificates as well as to audit the certificate logs themselves. The intent is that eventually clients would refuse to honor certificates that do not appear in a log, effectively forcing CAs to add all issued certificates to the logs. Logs are network services that implement the protocol operations for submissions and queries that are defined in this document."];
+  RFC6962 -> rev_cites;
+  RFC7299 [label="RFC7299
+Object Identifier Registry for the PKIX
+Working Group
+2014", shape=ellipse, URL="RFC7299.html", target="_top", tooltip="When the Public-Key Infrastructure using X.509 (PKIX) Working Group was chartered, an object identifier arc was allocated by IANA for use by that working group.  This document describes the object identifiers that were assigned in that arc, returns control of that arc to IANA, and establishes IANA allocation policies for any future assignments within that arc."];
+  RFC7299 -> rev_cites;
+  RFC9190 [label="RFC9190
+EAP-TLS 1.3: Using the Extensible
+Authentication Protocol with TLS 1.3
+2022", shape=ellipse, URL="RFC9190.html", target="_top", tooltip="The Extensible Authentication Protocol (EAP), defined in RFC 3748, provides a standard mechanism for support of multiple authentication methods.  This document specifies the use of EAP-TLS with TLS 1.3 while remaining backwards compatible with existing implementations of EAP-TLS.  TLS 1.3 provides significantly improved security and privacy, and reduced latency when compared to earlier versions of TLS.  EAP-TLS with TLS 1.3 (EAP-TLS 1.3) further improves security and privacy by always providing forward secrecy, never disclosing the peer identity, and by mandating use of revocation checking when compared to EAP-TLS with earlier versions of TLS.  This document also provides guidance on authentication, authorization, and resumption for EAP-TLS in general (regardless of the underlying TLS version used).  This document updates RFC 5216."];
+  RFC9190 -> rev_cites;
+}

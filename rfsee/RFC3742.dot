@@ -1,0 +1,74 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3742 [label="RFC3742
+Limited Slow-Start for TCP with Large
+Congestion Windows
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes an optional modification for TCP's slow-start for use with TCP connections with large congestion windows.  For TCP connections that are able to use congestion windows of thousands (or tens of thousands) of MSS-sized segments (for MSS the sender's MAXIMUM SEGMENT SIZE), the current slow-start procedure can result in increasing the congestion window by thousands of segments in a single round-trip time.  Such an increase can easily result in thousands of packets being dropped in one round-trip time.  This is often counter-productive for the TCP flow itself, and is also hard on the rest of the traffic sharing the congested link.  This note describes Limited Slow-Start as an optional mechanism for limiting the number of segments by which the congestion window is increased for one window of data during slow-start, in order to improve performance for TCP connections with large congestion windows.  This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3742;
+
+  obs [label="obsoletes", shape=box];
+  RFC3742 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3742 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3742;
+
+  cites [label="cites", shape=box];
+  RFC3742 -> cites;
+  RFC2581 [label="RFC2581
+TCP Congestion Control
+1999", shape=ellipse, URL="RFC2581.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods. [STANDARDS-TRACK]"];
+  cites -> RFC2581;
+  RFC3465 [label="RFC3465
+TCP Congestion Control with Appropriate
+Byte Counting (ABC)
+2003", shape=ellipse, URL="RFC3465.html", target="_top", tooltip="This document proposes a small modification to the way TCP increases its congestion window.  Rather than the traditional method of increasing the congestion window by a constant amount for each arriving acknowledgment, the document suggests basing the increase on the number of previously unacknowledged bytes each ACK covers.  This change improves the performance of TCP, as well as closes a security hole TCP receivers can use to induce the sender into increasing the sending rate too rapidly.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3465;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3742;
+  RFC4614 [label="RFC4614
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2006", shape=ellipse, URL="RFC4614.html", target="_top", tooltip="This document contains a roadmap to the Requests for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP).  This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series.  This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs.  This memo provides information for the Internet community."];
+  RFC4614 -> rev_cites;
+  RFC4782 [label="RFC4782
+Quick-Start for TCP and IP
+2007", shape=ellipse, URL="RFC4782.html", target="_top", tooltip="This document specifies an optional Quick-Start mechanism for transport protocols, in cooperation with routers, to determine an allowed sending rate at the start and, at times, in the middle of a data transfer (e.g., after an idle period). While Quick-Start is designed to be used by a range of transport protocols, in this document we only specify its use with TCP. Quick-Start is designed to allow connections to use higher sending rates when there is significant unused bandwidth along the path, and the sender and all of the routers along the path approve the Quick-Start Request. This document describes many paths where Quick-Start Requests would not be approved. These paths include all paths containing routers, IP tunnels, MPLS paths, and the like that do not support Quick- Start. These paths also include paths with routers or middleboxes that drop packets containing IP options. Quick-Start Requests could be difficult to approve over paths that include multi-access layer- two networks. This document also describes environments where the Quick-Start process could fail with false positives, with the sender incorrectly assuming that the Quick-Start Request had been approved by all of the routers along the path. As a result of these concerns, and as a result of the difficulties and seeming absence of motivation for routers, such as core routers to deploy Quick-Start, Quick-Start is being proposed as a mechanism that could be of use in controlled environments, and not as a mechanism that would be intended or appropriate for ubiquitous deployment in the global Internet. This memo defines an Experimental Protocol for the Internet community."];
+  RFC4782 -> rev_cites;
+  RFC4898 [label="RFC4898
+TCP Extended Statistics MIB
+2007", shape=ellipse, URL="RFC4898.html", target="_top", tooltip="This document describes extended performance statistics for TCP.  They are designed to use TCP's ideal vantage point to diagnose performance problems in both the network and the application.  If a network-based application is performing poorly, TCP can determine if the bottleneck is in the sender, the receiver, or the network itself.  If the bottleneck is in the network, TCP can provide specific information about its nature. [STANDARDS-TRACK]"];
+  RFC4898 -> rev_cites;
+  RFC5783 [label="RFC5783
+Congestion Control in the RFC Series
+2010", shape=ellipse, URL="RFC5783.html", target="_top", tooltip="This document is an informational snapshot taken by the IRTF\'s Internet Congestion Control Research Group (ICCRG) in October 2008.  It provides a survey of congestion control topics described by documents in the RFC series.  This does not modify or update the specifications or status of the RFC documents that are discussed.  It may be used as a reference or starting point for the future work of the research group, especially in noting gaps or open issues in the current IETF standards.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5783 -> rev_cites;
+  RFC6077 [label="RFC6077
+Open Research Issues in Internet
+Congestion Control
+2011", shape=ellipse, URL="RFC6077.html", target="_top", tooltip="This document describes some of the open problems in Internet congestion control that are known today.  This includes several new challenges that are becoming important as the network grows, as well as some issues that have been known for many years.  These challenges are generally considered to be open research topics that may require more study or application of innovative techniques before Internet-scale solutions can be confidently engineered and deployed.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6077 -> rev_cites;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+  RFC8312 [label="RFC8312
+CUBIC for Fast Long-Distance Networks
+2018", shape=ellipse, URL="RFC8312.html", target="_top", tooltip="CUBIC is an extension to the current TCP standards.  It differs from the current TCP standards only in the congestion control algorithm on the sender side.  In particular, it uses a cubic function instead of a linear window increase function of the current TCP standards to improve scalability and stability under fast and long-distance networks.  CUBIC and its predecessor algorithm have been adopted as defaults by Linux and have been used for many years.  This document provides a specification of CUBIC to enable third-party implementations and to solicit community feedback through experimentation on the performance of CUBIC."];
+  RFC8312 -> rev_cites;
+  RFC9438 [label="RFC9438
+CUBIC for Fast and Long-Distance
+Networks
+2023", shape=ellipse, URL="RFC9438.html", target="_top", tooltip="CUBIC is a standard TCP congestion control algorithm that uses a cubic function instead of a linear congestion window increase function to improve scalability and stability over fast and long-distance networks. CUBIC has been adopted as the default TCP congestion control algorithm by the Linux, Windows, and Apple stacks. This document updates the specification of CUBIC to include algorithmic improvements based on these implementations and recent academic work. Based on the extensive deployment experience with CUBIC, this document also moves the specification to the Standards Track and obsoletes RFC 8312. This document also updates RFC 5681, to allow for CUBIC's occasionally more aggressive sending behavior."];
+  RFC9438 -> rev_cites;
+}

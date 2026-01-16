@@ -1,0 +1,127 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5722 [label="RFC5722
+Handling of Overlapping IPv6 Fragments
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="The fragmentation and reassembly algorithm specified in the base IPv6 specification allows fragments to overlap.  This document demonstrates the security issues associated with allowing overlapping fragments and updates the IPv6 specification to explicitly forbid overlapping fragments. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5722;
+
+  obs [label="obsoletes", shape=box];
+  RFC5722 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5722 -> updates;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  updates -> RFC2460;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5722;
+  RFC6946 [label="RFC6946
+Processing of IPv6 Atomic Fragments
+2013", shape=ellipse, URL="RFC6946.html", target="_top", tooltip="The IPv6 specification allows packets to contain a Fragment Header without the packet being actually fragmented into multiple pieces (we refer to these packets as atomic fragments).  Such packets are typically sent by hosts that have received an ICMPv6 Packet Too Big error message that advertises a Next-Hop MTU smaller than 1280 bytes, and are currently processed by some implementations as normal fragmented traffic (i.e., they are reassembled with any other queued fragments that supposedly correspond to the same original packet).  Thus, an attacker can cause hosts to employ atomic fragments by forging ICMPv6 Packet Too Big error messages, and then launch any fragmentation-based attacks against such traffic.  This document discusses the generation of the aforementioned atomic fragments and the corresponding security implications.  Additionally, this document formally updates RFC 2460 and RFC 5722, such that IPv6 atomic fragments are processed independently of any other fragments, thus completely eliminating the aforementioned attack vector."];
+  RFC6946 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5722 -> cites;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC4942 [label="RFC4942
+IPv6 Transition/Co-existence Security
+Considerations
+2007", shape=ellipse, URL="RFC4942.html", target="_top", tooltip="The transition from a pure IPv4 network to a network where IPv4 and IPv6 coexist brings a number of extra security considerations that need to be taken into account when deploying IPv6 and operating the dual-protocol network and the associated transition mechanisms. This document attempts to give an overview of the various issues grouped into three categories: o issues due to the IPv6 protocol itself, o issues due to transition mechanisms, and o issues due to IPv6 deployment. This memo provides information for the Internet community."];
+  cites -> RFC4942;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC1858 [label="RFC1858
+Security Considerations for IP Fragment
+Filtering
+1995", shape=ellipse, URL="RFC1858.html", target="_top", tooltip="IP fragmentation can be used to disguise TCP packets from IP filters used in routers and hosts.  This document describes two methods of attack as well as remedies to prevent them.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1858;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5722;
+  RFC6434 [label="RFC6434
+IPv6 Node Requirements
+2011", shape=ellipse, URL="RFC6434.html", target="_top", tooltip="This document defines requirements for IPv6 nodes.  It is expected that IPv6 will be deployed in a wide range of devices and situations.  Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6434 -> rev_cites;
+  RFC6936 [label="RFC6936
+Applicability Statement for the Use of
+IPv6 UDP Datagrams with Zero Checksums
+2013", shape=ellipse, URL="RFC6936.html", target="_top", tooltip="This document provides an applicability statement for the use of UDP transport checksums with IPv6.  It defines recommendations and requirements for the use of IPv6 UDP datagrams with a zero UDP checksum.  It describes the issues and design principles that need to be considered when UDP is used with IPv6 to support tunnel encapsulations, and it examines the role of the IPv6 UDP transport checksum.  The document also identifies issues and constraints for deployment on network paths that include middleboxes.  An appendix presents a summary of the trade-offs that were considered in evaluating the safety of the update to RFC 2460 that changes the use of the UDP checksum with IPv6."];
+  RFC6936 -> rev_cites;
+  RFC6946 [label="RFC6946
+Processing of IPv6 Atomic Fragments
+2013", shape=ellipse, URL="RFC6946.html", target="_top", tooltip="The IPv6 specification allows packets to contain a Fragment Header without the packet being actually fragmented into multiple pieces (we refer to these packets as atomic fragments).  Such packets are typically sent by hosts that have received an ICMPv6 Packet Too Big error message that advertises a Next-Hop MTU smaller than 1280 bytes, and are currently processed by some implementations as normal fragmented traffic (i.e., they are reassembled with any other queued fragments that supposedly correspond to the same original packet).  Thus, an attacker can cause hosts to employ atomic fragments by forging ICMPv6 Packet Too Big error messages, and then launch any fragmentation-based attacks against such traffic.  This document discusses the generation of the aforementioned atomic fragments and the corresponding security implications.  Additionally, this document formally updates RFC 2460 and RFC 5722, such that IPv6 atomic fragments are processed independently of any other fragments, thus completely eliminating the aforementioned attack vector."];
+  RFC6946 -> rev_cites;
+  RFC7066 [label="RFC7066
+IPv6 for Third Generation Partnership
+Project (3GPP) Cellular Hosts
+2013", shape=ellipse, URL="RFC7066.html", target="_top", tooltip="As the deployment of third and fourth generation cellular networks progresses, a large number of cellular hosts are being connected to the Internet.  Standardization organizations have made the Internet Protocol version 6 (IPv6) mandatory in their specifications.  However, the concept of IPv6 covers many aspects and numerous specifications.  In addition, the characteristics of cellular links in terms of bandwidth, cost, and delay put special requirements on how IPv6 is used.  This document considers IPv6 for cellular hosts that attach to the General Packet Radio Service (GPRS), Universal Mobile Telecommunications System (UMTS), or Evolved Packet System (EPS) networks (hereafter collectively referred to as Third Generation Partnership Project (3GPP) networks).  This document also lists specific IPv6 functionalities that need to be implemented in addition to what is already prescribed in the IPv6 Node Requirements document (RFC 6434).  It also discusses some issues related to the use of these components when operating in these networks.  This document obsoletes RFC 3316."];
+  RFC7066 -> rev_cites;
+  RFC7113 [label="RFC7113
+Implementation Advice for IPv6 Router
+Advertisement Guard (RA-Guard)
+2014", shape=ellipse, URL="RFC7113.html", target="_top", tooltip="The IPv6 Router Advertisement Guard (RA-Guard) mechanism is commonly employed to mitigate attack vectors based on forged ICMPv6 Router Advertisement messages.  Many existing IPv6 deployments rely on RA-Guard as the first line of defense against the aforementioned attack vectors.  However, some implementations of RA-Guard have been found to be prone to circumvention by employing IPv6 Extension Headers.  This document describes the evasion techniques that affect the aforementioned implementations and formally updates RFC 6105, such that the aforementioned RA-Guard evasion vectors are eliminated."];
+  RFC7113 -> rev_cites;
+  RFC7269 [label="RFC7269
+NAT64 Deployment Options and Experience
+2014", shape=ellipse, URL="RFC7269.html", target="_top", tooltip="This document summarizes NAT64 function deployment scenarios and operational experience.  Both NAT64 Carrier-Grade NAT (NAT64-CGN) and NAT64 server Front End (NAT64-FE) are considered in this document."];
+  RFC7269 -> rev_cites;
+  RFC7381 [label="RFC7381
+Enterprise IPv6 Deployment Guidelines
+2014", shape=ellipse, URL="RFC7381.html", target="_top", tooltip="Enterprise network administrators worldwide are in various stages of preparing for or deploying IPv6 into their networks.  The administrators face different challenges than operators of Internet access providers and have reasons for different priorities.  The overall problem for many administrators will be to offer Internet- facing services over IPv6 while continuing to support IPv4, and while introducing IPv6 access within the enterprise IT network.  The overall transition will take most networks from an IPv4-only environment to a dual-stack network environment and eventually an IPv6-only operating mode.  This document helps provide a framework for enterprise network architects or administrators who may be faced with many of these challenges as they consider their IPv6 support strategies."];
+  RFC7381 -> rev_cites;
+  RFC7588 [label="RFC7588
+A Widely Deployed Solution to the
+Generic Routing Encapsulation (GRE)
+Fragmentation Problem
+2015", shape=ellipse, URL="RFC7588.html", target="_top", tooltip="This memo describes how many vendors have solved the Generic Routing Encapsulation (GRE) fragmentation problem.  The solution described herein is configurable.  It is widely deployed on the Internet in its default configuration."];
+  RFC7588 -> rev_cites;
+  RFC7610 [label="RFC7610
+DHCPv6-Shield: Protecting against Rogue
+DHCPv6 Servers
+2015", shape=ellipse, URL="RFC7610.html", target="_top", tooltip="This document specifies a mechanism for protecting hosts connected to a switched network against rogue DHCPv6 servers.  It is based on DHCPv6 packet filtering at the layer 2 device at which the packets are received.  A similar mechanism has been widely deployed in IPv4 networks ('DHCP snooping'); hence, it is desirable that similar functionality be provided for IPv6 networks.  This document specifies a Best Current Practice for the implementation of DHCPv6-Shield."];
+  RFC7610 -> rev_cites;
+  RFC7739 [label="RFC7739
+Security Implications of Predictable
+Fragment Identification Values
+2016", shape=ellipse, URL="RFC7739.html", target="_top", tooltip="IPv6 specifies the Fragment Header, which is employed for the fragmentation and reassembly mechanisms.  The Fragment Header contains an Identification field that, together with the IPv6 Source Address and the IPv6 Destination Address of a packet, identifies fragments that correspond to the same original datagram, such that they can be reassembled together by the receiving host.  The only requirement for setting the Identification field is that the corresponding value must be different than that employed for any other fragmented datagram sent recently with the same Source Address and Destination Address.  Some implementations use a simple global counter for setting the Identification field, thus leading to predictable Identification values.  This document analyzes the security implications of predictable Identification values, and provides implementation guidance for setting the Identification field of the Fragment Header, such that the aforementioned security implications are mitigated."];
+  RFC7739 -> rev_cites;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  RFC8200 -> rev_cites;
+  RFC8504 [label="RFC8504
+IPv6 Node Requirements
+2019", shape=ellipse, URL="RFC8504.html", target="_top", tooltip="This document defines requirements for IPv6 nodes. It is expected that IPv6 will be deployed in a wide range of devices and situations. Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments. This document obsoletes RFC 6434, and in turn RFC 4294."];
+  RFC8504 -> rev_cites;
+  RFC8900 [label="RFC8900
+IP Fragmentation Considered Fragile
+2020", shape=ellipse, URL="RFC8900.html", target="_top", tooltip="This document describes IP fragmentation and explains how it introduces fragility to Internet communication. This document also proposes alternatives to IP fragmentation and provides recommendations for developers and network operators."];
+  RFC8900 -> rev_cites;
+  RFC9098 [label="RFC9098
+Operational Implications of IPv6 Packets
+with Extension Headers
+2021", shape=ellipse, URL="RFC9098.html", target="_top", tooltip="This document summarizes the operational implications of IPv6 extension headers specified in the IPv6 protocol specification (RFC 8200) and attempts to analyze reasons why packets with IPv6 extension headers are often dropped in the public Internet."];
+  RFC9098 -> rev_cites;
+  RFC9415 [label="RFC9415
+On the Generation of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9415.html", target="_top", tooltip="This document performs an analysis of the security and privacy implications of different types of transient numeric identifiers used in IETF protocols and tries to categorize them based on their interoperability requirements and their associated failure severity when such requirements are not met.  Subsequently, it provides advice on possible algorithms that could be employed to satisfy the interoperability requirements of each identifier category while minimizing the negative security and privacy implications, thus providing guidance to protocol designers and protocol implementers.  Finally, it describes a number of algorithms that have been employed in real implementations to generate transient numeric identifiers and analyzes their security and privacy properties.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9415 -> rev_cites;
+}

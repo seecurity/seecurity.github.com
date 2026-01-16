@@ -1,0 +1,144 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5714 [label="RFC5714
+IP Fast Reroute Framework
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides a framework for the development of IP fast- reroute mechanisms that provide protection against link or router failure by invoking locally determined repair paths.  Unlike MPLS fast-reroute, the mechanisms are applicable to a network employing conventional IP routing and forwarding.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5714;
+
+  obs [label="obsoletes", shape=box];
+  RFC5714 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5714 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5714;
+
+  cites [label="cites", shape=box];
+  RFC5714 -> cites;
+  RFC4090 [label="RFC4090
+Fast Reroute Extensions to RSVP-TE for
+LSP Tunnels
+2005", shape=ellipse, URL="RFC4090.html", target="_top", tooltip="This document defines RSVP-TE extensions to establish backup label-switched path (LSP) tunnels for local repair of LSP tunnels. These mechanisms enable the re-direction of traffic onto backup LSP tunnels in 10s of milliseconds, in the event of a failure. Two methods are defined here. The one-to-one backup method creates detour LSPs for each protected LSP at each potential point of local repair. The facility backup method creates a bypass tunnel to protect a potential failure point; by taking advantage of MPLS label stacking, this bypass tunnel can protect a set of LSPs that have similar backup constraints. Both methods can be used to protect links and nodes during network failure. The described behavior and extensions to RSVP allow nodes to implement either method or both and to interoperate in a mixed network. [STANDARDS-TRACK]"];
+  cites -> RFC4090;
+  RFC5715 [label="RFC5715
+A Framework for Loop-Free Convergence
+2010", shape=ellipse, URL="RFC5715.html", target="_top", tooltip="A micro-loop is a packet forwarding loop that may occur transiently among two or more routers in a hop-by-hop packet forwarding paradigm. This framework provides a summary of the causes and consequences of micro-loops and enables the reader to form a judgement on whether micro-looping is an issue that needs to be addressed in specific networks. It also provides a survey of the currently proposed mechanisms that may be used to prevent or to suppress the formation of micro-loops when an IP or MPLS network undergoes topology change due to failure, repair, or management action. When sufficiently fast convergence is not available and the topology is susceptible to micro-loops, use of one or more of these mechanisms may be desirable. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5715;
+  RFC5286 [label="RFC5286
+Basic Specification for IP Fast Reroute:
+Loop-Free Alternates
+2008", shape=ellipse, URL="RFC5286.html", target="_top", tooltip="This document describes the use of loop-free alternates to provide local protection for unicast traffic in pure IP and MPLS/LDP networks in the event of a single failure, whether link, node, or shared risk link group (SRLG).  The goal of this technology is to reduce the packet loss that happens while routers converge after a topology change due to a failure.  Rapid failure repair is achieved through use of precalculated backup next-hops that are loop-free and safe to use until the distributed network convergence process completes.  This simple approach does not require any support from other routers.  The extent to which this goal can be met by this specification is dependent on the topology of the network. [STANDARDS-TRACK]"];
+  cites -> RFC5286;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5714;
+  RFC5715 [label="RFC5715
+A Framework for Loop-Free Convergence
+2010", shape=ellipse, URL="RFC5715.html", target="_top", tooltip="A micro-loop is a packet forwarding loop that may occur transiently among two or more routers in a hop-by-hop packet forwarding paradigm. This framework provides a summary of the causes and consequences of micro-loops and enables the reader to form a judgement on whether micro-looping is an issue that needs to be addressed in specific networks. It also provides a survey of the currently proposed mechanisms that may be used to prevent or to suppress the formation of micro-loops when an IP or MPLS network undergoes topology change due to failure, repair, or management action. When sufficiently fast convergence is not available and the topology is susceptible to micro-loops, use of one or more of these mechanisms may be desirable. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5715 -> rev_cites;
+  RFC6198 [label="RFC6198
+Requirements for the Graceful Shutdown
+of BGP Sessions
+2011", shape=ellipse, URL="RFC6198.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is heavily used in Service Provider networks for both Internet and BGP/MPLS VPN services.  For resiliency purposes, redundant routers and BGP sessions can be deployed to reduce the consequences of an Autonomous System Border Router (ASBR) or BGP session breakdown on customers' or peers' traffic.  However, simply taking down or even bringing up a BGP session for maintenance purposes may still induce connectivity losses during the BGP convergence.  This is no longer satisfactory for new applications (e.g., voice over IP, online gaming, VPN).  Therefore, a solution is required for the graceful shutdown of a (set of) BGP session(s) in order to limit the amount of traffic loss during a planned shutdown.  This document expresses requirements for such a solution.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6198 -> rev_cites;
+  RFC6571 [label="RFC6571
+Loop-Free Alternate (LFA) Applicability
+in Service Provider (SP) Networks
+2012", shape=ellipse, URL="RFC6571.html", target="_top", tooltip="In this document, we analyze the applicability of the Loop-Free Alternate (LFA) method of providing IP fast reroute in both the core and access parts of Service Provider networks.  We consider both the link and node failure cases, and provide guidance on the applicability of LFAs to different network topologies, with special emphasis on the access parts of the network.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6571 -> rev_cites;
+  RFC6976 [label="RFC6976
+Framework for Loop-Free Convergence
+Using the Ordered Forwarding Information
+Base (oFIB) Approach
+2013", shape=ellipse, URL="RFC6976.html", target="_top", tooltip="This document describes an illustrative framework of a mechanism for use in conjunction with link-state routing protocols that prevents the transient loops that would otherwise occur during topology changes. It does this by correctly sequencing the forwarding information base (FIB) updates on the routers. This mechanism can be used in the case of non-urgent (management action) link or node shutdowns and restarts or link metric changes. It can also be used in conjunction with a fast reroute mechanism that converts a sudden link or node failure into a non-urgent topology change. This is possible where a complete repair path is provided for all affected destinations. After a non-urgent topology change, each router computes a rank that defines the time at which it can safely update its FIB. A method for accelerating this loop-free convergence process by the use of completion messages is also described. The technology described in this document has been subject to extensive simulation using pathological convergence behavior and real network topologies and costs. However, the mechanisms described in this document are purely illustrative of the general approach and do not constitute a protocol specification. This document represents a snapshot of the work of the Routing Area Working Group at the time of publication and is published as a document of record. Further work is needed before implementation or deployment."];
+  RFC6976 -> rev_cites;
+  RFC6981 [label="RFC6981
+A Framework for IP and MPLS Fast Reroute
+Using Not-Via Addresses
+2013", shape=ellipse, URL="RFC6981.html", target="_top", tooltip="This document presents an illustrative framework for providing fast reroute in an IP or MPLS network through encapsulation and forwarding to not-via addresses. The general approach described here uses a single level of encapsulation and could be used to protect unicast, multicast, and LDP traffic against link, router, and shared risk group failure, regardless of network topology and metrics. The mechanisms presented in this document are purely illustrative of the general approach and do not constitute a protocol specification. The document represents a snapshot of the work of the Routing Area Working Group at the time of publication and is published as a document of record. Further work is needed before implementation or deployment."];
+  RFC6981 -> rev_cites;
+  RFC7190 [label="RFC7190
+Use of Multipath with MPLS and MPLS
+Transport Profile (MPLS-TP)
+2014", shape=ellipse, URL="RFC7190.html", target="_top", tooltip="Many MPLS implementations have supported multipath techniques, and many MPLS deployments have used multipath techniques, particularly in very high-bandwidth applications, such as provider IP/MPLS core networks. MPLS Transport Profile (MPLS-TP) has strongly discouraged the use of multipath techniques. Some degradation of MPLS-TP Operations, Administration, and Maintenance (OAM) performance cannot be avoided when operating over many types of multipath implementations. Using MPLS Entropy Labels (RFC 6790), MPLS Label Switched Paths (LSPs) can be carried over multipath links while also providing a fully MPLS-TP-compliant server layer for MPLS-TP LSPs. This document describes the means of supporting MPLS as a server layer for MPLS-TP. The use of MPLS-TP LSPs as a server layer for MPLS LSPs is also discussed."];
+  RFC7190 -> rev_cites;
+  RFC7325 [label="RFC7325
+MPLS Forwarding Compliance and
+Performance Requirements
+2014", shape=ellipse, URL="RFC7325.html", target="_top", tooltip="This document provides guidelines for implementers regarding MPLS forwarding and a basis for evaluations of forwarding implementations.  Guidelines cover many aspects of MPLS forwarding.  Topics are highlighted where implementers might otherwise overlook practical requirements which are unstated or under emphasized or are optional for conformance to RFCs but are often considered mandatory by providers."];
+  RFC7325 -> rev_cites;
+  RFC7490 [label="RFC7490
+Remote Loop-Free Alternate (LFA) Fast
+Reroute (FRR)
+2015", shape=ellipse, URL="RFC7490.html", target="_top", tooltip="This document describes an extension to the basic IP fast reroute mechanism, described in RFC 5286, that provides additional backup connectivity for point-to-point link failures when none can be provided by the basic mechanisms."];
+  RFC7490 -> rev_cites;
+  RFC7812 [label="RFC7812
+An Architecture for IP/LDP Fast Reroute
+Using Maximally Redundant Trees (MRT-
+FRR)
+2016", shape=ellipse, URL="RFC7812.html", target="_top", tooltip="This document defines the architecture for IP and LDP Fast Reroute using Maximally Redundant Trees (MRT-FRR).  MRT-FRR is a technology that gives link-protection and node-protection with 100% coverage in any network topology that is still connected after the failure."];
+  RFC7812 -> rev_cites;
+  RFC8104 [label="RFC8104
+Pseudowire (PW) Endpoint Fast Failure
+Protection
+2017", shape=ellipse, URL="RFC8104.html", target="_top", tooltip="This document specifies a fast mechanism for protecting pseudowires (PWs) transported by IP/MPLS tunnels against egress endpoint failures, including egress attachment circuit (AC) failure, egress provider edge (PE) failure, multi-segment PW terminating PE failure, and multi-segment PW switching PE failure.  Operating on the basis of multihomed customer edge (CE), redundant PWs, upstream label assignment, and context-specific label switching, the mechanism enables local repair to be performed by the router upstream adjacent to a failure.  The router can restore a PW in the order of tens of milliseconds, by rerouting traffic around the failure to a protector through a pre-established bypass tunnel.  Therefore, the mechanism can be used to reduce traffic loss before global repair reacts to the failure and the network converges on the topology changes due to the failure."];
+  RFC8104 -> rev_cites;
+  RFC8355 [label="RFC8355
+Resiliency Use Cases in Source Packet
+Routing in Networking (SPRING) Networks
+2018", shape=ellipse, URL="RFC8355.html", target="_top", tooltip="This document identifies and describes the requirements for a set of use cases related to Segment Routing network resiliency on Source Packet Routing in Networking (SPRING) networks."];
+  RFC8355 -> rev_cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  RFC8402 -> rev_cites;
+  RFC8518 [label="RFC8518
+Selection of Loop-Free Alternates for
+Multi-Homed Prefixes
+2019", shape=ellipse, URL="RFC8518.html", target="_top", tooltip="Deployment experience gained from implementing algorithms to determine Loop-Free Alternates (LFAs) for multi-homed prefixes (MHPs) has revealed some avenues for potential improvement.  This document provides explicit inequalities that can be used to evaluate neighbors as potential alternates for MHPs.  It also provides detailed criteria for evaluating potential alternates for external prefixes advertised by OSPF ASBRs.  This document updates Section 6 of RFC 5286 by expanding some of the routing aspects."];
+  RFC8518 -> rev_cites;
+  RFC8920 [label="RFC8920
+OSPF Application-Specific Link
+Attributes
+2020", shape=ellipse, URL="RFC8920.html", target="_top", tooltip="Existing traffic-engineering-related link attribute advertisements have been defined and are used in RSVP-TE deployments.  Since the original RSVP-TE use case was defined, additional applications (e.g., Segment Routing Policy and Loop-Free Alternates) that also make use of the link attribute advertisements have been defined.  In cases where multiple applications wish to make use of these link attributes, the current advertisements do not support application-specific values for a given attribute, nor do they support indication of which applications are using the advertised value for a given link.  This document introduces new link attribute advertisements in OSPFv2 and OSPFv3 that address both of these shortcomings."];
+  RFC8920 -> rev_cites;
+  RFC8960 [label="RFC8960
+A YANG Data Model for MPLS Base
+2020", shape=ellipse, URL="RFC8960.html", target="_top", tooltip="This document contains a specification of the MPLS base YANG data model.  The MPLS base YANG data model serves as a base framework for configuring and managing an MPLS switching subsystem on an MPLS-enabled router.  It is expected that other MPLS YANG data models (e.g., MPLS Label Switched Path (LSP) static, LDP, or RSVP-TE YANG data models) will augment the MPLS base YANG data model."];
+  RFC8960 -> rev_cites;
+  RFC9129 [label="RFC9129
+YANG Data Model for the OSPF Protocol
+2022", shape=ellipse, URL="RFC9129.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage OSPF.  The model is based on YANG 1.1 as defined in RFC 7950 and conforms to the Network Management Datastore Architecture (NMDA) as described in RFC 8342."];
+  RFC9129 -> rev_cites;
+  RFC9403 [label="RFC9403
+A YANG Data Model for RIB Extensions
+2023", shape=ellipse, URL="RFC9403.html", target="_top", tooltip="A Routing Information Base (RIB) is a list of routes and their corresponding administrative data and operational state. RFC 8349 defines the basic building blocks for the RIB data model, and this model augments it to support multiple next hops (aka paths) for each route as well as additional attributes."];
+  RFC9403 -> rev_cites;
+  RFC9492 [label="RFC9492
+OSPF Application-Specific Link
+Attributes
+2023", shape=ellipse, URL="RFC9492.html", target="_top", tooltip="Existing traffic-engineering-related link attribute advertisements have been defined and are used in RSVP-TE deployments. Since the original RSVP-TE use case was defined, additional applications such as Segment Routing (SR) Policy and Loop-Free Alternates (LFAs) that also make use of the link attribute advertisements have been defined. In cases where multiple applications wish to make use of these link attributes, the current advertisements do not support application-specific values for a given attribute, nor do they support indication of which applications are using the advertised value for a given link. This document introduces link attribute advertisements in OSPFv2 and OSPFv3 that address both of these shortcomings. This document obsoletes RFC 8920."];
+  RFC9492 -> rev_cites;
+  RFC9789 [label="RFC9789
+MPLS Network Actions (MNAs) Framework
+2025", shape=ellipse, URL="RFC9789.html", target="_top", tooltip="This document describes an architectural framework for MPLS Network Action (MNA) technologies. MNA technologies are used to indicate actions that impact the forwarding or other processing (such as monitoring) of the packet along the Label Switched Path (LSP) of the packet and to transfer any additional data needed for these actions. This document provides the foundation for the development of a common set of network actions and information elements supporting additional operational models and capabilities of MPLS networks."];
+  RFC9789 -> rev_cites;
+  RFC9855 [label="RFC9855
+Topology Independent Fast Reroute Using
+Segment Routing
+2025", shape=ellipse, URL="RFC9855.html", target="_top", tooltip="This document presents Topology Independent Loop-Free Alternate (TI-LFA) Fast Reroute (FRR), which is aimed at providing protection of node and Adjacency segments within the Segment Routing (SR) framework.  This FRR behavior builds on proven IP FRR concepts being LFAs, Remote LFAs (RLFAs), and Directed Loop-Free Alternates (DLFAs).  It extends these concepts to provide guaranteed coverage in any two-connected networks using a link-state IGP.  An important aspect of TI-LFA is the FRR path selection approach establishing protection over the expected post-convergence paths from the Point of Local Repair (PLR), reducing the operational need to control the tie-breaks among various FRR options."];
+  RFC9855 -> rev_cites;
+  RFC9889 [label="RFC9889
+A Realization of Network Slices for 5G
+Networks Using Current IP/MPLS
+Technologies
+2025", shape=ellipse, URL="RFC9889.html", target="_top", tooltip="Network slicing is a feature that was introduced by the 3rd Generation Partnership Project (3GPP) in Mobile Networks. Realization of 5G slicing implies requirements for all mobile domains, including the Radio Access Network (RAN), Core Network (CN), and Transport Network (TN). This document describes a network slice realization model for IP/MPLS networks with a focus on the Transport Network fulfilling the service objectives for 5G slicing connectivity. The realization model reuses many building blocks commonly used in service provider networks at the current time."];
+  RFC9889 -> rev_cites;
+}

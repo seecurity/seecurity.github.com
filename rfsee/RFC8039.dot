@@ -1,0 +1,42 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8039 [label="RFC8039
+Multipath Time Synchronization
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="Clock synchronization protocols are very widely used in IP-based networks.  The Network Time Protocol (NTP) has been commonly deployed for many years, and the last few years have seen an increasingly rapid deployment of the Precision Time Protocol (PTP).  As time-sensitive applications evolve, clock accuracy requirements are becoming increasingly stringent, requiring the time synchronization protocols to provide high accuracy.  This memo describes a multipath approach to PTP and NTP over IP networks, allowing the protocols to run concurrently over multiple communication paths between the master and slave clocks, without modifying these protocols.  The multipath approach can significantly contribute to clock accuracy, security, and fault tolerance.  The multipath approach that is presented in this document enables backward compatibility with nodes that do not support the multipath functionality."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8039;
+
+  obs [label="obsoletes", shape=box];
+  RFC8039 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8039 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8039;
+
+  cites [label="cites", shape=box];
+  RFC8039 -> cites;
+  RFC7384 [label="RFC7384
+Security Requirements of Time Protocols
+in Packet Switched Networks
+2014", shape=ellipse, URL="RFC7384.html", target="_top", tooltip="As time and frequency distribution protocols are becoming increasingly common and widely deployed, concern about their exposure to various security threats is increasing.  This document defines a set of security requirements for time protocols, focusing on the Precision Time Protocol (PTP) and the Network Time Protocol (NTP).  This document also discusses the security impacts of time protocol practices, the performance implications of external security practices on time protocols, and the dependencies between other security services and time synchronization."];
+  cites -> RFC7384;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8039;
+  RFC9378 [label="RFC9378
+In Situ Operations, Administration, and
+Maintenance (IOAM) Deployment
+2023", shape=ellipse, URL="RFC9378.html", target="_top", tooltip="In situ Operations, Administration, and Maintenance (IOAM) collects operational and telemetry information in the packet while the packet traverses a path between two points in the network.  This document provides a framework for IOAM deployment and provides IOAM deployment considerations and guidance."];
+  RFC9378 -> rev_cites;
+  RFC9817 [label="RFC9817
+Use Cases for In-Network Computing
+2025", shape=ellipse, URL="RFC9817.html", target="_top", tooltip="Computing in the Network (COIN) comes with the prospect of deploying processing functionality on networking devices such as switches and network interface cards. While such functionality can be beneficial, it has to be carefully placed into the context of the general Internet communication, and it needs to be clearly identified where and how those benefits apply. This document presents some use cases to demonstrate how a number of salient COIN-related applications can benefit from COIN. Furthermore, to guide research on COIN, it identifies essential research questions and outlines desirable capabilities that COIN systems addressing these use cases may need to support. Finally, the document provides a preliminary categorization of the described research questions to source future work in this domain. This document is a product of the Computing in the Network Research Group (COINRG). It is not an IETF product and it is not a standard."];
+  RFC9817 -> rev_cites;
+}

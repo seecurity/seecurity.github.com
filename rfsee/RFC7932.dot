@@ -1,0 +1,49 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7932 [label="RFC7932
+Brotli Compressed Data Format
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="This specification defines a lossless compressed data format that compresses data using a combination of the LZ77 algorithm and Huffman coding, with efficiency comparable to the best currently available general-purpose compression methods."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7932;
+
+  obs [label="obsoletes", shape=box];
+  RFC7932 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7932 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7932;
+  RFC9841 [label="RFC9841
+Shared Brotli Compressed Data Format
+2025", shape=ellipse, URL="RFC9841.html", target="_top", tooltip="This specification defines a data format for shared brotli compression, which adds support for shared dictionaries, large window, and a container format to brotli (RFC 7932).  Shared dictionaries and large window support allow significant compression gains compared to regular brotli.  This document specifies an extension to the method defined in RFC 7932."];
+  RFC9841 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC7932 -> cites;
+  RFC1951 [label="RFC1951
+DEFLATE Compressed Data Format
+Specification version 1.3
+1996", shape=ellipse, URL="RFC1951.html", target="_top", tooltip="This specification defines a lossless compressed data format that compresses data using a combination of the LZ77 algorithm and Huffman coding, with efficiency comparable to the best currently available general-purpose compression methods.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1951;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7932;
+  RFC8879 [label="RFC8879
+TLS Certificate Compression
+2020", shape=ellipse, URL="RFC8879.html", target="_top", tooltip="In TLS handshakes, certificate chains often take up the majority of the bytes transmitted. This document describes how certificate chains can be compressed to reduce the amount of data transmitted and avoid some round trips."];
+  RFC8879 -> rev_cites;
+  RFC9841 [label="RFC9841
+Shared Brotli Compressed Data Format
+2025", shape=ellipse, URL="RFC9841.html", target="_top", tooltip="This specification defines a data format for shared brotli compression, which adds support for shared dictionaries, large window, and a container format to brotli (RFC 7932).  Shared dictionaries and large window support allow significant compression gains compared to regular brotli.  This document specifies an extension to the method defined in RFC 7932."];
+  RFC9841 -> rev_cites;
+  RFC9842 [label="RFC9842
+Compression Dictionary Transport
+2025", shape=ellipse, URL="RFC9842.html", target="_top", tooltip="This document specifies a mechanism for dictionary-based compression in the Hypertext Transfer Protocol (HTTP).  By utilizing this technique, clients and servers can reduce the size of transmitted data, leading to improved performance and reduced bandwidth consumption.  This document extends existing HTTP compression methods and provides guidelines for the delivery and use of compression dictionaries within the HTTP protocol."];
+  RFC9842 -> rev_cites;
+}

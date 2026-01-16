@@ -1,0 +1,205 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4448 [label="RFC4448
+Encapsulation Methods for Transport of
+Ethernet over MPLS Networks
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="An Ethernet pseudowire (PW) is used to carry Ethernet/802.3 Protocol Data Units (PDUs) over an MPLS network.  This enables service providers to offer emulated Ethernet services over existing MPLS networks.  This document specifies the encapsulation of Ethernet/802.3 PDUs within a pseudowire.  It also specifies the procedures for using a PW to provide a point-to-point Ethernet service. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4448;
+
+  obs [label="obsoletes", shape=box];
+  RFC4448 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4448 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4448;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  RFC5462 -> updated_by;
+  RFC8469 [label="RFC8469
+Recommendation to Use the Ethernet
+Control Word
+2018", shape=ellipse, URL="RFC8469.html", target="_top", tooltip="The pseudowire (PW) encapsulation of Ethernet, as defined in RFC 4448, specifies that the use of the control word (CW) is optional. In the absence of the CW, an Ethernet PW packet can be misidentified as an IP packet by a label switching router (LSR). This may lead to the selection of the wrong equal-cost multipath (ECMP) path for the packet, leading in turn to the misordering of packets. This problem has become more serious due to the deployment of equipment with Ethernet Media Access Control (MAC) addresses that start with 0x4 or 0x6. The use of the Ethernet PW CW addresses this problem. This document RECOMMENDS the use of the Ethernet PW CW in all but exceptional circumstances. This document updates RFC 4448."];
+  RFC8469 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4448 -> cites;
+  RFC3985 [label="RFC3985
+Pseudo Wire Emulation Edge-to-Edge
+(PWE3) Architecture
+2005", shape=ellipse, URL="RFC3985.html", target="_top", tooltip="This document describes an architecture for Pseudo Wire Emulation Edge-to-Edge (PWE3).  It discusses the emulation of services such as Frame Relay, ATM, Ethernet, TDM, and SONET/SDH over packet switched networks (PSNs) using IP or MPLS.  It presents the architectural framework for pseudo wires (PWs), defines terminology, and specifies the various protocol elements and their functions.  This memo provides information for the Internet community."];
+  cites -> RFC3985;
+  RFC4026 [label="RFC4026
+Provider Provisioned Virtual Private
+Network (VPN) Terminology
+2005", shape=ellipse, URL="RFC4026.html", target="_top", tooltip="The widespread interest in provider-provisioned Virtual Private Network (VPN) solutions lead to memos proposing different and overlapping solutions. The IETF working groups (first Provider Provisioned VPNs and later Layer 2 VPNs and Layer 3 VPNs) have discussed these proposals and documented specifications. This has lead to the development of a partially new set of concepts used to describe the set of VPN services. To a certain extent, more than one term covers the same concept, and sometimes the same term covers more than one concept. This document seeks to make the terminology in the area clearer and more intuitive. This memo provides information for the Internet community."];
+  cites -> RFC4026;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2992 [label="RFC2992
+Analysis of an Equal-Cost Multi-Path
+Algorithm
+2000", shape=ellipse, URL="RFC2992.html", target="_top", tooltip="Equal-cost multi-path (ECMP) is a routing technique for routing packets along multiple paths of equal cost.  The forwarding engine identifies paths by next-hop.  When forwarding a packet the router must decide which next-hop (path) to use.  This document gives an analysis of one method for making that decision.  The analysis includes the performance of the algorithm and the disruption caused by changes to the set of next-hops.  This memo provides information for the Internet community."];
+  cites -> RFC2992;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4448;
+  RFC4619 [label="RFC4619
+Encapsulation Methods for Transport of
+Frame Relay over Multiprotocol Label
+Switching (MPLS) Networks
+2006", shape=ellipse, URL="RFC4619.html", target="_top", tooltip="A frame relay pseudowire is a mechanism that exists between a provider's edge network nodes and that supports as faithfully as possible frame relay services over an MPLS packet switched network (PSN).  This document describes the detailed encapsulation necessary to transport frame relay packets over an MPLS network. [STANDARDS-TRACK]"];
+  RFC4619 -> rev_cites;
+  RFC4762 [label="RFC4762
+Virtual Private LAN Service (VPLS) Using
+Label Distribution Protocol (LDP)
+Signaling
+2007", shape=ellipse, URL="RFC4762.html", target="_top", tooltip="This document describes a Virtual Private LAN Service (VPLS) solution using pseudowires, a service previously implemented over other tunneling technologies and known as Transparent LAN Services (TLS). A VPLS creates an emulated LAN segment for a given set of users; i.e., it creates a Layer 2 broadcast domain that is fully capable of learning and forwarding on Ethernet MAC addresses and that is closed to a given set of users. Multiple VPLS services can be supported from a single Provider Edge (PE) node. This document describes the control plane functions of signaling pseudowire labels using Label Distribution Protocol (LDP), extending RFC 4447. It is agnostic to discovery protocols. The data plane functions of forwarding are also described, focusing in particular on the learning of MAC addresses. The encapsulation of VPLS packets is described by RFC 4448. [STANDARDS-TRACK]"];
+  RFC4762 -> rev_cites;
+  RFC4905 [label="RFC4905
+Encapsulation Methods for Transport of
+Layer 2 Frames over MPLS Networks
+2007", shape=ellipse, URL="RFC4905.html", target="_top", tooltip="This document describes methods for encapsulating the Protocol Data Units (PDUs) of layer 2 protocols such as Frame Relay, Asynchronous Transfer Mode (ATM), or Ethernet for transport across an MPLS network.  This document describes the so-called draft-martini protocol, which has since been superseded by the Pseudowire Emulation Edge to Edge Working Group specifications described in RFC 4447 and related documents.  This memo defines a Historic Document for the Internet community."];
+  RFC4905 -> rev_cites;
+  RFC4906 [label="RFC4906
+Transport of Layer 2 Frames Over MPLS
+2007", shape=ellipse, URL="RFC4906.html", target="_top", tooltip="This document describes methods for transporting the Protocol Data Units (PDUs) of layer 2 protocols such as Frame Relay, Asynchronous Transfer Mode (ATM) Adaption Layer 5 (AAL5), and Ethernet, and for providing a Synchronized Optical Network (SONET) circuit emulation service across an MPLS network.  This document describes the so-called draft-martini protocol, which has since been superseded by the Pseudowire Emulation Edge to Edge Working Group specifications described in RFC 4447 and related documents.  This memo defines a Historic Document for the Internet community."];
+  RFC4906 -> rev_cites;
+  RFC5085 [label="RFC5085
+Pseudowire Virtual Circuit Connectivity
+Verification (VCCV): A Control Channel
+for Pseudowires
+2007", shape=ellipse, URL="RFC5085.html", target="_top", tooltip="This document describes Virtual Circuit Connectivity Verification (VCCV), which provides a control channel that is associated with a pseudowire (PW), as well as the corresponding operations and management functions (such as connectivity verification) to be used over that control channel.  VCCV applies to all supported access circuit and transport types currently defined for PWs. [STANDARDS-TRACK]"];
+  RFC5085 -> rev_cites;
+  RFC5462 [label="RFC5462
+Multiprotocol Label Switching (MPLS)
+Label Stack Entry: EXP Field Renamed to
+Traffic Class Field
+2009", shape=ellipse, URL="RFC5462.html", target="_top", tooltip="The early Multiprotocol Label Switching (MPLS) documents defined the form of the MPLS label stack entry. This includes a three-bit field called the EXP field. The exact use of this field was not defined by these documents, except to state that it was to be reserved for experimental use. Although the intended use of the EXP field was as a Class of Service (CoS) field, it was not named a CoS field by these early documents because the use of such a CoS field was not considered to be sufficiently defined. Today a number of standards documents define its usage as a CoS field. To avoid misunderstanding about how this field may be used, it has become increasingly necessary to rename this field. This document changes the name of the field to the Traffic Class field (TC field). In doing so, it also updates documents that define the current use of the EXP field. [STANDARDS-TRACK]"];
+  RFC5462 -> rev_cites;
+  RFC5603 [label="RFC5603
+Ethernet Pseudowire (PW) Management
+Information Base (MIB)
+2009", shape=ellipse, URL="RFC5603.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects for modeling of Ethernet pseudowire (PW) services. [STANDARDS-TRACK]"];
+  RFC5603 -> rev_cites;
+  RFC5960 [label="RFC5960
+MPLS Transport Profile Data Plane
+Architecture
+2010", shape=ellipse, URL="RFC5960.html", target="_top", tooltip="The Multiprotocol Label Switching Transport Profile (MPLS-TP) is the set of MPLS protocol functions applicable to the construction and operation of packet-switched transport networks. This document specifies the subset of these functions that comprises the MPLS-TP data plane: the architectural layer concerned with the encapsulation and forwarding of packets within an MPLS-TP network. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network. [STANDARDS-TRACK]"];
+  RFC5960 -> rev_cites;
+  RFC5994 [label="RFC5994
+Application of Ethernet Pseudowires to
+MPLS Transport Networks
+2010", shape=ellipse, URL="RFC5994.html", target="_top", tooltip="Ethernet pseudowires are widely deployed to support packet transport of Ethernet services. These services in-turn provide transport for a variety of client networks, e.g., IP and MPLS. This document uses procedures defined in the existing IETF specifications of Ethernet pseudowires carried over MPLS networks. Many of the requirements for the services provided by the mechanisms explained in this document are also recognized by the MPLS transport profile (MPLS-TP) design effort formed jointly by the IETF and ITU-T. The solution described here does not address all of the MPLS-TP requirements, but it provides a viable form of packet transport service using tools that are already available. This document also serves as an indication that existing MPLS techniques form an appropriate basis for the design of a fully- featured packet transport solution addressing all of the requirements of MPLS-TP. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5994 -> rev_cites;
+  RFC6246 [label="RFC6246
+Virtual Private LAN Service (VPLS)
+Interoperability with Customer Edge (CE)
+Bridges
+2011", shape=ellipse, URL="RFC6246.html", target="_top", tooltip="One of the main motivations behind Virtual Private LAN Service (VPLS) is its ability to provide connectivity not only among customer routers and servers/hosts but also among customer IEEE bridges. VPLS is expected to deliver the same level of service that current enterprise users are accustomed to from their own enterprise bridged networks or their Ethernet Service Providers. When customer edge (CE) devices are IEEE bridges, then there are certain issues and challenges that need to be accounted for in a VPLS network. The majority of these issues have been addressed in the IEEE 802.1ad standard for provider bridges and they can be leveraged for VPLS networks. This document extends the provider edge (PE) model described in RFC 4664 based on IEEE 802.1ad bridge module, and it illustrates a clear demarcation between the IEEE bridge module and IETF LAN emulation module. By doing so, it shows that the majority of interoperability issues with CE bridges can be delegated to the 802.1ad bridge module, thus removing the burden on the IETF LAN emulation module within a VPLS PE. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6246 -> rev_cites;
+  RFC6373 [label="RFC6373
+MPLS Transport Profile (MPLS-TP) Control
+Plane Framework
+2011", shape=ellipse, URL="RFC6373.html", target="_top", tooltip="The MPLS Transport Profile (MPLS-TP) supports static provisioning of transport paths via a Network Management System (NMS) and dynamic provisioning of transport paths via a control plane. This document provides the framework for MPLS-TP dynamic provisioning and covers control-plane addressing, routing, path computation, signaling, traffic engineering, and path recovery. MPLS-TP uses GMPLS as the control plane for MPLS-TP Label Switched Paths (LSPs). MPLS-TP also uses the pseudowire (PW) control plane for pseudowires. Management-plane functions are out of scope of this document. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network as defined by the ITU-T. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6373 -> rev_cites;
+  RFC6391 [label="RFC6391
+Flow-Aware Transport of Pseudowires over
+an MPLS Packet Switched Network
+2011", shape=ellipse, URL="RFC6391.html", target="_top", tooltip="Where the payload of a pseudowire comprises a number of distinct flows, it can be desirable to carry those flows over the Equal Cost Multiple Paths (ECMPs) that exist in the packet switched network. Most forwarding engines are able to generate a hash of the MPLS label stack and use this mechanism to balance MPLS flows over ECMPs. This document describes a method of identifying the flows, or flow groups, within pseudowires such that Label Switching Routers can balance flows at a finer granularity than individual pseudowires. The mechanism uses an additional label in the MPLS label stack. [STANDARDS-TRACK]"];
+  RFC6391 -> rev_cites;
+  RFC6576 [label="RFC6576
+IP Performance Metrics (IPPM) Standard
+Advancement Testing
+2012", shape=ellipse, URL="RFC6576.html", target="_top", tooltip="This document specifies tests to determine if multiple independent instantiations of a performance-metric RFC have implemented the specifications in the same way.  This is the performance-metric equivalent of interoperability, required to advance RFCs along the Standards Track.  Results from different implementations of metric RFCs will be collected under the same underlying network conditions and compared using statistical methods.  The goal is an evaluation of the metric RFC itself to determine whether its definitions are clear and unambiguous to implementors and therefore a candidate for advancement on the IETF Standards Track.  This document is an Internet Best Current Practice."];
+  RFC6576 -> rev_cites;
+  RFC6624 [label="RFC6624
+Layer 2 Virtual Private Networks Using
+BGP for Auto-Discovery and Signaling
+2012", shape=ellipse, URL="RFC6624.html", target="_top", tooltip="Layer 2 Virtual Private Networks (L2VPNs) based on Frame Relay or ATM circuits have been around a long time; more recently, Ethernet VPNs, including Virtual Private LAN Service, have become popular.  Traditional L2VPNs often required a separate Service Provider infrastructure for each type and yet another for the Internet and IP VPNs.  In addition, L2VPN provisioning was cumbersome.  This document presents a new approach to the problem of offering L2VPN services where the L2VPN customer's experience is virtually identical to that offered by traditional L2VPNs, but such that a Service Provider can maintain a single network for L2VPNs, IP VPNs, and the Internet, as well as a common provisioning methodology for all services.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6624 -> rev_cites;
+  RFC6658 [label="RFC6658
+Packet Pseudowire Encapsulation over an
+MPLS PSN
+2012", shape=ellipse, URL="RFC6658.html", target="_top", tooltip="This document describes a pseudowire mechanism that is used to transport a packet service over an MPLS PSN in the case where the client Label Switching Router (LSR) and the server Provider Edge equipments are co-resident in the same equipment.  This pseudowire mechanism may be used to carry all of the required layer 2 and layer 3 protocols between the pair of client LSRs. [STANDARDS-TRACK]"];
+  RFC6658 -> rev_cites;
+  RFC7079 [label="RFC7079
+The Pseudowire (PW) and Virtual Circuit
+Connectivity Verification (VCCV)
+Implementation Survey Results
+2013", shape=ellipse, URL="RFC7079.html", target="_top", tooltip="The IETF Pseudowire Emulation Edge-to-Edge (PWE3) working group has defined many encapsulations of various layer 1 and layer 2 service- specific PDUs and circuit data.  In most of these encapsulations, use of the Pseudowire (PW) Control Word is required.  However, there are several encapsulations for which the Control Word is optional, and this optionality has been seen in practice to possibly introduce interoperability concerns between multiple implementations of those encapsulations.  This survey of the Pseudowire / Virtual Circuit Connectivity Verification (VCCV) user community was conducted to determine implementation trends and the possibility of always mandating the Control Word."];
+  RFC7079 -> rev_cites;
+  RFC7080 [label="RFC7080
+Virtual Private LAN Service (VPLS)
+Interoperability with Provider Backbone
+Bridges
+2013", shape=ellipse, URL="RFC7080.html", target="_top", tooltip="The scalability of Hierarchical Virtual Private LAN Service (H-VPLS) with Ethernet access networks (RFC 4762) can be improved by incorporating Provider Backbone Bridge functionality in the VPLS access.  Provider Backbone Bridging has been standardized as IEEE 802.1ah-2008.  It aims to improve the scalability of Media Access Control (MAC) addresses and service instances in Provider Ethernet networks.  This document describes different interoperability scenarios where Provider Backbone Bridge functionality is used in H-VPLS with Ethernet or MPLS access network to attain better scalability in terms of number of customer MAC addresses and number of service instances.  The document also describes the scenarios and the mechanisms for incorporating Provider Backbone Bridge functionality within H-VPLS with existing Ethernet access and interoperability among them.  Furthermore, the document discusses the migration mechanisms and scenarios by which Provider Backbone Bridge functionality can be incorporated into H-VPLS with existing MPLS access."];
+  RFC7080 -> rev_cites;
+  RFC7173 [label="RFC7173
+Transparent Interconnection of Lots of
+Links (TRILL) Transport Using
+Pseudowires
+2014", shape=ellipse, URL="RFC7173.html", target="_top", tooltip="This document specifies how to interconnect a pair of Transparent Interconnection of Lots of Links (TRILL) switch ports using pseudowires under existing TRILL and Pseudowire Emulation End-to-End (PWE3) standards."];
+  RFC7173 -> rev_cites;
+  RFC7436 [label="RFC7436
+IP-Only LAN Service (IPLS)
+2015", shape=ellipse, URL="RFC7436.html", target="_top", tooltip="A Virtual Private LAN Service (VPLS) is used to interconnect systems across a wide-area or metropolitan-area network, making it appear that they are on a private LAN. The systems that are interconnected may themselves be LAN switches. If, however, they are IP hosts or IP routers, certain simplifications to the operation of the VPLS are possible. We call this simplified type of VPLS an IP-only LAN Service (IPLS). In an IPLS, as in a VPLS, LAN interfaces are run in promiscuous mode, and frames are forwarded based on their destination Media Access Control (MAC) addresses. However, the maintenance of the MAC forwarding tables is done via signaling, rather than via the MAC address learning procedures specified in the IEEE's Media Access Control (MAC) Bridges. This document specifies the protocol extensions and procedures for support of the IPLS service. The original intent was to provide an alternate solution to VPLS for those Provider Edge (PE) routers that were not capable of learning MAC addresses through data plane. This became a non-issue with newer hardware. The concepts put forth by this document are still valuable and are adopted in one form or other by newer work such as Ethernet VPN in L2VPN working group and possible data center applications. At this point, no further action is planned to update this document and it is published simply as a historic record of the ideas."];
+  RFC7436 -> rev_cites;
+  RFC7796 [label="RFC7796
+Ethernet-Tree (E-Tree) Support in
+Virtual Private LAN Service (VPLS)
+2016", shape=ellipse, URL="RFC7796.html", target="_top", tooltip="This document specifies a generic Virtual Private LAN Service (VPLS) solution, which uses VLANs to indicate root or leaf traffic to support Ethernet-Tree (E-Tree) services.  A VPLS Provider Edge (PE) model is illustrated as an example for the solution.  In the solution, E-Tree VPLS PEs are interconnected by Pseudowires (PWs), which carry the VLAN indicating the E-Tree attribute.  The MAC address-based Ethernet forwarding engine and the PW work in the same way as specified in RFC 4762 and RFC 4448, respectively.  A signaling mechanism is described to support E-Tree capability and VLAN mapping negotiation."];
+  RFC7796 -> rev_cites;
+  RFC8077 [label="RFC8077
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2017", shape=ellipse, URL="RFC8077.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDUs) and then transmitting them over pseudowires (PWs). It is also possible to use pseudowires to provide low-rate Time-Division Multiplexed and Synchronous Optical NETworking circuit emulation over an MPLS-enabled network. This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to the Label Distribution Protocol (LDP). Procedures for encapsulating Layer 2 PDUs are specified in other documents. This document is a rewrite of RFC 4447 for publication as an Internet Standard."];
+  RFC8077 -> rev_cites;
+  RFC8084 [label="RFC8084
+Network Transport Circuit Breakers
+2017", shape=ellipse, URL="RFC8084.html", target="_top", tooltip="This document explains what is meant by the term network transport Circuit Breaker.  It describes the need for Circuit Breakers (CBs) for network tunnels and applications when using non-congestion- controlled traffic and explains where CBs are, and are not, needed.  It also defines requirements for building a CB and the expected outcomes of using a CB within the Internet."];
+  RFC8084 -> rev_cites;
+  RFC8214 [label="RFC8214
+Virtual Private Wire Service Support in
+Ethernet VPN
+2017", shape=ellipse, URL="RFC8214.html", target="_top", tooltip="This document describes how Ethernet VPN (EVPN) can be used to support the Virtual Private Wire Service (VPWS) in MPLS/IP networks.  EVPN accomplishes the following for VPWS: provides Single-Active as well as All-Active multihoming with flow-based load-balancing, eliminates the need for Pseudowire (PW) signaling, and provides fast protection convergence upon node or link failure."];
+  RFC8214 -> rev_cites;
+  RFC8469 [label="RFC8469
+Recommendation to Use the Ethernet
+Control Word
+2018", shape=ellipse, URL="RFC8469.html", target="_top", tooltip="The pseudowire (PW) encapsulation of Ethernet, as defined in RFC 4448, specifies that the use of the control word (CW) is optional. In the absence of the CW, an Ethernet PW packet can be misidentified as an IP packet by a label switching router (LSR). This may lead to the selection of the wrong equal-cost multipath (ECMP) path for the packet, leading in turn to the misordering of packets. This problem has become more serious due to the deployment of equipment with Ethernet Media Access Control (MAC) addresses that start with 0x4 or 0x6. The use of the Ethernet PW CW addresses this problem. This document RECOMMENDS the use of the Ethernet PW CW in all but exceptional circumstances. This document updates RFC 4448."];
+  RFC8469 -> rev_cites;
+  RFC8964 [label="RFC8964
+Deterministic Networking (DetNet) Data
+Plane: MPLS
+2021", shape=ellipse, URL="RFC8964.html", target="_top", tooltip="This document specifies the Deterministic Networking (DetNet) data plane when operating over an MPLS Packet Switched Network.  It leverages existing pseudowire (PW) encapsulations and MPLS Traffic Engineering (MPLS-TE) encapsulations and mechanisms.  This document builds on the DetNet architecture and data plane framework."];
+  RFC8964 -> rev_cites;
+  RFC9291 [label="RFC9291
+A YANG Network Data Model for Layer 2
+VPNs
+2022", shape=ellipse, URL="RFC9291.html", target="_top", tooltip="This document defines an L2VPN Network Model (L2NM) that can be used to manage the provisioning of Layer 2 Virtual Private Network (L2VPN) services within a network (e.g., a service provider network). The L2NM complements the L2VPN Service Model (L2SM) by providing a network-centric view of the service that is internal to a service provider. The L2NM is particularly meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. Also, this document defines a YANG module to manage Ethernet segments and the initial versions of two IANA-maintained modules that include a set of identities of BGP Layer 2 encapsulation types and pseudowire types."];
+  RFC9291 -> rev_cites;
+  RFC9732 [label="RFC9732
+A Framework for NRP-Based Enhanced
+Virtual Private Networks
+2025", shape=ellipse, URL="RFC9732.html", target="_top", tooltip="This document describes a framework for Enhanced Virtual Private Networks (VPNs) based on Network Resource Partitions (NRPs) in order to support the needs of applications with specific traffic performance requirements (e.g., low latency, bounded jitter).  NRP-based enhanced VPNs leverage the VPN and Traffic Engineering (TE) technologies and add characteristics that specific services require beyond those provided by conventional VPNs.  Typically, an NRP-based enhanced VPN will be used to underpin network slicing, but it could also be of use in its own right providing enhanced connectivity services between customer sites.  This document also provides an overview of relevant technologies in different network layers and identifies some areas for potential new work."];
+  RFC9732 -> rev_cites;
+  RFC9801 [label="RFC9801
+Private Line Emulation over Packet
+Switched Networks
+2025", shape=ellipse, URL="RFC9801.html", target="_top", tooltip="This document expands the applicability of Virtual Private Wire Service (VPWS) bit-stream payloads beyond Time Division Multiplexing (TDM) signals and provides pseudowire transport with complete signal transparency over Packet Switched Networks (PSNs)."];
+  RFC9801 -> rev_cites;
+}

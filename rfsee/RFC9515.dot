@@ -1,0 +1,42 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9515 [label="RFC9515
+Revision to Registration Procedures for
+Multiple BMP Registries
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document updates RFC 7854, BGP Monitoring Protocol (BMP), by changing the registration procedures for several registries.  Specifically, any BMP registry with a range of 32768-65530 designated Specification Required has that range redesignated as First Come First Served."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9515;
+
+  obs [label="obsoletes", shape=box];
+  RFC9515 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9515 -> updates;
+  RFC7854 [label="RFC7854
+BGP Monitoring Protocol (BMP)
+2016", shape=ellipse, URL="RFC7854.html", target="_top", tooltip="This document defines the BGP Monitoring Protocol (BMP), which can be used to monitor BGP sessions.  BMP is intended to provide a convenient interface for obtaining route views.  Prior to the introduction of BMP, screen scraping was the most commonly used approach to obtaining such views.  The design goals are to keep BMP simple, useful, easily implemented, and minimally service affecting.  BMP is not suitable for use as a routing protocol."];
+  updates -> RFC7854;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9515;
+
+  cites [label="cites", shape=box];
+  RFC9515 -> cites;
+  RFC7854 [label="RFC7854
+BGP Monitoring Protocol (BMP)
+2016", shape=ellipse, URL="RFC7854.html", target="_top", tooltip="This document defines the BGP Monitoring Protocol (BMP), which can be used to monitor BGP sessions.  BMP is intended to provide a convenient interface for obtaining route views.  Prior to the introduction of BMP, screen scraping was the most commonly used approach to obtaining such views.  The design goals are to keep BMP simple, useful, easily implemented, and minimally service affecting.  BMP is not suitable for use as a routing protocol."];
+  cites -> RFC7854;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9515;
+}

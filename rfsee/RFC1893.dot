@@ -1,0 +1,46 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC1893 [label="RFC1893
+Enhanced Mail System Status Codes
+1996", shape=ellipse, fillcolor="#e8f0ff", tooltip="There currently is not a standard mechanism for the reporting of mail system errors except for the limited set offered by SMTP and the system specific text descriptions sent in mail messages.  There is a pressing need for a rich machine readable status code for use in delivery status notifications [DSN].  This document proposes a new set of status codes for this purpose. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC1893;
+  RFC3463 [label="RFC3463
+Enhanced Mail System Status Codes
+2003", shape=ellipse, URL="RFC3463.html", target="_top", tooltip="This document defines a set of extended status codes for use within the mail system for delivery status reports, tracking, and improved diagnostics.  In combination with other information provided in the Delivery Status Notification (DSN) delivery report, these codes facilitate media and language independent rendering of message delivery status. [STANDARDS-TRACK]"];
+  RFC3463 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC1893 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC1893 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC1893;
+
+  cites [label="cites", shape=box];
+  RFC1893 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC1893;
+  RFC2530 [label="RFC2530
+Indicating Supported Media Features
+Using Extensions to DSN and MDN
+1999", shape=ellipse, URL="RFC2530.html", target="_top", tooltip="This memo describes a format for generating Message Disposition Notifications and Delivery Status Notifications which contain such information. [STANDARDS-TRACK]"];
+  RFC2530 -> rev_cites;
+  RFC2532 [label="RFC2532
+Extended Facsimile Using Internet Mail
+1999", shape=ellipse, URL="RFC2532.html", target="_top", tooltip="This document describes extensions to Simple Mode of Facsimile Using Internet Mail, and describes additional features, including transmission of enhanced document characteristics (higher resolution, color) and confirmation of delivery and processing. [STANDARDS-TRACK]"];
+  RFC2532 -> rev_cites;
+  RFC5248 [label="RFC5248
+A Registry for SMTP Enhanced Mail System
+Status Codes
+2008", shape=ellipse, URL="RFC5248.html", target="_top", tooltip="The specification for enhanced mail system status codes, RFC 3463, establishes a new code model and lists a collection of status codes.  While it anticipated that more codes would be added over time, it did not provide an explicit mechanism for registering and tracking those codes.  This document specifies an IANA registry for mail system enhanced status codes, and initializes that registry with the codes so far established in published standards-track documents, as well as other codes that have become established in the industry.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC5248 -> rev_cites;
+}

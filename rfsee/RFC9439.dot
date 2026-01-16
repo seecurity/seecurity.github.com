@@ -1,0 +1,160 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9439 [label="RFC9439
+Application-Layer Traffic Optimization
+(ALTO) Performance Cost Metrics
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="The cost metric is a basic concept in Application-Layer Traffic
+Optimization (ALTO), and different applications may use different
+types of cost metrics. Since the ALTO base protocol (RFC 7285)
+defines only a single cost metric (namely, the generic routingcost
+metric), if an application wants to issue a cost map or an endpoint
+cost request in order to identify a resource provider that offers
+better performance metrics (e.g., lower delay or loss rate), the base
+protocol does not define the cost metric to be used. This document addresses this issue by extending the specification to
+provide a variety of network performance metrics, including network
+delay, delay variation (a.k.a. jitter), packet loss rate, hop count,
+and bandwidth. There are multiple sources (e.g., estimations based on measurements
+or a Service Level Agreement) available for deriving a performance
+metric. This document introduces an additional cost-context field
+to the ALTO cost-type field to convey the source of a performance
+metric."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9439;
+
+  obs [label="obsoletes", shape=box];
+  RFC9439 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9439 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9439;
+
+  cites [label="cites", shape=box];
+  RFC9439 -> cites;
+  RFC7285 [label="RFC7285
+Application-Layer Traffic Optimization
+(ALTO) Protocol
+2014", shape=ellipse, URL="RFC7285.html", target="_top", tooltip="Applications using the Internet already have access to some topology information of Internet Service Provider (ISP) networks. For example, views to Internet routing tables at Looking Glass servers are available and can be practically downloaded to many network application clients. What is missing is knowledge of the underlying network topologies from the point of view of ISPs. In other words, what an ISP prefers in terms of traffic optimization -- and a way to distribute it. The Application-Layer Traffic Optimization (ALTO) services defined in this document provide network information (e.g., basic network location structure and preferences of network paths) with the goal of modifying network resource consumption patterns while maintaining or improving application performance. The basic information of ALTO is based on abstract maps of a network. These maps provide a simplified view, yet enough information about a network for applications to effectively utilize them. Additional services are built on top of the maps. This document describes a protocol implementing the ALTO services. Although the ALTO services would primarily be provided by ISPs, other entities, such as content service providers, could also provide ALTO services. Applications that could use the ALTO services are those that have a choice to which end points to connect. Examples of such applications are peer-to-peer (P2P) and content delivery networks."];
+  cites -> RFC7285;
+  RFC7471 [label="RFC7471
+OSPF Traffic Engineering (TE) Metric
+Extensions
+2015", shape=ellipse, URL="RFC7471.html", target="_top", tooltip="In certain networks, such as, but not limited to, financial information networks (e.g., stock market data providers), network performance information (e.g., link propagation delay) is becoming critical to data path selection. This document describes common extensions to RFC 3630 Traffic Engineering (TE) Extensions to OSPF Version 2 and RFC 5329 Traffic Engineering Extensions to OSPF Version 3 to enable network performance information to be distributed in a scalable fashion. The information distributed using OSPF TE Metric Extensions can then be used to make path selection decisions based on network performance. Note that this document only covers the mechanisms by which network performance information is distributed. The mechanisms for measuring network performance information or using that information, once distributed, are outside the scope of this document."];
+  cites -> RFC7471;
+  RFC8570 [label="RFC8570
+IS-IS Traffic Engineering (TE) Metric
+Extensions
+2019", shape=ellipse, URL="RFC8570.html", target="_top", tooltip="In certain networks, such as, but not limited to, financial information networks (e.g., stock market data providers), network-performance criteria (e.g., latency) are becoming as critical to data-path selection as other metrics. This document describes extensions to IS-IS Traffic Engineering Extensions (RFC 5305). These extensions provide a way to distribute and collect network-performance information in a scalable fashion. The information distributed using IS-IS TE Metric Extensions can then be used to make path-selection decisions based on network performance. Note that this document only covers the mechanisms with which network-performance information is distributed. The mechanisms for measuring network performance or acting on that information, once distributed, are outside the scope of this document. This document obsoletes RFC 7810."];
+  cites -> RFC8570;
+  RFC8571 [label="RFC8571
+BGP - Link State (BGP-LS) Advertisement
+of IGP Traffic Engineering Performance
+Metric Extensions
+2019", shape=ellipse, URL="RFC8571.html", target="_top", tooltip="This document defines new BGP - Link State (BGP-LS) TLVs in order to carry the IGP Traffic Engineering Metric Extensions defined in the IS-IS and OSPF protocols."];
+  cites -> RFC8571;
+  RFC9438 [label="RFC9438
+CUBIC for Fast and Long-Distance
+Networks
+2023", shape=ellipse, URL="RFC9438.html", target="_top", tooltip="CUBIC is a standard TCP congestion control algorithm that uses a cubic function instead of a linear congestion window increase function to improve scalability and stability over fast and long-distance networks. CUBIC has been adopted as the default TCP congestion control algorithm by the Linux, Windows, and Apple stacks. This document updates the specification of CUBIC to include algorithmic improvements based on these implementations and recent academic work. Based on the extensive deployment experience with CUBIC, this document also moves the specification to the Standards Track and obsoletes RFC 8312. This document also updates RFC 5681, to allow for CUBIC's occasionally more aggressive sending behavior."];
+  cites -> RFC9438;
+  RFC3630 [label="RFC3630
+Traffic Engineering (TE) Extensions to
+OSPF Version 2
+2003", shape=ellipse, URL="RFC3630.html", target="_top", tooltip="This document describes extensions to the OSPF protocol version 2 to support intra-area Traffic Engineering (TE), using Opaque Link State Advertisements."];
+  cites -> RFC3630;
+  RFC5305 [label="RFC5305
+IS-IS Extensions for Traffic Engineering
+2008", shape=ellipse, URL="RFC5305.html", target="_top", tooltip="This document describes extensions to the Intermediate System to Intermediate System (IS-IS) protocol to support Traffic Engineering (TE).  This document extends the IS-IS protocol by specifying new information that an Intermediate System (router) can place in Link State Protocol Data Units (LSP).  This information describes additional details regarding the state of the network that are useful for traffic engineering computations. [STANDARDS-TRACK]"];
+  cites -> RFC5305;
+  RFC7971 [label="RFC7971
+Application-Layer Traffic Optimization
+(ALTO) Deployment Considerations
+2016", shape=ellipse, URL="RFC7971.html", target="_top", tooltip="Many Internet applications are used to access resources such as pieces of information or server processes that are available in several equivalent replicas on different hosts.  This includes, but is not limited to, peer-to-peer file sharing applications.  The goal of Application-Layer Traffic Optimization (ALTO) is to provide guidance to applications that have to select one or several hosts from a set of candidates capable of providing a desired resource.  This memo discusses deployment-related issues of ALTO.  It addresses different use cases of ALTO such as peer-to-peer file sharing and Content Delivery Networks (CDNs) and presents corresponding examples.  The document also includes recommendations for network administrators and application designers planning to deploy ALTO, such as recommendations on how to generate ALTO map information."];
+  cites -> RFC7971;
+  RFC9000 [label="RFC9000
+QUIC: A UDP-Based Multiplexed and Secure
+Transport
+2021", shape=ellipse, URL="RFC9000.html", target="_top", tooltip="This document defines the core of the QUIC transport protocol.  QUIC provides applications with flow-controlled streams for structured communication, low-latency connection establishment, and network path migration.  QUIC includes security measures that ensure confidentiality, integrity, and availability in a range of deployment circumstances.  Accompanying documents describe the integration of TLS for key negotiation, loss detection, and an exemplary congestion control algorithm."];
+  cites -> RFC9000;
+  RFC8259 [label="RFC8259
+The JavaScript Object Notation (JSON)
+Data Interchange Format
+2017", shape=ellipse, URL="RFC8259.html", target="_top", tooltip="JavaScript Object Notation (JSON) is a lightweight, text-based, language-independent data interchange format. It was derived from the ECMAScript Programming Language Standard. JSON defines a small set of formatting rules for the portable representation of structured data. This document removes inconsistencies with other specifications of JSON, repairs specification errors, and offers experience-based interoperability guidance."];
+  cites -> RFC8259;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6390 [label="RFC6390
+Guidelines for Considering New
+Performance Metric Development
+2011", shape=ellipse, URL="RFC6390.html", target="_top", tooltip="This document describes a framework and a process for developing Performance Metrics of protocols and applications transported over IETF-specified protocols.  These metrics can be used to characterize traffic on live networks and services.  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6390;
+  RFC5357 [label="RFC5357
+A Two-Way Active Measurement Protocol
+(TWAMP)
+2008", shape=ellipse, URL="RFC5357.html", target="_top", tooltip="The One-way Active Measurement Protocol (OWAMP), specified in RFC 4656, provides a common protocol for measuring one-way metrics between network devices.  OWAMP can be used bi-directionally to measure one-way metrics in both directions between two network elements.  However, it does not accommodate round-trip or two-way measurements.  This memo specifies a Two-Way Active Measurement Protocol (TWAMP), based on the OWAMP, that adds two-way or round-trip measurement capabilities.  The TWAMP measurement architecture is usually comprised of two hosts with specific roles, and this allows for some protocol simplifications, making it an attractive alternative in some circumstances. [STANDARDS-TRACK]"];
+  cites -> RFC5357;
+  RFC7679 [label="RFC7679
+A One-Way Delay Metric for IP
+Performance Metrics (IPPM)
+2016", shape=ellipse, URL="RFC7679.html", target="_top", tooltip="This memo defines a metric for one-way delay of packets across Internet paths.  It builds on notions introduced and discussed in the IP Performance Metrics (IPPM) Framework document, RFC 2330; the reader is assumed to be familiar with that document.  This memo makes RFC 2679 obsolete."];
+  cites -> RFC7679;
+  RFC2330 [label="RFC2330
+Framework for IP Performance Metrics
+1998", shape=ellipse, URL="RFC2330.html", target="_top", tooltip="The purpose of this memo is to define a general framework for particular metrics to be developed by the IETF's IP Performance Metrics effort.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  cites -> RFC2330;
+  RFC2681 [label="RFC2681
+A Round-trip Delay Metric for IPPM
+1999", shape=ellipse, URL="RFC2681.html", target="_top", tooltip="This memo defines a metric for round-trip delay of packets across Internet paths. [STANDARDS-TRACK]"];
+  cites -> RFC2681;
+  RFC3393 [label="RFC3393
+IP Packet Delay Variation Metric for IP
+Performance Metrics (IPPM)
+2002", shape=ellipse, URL="RFC3393.html", target="_top", tooltip="None"];
+  cites -> RFC3393;
+  RFC8895 [label="RFC8895
+Application-Layer Traffic Optimization
+(ALTO) Incremental Updates Using Server-
+Sent Events (SSE)
+2020", shape=ellipse, URL="RFC8895.html", target="_top", tooltip="The Application-Layer Traffic Optimization (ALTO) protocol (RFC 7285) provides network-related information, called network information resources, to client applications so that clients can make informed decisions in utilizing network resources.  This document presents a mechanism to allow an ALTO server to push updates to ALTO clients to achieve two benefits: (1) updates can be incremental, in that if only a small section of an information resource changes, the ALTO server can send just the changes and (2) updates can be immediate, in that the ALTO server can send updates as soon as they are available."];
+  cites -> RFC8895;
+  RFC9110 [label="RFC9110
+HTTP Semantics
+2022", shape=ellipse, URL="RFC9110.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems. This document describes the overall architecture of HTTP, establishes common terminology, and defines aspects of the protocol that are shared by all versions. In this definition are core protocol elements, extensibility mechanisms, and the http and https Uniform Resource Identifier (URI) schemes. This document updates RFC 3864 and obsoletes RFCs 2818, 7231, 7232, 7233, 7235, 7538, 7615, 7694, and portions of 7230."];
+  cites -> RFC9110;
+  RFC8446 [label="RFC8446
+The Transport Layer Security (TLS)
+Protocol Version 1.3
+2018", shape=ellipse, URL="RFC8446.html", target="_top", tooltip="This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery. This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations."];
+  cites -> RFC8446;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9439;
+  RFC9473 [label="RFC9473
+A Vocabulary of Path Properties
+2023", shape=ellipse, URL="RFC9473.html", target="_top", tooltip="Path properties express information about paths across a network and the services provided via such paths.  In a path-aware network, path properties may be fully or partially available to entities such as endpoints.  This document defines and categorizes path properties.  Furthermore, the document identifies several path properties that might be useful to endpoints or other entities, e.g., for selecting between paths or for invoking some of the provided services.  This document is a product of the Path Aware Networking Research Group (PANRG)."];
+  RFC9473 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+}

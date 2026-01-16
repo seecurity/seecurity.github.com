@@ -1,0 +1,229 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5761 [label="RFC5761
+Multiplexing RTP Data and Control
+Packets on a Single Port
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo discusses issues that arise when multiplexing RTP data packets and RTP Control Protocol (RTCP) packets on a single UDP port.  It updates RFC 3550 and RFC 3551 to describe when such multiplexing is and is not appropriate, and it explains how the Session Description Protocol (SDP) can be used to signal multiplexed sessions. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5761;
+
+  obs [label="obsoletes", shape=box];
+  RFC5761 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5761 -> updates;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  updates -> RFC3550;
+  RFC3551 [label="RFC3551
+RTP Profile for Audio and Video
+Conferences with Minimal Control
+2003", shape=ellipse, URL="RFC3551.html", target="_top", tooltip="This document describes a profile called RTP/AVP for the use of the real-time transport protocol (RTP), version 2, and the associated control protocol, RTCP, within audio and video multiparticipant conferences with minimal control.  It provides interpretations of generic fields within the RTP specification suitable for audio and video conferences.  In particular, this document defines a set of default mappings from payload type numbers to encodings.  This document also describes how audio and video data may be carried within RTP.  It defines a set of standard encodings and their names when used within RTP.  The descriptions provide pointers to reference implementations and the detailed standards.  This document is meant as an aid for implementors of audio, video and other real-time multimedia applications.  This memorandum obsoletes RFC 1890.  It is mostly backwards-compatible except for functions removed because two interoperable implementations were not found.  The additions to RFC 1890 codify existing practice in the use of payload formats under this profile and include new payload formats defined since RFC 1890 was published. [STANDARDS-TRACK]"];
+  updates -> RFC3551;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5761;
+  RFC8035 [label="RFC8035
+Session Description Protocol (SDP)
+Offer/Answer Clarifications for RTP/RTCP
+Multiplexing
+2016", shape=ellipse, URL="RFC8035.html", target="_top", tooltip="This document updates RFC 5761 by clarifying the SDP offer/answer negotiation of RTP and RTP Control Protocol (RTCP) multiplexing.  It makes it clear that an answerer can only include an a=rtcp-mux attribute in a Session Description Protocol (SDP) answer if the associated SDP offer contained the attribute."];
+  RFC8035 -> updated_by;
+  RFC8858 [label="RFC8858
+Indicating Exclusive Support of RTP and
+RTP Control Protocol (RTCP) Multiplexing
+Using the Session Description Protocol
+(SDP)
+2021", shape=ellipse, URL="RFC8858.html", target="_top", tooltip="This document defines a new Session Description Protocol (SDP) media-level attribute, 'rtcp-mux-only', that can be used by an endpoint to indicate exclusive support of RTP and RTP Control Protocol (RTCP) multiplexing.  The document also updates RFC 5761 by clarifying that an offerer can use a mechanism to indicate that it is not able to send and receive RTCP on separate ports."];
+  RFC8858 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5761 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5761;
+  RFC5245 [label="RFC5245
+Interactive Connectivity Establishment
+(ICE): A Protocol for Network Address
+Translator (NAT) Traversal for
+Offer/Answer Protocols
+2010", shape=ellipse, URL="RFC5245.html", target="_top", tooltip="This document describes a protocol for Network Address Translator (NAT) traversal for UDP-based multimedia sessions established with the offer/answer model.  This protocol is called Interactive Connectivity Establishment (ICE).  ICE makes use of the Session Traversal Utilities for NAT (STUN) protocol and its extension, Traversal Using Relay NAT (TURN).  ICE can be used by any protocol utilizing the offer/answer model, such as the Session Initiation Protocol (SIP). [STANDARDS-TRACK]"];
+  RFC5245 -> rev_cites;
+  RFC5763 [label="RFC5763
+Framework for Establishing a Secure
+Real-time Transport Protocol (SRTP)
+Security Context Using Datagram
+Transport Layer Security (DTLS)
+2010", shape=ellipse, URL="RFC5763.html", target="_top", tooltip="This document specifies how to use the Session Initiation Protocol (SIP) to establish a Secure Real-time Transport Protocol (SRTP) security context using the Datagram Transport Layer Security (DTLS) protocol.  It describes a mechanism of transporting a fingerprint attribute in the Session Description Protocol (SDP) that identifies the key that will be presented during the DTLS handshake.  The key exchange travels along the media path as opposed to the signaling path.  The SIP Identity mechanism can be used to protect the integrity of the fingerprint attribute from modification by intermediate proxies. [STANDARDS-TRACK]"];
+  RFC5763 -> rev_cites;
+  RFC5764 [label="RFC5764
+Datagram Transport Layer Security (DTLS)
+Extension to Establish Keys for the
+Secure Real-time Transport Protocol
+(SRTP)
+2010", shape=ellipse, URL="RFC5764.html", target="_top", tooltip="This document describes a Datagram Transport Layer Security (DTLS) extension to establish keys for Secure RTP (SRTP) and Secure RTP Control Protocol (SRTCP) flows.  DTLS keying happens on the media path, independent of any out-of-band signalling channel present. [STANDARDS-TRACK]"];
+  RFC5764 -> rev_cites;
+  RFC5968 [label="RFC5968
+Guidelines for Extending the RTP Control
+Protocol (RTCP)
+2010", shape=ellipse, URL="RFC5968.html", target="_top", tooltip="The RTP Control Protocol (RTCP) is used along with the Real-time Transport Protocol (RTP) to provide a control channel between media senders and receivers.  This allows constructing a feedback loop to enable application adaptation and monitoring, among other uses.  The basic reporting mechanisms offered by RTCP are generic, yet quite powerful and suffice to cover a range of uses.  This document provides guidelines on extending RTCP if those basic mechanisms prove insufficient.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5968 -> rev_cites;
+  RFC6128 [label="RFC6128
+RTP Control Protocol (RTCP) Port for
+Source-Specific Multicast (SSM) Sessions
+2011", shape=ellipse, URL="RFC6128.html", target="_top", tooltip="The Session Description Protocol (SDP) has an attribute that allows RTP applications to specify an address and a port associated with the RTP Control Protocol (RTCP) traffic.  In RTP-based source-specific multicast (SSM) sessions, the same attribute is used to designate the address and the RTCP port of the Feedback Target in the SDP description.  However, the RTCP port associated with the SSM session itself cannot be specified by the same attribute to avoid ambiguity, and thus, is required to be derived from the m= line of the media description.  Deriving the RTCP port from the m= line imposes an unnecessary restriction.  This document removes this restriction by introducing a new SDP attribute. [STANDARDS-TRACK]"];
+  RFC6128 -> rev_cites;
+  RFC6263 [label="RFC6263
+Application Mechanism for Keeping Alive
+the NAT Mappings Associated with RTP /
+RTP Control Protocol (RTCP) Flows
+2011", shape=ellipse, URL="RFC6263.html", target="_top", tooltip="This document lists the different mechanisms that enable applications using the Real-time Transport Protocol (RTP) and the RTP Control Protocol (RTCP) to keep their RTP Network Address Translator (NAT) mappings alive.  It also makes a recommendation for a preferred mechanism.  This document is not applicable to Interactive Connectivity Establishment (ICE) agents. [STANDARDS-TRACK]"];
+  RFC6263 -> rev_cites;
+  RFC6284 [label="RFC6284
+Port Mapping between Unicast and
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6284.html", target="_top", tooltip="This document presents a port mapping solution that allows RTP receivers to choose their own ports for an auxiliary unicast session in RTP applications using both unicast and multicast services.  The solution provides protection against denial-of-service or packet amplification attacks that could be used to cause one or more RTP packets to be sent to a victim client. [STANDARDS-TRACK]"];
+  RFC6284 -> rev_cites;
+  RFC6285 [label="RFC6285
+Unicast-Based Rapid Acquisition of
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6285.html", target="_top", tooltip="When an RTP receiver joins a multicast session, it may need to acquire and parse certain Reference Information before it can process any data sent in the multicast session. Depending on the join time, length of the Reference Information repetition (or appearance) interval, size of the Reference Information, and the application and transport properties, the time lag before an RTP receiver can usefully consume the multicast data, which we refer to as the Acquisition Delay, varies and can be large. This is an undesirable phenomenon for receivers that frequently switch among different multicast sessions, such as video broadcasts. In this document, we describe a method using the existing RTP and RTP Control Protocol (RTCP) machinery that reduces the acquisition delay. In this method, an auxiliary unicast RTP session carrying the Reference Information to the receiver precedes or accompanies the multicast stream. This unicast RTP flow can be transmitted at a faster than natural bitrate to further accelerate the acquisition. The motivating use case for this capability is multicast applications that carry real-time compressed audio and video. However, this method can also be used in other types of multicast applications where the acquisition delay is long enough to be a problem. [STANDARDS-TRACK]"];
+  RFC6285 -> rev_cites;
+  RFC6314 [label="RFC6314
+NAT Traversal Practices for Client-
+Server SIP
+2011", shape=ellipse, URL="RFC6314.html", target="_top", tooltip="Traversal of the Session Initiation Protocol (SIP) and the sessions it establishes through Network Address Translators (NATs) is a complex problem.  Currently, there are many deployment scenarios and traversal mechanisms for media traffic.  This document provides concrete recommendations and a unified method for NAT traversal as well as documents corresponding flows.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6314 -> rev_cites;
+  RFC6773 [label="RFC6773
+DCCP-UDP: A Datagram Congestion Control
+Protocol UDP Encapsulation for NAT
+Traversal
+2012", shape=ellipse, URL="RFC6773.html", target="_top", tooltip="This document specifies an alternative encapsulation of the Datagram Congestion Control Protocol (DCCP), referred to as DCCP-UDP.  This encapsulation allows DCCP to be carried through the current generation of Network Address Translation (NAT) middleboxes without modification of those middleboxes.  This document also updates the Session Description Protocol (SDP) information for DCCP defined in RFC 5762. [STANDARDS-TRACK]"];
+  RFC6773 -> rev_cites;
+  RFC6947 [label="RFC6947
+The Session Description Protocol (SDP)
+Alternate Connectivity (ALTC) Attribute
+2013", shape=ellipse, URL="RFC6947.html", target="_top", tooltip="This document proposes a mechanism that allows the same SDP offer to carry multiple IP addresses of different address families (e.g., IPv4 and IPv6). The proposed attribute, the altc attribute, solves the backward-compatibility problem that plagued Alternative Network Address Types (ANAT) due to their syntax. The proposed solution is applicable to scenarios where connectivity checks are not required. If connectivity checks are required, Interactive Connectivity Establishment (ICE), as specified in RFC 5245, provides such a solution."];
+  RFC6947 -> rev_cites;
+  RFC7657 [label="RFC7657
+Differentiated Services (Diffserv) and
+Real-Time Communication
+2015", shape=ellipse, URL="RFC7657.html", target="_top", tooltip="This memo describes the interaction between Differentiated Services (Diffserv) network quality-of-service (QoS) functionality and real- time network communication, including communication based on the Real-time Transport Protocol (RTP).  Diffserv is based on network nodes applying different forwarding treatments to packets whose IP headers are marked with different Diffserv Codepoints (DSCPs).  WebRTC applications, as well as some conferencing applications, have begun using the Session Description Protocol (SDP) bundle negotiation mechanism to send multiple traffic streams with different QoS requirements using the same network 5-tuple.  The results of using multiple DSCPs to obtain different QoS treatments within a single network 5-tuple have transport protocol interactions, particularly with congestion control functionality (e.g., reordering).  In addition, DSCP markings may be changed or removed between the traffic source and destination.  This memo covers the implications of these Diffserv aspects for real-time network communication, including WebRTC."];
+  RFC7657 -> rev_cites;
+  RFC7825 [label="RFC7825
+A Network Address Translator (NAT)
+Traversal Mechanism for Media Controlled
+by the Real-Time Streaming Protocol
+(RTSP)
+2016", shape=ellipse, URL="RFC7825.html", target="_top", tooltip="This document defines a solution for Network Address Translation (NAT) traversal for datagram-based media streams set up and controlled with the Real-Time Streaming Protocol version 2 (RTSP 2.0).  It uses Interactive Connectivity Establishment (ICE) adapted to use RTSP as a signaling channel, defining the necessary RTSP extensions and procedures."];
+  RFC7825 -> rev_cites;
+  RFC7826 [label="RFC7826
+Real-Time Streaming Protocol Version 2.0
+2016", shape=ellipse, URL="RFC7826.html", target="_top", tooltip="This memorandum defines the Real-Time Streaming Protocol (RTSP) version 2.0, which obsoletes RTSP version 1.0 defined in RFC 2326. RTSP is an application-layer protocol for the setup and control of the delivery of data with real-time properties. RTSP provides an extensible framework to enable controlled, on-demand delivery of real-time data, such as audio and video. Sources of data can include both live data feeds and stored clips. This protocol is intended to control multiple data delivery sessions; provide a means for choosing delivery channels such as UDP, multicast UDP, and TCP; and provide a means for choosing delivery mechanisms based upon RTP (RFC 3550)."];
+  RFC7826 -> rev_cites;
+  RFC7866 [label="RFC7866
+Session Recording Protocol
+2016", shape=ellipse, URL="RFC7866.html", target="_top", tooltip="This document specifies the use of the Session Initiation Protocol (SIP), the Session Description Protocol (SDP), and the Real-time Transport Protocol (RTP) for delivering real-time media and metadata from a Communication Session (CS) to a recording device.  The Session Recording Protocol specifies the use of SIP, SDP, and RTP to establish a Recording Session (RS) between the Session Recording Client (SRC), which is on the path of the CS, and a Session Recording Server (SRS) at the recording device.  This document considers only active recording, where the SRC purposefully streams media to an SRS and all participating user agents (UAs) are notified of the recording.  Passive recording, where a recording device detects media directly from the network (e.g., using port-mirroring techniques), is outside the scope of this document.  In addition, lawful intercept is outside the scope of this document."];
+  RFC7866 -> rev_cites;
+  RFC7879 [label="RFC7879
+DTLS-SRTP Handling in SIP Back-to-Back
+User Agents
+2016", shape=ellipse, URL="RFC7879.html", target="_top", tooltip="Session Initiation Protocol (SIP) Back-to-Back User Agents (B2BUAs) exist on the signaling and media paths between the endpoints.  This document describes the behavior of B2BUAs when Secure Real-time Transport (SRTP) security context is set up with the Datagram Transport Layer Security (DTLS) protocol."];
+  RFC7879 -> rev_cites;
+  RFC8035 [label="RFC8035
+Session Description Protocol (SDP)
+Offer/Answer Clarifications for RTP/RTCP
+Multiplexing
+2016", shape=ellipse, URL="RFC8035.html", target="_top", tooltip="This document updates RFC 5761 by clarifying the SDP offer/answer negotiation of RTP and RTP Control Protocol (RTCP) multiplexing.  It makes it clear that an answerer can only include an a=rtcp-mux attribute in a Session Description Protocol (SDP) answer if the associated SDP offer contained the attribute."];
+  RFC8035 -> rev_cites;
+  RFC8079 [label="RFC8079
+Guidelines for End-to-End Support of the
+RTP Control Protocol (RTCP) in Back-to-
+Back User Agents (B2BUAs)
+2017", shape=ellipse, URL="RFC8079.html", target="_top", tooltip="SIP Back-to-Back User Agents (B2BUAs) are often designed to also be on the media path, rather than just to intercept signalling. This means that B2BUAs often implement an RTP or RTP Control Protocol (RTCP) stack as well, thus leading to separate multimedia sessions that the B2BUA correlates and bridges together. If not disciplined, this behaviour can severely impact the communication experience, especially when statistics and feedback information contained in RTCP messages get lost because of mismatches in the reported data. This document defines the proper behaviour B2BUAs should follow when acting on both the signalling plane and media plane in order to preserve the end-to-end functionality of RTCP."];
+  RFC8079 -> rev_cites;
+  RFC8445 [label="RFC8445
+Interactive Connectivity Establishment
+(ICE): A Protocol for Network Address
+Translator (NAT) Traversal
+2018", shape=ellipse, URL="RFC8445.html", target="_top", tooltip="This document describes a protocol for Network Address Translator (NAT) traversal for UDP-based communication. This protocol is called Interactive Connectivity Establishment (ICE). ICE makes use of the Session Traversal Utilities for NAT (STUN) protocol and its extension, Traversal Using Relay NAT (TURN). This document obsoletes RFC 5245."];
+  RFC8445 -> rev_cites;
+  RFC8825 [label="RFC8825
+Overview: Real-Time Protocols for
+Browser-Based Applications
+2021", shape=ellipse, URL="RFC8825.html", target="_top", tooltip="This document gives an overview and context of a protocol suite intended for use with real-time applications that can be deployed in browsers -- real-time communication on the Web. It intends to serve as a starting and coordination point to make sure that (1) all the parts that are needed to achieve this goal are findable and (2) the parts that belong in the Internet protocol suite are fully specified and on the right publication track. This document is an applicability statement -- it does not itself specify any protocol, but it specifies which other specifications implementations are supposed to follow to be compliant with Web Real-Time Communication (WebRTC)."];
+  RFC8825 -> rev_cites;
+  RFC8829 [label="RFC8829
+JavaScript Session Establishment
+Protocol (JSEP)
+2021", shape=ellipse, URL="RFC8829.html", target="_top", tooltip="This document describes the mechanisms for allowing a JavaScript application to control the signaling plane of a multimedia session via the interface specified in the W3C RTCPeerConnection API and discusses how this relates to existing signaling protocols."];
+  RFC8829 -> rev_cites;
+  RFC8830 [label="RFC8830
+WebRTC MediaStream Identification in the
+Session Description Protocol
+2021", shape=ellipse, URL="RFC8830.html", target="_top", tooltip="This document specifies a Session Description Protocol (SDP) grouping mechanism for RTP media streams that can be used to specify relations between media streams. This mechanism is used to signal the association between the SDP concept of media description and the Web Real-Time Communication (WebRTC) concept of MediaStream/MediaStreamTrack using SDP signaling."];
+  RFC8830 -> rev_cites;
+  RFC8834 [label="RFC8834
+Media Transport and Use of RTP in WebRTC
+2021", shape=ellipse, URL="RFC8834.html", target="_top", tooltip="The framework for Web Real-Time Communication (WebRTC) provides support for direct interactive rich communication using audio, video, text, collaboration, games, etc.  between two peers' web browsers.  This memo describes the media transport aspects of the WebRTC framework.  It specifies how the Real-time Transport Protocol (RTP) is used in the WebRTC context and gives requirements for which RTP features, profiles, and extensions need to be supported."];
+  RFC8834 -> rev_cites;
+  RFC8840 [label="RFC8840
+A Session Initiation Protocol (SIP)
+Usage for Incremental Provisioning of
+Candidates for the Interactive
+Connectivity Establishment (Trickle ICE)
+2021", shape=ellipse, URL="RFC8840.html", target="_top", tooltip="The Interactive Connectivity Establishment (ICE) protocol describes a Network Address Translator (NAT) traversal mechanism for UDP-based multimedia sessions established with the Offer/Answer model. The ICE extension for Incremental Provisioning of Candidates (Trickle ICE) defines a mechanism that allows ICE Agents to shorten session establishment delays by making the candidate gathering and connectivity checking phases of ICE non-blocking and by executing them in parallel. This document defines usage semantics for Trickle ICE with the Session Initiation Protocol (SIP). The document also defines a new SIP Info Package to support this usage together with the corresponding media type. Additionally, a new Session Description Protocol (SDP) end-of-candidates attribute and a new SIP option tag trickle-ice are defined."];
+  RFC8840 -> rev_cites;
+  RFC8843 [label="RFC8843
+Negotiating Media Multiplexing Using the
+Session Description Protocol (SDP)
+2021", shape=ellipse, URL="RFC8843.html", target="_top", tooltip="This specification defines a new Session Description Protocol (SDP) Grouping Framework extension called 'BUNDLE'. The extension can be used with the SDP offer/answer mechanism to negotiate the usage of a single transport (5-tuple) for sending and receiving media described by multiple SDP media descriptions (m= sections). Such transport is referred to as a BUNDLE transport, and the media is referred to as bundled media. The m= sections that use the BUNDLE transport form a BUNDLE group. This specification defines a new RTP Control Protocol (RTCP) Source Description (SDES) item and a new RTP header extension. This specification updates RFCs 3264, 5888, and 7941."];
+  RFC8843 -> rev_cites;
+  RFC8848 [label="RFC8848
+Session Signaling for Controlling
+Multiple Streams for Telepresence (CLUE)
+2021", shape=ellipse, URL="RFC8848.html", target="_top", tooltip="This document is about Controlling Multiple Streams for Telepresence (CLUE) signaling.  It specifies how the CLUE protocol and the CLUE data channel are used in conjunction with each other and with existing signaling mechanisms, such as SIP and the Session Description Protocol (SDP), to produce a telepresence call."];
+  RFC8848 -> rev_cites;
+  RFC8858 [label="RFC8858
+Indicating Exclusive Support of RTP and
+RTP Control Protocol (RTCP) Multiplexing
+Using the Session Description Protocol
+(SDP)
+2021", shape=ellipse, URL="RFC8858.html", target="_top", tooltip="This document defines a new Session Description Protocol (SDP) media-level attribute, 'rtcp-mux-only', that can be used by an endpoint to indicate exclusive support of RTP and RTP Control Protocol (RTCP) multiplexing.  The document also updates RFC 5761 by clarifying that an offerer can use a mechanism to indicate that it is not able to send and receive RTCP on separate ports."];
+  RFC8858 -> rev_cites;
+  RFC8859 [label="RFC8859
+A Framework for Session Description
+Protocol (SDP) Attributes When
+Multiplexing
+2021", shape=ellipse, URL="RFC8859.html", target="_top", tooltip="The purpose of this specification is to provide a framework for analyzing the multiplexing characteristics of Session Description Protocol (SDP) attributes when SDP is used to negotiate the usage of a single 5-tuple for sending and receiving media associated with multiple media descriptions. This specification also categorizes the existing SDP attributes based on the framework described herein."];
+  RFC8859 -> rev_cites;
+  RFC8872 [label="RFC8872
+Guidelines for Using the Multiplexing
+Features of RTP to Support Multiple
+Media Streams
+2021", shape=ellipse, URL="RFC8872.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is a flexible protocol that can be used in a wide range of applications, networks, and system topologies.  That flexibility makes for wide applicability but can complicate the application design process.  One particular design question that has received much attention is how to support multiple media streams in RTP.  This memo discusses the available options and design trade-offs, and provides guidelines on how to use the multiplexing features of RTP to support multiple media streams."];
+  RFC8872 -> rev_cites;
+  RFC9143 [label="RFC9143
+Negotiating Media Multiplexing Using the
+Session Description Protocol (SDP)
+2022", shape=ellipse, URL="RFC9143.html", target="_top", tooltip="This specification defines a new Session Description Protocol (SDP) Grouping Framework extension called 'BUNDLE'. The extension can be used with the SDP offer/answer mechanism to negotiate the usage of a single transport (5-tuple) for sending and receiving media described by multiple SDP media descriptions (m= sections). Such transport is referred to as a BUNDLE transport, and the media is referred to as bundled media. The m= sections that use the BUNDLE transport form a BUNDLE group. This specification defines a new RTP Control Protocol (RTCP) Source Description (SDES) item and a new RTP header extension. This specification updates RFCs 3264, 5888, and 7941. This specification obsoletes RFC 8843."];
+  RFC9143 -> rev_cites;
+  RFC9429 [label="RFC9429
+JavaScript Session Establishment
+Protocol (JSEP)
+2024", shape=ellipse, URL="RFC9429.html", target="_top", tooltip="This document describes the mechanisms for allowing a JavaScript application to control the signaling plane of a multimedia session via the interface specified in the W3C RTCPeerConnection API and discusses how this relates to existing signaling protocols. This specification obsoletes RFC 8829."];
+  RFC9429 -> rev_cites;
+  RFC9607 [label="RFC9607
+RTP Payload Format for the Secure
+Communication Interoperability Protocol
+(SCIP) Codec
+2024", shape=ellipse, URL="RFC9607.html", target="_top", tooltip="This document describes the RTP payload format of the Secure Communication Interoperability Protocol (SCIP).  SCIP is an application-layer protocol that provides end-to-end session establishment, payload encryption, packetization and de-packetization of media, and reliable transport.  This document provides a globally available reference that can be used for the development of network equipment and procurement of services that support SCIP traffic.  The intended audience is network security policymakers; network administrators, architects, and original equipment manufacturers (OEMs); procurement personnel; and government agency and commercial industry representatives."];
+  RFC9607 -> rev_cites;
+}

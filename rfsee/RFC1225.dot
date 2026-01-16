@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC1225 [label="RFC1225
+Post Office Protocol: Version 3
+1991", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo suggests a simple method for workstations to dynamically access mail from a mailbox server. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC1225;
+  RFC1460 [label="RFC1460
+Post Office Protocol - Version 3
+1993", shape=ellipse, URL="RFC1460.html", target="_top", tooltip="This memo is a revision to RFC 1225, a Draft Standard. [STANDARDS-TRACK]"];
+  RFC1460 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC1225 -> obs;
+  RFC1081 [label="RFC1081
+Post Office Protocol: Version 3
+1988", shape=ellipse, URL="RFC1081.html", target="_top", tooltip="This memo suggests a simple method for workstations to dynamically access mail from a mailbox server.  This RFC specifies a proposed protocol for the Internet community, and requests discussion and suggestions for improvements."];
+  obs -> RFC1081;
+
+  updates [label="updates", shape=box];
+  RFC1225 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC1225;
+
+  cites [label="cites", shape=box];
+  RFC1225 -> cites;
+  RFC1060 [label="RFC1060
+Assigned numbers
+1990", shape=ellipse, URL="RFC1060.html", target="_top", tooltip="This memo is a status report on the parameters (i.e., numbers and keywords) used in protocols in the Internet community.  Distribution of this memo is unlimited."];
+  cites -> RFC1060;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC1225;
+  RFC1460 [label="RFC1460
+Post Office Protocol - Version 3
+1993", shape=ellipse, URL="RFC1460.html", target="_top", tooltip="This memo is a revision to RFC 1225, a Draft Standard. [STANDARDS-TRACK]"];
+  RFC1460 -> rev_cites;
+}

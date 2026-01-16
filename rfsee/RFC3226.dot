@@ -1,0 +1,114 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3226 [label="RFC3226
+DNSSEC and IPv6 A6 aware server/resolver
+message size requirements
+2001", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document mandates support for EDNS0 (Extension Mechanisms for DNS) in DNS entities claiming to support either DNS Security Extensions or A6 records.  This requirement is necessary because these new features increase the size of DNS messages.  If EDNS0 is not supported fall back to TCP will happen, having a detrimental impact on query latency and DNS server load.  This document updates RFC 2535 and RFC 2874, by adding new requirements. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3226;
+
+  obs [label="obsoletes", shape=box];
+  RFC3226 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3226 -> updates;
+  RFC2535 [label="RFC2535
+Domain Name System Security Extensions
+1999", shape=ellipse, URL="RFC2535.html", target="_top", tooltip="This document incorporates feedback on RFC 2065 from early implementers and potential users. [STANDARDS-TRACK]"];
+  updates -> RFC2535;
+  RFC2874 [label="RFC2874
+DNS Extensions to Support IPv6 Address
+Aggregation and Renumbering
+2000", shape=ellipse, URL="RFC2874.html", target="_top", tooltip="This document defines changes to the Domain Name System to support renumberable and aggregatable IPv6 addressing. [STANDARDS-TRACK]"];
+  updates -> RFC2874;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3226;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  RFC4033 -> updated_by;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4034 -> updated_by;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4035 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3226 -> cites;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC2535 [label="RFC2535
+Domain Name System Security Extensions
+1999", shape=ellipse, URL="RFC2535.html", target="_top", tooltip="This document incorporates feedback on RFC 2065 from early implementers and potential users. [STANDARDS-TRACK]"];
+  cites -> RFC2535;
+  RFC2671 [label="RFC2671
+Extension Mechanisms for DNS (EDNS0)
+1999", shape=ellipse, URL="RFC2671.html", target="_top", tooltip="The Domain Name System's wire protocol includes a number of fixed fields whose range has been or soon will be exhausted and does not allow clients to advertise their capabilities to servers.  This document describes backward compatible mechanisms for allowing the protocol to grow. [STANDARDS-TRACK]"];
+  cites -> RFC2671;
+  RFC2874 [label="RFC2874
+DNS Extensions to Support IPv6 Address
+Aggregation and Renumbering
+2000", shape=ellipse, URL="RFC2874.html", target="_top", tooltip="This document defines changes to the Domain Name System to support renumberable and aggregatable IPv6 addressing. [STANDARDS-TRACK]"];
+  cites -> RFC2874;
+  RFC2845 [label="RFC2845
+Secret Key Transaction Authentication
+for DNS (TSIG)
+2000", shape=ellipse, URL="RFC2845.html", target="_top", tooltip="This protocol allows for transaction level authentication using shared secrets and one way hashing.  It can be used to authenticate dynamic updates as coming from an approved client, or to authenticate responses as coming from an approved recursive name server. [STANDARDS-TRACK]"];
+  cites -> RFC2845;
+  RFC3225 [label="RFC3225
+Indicating Resolver Support of DNSSEC
+2001", shape=ellipse, URL="RFC3225.html", target="_top", tooltip="In order to deploy DNSSEC (Domain Name System Security Extensions) operationally, DNSSEC aware servers should only perform automatic inclusion of DNSSEC RRs when there is an explicit indication that the resolver can understand those RRs.  This document proposes the use of a bit in the EDNS0 header to provide that explicit indication and describes the necessary protocol changes to implement that notification. [STANDARDS-TRACK]"];
+  cites -> RFC3225;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3226;
+  RFC3658 [label="RFC3658
+Delegation Signer (DS) Resource Record
+(RR)
+2003", shape=ellipse, URL="RFC3658.html", target="_top", tooltip="The delegation signer (DS) resource record (RR) is inserted at a zone cut (i.e., a delegation point) to indicate that the delegated zone is digitally signed and that the delegated zone recognizes the indicated key as a valid zone key for the delegated zone.  The DS RR is a modification to the DNS Security Extensions definition, motivated by operational considerations.  The intent is to use this resource record as an explicit statement about the delegation, rather than relying on inference.  This document defines the DS RR, gives examples of how it is used and describes the implications on resolvers.  This change is not backwards compatible with RFC 2535.  This document updates RFC 1035, RFC 2535, RFC 3008 and RFC 3090."];
+  RFC3658 -> rev_cites;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  RFC4033 -> rev_cites;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4035 -> rev_cites;
+  RFC8109 [label="RFC8109
+Initializing a DNS Resolver with Priming
+Queries
+2017", shape=ellipse, URL="RFC8109.html", target="_top", tooltip="This document describes the queries that a DNS resolver should emit to initialize its cache.  The result is that the resolver gets both a current NS Resource Record Set (RRset) for the root zone and the necessary address information for reaching the root servers."];
+  RFC8109 -> rev_cites;
+  RFC9210 [label="RFC9210
+DNS Transport over TCP - Operational
+Requirements
+2022", shape=ellipse, URL="RFC9210.html", target="_top", tooltip="This document updates RFCs 1123 and 1536.  This document requires the operational practice of permitting DNS messages to be carried over TCP on the Internet as a Best Current Practice.  This operational requirement is aligned with the implementation requirements in RFC 7766.  The use of TCP includes both DNS over unencrypted TCP as well as over an encrypted TLS session.  The document also considers the consequences of this form of DNS communication and the potential operational issues that can arise when this Best Current Practice is not upheld."];
+  RFC9210 -> rev_cites;
+  RFC9609 [label="RFC9609
+Initializing a DNS Resolver with Priming
+Queries
+2025", shape=ellipse, URL="RFC9609.html", target="_top", tooltip="This document describes the queries that a DNS resolver should emit to initialize its cache. The result is that the resolver gets both a current NS resource record set (RRset) for the root zone and the necessary address information for reaching the root servers. This document obsoletes RFC 8109."];
+  RFC9609 -> rev_cites;
+}

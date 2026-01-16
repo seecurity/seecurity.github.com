@@ -1,0 +1,41 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2813 [label="RFC2813
+Internet Relay Chat: Server Protocol
+2000", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines the protocol used by servers to talk to each other.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2813;
+
+  obs [label="obsoletes", shape=box];
+  RFC2813 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2813 -> updates;
+  RFC1459 [label="RFC1459
+Internet Relay Chat Protocol
+1993", shape=ellipse, URL="RFC1459.html", target="_top", tooltip="The IRC protocol is a text-based protocol, with the simplest client being any socket program capable of connecting to the server.  This memo defines an Experimental Protocol for the Internet community."];
+  updates -> RFC1459;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2813;
+
+  cites [label="cites", shape=box];
+  RFC2813 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2813;
+  RFC3675 [label="RFC3675
+.sex Considered Dangerous
+2004", shape=ellipse, URL="RFC3675.html", target="_top", tooltip="Periodically there are proposals to mandate the use of a special top level name or an IP address bit to flag adult or unsafe material or the like.  This document explains why this is an ill considered idea from the legal, philosophical, and particularly, the technical points of view."];
+  RFC3675 -> rev_cites;
+  RFC7194 [label="RFC7194
+Default Port for Internet Relay Chat
+(IRC) via TLS/SSL
+2014", shape=ellipse, URL="RFC7194.html", target="_top", tooltip="This document describes the commonly accepted practice of listening on TCP port 6697 for incoming Internet Relay Chat (IRC) connections encrypted via TLS/SSL."];
+  RFC7194 -> rev_cites;
+}

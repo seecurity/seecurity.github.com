@@ -1,0 +1,185 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9085 [label="RFC9085
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths by encoding paths as sequences of topological subpaths, called segments. These segments are advertised by routing protocols, e.g., by the link-state routing protocols (IS-IS, OSPFv2, and OSPFv3) within IGP topologies. This document defines extensions to the Border Gateway Protocol - Link State (BGP-LS) address family in order to carry SR information via BGP."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9085;
+
+  obs [label="obsoletes", shape=box];
+  RFC9085 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9085 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9085;
+  RFC9356 [label="RFC9356
+Advertising Layer 2 Bundle Member Link
+Attributes in OSPF
+2023", shape=ellipse, URL="RFC9356.html", target="_top", tooltip="There are deployments where the Layer 3 (L3) interface on which OSPF operates is a Layer 2 (L2) interface bundle. Existing OSPF advertisements only support advertising link attributes of the L3 interface. If entities external to OSPF wish to control traffic flows on the individual physical links that comprise the L2 interface bundle, link attribute information for the bundle members is required. This document defines the protocol extensions for OSPF to advertise the link attributes of L2 bundle members. The document also specifies the advertisement of these OSPF extensions via the Border Gateway Protocol - Link State (BGP-LS) and thereby updates RFC 9085."];
+  RFC9356 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC9085 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8667 [label="RFC8667
+IS-IS Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8667.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological sub-paths, called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the IS-IS extensions that need to be introduced for Segment Routing operating on an MPLS data plane."];
+  cites -> RFC8667;
+  RFC8665 [label="RFC8665
+OSPF Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8665.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv2 extensions required for Segment Routing."];
+  cites -> RFC8665;
+  RFC8666 [label="RFC8666
+OSPFv3 Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8666.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv3 extensions required for Segment Routing with the MPLS data plane."];
+  cites -> RFC8666;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  cites -> RFC7752;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8661 [label="RFC8661
+Segment Routing MPLS Interworking with
+LDP
+2019", shape=ellipse, URL="RFC8661.html", target="_top", tooltip="A Segment Routing (SR) node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows enforcing a flow through any topological path while maintaining per-flow state only at the ingress node to the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change in the forwarding plane. This document describes how Segment Routing MPLS operates in a network where LDP is deployed and in the case where SR-capable and non-SR-capable nodes coexist."];
+  cites -> RFC8661;
+  RFC8668 [label="RFC8668
+Advertising Layer 2 Bundle Member Link
+Attributes in IS-IS
+2019", shape=ellipse, URL="RFC8668.html", target="_top", tooltip="There are deployments where the Layer 3 interface on which IS-IS operates is a Layer 2 interface bundle. Existing IS-IS advertisements only support advertising link attributes of the Layer 3 interface. If entities external to IS-IS wish to control traffic flows on the individual physical links that comprise the Layer 2 interface bundle, link attribute information about the bundle members is required. This document introduces the ability for IS-IS to advertise the link attributes of Layer 2 (L2) Bundle Members."];
+  cites -> RFC8668;
+  RFC4202 [label="RFC4202
+Routing Extensions in Support of
+Generalized Multi-Protocol Label
+Switching (GMPLS)
+2005", shape=ellipse, URL="RFC4202.html", target="_top", tooltip="This document specifies routing extensions in support of carrying link state information for Generalized Multi-Protocol Label Switching (GMPLS).  This document enhances the routing extensions required to support MPLS Traffic Engineering (TE). [STANDARDS-TRACK]"];
+  cites -> RFC4202;
+  RFC8571 [label="RFC8571
+BGP - Link State (BGP-LS) Advertisement
+of IGP Traffic Engineering Performance
+Metric Extensions
+2019", shape=ellipse, URL="RFC8571.html", target="_top", tooltip="This document defines new BGP - Link State (BGP-LS) TLVs in order to carry the IGP Traffic Engineering Metric Extensions defined in the IS-IS and OSPF protocols."];
+  cites -> RFC8571;
+  RFC7684 [label="RFC7684
+OSPFv2 Prefix/Link Attribute
+Advertisement
+2015", shape=ellipse, URL="RFC7684.html", target="_top", tooltip="OSPFv2 requires functional extension beyond what can readily be done with the fixed-format Link State Advertisements (LSAs) as described in RFC 2328.  This document defines OSPFv2 Opaque LSAs based on Type-Length-Value (TLV) tuples that can be used to associate additional attributes with prefixes or links.  Depending on the application, these prefixes and links may or may not be advertised in the fixed-format LSAs.  The OSPFv2 Opaque LSAs are optional and fully backward compatible."];
+  cites -> RFC7684;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC7794 [label="RFC7794
+IS-IS Prefix Attributes for Extended
+IPv4 and IPv6 Reachability
+2016", shape=ellipse, URL="RFC7794.html", target="_top", tooltip="This document introduces new sub-TLVs to support advertisement of IPv4 and IPv6 prefix attribute flags and the source router ID of the router that originated a prefix advertisement."];
+  cites -> RFC7794;
+  RFC5308 [label="RFC5308
+Routing IPv6 with IS-IS
+2008", shape=ellipse, URL="RFC5308.html", target="_top", tooltip="This document specifies a method for exchanging IPv6 routing information using the IS-IS routing protocol.  The described method utilizes two new TLVs: a reachability TLV and an interface address TLV to distribute the necessary IPv6 information throughout a routing domain.  Using this method, one can route IPv6 along with IPv4 and OSI using a single intra-domain routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC5308;
+  RFC5120 [label="RFC5120
+M-ISIS: Multi Topology (MT) Routing in
+Intermediate System to Intermediate
+Systems (IS-ISs)
+2008", shape=ellipse, URL="RFC5120.html", target="_top", tooltip="This document describes an optional mechanism within Intermediate System to Intermediate Systems (IS-ISs) used today by many ISPs for IGP routing within their clouds.  This document describes how to run, within a single IS-IS domain, a set of independent IP topologies that we call Multi-Topologies (MTs).  This MT extension can be used for a variety of purposes, such as an in-band management network on top of the original IGP topology, maintaining separate IGP routing domains for isolated multicast or IPv6 islands within the backbone, or forcing a subset of an address space to follow a different topology. [STANDARDS-TRACK]"];
+  cites -> RFC5120;
+  RFC8362 [label="RFC8362
+OSPFv3 Link State Advertisement (LSA)
+Extensibility
+2018", shape=ellipse, URL="RFC8362.html", target="_top", tooltip="OSPFv3 requires functional extension beyond what can readily be done with the fixed-format Link State Advertisement (LSA) as described in RFC 5340. Without LSA extension, attributes associated with OSPFv3 links and advertised IPv6 prefixes must be advertised in separate LSAs and correlated to the fixed-format LSAs. This document extends the LSA format by encoding the existing OSPFv3 LSA information in Type-Length-Value (TLV) tuples and allowing advertisement of additional information with additional TLVs. Backward-compatibility mechanisms are also described. This document updates RFC 5340, OSPF for IPv6, and RFC 5838, Support of Address Families in OSPFv3, by providing TLV-based encodings for the base OSPFv3 unicast support and OSPFv3 address family support."];
+  cites -> RFC8362;
+  RFC9084 [label="RFC9084
+OSPF Prefix Originator Extensions
+2021", shape=ellipse, URL="RFC9084.html", target="_top", tooltip="This document defines OSPF extensions to include information associated with the node originating a prefix along with the prefix advertisement.  These extensions do not change the core OSPF route computation functionality but provide useful information for network analysis, troubleshooting, and use cases like traffic engineering."];
+  cites -> RFC9084;
+  RFC5706 [label="RFC5706
+Guidelines for Considering Operations
+and Management of New Protocols and
+Protocol Extensions
+2009", shape=ellipse, URL="RFC5706.html", target="_top", tooltip="New protocols or protocol extensions are best designed with due consideration of the functionality needed to operate and manage the protocols.  Retrofitting operations and management is sub-optimal.  The purpose of this document is to provide guidance to authors and reviewers of documents that define new protocols or protocol extensions regarding aspects of operations and management that should be considered.  This memo provides information for the Internet community."];
+  cites -> RFC5706;
+  RFC9020 [label="RFC9020
+YANG Data Model for Segment Routing
+2021", shape=ellipse, URL="RFC9020.html", target="_top", tooltip="This document defines three YANG data models.  The first is for Segment Routing (SR) configuration and operation, which is to be augmented by different Segment Routing data planes.  The next is a YANG data model that defines a collection of generic types and groupings for SR.  The third module defines the configuration and operational states for the Segment Routing MPLS data plane."];
+  cites -> RFC9020;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9085;
+  RFC9084 [label="RFC9084
+OSPF Prefix Originator Extensions
+2021", shape=ellipse, URL="RFC9084.html", target="_top", tooltip="This document defines OSPF extensions to include information associated with the node originating a prefix along with the prefix advertisement.  These extensions do not change the core OSPF route computation functionality but provide useful information for network analysis, troubleshooting, and use cases like traffic engineering."];
+  RFC9084 -> rev_cites;
+  RFC9086 [label="RFC9086
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+BGP Egress Peer Engineering
+2021", shape=ellipse, URL="RFC9086.html", target="_top", tooltip="A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with a list of segment identifiers (SIDs). A segment can represent any instruction, topological or service based. SR segments allow steering a flow through any topological path and service chain while maintaining per-flow state only at the ingress node of the SR domain. This document describes an extension to Border Gateway Protocol - Link State (BGP-LS) for advertisement of BGP Peering Segments along with their BGP peering node information so that efficient BGP Egress Peer Engineering (EPE) policies and strategies can be computed based on Segment Routing."];
+  RFC9086 -> rev_cites;
+  RFC9088 [label="RFC9088
+Signaling Entropy Label Capability and
+Entropy Readable Label Depth Using IS-IS
+2021", shape=ellipse, URL="RFC9088.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) has defined a mechanism to load-balance traffic flows using Entropy Labels (EL).  An ingress Label Switching Router (LSR) cannot insert ELs for packets going into a given Label Switched Path (LSP) unless an egress LSR has indicated via signaling that it has the capability to process ELs, referred to as the Entropy Label Capability (ELC), on that LSP.  In addition, it would be useful for ingress LSRs to know each LSR's capability for reading the maximum label stack depth and performing EL-based load-balancing, referred to as Entropy Readable Label Depth (ERLD).  This document defines a mechanism to signal these two capabilities using IS-IS and Border Gateway Protocol - Link State (BGP-LS)."];
+  RFC9088 -> rev_cites;
+  RFC9089 [label="RFC9089
+Signaling Entropy Label Capability and
+Entropy Readable Label Depth Using OSPF
+2021", shape=ellipse, URL="RFC9089.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) has defined a mechanism to load-balance traffic flows using Entropy Labels (EL).  An ingress Label Switching Router (LSR) cannot insert ELs for packets going into a given Label Switched Path (LSP) unless an egress LSR has indicated via signaling that it has the capability to process ELs, referred to as the Entropy Label Capability (ELC), on that LSP.  In addition, it would be useful for ingress LSRs to know each LSR's capability for reading the maximum label stack depth and performing EL-based load-balancing, referred to as Entropy Readable Label Depth (ERLD).  This document defines a mechanism to signal these two capabilities using OSPFv2 and OSPFv3, and Border Gateway Protocol - Link State (BGP-LS)."];
+  RFC9089 -> rev_cites;
+  RFC9125 [label="RFC9125
+Gateway Auto-Discovery and Route
+Advertisement for Site Interconnection
+Using Segment Routing
+2021", shape=ellipse, URL="RFC9125.html", target="_top", tooltip="Data centers are attached to the Internet or a backbone network by gateway routers. One data center typically has more than one gateway for commercial, load-balancing, and resiliency reasons. Other sites, such as access networks, also need to be connected across backbone networks through gateways. This document defines a mechanism using the BGP Tunnel Encapsulation attribute to allow data center gateway routers to advertise routes to the prefixes reachable in the site, including advertising them on behalf of other gateways at the same site. This allows segment routing to be used to identify multiple paths across the Internet or backbone network between different gateways. The paths can be selected for load-balancing, resilience, and quality purposes."];
+  RFC9125 -> rev_cites;
+  RFC9351 [label="RFC9351
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Flexible
+Algorithm Advertisement
+2023", shape=ellipse, URL="RFC9351.html", target="_top", tooltip="Flexible Algorithm is a solution that allows some routing protocols (e.g., OSPF and IS-IS) to compute paths over a network based on user-defined (and hence, flexible) constraints and metrics. The computation is performed by routers participating in the specific network in a distributed manner using a Flexible Algorithm Definition (FAD). This definition is provisioned on one or more routers and propagated through the network by OSPF and IS-IS flooding. Border Gateway Protocol - Link State (BGP-LS) enables the collection of various topology information from the network. This document defines extensions to the BGP-LS address family to advertise the FAD as a part of the topology information from the network."];
+  RFC9351 -> rev_cites;
+  RFC9356 [label="RFC9356
+Advertising Layer 2 Bundle Member Link
+Attributes in OSPF
+2023", shape=ellipse, URL="RFC9356.html", target="_top", tooltip="There are deployments where the Layer 3 (L3) interface on which OSPF operates is a Layer 2 (L2) interface bundle. Existing OSPF advertisements only support advertising link attributes of the L3 interface. If entities external to OSPF wish to control traffic flows on the individual physical links that comprise the L2 interface bundle, link attribute information for the bundle members is required. This document defines the protocol extensions for OSPF to advertise the link attributes of L2 bundle members. The document also specifies the advertisement of these OSPF extensions via the Border Gateway Protocol - Link State (BGP-LS) and thereby updates RFC 9085."];
+  RFC9356 -> rev_cites;
+  RFC9488 [label="RFC9488
+Local Protection Enforcement in the Path
+Computation Element Communication
+Protocol (PCEP)
+2023", shape=ellipse, URL="RFC9488.html", target="_top", tooltip="This document updates RFC 5440 to clarify usage of the Local Protection Desired bit signaled in the Path Computation Element Communication Protocol (PCEP).  This document also introduces a new flag for signaling protection enforcement in PCEP."];
+  RFC9488 -> rev_cites;
+  RFC9514 [label="RFC9514
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+over IPv6 (SRv6)
+2023", shape=ellipse, URL="RFC9514.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) allows for a flexible definition of end-to-end paths within various topologies by encoding paths as sequences of topological or functional sub-paths called segments. These segments are advertised by various protocols such as BGP, IS-IS, and OSPFv3. This document defines extensions to BGP - Link State (BGP-LS) to advertise SRv6 segments along with their behaviors and other attributes via BGP. The BGP-LS address-family solution for SRv6 described in this document is similar to BGP-LS for SR for the MPLS data plane, which is defined in RFC 9085."];
+  RFC9514 -> rev_cites;
+  RFC9732 [label="RFC9732
+A Framework for NRP-Based Enhanced
+Virtual Private Networks
+2025", shape=ellipse, URL="RFC9732.html", target="_top", tooltip="This document describes a framework for Enhanced Virtual Private Networks (VPNs) based on Network Resource Partitions (NRPs) in order to support the needs of applications with specific traffic performance requirements (e.g., low latency, bounded jitter).  NRP-based enhanced VPNs leverage the VPN and Traffic Engineering (TE) technologies and add characteristics that specific services require beyond those provided by conventional VPNs.  Typically, an NRP-based enhanced VPN will be used to underpin network slicing, but it could also be of use in its own right providing enhanced connectivity services between customer sites.  This document also provides an overview of relevant technologies in different network layers and identifies some areas for potential new work."];
+  RFC9732 -> rev_cites;
+}

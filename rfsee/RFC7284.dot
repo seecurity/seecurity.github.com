@@ -1,0 +1,57 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7284 [label="RFC7284
+The Profile URI Registry
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a registry for profile URIs to be used in specifications standardizing profiles."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7284;
+
+  obs [label="obsoletes", shape=box];
+  RFC7284 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7284 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7284;
+
+  cites [label="cites", shape=box];
+  RFC7284 -> cites;
+  RFC6906 [label="RFC6906
+The 'profile' Link Relation Type
+2013", shape=ellipse, URL="RFC6906.html", target="_top", tooltip="This specification defines the 'profile' link relation type that allows resource representations to indicate that they are following one or more profiles.  A profile is defined not to alter the semantics of the resource representation itself, but to allow clients to learn about additional semantics (constraints, conventions, extensions) that are associated with the resource representation, in addition to those defined by the media type and possibly other mechanisms."];
+  cites -> RFC6906;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+  RFC6963 [label="RFC6963
+A Uniform Resource Name (URN) Namespace
+for Examples
+2013", shape=ellipse, URL="RFC6963.html", target="_top", tooltip="This document defines a Uniform Resource Name (URN) namespace identifier enabling the generation of URNs that are appropriate for use in documentation and in URN-related testing and experimentation."];
+  cites -> RFC6963;
+  RFC3986 [label="RFC3986
+Uniform Resource Identifier (URI):
+Generic Syntax
+2005", shape=ellipse, URL="RFC3986.html", target="_top", tooltip="A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource.  This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet.  The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier.  This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme. [STANDARDS-TRACK]"];
+  cites -> RFC3986;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7284;
+  RFC9264 [label="RFC9264
+Linkset: Media Types and a Link Relation
+Type for Link Sets
+2022", shape=ellipse, URL="RFC9264.html", target="_top", tooltip="This specification defines two formats and associated media types for representing sets of links as standalone documents.  One format is based on JSON, and the other is aligned with the format for representing links in the HTTP Link header field.  This specification also introduces a link relation type to support the discovery of sets of links."];
+  RFC9264 -> rev_cites;
+  RFC9727 [label="RFC9727
+api-catalog: A Well-Known URI and Link
+Relation to Help Discovery of APIs
+2025", shape=ellipse, URL="RFC9727.html", target="_top", tooltip="This document defines the api-catalog well-known URI and link relation.  It is intended to facilitate automated discovery and usage of published Application Programming Interfaces (APIs).  A request to the api-catalog resource will return a document providing information about, and links to, the Publisher's APIs."];
+  RFC9727 -> rev_cites;
+}

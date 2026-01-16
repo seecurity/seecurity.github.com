@@ -1,0 +1,91 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9602 [label="RFC9602
+Segment Routing over IPv6 (SRv6) Segment
+Identifiers in the IPv6 Addressing
+Architecture
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="Segment Routing over IPv6 (SRv6) uses IPv6 as the underlying data plane.  Thus, Segment Identifiers (SIDs) used by SRv6 can resemble IPv6 addresses and behave like them while exhibiting slightly different behaviors in some situations.  This document explores the characteristics of SRv6 SIDs and focuses on the relationship of SRv6 SIDs to the IPv6 Addressing Architecture.  This document allocates and makes a dedicated prefix available for SRv6 SIDs."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9602;
+
+  obs [label="obsoletes", shape=box];
+  RFC9602 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9602 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9602;
+
+  cites [label="cites", shape=box];
+  RFC9602 -> cites;
+  RFC8754 [label="RFC8754
+IPv6 Segment Routing Header (SRH)
+2020", shape=ellipse, URL="RFC8754.html", target="_top", tooltip="Segment Routing can be applied to the IPv6 data plane using a new type of Routing Extension Header called the Segment Routing Header (SRH).  This document describes the SRH and how it is used by nodes that are Segment Routing (SR) capable."];
+  cites -> RFC8754;
+  RFC4291 [label="RFC4291
+IP Version 6 Addressing Architecture
+2006", shape=ellipse, URL="RFC4291.html", target="_top", tooltip="This specification defines the addressing architecture of the IP Version 6 (IPv6) protocol. The document includes the IPv6 addressing model, text representations of IPv6 addresses, definition of IPv6 unicast addresses, anycast addresses, and multicast addresses, and an IPv6 node's required addresses. This document obsoletes RFC 3513, IP Version 6 Addressing Architecture. [STANDARDS-TRACK]"];
+  cites -> RFC4291;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8986 [label="RFC8986
+Segment Routing over IPv6 (SRv6) Network
+Programming
+2021", shape=ellipse, URL="RFC8986.html", target="_top", tooltip="The Segment Routing over IPv6 (SRv6) Network Programming framework enables a network operator or an application to specify a packet processing program by encoding a sequence of instructions in the IPv6 packet header. Each instruction is implemented on one or several nodes in the network and identified by an SRv6 Segment Identifier in the packet. This document defines the SRv6 Network Programming concept and specifies the base set of SRv6 behaviors that enables the creation of interoperable overlays with underlay optimization."];
+  cites -> RFC8986;
+  RFC6052 [label="RFC6052
+IPv6 Addressing of IPv4/IPv6 Translators
+2010", shape=ellipse, URL="RFC6052.html", target="_top", tooltip="This document discusses the algorithmic translation of an IPv6 address to a corresponding IPv4 address, and vice versa, using only statically configured information.  It defines a well-known prefix for use in algorithmic translations, while allowing organizations to also use network-specific prefixes when appropriate.  Algorithmic translation is used in IPv4/IPv6 translators, as well as other types of proxies and gateways (e.g., for DNS) used in IPv4/IPv6 scenarios. [STANDARDS-TRACK]"];
+  cites -> RFC6052;
+  RFC7343 [label="RFC7343
+An IPv6 Prefix for Overlay Routable
+Cryptographic Hash Identifiers Version 2
+(ORCHIDv2)
+2014", shape=ellipse, URL="RFC7343.html", target="_top", tooltip="This document specifies an updated Overlay Routable Cryptographic Hash Identifiers (ORCHID) format that obsoletes that in RFC 4843. These identifiers are intended to be used as endpoint identifiers at applications and Application Programming Interfaces (APIs) and not as identifiers for network location at the IP layer, i.e., locators. They are designed to appear as application-layer entities and at the existing IPv6 APIs, but they should not appear in actual IPv6 headers. To make them more like regular IPv6 addresses, they are expected to be routable at an overlay level. Consequently, while they are considered non-routable addresses from the IPv6-layer perspective, all existing IPv6 applications are expected to be able to use them in a manner compatible with current IPv6 addresses. The Overlay Routable Cryptographic Hash Identifiers originally defined in RFC 4843 lacked a mechanism for cryptographic algorithm agility. The updated ORCHID format specified in this document removes this limitation by encoding, in the identifier itself, an index to the suite of cryptographic algorithms in use."];
+  cites -> RFC7343;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  cites -> RFC9499;
+  RFC6169 [label="RFC6169
+Security Concerns with IP Tunneling
+2011", shape=ellipse, URL="RFC6169.html", target="_top", tooltip="A number of security concerns with IP tunnels are documented in this memo.  The intended audience of this document includes network administrators and future protocol developers.  The primary intent of this document is to raise the awareness level regarding the security issues with IP tunnels as deployed and propose strategies for the mitigation of those issues. [STANDARDS-TRACK]"];
+  cites -> RFC6169;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9602;
+  RFC9723 [label="RFC9723
+BGP Colored Prefix Routing (CPR) for
+Services Based on Segment Routing over
+IPv6 (SRv6)
+2025", shape=ellipse, URL="RFC9723.html", target="_top", tooltip="This document describes a mechanism to advertise IPv6 prefixes in BGP that are associated with Color Extended Communities to establish end-to-end intent-aware paths for Segment Routing over IPv6 (SRv6) services. Such IPv6 prefixes are called Colored Prefixes, and this mechanism is called Colored Prefix Routing (CPR). In SRv6 networks, the Colored Prefixes are the SRv6 locators associated with different intents. SRv6 services (e.g., SRv6 VPN services) with a specific intent could be assigned with SRv6 Segment Identifiers (SIDs) under the corresponding SRv6 locators, which are advertised as Colored Prefixes. This operational methodology allows the SRv6 service traffic to be steered into end-to-end intent-aware paths based on the longest prefix matching of SRv6 Service SIDs to the Colored Prefixes. The existing IPv6 Address Family and Color Extended Community are reused to advertise IPv6 Colored Prefixes without new BGP extensions; thus, this mechanism is easy to interoperate and can be deployed incrementally in multi-Autonomous System (AS) networks that belong to the same trusted domain."];
+  RFC9723 -> rev_cites;
+  RFC9800 [label="RFC9800
+Compressed SRv6 Segment List Encoding
+2025", shape=ellipse, URL="RFC9800.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) is the instantiation of Segment Routing (SR) on the IPv6 data plane. This document specifies new flavors for the SRv6 endpoint behaviors defined in RFC 8986, which enable the compression of an SRv6 segment list. Such compression significantly reduces the size of the SRv6 encapsulation needed to steer packets over long segment lists. This document updates RFC 8754 by allowing a Segment List entry in the Segment Routing Header (SRH) to be either an IPv6 address, as specified in RFC 8754, or a REPLACE-CSID container in packed format, as specified in this document."];
+  RFC9800 -> rev_cites;
+  RFC9812 [label="RFC9812
+Clarification of IPv6 Address Allocation
+Policy
+2025", shape=ellipse, URL="RFC9812.html", target="_top", tooltip="This document specifies the approval process for changes to the IPv6
+Address Space registry.  It also updates RFC 7249."];
+  RFC9812 -> rev_cites;
+}

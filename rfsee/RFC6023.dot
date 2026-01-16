@@ -1,0 +1,69 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6023 [label="RFC6023
+A Childless Initiation of the Internet
+Key Exchange Version 2 (IKEv2) Security
+Association (SA)
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes an extension to the Internet Key Exchange version 2 (IKEv2) protocol that allows an IKEv2 Security Association (SA) to be created and authenticated without generating a Child SA.  This document is not an Internet Standards Track specification; it is published for examination, experimental implementation, and evaluation."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6023;
+
+  obs [label="obsoletes", shape=box];
+  RFC6023 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6023 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6023;
+
+  cites [label="cites", shape=box];
+  RFC6023 -> cites;
+  RFC5996 [label="RFC5996
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2010", shape=ellipse, URL="RFC5996.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document replaces and updates RFC 4306, and includes all of the clarifications from RFC 4718. [STANDARDS-TRACK]"];
+  cites -> RFC5996;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5106 [label="RFC5106
+The Extensible Authentication Protocol-
+Internet Key Exchange Protocol version 2
+(EAP-IKEv2) Method
+2008", shape=ellipse, URL="RFC5106.html", target="_top", tooltip="This document specifies EAP-IKEv2, an Extensible Authentication Protocol (EAP) method that is based on the Internet Key Exchange (IKEv2) protocol.  EAP-IKEv2 provides mutual authentication and session key establishment between an EAP peer and an EAP server.  It supports authentication techniques that are based on passwords, high-entropy shared keys, and public key certificates.  EAP-IKEv2 further provides support for cryptographic ciphersuite negotiation, hash function agility, identity confidentiality (in certain modes of operation), fragmentation, and an optional fast reconnect mode.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC5106;
+  RFC5705 [label="RFC5705
+Keying Material Exporters for Transport
+Layer Security (TLS)
+2010", shape=ellipse, URL="RFC5705.html", target="_top", tooltip="A number of protocols wish to leverage Transport Layer Security (TLS) to perform key establishment but then use some of the keying material for their own purposes.  This document describes a general mechanism for allowing that. [STANDARDS-TRACK]"];
+  cites -> RFC5705;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6023;
+  RFC7717 [label="RFC7717
+IKEv2-Derived Shared Secret Key for the
+One-Way Active Measurement Protocol
+(OWAMP) and Two-Way Active Measurement
+Protocol (TWAMP)
+2015", shape=ellipse, URL="RFC7717.html", target="_top", tooltip="The One-Way Active Measurement Protocol (OWAMP) and Two-Way Active Measurement Protocol (TWAMP) security mechanisms require that both the client and server endpoints possess a shared secret.  This document describes the use of keys derived from an IKEv2 security association (SA) as the shared key in OWAMP or TWAMP.  If the shared key can be derived from the IKEv2 SA, OWAMP or TWAMP can support certificate-based key exchange; this would allow for more operational flexibility and efficiency.  The key derivation presented in this document can also facilitate automatic key management."];
+  RFC7717 -> rev_cites;
+  RFC8784 [label="RFC8784
+Mixing Preshared Keys in the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+for Post-quantum Security
+2020", shape=ellipse, URL="RFC8784.html", target="_top", tooltip="The possibility of quantum computers poses a serious challenge to cryptographic algorithms deployed widely today.  The Internet Key Exchange Protocol Version 2 (IKEv2) is one example of a cryptosystem that could be broken; someone storing VPN communications today could decrypt them at a later time when a quantum computer is available.  It is anticipated that IKEv2 will be extended to support quantum-secure key exchange algorithms; however, that is not likely to happen in the near term.  To address this problem before then, this document describes an extension of IKEv2 to allow it to be resistant to a quantum computer by using preshared keys."];
+  RFC8784 -> rev_cites;
+  RFC9370 [label="RFC9370
+Multiple Key Exchanges in the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2023", shape=ellipse, URL="RFC9370.html", target="_top", tooltip="This document describes how to extend the Internet Key Exchange Protocol Version 2 (IKEv2) to allow multiple key exchanges to take place while computing a shared secret during a Security Association (SA) setup. This document utilizes the IKE_INTERMEDIATE exchange, where multiple key exchanges are performed when an IKE SA is being established. It also introduces a new IKEv2 exchange, IKE_FOLLOWUP_KE, which is used for the same purpose when the IKE SA is being rekeyed or is creating additional Child SAs. This document updates RFC 7296 by renaming a Transform Type 4 from Diffie-Hellman Group (D-H) to Key Exchange Method (KE) and renaming a field in the Key Exchange Payload from Diffie-Hellman Group Num to Key Exchange Method. It also renames an IANA registry for this Transform Type from Transform Type 4 - Diffie- Hellman Group Transform IDs to Transform Type 4 - Key Exchange Method Transform IDs. These changes generalize key exchange algorithms that can be used in IKEv2."];
+  RFC9370 -> rev_cites;
+}

@@ -1,0 +1,204 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9031 [label="RFC9031
+Constrained Join Protocol (CoJP) for
+6TiSCH
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the minimal framework required for a new device, called a pledge, to securely join a 6TiSCH (IPv6 over the Time-Slotted Channel Hopping mode of IEEE 802.15.4) network.  The framework requires that the pledge and the JRC (Join Registrar/Coordinator, a central entity), share a symmetric key.  How this key is provisioned is out of scope of this document.  Through a single CoAP (Constrained Application Protocol) request-response exchange secured by OSCORE (Object Security for Constrained RESTful Environments), the pledge requests admission into the network, and the JRC configures it with link-layer keying material and other parameters.  The JRC may at any time update the parameters through another request-response exchange secured by OSCORE.  This specification defines the Constrained Join Protocol and its CBOR (Concise Binary Object Representation) data structures, and it describes how to configure the rest of the 6TiSCH communication stack for this join process to occur in a secure manner.  Additional security mechanisms may be added on top of this minimal framework."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9031;
+
+  obs [label="obsoletes", shape=box];
+  RFC9031 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9031 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9031;
+
+  cites [label="cites", shape=box];
+  RFC9031 -> cites;
+  RFC9030 [label="RFC9030
+An Architecture for IPv6 over the Time-
+Slotted Channel Hopping Mode of IEEE
+802.15.4 (6TiSCH)
+2021", shape=ellipse, URL="RFC9030.html", target="_top", tooltip="This document describes a network architecture that provides low-latency, low-jitter, and high-reliability packet delivery.  It combines a high-speed powered backbone and subnetworks using IEEE 802.15.4 time-slotted channel hopping (TSCH) to meet the requirements of low-power wireless deterministic applications."];
+  cites -> RFC9030;
+  RFC7554 [label="RFC7554
+Using IEEE 802.15.4e Time-Slotted
+Channel Hopping (TSCH) in the Internet
+of Things (IoT): Problem Statement
+2015", shape=ellipse, URL="RFC7554.html", target="_top", tooltip="This document describes the environment, problem statement, and goals for using the Time-Slotted Channel Hopping (TSCH) Medium Access Control (MAC) protocol of IEEE 802.14.4e in the context of Low-Power and Lossy Networks (LLNs).  The set of goals enumerated in this document form an initial set only."];
+  cites -> RFC7554;
+  RFC8180 [label="RFC8180
+Minimal IPv6 over the TSCH Mode of IEEE
+802.15.4e (6TiSCH) Configuration
+2017", shape=ellipse, URL="RFC8180.html", target="_top", tooltip="This document describes a minimal mode of operation for an IPv6 over the TSCH mode of IEEE 802.15.4e (6TiSCH) network.  This minimal mode of operation specifies the baseline set of protocols that need to be supported and the recommended configurations and modes of operation sufficient to enable a 6TiSCH functional network.  6TiSCH provides IPv6 connectivity over a Time-Slotted Channel Hopping (TSCH) mesh composed of IEEE Std 802.15.4 TSCH links.  This minimal mode uses a collection of protocols with the respective configurations, including the IPv6 Low-Power Wireless Personal Area Network (6LoWPAN) framework, enabling interoperable IPv6 connectivity over IEEE Std 802.15.4 TSCH.  This minimal configuration provides the necessary bandwidth for network and security bootstrapping and defines the proper link between the IETF protocols that interface to IEEE Std 802.15.4 TSCH.  This minimal mode of operation should be implemented by all 6TiSCH-compliant devices."];
+  cites -> RFC8180;
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, URL="RFC7252.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."];
+  cites -> RFC7252;
+  RFC8613 [label="RFC8613
+Object Security for Constrained RESTful
+Environments (OSCORE)
+2019", shape=ellipse, URL="RFC8613.html", target="_top", tooltip="This document defines Object Security for Constrained RESTful Environments (OSCORE), a method for application-layer protection of the Constrained Application Protocol (CoAP), using CBOR Object Signing and Encryption (COSE). OSCORE provides end-to-end protection between endpoints communicating using CoAP or CoAP-mappable HTTP. OSCORE is designed for constrained nodes and networks supporting a range of proxy operations, including translation between different transport protocols. Although an optional functionality of CoAP, OSCORE alters CoAP options processing and IANA registration. Therefore, this document updates RFC 7252."];
+  cites -> RFC8613;
+  RFC8480 [label="RFC8480
+6TiSCH Operation Sublayer (6top)
+Protocol (6P)
+2018", shape=ellipse, URL="RFC8480.html", target="_top", tooltip="This document defines the IPv6 over the TSCH mode of IEEE 802.15.4e (6TiSCH) Operation Sublayer (6top) Protocol (6P), which enables distributed scheduling in 6TiSCH networks.  6P allows neighbor nodes to add/delete Time-Slotted Channel Hopping (TSCH) cells to/on one another.  6P is part of the 6TiSCH Operation Sublayer (6top), the layer just above the IEEE Std 802.15.4 TSCH Medium Access Control layer.  6top is composed of one or more Scheduling Functions (SFs) and the 6top Protocol defined in this document.  A 6top SF decides when to add/delete cells, and it triggers 6P Transactions.  The definition of SFs is out of scope for this document; however, this document provides the requirements for an SF."];
+  cites -> RFC8480;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8152 [label="RFC8152
+CBOR Object Signing and Encryption
+(COSE)
+2017", shape=ellipse, URL="RFC8152.html", target="_top", tooltip="Concise Binary Object Representation (CBOR) is a data format designed for small code size and small message size.  There is a need for the ability to have basic security services defined for this data format.  This document defines the CBOR Object Signing and Encryption (COSE) protocol.  This specification describes how to create and process signatures, message authentication codes, and encryption using CBOR for serialization.  This specification additionally describes how to represent cryptographic keys using CBOR."];
+  cites -> RFC8152;
+  RFC8610 [label="RFC8610
+Concise Data Definition Language (CDDL):
+A Notational Convention to Express
+Concise Binary Object Representation
+(CBOR) and JSON Data Structures
+2019", shape=ellipse, URL="RFC8610.html", target="_top", tooltip="This document proposes a notational convention to express Concise Binary Object Representation (CBOR) data structures (RFC 7049).  Its main goal is to provide an easy and unambiguous way to express structures for protocol messages and data formats that use CBOR or JSON."];
+  cites -> RFC8610;
+  RFC8505 [label="RFC8505
+Registration Extensions for IPv6 over
+Low-Power Wireless Personal Area Network
+(6LoWPAN) Neighbor Discovery
+2018", shape=ellipse, URL="RFC8505.html", target="_top", tooltip="This specification updates RFC 6775 -- the Low-Power Wireless Personal Area Network (6LoWPAN) Neighbor Discovery specification -- to clarify the role of the protocol as a registration technique and simplify the registration operation in 6LoWPAN routers, as well as to provide enhancements to the registration capabilities and mobility detection for different network topologies, including the Routing Registrars performing routing for host routes and/or proxy Neighbor Discovery in a low-power network."];
+  cites -> RFC8505;
+  RFC6550 [label="RFC6550
+RPL: IPv6 Routing Protocol for Low-Power
+and Lossy Networks
+2012", shape=ellipse, URL="RFC6550.html", target="_top", tooltip="Low-Power and Lossy Networks (LLNs) are a class of network in which both the routers and their interconnect are constrained.  LLN routers typically operate with constraints on processing power, memory, and energy (battery power).  Their interconnects are characterized by high loss rates, low data rates, and instability.  LLNs are comprised of anything from a few dozen to thousands of routers.  Supported traffic flows include point-to-point (between devices inside the LLN), point-to-multipoint (from a central control point to a subset of devices inside the LLN), and multipoint-to-point (from devices inside the LLN towards a central control point).  This document specifies the IPv6 Routing Protocol for Low-Power and Lossy Networks (RPL), which provides a mechanism whereby multipoint-to-point traffic from devices inside the LLN towards a central control point as well as point-to-multipoint traffic from the central control point to the devices inside the LLN are supported.  Support for point-to-point traffic is also available. [STANDARDS-TRACK]"];
+  cites -> RFC6550;
+  RFC8415 [label="RFC8415
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2018", shape=ellipse, URL="RFC8415.html", target="_top", tooltip="This document describes the Dynamic Host Configuration Protocol for IPv6 (DHCPv6): an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly, or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC). This document updates the text from RFC 3315 (the original DHCPv6 specification) and incorporates prefix delegation (RFC 3633), stateless DHCPv6 (RFC 3736), an option to specify an upper bound for how long a client should wait before refreshing information (RFC 4242), a mechanism for throttling DHCPv6 clients when DHCPv6 service is not available (RFC 7083), and relay agent handling of unknown messages (RFC 7283). In addition, this document clarifies the interactions between models of operation (RFC 7550). As such, this document obsoletes RFC 3315, RFC 3633, RFC 3736, RFC 4242, RFC 7083, RFC 7283, and RFC 7550."];
+  cites -> RFC8415;
+  RFC8990 [label="RFC8990
+GeneRic Autonomic Signaling Protocol
+(GRASP)
+2021", shape=ellipse, URL="RFC8990.html", target="_top", tooltip="This document specifies the GeneRic Autonomic Signaling Protocol (GRASP), which enables autonomic nodes and Autonomic Service Agents to dynamically discover peers, to synchronize state with each other, and to negotiate parameter settings with each other.  GRASP depends on an external security environment that is described elsewhere.  The technical objectives and parameters for specific application scenarios are to be described in separate documents.  Appendices briefly discuss requirements for the protocol and existing protocols with comparable features."];
+  cites -> RFC8990;
+  RFC6762 [label="RFC6762
+Multicast DNS
+2013", shape=ellipse, URL="RFC6762.html", target="_top", tooltip="As networked devices become smaller, more portable, and more ubiquitous, the ability to operate with less configured infrastructure is increasingly important. In particular, the ability to look up DNS resource record data types (including, but not limited to, host names) in the absence of a conventional managed DNS server is useful. Multicast DNS (mDNS) provides the ability to perform DNS-like operations on the local link in the absence of any conventional Unicast DNS server. In addition, Multicast DNS designates a portion of the DNS namespace to be free for local use, without the need to pay any annual fee, and without the need to set up delegations or otherwise configure a conventional DNS server to answer for those names. The primary benefits of Multicast DNS names are that (i) they require little or no administration or configuration to set them up, (ii) they work when no infrastructure is present, and (iii) they work during infrastructure failures."];
+  cites -> RFC6762;
+  RFC4944 [label="RFC4944
+Transmission of IPv6 Packets over IEEE
+802.15.4 Networks
+2007", shape=ellipse, URL="RFC4944.html", target="_top", tooltip="This document describes the frame format for transmission of IPv6 packets and the method of forming IPv6 link-local addresses and statelessly autoconfigured addresses on IEEE 802.15.4 networks.  Additional specifications include a simple header compression scheme using shared context and provisions for packet delivery in IEEE 802.15.4 meshes. [STANDARDS-TRACK]"];
+  cites -> RFC4944;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  cites -> RFC8085;
+  RFC2597 [label="RFC2597
+Assured Forwarding PHB Group
+1999", shape=ellipse, URL="RFC2597.html", target="_top", tooltip="This document defines a general use Differentiated Services (DS) Per-Hop-Behavior (PHB) Group called Assured Forwarding (AF). [STANDARDS-TRACK]"];
+  cites -> RFC2597;
+  RFC8974 [label="RFC8974
+Extended Tokens and Stateless Clients in
+the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, URL="RFC8974.html", target="_top", tooltip="This document provides considerations for alleviating Constrained Application Protocol (CoAP) clients and intermediaries of keeping per-request state. To facilitate this, this document additionally introduces a new, optional CoAP protocol extension for extended token lengths. This document updates RFCs 7252 and 8323 with an extended definition of the TKL field in the CoAP message header."];
+  cites -> RFC8974;
+  RFC5869 [label="RFC5869
+HMAC-based Extract-and-Expand Key
+Derivation Function (HKDF)
+2010", shape=ellipse, URL="RFC5869.html", target="_top", tooltip="This document specifies a simple Hashed Message Authentication Code (HMAC)-based key derivation function (HKDF), which can be used as a building block in various protocols and applications.  The key derivation function (KDF) is intended to support a wide range of applications and requirements, and is conservative in its use of cryptographic hash functions.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5869;
+  RFC4231 [label="RFC4231
+Identifiers and Test Vectors for HMAC-
+SHA-224, HMAC-SHA-256, HMAC-SHA-384, and
+HMAC-SHA-512
+2005", shape=ellipse, URL="RFC4231.html", target="_top", tooltip="This document provides test vectors for the HMAC-SHA-224, HMAC-SHA-256, HMAC-SHA-384, and HMAC-SHA-512 message authentication schemes.  It also provides ASN.1 object identifiers and Uniform Resource Identifiers (URIs) to identify use of these schemes in protocols.  The test vectors provided in this document may be used for conformance testing. [STANDARDS-TRACK]"];
+  cites -> RFC4231;
+  RFC8949 [label="RFC8949
+Concise Binary Object Representation
+(CBOR)
+2020", shape=ellipse, URL="RFC8949.html", target="_top", tooltip="The Concise Binary Object Representation (CBOR) is a data format whose design goals include the possibility of extremely small code size, fairly small message size, and extensibility without the need for version negotiation. These design goals make it different from earlier binary serializations such as ASN.1 and MessagePack. This document obsoletes RFC 7049, providing editorial improvements, new details, and errata fixes while keeping full compatibility with the interchange format of RFC 7049. It does not create a new version of the format."];
+  cites -> RFC8949;
+  RFC8820 [label="RFC8820
+URI Design and Ownership
+2020", shape=ellipse, URL="RFC8820.html", target="_top", tooltip="Section 1.1.1 of RFC 3986 defines URI syntax as a federated and extensible naming system wherein each scheme's specification may further restrict the syntax and semantics of identifiers using that scheme. In other words, the structure of a URI is defined by its scheme. While it is common for schemes to further delegate their substructure to the URI's owner, publishing independent standards that mandate particular forms of substructure in URIs is often problematic. This document provides guidance on the specification of URI substructure in standards. This document obsoletes RFC 7320 and updates RFC 3986."];
+  cites -> RFC8820;
+  RFC8615 [label="RFC8615
+Well-Known Uniform Resource Identifiers
+(URIs)
+2019", shape=ellipse, URL="RFC8615.html", target="_top", tooltip="This memo defines a path prefix for well-known locations, /.well-known/, in selected Uniform Resource Identifier (URI) schemes. In doing so, it obsoletes RFC 5785 and updates the URI schemes defined in RFC 7230 to reserve that space. It also updates RFC 7595 to track URI schemes that support well-known URIs in their registry."];
+  cites -> RFC8615;
+  RFC8742 [label="RFC8742
+Concise Binary Object Representation
+(CBOR) Sequences
+2020", shape=ellipse, URL="RFC8742.html", target="_top", tooltip="This document describes the Concise Binary Object Representation (CBOR) Sequence format and associated media type application/cbor-seq. A CBOR Sequence consists of any number of encoded CBOR data items, simply concatenated in sequence. Structured syntax suffixes for media types allow other media types to build on them and make it explicit that they are built on an existing media type as their foundation. This specification defines and registers +cbor-seq as a structured syntax suffix for CBOR Sequences."];
+  cites -> RFC8742;
+  RFC7721 [label="RFC7721
+Security and Privacy Considerations for
+IPv6 Address Generation Mechanisms
+2016", shape=ellipse, URL="RFC7721.html", target="_top", tooltip="This document discusses privacy and security considerations for several IPv6 address generation mechanisms, both standardized and non-standardized.  It evaluates how different mechanisms mitigate different threats and the trade-offs that implementors, developers, and users face in choosing different addresses or address generation mechanisms."];
+  cites -> RFC7721;
+  RFC3172 [label="RFC3172
+Management Guidelines & Operational
+Requirements for the Address and Routing
+Parameter Area Domain (arpa)
+2001", shape=ellipse, URL="RFC3172.html", target="_top", tooltip="This memo describes the management and operational requirements for the address and routing parameter area (arpa) domain.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3172;
+  RFC6761 [label="RFC6761
+Special-Use Domain Names
+2013", shape=ellipse, URL="RFC6761.html", target="_top", tooltip="This document describes what it means to say that a Domain Name (DNS name) is reserved for special use, when reserving such a name is appropriate, and the procedure for doing so.  It establishes an IANA registry for such domain names, and seeds it with entries for some of the already established special domain names."];
+  cites -> RFC6761;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9031;
+  RFC9030 [label="RFC9030
+An Architecture for IPv6 over the Time-
+Slotted Channel Hopping Mode of IEEE
+802.15.4 (6TiSCH)
+2021", shape=ellipse, URL="RFC9030.html", target="_top", tooltip="This document describes a network architecture that provides low-latency, low-jitter, and high-reliability packet delivery.  It combines a high-speed powered backbone and subnetworks using IEEE 802.15.4 time-slotted channel hopping (TSCH) to meet the requirements of low-power wireless deterministic applications."];
+  RFC9030 -> rev_cites;
+  RFC9032 [label="RFC9032
+Encapsulation of 6TiSCH Join and
+Enrollment Information Elements
+2021", shape=ellipse, URL="RFC9032.html", target="_top", tooltip="In the Time-Slotted Channel Hopping (TSCH) mode of IEEE Std 802.15.4, opportunities for broadcasts are limited to specific times and specific channels.  Routers in a TSCH network transmit Enhanced Beacon (EB) frames to announce the presence of the network.  This document provides a mechanism by which additional information critical for new nodes (pledges) and long-sleeping nodes may be carried within the EB in order to conserve use of broadcast opportunities."];
+  RFC9032 -> rev_cites;
+  RFC9033 [label="RFC9033
+6TiSCH Minimal Scheduling Function (MSF)
+2021", shape=ellipse, URL="RFC9033.html", target="_top", tooltip="This specification defines the IPv6 over the TSCH mode of IEEE 802.15.4 (6TiSCH) Minimal Scheduling Function (MSF).  This Scheduling Function describes both the behavior of a node when joining the network and how the communication schedule is managed in a distributed fashion.  MSF is built upon the 6TiSCH Operation Sublayer Protocol (6P) and the minimal security framework for 6TiSCH."];
+  RFC9033 -> rev_cites;
+  RFC9354 [label="RFC9354
+Transmission of IPv6 Packets over Power
+Line Communication (PLC) Networks
+2023", shape=ellipse, URL="RFC9354.html", target="_top", tooltip="Power Line Communication (PLC), namely using electric power lines for indoor and outdoor communications, has been widely applied to support Advanced Metering Infrastructure (AMI), especially smart meters for electricity.  The existing electricity infrastructure facilitates the expansion of PLC deployments due to its potential advantages in terms of cost and convenience.  Moreover, a wide variety of accessible devices raises the potential demand of IPv6 for future applications.  This document describes how IPv6 packets are transported over constrained PLC networks, such as those described in ITU-T G.9903, IEEE 1901.1, and IEEE 1901.2."];
+  RFC9354 -> rev_cites;
+  RFC9820 [label="RFC9820
+Authentication Service Based on the
+Extensible Authentication Protocol (EAP)
+for Use with the Constrained Application
+Protocol (CoAP)
+2025", shape=ellipse, URL="RFC9820.html", target="_top", tooltip="This document specifies an authentication service that uses the Constrained Application Protocol (CoAP) as a transport method to carry the Extensible Authentication Protocol (EAP).  As such, it defines an EAP lower layer based on CoAP called CoAP-EAP.  One of the main goals is to authenticate a CoAP-enabled Internet of Things (IoT) device (EAP peer) that intends to join a security domain managed by a Controller (EAP authenticator).  Secondly, it allows deriving key material to protect CoAP messages exchanged between them based on Object Security for Constrained RESTful Environments (OSCORE), enabling the establishment of a security association between them."];
+  RFC9820 -> rev_cites;
+}

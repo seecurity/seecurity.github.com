@@ -1,0 +1,145 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8661 [label="RFC8661
+Segment Routing MPLS Interworking with
+LDP
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="A Segment Routing (SR) node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows enforcing a flow through any topological path while maintaining per-flow state only at the ingress node to the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change in the forwarding plane. This document describes how Segment Routing MPLS operates in a network where LDP is deployed and in the case where SR-capable and non-SR-capable nodes coexist."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8661;
+
+  obs [label="obsoletes", shape=box];
+  RFC8661 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8661 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8661;
+
+  cites [label="cites", shape=box];
+  RFC8661 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8660 [label="RFC8660
+Segment Routing with the MPLS Data Plane
+2019", shape=ellipse, URL="RFC8660.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm.  A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header.  In the MPLS data plane, the SR header is instantiated through a label stack.  This document specifies the forwarding behavior to allow instantiating SR over the MPLS data plane (SR-MPLS)."];
+  cites -> RFC8660;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  cites -> RFC5036;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  cites -> RFC8277;
+  RFC5960 [label="RFC5960
+MPLS Transport Profile Data Plane
+Architecture
+2010", shape=ellipse, URL="RFC5960.html", target="_top", tooltip="The Multiprotocol Label Switching Transport Profile (MPLS-TP) is the set of MPLS protocol functions applicable to the construction and operation of packet-switched transport networks. This document specifies the subset of these functions that comprises the MPLS-TP data plane: the architectural layer concerned with the encapsulation and forwarding of packets within an MPLS-TP network. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network. [STANDARDS-TRACK]"];
+  cites -> RFC5960;
+  RFC8665 [label="RFC8665
+OSPF Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8665.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv2 extensions required for Segment Routing."];
+  cites -> RFC8665;
+  RFC8666 [label="RFC8666
+OSPFv3 Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8666.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv3 extensions required for Segment Routing with the MPLS data plane."];
+  cites -> RFC8666;
+  RFC8667 [label="RFC8667
+IS-IS Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8667.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological sub-paths, called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the IS-IS extensions that need to be introduced for Segment Routing operating on an MPLS data plane."];
+  cites -> RFC8667;
+  RFC7490 [label="RFC7490
+Remote Loop-Free Alternate (LFA) Fast
+Reroute (FRR)
+2015", shape=ellipse, URL="RFC7490.html", target="_top", tooltip="This document describes an extension to the basic IP fast reroute mechanism, described in RFC 5286, that provides additional backup connectivity for point-to-point link failures when none can be provided by the basic mechanisms."];
+  cites -> RFC7490;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC8287 [label="RFC8287
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+IGP-Prefix and IGP-Adjacency Segment
+Identifiers (SIDs) with MPLS Data Planes
+2017", shape=ellipse, URL="RFC8287.html", target="_top", tooltip="A Segment Routing (SR) architecture leverages source routing and tunneling paradigms and can be directly applied to the use of a Multiprotocol Label Switching (MPLS) data plane. A node steers a packet through a controlled set of instructions called segments by prepending the packet with an SR header. The segment assignment and forwarding semantic nature of SR raises additional considerations for connectivity verification and fault isolation for a Label Switched Path (LSP) within an SR architecture. This document illustrates the problem and defines extensions to perform LSP Ping and Traceroute for Segment Routing IGP-Prefix and IGP-Adjacency Segment Identifiers (SIDs) with an MPLS data plane."];
+  cites -> RFC8287;
+  RFC3031 [label="RFC3031
+Multiprotocol Label Switching
+Architecture
+2001", shape=ellipse, URL="RFC3031.html", target="_top", tooltip="This document specifies the architecture for Multiprotocol Label Switching (MPLS). [STANDARDS-TRACK]"];
+  cites -> RFC3031;
+  RFC5304 [label="RFC5304
+IS-IS Cryptographic Authentication
+2008", shape=ellipse, URL="RFC5304.html", target="_top", tooltip="This document describes the authentication of Intermediate System to Intermediate System (IS-IS) Protocol Data Units (PDUs) using the Hashed Message Authentication Codes - Message Digest 5 (HMAC-MD5) algorithm as found in RFC 2104. IS-IS is specified in International Standards Organization (ISO) 10589, with extensions to support Internet Protocol version 4 (IPv4) described in RFC 1195. The base specification includes an authentication mechanism that allows for multiple authentication algorithms. The base specification only specifies the algorithm for cleartext passwords. This document replaces RFC 3567. This document proposes an extension to that specification that allows the use of the HMAC-MD5 authentication algorithm to be used in conjunction with the existing authentication mechanisms. [STANDARDS-TRACK]"];
+  cites -> RFC5304;
+  RFC5709 [label="RFC5709
+OSPFv2 HMAC-SHA Cryptographic
+Authentication
+2009", shape=ellipse, URL="RFC5709.html", target="_top", tooltip="This document describes how the National Institute of Standards and Technology (NIST) Secure Hash Standard family of algorithms can be used with OSPF version 2's built-in, cryptographic authentication mechanism.  This updates, but does not supercede, the cryptographic authentication mechanism specified in RFC 2328. [STANDARDS-TRACK]"];
+  cites -> RFC5709;
+  RFC8355 [label="RFC8355
+Resiliency Use Cases in Source Packet
+Routing in Networking (SPRING) Networks
+2018", shape=ellipse, URL="RFC8355.html", target="_top", tooltip="This document identifies and describes the requirements for a set of use cases related to Segment Routing network resiliency on Source Packet Routing in Networking (SPRING) networks."];
+  cites -> RFC8355;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8661;
+  RFC8660 [label="RFC8660
+Segment Routing with the MPLS Data Plane
+2019", shape=ellipse, URL="RFC8660.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm.  A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header.  In the MPLS data plane, the SR header is instantiated through a label stack.  This document specifies the forwarding behavior to allow instantiating SR over the MPLS data plane (SR-MPLS)."];
+  RFC8660 -> rev_cites;
+  RFC8665 [label="RFC8665
+OSPF Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8665.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv2 extensions required for Segment Routing."];
+  RFC8665 -> rev_cites;
+  RFC8666 [label="RFC8666
+OSPFv3 Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8666.html", target="_top", tooltip="Segment Routing (SR) allows a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological subpaths called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the OSPFv3 extensions required for Segment Routing with the MPLS data plane."];
+  RFC8666 -> rev_cites;
+  RFC8667 [label="RFC8667
+IS-IS Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8667.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological sub-paths, called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the IS-IS extensions that need to be introduced for Segment Routing operating on an MPLS data plane."];
+  RFC8667 -> rev_cites;
+  RFC9020 [label="RFC9020
+YANG Data Model for Segment Routing
+2021", shape=ellipse, URL="RFC9020.html", target="_top", tooltip="This document defines three YANG data models.  The first is for Segment Routing (SR) configuration and operation, which is to be augmented by different Segment Routing data planes.  The next is a YANG data model that defines a collection of generic types and groupings for SR.  The third module defines the configuration and operational states for the Segment Routing MPLS data plane."];
+  RFC9020 -> rev_cites;
+  RFC9085 [label="RFC9085
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+2021", shape=ellipse, URL="RFC9085.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths by encoding paths as sequences of topological subpaths, called segments. These segments are advertised by routing protocols, e.g., by the link-state routing protocols (IS-IS, OSPFv2, and OSPFv3) within IGP topologies. This document defines extensions to the Border Gateway Protocol - Link State (BGP-LS) address family in order to carry SR information via BGP."];
+  RFC9085 -> rev_cites;
+  RFC9160 [label="RFC9160
+Export of MPLS Segment Routing Label
+Type Information in IP Flow Information
+Export (IPFIX)
+2021", shape=ellipse, URL="RFC9160.html", target="_top", tooltip="This document introduces new IP Flow Information Export (IPFIX) code points to identify which traffic is being forwarded based on which MPLS control plane protocol is used within a Segment Routing domain.  In particular, this document defines five code points for the IPFIX mplsTopLabelType Information Element for Path Computation Element (PCE), IS-IS, OSPFv2, OSPFv3, and BGP MPLS Segment Routing extensions."];
+  RFC9160 -> rev_cites;
+}

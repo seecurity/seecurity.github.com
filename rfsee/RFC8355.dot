@@ -1,0 +1,88 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8355 [label="RFC8355
+Resiliency Use Cases in Source Packet
+Routing in Networking (SPRING) Networks
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document identifies and describes the requirements for a set of use cases related to Segment Routing network resiliency on Source Packet Routing in Networking (SPRING) networks."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8355;
+
+  obs [label="obsoletes", shape=box];
+  RFC8355 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8355 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8355;
+
+  cites [label="cites", shape=box];
+  RFC8355 -> cites;
+  RFC5286 [label="RFC5286
+Basic Specification for IP Fast Reroute:
+Loop-Free Alternates
+2008", shape=ellipse, URL="RFC5286.html", target="_top", tooltip="This document describes the use of loop-free alternates to provide local protection for unicast traffic in pure IP and MPLS/LDP networks in the event of a single failure, whether link, node, or shared risk link group (SRLG).  The goal of this technology is to reduce the packet loss that happens while routers converge after a topology change due to a failure.  Rapid failure repair is achieved through use of precalculated backup next-hops that are loop-free and safe to use until the distributed network convergence process completes.  This simple approach does not require any support from other routers.  The extent to which this goal can be met by this specification is dependent on the topology of the network. [STANDARDS-TRACK]"];
+  cites -> RFC5286;
+  RFC5714 [label="RFC5714
+IP Fast Reroute Framework
+2010", shape=ellipse, URL="RFC5714.html", target="_top", tooltip="This document provides a framework for the development of IP fast- reroute mechanisms that provide protection against link or router failure by invoking locally determined repair paths.  Unlike MPLS fast-reroute, the mechanisms are applicable to a network employing conventional IP routing and forwarding.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5714;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC5880 [label="RFC5880
+Bidirectional Forwarding Detection (BFD)
+2010", shape=ellipse, URL="RFC5880.html", target="_top", tooltip="This document describes a protocol intended to detect faults in the bidirectional path between two forwarding engines, including interfaces, data link(s), and to the extent possible the forwarding engines themselves, with potentially very low latency.  It operates independently of media, data protocols, and routing protocols. [STANDARDS-TRACK]"];
+  cites -> RFC5880;
+  RFC7855 [label="RFC7855
+Source Packet Routing in Networking
+(SPRING) Problem Statement and
+Requirements
+2016", shape=ellipse, URL="RFC7855.html", target="_top", tooltip="The ability for a node to specify a forwarding path, other than the normal shortest path, that a particular packet will traverse, benefits a number of network functions. Source-based routing mechanisms have previously been specified for network protocols but have not seen widespread adoption. In this context, the term source means the point at which the explicit route is imposed; therefore, it is not limited to the originator of the packet (i.e., the node imposing the explicit route may be the ingress node of an operator's network). This document outlines various use cases, with their requirements, that need to be taken into account by the Source Packet Routing in Networking (SPRING) architecture for unicast traffic. Multicast use cases and requirements are out of scope for this document."];
+  cites -> RFC7855;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8355;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  RFC8402 -> rev_cites;
+  RFC8661 [label="RFC8661
+Segment Routing MPLS Interworking with
+LDP
+2019", shape=ellipse, URL="RFC8661.html", target="_top", tooltip="A Segment Routing (SR) node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows enforcing a flow through any topological path while maintaining per-flow state only at the ingress node to the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change in the forwarding plane. This document describes how Segment Routing MPLS operates in a network where LDP is deployed and in the case where SR-capable and non-SR-capable nodes coexist."];
+  RFC8661 -> rev_cites;
+  RFC8963 [label="RFC8963
+Evaluation of a Sample of RFCs Produced
+in 2018
+2021", shape=ellipse, URL="RFC8963.html", target="_top", tooltip="This document presents the author's effort to understand the delays involved in publishing an idea in the IETF or through the Independent Stream, from the first individual draft to the publication of the RFC. We analyze a set of randomly chosen RFCs approved in 2018, looking for history and delays. We also use two randomly chosen sets of RFCs published in 2008 and 1998 for comparing delays seen in 2018 to those observed 10 or 20 years ago. The average RFC in the 2018 sample was produced in 3 years and 4 months, of which 2 years and 10 months were spent in the working group, 3 to 4 months for IETF consensus and IESG review, and 3 to 4 months in RFC production. The main variation in RFC production delays comes from the AUTH48 phase. We also measure the number of citations of the chosen RFC using Semantic Scholar, and compare citation counts with what we know about deployment. We show that citation counts indicate academic interest, but correlate only loosely with deployment or usage of the specifications. Counting web references could complement that."];
+  RFC8963 -> rev_cites;
+  RFC9352 [label="RFC9352
+IS-IS Extensions to Support Segment
+Routing over the IPv6 Data Plane
+2023", shape=ellipse, URL="RFC9352.html", target="_top", tooltip="The Segment Routing (SR) architecture allows a flexible definition of the end-to-end path by encoding it as a sequence of topological elements called segments. It can be implemented over the MPLS or the IPv6 data plane. This document describes the IS-IS extensions required to support SR over the IPv6 data plane. This document updates RFC 7370 by modifying an existing registry."];
+  RFC9352 -> rev_cites;
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, URL="RFC9689.html", target="_top", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."];
+  RFC9689 -> rev_cites;
+  RFC9889 [label="RFC9889
+A Realization of Network Slices for 5G
+Networks Using Current IP/MPLS
+Technologies
+2025", shape=ellipse, URL="RFC9889.html", target="_top", tooltip="Network slicing is a feature that was introduced by the 3rd Generation Partnership Project (3GPP) in Mobile Networks. Realization of 5G slicing implies requirements for all mobile domains, including the Radio Access Network (RAN), Core Network (CN), and Transport Network (TN). This document describes a network slice realization model for IP/MPLS networks with a focus on the Transport Network fulfilling the service objectives for 5G slicing connectivity. The realization model reuses many building blocks commonly used in service provider networks at the current time."];
+  RFC9889 -> rev_cites;
+}

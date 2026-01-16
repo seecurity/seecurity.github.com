@@ -1,0 +1,52 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3125 [label="RFC3125
+Electronic Signature Policies
+2001", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines signature policies for electronic signatures.  A signature policy is a set of rules for the creation and validation of an electronic signature, under which the validity of signature can be determined.  A given legal/contractual context may recognize a particular signature policy as meeting its requirements.  This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3125;
+
+  obs [label="obsoletes", shape=box];
+  RFC3125 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3125 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3125;
+
+  cites [label="cites", shape=box];
+  RFC3125 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2459 [label="RFC2459
+Internet X.509 Public Key Infrastructure
+Certificate and CRL Profile
+1999", shape=ellipse, URL="RFC2459.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 CRL for use in the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC2459;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3125;
+  RFC5126 [label="RFC5126
+CMS Advanced Electronic Signatures
+(CAdES)
+2008", shape=ellipse, URL="RFC5126.html", target="_top", tooltip="This document defines the format of an electronic signature that can remain valid over long periods. This includes evidence as to its validity even if the signer or verifying party later attempts to deny (i.e., repudiates) the validity of the signature. The format can be considered as an extension to RFC 3852 and RFC 2634, where, when appropriate, additional signed and unsigned attributes have been defined. The contents of this Informational RFC amount to a transposition of the ETSI Technical Specification (TS) 101 733 V.1.7.4 (CMS Advanced Electronic Signatures -- CAdES) and is technically equivalent to it. The technical contents of this specification are maintained by ETSI. The ETSI TS and further updates are available free of charge at: http://www.etsi.org/WebSite/Standards/StandardsDownload.aspx This memo provides information for the Internet community."];
+  RFC5126 -> rev_cites;
+  RFC7107 [label="RFC7107
+Object Identifier Registry for the
+S/MIME Mail Security Working Group
+2014", shape=ellipse, URL="RFC7107.html", target="_top", tooltip="When the S/MIME Mail Security Working Group was chartered, an object identifier arc was donated by RSA Data Security for use by that working group.  This document describes the object identifiers that were assigned in that donated arc, transfers control of that arc to IANA, and establishes IANA allocation policies for any future assignments within that arc."];
+  RFC7107 -> rev_cites;
+  RFC9321 [label="RFC9321
+Signature Validation Token
+2022", shape=ellipse, URL="RFC9321.html", target="_top", tooltip="Electronic signatures have a limited lifespan with respect to the time period that they can be validated and determined to be authentic.  The Signature Validation Token (SVT) defined in this specification provides evidence that asserts the validity of an electronic signature.  The SVT is provided by a trusted authority, which asserts that a particular signature was successfully validated according to defined procedures at a certain time.  Any future validation of that electronic signature can be satisfied by validating the SVT without any need to also validate the original electronic signature or the associated digital certificates.  The SVT supports electronic signatures in Cryptographic Message Syntax (CMS), XML, PDF, and JSON documents."];
+  RFC9321 -> rev_cites;
+}

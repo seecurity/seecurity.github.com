@@ -1,0 +1,75 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7968 [label="RFC7968
+Transparent Interconnection of Lots of
+Links (TRILL): Using Data Labels for
+Tree Selection for Multi-Destination
+Data
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="TRILL (Transparent Interconnection of Lots of Links) uses distribution trees to deliver multi-destination frames. Multiple trees can be used by an ingress Routing Bridge (RBridge) for flows, regardless of the VLAN, Fine-Grained Label (FGL), and/or multicast group of the flow. Different ingress RBridges may choose different distribution trees for TRILL Data packets in the same VLAN, FGL, and/or multicast group. To avoid unnecessary link utilization, distribution trees should be pruned based on one or more of the following: VLAN, FGL, or multicast destination address. If any VLAN, FGL, or multicast group can be sent on any tree, for typical fast-path hardware, the amount of pruning information is multiplied by the number of trees, but there is limited hardware capacity for such pruning information. This document specifies an optional facility to restrict the TRILL Data packets sent on particular distribution trees by VLAN, FGL, and/or multicast groups, thus reducing the total amount of pruning information so that it can more easily be accommodated by fast-path hardware."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7968;
+
+  obs [label="obsoletes", shape=box];
+  RFC7968 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7968 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7968;
+
+  cites [label="cites", shape=box];
+  RFC7968 -> cites;
+  RFC6325 [label="RFC6325
+Routing Bridges (RBridges): Base
+Protocol Specification
+2011", shape=ellipse, URL="RFC6325.html", target="_top", tooltip="Routing Bridges (RBridges) provide optimal pair-wise forwarding without configuration, safe forwarding even during periods of temporary loops, and support for multipathing of both unicast and multicast traffic. They achieve these goals using IS-IS routing and encapsulation of traffic with a header that includes a hop count. RBridges are compatible with previous IEEE 802.1 customer bridges as well as IPv4 and IPv6 routers and end nodes. They are as invisible to current IP routers as bridges are and, like routers, they terminate the bridge spanning tree protocol. The design supports VLANs and the optimization of the distribution of multi-destination frames based on VLAN ID and based on IP-derived multicast groups. It also allows unicast forwarding tables at transit RBridges to be sized according to the number of RBridges (rather than the number of end nodes), which allows their forwarding tables to be substantially smaller than in conventional customer bridges. [STANDARDS-TRACK]"];
+  cites -> RFC6325;
+  RFC7176 [label="RFC7176
+Transparent Interconnection of Lots of
+Links (TRILL) Use of IS-IS
+2014", shape=ellipse, URL="RFC7176.html", target="_top", tooltip="The IETF Transparent Interconnection of Lots of Links (TRILL) protocol provides optimal pair-wise data frame forwarding without configuration in multi-hop networks with arbitrary topology and link technology; it also provides support for multipathing of both unicast and multicast traffic.  This document specifies the data formats and code points for the IS-IS extensions to support TRILL.  These data formats and code points may also be used by technologies other than TRILL.  This document obsoletes RFC 6326."];
+  cites -> RFC7176;
+  RFC7172 [label="RFC7172
+Transparent Interconnection of Lots of
+Links (TRILL): Fine-Grained Labeling
+2014", shape=ellipse, URL="RFC7172.html", target="_top", tooltip="The IETF has standardized Transparent Interconnection of Lots of Links (TRILL), a protocol for least-cost transparent frame routing in multi-hop networks with arbitrary topologies and link technologies, using link-state routing and a hop count.  The TRILL base protocol standard supports the labeling of TRILL Data packets with up to 4K IDs.  However, there are applications that require a larger number of labels providing configurable isolation of data.  This document updates RFC 6325 by specifying optional extensions to the TRILL base protocol to safely accomplish this.  These extensions, called fine-grained labeling, are primarily intended for use in large data centers, that is, those with more than 4K users requiring configurable data isolation from each other."];
+  cites -> RFC7172;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC7357 [label="RFC7357
+Transparent Interconnection of Lots of
+Links (TRILL): End Station Address
+Distribution Information (ESADI)
+Protocol
+2014", shape=ellipse, URL="RFC7357.html", target="_top", tooltip="The IETF TRILL (Transparent Interconnection of Lots of Links) protocol provides least-cost pair-wise data forwarding without configuration in multi-hop networks with arbitrary topologies and link technologies. TRILL supports multipathing of both unicast and multicast traffic. Devices that implement the TRILL protocol are called TRILL switches or RBridges (Routing Bridges). ESADI (End Station Address Distribution Information) is an optional protocol by which a TRILL switch can communicate, in a Data Label (VLAN or fine-grained label) scoped way, end station address and reachability information to TRILL switches participating in ESADI for the relevant Data Label. This document updates RFC 6325, specifically the documentation of the ESADI protocol, and is not backwards compatible."];
+  cites -> RFC7357;
+  RFC7780 [label="RFC7780
+Transparent Interconnection of Lots of
+Links (TRILL): Clarifications,
+Corrections, and Updates
+2016", shape=ellipse, URL="RFC7780.html", target="_top", tooltip="Since the publication of the TRILL (Transparent Interconnection of Lots of Links) base protocol in 2011, active development and deployment of TRILL have revealed errata in RFC 6325 and areas that could use clarifications or updates.  RFC 7177, RFC 7357, and an intended replacement of RFC 6439 provide clarifications and updates with respect to adjacency, the TRILL ESADI (End Station Address Distribution Information) protocol, and Appointed Forwarders, respectively.  This document provides other known clarifications, corrections, and updates.  It obsoletes RFC 7180 (the previous TRILL clarifications, corrections, and updates RFC), and it updates RFCs 6325, 7177, and 7179."];
+  cites -> RFC7780;
+  RFC5310 [label="RFC5310
+IS-IS Generic Cryptographic
+Authentication
+2009", shape=ellipse, URL="RFC5310.html", target="_top", tooltip="This document proposes an extension to Intermediate System to Intermediate System (IS-IS) to allow the use of any cryptographic authentication algorithm in addition to the already-documented authentication schemes, described in the base specification and RFC 5304. IS-IS is specified in International Standards Organization (ISO) 10589, with extensions to support Internet Protocol version 4 (IPv4) described in RFC 1195. Although this document has been written specifically for using the Hashed Message Authentication Code (HMAC) construct along with the Secure Hash Algorithm (SHA) family of cryptographic hash functions, the method described in this document is generic and can be used to extend IS-IS to support any cryptographic hash function in the future. [STANDARDS-TRACK]"];
+  cites -> RFC5310;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7968;
+  RFC8397 [label="RFC8397
+Transparent Interconnection of Lots of
+Links (TRILL) Multilevel Using Unique
+Nicknames
+2018", shape=ellipse, URL="RFC8397.html", target="_top", tooltip="TRILL (Transparent Interconnection of Lots of Links) routing can be extended to support multiple levels by building on the multilevel feature of IS-IS routing.  Depending on how nicknames are managed, there are two primary alternatives to realize TRILL multilevel: the unique nickname approach and the aggregated nickname approach as discussed in RFC 8243.  This document specifies a unique nickname approach.  This approach gives unique nicknames to all TRILL switches across the multilevel TRILL campus."];
+  RFC8397 -> rev_cites;
+}

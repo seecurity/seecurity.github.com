@@ -1,0 +1,78 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5001 [label="RFC5001
+DNS Name Server Identifier (NSID) Option
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="With the increased use of DNS anycast, load balancing, and other mechanisms allowing more than one DNS name server to share a single IP address, it is sometimes difficult to tell which of a pool of name servers has answered a particular query.  While existing ad-hoc mechanisms allow an operator to send follow-up queries when it is necessary to debug such a configuration, the only completely reliable way to obtain the identity of the name server that responded is to have the name server include this information in the response itself.  This note defines a protocol extension to support this functionality. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5001;
+
+  obs [label="obsoletes", shape=box];
+  RFC5001 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5001 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5001;
+
+  cites [label="cites", shape=box];
+  RFC5001 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2671 [label="RFC2671
+Extension Mechanisms for DNS (EDNS0)
+1999", shape=ellipse, URL="RFC2671.html", target="_top", tooltip="The Domain Name System's wire protocol includes a number of fixed fields whose range has been or soon will be exhausted and does not allow clients to advertise their capabilities to servers.  This document describes backward compatible mechanisms for allowing the protocol to grow. [STANDARDS-TRACK]"];
+  cites -> RFC2671;
+  RFC2277 [label="RFC2277
+IETF Policy on Character Sets and
+Languages
+1998", shape=ellipse, URL="RFC2277.html", target="_top", tooltip="This document is the current policies being applied by the Internet Engineering Steering Group (IESG) towards the standardization efforts in the Internet Engineering Task Force (IETF) in order to help Internet protocols fulfill these requirements.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2277;
+  RFC2845 [label="RFC2845
+Secret Key Transaction Authentication
+for DNS (TSIG)
+2000", shape=ellipse, URL="RFC2845.html", target="_top", tooltip="This protocol allows for transaction level authentication using shared secrets and one way hashing.  It can be used to authenticate dynamic updates as coming from an approved client, or to authenticate responses as coming from an approved recursive name server. [STANDARDS-TRACK]"];
+  cites -> RFC2845;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5001;
+  RFC6382 [label="RFC6382
+Unique Origin Autonomous System Numbers
+(ASNs) per Node for Globally Anycasted
+Services
+2011", shape=ellipse, URL="RFC6382.html", target="_top", tooltip="This document makes recommendations regarding the use of unique origin autonomous system numbers (ASNs) per node for globally anycasted critical infrastructure services in order to provide routing system discriminators for a given anycasted prefix.  Network management and monitoring techniques, or other operational mechanisms, may employ this new discriminator in whatever manner best accommodates their operating environment.  This memo documents an Internet Best Current Practice."];
+  RFC6382 -> rev_cites;
+  RFC7094 [label="RFC7094
+Architectural Considerations of IP
+Anycast
+2014", shape=ellipse, URL="RFC7094.html", target="_top", tooltip="This memo discusses architectural implications of IP anycast and provides some historical analysis of anycast use by various IETF protocols."];
+  RFC7094 -> rev_cites;
+  RFC7108 [label="RFC7108
+A Summary of Various Mechanisms Deployed
+at L-Root for the Identification of
+Anycast Nodes
+2014", shape=ellipse, URL="RFC7108.html", target="_top", tooltip="Anycast is a deployment technique commonly employed for authoritative-only servers in the Domain Name System (DNS). L-Root, one of the thirteen root servers, is deployed in this fashion. Various techniques have been used to map deployed anycast infrastructure externally, i.e., without reference to inside knowledge about where and how such infrastructure has been deployed. Motivations for performing such measurement exercises include operational troubleshooting and infrastructure risk assessment. In the specific case of L-Root, the ability to measure and map anycast infrastructure using the techniques mentioned in this document is provided for reasons of operational transparency. This document describes all facilities deployed at L-Root to facilitate mapping of its infrastructure and serves as documentation for L-Root as a measurable service."];
+  RFC7108 -> rev_cites;
+  RFC7534 [label="RFC7534
+AS112 Nameserver Operations
+2015", shape=ellipse, URL="RFC7534.html", target="_top", tooltip="Many sites connected to the Internet make use of IPv4 addresses that are not globally unique. Examples are the addresses designated in RFC 1918 for private use within individual sites. Devices in such environments may occasionally originate Domain Name System (DNS) queries (so-called reverse lookups) corresponding to those private-use addresses. Since the addresses concerned have only local significance, it is good practice for site administrators to ensure that such queries are answered locally. However, it is not uncommon for such queries to follow the normal delegation path in the public DNS instead of being answered within the site. It is not possible for public DNS servers to give useful answers to such queries. In addition, due to the wide deployment of private-use addresses and the continuing growth of the Internet, the volume of such queries is large and growing. The AS112 project aims to provide a distributed sink for such queries in order to reduce the load on the corresponding authoritative servers. The AS112 project is named after the Autonomous System Number (ASN) that was assigned to it. This document describes the steps required to install a new AS112 node and offers advice relating to such a node's operation. This document obsoletes RFC 6304."];
+  RFC7534 -> rev_cites;
+  RFC8906 [label="RFC8906
+A Common Operational Problem in DNS
+Servers: Failure to Communicate
+2020", shape=ellipse, URL="RFC8906.html", target="_top", tooltip="The DNS is a query/response protocol. Failing to respond to queries, or responding incorrectly, causes both immediate operational problems and long-term problems with protocol development. This document identifies a number of common kinds of queries to which some servers either fail to respond or respond incorrectly. This document also suggests procedures for zone operators to apply to identify and remediate the problem. The document does not look at the DNS data itself, just the structure of the responses."];
+  RFC8906 -> rev_cites;
+  RFC9660 [label="RFC9660
+The DNS Zone Version (ZONEVERSION)
+Option
+2024", shape=ellipse, URL="RFC9660.html", target="_top", tooltip="The DNS ZONEVERSION option is a way for DNS clients to request, and for authoritative DNS servers to provide, information regarding the version of the zone from which a response is generated. The SERIAL field from the Start of Authority (SOA) resource record (RR) is a good example of a zone's version, and it is the only one defined by this specification. Additional version types may be defined by future specifications. Including zone version data in a response simplifies and improves the quality of debugging and diagnostics since the version and the DNS answer are provided atomically. This can be especially useful for zones and DNS providers that leverage IP anycast or multiple backend systems. It functions similarly to the DNS Name Server Identifier (NSID) option described in RFC 5001."];
+  RFC9660 -> rev_cites;
+}

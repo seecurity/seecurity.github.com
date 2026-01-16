@@ -1,0 +1,46 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6203 [label="RFC6203
+IMAP4 Extension for Fuzzy Search
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes an IMAP protocol extension enabling a server to perform searches with inexact matching and assigning relevancy scores for matched messages. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6203;
+
+  obs [label="obsoletes", shape=box];
+  RFC6203 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6203 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6203;
+
+  cites [label="cites", shape=box];
+  RFC6203 -> cites;
+  RFC5255 [label="RFC5255
+Internet Message Access Protocol
+Internationalization
+2008", shape=ellipse, URL="RFC5255.html", target="_top", tooltip="Internet Message Access Protocol (IMAP) version 4rev1 has basic support for non-ASCII characters in mailbox names and search substrings.  It also supports non-ASCII message headers and content encoded as specified by Multipurpose Internet Mail Extensions (MIME).  This specification defines a collection of IMAP extensions that improve international support including language negotiation for international error text, translations for namespace prefixes, and comparator negotiation for search, sort, and thread. [STANDARDS-TRACK]"];
+  cites -> RFC5255;
+  RFC3501 [label="RFC3501
+INTERNET MESSAGE ACCESS PROTOCOL -
+VERSION 4rev1
+2003", shape=ellipse, URL="RFC3501.html", target="_top", tooltip="The Internet Message Access Protocol, Version 4rev1 (IMAP4rev1) allows a client to access and manipulate electronic mail messages on a server.  IMAP4rev1 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders.  IMAP4rev1 also provides the capability for an offline client to resynchronize with the server.  IMAP4rev1 includes operations for creating, deleting, and renaming mailboxes, checking for new messages, permanently removing messages, setting and clearing flags, RFC 2822 and RFC 2045 parsing, searching, and selective fetching of message attributes, texts, and portions thereof.  Messages in IMAP4rev1 are accessed by the use of numbers.  These numbers are either message sequence numbers or unique identifiers.  IMAP4rev1 supports a single server.  A mechanism for accessing configuration information to support multiple IMAP4rev1 servers is discussed in RFC 2244.  IMAP4rev1 does not specify a means of posting mail; this function is handled by a mail transfer protocol such as RFC 2821. [STANDARDS-TRACK]"];
+  cites -> RFC3501;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6203;
+  RFC7017 [label="RFC7017
+IMAP Access to IETF Email List Archives
+2013", shape=ellipse, URL="RFC7017.html", target="_top", tooltip="The IETF makes heavy use of email lists to conduct its work.  This often involves accessing the archived history of those email lists.  Participants would like to have the ability to browse and search those archives using standard IMAP clients.  This memo captures the requirements for providing a service that would allow such browsing and searching, and it is intended as input to a later activity for the design and development of such a service."];
+  RFC7017 -> rev_cites;
+  RFC7377 [label="RFC7377
+IMAP4 Multimailbox SEARCH Extension
+2014", shape=ellipse, URL="RFC7377.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the delays caused by many round trips and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX, UIDVALIDITY, and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466 and obsoletes RFC 6237."];
+  RFC7377 -> rev_cites;
+}

@@ -1,0 +1,68 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8670 [label="RFC8670
+BGP Prefix Segment in Large-Scale Data
+Centers
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the motivation for, and benefits of, applying Segment Routing (SR) in BGP-based large-scale data centers.  It describes the design to deploy SR in those data centers for both the MPLS and IPv6 data planes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8670;
+
+  obs [label="obsoletes", shape=box];
+  RFC8670 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8670 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8670;
+
+  cites [label="cites", shape=box];
+  RFC8670 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC7938 [label="RFC7938
+Use of BGP for Routing in Large-Scale
+Data Centers
+2016", shape=ellipse, URL="RFC7938.html", target="_top", tooltip="Some network operators build and operate data centers that support over one hundred thousand servers.  In this document, such data centers are referred to as large-scale to differentiate them from smaller infrastructures.  Environments of this scale have a unique set of network requirements with an emphasis on operational simplicity and network stability.  This document summarizes operational experience in designing and operating large-scale data centers using BGP as the only routing protocol.  The intent is to report on a proven and stable routing design that could be leveraged by others in the industry."];
+  cites -> RFC7938;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC6793 [label="RFC6793
+BGP Support for Four-Octet Autonomous
+System (AS) Number Space
+2012", shape=ellipse, URL="RFC6793.html", target="_top", tooltip="The Autonomous System number is encoded as a two-octet entity in the base BGP specification.  This document describes extensions to BGP to carry the Autonomous System numbers as four-octet entities.  This document obsoletes RFC 4893 and updates RFC 4271. [STANDARDS-TRACK]"];
+  cites -> RFC6793;
+  RFC8669 [label="RFC8669
+Segment Routing Prefix Segment
+Identifier Extensions for BGP
+2019", shape=ellipse, URL="RFC8669.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm. A node steers a packet through an ordered list of instructions called segments. A segment can represent any instruction, topological or service based. The ingress node prepends an SR header to a packet containing a set of segment identifiers (SIDs). Each SID represents a topological or service-based instruction. Per-flow state is maintained only on the ingress node of the SR domain. An SR domain is defined as a single administrative domain for global SID assignment. This document defines an optional, transitive BGP attribute for announcing information about BGP Prefix Segment Identifiers (BGP Prefix-SIDs) and the specification for SR-MPLS SIDs."];
+  cites -> RFC8669;
+  RFC8277 [label="RFC8277
+Using BGP to Bind MPLS Labels to Address
+Prefixes
+2017", shape=ellipse, URL="RFC8277.html", target="_top", tooltip="This document specifies a set of procedures for using BGP to advertise that a specified router has bound a specified MPLS label (or a specified sequence of MPLS labels organized as a contiguous part of a label stack) to a specified address prefix.  This can be done by sending a BGP UPDATE message whose Network Layer Reachability Information field contains both the prefix and the MPLS label(s) and whose Next Hop field identifies the node at which said prefix is bound to said label(s).  This document obsoletes RFC 3107."];
+  cites -> RFC8277;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8670;
+  RFC8669 [label="RFC8669
+Segment Routing Prefix Segment
+Identifier Extensions for BGP
+2019", shape=ellipse, URL="RFC8669.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm. A node steers a packet through an ordered list of instructions called segments. A segment can represent any instruction, topological or service based. The ingress node prepends an SR header to a packet containing a set of segment identifiers (SIDs). Each SID represents a topological or service-based instruction. Per-flow state is maintained only on the ingress node of the SR domain. An SR domain is defined as a single administrative domain for global SID assignment. This document defines an optional, transitive BGP attribute for announcing information about BGP Prefix Segment Identifiers (BGP Prefix-SIDs) and the specification for SR-MPLS SIDs."];
+  RFC8669 -> rev_cites;
+  RFC9160 [label="RFC9160
+Export of MPLS Segment Routing Label
+Type Information in IP Flow Information
+Export (IPFIX)
+2021", shape=ellipse, URL="RFC9160.html", target="_top", tooltip="This document introduces new IP Flow Information Export (IPFIX) code points to identify which traffic is being forwarded based on which MPLS control plane protocol is used within a Segment Routing domain.  In particular, this document defines five code points for the IPFIX mplsTopLabelType Information Element for Path Computation Element (PCE), IS-IS, OSPFv2, OSPFv3, and BGP MPLS Segment Routing extensions."];
+  RFC9160 -> rev_cites;
+}

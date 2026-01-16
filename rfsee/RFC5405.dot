@@ -1,0 +1,392 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5405 [label="RFC5405
+Unicast UDP Usage Guidelines for
+Application Designers
+2008", shape=ellipse, fillcolor="#e8f0ff", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms.  Because congestion control is critical to the stable operation of the Internet, applications and upper-layer protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic.  This document provides guidelines on the use of UDP for the designers of unicast applications and upper-layer protocols.  Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, and middlebox traversal.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5405;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  RFC8085 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC5405 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5405 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5405;
+
+  cites [label="cites", shape=box];
+  RFC5405 -> cites;
+  RFC3828 [label="RFC3828
+The Lightweight User Datagram Protocol
+(UDP-Lite)
+2004", shape=ellipse, URL="RFC3828.html", target="_top", tooltip="This document describes the Lightweight User Datagram Protocol (UDP-Lite), which is similar to the User Datagram Protocol (UDP) (RFC 768), but can also serve applications in error-prone network environments that prefer to have partially damaged payloads delivered rather than discarded.  If this feature is not used, UDP-Lite is semantically identical to UDP. [STANDARDS-TRACK]"];
+  cites -> RFC3828;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+  RFC2309 [label="RFC2309
+Recommendations on Queue Management and
+Congestion Avoidance in the Internet
+1998", shape=ellipse, URL="RFC2309.html", target="_top", tooltip="This memo presents two recommendations to the Internet community concerning measures to improve and preserve Internet performance.  It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management in routers, to improve the performance of today's Internet.  It also urges a concerted effort of research, measurement, and ultimate deployment of router mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  cites -> RFC2309;
+  RFC2675 [label="RFC2675
+IPv6 Jumbograms
+1999", shape=ellipse, URL="RFC2675.html", target="_top", tooltip="This document describes the IPv6 Jumbo Payload option, which provides the means of specifying such large payload lengths.  It also describes the changes needed to TCP and UDP to make use of jumbograms. [STANDARDS-TRACK]"];
+  cites -> RFC2675;
+  RFC1112 [label="RFC1112
+Host extensions for IP multicasting
+1989", shape=ellipse, URL="RFC1112.html", target="_top", tooltip="This memo specifies the extensions required of a host implementation of the Internet Protocol (IP) to support multicasting.  Recommended procedure for IP multicasting in the Internet.  This RFC obsoletes RFCs 998 and 1054. [STANDARDS-TRACK]"];
+  cites -> RFC1112;
+  RFC1546 [label="RFC1546
+Host Anycasting Service
+1993", shape=ellipse, URL="RFC1546.html", target="_top", tooltip="This RFC describes an internet anycasting service for IP.  The primary purpose of this memo is to establish the semantics of an anycasting service within an IP internet.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1546;
+  RFC3048 [label="RFC3048
+Reliable Multicast Transport Building
+Blocks for One-to-Many Bulk-Data
+Transfer
+2001", shape=ellipse, URL="RFC3048.html", target="_top", tooltip="This document describes a framework for the standardization of bulk-data reliable multicast transport.  This memo provides information for the Internet community."];
+  cites -> RFC3048;
+  RFC3738 [label="RFC3738
+Wave and Equation Based Rate Control
+(WEBRC) Building Block
+2004", shape=ellipse, URL="RFC3738.html", target="_top", tooltip="This document specifies Wave and Equation Based Rate Control (WEBRC), which provides rate and congestion control for data delivery.  WEBRC is specifically designed to support protocols using IP multicast.  It provides multiple-rate, congestion-controlled delivery to receivers, i.e., different receivers joined to the same session may be receiving packets at different rates depending on the bandwidths of their individual connections to the sender and on competing traffic along these connections.  WEBRC requires no feedback from receivers to the sender, i.e., it is a completely receiver-driven congestion control protocol.  Thus, it is designed to scale to potentially massive numbers of receivers attached to a session from a single sender.  Furthermore, because each individual receiver adjusts to the available bandwidth between the sender and that receiver, there is the potential to deliver data to each individual receiver at the fastest possible rate for that receiver, even in a highly heterogeneous network architecture, using a single sender.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3738;
+  RFC4654 [label="RFC4654
+TCP-Friendly Multicast Congestion
+Control (TFMCC): Protocol Specification
+2006", shape=ellipse, URL="RFC4654.html", target="_top", tooltip="This document specifies TCP-Friendly Multicast Congestion Control (TFMCC).  TFMCC is a congestion control mechanism for multicast transmissions in a best-effort Internet environment.  It is a single-rate congestion control scheme, where the sending rate is adapted to the receiver experiencing the worst network conditions.  TFMCC is reasonably fair when competing for bandwidth with TCP flows and has a relatively low variation of throughput over time, making it suitable for applications where a relatively smooth sending rate is of importance, such as streaming media.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4654;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4960 [label="RFC4960
+Stream Control Transmission Protocol
+2007", shape=ellipse, URL="RFC4960.html", target="_top", tooltip="This document obsoletes RFC 2960 and RFC 3309. It describes the Stream Control Transmission Protocol (SCTP). SCTP is designed to transport Public Switched Telephone Network (PSTN) signaling messages over IP networks, but is capable of broader applications. SCTP is a reliable transport protocol operating on top of a connectionless packet network such as IP. It offers the following services to its users: -- acknowledged error-free non-duplicated transfer of user data, -- data fragmentation to conform to discovered path MTU size, -- sequenced delivery of user messages within multiple streams, with an option for order-of-arrival delivery of individual user messages, -- optional bundling of multiple user messages into a single SCTP packet, and -- network-level fault tolerance through supporting of multi-homing at either or both ends of an association. The design of SCTP includes appropriate congestion avoidance behavior and resistance to flooding and masquerade attacks. [STANDARDS-TRACK]"];
+  cites -> RFC4960;
+  RFC3758 [label="RFC3758
+Stream Control Transmission Protocol
+(SCTP) Partial Reliability Extension
+2004", shape=ellipse, URL="RFC3758.html", target="_top", tooltip="This memo describes an extension to the Stream Control Transmission Protocol (SCTP) that allows an SCTP endpoint to signal to its peer that it should move the cumulative ack point forward.  When both sides of an SCTP association support this extension, it can be used by an SCTP implementation to provide partially reliable data transmission service to an upper layer protocol.  This memo describes the protocol extensions, which consist of a new parameter for INIT and INIT ACK, and a new FORWARD TSN chunk type, and provides one example of a partially reliable service that can be provided to the upper layer via this mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC3758;
+  RFC4340 [label="RFC4340
+Datagram Congestion Control Protocol
+(DCCP)
+2006", shape=ellipse, URL="RFC4340.html", target="_top", tooltip="The Datagram Congestion Control Protocol (DCCP) is a transport protocol that provides bidirectional unicast connections of congestion-controlled unreliable datagrams.  DCCP is suitable for applications that transfer fairly large amounts of data and that can benefit from control over the tradeoff between timeliness and reliability. [STANDARDS-TRACK]"];
+  cites -> RFC4340;
+  RFC4341 [label="RFC4341
+Profile for Datagram Congestion Control
+Protocol (DCCP) Congestion Control ID 2:
+TCP-like Congestion Control
+2006", shape=ellipse, URL="RFC4341.html", target="_top", tooltip="This document contains the profile for Congestion Control Identifier 2 (CCID 2), TCP-like Congestion Control, in the Datagram Congestion Control Protocol (DCCP).  CCID 2 should be used by senders who would like to take advantage of the available bandwidth in an environment with rapidly changing conditions, and who are able to adapt to the abrupt changes in the congestion window typical of TCP's Additive Increase Multiplicative Decrease (AIMD) congestion control. [STANDARDS-TRACK]"];
+  cites -> RFC4341;
+  RFC4342 [label="RFC4342
+Profile for Datagram Congestion Control
+Protocol (DCCP) Congestion Control ID 3:
+TCP-Friendly Rate Control (TFRC)
+2006", shape=ellipse, URL="RFC4342.html", target="_top", tooltip="This document contains the profile for Congestion Control Identifier 3, TCP-Friendly Rate Control (TFRC), in the Datagram Congestion Control Protocol (DCCP).  CCID 3 should be used by senders that want a TCP-friendly sending rate, possibly with Explicit Congestion Notification (ECN), while minimizing abrupt rate changes. [STANDARDS-TRACK]"];
+  cites -> RFC4342;
+  RFC4987 [label="RFC4987
+TCP SYN Flooding Attacks and Common
+Mitigations
+2007", shape=ellipse, URL="RFC4987.html", target="_top", tooltip="This document describes TCP SYN flooding attacks, which have been well-known to the community for several years.  Various countermeasures against these attacks, and the trade-offs of each, are described.  This document archives explanations of the attack and common defense techniques for the benefit of TCP implementers and administrators of TCP servers or networks, but does not make any standards-level recommendations.  This memo provides information for the Internet community."];
+  cites -> RFC4987;
+  RFC3124 [label="RFC3124
+The Congestion Manager
+2001", shape=ellipse, URL="RFC3124.html", target="_top", tooltip="This document describes the Congestion Manager (CM), an end-system module that enables an ensemble of multiple concurrent streams from a sender destined to the same receiver and sharing the same congestion properties to perform proper congestion avoidance and control, and allows applications to easily adapt to network congestion. [STANDARDS-TRACK]"];
+  cites -> RFC3124;
+  RFC5348 [label="RFC5348
+TCP Friendly Rate Control (TFRC):
+Protocol Specification
+2008", shape=ellipse, URL="RFC5348.html", target="_top", tooltip="This document specifies TCP Friendly Rate Control (TFRC). TFRC is a congestion control mechanism for unicast flows operating in a best-effort Internet environment. It is reasonably fair when competing for bandwidth with TCP flows, but has a much lower variation of throughput over time compared with TCP, making it more suitable for applications such as streaming media where a relatively smooth sending rate is of importance. This document obsoletes RFC 3448 and updates RFC 4342. [STANDARDS-TRACK]"];
+  cites -> RFC5348;
+  RFC3551 [label="RFC3551
+RTP Profile for Audio and Video
+Conferences with Minimal Control
+2003", shape=ellipse, URL="RFC3551.html", target="_top", tooltip="This document describes a profile called RTP/AVP for the use of the real-time transport protocol (RTP), version 2, and the associated control protocol, RTCP, within audio and video multiparticipant conferences with minimal control.  It provides interpretations of generic fields within the RTP specification suitable for audio and video conferences.  In particular, this document defines a set of default mappings from payload type numbers to encodings.  This document also describes how audio and video data may be carried within RTP.  It defines a set of standard encodings and their names when used within RTP.  The descriptions provide pointers to reference implementations and the detailed standards.  This document is meant as an aid for implementors of audio, video and other real-time multimedia applications.  This memorandum obsoletes RFC 1890.  It is mostly backwards-compatible except for functions removed because two interoperable implementations were not found.  The additions to RFC 1890 codify existing practice in the use of payload formats under this profile and include new payload formats defined since RFC 1890 was published. [STANDARDS-TRACK]"];
+  cites -> RFC3551;
+  RFC1536 [label="RFC1536
+Common DNS Implementation Errors and
+Suggested Fixes
+1993", shape=ellipse, URL="RFC1536.html", target="_top", tooltip="This memo describes common errors seen in DNS implementations and suggests some fixes.  This memo provides information for the Internet community.  It does not specify an Internet standard."];
+  cites -> RFC1536;
+  RFC2988 [label="RFC2988
+Computing TCP's Retransmission Timer
+2000", shape=ellipse, URL="RFC2988.html", target="_top", tooltip="This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer. [STANDARDS-TRACK]"];
+  cites -> RFC2988;
+  RFC3261 [label="RFC3261
+SIP: Session Initiation Protocol
+2002", shape=ellipse, URL="RFC3261.html", target="_top", tooltip="This document describes Session Initiation Protocol (SIP), an application-layer control (signaling) protocol for creating, modifying, and terminating sessions with one or more participants.  These sessions include Internet telephone calls, multimedia distribution, and multimedia conferences. [STANDARDS-TRACK]"];
+  cites -> RFC3261;
+  RFC4963 [label="RFC4963
+IPv4 Reassembly Errors at High Data
+Rates
+2007", shape=ellipse, URL="RFC4963.html", target="_top", tooltip="IPv4 fragmentation is not sufficiently robust for use under some conditions in today's Internet.  At high data rates, the 16-bit IP identification field is not large enough to prevent frequent incorrectly assembled IP fragments, and the TCP and UDP checksums are insufficient to prevent the resulting corrupted datagrams from being delivered to higher protocol layers.  This note describes some easily reproduced experiments demonstrating the problem, and discusses some of the operational implications of these observations.  This memo provides information for the Internet community."];
+  cites -> RFC4963;
+  RFC1191 [label="RFC1191
+Path MTU discovery
+1990", shape=ellipse, URL="RFC1191.html", target="_top", tooltip="This memo describes a technique for dynamically discovering the maximum transmission unit (MTU) of an arbitrary internet path.  It specifies a small change to the way routers generate one type of ICMP message.  For a path that passes through a router that has not been so changed, this technique might not discover the correct Path MTU, but it will always choose a Path MTU as accurate as, and in many cases more accurate than, the Path MTU that would be chosen by current practice. [STANDARDS-TRACK]"];
+  cites -> RFC1191;
+  RFC1981 [label="RFC1981
+Path MTU Discovery for IP version 6
+1996", shape=ellipse, URL="RFC1981.html", target="_top", tooltip="This document describes Path MTU Discovery for IP version 6.  It is largely derived from RFC 1191, which describes Path MTU Discovery for IP version 4. [STANDARDS-TRACK]"];
+  cites -> RFC1981;
+  RFC4821 [label="RFC4821
+Packetization Layer Path MTU Discovery
+2007", shape=ellipse, URL="RFC4821.html", target="_top", tooltip="This document describes a robust method for Path MTU Discovery (PMTUD) that relies on TCP or some other Packetization Layer to probe an Internet path with progressively larger packets.  This method is described as an extension to RFC 1191 and RFC 1981, which specify ICMP-based Path MTU Discovery for IP versions 4 and 6, respectively. [STANDARDS-TRACK]"];
+  cites -> RFC4821;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC3819 [label="RFC3819
+Advice for Internet Subnetwork Designers
+2004", shape=ellipse, URL="RFC3819.html", target="_top", tooltip="This document provides advice to the designers of digital communication equipment, link-layer protocols, and packet-switched local networks (collectively referred to as subnetworks), who wish to support the Internet protocols but may be unfamiliar with the Internet architecture and the implications of their design choices on the performance and efficiency of the Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3819;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC4787 [label="RFC4787
+Network Address Translation (NAT)
+Behavioral Requirements for Unicast UDP
+2007", shape=ellipse, URL="RFC4787.html", target="_top", tooltip="This document defines basic terminology for describing different types of Network Address Translation (NAT) behavior when handling Unicast UDP and also defines a set of requirements that would allow many applications, such as multimedia communications or online gaming, to work consistently.  Developing NATs that meet this set of requirements will greatly increase the likelihood that these applications will function properly.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4787;
+  RFC3303 [label="RFC3303
+Middlebox communication architecture and
+framework
+2002", shape=ellipse, URL="RFC3303.html", target="_top", tooltip="None"];
+  cites -> RFC3303;
+  RFC3493 [label="RFC3493
+Basic Socket Interface Extensions for
+IPv6
+2003", shape=ellipse, URL="RFC3493.html", target="_top", tooltip="The de facto standard Application Program Interface (API) for TCP/IP applications is the sockets interface.  Although this API was developed for Unix in the early 1980s it has also been implemented on a wide variety of non-Unix systems.  TCP/IP applications written using the sockets API have in the past enjoyed a high degree of portability and we would like the same portability with IPv6 applications.  But changes are required to the sockets API to support IPv6 and this memo describes these changes.  These include a new socket address structure to carry IPv6 addresses, new address conversion functions, and some new socket options.  These extensions are designed to provide access to the basic IPv6 features required by TCP and UDP applications, including multicasting, while introducing a minimum of change into the system and providing complete compatibility for existing IPv4 applications.  Additional extensions for advanced IPv6 features (raw sockets and access to the IPv6 extension headers) are defined in another document.  This memo provides information for the Internet community."];
+  cites -> RFC3493;
+  RFC2475 [label="RFC2475
+An Architecture for Differentiated
+Services
+1998", shape=ellipse, URL="RFC2475.html", target="_top", tooltip="This document defines an architecture for implementing scalable service differentiation in the Internet.  This memo provides information for the Internet community."];
+  cites -> RFC2475;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC4302 [label="RFC4302
+IP Authentication Header
+2005", shape=ellipse, URL="RFC4302.html", target="_top", tooltip="This document describes an updated version of the IP Authentication Header (AH), which is designed to provide authentication services in IPv4 and IPv6.  This document obsoletes RFC 2402 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4302;
+  RFC4303 [label="RFC4303
+IP Encapsulating Security Payload (ESP)
+2005", shape=ellipse, URL="RFC4303.html", target="_top", tooltip="This document describes an updated version of the Encapsulating Security Payload (ESP) protocol, which is designed to provide a mix of security services in IPv4 and IPv6.  ESP is used to provide confidentiality, data origin authentication, connectionless integrity, an anti-replay service (a form of partial sequence integrity), and limited traffic flow confidentiality.  This document obsoletes RFC 2406 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4303;
+  RFC4306 [label="RFC4306
+Internet Key Exchange (IKEv2) Protocol
+2005", shape=ellipse, URL="RFC4306.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol. IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining security associations (SAs). This version of the IKE specification combines the contents of what were previously separate documents, including Internet Security Association and Key Management Protocol (ISAKMP, RFC 2408), IKE (RFC 2409), the Internet Domain of Interpretation (DOI, RFC 2407), Network Address Translation (NAT) Traversal, Legacy authentication, and remote address acquisition. Version 2 of IKE does not interoperate with version 1, but it has enough of the header format in common that both versions can unambiguously run over the same UDP port. [STANDARDS-TRACK]"];
+  cites -> RFC4306;
+  RFC4347 [label="RFC4347
+Datagram Transport Layer Security
+2006", shape=ellipse, URL="RFC4347.html", target="_top", tooltip="This document specifies Version 1.0 of the Datagram Transport Layer Security (DTLS) protocol.  The DTLS protocol provides communications privacy for datagram protocols.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery.  The DTLS protocol is based on the Transport Layer Security (TLS) protocol and provides equivalent security guarantees.  Datagram semantics of the underlying transport are preserved by the DTLS protocol."];
+  cites -> RFC4347;
+  RFC2743 [label="RFC2743
+Generic Security Service Application
+Program Interface Version 2, Update 1
+2000", shape=ellipse, URL="RFC2743.html", target="_top", tooltip="This memo obsoletes [STANDARDS-TRACK]"];
+  cites -> RFC2743;
+  RFC3852 [label="RFC3852
+Cryptographic Message Syntax (CMS)
+2004", shape=ellipse, URL="RFC3852.html", target="_top", tooltip="This document describes the Cryptographic Message Syntax (CMS).  This syntax is used to digitally sign, digest, authenticate, or encrypt arbitrary message content. [STANDARDS-TRACK]"];
+  cites -> RFC3852;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  cites -> RFC3711;
+  RFC3851 [label="RFC3851
+Secure/Multipurpose Internet Mail
+Extensions (S/MIME) Version 3.1 Message
+Specification
+2004", shape=ellipse, URL="RFC3851.html", target="_top", tooltip="This document defines Secure/Multipurpose Internet Mail Extensions (S/MIME) version 3.1.  S/MIME provides a consistent way to send and receive secure MIME data.  Digital signatures provide authentication, message integrity, and non-repudiation with proof of origin.  Encryption provides data confidentiality.  Compression can be used to reduce data size.  This document obsoletes RFC 2633. [STANDARDS-TRACK]"];
+  cites -> RFC3851;
+  RFC4880 [label="RFC4880
+OpenPGP Message Format
+2007", shape=ellipse, URL="RFC4880.html", target="_top", tooltip="This document is maintained in order to publish all necessary information needed to develop interoperable applications based on the OpenPGP format. It is not a step-by-step cookbook for writing an application. It describes only the format and methods needed to read, check, generate, and write conforming packets crossing any network. It does not deal with storage and implementation questions. It does, however, discuss implementation issues necessary to avoid security flaws. OpenPGP software uses a combination of strong public-key and symmetric cryptography to provide security services for electronic communications and data storage. These services include confidentiality, key management, authentication, and digital signatures. This document specifies the message formats used in OpenPGP. [STANDARDS-TRACK]"];
+  cites -> RFC4880;
+  RFC5082 [label="RFC5082
+The Generalized TTL Security Mechanism
+(GTSM)
+2007", shape=ellipse, URL="RFC5082.html", target="_top", tooltip="The use of a packet's Time to Live (TTL) (IPv4) or Hop Limit (IPv6) to verify whether the packet was originated by an adjacent node on a connected link has been used in many recent protocols.  This document generalizes this technique.  This document obsoletes Experimental RFC 3682. [STANDARDS-TRACK]"];
+  cites -> RFC5082;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5405;
+  RFC5404 [label="RFC5404
+RTP Payload Format for G.719
+2009", shape=ellipse, URL="RFC5404.html", target="_top", tooltip="This document specifies the payload format for packetization of the G.719 full-band codec encoded audio signals into the Real-time Transport Protocol (RTP).  The payload format supports transmission of multiple channels, multiple frames per payload, and interleaving. [STANDARDS-TRACK]"];
+  RFC5404 -> rev_cites;
+  RFC5555 [label="RFC5555
+Mobile IPv6 Support for Dual Stack Hosts
+and Routers
+2009", shape=ellipse, URL="RFC5555.html", target="_top", tooltip="The current Mobile IPv6 and Network Mobility (NEMO) specifications support IPv6 only.  This specification extends those standards to allow the registration of IPv4 addresses and prefixes, respectively, and the transport of both IPv4 and IPv6 packets over the tunnel to the home agent.  This specification also allows the mobile node to roam over both IPv6 and IPv4, including the case where Network Address Translation is present on the path between the mobile node and its home agent. [STANDARDS-TRACK]"];
+  RFC5555 -> rev_cites;
+  RFC5571 [label="RFC5571
+Softwire Hub and Spoke Deployment
+Framework with Layer Two Tunneling
+Protocol Version 2 (L2TPv2)
+2009", shape=ellipse, URL="RFC5571.html", target="_top", tooltip="This document describes the framework of the Softwire Hub and Spoke solution with the Layer Two Tunneling Protocol version 2 (L2TPv2).  The implementation details specified in this document should be followed to achieve interoperability among different vendor implementations. [STANDARDS-TRACK]"];
+  RFC5571 -> rev_cites;
+  RFC5677 [label="RFC5677
+IEEE 802.21 Mobility Services Framework
+Design (MSFD)
+2009", shape=ellipse, URL="RFC5677.html", target="_top", tooltip="This document describes a mobility services framework design (MSFD) for the IEEE 802.21 Media Independent Handover (MIH) protocol that addresses identified issues associated with the transport of MIH messages.  The document also describes mechanisms for Mobility Services (MoS) discovery and transport-layer mechanisms for the reliable delivery of MIH messages.  This document does not provide mechanisms for securing the communication between a mobile node (MN) and the Mobility Server.  Instead, it is assumed that either lower-layer (e.g., link-layer) security mechanisms or overall system-specific proprietary security solutions are used. [STANDARDS-TRACK]"];
+  RFC5677 -> rev_cites;
+  RFC5993 [label="RFC5993
+RTP Payload Format for Global System for
+Mobile Communications Half Rate (GSM-HR)
+2010", shape=ellipse, URL="RFC5993.html", target="_top", tooltip="This document specifies the payload format for packetization of Global System for Mobile Communications Half Rate (GSM-HR) speech codec data into the Real-time Transport Protocol (RTP).  The payload format supports transmission of multiple frames per payload and packet loss robustness methods using redundancy. [STANDARDS-TRACK]"];
+  RFC5993 -> rev_cites;
+  RFC6012 [label="RFC6012
+Datagram Transport Layer Security (DTLS)
+Transport Mapping for Syslog
+2010", shape=ellipse, URL="RFC6012.html", target="_top", tooltip="This document describes the transport of syslog messages over the Datagram Transport Layer Security (DTLS) protocol.  It provides a secure transport for syslog messages in cases where a connectionless transport is desired."];
+  RFC6012 -> rev_cites;
+  RFC6077 [label="RFC6077
+Open Research Issues in Internet
+Congestion Control
+2011", shape=ellipse, URL="RFC6077.html", target="_top", tooltip="This document describes some of the open problems in Internet congestion control that are known today.  This includes several new challenges that are becoming important as the network grows, as well as some issues that have been known for many years.  These challenges are generally considered to be open research topics that may require more study or application of innovative techniques before Internet-scale solutions can be confidently engineered and deployed.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6077 -> rev_cites;
+  RFC6086 [label="RFC6086
+Session Initiation Protocol (SIP) INFO
+Method and Package Framework
+2011", shape=ellipse, URL="RFC6086.html", target="_top", tooltip="This document defines a method, INFO, for the Session Initiation Protocol (SIP), and an Info Package mechanism.  This document obsoletes RFC 2976.  For backward compatibility, this document also specifies a legacy mode of usage of the INFO method that is compatible with the usage previously defined in RFC 2976, referred to as legacy INFO Usage in this document. [STANDARDS-TRACK]"];
+  RFC6086 -> rev_cites;
+  RFC6263 [label="RFC6263
+Application Mechanism for Keeping Alive
+the NAT Mappings Associated with RTP /
+RTP Control Protocol (RTCP) Flows
+2011", shape=ellipse, URL="RFC6263.html", target="_top", tooltip="This document lists the different mechanisms that enable applications using the Real-time Transport Protocol (RTP) and the RTP Control Protocol (RTCP) to keep their RTP Network Address Translator (NAT) mappings alive.  It also makes a recommendation for a preferred mechanism.  This document is not applicable to Interactive Connectivity Establishment (ICE) agents. [STANDARDS-TRACK]"];
+  RFC6263 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6450 [label="RFC6450
+Multicast Ping Protocol
+2011", shape=ellipse, URL="RFC6450.html", target="_top", tooltip="The Multicast Ping Protocol specified in this document allows for checking whether an endpoint can receive multicast -- both Source-Specific Multicast (SSM) and Any-Source Multicast (ASM).  It can also be used to obtain additional multicast-related information, such as multicast tree setup time.  This protocol is based on an implementation of tools called ssmping and asmping. [STANDARDS-TRACK]"];
+  RFC6450 -> rev_cites;
+  RFC6709 [label="RFC6709
+Design Considerations for Protocol
+Extensions
+2012", shape=ellipse, URL="RFC6709.html", target="_top", tooltip="This document discusses architectural issues related to the extensibility of Internet protocols, with a focus on design considerations.  It is intended to assist designers of both base protocols and extensions.  Case studies are included.  A companion document, RFC 4775 (BCP 125), discusses procedures relating to the extensibility of IETF protocols.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6709 -> rev_cites;
+  RFC6935 [label="RFC6935
+IPv6 and UDP Checksums for Tunneled
+Packets
+2013", shape=ellipse, URL="RFC6935.html", target="_top", tooltip="This document updates the IPv6 specification (RFC 2460) to improve performance when a tunnel protocol uses UDP with IPv6 to tunnel packets.  The performance improvement is obtained by relaxing the IPv6 UDP checksum requirement for tunnel protocols whose header information is protected on the inner packet being carried.  Relaxing this requirement removes the overhead associated with the computation of UDP checksums on IPv6 packets that carry the tunnel protocol packets.  This specification describes how the IPv6 UDP checksum requirement can be relaxed when the encapsulated packet itself contains a checksum.  It also describes the limitations and risks of this approach and discusses the restrictions on the use of this method."];
+  RFC6935 -> rev_cites;
+  RFC6936 [label="RFC6936
+Applicability Statement for the Use of
+IPv6 UDP Datagrams with Zero Checksums
+2013", shape=ellipse, URL="RFC6936.html", target="_top", tooltip="This document provides an applicability statement for the use of UDP transport checksums with IPv6.  It defines recommendations and requirements for the use of IPv6 UDP datagrams with a zero UDP checksum.  It describes the issues and design principles that need to be considered when UDP is used with IPv6 to support tunnel encapsulations, and it examines the role of the IPv6 UDP transport checksum.  The document also identifies issues and constraints for deployment on network paths that include middleboxes.  An appendix presents a summary of the trade-offs that were considered in evaluating the safety of the update to RFC 2460 that changes the use of the UDP checksum with IPv6."];
+  RFC6936 -> rev_cites;
+  RFC6940 [label="RFC6940
+REsource LOcation And Discovery (RELOAD)
+Base Protocol
+2014", shape=ellipse, URL="RFC6940.html", target="_top", tooltip="This specification defines REsource LOcation And Discovery (RELOAD), a peer-to-peer (P2P) signaling protocol for use on the Internet.  A P2P signaling protocol provides its clients with an abstract storage and messaging service between a set of cooperating peers that form the overlay network.  RELOAD is designed to support a P2P Session Initiation Protocol (P2PSIP) network, but can be utilized by other applications with similar requirements by defining new usages that specify the Kinds of data that need to be stored for a particular application.  RELOAD defines a security model based on a certificate enrollment service that provides unique identities.  NAT traversal is a fundamental service of the protocol.  RELOAD also allows access from client nodes that do not need to route traffic or store data for others."];
+  RFC6940 -> rev_cites;
+  RFC7122 [label="RFC7122
+Datagram Convergence Layers for the
+Delay- and Disruption-Tolerant
+Networking (DTN) Bundle Protocol and
+Licklider Transmission Protocol (LTP)
+2014", shape=ellipse, URL="RFC7122.html", target="_top", tooltip="This document specifies the preferred method for transporting Delay- and Disruption-Tolerant Networking (DTN) protocol data over the Internet using datagrams.  It covers convergence layers for the Bundle Protocol (RFC 5050), as well as the transportation of segments using the Licklider Transmission Protocol (LTP) (RFC 5326).  UDP and the Datagram Congestion Control Protocol (DCCP) are the candidate datagram protocols discussed.  UDP can only be used on a local network or in cases where the DTN node implements explicit congestion control.  DCCP addresses the congestion control problem, and its use is recommended whenever possible.  This document is a product of the Delay-Tolerant Networking Research Group (DTNRG) and represents the consensus of the DTNRG."];
+  RFC7122 -> rev_cites;
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, URL="RFC7252.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."];
+  RFC7252 -> rev_cites;
+  RFC7383 [label="RFC7383
+Internet Key Exchange Protocol Version 2
+(IKEv2) Message Fragmentation
+2014", shape=ellipse, URL="RFC7383.html", target="_top", tooltip="This document describes a way to avoid IP fragmentation of large Internet Key Exchange Protocol version 2 (IKEv2) messages.  This allows IKEv2 messages to traverse network devices that do not allow IP fragments to pass through."];
+  RFC7383 -> rev_cites;
+  RFC7440 [label="RFC7440
+TFTP Windowsize Option
+2015", shape=ellipse, URL="RFC7440.html", target="_top", tooltip="The Trivial File Transfer Protocol (RFC 1350) is a simple, lockstep, file transfer protocol that allows a client to get or put a file onto a remote host. One of its primary uses is in the early stages of nodes booting from a Local Area Network (LAN). TFTP has been used for this application because it is very simple to implement. The employment of a lockstep scheme limits throughput when used on a LAN. This document describes a TFTP option that allows the client and server to negotiate a window size of consecutive blocks to send as an alternative for replacing the single-block lockstep schema. The TFTP option mechanism employed is described in TFTP Option Extension (RFC 2347)."];
+  RFC7440 -> rev_cites;
+  RFC7478 [label="RFC7478
+Web Real-Time Communication Use Cases
+and Requirements
+2015", shape=ellipse, URL="RFC7478.html", target="_top", tooltip="This document describes web-based real-time communication use cases. Requirements on the browser functionality are derived from the use cases. This document was developed in an initial phase of the work with rather minor updates at later stages. It has not really served as a tool in deciding features or scope for the WG's efforts so far. It is being published to record the early conclusions of the WG. It will not be used as a set of rigid guidelines that specifications and implementations will be held to in the future."];
+  RFC7478 -> rev_cites;
+  RFC7510 [label="RFC7510
+Encapsulating MPLS in UDP
+2015", shape=ellipse, URL="RFC7510.html", target="_top", tooltip="This document specifies an IP-based encapsulation for MPLS, called MPLS-in-UDP for situations where UDP (User Datagram Protocol) encapsulation is preferred to direct use of MPLS, e.g., to enable UDP-based ECMP (Equal-Cost Multipath) or link aggregation.  The MPLS- in-UDP encapsulation technology must only be deployed within a single network (with a single network operator) or networks of an adjacent set of cooperating network operators where traffic is managed to avoid congestion, rather than over the Internet where congestion control is required.  Usage restrictions apply to MPLS-in-UDP usage for traffic that is not congestion controlled and to UDP zero checksum usage with IPv6."];
+  RFC7510 -> rev_cites;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  RFC7567 -> rev_cites;
+  RFC7587 [label="RFC7587
+RTP Payload Format for the Opus Speech
+and Audio Codec
+2015", shape=ellipse, URL="RFC7587.html", target="_top", tooltip="This document defines the Real-time Transport Protocol (RTP) payload format for packetization of Opus-encoded speech and audio data necessary to integrate the codec in the most compatible way.  It also provides an applicability statement for the use of Opus over RTP.  Further, it describes media type registrations for the RTP payload format."];
+  RFC7587 -> rev_cites;
+  RFC7605 [label="RFC7605
+Recommendations on Using Assigned
+Transport Port Numbers
+2015", shape=ellipse, URL="RFC7605.html", target="_top", tooltip="This document provides recommendations to designers of application and service protocols on how to use the transport protocol port number space and when to request a port assignment from IANA.  It provides designer guidance to requesters or users of port numbers on how to interact with IANA using the processes defined in RFC 6335; thus, this document complements (but does not update) that document."];
+  RFC7605 -> rev_cites;
+  RFC7641 [label="RFC7641
+Observing Resources in the Constrained
+Application Protocol (CoAP)
+2015", shape=ellipse, URL="RFC7641.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful application protocol for constrained nodes and networks.  The state of a resource on a CoAP server can change over time.  This document specifies a simple protocol extension for CoAP that enables CoAP clients to observe resources, i.e., to retrieve a representation of a resource and keep this representation updated by the server over a period of time.  The protocol follows a best-effort approach for sending new representations to clients and provides eventual consistency between the state observed by each client and the actual resource state at the server."];
+  RFC7641 -> rev_cites;
+  RFC7657 [label="RFC7657
+Differentiated Services (Diffserv) and
+Real-Time Communication
+2015", shape=ellipse, URL="RFC7657.html", target="_top", tooltip="This memo describes the interaction between Differentiated Services (Diffserv) network quality-of-service (QoS) functionality and real- time network communication, including communication based on the Real-time Transport Protocol (RTP).  Diffserv is based on network nodes applying different forwarding treatments to packets whose IP headers are marked with different Diffserv Codepoints (DSCPs).  WebRTC applications, as well as some conferencing applications, have begun using the Session Description Protocol (SDP) bundle negotiation mechanism to send multiple traffic streams with different QoS requirements using the same network 5-tuple.  The results of using multiple DSCPs to obtain different QoS treatments within a single network 5-tuple have transport protocol interactions, particularly with congestion control functionality (e.g., reordering).  In addition, DSCP markings may be changed or removed between the traffic source and destination.  This memo covers the implications of these Diffserv aspects for real-time network communication, including WebRTC."];
+  RFC7657 -> rev_cites;
+  RFC7766 [label="RFC7766
+DNS Transport over TCP - Implementation
+Requirements
+2016", shape=ellipse, URL="RFC7766.html", target="_top", tooltip="This document specifies the requirement for support of TCP as a transport protocol for DNS implementations and provides guidelines towards DNS-over-TCP performance on par with that of DNS-over-UDP.  This document obsoletes RFC 5966 and therefore updates RFC 1035 and RFC 1123."];
+  RFC7766 -> rev_cites;
+  RFC7876 [label="RFC7876
+UDP Return Path for Packet Loss and
+Delay Measurement for MPLS Networks
+2016", shape=ellipse, URL="RFC7876.html", target="_top", tooltip="RFC 6374 defines a protocol for Packet Loss and Delay Measurement for MPLS networks (MPLS-PLDM).  This document specifies the procedures to be used when sending and processing out-of-band MPLS performance management Responses over an UDP/IP return path."];
+  RFC7876 -> rev_cites;
+  RFC7967 [label="RFC7967
+Constrained Application Protocol (CoAP)
+Option for No Server Response
+2016", shape=ellipse, URL="RFC7967.html", target="_top", tooltip="There can be machine-to-machine (M2M) scenarios where server responses to client requests are redundant. This kind of open-loop exchange (with no response path from the server to the client) may be desired to minimize resource consumption in constrained systems while updating many resources simultaneously or performing high-frequency updates. CoAP already provides Non-confirmable (NON) messages that are not acknowledged by the recipient. However, the request/response semantics still require the server to respond with a status code indicating the result of the attempt to understand and satisfy the request, per RFC 7252. This specification introduces a CoAP option called 'No-Response'. Using this option, the client can explicitly express to the server its disinterest in all responses against the particular request. This option also provides granular control to enable expression of disinterest to a particular response class or a combination of response classes. The server MAY decide to suppress the response by not transmitting it back to the client according to the value of the No-Response option in the request. This option may be effective for both unicast and multicast requests. This document also discusses a few examples of applications that benefit from this option."];
+  RFC7967 -> rev_cites;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  RFC8085 -> rev_cites;
+}

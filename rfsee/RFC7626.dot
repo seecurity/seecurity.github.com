@@ -1,0 +1,122 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7626 [label="RFC7626
+DNS Privacy Considerations
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the privacy issues associated with the use of the DNS by Internet users.  It is intended to be an analysis of the present situation and does not prescribe solutions."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7626;
+  RFC9076 [label="RFC9076
+DNS Privacy Considerations
+2021", shape=ellipse, URL="RFC9076.html", target="_top", tooltip="This document describes the privacy issues associated with the use of the DNS by Internet users.  It provides general observations about typical current privacy practices.  It is intended to be an analysis of the present situation and does not prescribe solutions.  This document obsoletes RFC 7626."];
+  RFC9076 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC7626 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7626 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7626;
+
+  cites [label="cites", shape=box];
+  RFC7626 -> cites;
+  RFC6973 [label="RFC6973
+Privacy Considerations for Internet
+Protocols
+2013", shape=ellipse, URL="RFC6973.html", target="_top", tooltip="This document offers guidance for developing privacy considerations for inclusion in protocol specifications.  It aims to make designers, implementers, and users of Internet protocols aware of privacy-related design choices.  It suggests that whether any individual RFC warrants a specific privacy considerations section will depend on the document's content."];
+  cites -> RFC6973;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC7258 [label="RFC7258
+Pervasive Monitoring Is an Attack
+2014", shape=ellipse, URL="RFC7258.html", target="_top", tooltip="Pervasive monitoring is a technical attack that should be mitigated in the design of IETF protocols, where possible."];
+  cites -> RFC7258;
+  RFC5936 [label="RFC5936
+DNS Zone Transfer Protocol (AXFR)
+2010", shape=ellipse, URL="RFC5936.html", target="_top", tooltip="The standard means within the Domain Name System protocol for maintaining coherence among a zone's authoritative name servers consists of three mechanisms. Authoritative Transfer (AXFR) is one of the mechanisms and is defined in RFC 1034 and RFC 1035. The definition of AXFR has proven insufficient in detail, thereby forcing implementations intended to be compliant to make assumptions, impeding interoperability. Yet today we have a satisfactory set of implementations that do interoperate. This document is a new definition of AXFR -- new in the sense that it records an accurate definition of an interoperable AXFR mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC5936;
+  RFC5155 [label="RFC5155
+DNS Security (DNSSEC) Hashed
+Authenticated Denial of Existence
+2008", shape=ellipse, URL="RFC5155.html", target="_top", tooltip="The Domain Name System Security (DNSSEC) Extensions introduced the NSEC resource record (RR) for authenticated denial of existence.  This document introduces an alternative resource record, NSEC3, which similarly provides authenticated denial of existence.  However, it also provides measures against zone enumeration and permits gradual expansion of delegation-centric zones. [STANDARDS-TRACK]"];
+  cites -> RFC5155;
+  RFC6269 [label="RFC6269
+Issues with IP Address Sharing
+2011", shape=ellipse, URL="RFC6269.html", target="_top", tooltip="The completion of IPv4 address allocations from IANA and the Regional Internet Registries (RIRs) is causing service providers around the world to question how they will continue providing IPv4 connectivity service to their subscribers when there are no longer sufficient IPv4 addresses to allocate them one per subscriber. Several possible solutions to this problem are now emerging based around the idea of shared IPv4 addressing. These solutions give rise to a number of issues, and this memo identifies those common to all such address sharing approaches. Such issues include application failures, additional service monitoring complexity, new security vulnerabilities, and so on. Solution-specific discussions are out of scope. Deploying IPv6 is the only perennial way to ease pressure on the public IPv4 address pool without the need for address sharing mechanisms that give rise to the issues identified herein. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6269;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC7624 [label="RFC7624
+Confidentiality in the Face of Pervasive
+Surveillance: A Threat Model and Problem
+Statement
+2015", shape=ellipse, URL="RFC7624.html", target="_top", tooltip="Since the initial revelations of pervasive surveillance in 2013, several classes of attacks on Internet communications have been discovered.  In this document, we develop a threat model that describes these attacks on Internet confidentiality.  We assume an attacker that is interested in undetected, indiscriminate eavesdropping.  The threat model is based on published, verified attacks."];
+  cites -> RFC7624;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7626;
+  RFC7816 [label="RFC7816
+DNS Query Name Minimisation to Improve
+Privacy
+2016", shape=ellipse, URL="RFC7816.html", target="_top", tooltip="This document describes a technique to improve DNS privacy, a technique called QNAME minimisation, where the DNS resolver no longer sends the full original QNAME to the upstream name server."];
+  RFC7816 -> rev_cites;
+  RFC7858 [label="RFC7858
+Specification for DNS over Transport
+Layer Security (TLS)
+2016", shape=ellipse, URL="RFC7858.html", target="_top", tooltip="This document describes the use of Transport Layer Security (TLS) to provide privacy for DNS. Encryption provided by TLS eliminates opportunities for eavesdropping and on-path tampering with DNS queries in the network, such as discussed in RFC 7626. In addition, this document specifies two usage profiles for DNS over TLS and provides advice on performance considerations to minimize overhead from using TCP and TLS with DNS. This document focuses on securing stub-to-recursive traffic, as per the charter of the DPRIVE Working Group. It does not prevent future applications of the protocol to recursive-to-authoritative traffic."];
+  RFC7858 -> rev_cites;
+  RFC8094 [label="RFC8094
+DNS over Datagram Transport Layer
+Security (DTLS)
+2017", shape=ellipse, URL="RFC8094.html", target="_top", tooltip="DNS queries and responses are visible to network elements on the path between the DNS client and its server. These queries and responses can contain privacy-sensitive information, which is valuable to protect. This document proposes the use of Datagram Transport Layer Security (DTLS) for DNS, to protect against passive listeners and certain active attacks. As latency is critical for DNS, this proposal also discusses mechanisms to reduce DTLS round trips and reduce the DTLS handshake size. The proposed mechanism runs over port 853."];
+  RFC8094 -> rev_cites;
+  RFC8280 [label="RFC8280
+Research into Human Rights Protocol
+Considerations
+2017", shape=ellipse, URL="RFC8280.html", target="_top", tooltip="This document aims to propose guidelines for human rights considerations, similar to the work done on the guidelines for privacy considerations (RFC 6973). The other parts of this document explain the background of the guidelines and how they were developed. This document is the first milestone in a longer-term research effort. It has been reviewed by the Human Rights Protocol Considerations (HRPC) Research Group and also by individuals from outside the research group."];
+  RFC8280 -> rev_cites;
+  RFC8310 [label="RFC8310
+Usage Profiles for DNS over TLS and DNS
+over DTLS
+2018", shape=ellipse, URL="RFC8310.html", target="_top", tooltip="This document discusses usage profiles, based on one or more authentication mechanisms, which can be used for DNS over Transport Layer Security (TLS) or Datagram TLS (DTLS).  These profiles can increase the privacy of DNS transactions compared to using only cleartext DNS.  This document also specifies new authentication mechanisms -- it describes several ways that a DNS client can use an authentication domain name to authenticate a (D)TLS connection to a DNS server.  Additionally, it defines (D)TLS protocol profiles for DNS clients and servers implementing DNS over (D)TLS.  This document updates RFC 7858."];
+  RFC8310 -> rev_cites;
+  RFC8484 [label="RFC8484
+DNS Queries over HTTPS (DoH)
+2018", shape=ellipse, URL="RFC8484.html", target="_top", tooltip="This document defines a protocol for sending DNS queries and getting DNS responses over HTTPS.  Each DNS query-response pair is mapped into an HTTP exchange."];
+  RFC8484 -> rev_cites;
+  RFC8686 [label="RFC8686
+Application-Layer Traffic Optimization
+(ALTO) Cross-Domain Server Discovery
+2020", shape=ellipse, URL="RFC8686.html", target="_top", tooltip="The goal of Application-Layer Traffic Optimization (ALTO) is to provide guidance to applications that have to select one or several hosts from a set of candidates capable of providing a desired resource. ALTO is realized by a client-server protocol. Before an ALTO client can ask for guidance, it needs to discover one or more ALTO servers that can provide suitable guidance. In some deployment scenarios, in particular if the information about the network topology is partitioned and distributed over several ALTO servers, it may be necessary to discover an ALTO server outside of the ALTO client's own network domain, in order to get appropriate guidance. This document details applicable scenarios, itemizes requirements, and specifies a procedure for ALTO cross-domain server discovery. Technically, the procedure specified in this document takes one IP address or prefix and a U-NAPTR Service Parameter (typically, ALTO:https) as parameters. It performs DNS lookups (for NAPTR resource records in the in-addr.arpa. or ip6.arpa. trees) and returns one or more URIs of information resources related to that IP address or prefix."];
+  RFC8686 -> rev_cites;
+  RFC8766 [label="RFC8766
+Discovery Proxy for Multicast DNS-Based
+Service Discovery
+2020", shape=ellipse, URL="RFC8766.html", target="_top", tooltip="This document specifies a network proxy that uses Multicast DNS to automatically populate the wide-area unicast Domain Name System namespace with records describing devices and services found on the local link."];
+  RFC8766 -> rev_cites;
+  RFC8932 [label="RFC8932
+Recommendations for DNS Privacy Service
+Operators
+2020", shape=ellipse, URL="RFC8932.html", target="_top", tooltip="This document presents operational, policy, and security considerations for DNS recursive resolver operators who choose to offer DNS privacy services. With these recommendations, the operator can make deliberate decisions regarding which services to provide, as well as understanding how those decisions and the alternatives impact the privacy of users. This document also presents a non-normative framework to assist writers of a Recursive operator Privacy Statement, analogous to DNS Security Extensions (DNSSEC) Policies and DNSSEC Practice Statements described in RFC 6841."];
+  RFC8932 -> rev_cites;
+  RFC9076 [label="RFC9076
+DNS Privacy Considerations
+2021", shape=ellipse, URL="RFC9076.html", target="_top", tooltip="This document describes the privacy issues associated with the use of the DNS by Internet users.  It provides general observations about typical current privacy practices.  It is intended to be an analysis of the present situation and does not prescribe solutions.  This document obsoletes RFC 7626."];
+  RFC9076 -> rev_cites;
+}

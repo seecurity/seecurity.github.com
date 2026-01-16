@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2147 [label="RFC2147
+TCP and UDP over IPv6 Jumbograms
+1997", shape=ellipse, fillcolor="#e8f0ff", tooltip="IPv6 supports datagrams larger than 65535 bytes long, often referred to as jumbograms, through use of the Jumbo Payload hop-by-hop option.  The UDP protocol has a 16-bit length field that keeps it from being able to make use of jumbograms, and though TCP does not have a length field, both the MSS option and the Urgent field are constrained by 16-bits.  This document describes some simple changes that can be made to allow TCP and UDP to make use of IPv6 jumbograms. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2147;
+  RFC2675 [label="RFC2675
+IPv6 Jumbograms
+1999", shape=ellipse, URL="RFC2675.html", target="_top", tooltip="This document describes the IPv6 Jumbo Payload option, which provides the means of specifying such large payload lengths.  It also describes the changes needed to TCP and UDP to make use of jumbograms. [STANDARDS-TRACK]"];
+  RFC2675 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC2147 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2147 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2147;
+
+  cites [label="cites", shape=box];
+  RFC2147 -> cites;
+  RFC1883 [label="RFC1883
+Internet Protocol, Version 6 (IPv6)
+Specification
+1995", shape=ellipse, URL="RFC1883.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC1883;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2147;
+  RFC7122 [label="RFC7122
+Datagram Convergence Layers for the
+Delay- and Disruption-Tolerant
+Networking (DTN) Bundle Protocol and
+Licklider Transmission Protocol (LTP)
+2014", shape=ellipse, URL="RFC7122.html", target="_top", tooltip="This document specifies the preferred method for transporting Delay- and Disruption-Tolerant Networking (DTN) protocol data over the Internet using datagrams.  It covers convergence layers for the Bundle Protocol (RFC 5050), as well as the transportation of segments using the Licklider Transmission Protocol (LTP) (RFC 5326).  UDP and the Datagram Congestion Control Protocol (DCCP) are the candidate datagram protocols discussed.  UDP can only be used on a local network or in cases where the DTN node implements explicit congestion control.  DCCP addresses the congestion control problem, and its use is recommended whenever possible.  This document is a product of the Delay-Tolerant Networking Research Group (DTNRG) and represents the consensus of the DTNRG."];
+  RFC7122 -> rev_cites;
+}

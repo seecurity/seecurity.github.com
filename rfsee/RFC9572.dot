@@ -1,0 +1,148 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9572 [label="RFC9572
+Updates to EVPN Broadcast, Unknown
+Unicast, or Multicast (BUM) Procedures
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies updated procedures for handling Broadcast, Unknown Unicast, or Multicast (BUM) traffic in Ethernet VPNs (EVPNs), including selective multicast and segmentation of provider tunnels.  This document updates RFC 7432."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9572;
+
+  obs [label="obsoletes", shape=box];
+  RFC9572 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9572 -> updates;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  updates -> RFC7432;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9572;
+
+  cites [label="cites", shape=box];
+  RFC9572 -> cites;
+  RFC7117 [label="RFC7117
+Multicast in Virtual Private LAN Service
+(VPLS)
+2014", shape=ellipse, URL="RFC7117.html", target="_top", tooltip="RFCs 4761 and 4762 describe a solution for Virtual Private LAN Service (VPLS) multicast that relies on the use of point-to-point or multipoint-to-point unicast Label Switched Paths (LSPs) for carrying multicast traffic. This solution has certain limitations for certain VPLS multicast traffic profiles. For example, it may result in highly non-optimal bandwidth utilization when a large amount of multicast traffic is to be transported. This document describes solutions for overcoming a subset of the limitations of the existing VPLS multicast solution. It describes procedures for VPLS multicast that utilize multicast trees in the service provider (SP) network. The solution described in this document allows sharing of one such multicast tree among multiple VPLS instances. Furthermore, the solution described in this document allows a single multicast tree in the SP network to carry traffic belonging only to a specified set of one or more IP multicast streams from one or more VPLS instances."];
+  cites -> RFC7117;
+  RFC6513 [label="RFC6513
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6513.html", target="_top", tooltip="In order for IP multicast traffic within a BGP/MPLS IP VPN (Virtual Private Network) to travel from one VPN site to another, special protocols and procedures must be implemented by the VPN Service Provider.  These protocols and procedures are specified in this document. [STANDARDS-TRACK]"];
+  cites -> RFC6513;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  cites -> RFC6514;
+  RFC7524 [label="RFC7524
+Inter-Area Point-to-Multipoint (P2MP)
+Segmented Label Switched Paths (LSPs)
+2015", shape=ellipse, URL="RFC7524.html", target="_top", tooltip="This document describes procedures for building inter-area point-to-multipoint (P2MP) segmented service label switched paths (LSPs) by partitioning such LSPs into intra-area segments and using BGP as the inter-area routing and Label Distribution Protocol (LDP).  Within each IGP area, the intra-area segments are either carried over intra-area P2MP LSPs, using P2MP LSP hierarchy, or instantiated using ingress replication.  The intra-area P2MP LSPs may be signaled using P2MP RSVP-TE or P2MP multipoint LDP (mLDP).  If ingress replication is used within an IGP area, then (multipoint-to-point) LDP LSPs or (point-to-point) RSVP-TE LSPs may be used in the IGP area.  The applications/services that use such inter-area service LSPs may be BGP Multicast VPN, Virtual Private LAN Service (VPLS) multicast, or global table multicast over MPLS."];
+  cites -> RFC7524;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  cites -> RFC7432;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC9251 [label="RFC9251
+Internet Group Management Protocol
+(IGMP) and Multicast Listener Discovery
+(MLD) Proxies for Ethernet VPN (EVPN)
+2022", shape=ellipse, URL="RFC9251.html", target="_top", tooltip="This document describes how to support endpoints running the Internet Group Management Protocol (IGMP) or Multicast Listener Discovery (MLD) efficiently for the multicast services over an Ethernet VPN (EVPN) network by incorporating IGMP/MLD Proxy procedures on EVPN Provider Edges (PEs)."];
+  cites -> RFC9251;
+  RFC7988 [label="RFC7988
+Ingress Replication Tunnels in Multicast
+VPN
+2016", shape=ellipse, URL="RFC7988.html", target="_top", tooltip="RFCs 6513, 6514, and other RFCs describe procedures by which a Service Provider may offer Multicast VPN (MVPN) service to its customers.  These procedures create point-to-multipoint (P2MP) or multipoint-to-multipoint (MP2MP) trees across the Service Provider's backbone.  One type of P2MP tree that may be used is known as an Ingress Replication (IR) tunnel.  In an IR tunnel, a parent node need not be directly connected to its child nodes.  When a parent node has to send a multicast data packet to its n child nodes, it does not use Layer 2 multicast, IP multicast, or MPLS multicast to do so.  Rather, it makes n individual copies, and then unicasts each copy, through an IP or MPLS unicast tunnel, to exactly one child node.  While the prior MVPN specifications allow the use of IR tunnels, those specifications are not always very clear or explicit about how the MVPN protocol elements and procedures are applied to IR tunnels.  This document updates RFCs 6513 and 6514 by adding additional details that are specific to the use of IR tunnels."];
+  cites -> RFC7988;
+  RFC4875 [label="RFC4875
+Extensions to Resource Reservation
+Protocol - Traffic Engineering (RSVP-TE)
+for Point-to-Multipoint TE Label
+Switched Paths (LSPs)
+2007", shape=ellipse, URL="RFC4875.html", target="_top", tooltip="This document describes extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for the set up of Traffic Engineered (TE) point-to-multipoint (P2MP) Label Switched Paths (LSPs) in Multi- Protocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. The solution relies on RSVP-TE without requiring a multicast routing protocol in the Service Provider core. Protocol elements and procedures for this solution are described. There can be various applications for P2MP TE LSPs such as IP multicast. Specification of how such applications will use a P2MP TE LSP is outside the scope of this document. [STANDARDS-TRACK]"];
+  cites -> RFC4875;
+  RFC6388 [label="RFC6388
+Label Distribution Protocol Extensions
+for Point-to-Multipoint and Multipoint-
+to-Multipoint Label Switched Paths
+2011", shape=ellipse, URL="RFC6388.html", target="_top", tooltip="This document describes extensions to the Label Distribution Protocol (LDP) for the setup of point-to-multipoint (P2MP) and multipoint-to-multipoint (MP2MP) Label Switched Paths (LSPs) in MPLS networks.  These extensions are also referred to as multipoint LDP.  Multipoint LDP constructs the P2MP or MP2MP LSPs without interacting with or relying upon any other multicast tree construction protocol.  Protocol elements and procedures for this solution are described for building such LSPs in a receiver-initiated manner.  There can be various applications for multipoint LSPs, for example IP multicast or support for multicast in BGP/MPLS Layer 3 Virtual Private Networks (L3VPNs).  Specification of how such applications can use an LDP signaled multipoint LSP is outside the scope of this document. [STANDARDS-TRACK]"];
+  cites -> RFC6388;
+  RFC8279 [label="RFC8279
+Multicast Using Bit Index Explicit
+Replication (BIER)
+2017", shape=ellipse, URL="RFC8279.html", target="_top", tooltip="This document specifies a new architecture for the forwarding of multicast data packets.  It provides optimal forwarding of multicast packets through a multicast domain.  However, it does not require a protocol for explicitly building multicast distribution trees, nor does it require intermediate nodes to maintain any per-flow state.  This architecture is known as Bit Index Explicit Replication (BIER).  When a multicast data packet enters the domain, the ingress router determines the set of egress routers to which the packet needs to be sent.  The ingress router then encapsulates the packet in a BIER header.  The BIER header contains a bit string in which each bit represents exactly one egress router in the domain; to forward the packet to a given set of egress routers, the bits corresponding to those routers are set in the BIER header.  The procedures for forwarding a packet based on its BIER header are specified in this document.  Elimination of the per-flow state and the explicit tree-building protocols results in a considerable simplification."];
+  cites -> RFC8279;
+  RFC9136 [label="RFC9136
+IP Prefix Advertisement in Ethernet VPN
+(EVPN)
+2021", shape=ellipse, URL="RFC9136.html", target="_top", tooltip="The BGP MPLS-based Ethernet VPN (EVPN) (RFC 7432) mechanism provides a flexible control plane that allows intra-subnet connectivity in an MPLS and/or Network Virtualization Overlay (NVO) (RFC 7365) network.  In some networks, there is also a need for dynamic and efficient inter-subnet connectivity across Tenant Systems and end devices that can be physical or virtual and do not necessarily participate in dynamic routing protocols.  This document defines a new EVPN route type for the advertisement of IP prefixes and explains some use-case examples where this new route type is used."];
+  cites -> RFC9136;
+  RFC8534 [label="RFC8534
+Explicit Tracking with Wildcard Routes
+in Multicast VPN
+2019", shape=ellipse, URL="RFC8534.html", target="_top", tooltip="The base Multicast VPN (MVPN) specifications (RFCs 6513 and 6514) provide procedures to allow a multicast ingress node to invoke explicit tracking for a multicast flow or set of flows, thus learning the egress nodes for that flow or set of flows.  However, the specifications are not completely clear about how the explicit tracking procedures work in certain scenarios.  This document provides the necessary clarifications.  It also specifies a new, optimized explicit-tracking procedure.  This new procedure allows an ingress node, by sending a single message, to request explicit tracking of each of a set of flows, where the set of flows is specified using a wildcard mechanism.  This document updates RFCs 6514, 6625, 7524, 7582, and 7900."];
+  cites -> RFC8534;
+  RFC8584 [label="RFC8584
+Framework for Ethernet VPN Designated
+Forwarder Election Extensibility
+2019", shape=ellipse, URL="RFC8584.html", target="_top", tooltip="An alternative to the default Designated Forwarder (DF) selection algorithm in Ethernet VPNs (EVPNs) is defined.  The DF is the Provider Edge (PE) router responsible for sending Broadcast, Unknown Unicast, and Multicast (BUM) traffic to a multihomed Customer Edge (CE) device on a given VLAN on a particular Ethernet Segment (ES).  In addition, the ability to influence the DF election result for a VLAN based on the state of the associated Attachment Circuit (AC) is specified.  This document clarifies the DF election Finite State Machine in EVPN services.  Therefore, it updates the EVPN specification (RFC 7432)."];
+  cites -> RFC8584;
+  RFC4684 [label="RFC4684
+Constrained Route Distribution for
+Border Gateway Protocol/MultiProtocol
+Label Switching (BGP/MPLS) Internet
+Protocol (IP) Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4684.html", target="_top", tooltip="This document defines Multi-Protocol BGP (MP-BGP) procedures that allow BGP speakers to exchange Route Target reachability information.  This information can be used to build a route distribution graph in order to limit the propagation of Virtual Private Network (VPN) Network Layer Reachability Information (NLRI) between different autonomous systems or distinct clusters of the same autonomous system.  This document updates RFC 4364. [STANDARDS-TRACK]"];
+  cites -> RFC4684;
+  RFC9573 [label="RFC9573
+MVPN/EVPN Tunnel Aggregation with Common
+Labels
+2024", shape=ellipse, URL="RFC9573.html", target="_top", tooltip="The Multicast VPN (MVPN) specifications allow a single Point-to-Multipoint (P2MP) tunnel to carry traffic of multiple IP VPNs (referred to as VPNs in this document).  The EVPN specifications allow a single P2MP tunnel to carry traffic of multiple Broadcast Domains (BDs).  These features require the ingress router of the P2MP tunnel to allocate an upstream-assigned MPLS label for each VPN or for each BD.  A packet sent on a P2MP tunnel then carries the label that is mapped to its VPN or BD (in some cases, a distinct upstream-assigned label is needed for each flow.) Since each ingress router allocates labels independently, with no coordination among the ingress routers, the egress routers may need to keep track of a large number of labels.  The number of labels may need to be as large as, or larger than, the product of the number of ingress routers times the number of VPNs or BDs.  However, the number of labels can be greatly reduced if the association between a label and a VPN or BD is made by provisioning, so that all ingress routers assign the same label to a particular VPN or BD.  New procedures are needed in order to take advantage of such provisioned labels.  These new procedures also apply to Multipoint-to-Multipoint (MP2MP) tunnels.  This document updates RFCs 6514, 7432, and 7582 by specifying the necessary procedures."];
+  cites -> RFC9573;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9572;
+  RFC9573 [label="RFC9573
+MVPN/EVPN Tunnel Aggregation with Common
+Labels
+2024", shape=ellipse, URL="RFC9573.html", target="_top", tooltip="The Multicast VPN (MVPN) specifications allow a single Point-to-Multipoint (P2MP) tunnel to carry traffic of multiple IP VPNs (referred to as VPNs in this document).  The EVPN specifications allow a single P2MP tunnel to carry traffic of multiple Broadcast Domains (BDs).  These features require the ingress router of the P2MP tunnel to allocate an upstream-assigned MPLS label for each VPN or for each BD.  A packet sent on a P2MP tunnel then carries the label that is mapped to its VPN or BD (in some cases, a distinct upstream-assigned label is needed for each flow.) Since each ingress router allocates labels independently, with no coordination among the ingress routers, the egress routers may need to keep track of a large number of labels.  The number of labels may need to be as large as, or larger than, the product of the number of ingress routers times the number of VPNs or BDs.  However, the number of labels can be greatly reduced if the association between a label and a VPN or BD is made by provisioning, so that all ingress routers assign the same label to a particular VPN or BD.  New procedures are needed in order to take advantage of such provisioned labels.  These new procedures also apply to Multipoint-to-Multipoint (MP2MP) tunnels.  This document updates RFCs 6514, 7432, and 7582 by specifying the necessary procedures."];
+  RFC9573 -> rev_cites;
+  RFC9574 [label="RFC9574
+Optimized Ingress Replication Solution
+for Ethernet VPNs (EVPNs)
+2024", shape=ellipse, URL="RFC9574.html", target="_top", tooltip="Network Virtualization Overlay (NVO) networks using Ethernet VPNs (EVPNs) as their control plane may use trees based on ingress replication or Protocol Independent Multicast (PIM) to convey the overlay Broadcast, Unknown Unicast, or Multicast (BUM) traffic.  PIM provides an efficient solution that prevents sending multiple copies of the same packet over the same physical link; however, it may not always be deployed in the NVO network core.  Ingress replication avoids the dependency on PIM in the NVO network core.  While ingress replication provides a simple multicast transport, some NVO networks with demanding multicast applications require a more efficient solution without PIM in the core.  This document describes a solution to optimize the efficiency of ingress replication trees."];
+  RFC9574 -> rev_cites;
+  RFC9624 [label="RFC9624
+EVPN Broadcast, Unknown Unicast, or
+Multicast (BUM) Using Bit Index Explicit
+Replication (BIER)
+2024", shape=ellipse, URL="RFC9624.html", target="_top", tooltip="This document specifies protocols and procedures for forwarding Broadcast, Unknown Unicast, or Multicast (BUM) traffic of Ethernet VPNs (EVPNs) using Bit Index Explicit Replication (BIER)."];
+  RFC9624 -> rev_cites;
+  RFC9625 [label="RFC9625
+EVPN Optimized Inter-Subnet Multicast
+(OISM) Forwarding
+2024", shape=ellipse, URL="RFC9625.html", target="_top", tooltip="Ethernet VPN (EVPN) provides a service that allows a single Local Area Network (LAN), comprising a single IP subnet, to be divided into multiple segments.  Each segment may be located at a different site, and the segments are interconnected by an IP or MPLS backbone.  Intra-subnet traffic (either unicast or multicast) always appears to the end users to be bridged, even when it is actually carried over the IP or MPLS backbone.  When a single tenant owns multiple such LANs, EVPN also allows IP unicast traffic to be routed between those LANs.  This document specifies new procedures that allow inter-subnet IP multicast traffic to be routed among the LANs of a given tenant while still making intra-subnet IP multicast traffic appear to be bridged.  These procedures can provide optimal routing of the inter-subnet multicast traffic and do not require any such traffic to egress a given router and then ingress that same router.  These procedures also accommodate IP multicast traffic that originates or is destined to be external to the EVPN domain."];
+  RFC9625 -> rev_cites;
+  RFC9856 [label="RFC9856
+Multicast Source Redundancy in EVPNs
+2025", shape=ellipse, URL="RFC9856.html", target="_top", tooltip="In Ethernet Virtual Private Networks (EVPNs), IP multicast traffic replication and delivery play a crucial role in enabling efficient and scalable Layer 2 and Layer 3 services.  A common deployment scenario involves redundant multicast sources that ensure high availability and resiliency.  However, the presence of redundant sources can lead to duplicate IP multicast traffic in the network, causing inefficiencies and increased overhead.  This document specifies extensions to the EVPN multicast procedures that allow for the suppression of duplicate IP multicast traffic from redundant sources.  The proposed mechanisms enhance the EVPN's capability to deliver multicast traffic efficiently while maintaining high availability.  These extensions are applicable to various EVPN deployment scenarios and provide guidelines to ensure consistent and predictable behavior across diverse network topologies."];
+  RFC9856 -> rev_cites;
+}

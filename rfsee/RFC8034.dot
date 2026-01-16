@@ -1,0 +1,68 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8034 [label="RFC8034
+Active Queue Management (AQM) Based on
+Proportional Integral Controller
+Enhanced (PIE) for Data-Over-Cable
+Service Interface Specifications
+(DOCSIS) Cable Modems
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="Cable modems based on Data-Over-Cable Service Interface Specifications (DOCSIS) provide broadband Internet access to over one hundred million users worldwide.  In some cases, the cable modem connection is the bottleneck (lowest speed) link between the customer and the Internet.  As a result, the impact of buffering and bufferbloat in the cable modem can have a significant effect on user experience.  The CableLabs DOCSIS 3.1 specification introduces requirements for cable modems to support an Active Queue Management (AQM) algorithm that is intended to alleviate the impact that buffering has on latency-sensitive traffic, while preserving bulk throughput performance.  In addition, the CableLabs DOCSIS 3.0 specifications have also been amended to contain similar requirements.  This document describes the requirements on AQM that apply to DOCSIS equipment, including a description of the DOCSIS-PIE algorithm that is required on DOCSIS 3.1 cable modems."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8034;
+
+  obs [label="obsoletes", shape=box];
+  RFC8034 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8034 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8034;
+
+  cites [label="cites", shape=box];
+  RFC8034 -> cites;
+  RFC8033 [label="RFC8033
+Proportional Integral Controller
+Enhanced (PIE): A Lightweight Control
+Scheme to Address the Bufferbloat
+Problem
+2017", shape=ellipse, URL="RFC8033.html", target="_top", tooltip="Bufferbloat is a phenomenon in which excess buffers in the network cause high latency and latency variation. As more and more interactive applications (e.g., voice over IP, real-time video streaming, and financial transactions) run in the Internet, high latency and latency variation degrade application performance. There is a pressing need to design intelligent queue management schemes that can control latency and latency variation, and hence provide desirable quality of service to users. This document presents a lightweight active queue management design called PIE (Proportional Integral controller Enhanced) that can effectively control the average queuing latency to a target value. Simulation results, theoretical analysis, and Linux testbed results have shown that PIE can ensure low latency and achieve high link utilization under various congestion situations. The design does not require per-packet timestamps, so it incurs very little overhead and is simple enough to implement in both hardware and software."];
+  cites -> RFC8033;
+  RFC7567 [label="RFC7567
+IETF Recommendations Regarding Active
+Queue Management
+2015", shape=ellipse, URL="RFC7567.html", target="_top", tooltip="This memo presents recommendations to the Internet community concerning measures to improve and preserve Internet performance. It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management (AQM) in network devices to improve the performance of today's Internet. It also urges a concerted effort of research, measurement, and ultimate deployment of AQM mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification. Based on 15 years of experience and new research, this document replaces the recommendations of RFC 2309."];
+  cites -> RFC7567;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8034;
+  RFC8033 [label="RFC8033
+Proportional Integral Controller
+Enhanced (PIE): A Lightweight Control
+Scheme to Address the Bufferbloat
+Problem
+2017", shape=ellipse, URL="RFC8033.html", target="_top", tooltip="Bufferbloat is a phenomenon in which excess buffers in the network cause high latency and latency variation. As more and more interactive applications (e.g., voice over IP, real-time video streaming, and financial transactions) run in the Internet, high latency and latency variation degrade application performance. There is a pressing need to design intelligent queue management schemes that can control latency and latency variation, and hence provide desirable quality of service to users. This document presents a lightweight active queue management design called PIE (Proportional Integral controller Enhanced) that can effectively control the average queuing latency to a target value. Simulation results, theoretical analysis, and Linux testbed results have shown that PIE can ensure low latency and achieve high link utilization under various congestion situations. The design does not require per-packet timestamps, so it incurs very little overhead and is simple enough to implement in both hardware and software."];
+  RFC8033 -> rev_cites;
+  RFC9330 [label="RFC9330
+Low Latency, Low Loss, and Scalable
+Throughput (L4S) Internet Service:
+Architecture
+2023", shape=ellipse, URL="RFC9330.html", target="_top", tooltip="This document describes the L4S architecture, which enables Internet applications to achieve low queuing latency, low congestion loss, and scalable throughput control. L4S is based on the insight that the root cause of queuing delay is in the capacity-seeking congestion controllers of senders, not in the queue itself. With the L4S architecture, all Internet applications could (but do not have to) transition away from congestion control algorithms that cause substantial queuing delay and instead adopt a new class of congestion controls that can seek capacity with very little queuing. These are aided by a modified form of Explicit Congestion Notification (ECN) from the network. With this new architecture, applications can have both low latency and high throughput. The architecture primarily concerns incremental deployment. It defines mechanisms that allow the new class of L4S congestion controls to coexist with 'Classic' congestion controls in a shared network. The aim is for L4S latency and throughput to be usually much better (and rarely worse) while typically not impacting Classic performance."];
+  RFC9330 -> rev_cites;
+  RFC9332 [label="RFC9332
+Dual-Queue Coupled Active Queue
+Management (AQM) for Low Latency, Low
+Loss, and Scalable Throughput (L4S)
+2023", shape=ellipse, URL="RFC9332.html", target="_top", tooltip="This specification defines a framework for coupling the Active Queue Management (AQM) algorithms in two queues intended for flows with different responses to congestion. This provides a way for the Internet to transition from the scaling problems of standard TCP-Reno-friendly ('Classic') congestion controls to the family of 'Scalable' congestion controls. These are designed for consistently very low queuing latency, very low congestion loss, and scaling of per-flow throughput by using Explicit Congestion Notification (ECN) in a modified way. Until the Coupled Dual Queue (DualQ), these Scalable L4S congestion controls could only be deployed where a clean-slate environment could be arranged, such as in private data centres. This specification first explains how a Coupled DualQ works. It then gives the normative requirements that are necessary for it to work well. All this is independent of which two AQMs are used, but pseudocode examples of specific AQMs are given in appendices."];
+  RFC9332 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+}

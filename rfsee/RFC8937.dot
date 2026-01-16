@@ -1,0 +1,83 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8937 [label="RFC8937
+Randomness Improvements for Security
+Protocols
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="Randomness is a crucial ingredient for Transport Layer Security (TLS) and related security protocols. Weak or predictable cryptographically secure pseudorandom number generators (CSPRNGs) can be abused or exploited for malicious purposes. An initial entropy source that seeds a CSPRNG might be weak or broken as well, which can also lead to critical and systemic security problems. This document describes a way for security protocol implementations to augment their CSPRNGs using long-term private keys. This improves randomness from broken or otherwise subverted CSPRNGs. This document is a product of the Crypto Forum Research Group (CFRG) in the IRTF."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8937;
+
+  obs [label="obsoletes", shape=box];
+  RFC8937 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8937 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8937;
+
+  cites [label="cites", shape=box];
+  RFC8937 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC5869 [label="RFC5869
+HMAC-based Extract-and-Expand Key
+Derivation Function (HKDF)
+2010", shape=ellipse, URL="RFC5869.html", target="_top", tooltip="This document specifies a simple Hashed Message Authentication Code (HMAC)-based key derivation function (HKDF), which can be used as a building block in various protocols and applications.  The key derivation function (KDF) is intended to support a wide range of applications and requirements, and is conservative in its use of cryptographic hash functions.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5869;
+  RFC6979 [label="RFC6979
+Deterministic Usage of the Digital
+Signature Algorithm (DSA) and Elliptic
+Curve Digital Signature Algorithm
+(ECDSA)
+2013", shape=ellipse, URL="RFC6979.html", target="_top", tooltip="This document defines a deterministic digital signature generation procedure.  Such signatures are compatible with standard Digital Signature Algorithm (DSA) and Elliptic Curve Digital Signature Algorithm (ECDSA) digital signatures and can be processed with unmodified verifiers, which need not be aware of the procedure described therein.  Deterministic signatures retain the cryptographic security features associated with digital signatures but can be more easily implemented in various environments, since they do not need access to a source of high-quality randomness."];
+  cites -> RFC6979;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8937;
+  RFC9180 [label="RFC9180
+Hybrid Public Key Encryption
+2022", shape=ellipse, URL="RFC9180.html", target="_top", tooltip="This document describes a scheme for hybrid public key encryption (HPKE). This scheme provides a variant of public key encryption of arbitrary-sized plaintexts for a recipient public key. It also includes three authenticated variants, including one that authenticates possession of a pre-shared key and two optional ones that authenticate possession of a key encapsulation mechanism (KEM) private key. HPKE works for any combination of an asymmetric KEM, key derivation function (KDF), and authenticated encryption with additional data (AEAD) encryption function. Some authenticated variants may not be supported by all KEMs. We provide instantiations of the scheme using widely used and efficient primitives, such as Elliptic Curve Diffie-Hellman (ECDH) key agreement, HMAC-based key derivation function (HKDF), and SHA2. This document is a product of the Crypto Forum Research Group (CFRG) in the IRTF."];
+  RFC9180 -> rev_cites;
+  RFC9415 [label="RFC9415
+On the Generation of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9415.html", target="_top", tooltip="This document performs an analysis of the security and privacy implications of different types of transient numeric identifiers used in IETF protocols and tries to categorize them based on their interoperability requirements and their associated failure severity when such requirements are not met.  Subsequently, it provides advice on possible algorithms that could be employed to satisfy the interoperability requirements of each identifier category while minimizing the negative security and privacy implications, thus providing guidance to protocol designers and protocol implementers.  Finally, it describes a number of algorithms that have been employed in real implementations to generate transient numeric identifiers and analyzes their security and privacy properties.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9415 -> rev_cites;
+  RFC9528 [label="RFC9528
+Ephemeral Diffie-Hellman Over COSE
+(EDHOC)
+2024", shape=ellipse, URL="RFC9528.html", target="_top", tooltip="This document specifies Ephemeral Diffie-Hellman Over COSE (EDHOC), a very compact and lightweight authenticated Diffie-Hellman key exchange with ephemeral keys.  EDHOC provides mutual authentication, forward secrecy, and identity protection.  EDHOC is intended for usage in constrained scenarios, and a main use case is to establish an Object Security for Constrained RESTful Environments (OSCORE) security context.  By reusing CBOR Object Signing and Encryption (COSE) for cryptography, Concise Binary Object Representation (CBOR) for encoding, and Constrained Application Protocol (CoAP) for transport, the additional code size can be kept very low."];
+  RFC9528 -> rev_cites;
+  RFC9562 [label="RFC9562
+Universally Unique IDentifiers (UUIDs)
+2024", shape=ellipse, URL="RFC9562.html", target="_top", tooltip="This specification defines UUIDs (Universally Unique IDentifiers) --
+also known as GUIDs (Globally Unique IDentifiers) -- and a Uniform
+Resource Name namespace for UUIDs. A UUID is 128 bits long and is
+intended to guarantee uniqueness across space and time. UUIDs were
+originally used in the Apollo Network Computing System (NCS), later
+in the Open Software Foundation's (OSF's) Distributed Computing
+Environment (DCE), and then in Microsoft Windows platforms. This specification is derived from the OSF DCE specification with the
+kind permission of the OSF (now known as The Open Group). Information from earlier versions of the OSF DCE specification have
+been incorporated into this document. This document obsoletes RFC
+4122."];
+  RFC9562 -> rev_cites;
+  RFC9813 [label="RFC9813
+Operational Considerations for Using TLS
+Pre-Shared Keys (TLS-PSKs) with RADIUS
+2025", shape=ellipse, URL="RFC9813.html", target="_top", tooltip="This document provides implementation and operational considerations for using TLS Pre-Shared Keys (TLS-PSKs) with RADIUS/TLS (RFC 6614) and RADIUS/DTLS (RFC 7360).  The purpose of the document is to help smooth the operational transition from the use of RADIUS/UDP to RADIUS/TLS."];
+  RFC9813 -> rev_cites;
+}

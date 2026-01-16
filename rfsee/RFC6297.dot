@@ -1,0 +1,83 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6297 [label="RFC6297
+A Survey of Lower-than-Best-Effort
+Transport Protocols
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides a survey of transport protocols that are designed to have a smaller bandwidth and/or delay impact on standard TCP than standard TCP itself when they share a bottleneck with it.  Such protocols could be used for delay-insensitive background traffic, as they provide what is sometimes called a less than (or lower than) best-effort service.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6297;
+
+  obs [label="obsoletes", shape=box];
+  RFC6297 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6297 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6297;
+
+  cites [label="cites", shape=box];
+  RFC6297 -> cites;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC3662 [label="RFC3662
+A Lower Effort Per-Domain Behavior (PDB)
+for Differentiated Services
+2003", shape=ellipse, URL="RFC3662.html", target="_top", tooltip="This document proposes a differentiated services per-domain behavior (PDB) whose traffic may be starved (although starvation is not strictly required) in a properly functioning network.  This is in contrast to the Internet's best-effort or normal Internet traffic model, where prolonged starvation indicates network problems.  In this sense, the proposed PDB's traffic is forwarded with a lower priority than the normal best-effort Internet traffic, thus the PDB is called Lower Effort (LE).  Use of this PDB permits a network operator to strictly limit the effect of its traffic on best-effort/normal or all other Internet traffic.  This document gives some example uses, but does not propose constraining the PDB's use to any particular type of traffic."];
+  cites -> RFC3662;
+  RFC2309 [label="RFC2309
+Recommendations on Queue Management and
+Congestion Avoidance in the Internet
+1998", shape=ellipse, URL="RFC2309.html", target="_top", tooltip="This memo presents two recommendations to the Internet community concerning measures to improve and preserve Internet performance.  It presents a strong recommendation for testing, standardization, and widespread deployment of active queue management in routers, to improve the performance of today's Internet.  It also urges a concerted effort of research, measurement, and ultimate deployment of router mechanisms to protect the Internet from flows that are not sufficiently responsive to congestion notification.  This memo provides information for the Internet community.  It does not specify an Internet standard of any kind."];
+  cites -> RFC2309;
+  RFC1323 [label="RFC1323
+TCP Extensions for High Performance
+1992", shape=ellipse, URL="RFC1323.html", target="_top", tooltip="This memo presents a set of TCP extensions to improve performance over large bandwidth*delay product paths and to provide reliable operation over very high-speed paths.  It defines new TCP options for scaled windows and timestamps, which are designed to provide compatible interworking with TCP's that do not implement the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC1323;
+  RFC5348 [label="RFC5348
+TCP Friendly Rate Control (TFRC):
+Protocol Specification
+2008", shape=ellipse, URL="RFC5348.html", target="_top", tooltip="This document specifies TCP Friendly Rate Control (TFRC). TFRC is a congestion control mechanism for unicast flows operating in a best-effort Internet environment. It is reasonably fair when competing for bandwidth with TCP flows, but has a much lower variation of throughput over time compared with TCP, making it more suitable for applications such as streaming media where a relatively smooth sending rate is of importance. This document obsoletes RFC 3448 and updates RFC 4342. [STANDARDS-TRACK]"];
+  cites -> RFC5348;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6297;
+  RFC6817 [label="RFC6817
+Low Extra Delay Background Transport
+(LEDBAT)
+2012", shape=ellipse, URL="RFC6817.html", target="_top", tooltip="Low Extra Delay Background Transport (LEDBAT) is an experimental delay-based congestion control algorithm that seeks to utilize the available bandwidth on an end-to-end path while limiting the consequent increase in queueing delay on that path.  LEDBAT uses changes in one-way delay measurements to limit congestion that the flow itself induces in the network.  LEDBAT is designed for use by background bulk-transfer applications to be no more aggressive than standard TCP congestion control (as specified in RFC 5681) and to yield in the presence of competing flows, thus limiting interference with the network performance of competing flows.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6817 -> rev_cites;
+  RFC7928 [label="RFC7928
+Characterization Guidelines for Active
+Queue Management (AQM)
+2016", shape=ellipse, URL="RFC7928.html", target="_top", tooltip="Unmanaged large buffers in today's networks have given rise to a slew of performance issues.  These performance issues can be addressed by some form of Active Queue Management (AQM) mechanism, optionally in combination with a packet-scheduling scheme such as fair queuing.  This document describes various criteria for performing characterizations of AQM schemes that can be used in lab testing during development, prior to deployment."];
+  RFC7928 -> rev_cites;
+  RFC7962 [label="RFC7962
+Alternative Network Deployments:
+Taxonomy, Characterization,
+Technologies, and Architectures
+2016", shape=ellipse, URL="RFC7962.html", target="_top", tooltip="This document presents a taxonomy of a set of Alternative Network Deployments that emerged in the last decade with the aim of bringing Internet connectivity to people or providing a local communication infrastructure to serve various complementary needs and objectives. They employ architectures and topologies different from those of mainstream networks and rely on alternative governance and business models. The document also surveys the technologies deployed in these networks, and their differing architectural characteristics, including a set of definitions and shared properties. The classification considers models such as Community Networks, Wireless Internet Service Providers (WISPs), networks owned by individuals but leased out to network operators who use them as a low-cost medium to reach the underserved population, networks that provide connectivity by sharing wireless resources of the users, and rural utility cooperatives."];
+  RFC7962 -> rev_cites;
+  RFC8622 [label="RFC8622
+A Lower-Effort Per-Hop Behavior (LE PHB)
+for Differentiated Services
+2019", shape=ellipse, URL="RFC8622.html", target="_top", tooltip="This document specifies properties and characteristics of a Lower- Effort Per-Hop Behavior (LE PHB). The primary objective of this LE PHB is to protect Best-Effort (BE) traffic (packets forwarded with the default PHB) from LE traffic in congestion situations, i.e., when resources become scarce, BE traffic has precedence over LE traffic and may preempt it. Alternatively, packets forwarded by the LE PHB can be associated with a scavenger service class, i.e., they scavenge otherwise-unused resources only. There are numerous uses for this PHB, e.g., for background traffic of low precedence, such as bulk data transfers with low priority in time, non-time-critical backups, larger software updates, web search engines while gathering information from web servers and so on. This document recommends a standard Differentiated Services Code Point (DSCP) value for the LE PHB. This specification obsoletes RFC 3662 and updates the DSCP recommended in RFCs 4594 and 8325 to use the DSCP assigned in this specification."];
+  RFC8622 -> rev_cites;
+  RFC9265 [label="RFC9265
+Forward Erasure Correction (FEC) Coding
+and Congestion Control in Transport
+2022", shape=ellipse, URL="RFC9265.html", target="_top", tooltip="Forward Erasure Correction (FEC) is a reliability mechanism that is distinct and separate from the retransmission logic in reliable transfer protocols such as TCP. FEC coding can help deal with losses at the end of transfers or with networks having non-congestion losses. However, FEC coding mechanisms should not hide congestion signals. This memo offers a discussion of how FEC coding and congestion control can coexist. Another objective is to encourage the research community to also consider congestion control aspects when proposing and comparing FEC coding solutions in communication systems. This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). The scope of the document is end-to-end communications; FEC coding for tunnels is out of the scope of the document."];
+  RFC9265 -> rev_cites;
+}

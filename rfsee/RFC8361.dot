@@ -1,0 +1,100 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8361 [label="RFC8361
+Transparent Interconnection of Lots of
+Links (TRILL): Centralized Replication
+for Active-Active Broadcast, Unknown
+Unicast, and Multicast (BUM) Traffic
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="In Transparent Interconnection of Lots of Links (TRILL) active-active access, a Reverse Path Forwarding (RPF) check failure issue may occur when using the pseudo-nickname mechanism specified in RFC 7781.  This document describes a solution to resolve this RPF check failure issue through centralized replication.  All ingress Routing Bridges (RBridges) send Broadcast, Unknown Unicast, and Multicast (BUM) traffic to a centralized node with unicast TRILL encapsulation.  When the centralized node receives the BUM traffic, it decapsulates the packets and forwards them to their destination RBridges using a distribution tree established per the TRILL base protocol (RFC 6325).  To avoid RPF check failure on an RBridge sitting between the ingress RBridge and the centralized replication node, some change in the RPF calculation algorithm is required.  RPF checks on each RBridge MUST be calculated as if the centralized node was the ingress RBridge, instead of being calculated using the actual ingress RBridge.  This document updates RFC 6325."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8361;
+
+  obs [label="obsoletes", shape=box];
+  RFC8361 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8361 -> updates;
+  RFC6325 [label="RFC6325
+Routing Bridges (RBridges): Base
+Protocol Specification
+2011", shape=ellipse, URL="RFC6325.html", target="_top", tooltip="Routing Bridges (RBridges) provide optimal pair-wise forwarding without configuration, safe forwarding even during periods of temporary loops, and support for multipathing of both unicast and multicast traffic. They achieve these goals using IS-IS routing and encapsulation of traffic with a header that includes a hop count. RBridges are compatible with previous IEEE 802.1 customer bridges as well as IPv4 and IPv6 routers and end nodes. They are as invisible to current IP routers as bridges are and, like routers, they terminate the bridge spanning tree protocol. The design supports VLANs and the optimization of the distribution of multi-destination frames based on VLAN ID and based on IP-derived multicast groups. It also allows unicast forwarding tables at transit RBridges to be sized according to the number of RBridges (rather than the number of end nodes), which allows their forwarding tables to be substantially smaller than in conventional customer bridges. [STANDARDS-TRACK]"];
+  updates -> RFC6325;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8361;
+
+  cites [label="cites", shape=box];
+  RFC8361 -> cites;
+  RFC6325 [label="RFC6325
+Routing Bridges (RBridges): Base
+Protocol Specification
+2011", shape=ellipse, URL="RFC6325.html", target="_top", tooltip="Routing Bridges (RBridges) provide optimal pair-wise forwarding without configuration, safe forwarding even during periods of temporary loops, and support for multipathing of both unicast and multicast traffic. They achieve these goals using IS-IS routing and encapsulation of traffic with a header that includes a hop count. RBridges are compatible with previous IEEE 802.1 customer bridges as well as IPv4 and IPv6 routers and end nodes. They are as invisible to current IP routers as bridges are and, like routers, they terminate the bridge spanning tree protocol. The design supports VLANs and the optimization of the distribution of multi-destination frames based on VLAN ID and based on IP-derived multicast groups. It also allows unicast forwarding tables at transit RBridges to be sized according to the number of RBridges (rather than the number of end nodes), which allows their forwarding tables to be substantially smaller than in conventional customer bridges. [STANDARDS-TRACK]"];
+  cites -> RFC6325;
+  RFC6165 [label="RFC6165
+Extensions to IS-IS for Layer-2 Systems
+2011", shape=ellipse, URL="RFC6165.html", target="_top", tooltip="This document specifies the Intermediate System to Intermediate System (IS-IS) extensions necessary to support link state routing for any protocols running directly over Layer-2.  While supporting this concept involves several pieces, this document only describes extensions to IS-IS.  Furthermore, the Type, Length, Value pairs (TLVs) described in this document are generic Layer-2 additions, and specific ones as needed are defined in the IS-IS technology-specific extensions.  We leave it to the systems using these IS-IS extensions to explain how the information carried in IS-IS is used. [STANDARDS- TRACK]"];
+  cites -> RFC6165;
+  RFC7176 [label="RFC7176
+Transparent Interconnection of Lots of
+Links (TRILL) Use of IS-IS
+2014", shape=ellipse, URL="RFC7176.html", target="_top", tooltip="The IETF Transparent Interconnection of Lots of Links (TRILL) protocol provides optimal pair-wise data frame forwarding without configuration in multi-hop networks with arbitrary topology and link technology; it also provides support for multipathing of both unicast and multicast traffic.  This document specifies the data formats and code points for the IS-IS extensions to support TRILL.  These data formats and code points may also be used by technologies other than TRILL.  This document obsoletes RFC 6326."];
+  cites -> RFC7176;
+  RFC7379 [label="RFC7379
+Problem Statement and Goals for Active-
+Active Connection at the Transparent
+Interconnection of Lots of Links (TRILL)
+Edge
+2014", shape=ellipse, URL="RFC7379.html", target="_top", tooltip="The IETF TRILL (Transparent Interconnection of Lots of Links) protocol provides support for flow-level multipathing with rapid failover for both unicast and multi-destination traffic in networks with arbitrary topology.  Active-active connection at the TRILL edge is the extension of these characteristics to end stations that are multiply connected to a TRILL campus.  This informational document discusses the high-level problems and goals when providing active-active connection at the TRILL edge."];
+  cites -> RFC7379;
+  RFC7781 [label="RFC7781
+Transparent Interconnection of Lots of
+Links (TRILL): Pseudo-Nickname for
+Active-Active Access
+2016", shape=ellipse, URL="RFC7781.html", target="_top", tooltip="The IETF TRILL (Transparent Interconnection of Lots of Links) protocol provides support for flow-level multipathing for both unicast and multi-destination traffic in networks with arbitrary topology.  Active-active access at the TRILL edge is the extension of these characteristics to end stations that are multiply connected to a TRILL campus as discussed in RFC 7379.  In this document, the edge RBridge (Routing Bridge, or TRILL switch) group providing active-active access to such an end station is represented as a virtual RBridge.  Based on the concept of the virtual RBridge, along with its pseudo-nickname, this document specifies a method for TRILL active-active access by such end stations."];
+  cites -> RFC7781;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7783 [label="RFC7783
+Coordinated Multicast Trees (CMT) for
+Transparent Interconnection of Lots of
+Links (TRILL)
+2016", shape=ellipse, URL="RFC7783.html", target="_top", tooltip="TRILL (Transparent Interconnection of Lots of Links) facilitates loop-free connectivity to non-TRILL networks via a choice of an Appointed Forwarder for a set of VLANs.  Appointed Forwarders provide VLAN-based load sharing with an active-standby model.  High-performance applications require an active-active load-sharing model.  The active-active load-sharing model can be accomplished by representing any given non-TRILL network with a single virtual RBridge (also referred to as a virtual Routing Bridge or virtual TRILL switch).  Virtual representation of the non-TRILL network with a single RBridge poses serious challenges in multi-destination RPF (Reverse Path Forwarding) check calculations.  This document specifies required enhancements to build Coordinated Multicast Trees (CMT) within the TRILL campus to solve related RPF issues.  CMT, which only requires a software upgrade, provides flexibility to RBridges in selecting a desired path of association to a given TRILL multi-destination distribution tree.  This document updates RFC 6325."];
+  cites -> RFC7783;
+  RFC7172 [label="RFC7172
+Transparent Interconnection of Lots of
+Links (TRILL): Fine-Grained Labeling
+2014", shape=ellipse, URL="RFC7172.html", target="_top", tooltip="The IETF has standardized Transparent Interconnection of Lots of Links (TRILL), a protocol for least-cost transparent frame routing in multi-hop networks with arbitrary topologies and link technologies, using link-state routing and a hop count.  The TRILL base protocol standard supports the labeling of TRILL Data packets with up to 4K IDs.  However, there are applications that require a larger number of labels providing configurable isolation of data.  This document updates RFC 6325 by specifying optional extensions to the TRILL base protocol to safely accomplish this.  These extensions, called fine-grained labeling, are primarily intended for use in large data centers, that is, those with more than 4K users requiring configurable data isolation from each other."];
+  cites -> RFC7172;
+  RFC7780 [label="RFC7780
+Transparent Interconnection of Lots of
+Links (TRILL): Clarifications,
+Corrections, and Updates
+2016", shape=ellipse, URL="RFC7780.html", target="_top", tooltip="Since the publication of the TRILL (Transparent Interconnection of Lots of Links) base protocol in 2011, active development and deployment of TRILL have revealed errata in RFC 6325 and areas that could use clarifications or updates.  RFC 7177, RFC 7357, and an intended replacement of RFC 6439 provide clarifications and updates with respect to adjacency, the TRILL ESADI (End Station Address Distribution Information) protocol, and Appointed Forwarders, respectively.  This document provides other known clarifications, corrections, and updates.  It obsoletes RFC 7180 (the previous TRILL clarifications, corrections, and updates RFC), and it updates RFCs 6325, 7177, and 7179."];
+  cites -> RFC7780;
+  RFC5310 [label="RFC5310
+IS-IS Generic Cryptographic
+Authentication
+2009", shape=ellipse, URL="RFC5310.html", target="_top", tooltip="This document proposes an extension to Intermediate System to Intermediate System (IS-IS) to allow the use of any cryptographic authentication algorithm in addition to the already-documented authentication schemes, described in the base specification and RFC 5304. IS-IS is specified in International Standards Organization (ISO) 10589, with extensions to support Internet Protocol version 4 (IPv4) described in RFC 1195. Although this document has been written specifically for using the Hashed Message Authentication Code (HMAC) construct along with the Secure Hash Algorithm (SHA) family of cryptographic hash functions, the method described in this document is generic and can be used to extend IS-IS to support any cryptographic hash function in the future. [STANDARDS-TRACK]"];
+  cites -> RFC5310;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8361;
+  RFC8963 [label="RFC8963
+Evaluation of a Sample of RFCs Produced
+in 2018
+2021", shape=ellipse, URL="RFC8963.html", target="_top", tooltip="This document presents the author's effort to understand the delays involved in publishing an idea in the IETF or through the Independent Stream, from the first individual draft to the publication of the RFC. We analyze a set of randomly chosen RFCs approved in 2018, looking for history and delays. We also use two randomly chosen sets of RFCs published in 2008 and 1998 for comparing delays seen in 2018 to those observed 10 or 20 years ago. The average RFC in the 2018 sample was produced in 3 years and 4 months, of which 2 years and 10 months were spent in the working group, 3 to 4 months for IETF consensus and IESG review, and 3 to 4 months in RFC production. The main variation in RFC production delays comes from the AUTH48 phase. We also measure the number of citations of the chosen RFC using Semantic Scholar, and compare citation counts with what we know about deployment. We show that citation counts indicate academic interest, but correlate only loosely with deployment or usage of the specifications. Counting web references could complement that."];
+  RFC8963 -> rev_cites;
+}

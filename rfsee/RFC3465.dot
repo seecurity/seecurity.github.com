@@ -1,0 +1,113 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3465 [label="RFC3465
+TCP Congestion Control with Appropriate
+Byte Counting (ABC)
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document proposes a small modification to the way TCP increases its congestion window.  Rather than the traditional method of increasing the congestion window by a constant amount for each arriving acknowledgment, the document suggests basing the increase on the number of previously unacknowledged bytes each ACK covers.  This change improves the performance of TCP, as well as closes a security hole TCP receivers can use to induce the sender into increasing the sending rate too rapidly.  This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3465;
+
+  obs [label="obsoletes", shape=box];
+  RFC3465 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3465 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3465;
+
+  cites [label="cites", shape=box];
+  RFC3465 -> cites;
+  RFC2581 [label="RFC2581
+TCP Congestion Control
+1999", shape=ellipse, URL="RFC2581.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods. [STANDARDS-TRACK]"];
+  cites -> RFC2581;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2988 [label="RFC2988
+Computing TCP's Retransmission Timer
+2000", shape=ellipse, URL="RFC2988.html", target="_top", tooltip="This document defines the standard algorithm that Transmission Control Protocol (TCP) senders are required to use to compute and manage their retransmission timer. [STANDARDS-TRACK]"];
+  cites -> RFC2988;
+  RFC2861 [label="RFC2861
+TCP Congestion Window Validation
+2000", shape=ellipse, URL="RFC2861.html", target="_top", tooltip="This document describes a simple modification to TCP's congestion control algorithms to decay the congestion window cwnd after the transition from a sufficiently-long application-limited period, while using the slow-start threshold ssthresh to save information about the previous value of the congestion window.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC2861;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC2018 [label="RFC2018
+TCP Selective Acknowledgment Options
+1996", shape=ellipse, URL="RFC2018.html", target="_top", tooltip="This memo proposes an implementation of SACK and discusses its performance and related issues. [STANDARDS-TRACK]"];
+  cites -> RFC2018;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3465;
+  RFC3742 [label="RFC3742
+Limited Slow-Start for TCP with Large
+Congestion Windows
+2004", shape=ellipse, URL="RFC3742.html", target="_top", tooltip="This document describes an optional modification for TCP's slow-start for use with TCP connections with large congestion windows.  For TCP connections that are able to use congestion windows of thousands (or tens of thousands) of MSS-sized segments (for MSS the sender's MAXIMUM SEGMENT SIZE), the current slow-start procedure can result in increasing the congestion window by thousands of segments in a single round-trip time.  Such an increase can easily result in thousands of packets being dropped in one round-trip time.  This is often counter-productive for the TCP flow itself, and is also hard on the rest of the traffic sharing the congested link.  This note describes Limited Slow-Start as an optional mechanism for limiting the number of segments by which the congestion window is increased for one window of data during slow-start, in order to improve performance for TCP connections with large congestion windows.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC3742 -> rev_cites;
+  RFC4341 [label="RFC4341
+Profile for Datagram Congestion Control
+Protocol (DCCP) Congestion Control ID 2:
+TCP-like Congestion Control
+2006", shape=ellipse, URL="RFC4341.html", target="_top", tooltip="This document contains the profile for Congestion Control Identifier 2 (CCID 2), TCP-like Congestion Control, in the Datagram Congestion Control Protocol (DCCP).  CCID 2 should be used by senders who would like to take advantage of the available bandwidth in an environment with rapidly changing conditions, and who are able to adapt to the abrupt changes in the congestion window typical of TCP's Additive Increase Multiplicative Decrease (AIMD) congestion control. [STANDARDS-TRACK]"];
+  RFC4341 -> rev_cites;
+  RFC4614 [label="RFC4614
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2006", shape=ellipse, URL="RFC4614.html", target="_top", tooltip="This document contains a roadmap to the Requests for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP).  This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series.  This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs.  This memo provides information for the Internet community."];
+  RFC4614 -> rev_cites;
+  RFC4653 [label="RFC4653
+Improving the Robustness of TCP to Non-
+Congestion Events
+2006", shape=ellipse, URL="RFC4653.html", target="_top", tooltip="This document specifies Non-Congestion Robustness (NCR) for TCP.  In the absence of explicit congestion notification from the network, TCP uses loss as an indication of congestion.  One of the ways TCP detects loss is using the arrival of three duplicate acknowledgments.  However, this heuristic is not always correct, notably in the case when network paths reorder segments (for whatever reason), resulting in degraded performance.  TCP-NCR is designed to mitigate this degraded performance by increasing the number of duplicate acknowledgments required to trigger loss recovery, based on the current state of the connection, in an effort to better disambiguate true segment loss from segment reordering.  This document specifies the changes to TCP, as well as the costs and benefits of these modifications.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC4653 -> rev_cites;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  RFC5681 -> rev_cites;
+  RFC5690 [label="RFC5690
+Adding Acknowledgement Congestion
+Control to TCP
+2010", shape=ellipse, URL="RFC5690.html", target="_top", tooltip="This document describes a possible congestion control mechanism for acknowledgement (ACKs) traffic in TCP.  The document specifies an end-to-end acknowledgement congestion control mechanism for TCP that uses participation from both TCP hosts: the TCP data sender and the TCP data receiver.  The TCP data sender detects lost or Explicit Congestion Notification (ECN)-marked ACK packets, and tells the TCP data receiver the ACK Ratio R to use to respond to the congestion on the reverse path from the data receiver to the data sender.  The TCP data receiver sends roughly one ACK packet for every R data packets received.  This mechanism is based on the acknowledgement congestion control in the Datagram Congestion Control Protocol's (DCCP's) Congestion Control Identifier (CCID) 2.  This acknowledgement congestion control mechanism is being specified for further evaluation by the network community.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5690 -> rev_cites;
+  RFC6356 [label="RFC6356
+Coupled Congestion Control for Multipath
+Transport Protocols
+2011", shape=ellipse, URL="RFC6356.html", target="_top", tooltip="Often endpoints are connected by multiple paths, but communications are usually restricted to a single path per connection. Resource usage within the network would be more efficient were it possible for these multiple paths to be used concurrently. Multipath TCP is a proposal to achieve multipath transport in TCP. New congestion control algorithms are needed for multipath transport protocols such as Multipath TCP, as single path algorithms have a series of issues in the multipath context. One of the prominent problems is that running existing algorithms such as standard TCP independently on each path would give the multipath flow more than its fair share at a bottleneck link traversed by more than one of its subflows. Further, it is desirable that a source with multiple paths available will transfer more traffic using the least congested of the paths, achieving a property called resource pooling where a bundle of links effectively behaves like one shared link with bigger capacity. This would increase the overall efficiency of the network and also its robustness to failure. This document presents a congestion control algorithm that couples the congestion control algorithms running on different subflows by linking their increase functions, and dynamically controls the overall aggressiveness of the multipath flow. The result is a practical algorithm that is fair to TCP at bottlenecks while moving traffic away from congested links. This document defines an Experimental Protocol for the Internet community."];
+  RFC6356 -> rev_cites;
+  RFC6559 [label="RFC6559
+A Reliable Transport Mechanism for PIM
+2012", shape=ellipse, URL="RFC6559.html", target="_top", tooltip="This document defines a reliable transport mechanism for the PIM protocol for transmission of Join/Prune messages.  This eliminates the need for periodic Join/Prune message transmission and processing.  The reliable transport mechanism can use either TCP or SCTP as the transport protocol.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6559 -> rev_cites;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+  RFC8337 [label="RFC8337
+Model-Based Metrics for Bulk Transport
+Capacity
+2018", shape=ellipse, URL="RFC8337.html", target="_top", tooltip="This document introduces a new class of Model-Based Metrics designed to assess if a complete Internet path can be expected to meet a predefined Target Transport Performance by applying a suite of IP diagnostic tests to successive subpaths. The subpath-at-a-time tests can be robustly applied to critical infrastructure, such as network interconnections or even individual devices, to accurately detect if any part of the infrastructure will prevent paths traversing it from meeting the Target Transport Performance. Model-Based Metrics rely on mathematical models to specify a Targeted IP Diagnostic Suite, a set of IP diagnostic tests designed to assess whether common transport protocols can be expected to meet a predetermined Target Transport Performance over an Internet path. For Bulk Transport Capacity, the IP diagnostics are built using test streams and statistical criteria for evaluating the packet transfer that mimic TCP over the complete path. The temporal structure of the test stream (e.g., bursts) mimics TCP or other transport protocols carrying bulk data over a long path. However, they are constructed to be independent of the details of the subpath under test, end systems, or applications. Likewise, the success criteria evaluates the packet transfer statistics of the subpath against criteria determined by protocol performance models applied to the Target Transport Performance of the complete path. The success criteria also does not depend on the details of the subpath, end systems, or applications."];
+  RFC8337 -> rev_cites;
+  RFC9002 [label="RFC9002
+QUIC Loss Detection and Congestion
+Control
+2021", shape=ellipse, URL="RFC9002.html", target="_top", tooltip="This document describes loss detection and congestion control mechanisms for QUIC."];
+  RFC9002 -> rev_cites;
+  RFC9260 [label="RFC9260
+Stream Control Transmission Protocol
+2022", shape=ellipse, URL="RFC9260.html", target="_top", tooltip="This document describes the Stream Control Transmission Protocol (SCTP) and obsoletes RFC 4960. It incorporates the specification of the chunk flags registry from RFC 6096 and the specification of the I bit of DATA chunks from RFC 7053. Therefore, RFCs 6096 and 7053 are also obsoleted by this document. In addition, RFCs 4460 and 8540, which describe errata for SCTP, are obsoleted by this document. SCTP was originally designed to transport Public Switched Telephone Network (PSTN) signaling messages over IP networks. It is also suited to be used for other applications, for example, WebRTC. SCTP is a reliable transport protocol operating on top of a connectionless packet network, such as IP. It offers the following services to its users: The design of SCTP includes appropriate congestion avoidance behavior and resistance to flooding and masquerade attacks."];
+  RFC9260 -> rev_cites;
+}

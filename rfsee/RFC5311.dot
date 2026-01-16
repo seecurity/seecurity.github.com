@@ -1,0 +1,82 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5311 [label="RFC5311
+Simplified Extension of Link State PDU
+(LSP) Space for IS-IS
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a simplified method for extending the Link State PDU (LSP) space beyond the 256 LSP limit.  This method is intended as a preferred replacement for the method defined in RFC 3786. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5311;
+
+  obs [label="obsoletes", shape=box];
+  RFC5311 -> obs;
+  RFC3786 [label="RFC3786
+Extending the Number of Intermediate
+System to Intermediate System (IS-IS)
+Link State PDU (LSP) Fragments Beyond
+the 256 Limit
+2004", shape=ellipse, URL="RFC3786.html", target="_top", tooltip="This document describes a mechanism that allows a system to originate more than 256 Link State PDU (LSP) fragments, a limit set by the original Intermediate System to Intermediate System (IS-IS) Routing protocol, as described in ISO/IEC 10589.  This mechanism can be used in IP-only, OSI-only, and dual routers.  This memo provides information for the Internet community."];
+  obs -> RFC3786;
+
+  updates [label="updates", shape=box];
+  RFC5311 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5311;
+
+  cites [label="cites", shape=box];
+  RFC5311 -> cites;
+  RFC3786 [label="RFC3786
+Extending the Number of Intermediate
+System to Intermediate System (IS-IS)
+Link State PDU (LSP) Fragments Beyond
+the 256 Limit
+2004", shape=ellipse, URL="RFC3786.html", target="_top", tooltip="This document describes a mechanism that allows a system to originate more than 256 Link State PDU (LSP) fragments, a limit set by the original Intermediate System to Intermediate System (IS-IS) Routing protocol, as described in ISO/IEC 10589.  This mechanism can be used in IP-only, OSI-only, and dual routers.  This memo provides information for the Internet community."];
+  cites -> RFC3786;
+  RFC5120 [label="RFC5120
+M-ISIS: Multi Topology (MT) Routing in
+Intermediate System to Intermediate
+Systems (IS-ISs)
+2008", shape=ellipse, URL="RFC5120.html", target="_top", tooltip="This document describes an optional mechanism within Intermediate System to Intermediate Systems (IS-ISs) used today by many ISPs for IGP routing within their clouds.  This document describes how to run, within a single IS-IS domain, a set of independent IP topologies that we call Multi-Topologies (MTs).  This MT extension can be used for a variety of purposes, such as an in-band management network on top of the original IGP topology, maintaining separate IGP routing domains for isolated multicast or IPv6 islands within the backbone, or forcing a subset of an address space to follow a different topology. [STANDARDS-TRACK]"];
+  cites -> RFC5120;
+  RFC5305 [label="RFC5305
+IS-IS Extensions for Traffic Engineering
+2008", shape=ellipse, URL="RFC5305.html", target="_top", tooltip="This document describes extensions to the Intermediate System to Intermediate System (IS-IS) protocol to support Traffic Engineering (TE).  This document extends the IS-IS protocol by specifying new information that an Intermediate System (router) can place in Link State Protocol Data Units (LSP).  This information describes additional details regarding the state of the network that are useful for traffic engineering computations. [STANDARDS-TRACK]"];
+  cites -> RFC5305;
+  RFC5307 [label="RFC5307
+IS-IS Extensions in Support of
+Generalized Multi-Protocol Label
+Switching (GMPLS)
+2008", shape=ellipse, URL="RFC5307.html", target="_top", tooltip="This document specifies encoding of extensions to the IS-IS routing protocol in support of Generalized Multi-Protocol Label Switching (GMPLS). [STANDARDS-TRACK]"];
+  cites -> RFC5307;
+  RFC5304 [label="RFC5304
+IS-IS Cryptographic Authentication
+2008", shape=ellipse, URL="RFC5304.html", target="_top", tooltip="This document describes the authentication of Intermediate System to Intermediate System (IS-IS) Protocol Data Units (PDUs) using the Hashed Message Authentication Codes - Message Digest 5 (HMAC-MD5) algorithm as found in RFC 2104. IS-IS is specified in International Standards Organization (ISO) 10589, with extensions to support Internet Protocol version 4 (IPv4) described in RFC 1195. The base specification includes an authentication mechanism that allows for multiple authentication algorithms. The base specification only specifies the algorithm for cleartext passwords. This document replaces RFC 3567. This document proposes an extension to that specification that allows the use of the HMAC-MD5 authentication algorithm to be used in conjunction with the existing authentication mechanisms. [STANDARDS-TRACK]"];
+  cites -> RFC5304;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5311;
+  RFC7356 [label="RFC7356
+IS-IS Flooding Scope Link State PDUs
+(LSPs)
+2014", shape=ellipse, URL="RFC7356.html", target="_top", tooltip="Intermediate System to Intermediate System (IS-IS) provides efficient and reliable flooding of information to its peers; however, the current flooding scopes are limited to either area scope or domain scope. There are existing use cases where support of other flooding scopes is desirable. This document defines new Protocol Data Units (PDUs) that provide support for new flooding scopes as well as additional space for advertising information targeted for the currently supported flooding scopes. This document also defines extended Type-Length-Values (TLVs) and sub-TLVs that are encoded using 16-bit fields for Type and Length. The protocol extensions defined in this document are not backwards compatible with existing implementations and so must be deployed with care."];
+  RFC7356 -> rev_cites;
+  RFC7370 [label="RFC7370
+Updates to the IS-IS TLV Codepoints
+Registry
+2014", shape=ellipse, URL="RFC7370.html", target="_top", tooltip="This document recommends some editorial changes to the IANA IS-IS TLV Codepoints registry to more accurately document the state of the protocol.  It also sets out new guidelines for Designated Experts to apply when reviewing allocations from the registry."];
+  RFC7370 -> rev_cites;
+  RFC8667 [label="RFC8667
+IS-IS Extensions for Segment Routing
+2019", shape=ellipse, URL="RFC8667.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths within IGP topologies by encoding paths as sequences of topological sub-paths, called segments. These segments are advertised by the link-state routing protocols (IS-IS and OSPF). This document describes the IS-IS extensions that need to be introduced for Segment Routing operating on an MPLS data plane."];
+  RFC8667 -> rev_cites;
+  RFC9843 [label="RFC9843
+IGP Flexible Algorithms: Bandwidth,
+Delay, Metrics, and Constraints
+2025", shape=ellipse, URL="RFC9843.html", target="_top", tooltip="Many networks configure the IGP link metric relative to the link capacity, and high bandwidth traffic gets routed per the link capacity. Flexible Algorithms provide mechanisms to create constraint-based paths in an IGP. This specification documents a generic metric-type and a set of bandwidth-related constraints to be used in Flexible Algorithms. This document updates RFC 9350."];
+  RFC9843 -> rev_cites;
+}

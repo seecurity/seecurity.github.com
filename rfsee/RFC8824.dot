@@ -1,0 +1,98 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8824 [label="RFC8824
+Static Context Header Compression (SCHC)
+for the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines how to compress Constrained Application Protocol (CoAP) headers using the Static Context Header Compression and fragmentation (SCHC) framework.  SCHC defines a header compression mechanism adapted for Constrained Devices.  SCHC uses a static description of the header to reduce the header's redundancy and size.  While RFC 8724 describes the SCHC compression and fragmentation framework, and its application for IPv6/UDP headers, this document applies SCHC to CoAP headers.  The CoAP header structure differs from IPv6 and UDP, since CoAP uses a flexible header with a variable number of options, themselves of variable length.  The CoAP message format is asymmetric: the request messages have a header format different from the format in the response messages.  This specification gives guidance on applying SCHC to flexible headers and how to leverage the asymmetry for more efficient compression Rules."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8824;
+
+  obs [label="obsoletes", shape=box];
+  RFC8824 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8824 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8824;
+
+  cites [label="cites", shape=box];
+  RFC8824 -> cites;
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, URL="RFC7252.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."];
+  cites -> RFC7252;
+  RFC8724 [label="RFC8724
+SCHC: Generic Framework for Static
+Context Header Compression and
+Fragmentation
+2020", shape=ellipse, URL="RFC8724.html", target="_top", tooltip="This document defines the Static Context Header Compression and fragmentation (SCHC) framework, which provides both a header compression mechanism and an optional fragmentation mechanism. SCHC has been designed with Low-Power Wide Area Networks (LPWANs) in mind. SCHC compression is based on a common static context stored both in the LPWAN device and in the network infrastructure side. This document defines a generic header compression mechanism and its application to compress IPv6/UDP headers. This document also specifies an optional fragmentation and reassembly mechanism. It can be used to support the IPv6 MTU requirement over the LPWAN technologies. Fragmentation is needed for IPv6 datagrams that, after SCHC compression or when such compression was not possible, still exceed the Layer 2 maximum payload size. The SCHC header compression and fragmentation mechanisms are independent of the specific LPWAN technology over which they are used. This document defines generic functionalities and offers flexibility with regard to parameter settings and mechanism choices. This document standardizes the exchange over the LPWAN between two SCHC entities. Settings and choices specific to a technology or a product are expected to be grouped into profiles, which are specified in other documents. Data models for the context and profiles are out of scope."];
+  cites -> RFC8724;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8613 [label="RFC8613
+Object Security for Constrained RESTful
+Environments (OSCORE)
+2019", shape=ellipse, URL="RFC8613.html", target="_top", tooltip="This document defines Object Security for Constrained RESTful Environments (OSCORE), a method for application-layer protection of the Constrained Application Protocol (CoAP), using CBOR Object Signing and Encryption (COSE). OSCORE provides end-to-end protection between endpoints communicating using CoAP or CoAP-mappable HTTP. OSCORE is designed for constrained nodes and networks supporting a range of proxy operations, including translation between different transport protocols. Although an optional functionality of CoAP, OSCORE alters CoAP options processing and IANA registration. Therefore, this document updates RFC 7252."];
+  cites -> RFC8613;
+  RFC7959 [label="RFC7959
+Block-Wise Transfers in the Constrained
+Application Protocol (CoAP)
+2016", shape=ellipse, URL="RFC7959.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful transfer protocol for constrained nodes and networks. Basic CoAP messages work well for small payloads from sensors and actuators; however, applications will need to transfer larger payloads occasionally -- for instance, for firmware updates. In contrast to HTTP, where TCP does the grunt work of segmenting and resequencing, CoAP is based on datagram transports such as UDP or Datagram Transport Layer Security (DTLS). These transports only offer fragmentation, which is even more problematic in constrained nodes and networks, limiting the maximum size of resource representations that can practically be transferred. Instead of relying on IP fragmentation, this specification extends basic CoAP with a pair of Block options for transferring multiple blocks of information from a resource representation in multiple request-response pairs. In many important cases, the Block options enable a server to be truly stateless: the server can handle each block transfer separately, with no need for a connection setup or other server-side memory of previous block transfers. Essentially, the Block options provide a minimal way to transfer larger representations in a block-wise fashion. A CoAP implementation that does not support these options generally is limited in the size of the representations that can be exchanged, so there is an expectation that the Block options will be widely used in CoAP implementations. Therefore, this specification updates RFC 7252."];
+  cites -> RFC7959;
+  RFC7641 [label="RFC7641
+Observing Resources in the Constrained
+Application Protocol (CoAP)
+2015", shape=ellipse, URL="RFC7641.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful application protocol for constrained nodes and networks.  The state of a resource on a CoAP server can change over time.  This document specifies a simple protocol extension for CoAP that enables CoAP clients to observe resources, i.e., to retrieve a representation of a resource and keep this representation updated by the server over a period of time.  The protocol follows a best-effort approach for sending new representations to clients and provides eventual consistency between the state observed by each client and the actual resource state at the server."];
+  cites -> RFC7641;
+  RFC7967 [label="RFC7967
+Constrained Application Protocol (CoAP)
+Option for No Server Response
+2016", shape=ellipse, URL="RFC7967.html", target="_top", tooltip="There can be machine-to-machine (M2M) scenarios where server responses to client requests are redundant. This kind of open-loop exchange (with no response path from the server to the client) may be desired to minimize resource consumption in constrained systems while updating many resources simultaneously or performing high-frequency updates. CoAP already provides Non-confirmable (NON) messages that are not acknowledged by the recipient. However, the request/response semantics still require the server to respond with a status code indicating the result of the attempt to understand and satisfy the request, per RFC 7252. This specification introduces a CoAP option called 'No-Response'. Using this option, the client can explicitly express to the server its disinterest in all responses against the particular request. This option also provides granular control to enable expression of disinterest to a particular response class or a combination of response classes. The server MAY decide to suppress the response by not transmitting it back to the client according to the value of the No-Response option in the request. This option may be effective for both unicast and multicast requests. This document also discusses a few examples of applications that benefit from this option."];
+  cites -> RFC7967;
+  RFC5116 [label="RFC5116
+An Interface and Algorithms for
+Authenticated Encryption
+2008", shape=ellipse, URL="RFC5116.html", target="_top", tooltip="This document defines algorithms for Authenticated Encryption with Associated Data (AEAD), and defines a uniform interface and a registry for such algorithms.  The interface and registry can be used as an application-independent set of cryptoalgorithm suites.  This approach provides advantages in efficiency and security, and promotes the reuse of crypto implementations. [STANDARDS-TRACK]"];
+  cites -> RFC5116;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8824;
+  RFC9317 [label="RFC9317
+Operational Considerations for Streaming
+Media
+2022", shape=ellipse, URL="RFC9317.html", target="_top", tooltip="This document provides an overview of operational networking and transport protocol issues that pertain to the quality of experience (QoE) when streaming video and other high-bitrate media over the Internet. This document explains the characteristics of streaming media delivery that have surprised network designers or transport experts who lack specific media expertise, since streaming media highlights key differences between common assumptions in existing networking practices and observations of media delivery issues encountered when streaming media over those existing networks."];
+  RFC9317 -> rev_cites;
+  RFC9363 [label="RFC9363
+A YANG Data Model for Static Context
+Header Compression (SCHC)
+2023", shape=ellipse, URL="RFC9363.html", target="_top", tooltip="This document describes a YANG data model for the Static Context Header Compression (SCHC) compression and fragmentation Rules. This document formalizes the description of the Rules for better interoperability between SCHC instances either to exchange a set of Rules or to modify the parameters of some Rules."];
+  RFC9363 -> rev_cites;
+  RFC9391 [label="RFC9391
+Static Context Header Compression over
+Narrowband Internet of Things
+2023", shape=ellipse, URL="RFC9391.html", target="_top", tooltip="This document describes Static Context Header Compression and fragmentation (SCHC) specifications, RFCs 8724 and 8824, in combination with the 3rd Generation Partnership Project (3GPP) and the Narrowband Internet of Things (NB-IoT). This document has two parts: one normative part that specifies the use of SCHC over NB-IoT and one informational part that recommends some values if 3GPP wants to use SCHC inside their architectures."];
+  RFC9391 -> rev_cites;
+  RFC9820 [label="RFC9820
+Authentication Service Based on the
+Extensible Authentication Protocol (EAP)
+for Use with the Constrained Application
+Protocol (CoAP)
+2025", shape=ellipse, URL="RFC9820.html", target="_top", tooltip="This document specifies an authentication service that uses the Constrained Application Protocol (CoAP) as a transport method to carry the Extensible Authentication Protocol (EAP).  As such, it defines an EAP lower layer based on CoAP called CoAP-EAP.  One of the main goals is to authenticate a CoAP-enabled Internet of Things (IoT) device (EAP peer) that intends to join a security domain managed by a Controller (EAP authenticator).  Secondly, it allows deriving key material to protect CoAP messages exchanged between them based on Object Security for Constrained RESTful Environments (OSCORE), enabling the establishment of a security association between them."];
+  RFC9820 -> rev_cites;
+}

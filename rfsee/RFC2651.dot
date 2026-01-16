@@ -1,0 +1,38 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2651 [label="RFC2651
+The Architecture of the Common Indexing
+Protocol (CIP)
+1999", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the CIP framework, including its architecture and the protocol specifics of exchanging indices. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2651;
+
+  obs [label="obsoletes", shape=box];
+  RFC2651 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2651 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2651;
+
+  cites [label="cites", shape=box];
+  RFC2651 -> cites;
+  RFC1913 [label="RFC1913
+Architecture of the Whois++ Index
+Service
+1996", shape=ellipse, URL="RFC1913.html", target="_top", tooltip="The authors describe an architecture for indexing in distributed databases, and apply this to the WHOIS++ protocol. [STANDARDS-TRACK]"];
+  cites -> RFC1913;
+  RFC1914 [label="RFC1914
+How to Interact with a Whois++ Mesh
+1996", shape=ellipse, URL="RFC1914.html", target="_top", tooltip="In the Whois++ architecture [Deutsch94],[Weider94], mesh traversal is done by the client, since each server 'refers' the client to the next appropriate server(s). [STANDARDS-TRACK]"];
+  cites -> RFC1914;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2651;
+}

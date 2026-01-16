@@ -1,0 +1,56 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9369 [label="RFC9369
+QUIC Version 2
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies QUIC version 2, which is identical to QUIC version 1 except for some trivial details. Its purpose is to combat various ossification vectors and exercise the version negotiation framework. It also serves as a template for the minimum changes in any future version of QUIC. Note that version 2 is an informal name for this proposal that indicates it is the second version of QUIC to be published as a Standards Track document. The protocol specified here uses a version number other than 2 in the wire image, in order to minimize ossification risks."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9369;
+
+  obs [label="obsoletes", shape=box];
+  RFC9369 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9369 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9369;
+
+  cites [label="cites", shape=box];
+  RFC9369 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7838 [label="RFC7838
+HTTP Alternative Services
+2016", shape=ellipse, URL="RFC7838.html", target="_top", tooltip="This document specifies Alternative Services for HTTP, which allow an origin's resources to be authoritatively available at a separate network location, possibly accessed with a different protocol configuration."];
+  cites -> RFC7838;
+  RFC7301 [label="RFC7301
+Transport Layer Security (TLS)
+Application-Layer Protocol Negotiation
+Extension
+2014", shape=ellipse, URL="RFC7301.html", target="_top", tooltip="This document describes a Transport Layer Security (TLS) extension for application-layer protocol negotiation within the TLS handshake.  For instances in which multiple application protocols are supported on the same TCP or UDP port, this extension allows the application layer to negotiate which protocol will be used within the TLS connection."];
+  cites -> RFC7301;
+  RFC9250 [label="RFC9250
+DNS over Dedicated QUIC Connections
+2022", shape=ellipse, URL="RFC9250.html", target="_top", tooltip="This document describes the use of QUIC to provide transport confidentiality for DNS.  The encryption provided by QUIC has similar properties to those provided by TLS, while QUIC transport eliminates the head-of-line blocking issues inherent with TCP and provides more efficient packet-loss recovery than UDP.  DNS over QUIC (DoQ) has privacy properties similar to DNS over TLS (DoT) specified in RFC 7858, and latency characteristics similar to classic DNS over UDP.  This specification describes the use of DoQ as a general-purpose transport for DNS and includes the use of DoQ for stub to recursive, recursive to authoritative, and zone transfer scenarios."];
+  cites -> RFC9250;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9369;
+  RFC9443 [label="RFC9443
+Multiplexing Scheme Updates for QUIC
+2023", shape=ellipse, URL="RFC9443.html", target="_top", tooltip="RFC 7983 defines a scheme for a Real-time Transport Protocol (RTP) receiver to demultiplex Datagram Transport Layer Security (DTLS), Session Traversal Utilities for NAT (STUN), Secure Real-time Transport Protocol (SRTP) / Secure Real-time Transport Control Protocol (SRTCP), ZRTP, and Traversal Using Relays around NAT (TURN) channel packets arriving on a single port.  This document updates RFC 7983 and RFC 5764 to also allow QUIC packets to be multiplexed on a single receiving socket."];
+  RFC9443 -> rev_cites;
+}

@@ -1,0 +1,46 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5843 [label="RFC5843
+Additional Hash Algorithms for HTTP
+Instance Digests
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IANA registry named Hypertext Transfer Protocol (HTTP) Digest Algorithm Values defines values for digest algorithms used by Instance Digests in HTTP.  Instance Digests in HTTP provide a digest, also known as a checksum or hash, of an entire representation of the current state of a resource.  This document adds new values to the registry and updates previous values.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5843;
+
+  obs [label="obsoletes", shape=box];
+  RFC5843 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5843 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5843;
+
+  cites [label="cites", shape=box];
+  RFC5843 -> cites;
+  RFC3230 [label="RFC3230
+Instance Digests in HTTP
+2002", shape=ellipse, URL="RFC3230.html", target="_top", tooltip="HTTP/1.1 defines a Content-MD5 header that allows a server to include a digest of the response body.  However, this is specifically defined to cover the body of the actual message, not the contents of the full file (which might be quite different, if the response is a Content-Range, or uses a delta encoding).  Also, the Content-MD5 is limited to one specific digest algorithm; other algorithms, such as SHA-1 (Secure Hash Standard), may be more appropriate in some circumstances.  Finally, HTTP/1.1 provides no explicit mechanism by which a client may request a digest.  This document proposes HTTP extensions that solve these problems. [STANDARDS-TRACK]"];
+  cites -> RFC3230;
+  RFC1321 [label="RFC1321
+The MD5 Message-Digest Algorithm
+1992", shape=ellipse, URL="RFC1321.html", target="_top", tooltip="This document describes the MD5 message-digest algorithm.  The algorithm takes as input a message of arbitrary length and produces as output a 128-bit fingerprint or message digest of the input.  This memo provides information for the Internet community.  It does not specify an Internet standard."];
+  cites -> RFC1321;
+  RFC4648 [label="RFC4648
+The Base16, Base32, and Base64 Data
+Encodings
+2006", shape=ellipse, URL="RFC4648.html", target="_top", tooltip="This document describes the commonly used base 64, base 32, and base 16 encoding schemes.  It also discusses the use of line-feeds in encoded data, use of padding in encoded data, use of non-alphabet characters in encoded data, use of different encoding alphabets, and canonical encodings. [STANDARDS-TRACK]"];
+  cites -> RFC4648;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5843;
+  RFC6249 [label="RFC6249
+Metalink/HTTP: Mirrors and Hashes
+2011", shape=ellipse, URL="RFC6249.html", target="_top", tooltip="This document specifies Metalink/HTTP: Mirrors and Cryptographic Hashes in HTTP header fields, a different way to get information that is usually contained in the Metalink XML-based download description format.  Metalink/HTTP describes multiple download locations (mirrors), Peer-to-Peer, cryptographic hashes, digital signatures, and other information using existing standards for HTTP header fields.  Metalink clients can use this information to make file transfers more robust and reliable.  Normative requirements for Metalink/HTTP clients and servers are described here. [STANDARDS-TRACK]"];
+  RFC6249 -> rev_cites;
+}

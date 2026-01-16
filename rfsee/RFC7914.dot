@@ -1,0 +1,96 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7914 [label="RFC7914
+The scrypt Password-Based Key Derivation
+Function
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies the password-based key derivation function scrypt.  The function derives one or more secret keys from a secret string.  It is based on memory-hard functions, which offer added protection against attacks using custom hardware.  The document also provides an ASN.1 schema."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7914;
+
+  obs [label="obsoletes", shape=box];
+  RFC7914 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7914 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7914;
+
+  cites [label="cites", shape=box];
+  RFC7914 -> cites;
+  RFC2898 [label="RFC2898
+PKCS #5: Password-Based Cryptography
+Specification Version 2.0
+2000", shape=ellipse, URL="RFC2898.html", target="_top", tooltip="This document provides recommendations for the implementation of password-based cryptography, covering key derivation functions, encryption schemes, message-authentication schemes, and ASN.1 syntax identifying the techniques.  This memo provides information for the Internet community."];
+  cites -> RFC2898;
+  RFC4086 [label="RFC4086
+Randomness Requirements for Security
+2005", shape=ellipse, URL="RFC4086.html", target="_top", tooltip="Security systems are built on strong cryptographic algorithms that foil pattern analysis attempts. However, the security of these systems is dependent on generating secret quantities for passwords, cryptographic keys, and similar quantities. The use of pseudo-random processes to generate secret quantities can result in pseudo-security. A sophisticated attacker may find it easier to reproduce the environment that produced the secret quantities and to search the resulting small set of possibilities than to locate the quantities in the whole of the potential number space. Choosing random quantities to foil a resourceful and motivated adversary is surprisingly difficult. This document points out many pitfalls in using poor entropy sources or traditional pseudo-random number generation techniques for generating such quantities. It recommends the use of truly random hardware techniques and shows that the existing hardware on many systems can be used for this purpose. It provides suggestions to ameliorate the problem when a hardware solution is not available, and it gives examples of how large such quantities need to be for some applications. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4086;
+  RFC6234 [label="RFC6234
+US Secure Hash Algorithms (SHA and SHA-
+based HMAC and HKDF)
+2011", shape=ellipse, URL="RFC6234.html", target="_top", tooltip="Federal Information Processing Standard, FIPS"];
+  cites -> RFC6234;
+  RFC5208 [label="RFC5208
+Public-Key Cryptography Standards (PKCS)
+#8: Private-Key Information Syntax
+Specification Version 1.2
+2008", shape=ellipse, URL="RFC5208.html", target="_top", tooltip="This document represents a republication of PKCS #8 v1.2 from RSA Laboratories' Public Key Cryptography Standard (PKCS) series. Change control is transferred to the IETF. The body of this document, except for the security considerations section, is taken directly from the PKCS #8 v1.2 specification. This document describes a syntax for private-key information. This memo provides information for the Internet community."];
+  cites -> RFC5208;
+  RFC5958 [label="RFC5958
+Asymmetric Key Packages
+2010", shape=ellipse, URL="RFC5958.html", target="_top", tooltip="This document defines the syntax for private-key information and a content type for it.  Private-key information includes a private key for a specified public-key algorithm and a set of attributes.  The Cryptographic Message Syntax (CMS), as defined in RFC 5652, can be used to digitally sign, digest, authenticate, or encrypt the asymmetric key format content type.  This document obsoletes RFC 5208. [STANDARDS-TRACK]"];
+  cites -> RFC5958;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7914;
+  RFC8146 [label="RFC8146
+Adding Support for Salted Password
+Databases to EAP-pwd
+2017", shape=ellipse, URL="RFC8146.html", target="_top", tooltip="EAP-pwd is an Extensible Authentication Protocol (EAP) method that utilizes a shared password for authentication using a technique that is resistant to dictionary attacks.  It includes support for raw keys and double hashing of a password in the style of Microsoft Challenge Handshake Authentication Protocol version 2 (MSCHAPv2), but it does not include support for salted passwords.  There are many existing databases of salted passwords, and it is desirable to allow their use with EAP-pwd."];
+  RFC8146 -> rev_cites;
+  RFC8967 [label="RFC8967
+MAC Authentication for the Babel Routing
+Protocol
+2021", shape=ellipse, URL="RFC8967.html", target="_top", tooltip="This document describes a cryptographic authentication mechanism for the Babel routing protocol that has provisions for replay avoidance.  This document obsoletes RFC 7298."];
+  RFC8967 -> rev_cites;
+  RFC9380 [label="RFC9380
+Hashing to Elliptic Curves
+2023", shape=ellipse, URL="RFC9380.html", target="_top", tooltip="This document specifies a number of algorithms for encoding or hashing an arbitrary string to a point on an elliptic curve.  This document is a product of the Crypto Forum Research Group (CFRG) in the IRTF."];
+  RFC9380 -> rev_cites;
+  RFC9382 [label="RFC9382
+SPAKE2, a Password-Authenticated Key
+Exchange
+2023", shape=ellipse, URL="RFC9382.html", target="_top", tooltip="This document describes SPAKE2, which is a protocol for two parties that share a password to derive a strong shared key without disclosing the password.  This method is compatible with any group, is computationally efficient, and has a security proof.  This document predated the Crypto Forum Research Group (CFRG) password-authenticated key exchange (PAKE) competition, and it was not selected; however, given existing use of variants in Kerberos and other applications, it was felt that publication was beneficial.  Applications that need a symmetric PAKE, but are unable to hash onto an elliptic curve at execution time, can use SPAKE2.  This document is a product of the Crypto Forum Research Group in the Internet Research Task Force (IRTF)."];
+  RFC9382 -> rev_cites;
+  RFC9383 [label="RFC9383
+SPAKE2+, an Augmented Password-
+Authenticated Key Exchange (PAKE)
+Protocol
+2023", shape=ellipse, URL="RFC9383.html", target="_top", tooltip="This document describes SPAKE2+, a Password-Authenticated Key Exchange (PAKE) protocol run between two parties for deriving a strong shared key with no risk of disclosing the password. SPAKE2+ is an augmented PAKE protocol, as only one party has knowledge of the password. This method is simple to implement, compatible with any prime-order group, and computationally efficient. This document was produced outside of the IETF and IRTF and represents the opinions of the authors. Publication of this document as an RFC in the Independent Submissions Stream does not imply endorsement of SPAKE2+ by the IETF or IRTF."];
+  RFC9383 -> rev_cites;
+  RFC9579 [label="RFC9579
+Use of Password-Based Message
+Authentication Code 1 (PBMAC1) in PKCS
+#12 Syntax
+2024", shape=ellipse, URL="RFC9579.html", target="_top", tooltip="This document specifies additions and amendments to RFCs 7292 and 8018.  It defines a way to use the Password-Based Message Authentication Code 1 (PBMAC1), defined in RFC 8018, inside the PKCS #12 syntax.  The purpose of this specification is to permit the use of more modern Password-Based Key Derivation Functions (PBKDFs) and allow for regulatory compliance."];
+  RFC9579 -> rev_cites;
+  RFC9807 [label="RFC9807
+The OPAQUE Augmented Password-
+Authenticated Key Exchange (aPAKE)
+Protocol
+2025", shape=ellipse, URL="RFC9807.html", target="_top", tooltip="This document describes the OPAQUE protocol, an Augmented (or Asymmetric) Password-Authenticated Key Exchange (aPAKE) protocol that supports mutual authentication in a client-server setting without reliance on PKI and with security against pre-computation attacks upon server compromise.  In addition, the protocol provides forward secrecy and the ability to hide the password from the server, even during password registration.  This document specifies the core OPAQUE protocol and one instantiation based on 3DH.  This document is a product of the Crypto Forum Research Group (CFRG) in the IRTF."];
+  RFC9807 -> rev_cites;
+  RFC9879 [label="RFC9879
+Use of Password-Based Message
+Authentication Code 1 (PBMAC1) in PKCS
+#12 Syntax
+2025", shape=ellipse, URL="RFC9879.html", target="_top", tooltip="This document specifies additions and amendments to RFCs 7292 and 8018.  It also obsoletes the RFC 9579.  It defines a way to use the Password-Based Message Authentication Code 1 (PBMAC1), defined in RFC 8018, inside the PKCS #12 syntax.  The purpose of this specification is to permit the use of more modern Password-Based Key Derivation Functions (PBKDFs) and allow for regulatory compliance."];
+  RFC9879 -> rev_cites;
+}

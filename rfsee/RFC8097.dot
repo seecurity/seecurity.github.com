@@ -1,0 +1,70 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8097 [label="RFC8097
+BGP Prefix Origin Validation State
+Extended Community
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a new BGP opaque extended community to carry the origination Autonomous System (AS) validation state inside an autonomous system.  Internal BGP (IBGP) speakers that receive this validation state can configure local policies that allow it to influence their decision process."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8097;
+
+  obs [label="obsoletes", shape=box];
+  RFC8097 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8097 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8097;
+
+  cites [label="cites", shape=box];
+  RFC8097 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4360 [label="RFC4360
+BGP Extended Communities Attribute
+2006", shape=ellipse, URL="RFC4360.html", target="_top", tooltip="This document describes the extended community BGP-4 attribute.  This attribute provides a mechanism for labeling information carried in BGP-4.  These labels can be used to control the distribution of this information, or for other applications. [STANDARDS-TRACK]"];
+  cites -> RFC4360;
+  RFC6811 [label="RFC6811
+BGP Prefix Origin Validation
+2013", shape=ellipse, URL="RFC6811.html", target="_top", tooltip="To help reduce well-known threats against BGP including prefix mis- announcing and monkey-in-the-middle attacks, one of the security requirements is the ability to validate the origination Autonomous System (AS) of BGP routes.  More specifically, one needs to validate that the AS number claiming to originate an address prefix (as derived from the AS_PATH attribute of the BGP route) is in fact authorized by the prefix holder to do so.  This document describes a simple validation mechanism to partially satisfy this requirement. [STANDARDS-TRACK]"];
+  cites -> RFC6811;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  cites -> RFC7606;
+  RFC4272 [label="RFC4272
+BGP Security Vulnerabilities Analysis
+2006", shape=ellipse, URL="RFC4272.html", target="_top", tooltip="Border Gateway Protocol 4 (BGP-4), along with a host of other infrastructure protocols designed before the Internet environment became perilous, was originally designed with little consideration for protection of the information it carries. There are no mechanisms internal to BGP that protect against attacks that modify, delete, forge, or replay data, any of which has the potential to disrupt overall network routing behavior. This document discusses some of the security issues with BGP routing data dissemination. This document does not discuss security issues with forwarding of packets. This memo provides information for the Internet community."];
+  cites -> RFC4272;
+  RFC4593 [label="RFC4593
+Generic Threats to Routing Protocols
+2006", shape=ellipse, URL="RFC4593.html", target="_top", tooltip="Routing protocols are subject to attacks that can harm individual users or network operations as a whole.  This document provides a description and a summary of generic threats that affect routing protocols in general.  This work describes threats, including threat sources and capabilities, threat actions, and threat consequences, as well as a breakdown of routing functions that might be attacked separately.  This memo provides information for the Internet community."];
+  cites -> RFC4593;
+  RFC7454 [label="RFC7454
+BGP Operations and Security
+2015", shape=ellipse, URL="RFC7454.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is the protocol almost exclusively used in the Internet to exchange routing information between network domains. Due to this central nature, it is important to understand the security measures that can and should be deployed to prevent accidental or intentional routing disturbances. This document describes measures to protect the BGP sessions itself such as Time to Live (TTL), the TCP Authentication Option (TCP-AO), and control-plane filtering. It also describes measures to better control the flow of routing information, using prefix filtering and automation of prefix filters, max-prefix filtering, Autonomous System (AS) path filtering, route flap dampening, and BGP community scrubbing."];
+  cites -> RFC7454;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8097;
+  RFC8374 [label="RFC8374
+BGPsec Design Choices and Summary of
+Supporting Discussions
+2018", shape=ellipse, URL="RFC8374.html", target="_top", tooltip="This document captures the design rationale of the initial draft version of what became RFC 8205 (the BGPsec protocol specification).  The designers needed to balance many competing factors, and this document lists the decisions that were made in favor of or against each design choice.  This document also presents brief summaries of the arguments that aided the decision process.  Where appropriate, this document also provides brief notes on design decisions that changed as the specification was reviewed and updated by the IETF SIDR Working Group and that resulted in RFC 8205.  These notes highlight the differences and provide pointers to details and rationale regarding those design changes."];
+  RFC8374 -> rev_cites;
+  RFC8481 [label="RFC8481
+Clarifications to BGP Origin Validation
+Based on Resource Public Key
+Infrastructure (RPKI)
+2018", shape=ellipse, URL="RFC8481.html", target="_top", tooltip="Deployment of BGP origin validation based on Resource Public Key Infrastructure (RPKI) is hampered by, among other things, vendor misimplementations in two critical areas: which routes are validated and whether policy is applied when not specified by configuration.  This document is meant to clarify possible misunderstandings causing those misimplementations; it thus updates RFC 6811 by clarifying that all prefixes should have their validation state set and that policy must not be applied without operator configuration."];
+  RFC8481 -> rev_cites;
+}

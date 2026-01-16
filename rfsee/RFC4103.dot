@@ -1,0 +1,127 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4103 [label="RFC4103
+RTP Payload for Text Conversation
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo obsoletes RFC 2793; it describes how to carry real-time text conversation session contents in RTP packets. Text conversation session contents are specified in ITU-T Recommendation T.140. One payload format is described for transmitting text on a separate RTP session dedicated for the transmission of text. This RTP payload description recommends a method to include redundant text from already transmitted packets in order to reduce the risk of text loss caused by packet loss. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4103;
+
+  obs [label="obsoletes", shape=box];
+  RFC4103 -> obs;
+  RFC2793 [label="RFC2793
+RTP Payload for Text Conversation
+2000", shape=ellipse, URL="RFC2793.html", target="_top", tooltip="This memo describes how to carry text conversation session contents in RTP packets.  Text conversation session contents are specified in ITU-T Recommendation T.140. [STANDARDS-TRACK]"];
+  obs -> RFC2793;
+
+  updates [label="updates", shape=box];
+  RFC4103 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4103;
+  RFC9071 [label="RFC9071
+RTP-Mixer Formatting of Multiparty Real-
+Time Text
+2021", shape=ellipse, URL="RFC9071.html", target="_top", tooltip="This document provides enhancements of real-time text (as specified in RFC 4103) suitable for mixing in a centralized conference model, enabling source identification and rapidly interleaved transmission of text from different sources. The intended use is for real-time text mixers and participant endpoints capable of providing an efficient presentation or other treatment of a multiparty real-time text session. The specified mechanism builds on the standard use of the Contributing Source (CSRC) list in the Real-time Transport Protocol (RTP) packet for source identification. The method makes use of the same text/t140 and text/red formats as for two-party sessions. Solutions using multiple RTP streams in the same RTP session are briefly mentioned, as they could have some benefits over the RTP-mixer model. The RTP-mixer model was selected to be used for the fully specified solution in this document because it can be applied to a wide range of existing RTP implementations. A capability exchange is specified so that it can be verified that a mixer and a participant can handle the multiparty-coded real-time text stream using the RTP-mixer method. The capability is indicated by the use of a Session Description Protocol (SDP) (RFC 8866) media attribute, rtt-mixer. This document updates RFC 4103 (RTP Payload for Text Conversation). A specification for how a mixer can format text for the case when the endpoint is not multiparty aware is also provided."];
+  RFC9071 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4103 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4103;
+  RFC5012 [label="RFC5012
+Requirements for Emergency Context
+Resolution with Internet Technologies
+2008", shape=ellipse, URL="RFC5012.html", target="_top", tooltip="This document defines terminology and enumerates requirements for the context resolution of emergency calls placed by the public using voice-over-IP (VoIP) and general Internet multimedia systems, where Internet protocols are used end to end.  This memo provides information for the Internet community."];
+  RFC5012 -> rev_cites;
+  RFC5245 [label="RFC5245
+Interactive Connectivity Establishment
+(ICE): A Protocol for Network Address
+Translator (NAT) Traversal for
+Offer/Answer Protocols
+2010", shape=ellipse, URL="RFC5245.html", target="_top", tooltip="This document describes a protocol for Network Address Translator (NAT) traversal for UDP-based multimedia sessions established with the offer/answer model.  This protocol is called Interactive Connectivity Establishment (ICE).  ICE makes use of the Session Traversal Utilities for NAT (STUN) protocol and its extension, Traversal Using Relay NAT (TURN).  ICE can be used by any protocol utilizing the offer/answer model, such as the Session Initiation Protocol (SIP). [STANDARDS-TRACK]"];
+  RFC5245 -> rev_cites;
+  RFC6263 [label="RFC6263
+Application Mechanism for Keeping Alive
+the NAT Mappings Associated with RTP /
+RTP Control Protocol (RTCP) Flows
+2011", shape=ellipse, URL="RFC6263.html", target="_top", tooltip="This document lists the different mechanisms that enable applications using the Real-time Transport Protocol (RTP) and the RTP Control Protocol (RTCP) to keep their RTP Network Address Translator (NAT) mappings alive.  It also makes a recommendation for a preferred mechanism.  This document is not applicable to Interactive Connectivity Establishment (ICE) agents. [STANDARDS-TRACK]"];
+  RFC6263 -> rev_cites;
+  RFC6341 [label="RFC6341
+Use Cases and Requirements for SIP-Based
+Media Recording (SIPREC)
+2011", shape=ellipse, URL="RFC6341.html", target="_top", tooltip="Session recording is a critical requirement in many business communications environments, such as call centers and financial trading floors. In some of these environments, all calls must be recorded for regulatory and compliance reasons. In others, calls may be recorded for quality control or business analytics. Recording is typically performed by sending a copy of the session media to the recording devices. This document specifies requirements for extensions to SIP that will manage delivery of RTP media to a recording device. This is being referred to as SIP-based Media Recording. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6341 -> rev_cites;
+  RFC6443 [label="RFC6443
+Framework for Emergency Calling Using
+Internet Multimedia
+2011", shape=ellipse, URL="RFC6443.html", target="_top", tooltip="The IETF has standardized various aspects of placing emergency calls.  This document describes how all of those component parts are used to support emergency calls from citizens and visitors to authorities.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6443 -> rev_cites;
+  RFC6881 [label="RFC6881
+Best Current Practice for Communications
+Services in Support of Emergency Calling
+2013", shape=ellipse, URL="RFC6881.html", target="_top", tooltip="The IETF and other standards organizations have efforts targeted at standardizing various aspects of placing emergency calls on IP networks.  This memo describes best current practice on how devices, networks, and services using IETF protocols should use such standards to make emergency calls."];
+  RFC6881 -> rev_cites;
+  RFC7657 [label="RFC7657
+Differentiated Services (Diffserv) and
+Real-Time Communication
+2015", shape=ellipse, URL="RFC7657.html", target="_top", tooltip="This memo describes the interaction between Differentiated Services (Diffserv) network quality-of-service (QoS) functionality and real- time network communication, including communication based on the Real-time Transport Protocol (RTP).  Diffserv is based on network nodes applying different forwarding treatments to packets whose IP headers are marked with different Diffserv Codepoints (DSCPs).  WebRTC applications, as well as some conferencing applications, have begun using the Session Description Protocol (SDP) bundle negotiation mechanism to send multiple traffic streams with different QoS requirements using the same network 5-tuple.  The results of using multiple DSCPs to obtain different QoS treatments within a single network 5-tuple have transport protocol interactions, particularly with congestion control functionality (e.g., reordering).  In addition, DSCP markings may be changed or removed between the traffic source and destination.  This memo covers the implications of these Diffserv aspects for real-time network communication, including WebRTC."];
+  RFC7657 -> rev_cites;
+  RFC8083 [label="RFC8083
+Multimedia Congestion Control: Circuit
+Breakers for Unicast RTP Sessions
+2017", shape=ellipse, URL="RFC8083.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is widely used in telephony, video conferencing, and telepresence applications. Such applications are often run on best-effort UDP/IP networks. If congestion control is not implemented in these applications, then network congestion can lead to uncontrolled packet loss and a resulting deterioration of the user's multimedia experience. The congestion control algorithm acts as a safety measure by stopping RTP flows from using excessive resources and protecting the network from overload. At the time of this writing, however, while there are several proprietary solutions, there is no standard algorithm for congestion control of interactive RTP flows. This document does not propose a congestion control algorithm. It instead defines a minimal set of RTP circuit breakers: conditions under which an RTP sender needs to stop transmitting media data to protect the network from excessive congestion. It is expected that, in the absence of long-lived excessive congestion, RTP applications running on best-effort IP networks will be able to operate without triggering these circuit breakers. To avoid triggering the RTP circuit breaker, any Standards Track congestion control algorithms defined for RTP will need to operate within the envelope set by these RTP circuit breaker algorithms."];
+  RFC8083 -> rev_cites;
+  RFC8088 [label="RFC8088
+How to Write an RTP Payload Format
+2017", shape=ellipse, URL="RFC8088.html", target="_top", tooltip="This document contains information on how best to write an RTP payload format specification.  It provides reading tips, design practices, and practical tips on how to produce an RTP payload format specification quickly and with good results.  A template is also included with instructions."];
+  RFC8088 -> rev_cites;
+  RFC8445 [label="RFC8445
+Interactive Connectivity Establishment
+(ICE): A Protocol for Network Address
+Translator (NAT) Traversal
+2018", shape=ellipse, URL="RFC8445.html", target="_top", tooltip="This document describes a protocol for Network Address Translator (NAT) traversal for UDP-based communication. This protocol is called Interactive Connectivity Establishment (ICE). ICE makes use of the Session Traversal Utilities for NAT (STUN) protocol and its extension, Traversal Using Relay NAT (TURN). This document obsoletes RFC 5245."];
+  RFC8445 -> rev_cites;
+  RFC8688 [label="RFC8688
+A Session Initiation Protocol (SIP)
+Response Code for Rejected Calls
+2019", shape=ellipse, URL="RFC8688.html", target="_top", tooltip="This document defines the 608 (Rejected) Session Initiation Protocol (SIP) response code.  This response code enables calling parties to learn that an intermediary rejected their call attempt.  No one will deliver, and thus answer, the call.  As a 6xx code, the caller will be aware that future attempts to contact the same User Agent Server will likely fail.  The initial use case driving the need for the 608 response code is when the intermediary is an analytics engine.  In this case, the rejection is by a machine or other process.  This contrasts with the 607 (Unwanted) SIP response code in which a human at the target User Agent Server indicates the user did not want the call.  In some jurisdictions, this distinction is important.  This document also defines the use of the Call-Info header field in 608 responses to enable rejected callers to contact entities that blocked their calls in error.  This provides a remediation mechanism for legal callers that find their calls blocked."];
+  RFC8688 -> rev_cites;
+  RFC8759 [label="RFC8759
+RTP Payload for Timed Text Markup
+Language (TTML)
+2020", shape=ellipse, URL="RFC8759.html", target="_top", tooltip="This memo describes a Real-time Transport Protocol (RTP) payload format for Timed Text Markup Language (TTML), an XML-based timed text format from W3C.  This payload format is specifically targeted at streaming workflows using TTML."];
+  RFC8759 -> rev_cites;
+  RFC8865 [label="RFC8865
+T.140 Real-Time Text Conversation over
+WebRTC Data Channels
+2021", shape=ellipse, URL="RFC8865.html", target="_top", tooltip="This document specifies how a Web Real-Time Communication (WebRTC) data channel can be used as a transport mechanism for real-time text using the ITU-T Protocol for multimedia application text conversation (Recommendation ITU-T T.140) and how the Session Description Protocol (SDP) offer/answer mechanism can be used to negotiate such a data channel, referred to as a T.140 data channel.  This document updates RFC 8373 to specify its use with WebRTC data channels."];
+  RFC8865 -> rev_cites;
+  RFC8872 [label="RFC8872
+Guidelines for Using the Multiplexing
+Features of RTP to Support Multiple
+Media Streams
+2021", shape=ellipse, URL="RFC8872.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is a flexible protocol that can be used in a wide range of applications, networks, and system topologies.  That flexibility makes for wide applicability but can complicate the application design process.  One particular design question that has received much attention is how to support multiple media streams in RTP.  This memo discusses the available options and design trade-offs, and provides guidelines on how to use the multiplexing features of RTP to support multiple media streams."];
+  RFC8872 -> rev_cites;
+  RFC9071 [label="RFC9071
+RTP-Mixer Formatting of Multiparty Real-
+Time Text
+2021", shape=ellipse, URL="RFC9071.html", target="_top", tooltip="This document provides enhancements of real-time text (as specified in RFC 4103) suitable for mixing in a centralized conference model, enabling source identification and rapidly interleaved transmission of text from different sources. The intended use is for real-time text mixers and participant endpoints capable of providing an efficient presentation or other treatment of a multiparty real-time text session. The specified mechanism builds on the standard use of the Contributing Source (CSRC) list in the Real-time Transport Protocol (RTP) packet for source identification. The method makes use of the same text/t140 and text/red formats as for two-party sessions. Solutions using multiple RTP streams in the same RTP session are briefly mentioned, as they could have some benefits over the RTP-mixer model. The RTP-mixer model was selected to be used for the fully specified solution in this document because it can be applied to a wide range of existing RTP implementations. A capability exchange is specified so that it can be verified that a mixer and a participant can handle the multiparty-coded real-time text stream using the RTP-mixer method. The capability is indicated by the use of a Session Description Protocol (SDP) (RFC 8866) media attribute, rtt-mixer. This document updates RFC 4103 (RTP Payload for Text Conversation). A specification for how a mixer can format text for the case when the endpoint is not multiparty aware is also provided."];
+  RFC9071 -> rev_cites;
+  RFC9248 [label="RFC9248
+Interoperability Profile for Relay User
+Equipment
+2022", shape=ellipse, URL="RFC9248.html", target="_top", tooltip="Video Relay Service (VRS) is a term used to describe a method by which a hearing person can communicate with a sign language speaker who is deaf, deafblind, or hard of hearing (HoH) or has a speech disability using an interpreter (i.e., a Communications Assistant (CA)) connected via a videophone to the sign language speaker and an audio telephone call to the hearing user.  The CA interprets using sign language on the videophone link and voice on the telephone link.  Often the interpreters may be employed by a company or agency, termed a provider in this document.  The provider also provides a video service that allows users to connect video devices to their service and subsequently to CAs and other sign language speakers.  It is desirable that the videophones used by the sign language speaker conform to a standard so that any device may be used with any provider and that direct video calls between sign language speakers work.  This document describes the interface between a videophone and a provider."];
+  RFC9248 -> rev_cites;
+  RFC9475 [label="RFC9475
+Messaging Use Cases and Extensions for
+Secure Telephone Identity Revisited
+(STIR)
+2023", shape=ellipse, URL="RFC9475.html", target="_top", tooltip="Secure Telephone Identity Revisited (STIR) provides a means of attesting the identity of a telephone caller via a signed token in order to prevent impersonation of a calling party number, which is a key enabler for illegal robocalling.  Similar impersonation is sometimes leveraged by bad actors in the text and multimedia messaging space.  This document explores the applicability of STIR's Personal Assertion Token (PASSporT) and certificate issuance framework to text and multimedia messaging use cases, including support for both messages carried as a payload in SIP requests and messages sent in sessions negotiated by SIP."];
+  RFC9475 -> rev_cites;
+}

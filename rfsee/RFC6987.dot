@@ -1,0 +1,93 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6987 [label="RFC6987
+OSPF Stub Router Advertisement
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a backward-compatible technique that may be used by OSPF (Open Shortest Path First) implementations to advertise a router's unavailability to forward transit traffic or to lower the preference level for the paths through such a router. This document obsoletes RFC 3137."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6987;
+
+  obs [label="obsoletes", shape=box];
+  RFC6987 -> obs;
+  RFC3137 [label="RFC3137
+OSPF Stub Router Advertisement
+2001", shape=ellipse, URL="RFC3137.html", target="_top", tooltip="This memo describes a backward-compatible technique that may be used by OSPF (Open Shortest Path First) implementations to advertise unavailability to forward transit traffic or to lower the preference level for the paths through such a router.  This memo provides information for the Internet community."];
+  obs -> RFC3137;
+
+  updates [label="updates", shape=box];
+  RFC6987 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6987;
+  RFC8770 [label="RFC8770
+Host Router Support for OSPFv2
+2020", shape=ellipse, URL="RFC8770.html", target="_top", tooltip="The Open Shortest Path First Version 2 (OSPFv2) protocol does not have a mechanism for a node to repel transit traffic if it is on the shortest path.  This document defines a bit called the Host-bit (H-bit).  This bit enables a router to advertise that it is a non-transit router.  This document also describes the changes needed to support the H-bit in the domain.  In addition, this document updates RFC 6987 to advertise Type 2 External and Not-So-Stubby Area (NSSA) Link State Advertisements (LSAs) (RFC 3101) with a high cost in order to repel traffic effectively."];
+  RFC8770 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC6987 -> cites;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC1247 [label="RFC1247
+OSPF Version 2
+1991", shape=ellipse, URL="RFC1247.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state based routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC1247;
+  RFC1583 [label="RFC1583
+OSPF Version 2
+1994", shape=ellipse, URL="RFC1583.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC1583;
+  RFC3137 [label="RFC3137
+OSPF Stub Router Advertisement
+2001", shape=ellipse, URL="RFC3137.html", target="_top", tooltip="This memo describes a backward-compatible technique that may be used by OSPF (Open Shortest Path First) implementations to advertise unavailability to forward transit traffic or to lower the preference level for the paths through such a router.  This memo provides information for the Internet community."];
+  cites -> RFC3137;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6987;
+  RFC7490 [label="RFC7490
+Remote Loop-Free Alternate (LFA) Fast
+Reroute (FRR)
+2015", shape=ellipse, URL="RFC7490.html", target="_top", tooltip="This document describes an extension to the basic IP fast reroute mechanism, described in RFC 5286, that provides additional backup connectivity for point-to-point link failures when none can be provided by the basic mechanisms."];
+  RFC7490 -> rev_cites;
+  RFC7812 [label="RFC7812
+An Architecture for IP/LDP Fast Reroute
+Using Maximally Redundant Trees (MRT-
+FRR)
+2016", shape=ellipse, URL="RFC7812.html", target="_top", tooltip="This document defines the architecture for IP and LDP Fast Reroute using Maximally Redundant Trees (MRT-FRR).  MRT-FRR is a technology that gives link-protection and node-protection with 100% coverage in any network topology that is still connected after the failure."];
+  RFC7812 -> rev_cites;
+  RFC7916 [label="RFC7916
+Operational Management of Loop-Free
+Alternates
+2016", shape=ellipse, URL="RFC7916.html", target="_top", tooltip="Loop-Free Alternates (LFAs), as defined in RFC 5286, constitute an IP Fast Reroute (IP FRR) mechanism enabling traffic protection for IP traffic (and, by extension, MPLS LDP traffic). Following early deployment experiences, this document provides operational feedback on LFAs, highlights some limitations, and proposes a set of refinements to address those limitations. It also proposes required management specifications. This proposal is also applicable to remote-LFA solutions."];
+  RFC7916 -> rev_cites;
+  RFC8042 [label="RFC8042
+OSPF Two-Part Metric
+2016", shape=ellipse, URL="RFC8042.html", target="_top", tooltip="This document specifies an optional OSPF protocol extension to represent router metrics in a multi-access network in two parts: the metric from the router to the network and the metric from the network to the router.  For such networks, the router-to-router metric for OSPF route computation is the sum of the two parts.  This document updates RFC 2328."];
+  RFC8042 -> rev_cites;
+  RFC8379 [label="RFC8379
+OSPF Graceful Link Shutdown
+2018", shape=ellipse, URL="RFC8379.html", target="_top", tooltip="When a link is being prepared to be taken out of service, the traffic needs to be diverted from both ends of the link. Increasing the metric to the highest value on one side of the link is not sufficient to divert the traffic flowing in the other direction. It is useful for the routers in an OSPFv2 or OSPFv3 routing domain to be able to advertise a link as being in a graceful-shutdown state to indicate impending maintenance activity on the link. This information can be used by the network devices to reroute the traffic effectively. This document describes the protocol extensions to disseminate graceful-link-shutdown information in OSPFv2 and OSPFv3."];
+  RFC8379 -> rev_cites;
+  RFC8518 [label="RFC8518
+Selection of Loop-Free Alternates for
+Multi-Homed Prefixes
+2019", shape=ellipse, URL="RFC8518.html", target="_top", tooltip="Deployment experience gained from implementing algorithms to determine Loop-Free Alternates (LFAs) for multi-homed prefixes (MHPs) has revealed some avenues for potential improvement.  This document provides explicit inequalities that can be used to evaluate neighbors as potential alternates for MHPs.  It also provides detailed criteria for evaluating potential alternates for external prefixes advertised by OSPF ASBRs.  This document updates Section 6 of RFC 5286 by expanding some of the routing aspects."];
+  RFC8518 -> rev_cites;
+  RFC8770 [label="RFC8770
+Host Router Support for OSPFv2
+2020", shape=ellipse, URL="RFC8770.html", target="_top", tooltip="The Open Shortest Path First Version 2 (OSPFv2) protocol does not have a mechanism for a node to repel transit traffic if it is on the shortest path.  This document defines a bit called the Host-bit (H-bit).  This bit enables a router to advertise that it is a non-transit router.  This document also describes the changes needed to support the H-bit in the domain.  In addition, this document updates RFC 6987 to advertise Type 2 External and Not-So-Stubby Area (NSSA) Link State Advertisements (LSAs) (RFC 3101) with a high cost in order to repel traffic effectively."];
+  RFC8770 -> rev_cites;
+  RFC9129 [label="RFC9129
+YANG Data Model for the OSPF Protocol
+2022", shape=ellipse, URL="RFC9129.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage OSPF.  The model is based on YANG 1.1 as defined in RFC 7950 and conforms to the Network Management Datastore Architecture (NMDA) as described in RFC 8342."];
+  RFC9129 -> rev_cites;
+}

@@ -1,0 +1,50 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7793 [label="RFC7793
+Adding 100.64.0.0/10 Prefixes to the
+IPv4 Locally-Served DNS Zones Registry
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC 6598 specifies that Reverse DNS queries for Shared Address Space addresses [100.64.0.0/10] MUST NOT be forwarded to the global DNS infrastructure. This document formally directs IANA to add the associated zones to the IPv4 Locally-Served DNS Zones Registry to prevent such queries from accidentally leaking to the global DNS infrastructure."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7793;
+
+  obs [label="obsoletes", shape=box];
+  RFC7793 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7793 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7793;
+
+  cites [label="cites", shape=box];
+  RFC7793 -> cites;
+  RFC6598 [label="RFC6598
+IANA-Reserved IPv4 Prefix for Shared
+Address Space
+2012", shape=ellipse, URL="RFC6598.html", target="_top", tooltip="This document requests the allocation of an IPv4 /10 address block to be used as Shared Address Space to accommodate the needs of Carrier- Grade NAT (CGN) devices. It is anticipated that Service Providers will use this Shared Address Space to number the interfaces that connect CGN devices to Customer Premises Equipment (CPE). Shared Address Space is distinct from RFC 1918 private address space because it is intended for use on Service Provider networks. However, it may be used in a manner similar to RFC 1918 private address space on routing equipment that is able to do address translation across router interfaces when the addresses are identical on two different interfaces. Details are provided in the text of this document. This document details the allocation of an additional special-use IPv4 address block and updates RFC 5735. This memo documents an Internet Best Current Practice."];
+  cites -> RFC6598;
+  RFC6303 [label="RFC6303
+Locally Served DNS Zones
+2011", shape=ellipse, URL="RFC6303.html", target="_top", tooltip="Experience with the Domain Name System (DNS) has shown that there are a number of DNS zones that all iterative resolvers and recursive nameservers should automatically serve, unless configured otherwise.  RFC 4193 specifies that this should occur for D.F.IP6.ARPA.  This document extends the practice to cover the IN-ADDR.ARPA zones for RFC 1918 address space and other well-known zones with similar characteristics.  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6303;
+  RFC1918 [label="RFC1918
+Address Allocation for Private Internets
+1996", shape=ellipse, URL="RFC1918.html", target="_top", tooltip="This document describes address allocation for private internets.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC1918;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7793;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  RFC8499 -> rev_cites;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+}

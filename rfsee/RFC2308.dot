@@ -1,0 +1,246 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2308 [label="RFC2308
+Negative Caching of DNS Queries (DNS
+NCACHE)
+1998", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC1034 provided a description of how to cache negative responses.  It however had a fundamental flaw in that it did not allow a name server to hand out those cached responses to other resolvers, thereby greatly reducing the effect of the caching.  This document addresses issues raise in the light of experience and replaces RFC1034 Section 4.3.4. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2308;
+
+  obs [label="obsoletes", shape=box];
+  RFC2308 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2308 -> updates;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  updates -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  updates -> RFC1035;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2308;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4035 -> updated_by;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  RFC4033 -> updated_by;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4034 -> updated_by;
+  RFC6604 [label="RFC6604
+xNAME RCODE and Status Bits
+Clarification
+2012", shape=ellipse, URL="RFC6604.html", target="_top", tooltip="The Domain Name System (DNS) has long provided means, such as the CNAME (Canonical Name), whereby a DNS query can be redirected to a different name.  A DNS response header has an RCODE (Response Code) field, used for indicating errors, and response status bits.  This document clarifies, in the case of such redirected queries, how the RCODE and status bits correspond to the initial query cycle (where the CNAME or the like was detected) and subsequent or final query cycles. [STANDARDS-TRACK]"];
+  RFC6604 -> updated_by;
+  RFC8020 [label="RFC8020
+NXDOMAIN: There Really Is Nothing
+Underneath
+2016", shape=ellipse, URL="RFC8020.html", target="_top", tooltip="This document states clearly that when a DNS resolver receives a response with a response code of NXDOMAIN, it means that the domain name which is thus denied AND ALL THE NAMES UNDER IT do not exist. This document clarifies RFC 1034 and modifies a portion of RFC 2308: it updates both of them."];
+  RFC8020 -> updated_by;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  RFC8499 -> updated_by;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> updated_by;
+  RFC9520 [label="RFC9520
+Negative Caching of DNS Resolution
+Failures
+2023", shape=ellipse, URL="RFC9520.html", target="_top", tooltip="In the DNS, resolvers employ caching to reduce both latency for end users and load on authoritative name servers. The process of resolution may result in one of three types of responses: (1) a response containing the requested data, (2) a response indicating the requested data does not exist, or (3) a non-response due to a resolution failure in which the resolver does not receive any useful information regarding the data's existence. This document concerns itself only with the third type. RFC 2308 specifies requirements for DNS negative caching. There, caching of TYPE 2 responses is mandatory and caching of TYPE 3 responses is optional. This document updates RFC 2308 to require negative caching for DNS resolution failures. RFC 4035 allows DNSSEC validation failure caching. This document updates RFC 4035 to require caching for DNSSEC validation failures. RFC 4697 prohibits aggressive requerying for NS records at a failed zone's parent zone. This document updates RFC 4697 to expand this requirement to all query types and to all ancestor zones."];
+  RFC9520 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC2308 -> cites;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC2181 [label="RFC2181
+Clarifications to the DNS Specification
+1997", shape=ellipse, URL="RFC2181.html", target="_top", tooltip="This document considers some areas that have been identified as problems with the specification of the Domain Name System, and proposes remedies for the defects identified. [STANDARDS-TRACK]"];
+  cites -> RFC2181;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2065 [label="RFC2065
+Domain Name System Security Extensions
+1997", shape=ellipse, URL="RFC2065.html", target="_top", tooltip="The Domain Name System (DNS) has become a critical operational part of the Internet infrastructure yet it has no strong security mechanisms to assure data integrity or authentication.  Extensions to the DNS are described that provide these services to security aware resolvers or applications through the use of cryptographic digital signatures. [STANDARDS-TRACK]"];
+  cites -> RFC2065;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2308;
+  RFC3833 [label="RFC3833
+Threat Analysis of the Domain Name
+System (DNS)
+2004", shape=ellipse, URL="RFC3833.html", target="_top", tooltip="Although the DNS Security Extensions (DNSSEC) have been under development for most of the last decade, the IETF has never written down the specific set of threats against which DNSSEC is designed to protect.  Among other drawbacks, this cart-before-the-horse situation has made it difficult to determine whether DNSSEC meets its design goals, since its design goals are not well specified.  This note attempts to document some of the known threats to the DNS, and, in doing so, attempts to measure to what extent (if any) DNSSEC is a useful tool in defending against these threats.  This memo provides information for the Internet community."];
+  RFC3833 -> rev_cites;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  RFC4033 -> rev_cites;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4034 -> rev_cites;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  RFC4035 -> rev_cites;
+  RFC4592 [label="RFC4592
+The Role of Wildcards in the Domain Name
+System
+2006", shape=ellipse, URL="RFC4592.html", target="_top", tooltip="This is an update to the wildcard definition of RFC 1034.  The interaction with wildcards and CNAME is changed, an error condition is removed, and the words defining some concepts central to wildcards are changed.  The overall goal is not to change wildcards, but to refine the definition of RFC 1034. [STANDARDS-TRACK]"];
+  RFC4592 -> rev_cites;
+  RFC4795 [label="RFC4795
+Link-local Multicast Name Resolution
+(LLMNR)
+2007", shape=ellipse, URL="RFC4795.html", target="_top", tooltip="The goal of Link-Local Multicast Name Resolution (LLMNR) is to enable name resolution in scenarios in which conventional DNS name resolution is not possible.  LLMNR supports all current and future DNS formats, types, and classes, while operating on a separate port from DNS, and with a distinct resolver cache.  Since LLMNR only operates on the local link, it cannot be considered a substitute for DNS.  This memo provides information for the Internet community."];
+  RFC4795 -> rev_cites;
+  RFC5155 [label="RFC5155
+DNS Security (DNSSEC) Hashed
+Authenticated Denial of Existence
+2008", shape=ellipse, URL="RFC5155.html", target="_top", tooltip="The Domain Name System Security (DNSSEC) Extensions introduced the NSEC resource record (RR) for authenticated denial of existence.  This document introduces an alternative resource record, NSEC3, which similarly provides authenticated denial of existence.  However, it also provides measures against zone enumeration and permits gradual expansion of delegation-centric zones. [STANDARDS-TRACK]"];
+  RFC5155 -> rev_cites;
+  RFC5518 [label="RFC5518
+Vouch By Reference
+2009", shape=ellipse, URL="RFC5518.html", target="_top", tooltip="This document describes the Vouch By Reference (VBR) protocol.  VBR is a protocol for adding third-party certification to email.  It permits independent third parties to certify the owner of a domain name that is associated with received mail. [STANDARDS-TRACK]"];
+  RFC5518 -> rev_cites;
+  RFC6147 [label="RFC6147
+DNS64: DNS Extensions for Network
+Address Translation from IPv6 Clients to
+IPv4 Servers
+2011", shape=ellipse, URL="RFC6147.html", target="_top", tooltip="DNS64 is a mechanism for synthesizing AAAA records from A records.  DNS64 is used with an IPv6/IPv4 translator to enable client-server communication between an IPv6-only client and an IPv4-only server, without requiring any changes to either the IPv6 or the IPv4 node, for the class of applications that work through NATs.  This document specifies DNS64, and provides suggestions on how it should be deployed in conjunction with IPv6/IPv4 translators. [STANDARDS-TRACK]"];
+  RFC6147 -> rev_cites;
+  RFC6303 [label="RFC6303
+Locally Served DNS Zones
+2011", shape=ellipse, URL="RFC6303.html", target="_top", tooltip="Experience with the Domain Name System (DNS) has shown that there are a number of DNS zones that all iterative resolvers and recursive nameservers should automatically serve, unless configured otherwise.  RFC 4193 specifies that this should occur for D.F.IP6.ARPA.  This document extends the practice to cover the IN-ADDR.ARPA zones for RFC 1918 address space and other well-known zones with similar characteristics.  This memo documents an Internet Best Current Practice."];
+  RFC6303 -> rev_cites;
+  RFC6604 [label="RFC6604
+xNAME RCODE and Status Bits
+Clarification
+2012", shape=ellipse, URL="RFC6604.html", target="_top", tooltip="The Domain Name System (DNS) has long provided means, such as the CNAME (Canonical Name), whereby a DNS query can be redirected to a different name.  A DNS response header has an RCODE (Response Code) field, used for indicating errors, and response status bits.  This document clarifies, in the case of such redirected queries, how the RCODE and status bits correspond to the initial query cycle (where the CNAME or the like was detected) and subsequent or final query cycles. [STANDARDS-TRACK]"];
+  RFC6604 -> rev_cites;
+  RFC6781 [label="RFC6781
+DNSSEC Operational Practices, Version 2
+2012", shape=ellipse, URL="RFC6781.html", target="_top", tooltip="This document describes a set of practices for operating the DNS with security extensions (DNSSEC). The target audience is zone administrators deploying DNSSEC. The document discusses operational aspects of using keys and signatures in the DNS. It discusses issues of key generation, key storage, signature generation, key rollover, and related policies. This document obsoletes RFC 4641, as it covers more operational ground and gives more up-to-date requirements with respect to key sizes and the DNSSEC operations."];
+  RFC6781 -> rev_cites;
+  RFC6840 [label="RFC6840
+Clarifications and Implementation Notes
+for DNS Security (DNSSEC)
+2013", shape=ellipse, URL="RFC6840.html", target="_top", tooltip="This document is a collection of technical clarifications to the DNS Security (DNSSEC) document set. It is meant to serve as a resource to implementors as well as a collection of DNSSEC errata that existed at the time of writing. This document updates the core DNSSEC documents (RFC 4033, RFC 4034, and RFC 4035) as well as the NSEC3 specification (RFC 5155). It also defines NSEC3 and SHA-2 (RFC 4509 and RFC 5702) as core parts of the DNSSEC specification."];
+  RFC6840 -> rev_cites;
+  RFC7129 [label="RFC7129
+Authenticated Denial of Existence in the
+DNS
+2014", shape=ellipse, URL="RFC7129.html", target="_top", tooltip="Authenticated denial of existence allows a resolver to validate that a certain domain name does not exist. It is also used to signal that a domain name exists but does not have the specific resource record (RR) type you were asking for. When returning a negative DNS Security Extensions (DNSSEC) response, a name server usually includes up to two NSEC records. With NSEC version 3 (NSEC3), this amount is three. This document provides additional background commentary and some context for the NSEC and NSEC3 mechanisms used by DNSSEC to provide authenticated denial-of-existence responses."];
+  RFC7129 -> rev_cites;
+  RFC7208 [label="RFC7208
+Sender Policy Framework (SPF) for
+Authorizing Use of Domains in Email,
+Version 1
+2014", shape=ellipse, URL="RFC7208.html", target="_top", tooltip="Email on the Internet can be forged in a number of ways. In particular, existing protocols place no restriction on what a sending host can use as the MAIL FROM of a message or the domain given on the SMTP HELO/EHLO commands. This document describes version 1 of the Sender Policy Framework (SPF) protocol, whereby ADministrative Management Domains (ADMDs) can explicitly authorize the hosts that are allowed to use their domain names, and a receiving host can check such authorization. This document obsoletes RFC 4408."];
+  RFC7208 -> rev_cites;
+  RFC7535 [label="RFC7535
+AS112 Redirection Using DNAME
+2015", shape=ellipse, URL="RFC7535.html", target="_top", tooltip="AS112 provides a mechanism for handling reverse lookups on IP addresses that are not unique (e.g., RFC 1918 addresses). This document describes modifications to the deployment and use of AS112 infrastructure that will allow zones to be added and dropped much more easily, using DNAME resource records. This approach makes it possible for any DNS zone administrator to sink traffic relating to parts of the global DNS namespace under their control to the AS112 infrastructure without coordination with the operators of AS112 infrastructure."];
+  RFC7535 -> rev_cites;
+  RFC7719 [label="RFC7719
+DNS Terminology
+2015", shape=ellipse, URL="RFC7719.html", target="_top", tooltip="The DNS is defined in literally dozens of different RFCs.  The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined.  This document gives current definitions for many of the terms used in the DNS in a single document."];
+  RFC7719 -> rev_cites;
+  RFC7871 [label="RFC7871
+Client Subnet in DNS Queries
+2016", shape=ellipse, URL="RFC7871.html", target="_top", tooltip="This document describes an Extension Mechanisms for DNS (EDNS0) option that is in active use to carry information about the network that originated a DNS query and the network for which the subsequent response can be cached.  Since it has some known operational and privacy shortcomings, a revision will be worked through the IETF for improvement."];
+  RFC7871 -> rev_cites;
+  RFC7901 [label="RFC7901
+CHAIN Query Requests in DNS
+2016", shape=ellipse, URL="RFC7901.html", target="_top", tooltip="This document defines an EDNS0 extension that can be used by a security-aware validating resolver configured to use a forwarding resolver to send a single query, requesting a complete validation path along with the regular query answer.  The reduction in queries potentially lowers the latency and reduces the need to send multiple queries at once.  This extension mandates the use of source-IP- verified transport such as TCP or UDP with EDNS-COOKIE, so it cannot be abused in amplification attacks."];
+  RFC7901 -> rev_cites;
+  RFC8020 [label="RFC8020
+NXDOMAIN: There Really Is Nothing
+Underneath
+2016", shape=ellipse, URL="RFC8020.html", target="_top", tooltip="This document states clearly that when a DNS resolver receives a response with a response code of NXDOMAIN, it means that the domain name which is thus denied AND ALL THE NAMES UNDER IT do not exist. This document clarifies RFC 1034 and modifies a portion of RFC 2308: it updates both of them."];
+  RFC8020 -> rev_cites;
+  RFC8198 [label="RFC8198
+Aggressive Use of DNSSEC-Validated Cache
+2017", shape=ellipse, URL="RFC8198.html", target="_top", tooltip="The DNS relies upon caching to scale; however, the cache lookup generally requires an exact match. This document specifies the use of NSEC/NSEC3 resource records to allow DNSSEC-validating resolvers to generate negative answers within a range and positive answers from wildcards. This increases performance, decreases latency, decreases resource utilization on both authoritative and recursive servers, and increases privacy. Also, it may help increase resilience to certain DoS attacks in some circumstances. This document updates RFC 4035 by allowing validating resolvers to generate negative answers based upon NSEC/NSEC3 records and positive answers in the presence of wildcards."];
+  RFC8198 -> rev_cites;
+  RFC8484 [label="RFC8484
+DNS Queries over HTTPS (DoH)
+2018", shape=ellipse, URL="RFC8484.html", target="_top", tooltip="This document defines a protocol for sending DNS queries and getting DNS responses over HTTPS.  Each DNS query-response pair is mapped into an HTTP exchange."];
+  RFC8484 -> rev_cites;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  RFC8499 -> rev_cites;
+  RFC8509 [label="RFC8509
+A Root Key Trust Anchor Sentinel for
+DNSSEC
+2018", shape=ellipse, URL="RFC8509.html", target="_top", tooltip="The DNS Security Extensions (DNSSEC) were developed to provide origin authentication and integrity protection for DNS data by using digital signatures.  These digital signatures can be verified by building a chain of trust starting from a trust anchor and proceeding down to a particular node in the DNS.  This document specifies a mechanism that will allow an end user and third parties to determine the trusted key state for the root key of the resolvers that handle that user's DNS queries.  Note that this method is only applicable for determining which keys are in the trust store for the root key."];
+  RFC8509 -> rev_cites;
+  RFC8765 [label="RFC8765
+DNS Push Notifications
+2020", shape=ellipse, URL="RFC8765.html", target="_top", tooltip="The Domain Name System (DNS) was designed to return matching records efficiently for queries for data that are relatively static.  When those records change frequently, DNS is still efficient at returning the updated results when polled, as long as the polling rate is not too high.  But, there exists no mechanism for a client to be asynchronously notified when these changes occur.  This document defines a mechanism for a client to be notified of such changes to DNS records, called DNS Push Notifications."];
+  RFC8765 -> rev_cites;
+  RFC8766 [label="RFC8766
+Discovery Proxy for Multicast DNS-Based
+Service Discovery
+2020", shape=ellipse, URL="RFC8766.html", target="_top", tooltip="This document specifies a network proxy that uses Multicast DNS to automatically populate the wide-area unicast Domain Name System namespace with records describing devices and services found on the local link."];
+  RFC8766 -> rev_cites;
+  RFC8767 [label="RFC8767
+Serving Stale Data to Improve DNS
+Resiliency
+2020", shape=ellipse, URL="RFC8767.html", target="_top", tooltip="This document defines a method (serve-stale) for recursive resolvers to use stale DNS data to avoid outages when authoritative nameservers cannot be reached to refresh expired data.  One of the motivations for serve-stale is to make the DNS more resilient to DoS attacks and thereby make them less attractive as an attack vector.  This document updates the definitions of TTL from RFCs 1034 and 1035 so that data can be kept in the cache beyond the TTL expiry; it also updates RFC 2181 by interpreting values with the high-order bit set as being positive, rather than 0, and suggests a cap of 7 days."];
+  RFC8767 -> rev_cites;
+  RFC9077 [label="RFC9077
+NSEC and NSEC3: TTLs and Aggressive Use
+2021", shape=ellipse, URL="RFC9077.html", target="_top", tooltip="Due to a combination of unfortunate wording in earlier documents, aggressive use of NSEC and NSEC3 records may deny the existence of names far beyond the intended lifetime of a denial.  This document changes the definition of the NSEC and NSEC3 TTL to correct that situation.  This document updates RFCs 4034, 4035, 5155, and 8198."];
+  RFC9077 -> rev_cites;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+  RFC9520 [label="RFC9520
+Negative Caching of DNS Resolution
+Failures
+2023", shape=ellipse, URL="RFC9520.html", target="_top", tooltip="In the DNS, resolvers employ caching to reduce both latency for end users and load on authoritative name servers. The process of resolution may result in one of three types of responses: (1) a response containing the requested data, (2) a response indicating the requested data does not exist, or (3) a non-response due to a resolution failure in which the resolver does not receive any useful information regarding the data's existence. This document concerns itself only with the third type. RFC 2308 specifies requirements for DNS negative caching. There, caching of TYPE 2 responses is mandatory and caching of TYPE 3 responses is optional. This document updates RFC 2308 to require negative caching for DNS resolution failures. RFC 4035 allows DNSSEC validation failure caching. This document updates RFC 4035 to require caching for DNSSEC validation failures. RFC 4697 prohibits aggressive requerying for NS records at a failed zone's parent zone. This document updates RFC 4697 to expand this requirement to all query types and to all ancestor zones."];
+  RFC9520 -> rev_cites;
+  RFC9567 [label="RFC9567
+DNS Error Reporting
+2024", shape=ellipse, URL="RFC9567.html", target="_top", tooltip="DNS error reporting is a lightweight reporting mechanism that provides the operator of an authoritative server with reports on DNS resource records that fail to resolve or validate. A domain owner or DNS hosting organization can use these reports to improve domain hosting. The reports are based on extended DNS errors as described in RFC 8914. When a domain name fails to resolve or validate due to a misconfiguration or an attack, the operator of the authoritative server may be unaware of this. To mitigate this lack of feedback, this document describes a method for a validating resolver to automatically signal an error to a monitoring agent specified by the authoritative server. The error is encoded in the QNAME; thus, the very act of sending the query is to report the error."];
+  RFC9567 -> rev_cites;
+  RFC9715 [label="RFC9715
+IP Fragmentation Avoidance in DNS over
+UDP
+2025", shape=ellipse, URL="RFC9715.html", target="_top", tooltip="The widely deployed Extension Mechanisms for DNS (EDNS(0)) feature in the DNS enables a DNS receiver to indicate its received UDP message size capacity, which supports the sending of large UDP responses by a DNS server.  Large DNS/UDP messages are more likely to be fragmented, and IP fragmentation has exposed weaknesses in application protocols.  It is possible to avoid IP fragmentation in DNS by limiting the response size where possible and signaling the need to upgrade from UDP to TCP transport where necessary.  This document describes techniques to avoid IP fragmentation in DNS."];
+  RFC9715 -> rev_cites;
+}

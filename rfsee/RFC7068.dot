@@ -1,0 +1,70 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7068 [label="RFC7068
+Diameter Overload Control Requirements
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="When a Diameter server or agent becomes overloaded, it needs to be able to gracefully reduce its load, typically by advising clients to reduce traffic for some period of time.  Otherwise, it must continue to expend resources parsing and responding to Diameter messages, possibly resulting in a progressively severe overload condition.  The existing Diameter mechanisms are not sufficient for managing overload conditions.  This document describes the limitations of the existing mechanisms.  Requirements for new overload management mechanisms are also provided."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7068;
+
+  obs [label="obsoletes", shape=box];
+  RFC7068 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7068 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7068;
+
+  cites [label="cites", shape=box];
+  RFC7068 -> cites;
+  RFC6733 [label="RFC6733
+Diameter Base Protocol
+2012", shape=ellipse, URL="RFC6733.html", target="_top", tooltip="The Diameter base protocol is intended to provide an Authentication, Authorization, and Accounting (AAA) framework for applications such as network access or IP mobility in both local and roaming situations.  This document specifies the message format, transport, error reporting, accounting, and security services used by all Diameter applications.  The Diameter base protocol as defined in this document obsoletes RFC 3588 and RFC 5719, and it must be supported by all new Diameter implementations. [STANDARDS-TRACK]"];
+  cites -> RFC6733;
+  RFC5390 [label="RFC5390
+Requirements for Management of Overload
+in the Session Initiation Protocol
+2008", shape=ellipse, URL="RFC5390.html", target="_top", tooltip="Overload occurs in Session Initiation Protocol (SIP) networks when proxies and user agents have insufficient resources to complete the processing of a request.  SIP provides limited support for overload handling through its 503 response code, which tells an upstream element that it is overloaded.  However, numerous problems have been identified with this mechanism.  This document summarizes the problems with the existing 503 mechanism, and provides some requirements for a solution.  This memo provides information for the Internet community."];
+  cites -> RFC5390;
+  RFC6357 [label="RFC6357
+Design Considerations for Session
+Initiation Protocol (SIP) Overload
+Control
+2011", shape=ellipse, URL="RFC6357.html", target="_top", tooltip="Overload occurs in Session Initiation Protocol (SIP) networks when SIP servers have insufficient resources to handle all SIP messages they receive.  Even though the SIP protocol provides a limited overload control mechanism through its 503 (Service Unavailable) response code, SIP servers are still vulnerable to overload.  This document discusses models and design considerations for a SIP overload control mechanism.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6357;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3539 [label="RFC3539
+Authentication, Authorization and
+Accounting (AAA) Transport Profile
+2003", shape=ellipse, URL="RFC3539.html", target="_top", tooltip="This document discusses transport issues that arise within protocols for Authentication, Authorization and Accounting (AAA).  It also provides recommendations on the use of transport by AAA protocols.  This includes usage of standards-track RFCs as well as experimental proposals. [STANDARDS-TRACK]"];
+  cites -> RFC3539;
+  RFC2914 [label="RFC2914
+Congestion Control Principles
+2000", shape=ellipse, URL="RFC2914.html", target="_top", tooltip="The goal of this document is to explain the need for congestion control in the Internet, and to discuss what constitutes correct congestion control.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2914;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7068;
+  RFC7683 [label="RFC7683
+Diameter Overload Indication Conveyance
+2015", shape=ellipse, URL="RFC7683.html", target="_top", tooltip="This specification defines a base solution for Diameter overload control, referred to as Diameter Overload Indication Conveyance (DOIC)."];
+  RFC7683 -> rev_cites;
+  RFC8581 [label="RFC8581
+Diameter Agent Overload and the Peer
+Overload Report
+2019", shape=ellipse, URL="RFC8581.html", target="_top", tooltip="This specification documents an extension to the Diameter Overload Indication Conveyance (DOIC), a base solution for Diameter overload defined in RFC 7683.  The extension defines the Peer Overload report type.  The initial use case for the peer report is the handling of occurrences of overload of a Diameter Agent."];
+  RFC8581 -> rev_cites;
+  RFC8583 [label="RFC8583
+Diameter Load Information Conveyance
+2019", shape=ellipse, URL="RFC8583.html", target="_top", tooltip="RFC 7068 describes requirements for Overload Control in Diameter.  This includes a requirement to allow Diameter nodes to send load information, even when the node is not overloaded.  The base solution defined in RFC 7683 (Diameter Overload Information Conveyance (DOIC)) describes a mechanism meeting most of the requirements but does not currently include the ability to send load information.  This document defines a mechanism for the conveying of Diameter load information."];
+  RFC8583 -> rev_cites;
+}

@@ -1,0 +1,34 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3509 [label="RFC3509
+Alternative Implementations of OSPF Area
+Border Routers
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="Open Shortest Path First (OSPF) is a link-state intra-domain routing protocol used for routing in IP networks.  Though the definition of the Area Border Router (ABR) in the OSPF specification does not require a router with multiple attached areas to have a backbone connection, it is actually necessary to provide successful routing to the inter-area and external destinations.  If this requirement is not met, all traffic destined for the areas not connected to such an ABR or out of the OSPF domain, is dropped.  This document describes alternative ABR behaviors implemented in Cisco and IBM routers.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3509;
+
+  obs [label="obsoletes", shape=box];
+  RFC3509 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3509 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3509;
+
+  cites [label="cites", shape=box];
+  RFC3509 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3509;
+  RFC5286 [label="RFC5286
+Basic Specification for IP Fast Reroute:
+Loop-Free Alternates
+2008", shape=ellipse, URL="RFC5286.html", target="_top", tooltip="This document describes the use of loop-free alternates to provide local protection for unicast traffic in pure IP and MPLS/LDP networks in the event of a single failure, whether link, node, or shared risk link group (SRLG).  The goal of this technology is to reduce the packet loss that happens while routers converge after a topology change due to a failure.  Rapid failure repair is achieved through use of precalculated backup next-hops that are loop-free and safe to use until the distributed network convergence process completes.  This simple approach does not require any support from other routers.  The extent to which this goal can be met by this specification is dependent on the topology of the network. [STANDARDS-TRACK]"];
+  RFC5286 -> rev_cites;
+}

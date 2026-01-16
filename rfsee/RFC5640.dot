@@ -1,0 +1,87 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5640 [label="RFC5640
+Load-Balancing for Mesh Softwires
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="Payloads transported over a Softwire mesh service (as defined by BGP Encapsulation Subsequent Address Family Identifier (SAFI) information exchange) often carry a number of identifiable, distinct flows.  It can, in some circumstances, be desirable to distribute these flows over the equal cost multiple paths (ECMPs) that exist in the packet switched network.  Currently, the payload of a packet entering the Softwire can only be interpreted by the ingress and egress routers.  Thus, the load-balancing decision of a core router is only based on the encapsulating header, presenting much less entropy than available in the payload or the encapsulated header since the Softwire encapsulation acts in a tunneling fashion.  This document describes a method for achieving comparable load-balancing efficiency in a network carrying Softwire mesh service over Layer Two Tunneling Protocol - Version 3 (L2TPv3) over IP or Generic Routing Encapsulation (GRE) encapsulation to what would be achieved without such encapsulation. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5640;
+
+  obs [label="obsoletes", shape=box];
+  RFC5640 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5640 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5640;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  RFC9012 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5640 -> cites;
+  RFC3931 [label="RFC3931
+Layer Two Tunneling Protocol - Version 3
+(L2TPv3)
+2005", shape=ellipse, URL="RFC3931.html", target="_top", tooltip="This document describes version 3 of the Layer Two Tunneling Protocol (L2TPv3).  L2TPv3 defines the base control protocol and encapsulation for tunneling multiple Layer 2 connections between two IP nodes.  Additional documents detail the specifics for each data link type being emulated. [STANDARDS-TRACK]"];
+  cites -> RFC3931;
+  RFC2784 [label="RFC2784
+Generic Routing Encapsulation (GRE)
+2000", shape=ellipse, URL="RFC2784.html", target="_top", tooltip="This document specifies a protocol for encapsulation of an arbitrary network layer protocol over another arbitrary network layer protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2784;
+  RFC2890 [label="RFC2890
+Key and Sequence Number Extensions to
+GRE
+2000", shape=ellipse, URL="RFC2890.html", target="_top", tooltip="This document describes extensions by which two fields, Key and Sequence Number, can be optionally carried in the GRE Header. [STANDARDS-TRACK]"];
+  cites -> RFC2890;
+  RFC5512 [label="RFC5512
+The BGP Encapsulation Subsequent Address
+Family Identifier (SAFI) and the BGP
+Tunnel Encapsulation Attribute
+2009", shape=ellipse, URL="RFC5512.html", target="_top", tooltip="In certain situations, transporting a packet from one Border Gateway Protocol (BGP) speaker to another (the BGP next hop) requires that the packet be encapsulated by the first BGP speaker and decapsulated by the second. To support these situations, there needs to be some agreement between the two BGP speakers with regard to the encapsulation information, i.e., the format of the encapsulation header as well as the contents of various fields of the header. The encapsulation information need not be signaled for all encapsulation types. In cases where signaling is required (such as Layer Two Tunneling Protocol - Version 3 (L2TPv3) or Generic Routing Encapsulation (GRE) with key), this document specifies a method by which BGP speakers can signal encapsulation information to each other. The signaling is done by sending BGP updates using the Encapsulation Subsequent Address Family Identifier (SAFI) and the IPv4 or IPv6 Address Family Identifier (AFI). In cases where no encapsulation information needs to be signaled (such as GRE without key), this document specifies a BGP extended community that can be attached to BGP UPDATE messages that carry payload prefixes in order to indicate the encapsulation protocol type to be used. [STANDARDS-TRACK]"];
+  cites -> RFC5512;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5640;
+  RFC7325 [label="RFC7325
+MPLS Forwarding Compliance and
+Performance Requirements
+2014", shape=ellipse, URL="RFC7325.html", target="_top", tooltip="This document provides guidelines for implementers regarding MPLS forwarding and a basis for evaluations of forwarding implementations.  Guidelines cover many aspects of MPLS forwarding.  Topics are highlighted where implementers might otherwise overlook practical requirements which are unstated or under emphasized or are optional for conformance to RFCs but are often considered mandatory by providers."];
+  RFC7325 -> rev_cites;
+  RFC7424 [label="RFC7424
+Mechanisms for Optimizing Link
+Aggregation Group (LAG) and Equal-Cost
+Multipath (ECMP) Component Link
+Utilization in Networks
+2015", shape=ellipse, URL="RFC7424.html", target="_top", tooltip="Demands on networking infrastructure are growing exponentially due to bandwidth-hungry applications such as rich media applications and inter-data-center communications.  In this context, it is important to optimally use the bandwidth in wired networks that extensively use link aggregation groups and equal-cost multipaths as techniques for bandwidth scaling.  This document explores some of the mechanisms useful for achieving this."];
+  RFC7424 -> rev_cites;
+  RFC7439 [label="RFC7439
+Gap Analysis for Operating IPv6-Only
+MPLS Networks
+2015", shape=ellipse, URL="RFC7439.html", target="_top", tooltip="This document reviews the Multiprotocol Label Switching (MPLS) protocol suite in the context of IPv6 and identifies gaps that must be addressed in order to allow MPLS-related protocols and applications to be used with IPv6-only networks. This document is intended to focus on gaps in the standards defining the MPLS suite, and is not intended to highlight particular vendor implementations (or lack thereof) in the context of IPv6-only MPLS functionality. In the data plane, MPLS fully supports IPv6, and MPLS labeled packets can be carried over IPv6 packets in a variety of encapsulations. However, support for IPv6 among MPLS control-plane protocols, MPLS applications, MPLS Operations, Administration, and Maintenance (OAM), and MIB modules is mixed, with some protocols having major gaps. For most major gaps, work is in progress to upgrade the relevant protocols."];
+  RFC7439 -> rev_cites;
+  RFC7510 [label="RFC7510
+Encapsulating MPLS in UDP
+2015", shape=ellipse, URL="RFC7510.html", target="_top", tooltip="This document specifies an IP-based encapsulation for MPLS, called MPLS-in-UDP for situations where UDP (User Datagram Protocol) encapsulation is preferred to direct use of MPLS, e.g., to enable UDP-based ECMP (Equal-Cost Multipath) or link aggregation.  The MPLS- in-UDP encapsulation technology must only be deployed within a single network (with a single network operator) or networks of an adjacent set of cooperating network operators where traffic is managed to avoid congestion, rather than over the Internet where congestion control is required.  Usage restrictions apply to MPLS-in-UDP usage for traffic that is not congestion controlled and to UDP zero checksum usage with IPv6."];
+  RFC7510 -> rev_cites;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  RFC9012 -> rev_cites;
+  RFC9013 [label="RFC9013
+OSPF Advertisement of Tunnel
+Encapsulations
+2021", shape=ellipse, URL="RFC9013.html", target="_top", tooltip="Networks use tunnels for a variety of reasons.  A large variety of tunnel types are defined, and the tunnel encapsulator router needs to select a type of tunnel that is supported by the tunnel decapsulator router.  This document defines how to advertise, in OSPF Router Information Link State Advertisements (LSAs), the list of tunnel encapsulations supported by the tunnel decapsulator."];
+  RFC9013 -> rev_cites;
+}

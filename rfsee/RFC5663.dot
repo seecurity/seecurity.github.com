@@ -1,0 +1,64 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5663 [label="RFC5663
+Parallel NFS (pNFS) Block/Volume Layout
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="Parallel NFS (pNFS) extends Network File Sharing version 4 (NFSv4) to allow clients to directly access file data on the storage used by the NFSv4 server.  This ability to bypass the server for data access can increase both performance and parallelism, but requires additional client functionality for data access, some of which is dependent on the class of storage used.  The main pNFS operations document specifies storage-class-independent extensions to NFS; this document specifies the additional extensions (primarily data structures) for use of pNFS with block- and volume-based storage. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5663;
+
+  obs [label="obsoletes", shape=box];
+  RFC5663 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5663 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5663;
+  RFC6688 [label="RFC6688
+Parallel NFS (pNFS) Block Disk
+Protection
+2012", shape=ellipse, URL="RFC6688.html", target="_top", tooltip="Parallel NFS (pNFS) extends the Network File System version 4 (NFSv4) to enable direct client access to file data on storage devices and bypass the NFSv4 server.  This can increase both performance and parallelism, but it requires additional client functionality, some of which depends upon the type of storage used.  The pNFS specification for block storage (RFC 5663) describes how clients can identify the volumes used for pNFS, but this mechanism requires communication with the NFSv4 server.  This document updates RFC 5663 to add a mechanism that enables identification of block storage devices used by pNFS file systems without communicating with the server.  This enables clients to control access to pNFS block devices when the client initially boots, as opposed to waiting until the client can communicate with the NFSv4 server. [STANDARDS-TRACK]"];
+  RFC6688 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5663 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5663;
+  RFC6688 [label="RFC6688
+Parallel NFS (pNFS) Block Disk
+Protection
+2012", shape=ellipse, URL="RFC6688.html", target="_top", tooltip="Parallel NFS (pNFS) extends the Network File System version 4 (NFSv4) to enable direct client access to file data on storage devices and bypass the NFSv4 server.  This can increase both performance and parallelism, but it requires additional client functionality, some of which depends upon the type of storage used.  The pNFS specification for block storage (RFC 5663) describes how clients can identify the volumes used for pNFS, but this mechanism requires communication with the NFSv4 server.  This document updates RFC 5663 to add a mechanism that enables identification of block storage devices used by pNFS file systems without communicating with the server.  This enables clients to control access to pNFS block devices when the client initially boots, as opposed to waiting until the client can communicate with the NFSv4 server. [STANDARDS-TRACK]"];
+  RFC6688 -> rev_cites;
+  RFC7862 [label="RFC7862
+Network File System (NFS) Version 4
+Minor Version 2 Protocol
+2016", shape=ellipse, URL="RFC7862.html", target="_top", tooltip="This document describes NFS version 4 minor version 2; it describes the protocol extensions made from NFS version 4 minor version 1.  Major extensions introduced in NFS version 4 minor version 2 include the following: Server-Side Copy, Application Input/Output (I/O) Advise, Space Reservations, Sparse Files, Application Data Blocks, and Labeled NFS."];
+  RFC7862 -> rev_cites;
+  RFC8154 [label="RFC8154
+Parallel NFS (pNFS) Small Computer
+System Interface (SCSI) Layout
+2017", shape=ellipse, URL="RFC8154.html", target="_top", tooltip="The Parallel Network File System (pNFS) allows a separation between the metadata (onto a metadata server) and data (onto a storage device) for a file.  The Small Computer System Interface (SCSI) layout type is defined in this document as an extension to pNFS to allow the use of SCSI-based block storage devices."];
+  RFC8154 -> rev_cites;
+  RFC8434 [label="RFC8434
+Requirements for Parallel NFS (pNFS)
+Layout Types
+2018", shape=ellipse, URL="RFC8434.html", target="_top", tooltip="This document defines the requirements that individual Parallel NFS (pNFS) layout types need to meet in order to work within the pNFS framework as defined in RFC 5661.  In so doing, this document aims to clearly distinguish between requirements for pNFS as a whole and those specifically directed to the pNFS file layout.  The lack of a clear separation between the two sets of requirements has been troublesome for those specifying and evaluating new layout types.  In this regard, this document updates RFC 5661."];
+  RFC8434 -> rev_cites;
+  RFC9561 [label="RFC9561
+Using the Parallel NFS (pNFS) SCSI
+Layout to Access Non-Volatile Memory
+Express (NVMe) Storage Devices
+2024", shape=ellipse, URL="RFC9561.html", target="_top", tooltip="This document specifies how to use the Parallel Network File System (pNFS) Small Computer System Interface (SCSI) Layout Type to access storage devices using the Non-Volatile Memory Express (NVMe) protocol family."];
+  RFC9561 -> rev_cites;
+}

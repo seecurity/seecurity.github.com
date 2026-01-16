@@ -1,0 +1,48 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC0791 [label="RFC0791
+Internet Protocol
+1981", shape=ellipse, fillcolor="#e8f0ff", tooltip="None"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC0791;
+
+  obs [label="obsoletes", shape=box];
+  RFC0791 -> obs;
+  RFC0760 [label="RFC0760
+DoD standard Internet Protocol
+1980", shape=ellipse, URL="RFC0760.html", target="_top", tooltip="None"];
+  obs -> RFC0760;
+
+  updates [label="updates", shape=box];
+  RFC0791 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC0791;
+  RFC1349 [label="RFC1349
+Type of Service in the Internet Protocol
+Suite
+1992", shape=ellipse, URL="RFC1349.html", target="_top", tooltip="This memo changes and clarifies some aspects of the semantics of the Type of Service octet in the Internet Protocol (IP) header. [STANDARDS-TRACK]"];
+  RFC1349 -> updated_by;
+  RFC2474 [label="RFC2474
+Definition of the Differentiated
+Services Field (DS Field) in the IPv4
+and IPv6 Headers
+1998", shape=ellipse, URL="RFC2474.html", target="_top", tooltip="This document defines the IP header field, called the DS (for differentiated services) field. [STANDARDS-TRACK]"];
+  RFC2474 -> updated_by;
+  RFC6864 [label="RFC6864
+Updated Specification of the IPv4 ID
+Field
+2013", shape=ellipse, URL="RFC6864.html", target="_top", tooltip="The IPv4 Identification (ID) field enables fragmentation and reassembly and, as currently specified, is required to be unique within the maximum lifetime for all datagrams with a given source address/destination address/protocol tuple.  If enforced, this uniqueness requirement would limit all connections to 6.4 Mbps for typical datagram sizes.  Because individual connections commonly exceed this speed, it is clear that existing systems violate the current specification.  This document updates the specification of the IPv4 ID field in RFCs 791, 1122, and 2003 to more closely reflect current practice and to more closely match IPv6 so that the field's value is defined only when a datagram is actually fragmented.  It also discusses the impact of these changes on how datagrams are used. [STANDARDS-TRACK]"];
+  RFC6864 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC0791 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC0791;
+}

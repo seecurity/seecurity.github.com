@@ -1,0 +1,70 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5450 [label="RFC5450
+Transmission Time Offsets in RTP Streams
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a method to inform Real-time Transport Protocol (RTP) clients when RTP packets are transmitted at a time other than their 'nominal' transmission time.  It also provides a mechanism to provide improved inter-arrival jitter reports from the clients, that take into account the reported transmission times. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5450;
+
+  obs [label="obsoletes", shape=box];
+  RFC5450 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5450 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5450;
+
+  cites [label="cites", shape=box];
+  RFC5450 -> cites;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5285 [label="RFC5285
+A General Mechanism for RTP Header
+Extensions
+2008", shape=ellipse, URL="RFC5285.html", target="_top", tooltip="This document provides a general mechanism to use the header extension feature of RTP (the Real-Time Transport Protocol).  It provides the option to use a small number of small extensions in each RTP packet, where the universe of possible extensions is large and registration is de-centralized.  The actual extensions in use in a session are signaled in the setup information for that session. [STANDARDS-TRACK]"];
+  cites -> RFC5285;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5450;
+  RFC6904 [label="RFC6904
+Encryption of Header Extensions in the
+Secure Real-time Transport Protocol
+(SRTP)
+2013", shape=ellipse, URL="RFC6904.html", target="_top", tooltip="The Secure Real-time Transport Protocol (SRTP) provides authentication, but not encryption, of the headers of Real-time Transport Protocol (RTP) packets. However, RTP header extensions may carry sensitive information for which participants in multimedia sessions want confidentiality. This document provides a mechanism, extending the mechanisms of SRTP, to selectively encrypt RTP header extensions in SRTP. This document updates RFC 3711, the Secure Real-time Transport Protocol specification, to require that all future SRTP encryption transforms specify how RTP header extensions are to be encrypted."];
+  RFC6904 -> rev_cites;
+  RFC7160 [label="RFC7160
+Support for Multiple Clock Rates in an
+RTP Session
+2014", shape=ellipse, URL="RFC7160.html", target="_top", tooltip="This document clarifies the RTP specification regarding the use of different clock rates in an RTP session.  It also provides guidance on how legacy RTP implementations that use multiple clock rates can interoperate with RTP implementations that use the algorithm described in this document.  It updates RFC 3550."];
+  RFC7160 -> rev_cites;
+  RFC8083 [label="RFC8083
+Multimedia Congestion Control: Circuit
+Breakers for Unicast RTP Sessions
+2017", shape=ellipse, URL="RFC8083.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is widely used in telephony, video conferencing, and telepresence applications. Such applications are often run on best-effort UDP/IP networks. If congestion control is not implemented in these applications, then network congestion can lead to uncontrolled packet loss and a resulting deterioration of the user's multimedia experience. The congestion control algorithm acts as a safety measure by stopping RTP flows from using excessive resources and protecting the network from overload. At the time of this writing, however, while there are several proprietary solutions, there is no standard algorithm for congestion control of interactive RTP flows. This document does not propose a congestion control algorithm. It instead defines a minimal set of RTP circuit breakers: conditions under which an RTP sender needs to stop transmitting media data to protect the network from excessive congestion. It is expected that, in the absence of long-lived excessive congestion, RTP applications running on best-effort IP networks will be able to operate without triggering these circuit breakers. To avoid triggering the RTP circuit breaker, any Standards Track congestion control algorithms defined for RTP will need to operate within the envelope set by these RTP circuit breaker algorithms."];
+  RFC8083 -> rev_cites;
+  RFC8698 [label="RFC8698
+Network-Assisted Dynamic Adaptation
+(NADA): A Unified Congestion Control
+Scheme for Real-Time Media
+2020", shape=ellipse, URL="RFC8698.html", target="_top", tooltip="This document describes Network-Assisted Dynamic Adaptation (NADA), a novel congestion control scheme for interactive real-time media applications such as video conferencing.  In the proposed scheme, the sender regulates its sending rate, based on either implicit or explicit congestion signaling, in a unified approach.  The scheme can benefit from Explicit Congestion Notification (ECN) markings from network nodes.  It also maintains consistent sender behavior in the absence of such markings by reacting to queuing delays and packet losses instead."];
+  RFC8698 -> rev_cites;
+  RFC9828 [label="RFC9828
+RTP Payload Format for JPEG 2000
+Streaming with Sub-Codestream Latency
+2025", shape=ellipse, URL="RFC9828.html", target="_top", tooltip="This document defines the RTP payload format for the streaming of a video signal encoded as a sequence of JPEG 2000 codestreams.  The format allows sub-codestream latency, such that the first RTP packet for a given image can be emitted before the entire image is available to or encoded by the sender."];
+  RFC9828 -> rev_cites;
+}

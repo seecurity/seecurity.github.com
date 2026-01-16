@@ -1,0 +1,53 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4812 [label="RFC4812
+OSPF Restart Signaling
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks. Routers find new and detect unreachable neighbors via the Hello subprotocol. Hello OSPF packets are also used to ensure two-way connectivity within time. When a router restarts its OSPF software, it may not know its neighbors. If such a router sends a Hello packet on an interface, its neighbors are going to reset the adjacency, which may not be desirable in certain conditions. This memo describes a vendor-specific mechanism that allows OSPF routers to inform their neighbors about the restart process. Note that this mechanism requires support from neighboring routers. The mechanism described in this document was proposed before Graceful OSPF Restart, as described in RFC 3623, came into existence. It is implemented/supported by at least one major vendor and is currently deployed in the field. The purpose of this document is to capture the details of this mechanism for public use. This mechanism is not an IETF standard. This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4812;
+
+  obs [label="obsoletes", shape=box];
+  RFC4812 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4812 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4812;
+
+  cites [label="cites", shape=box];
+  RFC4812 -> cites;
+  RFC3623 [label="RFC3623
+Graceful OSPF Restart
+2003", shape=ellipse, URL="RFC3623.html", target="_top", tooltip="This memo documents an enhancement to the OSPF routing protocol, whereby an OSPF router can stay on the forwarding path even as its OSPF software is restarted.  This is called graceful restart or non-stop forwarding.  A restarting router may not be capable of adjusting its forwarding in a timely manner when the network topology changes.  In order to avoid the possible resulting routing loops, the procedure in this memo automatically reverts to a normal OSPF restart when such a topology change is detected, or when one or more of the restarting router's neighbors do not support the enhancements in this memo.  Proper network operation during a graceful restart makes assumptions upon the operating environment of the restarting router; these assumptions are also documented."];
+  cites -> RFC3623;
+  RFC4813 [label="RFC4813
+OSPF Link-Local Signaling
+2007", shape=ellipse, URL="RFC4813.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks.  OSPF routers exchange information on a link using packets that follow a well-defined format.  The format of OSPF packets is not flexible enough to enable applications to exchange arbitrary data, which may be necessary in certain situations.  This memo describes a vendor-specific, backward-compatible technique to perform link-local signaling, i.e., exchange arbitrary data on a link.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4813;
+  RFC4811 [label="RFC4811
+OSPF Out-of-Band Link State Database
+(LSDB) Resynchronization
+2007", shape=ellipse, URL="RFC4811.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks. Link State Database (LSDB) synchronization in OSPF is achieved via two methods -- initial LSDB synchronization when an OSPF router has just been connected to the network and asynchronous flooding that ensures continuous LSDB synchronization in the presence of topology changes after the initial procedure was completed. It may sometime be necessary for OSPF routers to resynchronize their LSDBs. The OSPF standard, however, does not allow routers to do so without actually changing the topology view of the network. This memo describes a vendor-specific mechanism to perform such a form of out-of-band LSDB synchronization. The mechanism described in this document was proposed before Graceful OSPF Restart, as described in RFC 3623, came into existence. It is implemented/supported by at least one major vendor and is currently deployed in the field. The purpose of this document is to capture the details of this mechanism for public use. This mechanism is not an IETF standard. This memo provides information for the Internet community."];
+  cites -> RFC4811;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4812;
+  RFC4813 [label="RFC4813
+OSPF Link-Local Signaling
+2007", shape=ellipse, URL="RFC4813.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks.  OSPF routers exchange information on a link using packets that follow a well-defined format.  The format of OSPF packets is not flexible enough to enable applications to exchange arbitrary data, which may be necessary in certain situations.  This memo describes a vendor-specific, backward-compatible technique to perform link-local signaling, i.e., exchange arbitrary data on a link.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC4813 -> rev_cites;
+  RFC5613 [label="RFC5613
+OSPF Link-Local Signaling
+2009", shape=ellipse, URL="RFC5613.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol.  OSPF routers exchange information on a link using packets that follow a well-defined fixed format.  The format is not flexible enough to enable new features that need to exchange arbitrary data.  This document describes a backward-compatible technique to perform link-local signaling, i.e., exchange arbitrary data on a link.  This document replaces the experimental specification published in RFC 4813 to bring it on the Standards Track."];
+  RFC5613 -> rev_cites;
+}

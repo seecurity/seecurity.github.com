@@ -1,0 +1,43 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9228 [label="RFC9228
+Delivered-To Email Header Field
+2022", shape=ellipse, fillcolor="#e8f0ff", tooltip="The address to which email is delivered might be different than any of the addresses shown in any of the content header fields that were created by the email's author. For example, the address used by the email transport service is provided separately, such as through SMTP's RCPT TO command, and might not match any address in the To: or cc: fields. In addition, before final delivery, handling can entail a sequence of submission/delivery events, using a sequence of different destination addresses that (eventually) lead to the recipient. As well, a receiving system's delivery process can produce local address transformations. It can be helpful for a message to have a common way to record each delivery in such a sequence, noting each address used in the sequence to that recipient, such as for (1) analyzing the path a message has taken, (2) loop detection, or (3) formulating the author's address in a reply message. This document defines a header field for this information. Email handling information discloses details about the email infrastructure, as well as about a particular recipient; this can raise privacy concerns. A header field such as this is not automatically assured of widespread use. Therefore, this document is being published as an Experimental RFC, looking for constituency and for operational utility. This document was produced through the Independent Submission Stream and was not subject to the IETF's approval process."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9228;
+
+  obs [label="obsoletes", shape=box];
+  RFC9228 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9228 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9228;
+
+  cites [label="cites", shape=box];
+  RFC9228 -> cites;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3864 [label="RFC3864
+Registration Procedures for Message
+Header Fields
+2004", shape=ellipse, URL="RFC3864.html", target="_top", tooltip="This specification defines registration procedures for the message header fields used by Internet mail, HTTP, Netnews and other applications.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3864;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9228;
+}

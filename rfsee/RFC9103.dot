@@ -1,0 +1,167 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9103 [label="RFC9103
+DNS Zone Transfer over TLS
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="DNS zone transfers are transmitted in cleartext, which gives attackers the opportunity to collect the content of a zone by eavesdropping on network connections.  The DNS Transaction Signature (TSIG) mechanism is specified to restrict direct zone transfer to authorized clients only, but it does not add confidentiality.  This document specifies the use of TLS, rather than cleartext, to prevent zone content collection via passive monitoring of zone transfers: XFR over TLS (XoT).  Additionally, this specification updates RFC 1995 and RFC 5936 with respect to efficient use of TCP connections and RFC 7766 with respect to the recommended number of connections between a client and server for each transport."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9103;
+
+  obs [label="obsoletes", shape=box];
+  RFC9103 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9103 -> updates;
+  RFC1995 [label="RFC1995
+Incremental Zone Transfer in DNS
+1996", shape=ellipse, URL="RFC1995.html", target="_top", tooltip="This document proposes extensions to the DNS protocols to provide an incremental zone transfer (IXFR) mechanism. [STANDARDS-TRACK]"];
+  updates -> RFC1995;
+  RFC5936 [label="RFC5936
+DNS Zone Transfer Protocol (AXFR)
+2010", shape=ellipse, URL="RFC5936.html", target="_top", tooltip="The standard means within the Domain Name System protocol for maintaining coherence among a zone's authoritative name servers consists of three mechanisms. Authoritative Transfer (AXFR) is one of the mechanisms and is defined in RFC 1034 and RFC 1035. The definition of AXFR has proven insufficient in detail, thereby forcing implementations intended to be compliant to make assumptions, impeding interoperability. Yet today we have a satisfactory set of implementations that do interoperate. This document is a new definition of AXFR -- new in the sense that it records an accurate definition of an interoperable AXFR mechanism. [STANDARDS-TRACK]"];
+  updates -> RFC5936;
+  RFC7766 [label="RFC7766
+DNS Transport over TCP - Implementation
+Requirements
+2016", shape=ellipse, URL="RFC7766.html", target="_top", tooltip="This document specifies the requirement for support of TCP as a transport protocol for DNS implementations and provides guidelines towards DNS-over-TCP performance on par with that of DNS-over-UDP.  This document obsoletes RFC 5966 and therefore updates RFC 1035 and RFC 1123."];
+  updates -> RFC7766;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9103;
+
+  cites [label="cites", shape=box];
+  RFC9103 -> cites;
+  RFC9076 [label="RFC9076
+DNS Privacy Considerations
+2021", shape=ellipse, URL="RFC9076.html", target="_top", tooltip="This document describes the privacy issues associated with the use of the DNS by Internet users.  It provides general observations about typical current privacy practices.  It is intended to be an analysis of the present situation and does not prescribe solutions.  This document obsoletes RFC 7626."];
+  cites -> RFC9076;
+  RFC7858 [label="RFC7858
+Specification for DNS over Transport
+Layer Security (TLS)
+2016", shape=ellipse, URL="RFC7858.html", target="_top", tooltip="This document describes the use of Transport Layer Security (TLS) to provide privacy for DNS. Encryption provided by TLS eliminates opportunities for eavesdropping and on-path tampering with DNS queries in the network, such as discussed in RFC 7626. In addition, this document specifies two usage profiles for DNS over TLS and provides advice on performance considerations to minimize overhead from using TCP and TLS with DNS. This document focuses on securing stub-to-recursive traffic, as per the charter of the DPRIVE Working Group. It does not prevent future applications of the protocol to recursive-to-authoritative traffic."];
+  cites -> RFC7858;
+  RFC8484 [label="RFC8484
+DNS Queries over HTTPS (DoH)
+2018", shape=ellipse, URL="RFC8484.html", target="_top", tooltip="This document defines a protocol for sending DNS queries and getting DNS responses over HTTPS.  Each DNS query-response pair is mapped into an HTTP exchange."];
+  cites -> RFC8484;
+  RFC1995 [label="RFC1995
+Incremental Zone Transfer in DNS
+1996", shape=ellipse, URL="RFC1995.html", target="_top", tooltip="This document proposes extensions to the DNS protocols to provide an incremental zone transfer (IXFR) mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC1995;
+  RFC5936 [label="RFC5936
+DNS Zone Transfer Protocol (AXFR)
+2010", shape=ellipse, URL="RFC5936.html", target="_top", tooltip="The standard means within the Domain Name System protocol for maintaining coherence among a zone's authoritative name servers consists of three mechanisms. Authoritative Transfer (AXFR) is one of the mechanisms and is defined in RFC 1034 and RFC 1035. The definition of AXFR has proven insufficient in detail, thereby forcing implementations intended to be compliant to make assumptions, impeding interoperability. Yet today we have a satisfactory set of implementations that do interoperate. This document is a new definition of AXFR -- new in the sense that it records an accurate definition of an interoperable AXFR mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC5936;
+  RFC5155 [label="RFC5155
+DNS Security (DNSSEC) Hashed
+Authenticated Denial of Existence
+2008", shape=ellipse, URL="RFC5155.html", target="_top", tooltip="The Domain Name System Security (DNSSEC) Extensions introduced the NSEC resource record (RR) for authenticated denial of existence.  This document introduces an alternative resource record, NSEC3, which similarly provides authenticated denial of existence.  However, it also provides measures against zone enumeration and permits gradual expansion of delegation-centric zones. [STANDARDS-TRACK]"];
+  cites -> RFC5155;
+  RFC8945 [label="RFC8945
+Secret Key Transaction Authentication
+for DNS (TSIG)
+2020", shape=ellipse, URL="RFC8945.html", target="_top", tooltip="This document describes a protocol for transaction-level authentication using shared secrets and one-way hashing. It can be used to authenticate dynamic updates to a DNS zone as coming from an approved client or to authenticate responses as coming from an approved name server. No recommendation is made here for distributing the shared secrets; it is expected that a network administrator will statically configure name servers and clients using some out-of-band mechanism. This document obsoletes RFCs 2845 and 4635."];
+  cites -> RFC8945;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  cites -> RFC8499;
+  RFC7766 [label="RFC7766
+DNS Transport over TCP - Implementation
+Requirements
+2016", shape=ellipse, URL="RFC7766.html", target="_top", tooltip="This document specifies the requirement for support of TCP as a transport protocol for DNS implementations and provides guidelines towards DNS-over-TCP performance on par with that of DNS-over-UDP.  This document obsoletes RFC 5966 and therefore updates RFC 1035 and RFC 1123."];
+  cites -> RFC7766;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6973 [label="RFC6973
+Privacy Considerations for Internet
+Protocols
+2013", shape=ellipse, URL="RFC6973.html", target="_top", tooltip="This document offers guidance for developing privacy considerations for inclusion in protocol specifications.  It aims to make designers, implementers, and users of Internet protocols aware of privacy-related design choices.  It suggests that whether any individual RFC warrants a specific privacy considerations section will depend on the document's content."];
+  cites -> RFC6973;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC1996 [label="RFC1996
+A Mechanism for Prompt Notification of
+Zone Changes (DNS NOTIFY)
+1996", shape=ellipse, URL="RFC1996.html", target="_top", tooltip="This memo describes the NOTIFY opcode for DNS, by which a master server advises a set of slave servers that the master's data has been changed and that a query should be initiated to discover the new data. [STANDARDS-TRACK]"];
+  cites -> RFC1996;
+  RFC1982 [label="RFC1982
+Serial Number Arithmetic
+1996", shape=ellipse, URL="RFC1982.html", target="_top", tooltip="The DNS has long relied upon serial number arithmetic, a concept which has never really been defined, certainly not in an IETF document, though which has been widely understood.  This memo supplies the missing definition.  It is intended to update RFC1034 and RFC1035. [STANDARDS-TRACK]"];
+  cites -> RFC1982;
+  RFC7828 [label="RFC7828
+The edns-tcp-keepalive EDNS0 Option
+2016", shape=ellipse, URL="RFC7828.html", target="_top", tooltip="DNS messages between clients and servers may be received over either UDP or TCP. UDP transport involves keeping less state on a busy server, but can cause truncation and retries over TCP. Additionally, UDP can be exploited for reflection attacks. Using TCP would reduce retransmits and amplification. However, clients commonly use TCP only for retries and servers typically use idle timeouts on the order of seconds. This document defines an EDNS0 option (edns-tcp-keepalive) that allows DNS servers to signal a variable idle timeout. This signalling encourages the use of long-lived TCP connections by allowing the state associated with TCP transport to be managed effectively with minimal impact on the DNS transaction time."];
+  cites -> RFC7828;
+  RFC8914 [label="RFC8914
+Extended DNS Errors
+2020", shape=ellipse, URL="RFC8914.html", target="_top", tooltip="This document defines an extensible method to return additional information about the cause of DNS errors.  Though created primarily to extend SERVFAIL to provide additional information about the cause of DNS and DNSSEC failures, the Extended DNS Errors option defined in this document allows all response types to contain extended error information.  Extended DNS Error information does not change the processing of RCODEs."];
+  cites -> RFC8914;
+  RFC6891 [label="RFC6891
+Extension Mechanisms for DNS (EDNS(0))
+2013", shape=ellipse, URL="RFC6891.html", target="_top", tooltip="The Domain Name System's wire protocol includes a number of fixed fields whose range has been or soon will be exhausted and does not allow requestors to advertise their capabilities to responders. This document describes backward-compatible mechanisms for allowing the protocol to grow. This document updates the Extension Mechanisms for DNS (EDNS(0)) specification (and obsoletes RFC 2671) based on feedback from deployment experience in several implementations. It also obsoletes RFC 2673 (Binary Labels in the Domain Name System) and adds considerations on the use of extended labels in the DNS."];
+  cites -> RFC6891;
+  RFC8446 [label="RFC8446
+The Transport Layer Security (TLS)
+Protocol Version 1.3
+2018", shape=ellipse, URL="RFC8446.html", target="_top", tooltip="This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery. This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations."];
+  cites -> RFC8446;
+  RFC8310 [label="RFC8310
+Usage Profiles for DNS over TLS and DNS
+over DTLS
+2018", shape=ellipse, URL="RFC8310.html", target="_top", tooltip="This document discusses usage profiles, based on one or more authentication mechanisms, which can be used for DNS over Transport Layer Security (TLS) or Datagram TLS (DTLS).  These profiles can increase the privacy of DNS transactions compared to using only cleartext DNS.  This document also specifies new authentication mechanisms -- it describes several ways that a DNS client can use an authentication domain name to authenticate a (D)TLS connection to a DNS server.  Additionally, it defines (D)TLS protocol profiles for DNS clients and servers implementing DNS over (D)TLS.  This document updates RFC 7858."];
+  cites -> RFC8310;
+  RFC2931 [label="RFC2931
+DNS Request and Transaction Signatures (
+SIG(0)s )
+2000", shape=ellipse, URL="RFC2931.html", target="_top", tooltip="This document describes the minor but non-interoperable changes in Request and Transaction signature resource records ( SIG(0)s ) that implementation experience has deemed necessary. [STANDARDS-TRACK]"];
+  cites -> RFC2931;
+  RFC8976 [label="RFC8976
+Message Digest for DNS Zones
+2021", shape=ellipse, URL="RFC8976.html", target="_top", tooltip="This document describes a protocol and new DNS Resource Record that provides a cryptographic message digest over DNS zone data at rest. The ZONEMD Resource Record conveys the digest data in the zone itself. When used in combination with DNSSEC, ZONEMD allows recipients to verify the zone contents for data integrity and origin authenticity. This provides assurance that received zone data matches published data, regardless of how the zone data has been transmitted and received. When used without DNSSEC, ZONEMD functions as a checksum, guarding only against unintentional changes. ZONEMD does not replace DNSSEC: DNSSEC protects individual RRsets (DNS data with fine granularity), whereas ZONEMD protects a zone's data as a whole, whether consumed by authoritative name servers, recursive name servers, or any other applications. As specified herein, ZONEMD is impractical for large, dynamic zones due to the time and resources required for digest calculation. However, the ZONEMD record is extensible so that new digest schemes may be added in the future to support large, dynamic zones."];
+  cites -> RFC8976;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9103;
+  RFC9250 [label="RFC9250
+DNS over Dedicated QUIC Connections
+2022", shape=ellipse, URL="RFC9250.html", target="_top", tooltip="This document describes the use of QUIC to provide transport confidentiality for DNS.  The encryption provided by QUIC has similar properties to those provided by TLS, while QUIC transport eliminates the head-of-line blocking issues inherent with TCP and provides more efficient packet-loss recovery than UDP.  DNS over QUIC (DoQ) has privacy properties similar to DNS over TLS (DoT) specified in RFC 7858, and latency characteristics similar to classic DNS over UDP.  This specification describes the use of DoQ as a general-purpose transport for DNS and includes the use of DoQ for stub to recursive, recursive to authoritative, and zone transfer scenarios."];
+  RFC9250 -> rev_cites;
+  RFC9432 [label="RFC9432
+DNS Catalog Zones
+2023", shape=ellipse, URL="RFC9432.html", target="_top", tooltip="This document describes a method for automatic DNS zone provisioning among DNS primary and secondary name servers by storing and transferring the catalog of zones to be provisioned as one or more regular DNS zones."];
+  RFC9432 -> rev_cites;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+  RFC9526 [label="RFC9526
+Simple Provisioning of Public Names for
+Residential Networks
+2024", shape=ellipse, URL="RFC9526.html", target="_top", tooltip="Home network owners may have devices or services hosted on their home network that they wish to access from the Internet (i.e., from a network outside of the home network). Home networks are increasingly numbered using IPv6 addresses, which in principle makes this access simpler, but accessing home networks from the Internet requires the names and IP addresses of these devices and services to be made available in the public DNS. This document describes how a Home Naming Authority (NHA) instructs the outsourced infrastructure to publish these pieces of information in the public DNS. The names and IP addresses of the home network are set in the Public Homenet Zone by the Homenet Naming Authority (HNA), which in turn instructs an outsourced infrastructure to publish the zone on behalf of the home network owner."];
+  RFC9526 -> rev_cites;
+  RFC9527 [label="RFC9527
+DHCPv6 Options for the Homenet Naming
+Authority
+2024", shape=ellipse, URL="RFC9527.html", target="_top", tooltip="This document defines DHCPv6 options so that a Homenet Naming Authority (HNA) can automatically set the appropriate configuration and outsource the authoritative naming service for the home network.  In most cases, the outsourcing mechanism is transparent for the end user."];
+  RFC9527 -> rev_cites;
+}

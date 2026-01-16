@@ -1,0 +1,100 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9569 [label="RFC9569
+The Application-Layer Traffic
+Optimization (ALTO) Transport
+Information Publication Service (TIPS)
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="Application-Layer Traffic Optimization (ALTO) Protocol (RFC 7285) leverages HTTP/1.1 and is designed for the simple, sequential request-reply use case, in which an ALTO client requests a sequence of information resources and the server responds with the complete content of each resource, one at a time. RFC 8895, which describes ALTO incremental updates using Server-Sent Events (SSE), defines a multiplexing protocol on top of HTTP/1.x, so that an ALTO server can incrementally push resource updates to clients whenever monitored network information resources change, allowing the clients to monitor multiple resources at the same time. However, HTTP/2 and later versions already support concurrent, non-blocking transport of multiple streams in the same HTTP connection. To take advantage of newer HTTP features, this document introduces the ALTO Transport Information Publication Service (TIPS). TIPS uses an incremental RESTful design to give an ALTO client the new capability to explicitly and concurrently (in a non-blocking manner) request (or pull) specific incremental updates using HTTP/2 or HTTP/3, while still functioning for HTTP/1.1."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9569;
+
+  obs [label="obsoletes", shape=box];
+  RFC9569 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9569 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9569;
+
+  cites [label="cites", shape=box];
+  RFC9569 -> cites;
+  RFC7285 [label="RFC7285
+Application-Layer Traffic Optimization
+(ALTO) Protocol
+2014", shape=ellipse, URL="RFC7285.html", target="_top", tooltip="Applications using the Internet already have access to some topology information of Internet Service Provider (ISP) networks. For example, views to Internet routing tables at Looking Glass servers are available and can be practically downloaded to many network application clients. What is missing is knowledge of the underlying network topologies from the point of view of ISPs. In other words, what an ISP prefers in terms of traffic optimization -- and a way to distribute it. The Application-Layer Traffic Optimization (ALTO) services defined in this document provide network information (e.g., basic network location structure and preferences of network paths) with the goal of modifying network resource consumption patterns while maintaining or improving application performance. The basic information of ALTO is based on abstract maps of a network. These maps provide a simplified view, yet enough information about a network for applications to effectively utilize them. Additional services are built on top of the maps. This document describes a protocol implementing the ALTO services. Although the ALTO services would primarily be provided by ISPs, other entities, such as content service providers, could also provide ALTO services. Applications that could use the ALTO services are those that have a choice to which end points to connect. Examples of such applications are peer-to-peer (P2P) and content delivery networks."];
+  cites -> RFC7285;
+  RFC8895 [label="RFC8895
+Application-Layer Traffic Optimization
+(ALTO) Incremental Updates Using Server-
+Sent Events (SSE)
+2020", shape=ellipse, URL="RFC8895.html", target="_top", tooltip="The Application-Layer Traffic Optimization (ALTO) protocol (RFC 7285) provides network-related information, called network information resources, to client applications so that clients can make informed decisions in utilizing network resources.  This document presents a mechanism to allow an ALTO server to push updates to ALTO clients to achieve two benefits: (1) updates can be incremental, in that if only a small section of an information resource changes, the ALTO server can send just the changes and (2) updates can be immediate, in that the ALTO server can send updates as soon as they are available."];
+  cites -> RFC8895;
+  RFC9112 [label="RFC9112
+HTTP/1.1
+2022", shape=ellipse, URL="RFC9112.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems. This document specifies the HTTP/1.1 message syntax, message parsing, connection management, and related security concerns. This document obsoletes portions of RFC 7230."];
+  cites -> RFC9112;
+  RFC9113 [label="RFC9113
+HTTP/2
+2022", shape=ellipse, URL="RFC9113.html", target="_top", tooltip="This specification describes an optimized expression of the semantics of the Hypertext Transfer Protocol (HTTP), referred to as HTTP version 2 (HTTP/2). HTTP/2 enables a more efficient use of network resources and a reduced latency by introducing field compression and allowing multiple concurrent exchanges on the same connection. This document obsoletes RFCs 7540 and 8740."];
+  cites -> RFC9113;
+  RFC9114 [label="RFC9114
+HTTP/3
+2022", shape=ellipse, URL="RFC9114.html", target="_top", tooltip="The QUIC transport protocol has several features that are desirable in a transport for HTTP, such as stream multiplexing, per-stream flow control, and low-latency connection establishment.  This document describes a mapping of HTTP semantics over QUIC.  This document also identifies HTTP/2 features that are subsumed by QUIC and describes how HTTP/2 extensions can be ported to HTTP/3."];
+  cites -> RFC9114;
+  RFC9205 [label="RFC9205
+Building Protocols with HTTP
+2022", shape=ellipse, URL="RFC9205.html", target="_top", tooltip="Applications often use HTTP as a substrate to create HTTP-based APIs. This document specifies best practices for writing specifications that use HTTP to define new application protocols. It is written primarily to guide IETF efforts to define application protocols using HTTP for deployment on the Internet but might be applicable in other situations. This document obsoletes RFC 3205."];
+  cites -> RFC9205;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC3986 [label="RFC3986
+Uniform Resource Identifier (URI):
+Generic Syntax
+2005", shape=ellipse, URL="RFC3986.html", target="_top", tooltip="A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource.  This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet.  The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier.  This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme. [STANDARDS-TRACK]"];
+  cites -> RFC3986;
+  RFC9562 [label="RFC9562
+Universally Unique IDentifiers (UUIDs)
+2024", shape=ellipse, URL="RFC9562.html", target="_top", tooltip="This specification defines UUIDs (Universally Unique IDentifiers) --
+also known as GUIDs (Globally Unique IDentifiers) -- and a Uniform
+Resource Name namespace for UUIDs. A UUID is 128 bits long and is
+intended to guarantee uniqueness across space and time. UUIDs were
+originally used in the Apollo Network Computing System (NCS), later
+in the Open Software Foundation's (OSF's) Distributed Computing
+Environment (DCE), and then in Microsoft Windows platforms. This specification is derived from the OSF DCE specification with the
+kind permission of the OSF (now known as The Open Group). Information from earlier versions of the OSF DCE specification have
+been incorporated into this document. This document obsoletes RFC
+4122."];
+  cites -> RFC9562;
+  RFC7617 [label="RFC7617
+The 'Basic' HTTP Authentication Scheme
+2015", shape=ellipse, URL="RFC7617.html", target="_top", tooltip="This document defines the Basic Hypertext Transfer Protocol (HTTP) authentication scheme, which transmits credentials as user-id/ password pairs, encoded using Base64."];
+  cites -> RFC7617;
+  RFC9325 [label="RFC9325
+Recommendations for Secure Use of
+Transport Layer Security (TLS) and
+Datagram Transport Layer Security (DTLS)
+2022", shape=ellipse, URL="RFC9325.html", target="_top", tooltip="Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS) are used to protect data exchanged over a wide range of application protocols and can also form the basis for secure transport protocols. Over the years, the industry has witnessed several serious attacks on TLS and DTLS, including attacks on the most commonly used cipher suites and their modes of operation. This document provides the latest recommendations for ensuring the security of deployed services that use TLS and DTLS. These recommendations are applicable to the majority of use cases. RFC 7525, an earlier version of the TLS recommendations, was published when the industry was transitioning to TLS 1.2. Years later, this transition is largely complete, and TLS 1.3 is widely available. This document updates the guidance given the new environment and obsoletes RFC 7525. In addition, this document updates RFCs 5288 and 6066 in view of recent attacks."];
+  cites -> RFC9325;
+  RFC8259 [label="RFC8259
+The JavaScript Object Notation (JSON)
+Data Interchange Format
+2017", shape=ellipse, URL="RFC8259.html", target="_top", tooltip="JavaScript Object Notation (JSON) is a lightweight, text-based, language-independent data interchange format. It was derived from the ECMAScript Programming Language Standard. JSON defines a small set of formatting rules for the portable representation of structured data. This document removes inconsistencies with other specifications of JSON, repairs specification errors, and offers experience-based interoperability guidance."];
+  cites -> RFC8259;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9569;
+}

@@ -1,0 +1,49 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7654 [label="RFC7654
+Benchmarking Methodology for In-Service
+Software Upgrade (ISSU)
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="Modern forwarding devices attempt to minimize any control- and data-plane disruptions while performing planned software changes by implementing a technique commonly known as In-Service Software Upgrade (ISSU).  This document specifies a set of common methodologies and procedures designed to characterize the overall behavior of a Device Under Test (DUT), subject to an ISSU event."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7654;
+
+  obs [label="obsoletes", shape=box];
+  RFC7654 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7654 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7654;
+
+  cites [label="cites", shape=box];
+  RFC7654 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5880 [label="RFC5880
+Bidirectional Forwarding Detection (BFD)
+2010", shape=ellipse, URL="RFC5880.html", target="_top", tooltip="This document describes a protocol intended to detect faults in the bidirectional path between two forwarding engines, including interfaces, data link(s), and to the extent possible the forwarding engines themselves, with potentially very low latency.  It operates independently of media, data protocols, and routing protocols. [STANDARDS-TRACK]"];
+  cites -> RFC5880;
+  RFC6815 [label="RFC6815
+Applicability Statement for RFC 2544:
+Use on Production Networks Considered
+Harmful
+2012", shape=ellipse, URL="RFC6815.html", target="_top", tooltip="The Benchmarking Methodology Working Group (BMWG) has been developing key performance metrics and laboratory test methods since 1990, and continues this work at present.  The methods described in RFC 2544 are intended to generate traffic that overloads network device resources in order to assess their capacity.  Overload of shared resources would likely be harmful to user traffic performance on a production network, and there are further negative consequences identified with production application of the methods.  This memo clarifies the scope of RFC 2544 and other IETF BMWG benchmarking work for isolated test environments only, and it encourages new standards activity for measurement methods applicable outside that scope.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6815;
+  RFC2544 [label="RFC2544
+Benchmarking Methodology for Network
+Interconnect Devices
+1999", shape=ellipse, URL="RFC2544.html", target="_top", tooltip="This document is a republication of RFC 1944 correcting the values for the IP addresses which were assigned to be used as the default addresses for networking test equipment.  This memo provides information for the Internet community."];
+  cites -> RFC2544;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7654;
+}

@@ -1,0 +1,114 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9443 [label="RFC9443
+Multiplexing Scheme Updates for QUIC
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC 7983 defines a scheme for a Real-time Transport Protocol (RTP) receiver to demultiplex Datagram Transport Layer Security (DTLS), Session Traversal Utilities for NAT (STUN), Secure Real-time Transport Protocol (SRTP) / Secure Real-time Transport Control Protocol (SRTCP), ZRTP, and Traversal Using Relays around NAT (TURN) channel packets arriving on a single port.  This document updates RFC 7983 and RFC 5764 to also allow QUIC packets to be multiplexed on a single receiving socket."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9443;
+
+  obs [label="obsoletes", shape=box];
+  RFC9443 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9443 -> updates;
+  RFC5764 [label="RFC5764
+Datagram Transport Layer Security (DTLS)
+Extension to Establish Keys for the
+Secure Real-time Transport Protocol
+(SRTP)
+2010", shape=ellipse, URL="RFC5764.html", target="_top", tooltip="This document describes a Datagram Transport Layer Security (DTLS) extension to establish keys for Secure RTP (SRTP) and Secure RTP Control Protocol (SRTCP) flows.  DTLS keying happens on the media path, independent of any out-of-band signalling channel present. [STANDARDS-TRACK]"];
+  updates -> RFC5764;
+  RFC7983 [label="RFC7983
+Multiplexing Scheme Updates for Secure
+Real-time Transport Protocol (SRTP)
+Extension for Datagram Transport Layer
+Security (DTLS)
+2016", shape=ellipse, URL="RFC7983.html", target="_top", tooltip="This document defines how Datagram Transport Layer Security (DTLS), Real-time Transport Protocol (RTP), RTP Control Protocol (RTCP), Session Traversal Utilities for NAT (STUN), Traversal Using Relays around NAT (TURN), and ZRTP packets are multiplexed on a single receiving socket. It overrides the guidance from RFC 5764 (SRTP Extension for DTLS), which suffered from four issues described and fixed in this document. This document updates RFC 5764."];
+  updates -> RFC7983;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9443;
+
+  cites [label="cites", shape=box];
+  RFC9443 -> cites;
+  RFC7983 [label="RFC7983
+Multiplexing Scheme Updates for Secure
+Real-time Transport Protocol (SRTP)
+Extension for Datagram Transport Layer
+Security (DTLS)
+2016", shape=ellipse, URL="RFC7983.html", target="_top", tooltip="This document defines how Datagram Transport Layer Security (DTLS), Real-time Transport Protocol (RTP), RTP Control Protocol (RTCP), Session Traversal Utilities for NAT (STUN), Traversal Using Relays around NAT (TURN), and ZRTP packets are multiplexed on a single receiving socket. It overrides the guidance from RFC 5764 (SRTP Extension for DTLS), which suffered from four issues described and fixed in this document. This document updates RFC 5764."];
+  cites -> RFC7983;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC9147 [label="RFC9147
+The Datagram Transport Layer Security
+(DTLS) Protocol Version 1.3
+2022", shape=ellipse, URL="RFC9147.html", target="_top", tooltip="This document specifies version 1.3 of the Datagram Transport Layer Security (DTLS) protocol. DTLS 1.3 allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery. The DTLS 1.3 protocol is based on the Transport Layer Security (TLS) 1.3 protocol and provides equivalent security guarantees with the exception of order protection / non-replayability. Datagram semantics of the underlying transport are preserved by the DTLS protocol. This document obsoletes RFC 6347."];
+  cites -> RFC9147;
+  RFC8489 [label="RFC8489
+Session Traversal Utilities for NAT
+(STUN)
+2020", shape=ellipse, URL="RFC8489.html", target="_top", tooltip="Session Traversal Utilities for NAT (STUN) is a protocol that serves as a tool for other protocols in dealing with NAT traversal. It can be used by an endpoint to determine the IP address and port allocated to it by a NAT. It can also be used to check connectivity between two endpoints and as a keep-alive protocol to maintain NAT bindings. STUN works with many existing NATs and does not require any special behavior from them. STUN is not a NAT traversal solution by itself. Rather, it is a tool to be used in the context of a NAT traversal solution. This document obsoletes RFC 5389."];
+  cites -> RFC8489;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  cites -> RFC3711;
+  RFC6189 [label="RFC6189
+ZRTP: Media Path Key Agreement for
+Unicast Secure RTP
+2011", shape=ellipse, URL="RFC6189.html", target="_top", tooltip="This document defines ZRTP, a protocol for media path Diffie-Hellman exchange to agree on a session key and parameters for establishing unicast Secure Real-time Transport Protocol (SRTP) sessions for Voice over IP (VoIP) applications.  The ZRTP protocol is media path keying because it is multiplexed on the same port as RTP and does not require support in the signaling protocol.  ZRTP does not assume a Public Key Infrastructure (PKI) or require the complexity of certificates in end devices.  For the media session, ZRTP provides confidentiality, protection against man-in-the-middle (MiTM) attacks, and, in cases where the signaling protocol provides end-to-end integrity protection, authentication.  ZRTP can utilize a Session Description Protocol (SDP) attribute to provide discovery and authentication through the signaling channel.  To provide best effort SRTP, ZRTP utilizes normal RTP/AVP (Audio-Visual Profile) profiles.  ZRTP secures media sessions that include a voice media stream and can also secure media sessions that do not include voice by using an optional digital signature.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6189;
+  RFC5764 [label="RFC5764
+Datagram Transport Layer Security (DTLS)
+Extension to Establish Keys for the
+Secure Real-time Transport Protocol
+(SRTP)
+2010", shape=ellipse, URL="RFC5764.html", target="_top", tooltip="This document describes a Datagram Transport Layer Security (DTLS) extension to establish keys for Secure RTP (SRTP) and Secure RTP Control Protocol (SRTCP) flows.  DTLS keying happens on the media path, independent of any out-of-band signalling channel present. [STANDARDS-TRACK]"];
+  cites -> RFC5764;
+  RFC9000 [label="RFC9000
+QUIC: A UDP-Based Multiplexed and Secure
+Transport
+2021", shape=ellipse, URL="RFC9000.html", target="_top", tooltip="This document defines the core of the QUIC transport protocol.  QUIC provides applications with flow-controlled streams for structured communication, low-latency connection establishment, and network path migration.  QUIC includes security measures that ensure confidentiality, integrity, and availability in a range of deployment circumstances.  Accompanying documents describe the integration of TLS for key negotiation, loss detection, and an exemplary congestion control algorithm."];
+  cites -> RFC9000;
+  RFC9369 [label="RFC9369
+QUIC Version 2
+2023", shape=ellipse, URL="RFC9369.html", target="_top", tooltip="This document specifies QUIC version 2, which is identical to QUIC version 1 except for some trivial details. Its purpose is to combat various ossification vectors and exercise the version negotiation framework. It also serves as a template for the minimum changes in any future version of QUIC. Note that version 2 is an informal name for this proposal that indicates it is the second version of QUIC to be published as a Standards Track document. The protocol specified here uses a version number other than 2 in the wire image, in order to minimize ossification risks."];
+  cites -> RFC9369;
+  RFC9287 [label="RFC9287
+Greasing the QUIC Bit
+2022", shape=ellipse, URL="RFC9287.html", target="_top", tooltip="This document describes a method for negotiating the ability to send an arbitrary value for the second-most significant bit in QUIC packets."];
+  cites -> RFC9287;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8656 [label="RFC8656
+Traversal Using Relays around NAT
+(TURN): Relay Extensions to Session
+Traversal Utilities for NAT (STUN)
+2020", shape=ellipse, URL="RFC8656.html", target="_top", tooltip="If a host is located behind a NAT, it can be impossible for that host to communicate directly with other hosts (peers) in certain situations. In these situations, it is necessary for the host to use the services of an intermediate node that acts as a communication relay. This specification defines a protocol, called Traversal Using Relays around NAT (TURN), that allows the host to control the operation of the relay and to exchange packets with its peers using the relay. TURN differs from other relay control protocols in that it allows a client to communicate with multiple peers using a single relay address. The TURN protocol was designed to be used as part of the Interactive Connectivity Establishment (ICE) approach to NAT traversal, though it can also be used without ICE. This document obsoletes RFCs 5766 and 6156."];
+  cites -> RFC8656;
+  RFC9001 [label="RFC9001
+Using TLS to Secure QUIC
+2021", shape=ellipse, URL="RFC9001.html", target="_top", tooltip="This document describes how Transport Layer Security (TLS) is used to secure QUIC."];
+  cites -> RFC9001;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9443;
+}

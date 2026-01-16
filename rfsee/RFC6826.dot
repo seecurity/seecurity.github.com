@@ -1,0 +1,92 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6826 [label="RFC6826
+Multipoint LDP In-Band Signaling for
+Point-to-Multipoint and Multipoint-to-
+Multipoint Label Switched Paths
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="Consider an IP multicast tree, constructed by Protocol Independent Multicast (PIM), that needs to pass through an MPLS domain in which Multipoint LDP (mLDP) point-to-multipoint and/or multipoint-to-multipoint Labels Switched Paths (LSPs) can be created.  The part of the IP multicast tree that traverses the MPLS domain can be instantiated as a multipoint LSP.  When a PIM Join message is received at the border of the MPLS domain, information from that message is encoded into mLDP messages.  When the mLDP messages reach the border of the next IP domain, the encoded information is used to generate PIM messages that can be sent through the IP domain.  The result is an IP multicast tree consisting of a set of IP multicast sub-trees that are spliced together with a multipoint LSP.  This document describes procedures regarding how IP multicast trees are spliced together with multipoint LSPs. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6826;
+
+  obs [label="obsoletes", shape=box];
+  RFC6826 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6826 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6826;
+  RFC7438 [label="RFC7438
+Multipoint LDP (mLDP) In-Band Signaling
+with Wildcards
+2015", shape=ellipse, URL="RFC7438.html", target="_top", tooltip="There are scenarios in which an IP multicast tree traverses an MPLS domain.  In these scenarios, it can be desirable to convert the IP multicast tree seamlessly into an MPLS Multipoint Label Switched Path (MP-LSP) when it enters the MPLS domain, and then to convert it back to an IP multicast tree when it exits the MPLS domain.  Previous documents specify procedures that allow certain kinds of IP multicast trees (either Source-Specific Multicast trees or Bidirectional Multicast trees) to be attached to an MPLS Multipoint Label Switched Path (MP-LSP).  However, the previous documents do not specify procedures for attaching IP Any-Source Multicast trees to MP-LSPs, nor do they specify procedures for aggregating multiple IP multicast trees onto a single MP-LSP.  This document specifies the procedures to support these functions.  It does so by defining wildcard encodings that make it possible to specify, when setting up an MP- LSP, that a set of IP multicast trees, or a shared IP multicast tree, should be attached to that MP-LSP.  Support for non-bidirectional IP Any-Source Multicast trees is subject to certain applicability restrictions that are discussed in this document.  This document updates RFCs 6826 and 7246."];
+  RFC7438 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC6826 -> cites;
+  RFC6388 [label="RFC6388
+Label Distribution Protocol Extensions
+for Point-to-Multipoint and Multipoint-
+to-Multipoint Label Switched Paths
+2011", shape=ellipse, URL="RFC6388.html", target="_top", tooltip="This document describes extensions to the Label Distribution Protocol (LDP) for the setup of point-to-multipoint (P2MP) and multipoint-to-multipoint (MP2MP) Label Switched Paths (LSPs) in MPLS networks.  These extensions are also referred to as multipoint LDP.  Multipoint LDP constructs the P2MP or MP2MP LSPs without interacting with or relying upon any other multicast tree construction protocol.  Protocol elements and procedures for this solution are described for building such LSPs in a receiver-initiated manner.  There can be various applications for multipoint LSPs, for example IP multicast or support for multicast in BGP/MPLS Layer 3 Virtual Private Networks (L3VPNs).  Specification of how such applications can use an LDP signaled multipoint LSP is outside the scope of this document. [STANDARDS-TRACK]"];
+  cites -> RFC6388;
+  RFC6513 [label="RFC6513
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6513.html", target="_top", tooltip="In order for IP multicast traffic within a BGP/MPLS IP VPN (Virtual Private Network) to travel from one VPN site to another, special protocols and procedures must be implemented by the VPN Service Provider.  These protocols and procedures are specified in this document. [STANDARDS-TRACK]"];
+  cites -> RFC6513;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3618 [label="RFC3618
+Multicast Source Discovery Protocol
+(MSDP)
+2003", shape=ellipse, URL="RFC3618.html", target="_top", tooltip="The Multicast Source Discovery Protocol (MSDP) describes a mechanism to connect multiple IP Version 4 Protocol Independent Multicast Sparse-Mode (PIM-SM) domains together.  Each PIM-SM domain uses its own independent Rendezvous Point (RP) and does not have to depend on RPs in other domains.  This document reflects existing MSDP implementations."];
+  cites -> RFC3618;
+  RFC4601 [label="RFC4601
+Protocol Independent Multicast - Sparse
+Mode (PIM-SM): Protocol Specification
+(Revised)
+2006", shape=ellipse, URL="RFC4601.html", target="_top", tooltip="This document specifies Protocol Independent Multicast - Sparse Mode (PIM-SM). PIM-SM is a multicast routing protocol that can use the underlying unicast routing information base or a separate multicast-capable routing information base. It builds unidirectional shared trees rooted at a Rendezvous Point (RP) per group, and optionally creates shortest-path trees per source. This document obsoletes RFC 2362, an Experimental version of PIM-SM. [STANDARDS-TRACK]"];
+  cites -> RFC4601;
+  RFC4607 [label="RFC4607
+Source-Specific Multicast for IP
+2006", shape=ellipse, URL="RFC4607.html", target="_top", tooltip="IP version 4 (IPv4) addresses in the 232/8 (232.0.0.0 to 232.255.255.255) range are designated as source-specific multicast (SSM) destination addresses and are reserved for use by source-specific applications and protocols.  For IP version 6 (IPv6), the address prefix FF3x::/32 is reserved for source-specific multicast use.  This document defines an extension to the Internet network service that applies to datagrams sent to SSM addresses and defines the host and router requirements to support this extension. [STANDARDS-TRACK]"];
+  cites -> RFC4607;
+  RFC5015 [label="RFC5015
+Bidirectional Protocol Independent
+Multicast (BIDIR-PIM)
+2007", shape=ellipse, URL="RFC5015.html", target="_top", tooltip="This document discusses Bidirectional PIM (BIDIR-PIM), a variant of PIM Sparse-Mode that builds bidirectional shared trees connecting multicast sources and receivers.  Bidirectional trees are built using a fail-safe Designated Forwarder (DF) election mechanism operating on each link of a multicast topology.  With the assistance of the DF, multicast data is natively forwarded from sources to the Rendezvous-Point (RP) and hence along the shared tree to receivers without requiring source-specific state.  The DF election takes place at RP discovery time and provides the route to the RP, thus eliminating the requirement for data-driven protocol events. [STANDARDS-TRACK]"];
+  cites -> RFC5015;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  cites -> RFC5036;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6826;
+  RFC7246 [label="RFC7246
+Multipoint Label Distribution Protocol
+In-Band Signaling in a Virtual Routing
+and Forwarding (VRF) Table Context
+2014", shape=ellipse, URL="RFC7246.html", target="_top", tooltip="An IP Multicast Distribution Tree (MDT) may traverse both label switching (i.e., Multiprotocol Label Switching, or MPLS) and non-label switching regions of a network.  Typically, the MDT begins and ends in non-MPLS regions, but travels through an MPLS region.  In such cases, it can be useful to begin building the MDT as a pure IP MDT, then convert it to an MPLS Multipoint Label Switched Path (MP-LSP) when it enters an MPLS-enabled region, and then convert it back to a pure IP MDT when it enters a non-MPLS-enabled region.  Other documents specify the procedures for building such a hybrid MDT, using Protocol Independent Multicast (PIM) in the non-MPLS region of the network, and using Multipoint Label Distribution Protocol (mLDP) in the MPLS region.  This document extends those procedures to handle the case where the link connecting the two regions is a Virtual Routing and Forwarding (VRF) table link, as defined in the BGP IP/MPLS VPN specification.  However, this document is primarily aimed at particular use cases where VRFs are used to support multicast applications other than multicast VPN."];
+  RFC7246 -> rev_cites;
+  RFC7438 [label="RFC7438
+Multipoint LDP (mLDP) In-Band Signaling
+with Wildcards
+2015", shape=ellipse, URL="RFC7438.html", target="_top", tooltip="There are scenarios in which an IP multicast tree traverses an MPLS domain.  In these scenarios, it can be desirable to convert the IP multicast tree seamlessly into an MPLS Multipoint Label Switched Path (MP-LSP) when it enters the MPLS domain, and then to convert it back to an IP multicast tree when it exits the MPLS domain.  Previous documents specify procedures that allow certain kinds of IP multicast trees (either Source-Specific Multicast trees or Bidirectional Multicast trees) to be attached to an MPLS Multipoint Label Switched Path (MP-LSP).  However, the previous documents do not specify procedures for attaching IP Any-Source Multicast trees to MP-LSPs, nor do they specify procedures for aggregating multiple IP multicast trees onto a single MP-LSP.  This document specifies the procedures to support these functions.  It does so by defining wildcard encodings that make it possible to specify, when setting up an MP- LSP, that a set of IP multicast trees, or a shared IP multicast tree, should be attached to that MP-LSP.  Support for non-bidirectional IP Any-Source Multicast trees is subject to certain applicability restrictions that are discussed in this document.  This document updates RFCs 6826 and 7246."];
+  RFC7438 -> rev_cites;
+  RFC7442 [label="RFC7442
+Carrying Protocol Independent Multicast
+- Sparse Mode (PIM-SM) in Any-Source
+Multicast (ASM) Mode Trees over
+Multipoint LDP (mLDP)
+2015", shape=ellipse, URL="RFC7442.html", target="_top", tooltip="When IP multicast trees created by Protocol Independent Multicast - Sparse Mode (PIM-SM) in Any-Source Multicast (ASM) mode need to pass through an MPLS domain, it may be desirable to map such trees to Point-to-Multipoint Label Switched Paths (P2MP LSPs).  This document describes how to accomplish this in the case where such P2MP LSPs are established using Label Distribution Protocol (LDP) Extensions for P2MP and Multipoint-to-Multipoint LSPs: Multipoint LDP (mLDP)."];
+  RFC7442 -> rev_cites;
+}

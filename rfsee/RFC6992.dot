@@ -1,0 +1,74 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6992 [label="RFC6992
+Routing for IPv4-Embedded IPv6 Packets
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a routing scenario where IPv4 packets are transported over an IPv6 network, based on the methods described in RFCs 6145 and 6052, along with a separate OSPFv3 routing table for IPv4-embedded IPv6 routes in the IPv6 network."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6992;
+
+  obs [label="obsoletes", shape=box];
+  RFC6992 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6992 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6992;
+
+  cites [label="cites", shape=box];
+  RFC6992 -> cites;
+  RFC6145 [label="RFC6145
+IP/ICMP Translation Algorithm
+2011", shape=ellipse, URL="RFC6145.html", target="_top", tooltip="This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers).  This document obsoletes RFC 2765. [STANDARDS-TRACK]"];
+  cites -> RFC6145;
+  RFC6052 [label="RFC6052
+IPv6 Addressing of IPv4/IPv6 Translators
+2010", shape=ellipse, URL="RFC6052.html", target="_top", tooltip="This document discusses the algorithmic translation of an IPv6 address to a corresponding IPv4 address, and vice versa, using only statically configured information.  It defines a well-known prefix for use in algorithmic translations, while allowing organizations to also use network-specific prefixes when appropriate.  Algorithmic translation is used in IPv4/IPv6 translators, as well as other types of proxies and gateways (e.g., for DNS) used in IPv4/IPv6 scenarios. [STANDARDS-TRACK]"];
+  cites -> RFC6052;
+  RFC5565 [label="RFC5565
+Softwire Mesh Framework
+2009", shape=ellipse, URL="RFC5565.html", target="_top", tooltip="The Internet needs to be able to handle both IPv4 and IPv6 packets.  However, it is expected that some constituent networks of the Internet will be single-protocol networks.  One kind of single-protocol network can parse only IPv4 packets and can process only IPv4 routing information; another kind can parse only IPv6 packets and can process only IPv6 routing information.  It is nevertheless required that either kind of single-protocol network be able to provide transit service for the other protocol.  This is done by passing the other kind of routing information from one edge of the single-protocol network to the other, and by tunneling the other kind of data packet from one edge to the other.  The tunnels are known as softwires.  This framework document explains how the routing information and the data packets of one protocol are passed through a single-protocol network of the other protocol.  The document is careful to specify when this can be done with existing technology and when it requires the development of new or modified technology. [STANDARDS-TRACK]"];
+  cites -> RFC5565;
+  RFC5838 [label="RFC5838
+Support of Address Families in OSPFv3
+2010", shape=ellipse, URL="RFC5838.html", target="_top", tooltip="This document describes a mechanism for supporting multiple address families (AFs) in OSPFv3 using multiple instances.  It maps an AF to an OSPFv3 instance using the Instance ID field in the OSPFv3 packet header.  This approach is fairly simple and minimizes extensions to OSPFv3 for supporting multiple AFs. [STANDARDS-TRACK]"];
+  cites -> RFC5838;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC6969 [label="RFC6969
+OSPFv3 Instance ID Registry Update
+2013", shape=ellipse, URL="RFC6969.html", target="_top", tooltip="This document modifies the Unassigned number space in the IANA OSPFv3 Instance ID Address Family Values registry by dividing it in two halves -- one half Unassigned but managed via Standards Action, and the other Reserved for Private Use.  It updates RFC 5838."];
+  cites -> RFC6969;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC4576 [label="RFC4576
+Using a Link State Advertisement (LSA)
+Options Bit to Prevent Looping in
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4576.html", target="_top", tooltip="This document specifies a procedure that deals with a particular issue that may arise when a Service Provider (SP) provides BGP/MPLS IP VPN service to a customer and the customer uses OSPFv2 to advertise its routes to the SP.  In this situation, a Customer Edge (CE) Router and a Provider Edge (PE) Router are OSPF peers, and customer routes are sent via OSPFv2 from the CE to the PE.  The customer routes are converted into BGP routes, and BGP carries them across the backbone to other PE routers.  The routes are then converted back to OSPF routes sent via OSPF to other CE routers.  As a result of this conversion, some of the information needed to prevent loops may be lost.  A procedure is needed to ensure that once a route is sent from a PE to a CE, the route will be ignored by any PE that receives it back from a CE.  This document specifies the necessary procedure, using one of the options bits in the LSA (Link State Advertisements) to indicate that an LSA has already been forwarded by a PE and should be ignored by any other PEs that see it. [STANDARDS-TRACK]"];
+  cites -> RFC4576;
+  RFC6506 [label="RFC6506
+Supporting Authentication Trailer for
+OSPFv3
+2012", shape=ellipse, URL="RFC6506.html", target="_top", tooltip="Currently, OSPF for IPv6 (OSPFv3) uses IPsec as the only mechanism for authenticating protocol packets.  This behavior is different from authentication mechanisms present in other routing protocols (OSPFv2, Intermediate System to Intermediate System (IS-IS), RIP, and Routing Information Protocol Next Generation (RIPng)).  In some environments, it has been found that IPsec is difficult to configure and maintain and thus cannot be used.  This document defines an alternative mechanism to authenticate OSPFv3 protocol packets so that OSPFv3 does not only depend upon IPsec for authentication. [STANDARDS-TRACK]"];
+  cites -> RFC6506;
+  RFC4552 [label="RFC4552
+Authentication/Confidentiality for
+OSPFv3
+2006", shape=ellipse, URL="RFC4552.html", target="_top", tooltip="This document describes means and mechanisms to provide authentication/confidentiality to OSPFv3 using an IPv6 Authentication Header/Encapsulating Security Payload (AH/ESP) extension header. [STANDARDS-TRACK]"];
+  cites -> RFC4552;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6992;
+}

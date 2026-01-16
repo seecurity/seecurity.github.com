@@ -1,0 +1,73 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9867 [label="RFC9867
+Mixing Preshared Keys in the
+IKE_INTERMEDIATE and CREATE_CHILD_SA
+Exchanges of the Internet Key Exchange
+Protocol Version 2 (IKEv2) for Post-
+Quantum Security
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="An Internet Key Exchange Protocol Version 2 (IKEv2) extension defined in RFC 8784 allows IPsec traffic to be protected against someone storing VPN communications and decrypting them later, when (and if) a Cryptographically Relevant Quantum Computer (CRQC) is available. The protection is achieved by means of a Post-quantum Preshared Key (PPK) that is mixed into the session keys calculation. However, this protection does not cover an initial IKEv2 Security Association (SA), which might be unacceptable in some scenarios. This specification defines an alternative way to provide protection against quantum computers, which is similar to the solution defined in RFC 8784, but it also protects the initial IKEv2 SA. RFC 8784 assumes that PPKs are static and thus they are only used when an initial IKEv2 SA is created. If a fresh PPK is available before the IKE SA expires, then the only way to use it is to delete the current IKE SA and create a new one from scratch, which is inefficient. This specification defines a way to use PPKs in active IKEv2 SAs for creating additional IPsec SAs and rekey operations."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9867;
+
+  obs [label="obsoletes", shape=box];
+  RFC9867 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9867 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9867;
+
+  cites [label="cites", shape=box];
+  RFC9867 -> cites;
+  RFC7296 [label="RFC7296
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2014", shape=ellipse, URL="RFC7296.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document obsoletes RFC 5996, and includes all of the errata for it.  It advances IKEv2 to be an Internet Standard."];
+  cites -> RFC7296;
+  RFC8784 [label="RFC8784
+Mixing Preshared Keys in the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+for Post-quantum Security
+2020", shape=ellipse, URL="RFC8784.html", target="_top", tooltip="The possibility of quantum computers poses a serious challenge to cryptographic algorithms deployed widely today.  The Internet Key Exchange Protocol Version 2 (IKEv2) is one example of a cryptosystem that could be broken; someone storing VPN communications today could decrypt them at a later time when a quantum computer is available.  It is anticipated that IKEv2 will be extended to support quantum-secure key exchange algorithms; however, that is not likely to happen in the near term.  To address this problem before then, this document describes an extension of IKEv2 to allow it to be resistant to a quantum computer by using preshared keys."];
+  cites -> RFC8784;
+  RFC9838 [label="RFC9838
+Group Key Management Using the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2025", shape=ellipse, URL="RFC9838.html", target="_top", tooltip="This document presents an extension to the Internet Key Exchange Protocol Version 2 (IKEv2) for the purpose of group key management. The protocol is in conformance with the Multicast Security (MSEC) Group Key Management architecture, which contains two components: member registration and group rekeying. Both components are required for a Group Controller/Key Server (GCKS) to provide authorized Group Members (GMs) with IPsec Group Security Associations (GSAs). The GMs then exchange IP multicast or other group traffic as IPsec packets. This document obsoletes RFC 6407."];
+  cites -> RFC9838;
+  RFC9242 [label="RFC9242
+Intermediate Exchange in the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2022", shape=ellipse, URL="RFC9242.html", target="_top", tooltip="This document defines a new exchange, called Intermediate Exchange, for the Internet Key Exchange Protocol Version 2 (IKEv2).  This exchange can be used for transferring large amounts of data in the process of IKEv2 Security Association (SA) establishment.  An example of the need to do this is using key exchange methods resistant to Quantum Computers (QCs) for IKE SA establishment.  The Intermediate Exchange makes it possible to use the existing IKE fragmentation mechanism (which cannot be used in the initial IKEv2 exchange), helping to avoid IP fragmentation of large IKE messages if they need to be sent before IKEv2 SA is established."];
+  cites -> RFC9242;
+  RFC9370 [label="RFC9370
+Multiple Key Exchanges in the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2023", shape=ellipse, URL="RFC9370.html", target="_top", tooltip="This document describes how to extend the Internet Key Exchange Protocol Version 2 (IKEv2) to allow multiple key exchanges to take place while computing a shared secret during a Security Association (SA) setup. This document utilizes the IKE_INTERMEDIATE exchange, where multiple key exchanges are performed when an IKE SA is being established. It also introduces a new IKEv2 exchange, IKE_FOLLOWUP_KE, which is used for the same purpose when the IKE SA is being rekeyed or is creating additional Child SAs. This document updates RFC 7296 by renaming a Transform Type 4 from Diffie-Hellman Group (D-H) to Key Exchange Method (KE) and renaming a field in the Key Exchange Payload from Diffie-Hellman Group Num to Key Exchange Method. It also renames an IANA registry for this Transform Type from Transform Type 4 - Diffie- Hellman Group Transform IDs to Transform Type 4 - Key Exchange Method Transform IDs. These changes generalize key exchange algorithms that can be used in IKEv2."];
+  cites -> RFC9370;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9867;
+  RFC9838 [label="RFC9838
+Group Key Management Using the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2025", shape=ellipse, URL="RFC9838.html", target="_top", tooltip="This document presents an extension to the Internet Key Exchange Protocol Version 2 (IKEv2) for the purpose of group key management. The protocol is in conformance with the Multicast Security (MSEC) Group Key Management architecture, which contains two components: member registration and group rekeying. Both components are required for a Group Controller/Key Server (GCKS) to provide authorized Group Members (GMs) with IPsec Group Security Associations (GSAs). The GMs then exchange IP multicast or other group traffic as IPsec packets. This document obsoletes RFC 6407."];
+  RFC9838 -> rev_cites;
+}

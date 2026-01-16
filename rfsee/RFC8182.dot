@@ -1,0 +1,161 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8182 [label="RFC8182
+The RPKI Repository Delta Protocol
+(RRDP)
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="In the Resource Public Key Infrastructure (RPKI), Certificate Authorities (CAs) publish certificates, including end-entity certificates, Certificate Revocation Lists (CRLs), and RPKI signed objects to repositories.  Relying Parties retrieve the published information from those repositories.  This document specifies a new RPKI Repository Delta Protocol (RRDP) for this purpose.  RRDP was specifically designed for scaling.  It relies on an Update Notification File which lists the current Snapshot and Delta Files that can be retrieved using HTTPS (HTTP over Transport Layer Security (TLS)), and it enables the use of Content Distribution Networks (CDNs) or other caching infrastructures for the retrieval of these files."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8182;
+
+  obs [label="obsoletes", shape=box];
+  RFC8182 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8182 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8182;
+  RFC9674 [label="RFC9674
+Same-Origin Policy for the RPKI
+Repository Delta Protocol (RRDP)
+2024", shape=ellipse, URL="RFC9674.html", target="_top", tooltip="This document describes a Same-Origin Policy (SOP) requirement for Resource Public Key Infrastructure (RPKI) Repository Delta Protocol (RRDP) servers and clients.  Application of a SOP in RRDP client/server communication isolates resources such as Delta and Snapshot files from different Repository Servers, reducing possible attack vectors.  This document updates RFC 8182."];
+  RFC9674 -> updated_by;
+  RFC9697 [label="RFC9697
+Detecting RPKI Repository Delta Protocol
+(RRDP) Session Desynchronization
+2024", shape=ellipse, URL="RFC9697.html", target="_top", tooltip="This document describes an approach for Resource Public Key Infrastructure (RPKI) Relying Parties to detect a particular form of RPKI Repository Delta Protocol (RRDP) session desynchronization and how to recover.  This document updates RFC 8182."];
+  RFC9697 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC8182 -> cites;
+  RFC6487 [label="RFC6487
+A Profile for X.509 PKIX Resource
+Certificates
+2012", shape=ellipse, URL="RFC6487.html", target="_top", tooltip="This document defines a standard profile for X.509 certificates for the purpose of supporting validation of assertions of right-of-use of Internet Number Resources (INRs).  The certificates issued under this profile are used to convey the issuer's authorization of the subject to be regarded as the current holder of a right-of-use of the INRs that are described in the certificate.  This document contains the normative specification of Certificate and Certificate Revocation List (CRL) syntax in the Resource Public Key Infrastructure (RPKI).  This document also specifies profiles for the format of certificate requests and specifies the Relying Party RPKI certificate path validation procedure. [STANDARDS-TRACK]"];
+  cites -> RFC6487;
+  RFC6488 [label="RFC6488
+Signed Object Template for the Resource
+Public Key Infrastructure (RPKI)
+2012", shape=ellipse, URL="RFC6488.html", target="_top", tooltip="This document defines a generic profile for signed objects used in the Resource Public Key Infrastructure (RPKI).  These RPKI signed objects make use of Cryptographic Message Syntax (CMS) as a standard encapsulation format. [STANDARDS-TRACK]"];
+  cites -> RFC6488;
+  RFC6486 [label="RFC6486
+Manifests for the Resource Public Key
+Infrastructure (RPKI)
+2012", shape=ellipse, URL="RFC6486.html", target="_top", tooltip="This document defines a manifest for use in the Resource Public Key Infrastructure (RPKI).  A manifest is a signed object (file) that contains a listing of all the signed objects (files) in the repository publication point (directory) associated with an authority responsible for publishing in the repository.  For each certificate, Certificate Revocation List (CRL), or other type of signed objects issued by the authority that are published at this repository publication point, the manifest contains both the name of the file containing the object and a hash of the file content.  Manifests are intended to enable a relying party (RP) to detect certain forms of attacks against a repository.  Specifically, if an RP checks a manifest's contents against the signed objects retrieved from a repository publication point, then the RP can detect stale (valid) data and deletion of signed objects. [STANDARDS-TRACK]"];
+  cites -> RFC6486;
+  RFC6481 [label="RFC6481
+A Profile for Resource Certificate
+Repository Structure
+2012", shape=ellipse, URL="RFC6481.html", target="_top", tooltip="This document defines a profile for the structure of the Resource Public Key Infrastructure (RPKI) distributed repository.  Each individual repository publication point is a directory that contains files that correspond to X.509/PKIX Resource Certificates, Certificate Revocation Lists and signed objects.  This profile defines the object (file) naming scheme, the contents of repository publication points (directories), and a suggested internal structure of a local repository cache that is intended to facilitate synchronization across a distributed collection of repository publication points and to facilitate certification path construction. [STANDARDS-TRACK]"];
+  cites -> RFC6481;
+  RFC8181 [label="RFC8181
+A Publication Protocol for the Resource
+Public Key Infrastructure (RPKI)
+2017", shape=ellipse, URL="RFC8181.html", target="_top", tooltip="This document defines a protocol for publishing Resource Public Key Infrastructure (RPKI) objects.  Even though the RPKI will have many participants issuing certificates and creating other objects, it is operationally useful to consolidate the publication of those objects.  Even in cases where a certificate issuer runs its own publication repository, it can be useful to run the certificate engine itself on a different machine from the publication repository.  This document defines a protocol which addresses these needs."];
+  cites -> RFC8181;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC4122 [label="RFC4122
+A Universally Unique IDentifier (UUID)
+URN Namespace
+2005", shape=ellipse, URL="RFC4122.html", target="_top", tooltip="This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier). A UUID is 128 bits long, and can guarantee uniqueness across space and time. UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation\'s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms. This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group). Information from earlier versions of the DCE specification have been incorporated into this document. [STANDARDS-TRACK]"];
+  cites -> RFC4122;
+  RFC7230 [label="RFC7230
+Hypertext Transfer Protocol (HTTP/1.1):
+Message Syntax and Routing
+2014", shape=ellipse, URL="RFC7230.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems.  This document provides an overview of HTTP architecture and its associated terminology, defines the http and https Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations."];
+  cites -> RFC7230;
+  RFC7231 [label="RFC7231
+Hypertext Transfer Protocol (HTTP/1.1):
+Semantics and Content
+2014", shape=ellipse, URL="RFC7231.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless \%application- level protocol for distributed, collaborative, hypertext information systems.  This document defines the semantics of HTTP/1.1 messages, as expressed by request methods, request header fields, response status codes, and response header fields, along with the payload of messages (metadata and body content) and mechanisms for content negotiation."];
+  cites -> RFC7231;
+  RFC7232 [label="RFC7232
+Hypertext Transfer Protocol (HTTP/1.1):
+Conditional Requests
+2014", shape=ellipse, URL="RFC7232.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application- level protocol for distributed, collaborative, hypertext information systems.  This document defines HTTP/1.1 conditional requests, including metadata header fields for indicating state changes, request header fields for making preconditions on such state, and rules for constructing the responses to a conditional request when one or more preconditions evaluate to false."];
+  cites -> RFC7232;
+  RFC7234 [label="RFC7234
+Hypertext Transfer Protocol (HTTP/1.1):
+Caching
+2014", shape=ellipse, URL="RFC7234.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless \%application- level protocol for distributed, collaborative, hypertext information systems.  This document defines HTTP caches and the associated header fields that control cache behavior or indicate cacheable response messages."];
+  cites -> RFC7234;
+  RFC5781 [label="RFC5781
+The rsync URI Scheme
+2010", shape=ellipse, URL="RFC5781.html", target="_top", tooltip="This document specifies the rsync Uniform Resource Identifier (URI) scheme.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5781;
+  RFC7525 [label="RFC7525
+Recommendations for Secure Use of
+Transport Layer Security (TLS) and
+Datagram Transport Layer Security (DTLS)
+2015", shape=ellipse, URL="RFC7525.html", target="_top", tooltip="Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS) are widely used to protect data exchanged over application protocols such as HTTP, SMTP, IMAP, POP, SIP, and XMPP.  Over the last few years, several serious attacks on TLS have emerged, including attacks on its most commonly used cipher suites and their modes of operation.  This document provides recommendations for improving the security of deployed services that use TLS and DTLS.  The recommendations are applicable to the majority of use cases."];
+  cites -> RFC7525;
+  RFC6125 [label="RFC6125
+Representation and Verification of
+Domain-Based Application Service
+Identity within Internet Public Key
+Infrastructure Using X.509 (PKIX)
+Certificates in the Context of Transport
+Layer Security (TLS)
+2011", shape=ellipse, URL="RFC6125.html", target="_top", tooltip="Many application technologies enable secure communication between two entities by means of Internet Public Key Infrastructure Using X.509 (PKIX) certificates in the context of Transport Layer Security (TLS).  This document specifies procedures for representing and verifying the identity of application services in such interactions. [STANDARDS-TRACK]"];
+  cites -> RFC6125;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8182;
+  RFC8181 [label="RFC8181
+A Publication Protocol for the Resource
+Public Key Infrastructure (RPKI)
+2017", shape=ellipse, URL="RFC8181.html", target="_top", tooltip="This document defines a protocol for publishing Resource Public Key Infrastructure (RPKI) objects.  Even though the RPKI will have many participants issuing certificates and creating other objects, it is operationally useful to consolidate the publication of those objects.  Even in cases where a certificate issuer runs its own publication repository, it can be useful to run the certificate engine itself on a different machine from the publication repository.  This document defines a protocol which addresses these needs."];
+  RFC8181 -> rev_cites;
+  RFC8183 [label="RFC8183
+An Out-of-Band Setup Protocol for
+Resource Public Key Infrastructure
+(RPKI) Production Services
+2017", shape=ellipse, URL="RFC8183.html", target="_top", tooltip="This note describes a simple out-of-band protocol to ease setup of the Resource Public Key Infrastructure (RPKI) provisioning and publication protocols between two parties. The protocol is encoded in a small number of XML messages, which can be passed back and forth by any mutually agreeable means which provides acceptable data integrity and authentication. This setup protocol is not part of the provisioning or publication protocol; rather, it is intended to simplify configuration of these protocols by setting up relationships and exchanging keying material used to authenticate those relationships."];
+  RFC8183 -> rev_cites;
+  RFC8205 [label="RFC8205
+BGPsec Protocol Specification
+2017", shape=ellipse, URL="RFC8205.html", target="_top", tooltip="This document describes BGPsec, an extension to the Border Gateway Protocol (BGP) that provides security for the path of Autonomous Systems (ASes) through which a BGP UPDATE message passes.  BGPsec is implemented via an optional non-transitive BGP path attribute that carries digital signatures produced by each AS that propagates the UPDATE message.  The digital signatures provide confidence that every AS on the path of ASes listed in the UPDATE message has explicitly authorized the advertisement of the route."];
+  RFC8205 -> rev_cites;
+  RFC8488 [label="RFC8488
+RIPE NCC's Implementation of Resource
+Public Key Infrastructure (RPKI)
+Certificate Tree Validation
+2018", shape=ellipse, URL="RFC8488.html", target="_top", tooltip="This document describes an approach to validating the content of the Resource Public Key Infrastructure (RPKI) certificate tree, as it is implemented in the RIPE NCC RPKI Validator.  This approach is independent of a particular object retrieval mechanism, which allows it to be used with repositories available over the rsync protocol, the RPKI Repository Delta Protocol (RRDP), and repositories that use a mix of both."];
+  RFC8488 -> rev_cites;
+  RFC8897 [label="RFC8897
+Requirements for Resource Public Key
+Infrastructure (RPKI) Relying Parties
+2020", shape=ellipse, URL="RFC8897.html", target="_top", tooltip="This document provides a single reference point for requirements for Relying Party (RP) software for use in the Resource Public Key Infrastructure (RPKI).  It cites requirements that appear in several RPKI RFCs, making it easier for implementers to become aware of these requirements.  Over time, this RFC will be updated to reflect changes to the requirements and guidance specified in the RFCs discussed herein."];
+  RFC8897 -> rev_cites;
+  RFC9589 [label="RFC9589
+On the Use of the Cryptographic Message
+Syntax (CMS) Signing-Time Attribute in
+Resource Public Key Infrastructure
+(RPKI) Signed Objects
+2024", shape=ellipse, URL="RFC9589.html", target="_top", tooltip="In the Resource Public Key Infrastructure (RPKI), Signed Objects are defined as Cryptographic Message Syntax (CMS) protected content types.  A Signed Object contains a signing-time attribute, representing the purported time at which the object was signed by its issuer.  RPKI repositories are accessible using the rsync and RPKI Repository Delta protocols, allowing Relying Parties (RPs) to synchronize a local copy of the RPKI repository used for validation with the remote repositories.  This document describes how the CMS signing-time attribute can be used to avoid needless retransfers of data when switching between different synchronization protocols.  This document updates RFC 6488 by mandating the presence of the CMS signing-time attribute and disallowing the use of the binary-signing-time attribute."];
+  RFC9589 -> rev_cites;
+  RFC9674 [label="RFC9674
+Same-Origin Policy for the RPKI
+Repository Delta Protocol (RRDP)
+2024", shape=ellipse, URL="RFC9674.html", target="_top", tooltip="This document describes a Same-Origin Policy (SOP) requirement for Resource Public Key Infrastructure (RPKI) Repository Delta Protocol (RRDP) servers and clients.  Application of a SOP in RRDP client/server communication isolates resources such as Delta and Snapshot files from different Repository Servers, reducing possible attack vectors.  This document updates RFC 8182."];
+  RFC9674 -> rev_cites;
+  RFC9697 [label="RFC9697
+Detecting RPKI Repository Delta Protocol
+(RRDP) Session Desynchronization
+2024", shape=ellipse, URL="RFC9697.html", target="_top", tooltip="This document describes an approach for Resource Public Key Infrastructure (RPKI) Relying Parties to detect a particular form of RPKI Repository Delta Protocol (RRDP) session desynchronization and how to recover.  This document updates RFC 8182."];
+  RFC9697 -> rev_cites;
+}

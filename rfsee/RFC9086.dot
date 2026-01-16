@@ -1,0 +1,113 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9086 [label="RFC9086
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+BGP Egress Peer Engineering
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with a list of segment identifiers (SIDs). A segment can represent any instruction, topological or service based. SR segments allow steering a flow through any topological path and service chain while maintaining per-flow state only at the ingress node of the SR domain. This document describes an extension to Border Gateway Protocol - Link State (BGP-LS) for advertisement of BGP Peering Segments along with their BGP peering node information so that efficient BGP Egress Peer Engineering (EPE) policies and strategies can be computed based on Segment Routing."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9086;
+
+  obs [label="obsoletes", shape=box];
+  RFC9086 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9086 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9086;
+
+  cites [label="cites", shape=box];
+  RFC9086 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  cites -> RFC7752;
+  RFC9087 [label="RFC9087
+Segment Routing Centralized BGP Egress
+Peer Engineering
+2021", shape=ellipse, URL="RFC9087.html", target="_top", tooltip="Segment Routing (SR) leverages source routing. A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows for the enforcement of a flow through any topological path while maintaining per-flow state only at the ingress node of the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change on the forwarding plane. It requires a minor extension to the existing link-state routing protocols. This document illustrates the application of Segment Routing to solve the BGP Egress Peer Engineering (BGP-EPE) requirement. The SR-based BGP-EPE solution allows a centralized (Software-Defined Networking, or SDN) controller to program any egress peer policy at ingress border routers or at hosts within the domain."];
+  cites -> RFC9087;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6286 [label="RFC6286
+Autonomous-System-Wide Unique BGP
+Identifier for BGP-4
+2011", shape=ellipse, URL="RFC6286.html", target="_top", tooltip="To accommodate situations where the current requirements for the BGP Identifier are not met, this document relaxes the definition of the BGP Identifier to be a 4-octet, unsigned, non-zero integer and relaxes the uniqueness requirement so that only Autonomous-System-wide (AS-wide) uniqueness of the BGP Identifiers is required.  These revisions to the base BGP specification do not introduce any backward compatibility issues.  This document updates RFC 4271. [STANDARDS-TRACK]"];
+  cites -> RFC6286;
+  RFC5065 [label="RFC5065
+Autonomous System Confederations for BGP
+2007", shape=ellipse, URL="RFC5065.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for Transmission Control Protocol/Internet Protocol (TCP/IP) networks. BGP requires that all BGP speakers within a single autonomous system (AS) must be fully meshed. This represents a serious scaling problem that has been well documented in a number of proposals. This document describes an extension to BGP that may be used to create a confederation of autonomous systems that is represented as a single autonomous system to BGP peers external to the confederation, thereby removing the full mesh requirement. The intention of this extension is to aid in policy administration and reduce the management complexity of maintaining a large autonomous system. This document obsoletes RFC 3065. [STANDARDS-TRACK]"];
+  cites -> RFC5065;
+  RFC9085 [label="RFC9085
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+2021", shape=ellipse, URL="RFC9085.html", target="_top", tooltip="Segment Routing (SR) allows for a flexible definition of end-to-end paths by encoding paths as sequences of topological subpaths, called segments. These segments are advertised by routing protocols, e.g., by the link-state routing protocols (IS-IS, OSPFv2, and OSPFv3) within IGP topologies. This document defines extensions to the Border Gateway Protocol - Link State (BGP-LS) address family in order to carry SR information via BGP."];
+  cites -> RFC9085;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9086;
+  RFC9087 [label="RFC9087
+Segment Routing Centralized BGP Egress
+Peer Engineering
+2021", shape=ellipse, URL="RFC9087.html", target="_top", tooltip="Segment Routing (SR) leverages source routing. A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows for the enforcement of a flow through any topological path while maintaining per-flow state only at the ingress node of the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change on the forwarding plane. It requires a minor extension to the existing link-state routing protocols. This document illustrates the application of Segment Routing to solve the BGP Egress Peer Engineering (BGP-EPE) requirement. The SR-based BGP-EPE solution allows a centralized (Software-Defined Networking, or SDN) controller to program any egress peer policy at ingress border routers or at hosts within the domain."];
+  RFC9087 -> rev_cites;
+  RFC9125 [label="RFC9125
+Gateway Auto-Discovery and Route
+Advertisement for Site Interconnection
+Using Segment Routing
+2021", shape=ellipse, URL="RFC9125.html", target="_top", tooltip="Data centers are attached to the Internet or a backbone network by gateway routers. One data center typically has more than one gateway for commercial, load-balancing, and resiliency reasons. Other sites, such as access networks, also need to be connected across backbone networks through gateways. This document defines a mechanism using the BGP Tunnel Encapsulation attribute to allow data center gateway routers to advertise routes to the prefixes reachable in the site, including advertising them on behalf of other gateways at the same site. This allows segment routing to be used to identify multiple paths across the Internet or backbone network between different gateways. The paths can be selected for load-balancing, resilience, and quality purposes."];
+  RFC9125 -> rev_cites;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  RFC9256 -> rev_cites;
+  RFC9514 [label="RFC9514
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+over IPv6 (SRv6)
+2023", shape=ellipse, URL="RFC9514.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) allows for a flexible definition of end-to-end paths within various topologies by encoding paths as sequences of topological or functional sub-paths called segments. These segments are advertised by various protocols such as BGP, IS-IS, and OSPFv3. This document defines extensions to BGP - Link State (BGP-LS) to advertise SRv6 segments along with their behaviors and other attributes via BGP. The BGP-LS address-family solution for SRv6 described in this document is similar to BGP-LS for SR for the MPLS data plane, which is defined in RFC 9085."];
+  RFC9514 -> rev_cites;
+  RFC9703 [label="RFC9703
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+Egress Peer Engineering (EPE) Segment
+Identifiers (SIDs) with MPLS Data Plane
+2024", shape=ellipse, URL="RFC9703.html", target="_top", tooltip="Egress Peer Engineering (EPE) is an application of Segment Routing (SR) that solves the problem of egress peer selection.  The SR-based BGP-EPE solution allows a centralized controller, e.g., a Software-Defined Network (SDN) controller, to program any egress peer.  The EPE solution requires the node or the SDN controller to program 1) the PeerNode Segment Identifier (SID) describing a session between two nodes, 2) the PeerAdj SID describing the link or links that are used by the sessions between peer nodes, and 3) the PeerSet SID describing any connected interface to any peer in the related group.  This document provides new sub-TLVs for EPE-SIDs that are used in the Target FEC Stack TLV (Type 1) in MPLS Ping and Traceroute procedures."];
+  RFC9703 -> rev_cites;
+  RFC9716 [label="RFC9716
+Mechanisms for MPLS Ping and Traceroute
+Procedures in Inter-Domain Segment
+Routing Networks
+2025", shape=ellipse, URL="RFC9716.html", target="_top", tooltip="The Segment Routing (SR) architecture leverages source routing and can be directly applied to the use of an MPLS data plane.  A Segment Routing over MPLS (SR-MPLS) network may consist of multiple IGP domains or multiple Autonomous Systems (ASes) under the control of the same organization.  It is useful to have the Label Switched Path (LSP) ping and traceroute procedures when an SR end-to-end path traverses multiple ASes or IGP domains.  This document outlines mechanisms to enable efficient LSP ping and traceroute procedures in inter-AS and inter-domain SR-MPLS networks.  This is achieved through a straightforward extension to the Operations, Administration, and Maintenance (OAM) protocol, relying solely on data plane forwarding for handling echo replies on transit nodes."];
+  RFC9716 -> rev_cites;
+  RFC9815 [label="RFC9815
+BGP Link State (BGP-LS) Shortest Path
+First (SPF) Routing
+2025", shape=ellipse, URL="RFC9815.html", target="_top", tooltip="Many Massively Scaled Data Centers (MSDCs) have converged on simplified Layer 3 (L3) routing.  Furthermore, requirements for operational simplicity have led many of these MSDCs to converge on BGP as their single routing protocol for both fabric routing and Data Center Interconnect (DCI) routing.  This document describes extensions to BGP for use with BGP Link State (BGP-LS) distribution and the Shortest Path First (SPF) algorithm.  In doing this, it allows BGP to be efficiently used as both the underlay protocol and the overlay protocol in MSDCs."];
+  RFC9815 -> rev_cites;
+  RFC9857 [label="RFC9857
+Advertisement of Segment Routing
+Policies Using BGP - Link State
+2025", shape=ellipse, URL="RFC9857.html", target="_top", tooltip="This document describes a mechanism used to collect Segment Routing (SR) Policy information that is locally available in a node and advertise it into BGP - Link State (BGP-LS) updates.  Such information can be used by external components for path computation, reoptimization, service placement, network visualization, etc."];
+  RFC9857 -> rev_cites;
+}

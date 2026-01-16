@@ -1,0 +1,52 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6878 [label="RFC6878
+IANA Registry for the Session Initiation
+Protocol (SIP) Priority Header Field
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a new IANA registry to keep track of the values defined for the Session Initiation Protocol (SIP) Priority header field.  It updates RFC 3261."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6878;
+
+  obs [label="obsoletes", shape=box];
+  RFC6878 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6878 -> updates;
+  RFC3261 [label="RFC3261
+SIP: Session Initiation Protocol
+2002", shape=ellipse, URL="RFC3261.html", target="_top", tooltip="This document describes Session Initiation Protocol (SIP), an application-layer control (signaling) protocol for creating, modifying, and terminating sessions with one or more participants.  These sessions include Internet telephone calls, multimedia distribution, and multimedia conferences. [STANDARDS-TRACK]"];
+  updates -> RFC3261;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6878;
+
+  cites [label="cites", shape=box];
+  RFC6878 -> cites;
+  RFC3261 [label="RFC3261
+SIP: Session Initiation Protocol
+2002", shape=ellipse, URL="RFC3261.html", target="_top", tooltip="This document describes Session Initiation Protocol (SIP), an application-layer control (signaling) protocol for creating, modifying, and terminating sessions with one or more participants.  These sessions include Internet telephone calls, multimedia distribution, and multimedia conferences. [STANDARDS-TRACK]"];
+  cites -> RFC3261;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+  RFC4412 [label="RFC4412
+Communications Resource Priority for the
+Session Initiation Protocol (SIP)
+2006", shape=ellipse, URL="RFC4412.html", target="_top", tooltip="This document defines two new Session Initiation Protocol (SIP) header fields for communicating resource priority, namely, Resource-Priority and Accept-Resource-Priority.  The Resource-Priority header field can influence the behavior of SIP user agents (such as telephone gateways and IP telephones) and SIP proxies.  It does not directly influence the forwarding behavior of IP routers. [STANDARDS-TRACK]"];
+  cites -> RFC4412;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6878;
+  RFC7090 [label="RFC7090
+Public Safety Answering Point (PSAP)
+Callback
+2014", shape=ellipse, URL="RFC7090.html", target="_top", tooltip="After an emergency call is completed (terminated either prematurely by the emergency caller or normally by the call taker), the call taker may feel the need for further communication. For example, the call may have been dropped by accident without the call taker having sufficient information about the current state of an accident victim. A call taker may trigger a callback to the emergency caller using the contact information provided with the initial emergency call. This callback could, under certain circumstances, be treated like any other call and, as a consequence, it may get blocked by authorization policies or may get forwarded to an answering machine. The IETF emergency services architecture specification already offers a solution approach for allowing Public Safety Answering Point (PSAP) callbacks to bypass authorization policies in order to reach the caller without unnecessary delays. Unfortunately, the specified mechanism only supports limited scenarios. This document discusses shortcomings of the current mechanisms and illustrates additional scenarios where better-than-normal call treatment behavior would be desirable. We describe a solution based on a new header field value for the SIP Priority header field, called psap-callback, to mark PSAP callbacks."];
+  RFC7090 -> rev_cites;
+}

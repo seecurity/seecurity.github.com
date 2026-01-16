@@ -1,0 +1,133 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7812 [label="RFC7812
+An Architecture for IP/LDP Fast Reroute
+Using Maximally Redundant Trees (MRT-
+FRR)
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines the architecture for IP and LDP Fast Reroute using Maximally Redundant Trees (MRT-FRR).  MRT-FRR is a technology that gives link-protection and node-protection with 100% coverage in any network topology that is still connected after the failure."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7812;
+
+  obs [label="obsoletes", shape=box];
+  RFC7812 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7812 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7812;
+
+  cites [label="cites", shape=box];
+  RFC7812 -> cites;
+  RFC5714 [label="RFC5714
+IP Fast Reroute Framework
+2010", shape=ellipse, URL="RFC5714.html", target="_top", tooltip="This document provides a framework for the development of IP fast- reroute mechanisms that provide protection against link or router failure by invoking locally determined repair paths.  Unlike MPLS fast-reroute, the mechanisms are applicable to a network employing conventional IP routing and forwarding.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5714;
+  RFC7811 [label="RFC7811
+An Algorithm for Computing IP/LDP Fast
+Reroute Using Maximally Redundant Trees
+(MRT-FRR)
+2016", shape=ellipse, URL="RFC7811.html", target="_top", tooltip="This document supports the solution put forth in An Architecture for IP/LDP Fast Reroute Using Maximally Redundant Trees (MRT-FRR) (RFC 7812) by defining the associated MRT Lowpoint algorithm that is used in the Default MRT Profile to compute both the necessary Maximally Redundant Trees with their associated next hops and the alternates to select for MRT-FRR."];
+  cites -> RFC7811;
+  RFC6976 [label="RFC6976
+Framework for Loop-Free Convergence
+Using the Ordered Forwarding Information
+Base (oFIB) Approach
+2013", shape=ellipse, URL="RFC6976.html", target="_top", tooltip="This document describes an illustrative framework of a mechanism for use in conjunction with link-state routing protocols that prevents the transient loops that would otherwise occur during topology changes. It does this by correctly sequencing the forwarding information base (FIB) updates on the routers. This mechanism can be used in the case of non-urgent (management action) link or node shutdowns and restarts or link metric changes. It can also be used in conjunction with a fast reroute mechanism that converts a sudden link or node failure into a non-urgent topology change. This is possible where a complete repair path is provided for all affected destinations. After a non-urgent topology change, each router computes a rank that defines the time at which it can safely update its FIB. A method for accelerating this loop-free convergence process by the use of completion messages is also described. The technology described in this document has been subject to extensive simulation using pathological convergence behavior and real network topologies and costs. However, the mechanisms described in this document are purely illustrative of the general approach and do not constitute a protocol specification. This document represents a snapshot of the work of the Routing Area Working Group at the time of publication and is published as a document of record. Further work is needed before implementation or deployment."];
+  cites -> RFC6976;
+  RFC5715 [label="RFC5715
+A Framework for Loop-Free Convergence
+2010", shape=ellipse, URL="RFC5715.html", target="_top", tooltip="A micro-loop is a packet forwarding loop that may occur transiently among two or more routers in a hop-by-hop packet forwarding paradigm. This framework provides a summary of the causes and consequences of micro-loops and enables the reader to form a judgement on whether micro-looping is an issue that needs to be addressed in specific networks. It also provides a survey of the currently proposed mechanisms that may be used to prevent or to suppress the formation of micro-loops when an IP or MPLS network undergoes topology change due to failure, repair, or management action. When sufficiently fast convergence is not available and the topology is susceptible to micro-loops, use of one or more of these mechanisms may be desirable. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5715;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC6981 [label="RFC6981
+A Framework for IP and MPLS Fast Reroute
+Using Not-Via Addresses
+2013", shape=ellipse, URL="RFC6981.html", target="_top", tooltip="This document presents an illustrative framework for providing fast reroute in an IP or MPLS network through encapsulation and forwarding to not-via addresses. The general approach described here uses a single level of encapsulation and could be used to protect unicast, multicast, and LDP traffic against link, router, and shared risk group failure, regardless of network topology and metrics. The mechanisms presented in this document are purely illustrative of the general approach and do not constitute a protocol specification. The document represents a snapshot of the work of the Routing Area Working Group at the time of publication and is published as a document of record. Further work is needed before implementation or deployment."];
+  cites -> RFC6981;
+  RFC7490 [label="RFC7490
+Remote Loop-Free Alternate (LFA) Fast
+Reroute (FRR)
+2015", shape=ellipse, URL="RFC7490.html", target="_top", tooltip="This document describes an extension to the basic IP fast reroute mechanism, described in RFC 5286, that provides additional backup connectivity for point-to-point link failures when none can be provided by the basic mechanisms."];
+  cites -> RFC7490;
+  RFC5286 [label="RFC5286
+Basic Specification for IP Fast Reroute:
+Loop-Free Alternates
+2008", shape=ellipse, URL="RFC5286.html", target="_top", tooltip="This document describes the use of loop-free alternates to provide local protection for unicast traffic in pure IP and MPLS/LDP networks in the event of a single failure, whether link, node, or shared risk link group (SRLG).  The goal of this technology is to reduce the packet loss that happens while routers converge after a topology change due to a failure.  Rapid failure repair is achieved through use of precalculated backup next-hops that are loop-free and safe to use until the distributed network convergence process completes.  This simple approach does not require any support from other routers.  The extent to which this goal can be met by this specification is dependent on the topology of the network. [STANDARDS-TRACK]"];
+  cites -> RFC5286;
+  RFC7307 [label="RFC7307
+LDP Extensions for Multi-Topology
+2014", shape=ellipse, URL="RFC7307.html", target="_top", tooltip="Multi-Topology (MT) routing is supported in IP networks with the use of MT-aware IGPs. In order to provide MT routing within Multiprotocol Label Switching (MPLS) Label Distribution Protocol (LDP) networks, new extensions are required. This document describes the LDP protocol extensions required to support MT routing in an MPLS environment."];
+  cites -> RFC7307;
+  RFC5331 [label="RFC5331
+MPLS Upstream Label Assignment and
+Context-Specific Label Space
+2008", shape=ellipse, URL="RFC5331.html", target="_top", tooltip="RFC 3031 limits the MPLS architecture to downstream-assigned MPLS labels.  This document introduces the notion of upstream-assigned MPLS labels.  It describes the procedures for upstream MPLS label assignment and introduces the concept of a Context-Specific Label Space. [STANDARDS-TRACK]"];
+  cites -> RFC5331;
+  RFC5443 [label="RFC5443
+LDP IGP Synchronization
+2009", shape=ellipse, URL="RFC5443.html", target="_top", tooltip="In certain networks, there is dependency on the edge-to-edge Label Switched Paths (LSPs) setup by the Label Distribution Protocol (LDP), e.g., networks that are used for Multiprotocol Label Switching (MPLS) Virtual Private Network (VPN) applications.  For such applications, it is not possible to rely on Internet Protocol (IP) forwarding if the MPLS LSP is not operating appropriately.  Blackholing of labeled traffic can occur in situations where the Interior Gateway Protocol (IGP) is operational on a link on which LDP is not.  While the link could still be used for IP forwarding, it is not useful for MPLS forwarding, for example, MPLS VPN applications or Border Gateway Protocol (BGP) route-free cores.  This document describes a mechanism to avoid traffic loss due to this condition without introducing any protocol changes.  This memo provides information for the Internet community."];
+  cites -> RFC5443;
+  RFC6987 [label="RFC6987
+OSPF Stub Router Advertisement
+2013", shape=ellipse, URL="RFC6987.html", target="_top", tooltip="This document describes a backward-compatible technique that may be used by OSPF (Open Shortest Path First) implementations to advertise a router's unavailability to forward transit traffic or to lower the preference level for the paths through such a router. This document obsoletes RFC 3137."];
+  cites -> RFC6987;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC4379 [label="RFC4379
+Detecting Multi-Protocol Label Switched
+(MPLS) Data Plane Failures
+2006", shape=ellipse, URL="RFC4379.html", target="_top", tooltip="This document describes a simple and efficient mechanism that can be used to detect data plane failures in Multi-Protocol Label Switching (MPLS) Label Switched Paths (LSPs).  There are two parts to this document: information carried in an MPLS echo request and echo reply for the purposes of fault detection and isolation, and mechanisms for reliably sending the echo reply. [STANDARDS-TRACK]"];
+  cites -> RFC4379;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7812;
+  RFC7811 [label="RFC7811
+An Algorithm for Computing IP/LDP Fast
+Reroute Using Maximally Redundant Trees
+(MRT-FRR)
+2016", shape=ellipse, URL="RFC7811.html", target="_top", tooltip="This document supports the solution put forth in An Architecture for IP/LDP Fast Reroute Using Maximally Redundant Trees (MRT-FRR) (RFC 7812) by defining the associated MRT Lowpoint algorithm that is used in the Default MRT Profile to compute both the necessary Maximally Redundant Trees with their associated next hops and the alternates to select for MRT-FRR."];
+  RFC7811 -> rev_cites;
+  RFC7813 [label="RFC7813
+IS-IS Path Control and Reservation
+2016", shape=ellipse, URL="RFC7813.html", target="_top", tooltip="IEEE 802.1Qca Path Control and Reservation (PCR) specifies explicit path control via IS-IS in Layer 2 networks in order to move beyond the shortest path capabilities provided by IEEE 802.1aq Shortest Path Bridging (SPB).  IS-IS PCR provides capabilities for the establishment and control of explicit forwarding trees in a Layer 2 network domain.  This document specifies the sub-TLVs for IS-IS PCR."];
+  RFC7813 -> rev_cites;
+  RFC8104 [label="RFC8104
+Pseudowire (PW) Endpoint Fast Failure
+Protection
+2017", shape=ellipse, URL="RFC8104.html", target="_top", tooltip="This document specifies a fast mechanism for protecting pseudowires (PWs) transported by IP/MPLS tunnels against egress endpoint failures, including egress attachment circuit (AC) failure, egress provider edge (PE) failure, multi-segment PW terminating PE failure, and multi-segment PW switching PE failure.  Operating on the basis of multihomed customer edge (CE), redundant PWs, upstream label assignment, and context-specific label switching, the mechanism enables local repair to be performed by the router upstream adjacent to a failure.  The router can restore a PW in the order of tens of milliseconds, by rerouting traffic around the failure to a protector through a pre-established bypass tunnel.  Therefore, the mechanism can be used to reduce traffic loss before global repair reacts to the failure and the network converges on the topology changes due to the failure."];
+  RFC8104 -> rev_cites;
+  RFC8320 [label="RFC8320
+LDP Extensions to Support Maximally
+Redundant Trees
+2018", shape=ellipse, URL="RFC8320.html", target="_top", tooltip="This document specifies extensions to the Label Distribution Protocol (LDP) to support the creation of Label Switched Paths (LSPs) for Maximally Redundant Trees (MRTs). A prime use of MRTs is for unicast and multicast IP/LDP Fast Reroute, which we will refer to as MRT-FRR. The sole protocol extension to LDP is simply the ability to advertise an MRT Capability. This document describes that extension and the associated behavior expected for Label Switching Routers (LSRs) and Label Edge Routers (LERs) advertising the MRT Capability. MRT-FRR uses LDP multi-topology extensions, so three multi-topology IDs have been allocated from the MPLS MT-ID space."];
+  RFC8320 -> rev_cites;
+  RFC8679 [label="RFC8679
+MPLS Egress Protection Framework
+2019", shape=ellipse, URL="RFC8679.html", target="_top", tooltip="This document specifies a fast reroute framework for protecting IP/MPLS services and MPLS transport tunnels against egress node and egress link failures.  For each type of egress failure, it defines the roles of Point of Local Repair (PLR), protector, and backup egress router and the procedures of establishing a bypass tunnel from a PLR to a protector.  It describes the behaviors of these routers in handling an egress failure, including local repair on the PLR and context-based forwarding on the protector.  The framework can be used to develop egress protection mechanisms to reduce traffic loss before global repair reacts to an egress failure and control-plane protocols converge on the topology changes due to the egress failure."];
+  RFC8679 -> rev_cites;
+  RFC9130 [label="RFC9130
+YANG Data Model for the IS-IS Protocol
+2022", shape=ellipse, URL="RFC9130.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage the IS-IS protocol on network elements."];
+  RFC9130 -> rev_cites;
+}

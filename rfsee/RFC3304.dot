@@ -1,0 +1,49 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3304 [label="RFC3304
+Middlebox Communications (midcom)
+Protocol Requirements
+2002", shape=ellipse, fillcolor="#e8f0ff", tooltip="None"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3304;
+
+  obs [label="obsoletes", shape=box];
+  RFC3304 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3304 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3304;
+
+  cites [label="cites", shape=box];
+  RFC3304 -> cites;
+  RFC1889 [label="RFC1889
+RTP: A Transport Protocol for Real-Time
+Applications
+1996", shape=ellipse, URL="RFC1889.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services. [STANDARDS-TRACK]"];
+  cites -> RFC1889;
+  RFC2026 [label="RFC2026
+The Internet Standards Process --
+Revision 3
+1996", shape=ellipse, URL="RFC2026.html", target="_top", tooltip="This memo documents the process used by the Internet community for the standardization of protocols and procedures.  It defines the stages in the standardization process, the requirements for moving a document between stages and the types of documents used during this process.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2026;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3304;
+  RFC5190 [label="RFC5190
+Definitions of Managed Objects for
+Middlebox Communication
+2008", shape=ellipse, URL="RFC5190.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes a set of managed objects that allow configuring middleboxes, such as firewalls and network address translators, in order to enable communication across these devices.  The definitions of managed objects in this documents follow closely the MIDCOM semantics defined in RFC 5189. [STANDARDS-TRACK]"];
+  RFC5190 -> rev_cites;
+  RFC6736 [label="RFC6736
+Diameter Network Address and Port
+Translation Control Application
+2012", shape=ellipse, URL="RFC6736.html", target="_top", tooltip="This document describes the framework, messages, and procedures for the Diameter Network address and port translation Control Application.  This Diameter application allows per-endpoint control of Network Address Translators and Network Address and Port Translators, which are added to networks to cope with IPv4 address space depletion.  This Diameter application allows external devices to configure and manage a Network Address Translator device -- expanding the existing Diameter-based Authentication, Authorization, and Accounting (AAA) and policy control capabilities with a Network Address Translator and Network Address and Port Translator control component.  These external devices can be network elements in the data plane such as a Network Access Server, or can be more centralized control plane devices such as AAA-servers.  This Diameter application establishes a context to commonly identify and manage endpoints on a gateway or server and a Network Address Translator and Network Address and Port Translator device.  This includes, for example, the control of the total number of Network Address Translator bindings allowed or the allocation of a specific Network Address Translator binding for a particular endpoint.  In addition, it allows Network Address Translator devices to provide information relevant to accounting purposes. [STANDARDS-TRACK]"];
+  RFC6736 -> rev_cites;
+}

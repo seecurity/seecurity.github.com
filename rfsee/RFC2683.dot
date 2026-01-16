@@ -1,0 +1,45 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2683 [label="RFC2683
+IMAP4 Implementation Recommendations
+1999", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IMAP4 specification describes a rich protocol for use in building clients and servers for storage, retrieval, and manipulation of electronic mail.  Because the protocol is so rich and has so many implementation choices, there are often trade-offs that must be made and issues that must be considered when designing such clients and servers.  This document attempts to outline these issues and to make recommendations in order to make the end products as interoperable as possible.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2683;
+
+  obs [label="obsoletes", shape=box];
+  RFC2683 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2683 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2683;
+  RFC7162 [label="RFC7162
+IMAP Extensions: Quick Flag Changes
+Resynchronization (CONDSTORE) and Quick
+Mailbox Resynchronization (QRESYNC)
+2014", shape=ellipse, URL="RFC7162.html", target="_top", tooltip="Often, multiple IMAP (RFC 3501) clients need to coordinate changes to a common IMAP mailbox. Examples include different clients working on behalf of the same user and multiple users accessing shared mailboxes. These clients need a mechanism to efficiently synchronize state changes for messages within the mailbox. Initially defined in RFC 4551, the Conditional Store facility provides a protected update mechanism for message state information and a mechanism for requesting only changes to the message state. This memo updates that mechanism and obsoletes RFC 4551, based on operational experience. This document additionally updates another IMAP extension, Quick Resynchronization, which builds on the Conditional STORE extension to provide an IMAP client the ability to fully resynchronize a mailbox as part of the SELECT/EXAMINE command, without the need for additional server-side state or client round trips. Hence, this memo obsoletes RFC 5162. Finally, this document also updates the line-length recommendation in Section 3.2.1.5 of RFC 2683."];
+  RFC7162 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC2683 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2683;
+  RFC4549 [label="RFC4549
+Synchronization Operations for
+Disconnected IMAP4 Clients
+2006", shape=ellipse, URL="RFC4549.html", target="_top", tooltip="This document attempts to address some of the issues involved in building a disconnected IMAP4 client. In particular, it deals with the issues of what might be called the driver portion of the synchronization tool: the portion of the code responsible for issuing the correct set of IMAP4 commands to synchronize the disconnected client in the way that is most likely to make the human who uses the disconnected client happy. This note describes different strategies that can be used by disconnected clients and shows how to use IMAP protocol in order to minimize the time of the synchronization process. This note also lists IMAP extensions that a server should implement in order to provide better synchronization facilities to disconnected clients. This memo provides information for the Internet community."];
+  RFC4549 -> rev_cites;
+  RFC7162 [label="RFC7162
+IMAP Extensions: Quick Flag Changes
+Resynchronization (CONDSTORE) and Quick
+Mailbox Resynchronization (QRESYNC)
+2014", shape=ellipse, URL="RFC7162.html", target="_top", tooltip="Often, multiple IMAP (RFC 3501) clients need to coordinate changes to a common IMAP mailbox. Examples include different clients working on behalf of the same user and multiple users accessing shared mailboxes. These clients need a mechanism to efficiently synchronize state changes for messages within the mailbox. Initially defined in RFC 4551, the Conditional Store facility provides a protected update mechanism for message state information and a mechanism for requesting only changes to the message state. This memo updates that mechanism and obsoletes RFC 4551, based on operational experience. This document additionally updates another IMAP extension, Quick Resynchronization, which builds on the Conditional STORE extension to provide an IMAP client the ability to fully resynchronize a mailbox as part of the SELECT/EXAMINE command, without the need for additional server-side state or client round trips. Hence, this memo obsoletes RFC 5162. Finally, this document also updates the line-length recommendation in Section 3.2.1.5 of RFC 2683."];
+  RFC7162 -> rev_cites;
+}

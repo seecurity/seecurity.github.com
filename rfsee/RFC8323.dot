@@ -1,0 +1,231 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8323 [label="RFC8323
+CoAP (Constrained Application Protocol)
+over TCP, TLS, and WebSockets
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Constrained Application Protocol (CoAP), although inspired by HTTP, was designed to use UDP instead of TCP. The message layer of CoAP over UDP includes support for reliable delivery, simple congestion control, and flow control. Some environments benefit from the availability of CoAP carried over reliable transports such as TCP or Transport Layer Security (TLS). This document outlines the changes required to use CoAP over TCP, TLS, and WebSockets transports. It also formally updates RFC 7641 for use with these transports and RFC 7959 to enable the use of larger messages over a reliable transport."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8323;
+
+  obs [label="obsoletes", shape=box];
+  RFC8323 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8323 -> updates;
+  RFC7641 [label="RFC7641
+Observing Resources in the Constrained
+Application Protocol (CoAP)
+2015", shape=ellipse, URL="RFC7641.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful application protocol for constrained nodes and networks.  The state of a resource on a CoAP server can change over time.  This document specifies a simple protocol extension for CoAP that enables CoAP clients to observe resources, i.e., to retrieve a representation of a resource and keep this representation updated by the server over a period of time.  The protocol follows a best-effort approach for sending new representations to clients and provides eventual consistency between the state observed by each client and the actual resource state at the server."];
+  updates -> RFC7641;
+  RFC7959 [label="RFC7959
+Block-Wise Transfers in the Constrained
+Application Protocol (CoAP)
+2016", shape=ellipse, URL="RFC7959.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful transfer protocol for constrained nodes and networks. Basic CoAP messages work well for small payloads from sensors and actuators; however, applications will need to transfer larger payloads occasionally -- for instance, for firmware updates. In contrast to HTTP, where TCP does the grunt work of segmenting and resequencing, CoAP is based on datagram transports such as UDP or Datagram Transport Layer Security (DTLS). These transports only offer fragmentation, which is even more problematic in constrained nodes and networks, limiting the maximum size of resource representations that can practically be transferred. Instead of relying on IP fragmentation, this specification extends basic CoAP with a pair of Block options for transferring multiple blocks of information from a resource representation in multiple request-response pairs. In many important cases, the Block options enable a server to be truly stateless: the server can handle each block transfer separately, with no need for a connection setup or other server-side memory of previous block transfers. Essentially, the Block options provide a minimal way to transfer larger representations in a block-wise fashion. A CoAP implementation that does not support these options generally is limited in the size of the representations that can be exchanged, so there is an expectation that the Block options will be widely used in CoAP implementations. Therefore, this specification updates RFC 7252."];
+  updates -> RFC7959;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8323;
+  RFC8974 [label="RFC8974
+Extended Tokens and Stateless Clients in
+the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, URL="RFC8974.html", target="_top", tooltip="This document provides considerations for alleviating Constrained Application Protocol (CoAP) clients and intermediaries of keeping per-request state. To facilitate this, this document additionally introduces a new, optional CoAP protocol extension for extended token lengths. This document updates RFCs 7252 and 8323 with an extended definition of the TKL field in the CoAP message header."];
+  RFC8974 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC8323 -> cites;
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, URL="RFC7252.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."];
+  cites -> RFC7252;
+  RFC6347 [label="RFC6347
+Datagram Transport Layer Security
+Version 1.2
+2012", shape=ellipse, URL="RFC6347.html", target="_top", tooltip="This document specifies version 1.2 of the Datagram Transport Layer Security (DTLS) protocol.  The DTLS protocol provides communications privacy for datagram protocols.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery.  The DTLS protocol is based on the Transport Layer Security (TLS) protocol and provides equivalent security guarantees.  Datagram semantics of the underlying transport are preserved by the DTLS protocol.  This document updates DTLS 1.0 to work with TLS version 1.2. [STANDARDS-TRACK]"];
+  cites -> RFC6347;
+  RFC5246 [label="RFC5246
+The Transport Layer Security (TLS)
+Protocol Version 1.2
+2008", shape=ellipse, URL="RFC5246.html", target="_top", tooltip="This document specifies Version 1.2 of the Transport Layer Security (TLS) protocol.  The TLS protocol provides communications security over the Internet.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery. [STANDARDS-TRACK]"];
+  cites -> RFC5246;
+  RFC6455 [label="RFC6455
+The WebSocket Protocol
+2011", shape=ellipse, URL="RFC6455.html", target="_top", tooltip="The WebSocket Protocol enables two-way communication between a client running untrusted code in a controlled environment to a remote host that has opted-in to communications from that code.  The security model used for this is the origin-based security model commonly used by web browsers.  The protocol consists of an opening handshake followed by basic message framing, layered over TCP.  The goal of this technology is to provide a mechanism for browser-based applications that need two-way communication with servers that does not rely on opening multiple HTTP connections (e.g., using XMLHttpRequest or <iframe>s and long polling). [STANDARDS-TRACK]"];
+  cites -> RFC6455;
+  RFC7641 [label="RFC7641
+Observing Resources in the Constrained
+Application Protocol (CoAP)
+2015", shape=ellipse, URL="RFC7641.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful application protocol for constrained nodes and networks.  The state of a resource on a CoAP server can change over time.  This document specifies a simple protocol extension for CoAP that enables CoAP clients to observe resources, i.e., to retrieve a representation of a resource and keep this representation updated by the server over a period of time.  The protocol follows a best-effort approach for sending new representations to clients and provides eventual consistency between the state observed by each client and the actual resource state at the server."];
+  cites -> RFC7641;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7959 [label="RFC7959
+Block-Wise Transfers in the Constrained
+Application Protocol (CoAP)
+2016", shape=ellipse, URL="RFC7959.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful transfer protocol for constrained nodes and networks. Basic CoAP messages work well for small payloads from sensors and actuators; however, applications will need to transfer larger payloads occasionally -- for instance, for firmware updates. In contrast to HTTP, where TCP does the grunt work of segmenting and resequencing, CoAP is based on datagram transports such as UDP or Datagram Transport Layer Security (DTLS). These transports only offer fragmentation, which is even more problematic in constrained nodes and networks, limiting the maximum size of resource representations that can practically be transferred. Instead of relying on IP fragmentation, this specification extends basic CoAP with a pair of Block options for transferring multiple blocks of information from a resource representation in multiple request-response pairs. In many important cases, the Block options enable a server to be truly stateless: the server can handle each block transfer separately, with no need for a connection setup or other server-side memory of previous block transfers. Essentially, the Block options provide a minimal way to transfer larger representations in a block-wise fashion. A CoAP implementation that does not support these options generally is limited in the size of the representations that can be exchanged, so there is an expectation that the Block options will be widely used in CoAP implementations. Therefore, this specification updates RFC 7252."];
+  cites -> RFC7959;
+  RFC7230 [label="RFC7230
+Hypertext Transfer Protocol (HTTP/1.1):
+Message Syntax and Routing
+2014", shape=ellipse, URL="RFC7230.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems.  This document provides an overview of HTTP architecture and its associated terminology, defines the http and https Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations."];
+  cites -> RFC7230;
+  RFC7540 [label="RFC7540
+Hypertext Transfer Protocol Version 2
+(HTTP/2)
+2015", shape=ellipse, URL="RFC7540.html", target="_top", tooltip="This specification describes an optimized expression of the semantics of the Hypertext Transfer Protocol (HTTP), referred to as HTTP version 2 (HTTP/2). HTTP/2 enables a more efficient use of network resources and a reduced perception of latency by introducing header field compression and allowing multiple concurrent exchanges on the same connection. It also introduces unsolicited push of representations from servers to clients. This specification is an alternative to, but does not obsolete, the HTTP/1.1 message syntax. HTTP's existing semantics remain unchanged."];
+  cites -> RFC7540;
+  RFC3986 [label="RFC3986
+Uniform Resource Identifier (URI):
+Generic Syntax
+2005", shape=ellipse, URL="RFC3986.html", target="_top", tooltip="A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource.  This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet.  The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier.  This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme. [STANDARDS-TRACK]"];
+  cites -> RFC3986;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+  RFC5785 [label="RFC5785
+Defining Well-Known Uniform Resource
+Identifiers (URIs)
+2010", shape=ellipse, URL="RFC5785.html", target="_top", tooltip="This memo defines a path prefix for well-known locations, /.well-known/, in selected Uniform Resource Identifier (URI) schemes. [STANDARDS-TRACK]"];
+  cites -> RFC5785;
+  RFC7301 [label="RFC7301
+Transport Layer Security (TLS)
+Application-Layer Protocol Negotiation
+Extension
+2014", shape=ellipse, URL="RFC7301.html", target="_top", tooltip="This document describes a Transport Layer Security (TLS) extension for application-layer protocol negotiation within the TLS handshake.  For instances in which multiple application protocols are supported on the same TCP or UDP port, this extension allows the application layer to negotiate which protocol will be used within the TLS connection."];
+  cites -> RFC7301;
+  RFC8307 [label="RFC8307
+Well-Known URIs for the WebSocket
+Protocol
+2018", shape=ellipse, URL="RFC8307.html", target="_top", tooltip="RFC 5785 defines a path prefix, /.well-known/, that can be used by well-known URIs.  It was specifically defined for the http and https URI schemes.  The present memo formally updates RFC 6455, which defines the URI schemes defined for the WebSocket Protocol, to extend the use of these well-known URIs to those URI schemes."];
+  cites -> RFC8307;
+  RFC6066 [label="RFC6066
+Transport Layer Security (TLS)
+Extensions: Extension Definitions
+2011", shape=ellipse, URL="RFC6066.html", target="_top", tooltip="This document provides specifications for existing TLS extensions.  It is a companion document for RFC 5246, The Transport Layer Security (TLS) Protocol Version 1.2.  The extensions specified are server_name, max_fragment_length, client_certificate_url, trusted_ca_keys, truncated_hmac, and status_request. [STANDARDS-TRACK]"];
+  cites -> RFC6066;
+  RFC7925 [label="RFC7925
+Transport Layer Security (TLS) /
+Datagram Transport Layer Security (DTLS)
+Profiles for the Internet of Things
+2016", shape=ellipse, URL="RFC7925.html", target="_top", tooltip="A common design pattern in Internet of Things (IoT) deployments is the use of a constrained device that collects data via sensors or controls actuators for use in home automation, industrial control systems, smart cities, and other IoT deployments. This document defines a Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS) 1.2 profile that offers communications security for this data exchange thereby preventing eavesdropping, tampering, and message forgery. The lack of communication security is a common vulnerability in IoT products that can easily be solved by using these well-researched and widely deployed Internet security protocols."];
+  cites -> RFC7925;
+  RFC7525 [label="RFC7525
+Recommendations for Secure Use of
+Transport Layer Security (TLS) and
+Datagram Transport Layer Security (DTLS)
+2015", shape=ellipse, URL="RFC7525.html", target="_top", tooltip="Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS) are widely used to protect data exchanged over application protocols such as HTTP, SMTP, IMAP, POP, SIP, and XMPP.  Over the last few years, several serious attacks on TLS have emerged, including attacks on its most commonly used cipher suites and their modes of operation.  This document provides recommendations for improving the security of deployed services that use TLS and DTLS.  The recommendations are applicable to the majority of use cases."];
+  cites -> RFC7525;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+  RFC6335 [label="RFC6335
+Internet Assigned Numbers Authority
+(IANA) Procedures for the Management of
+the Service Name and Transport Protocol
+Port Number Registry
+2011", shape=ellipse, URL="RFC6335.html", target="_top", tooltip="This document defines the procedures that the Internet Assigned Numbers Authority (IANA) uses when handling assignment and other requests related to the Service Name and Transport Protocol Port Number registry. It also discusses the rationale and principles behind these procedures and how they facilitate the long-term sustainability of the registry. This document updates IANA's procedures by obsoleting the previous UDP and TCP port assignment procedures defined in Sections 8 and 9.1 of the IANA Allocation Guidelines, and it updates the IANA service name and port assignment procedures for UDP-Lite, the Datagram Congestion Control Protocol (DCCP), and the Stream Control Transmission Protocol (SCTP). It also updates the DNS SRV specification to clarify what a service name is and how it is registered. This memo documents an Internet Best Current Practice."];
+  cites -> RFC6335;
+  RFC7595 [label="RFC7595
+Guidelines and Registration Procedures
+for URI Schemes
+2015", shape=ellipse, URL="RFC7595.html", target="_top", tooltip="This document updates the guidelines and recommendations, as well as the IANA registration processes, for the definition of Uniform Resource Identifier (URI) schemes.  It obsoletes RFC 4395."];
+  cites -> RFC7595;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8323;
+  RFC8352 [label="RFC8352
+Energy-Efficient Features of Internet of
+Things Protocols
+2018", shape=ellipse, URL="RFC8352.html", target="_top", tooltip="This document describes the challenges for energy-efficient protocol operation on constrained devices and the current practices used to overcome those challenges.  It summarizes the main link-layer techniques used for energy-efficient networking, and it highlights the impact of such techniques on the upper-layer protocols so that they can together achieve an energy-efficient behavior.  The document also provides an overview of energy-efficient mechanisms available at each layer of the IETF protocol suite specified for constrained-node networks."];
+  RFC8352 -> rev_cites;
+  RFC8613 [label="RFC8613
+Object Security for Constrained RESTful
+Environments (OSCORE)
+2019", shape=ellipse, URL="RFC8613.html", target="_top", tooltip="This document defines Object Security for Constrained RESTful Environments (OSCORE), a method for application-layer protection of the Constrained Application Protocol (CoAP), using CBOR Object Signing and Encryption (COSE). OSCORE provides end-to-end protection between endpoints communicating using CoAP or CoAP-mappable HTTP. OSCORE is designed for constrained nodes and networks supporting a range of proxy operations, including translation between different transport protocols. Although an optional functionality of CoAP, OSCORE alters CoAP options processing and IANA registration. Therefore, this document updates RFC 7252."];
+  RFC8613 -> rev_cites;
+  RFC8615 [label="RFC8615
+Well-Known Uniform Resource Identifiers
+(URIs)
+2019", shape=ellipse, URL="RFC8615.html", target="_top", tooltip="This memo defines a path prefix for well-known locations, /.well-known/, in selected Uniform Resource Identifier (URI) schemes. In doing so, it obsoletes RFC 5785 and updates the URI schemes defined in RFC 7230 to reserve that space. It also updates RFC 7595 to track URI schemes that support well-known URIs in their registry."];
+  RFC8615 -> rev_cites;
+  RFC8782 [label="RFC8782
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2020", shape=ellipse, URL="RFC8782.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes."];
+  RFC8782 -> rev_cites;
+  RFC8974 [label="RFC8974
+Extended Tokens and Stateless Clients in
+the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, URL="RFC8974.html", target="_top", tooltip="This document provides considerations for alleviating Constrained Application Protocol (CoAP) clients and intermediaries of keeping per-request state. To facilitate this, this document additionally introduces a new, optional CoAP protocol extension for extended token lengths. This document updates RFCs 7252 and 8323 with an extended definition of the TKL field in the CoAP message header."];
+  RFC8974 -> rev_cites;
+  RFC9006 [label="RFC9006
+TCP Usage Guidance in the Internet of
+Things (IoT)
+2021", shape=ellipse, URL="RFC9006.html", target="_top", tooltip="This document provides guidance on how to implement and use the Transmission Control Protocol (TCP) in Constrained-Node Networks (CNNs), which are a characteristic of the Internet of Things (IoT).  Such environments require a lightweight TCP implementation and may not make use of optional functionality.  This document explains a number of known and deployed techniques to simplify a TCP stack as well as corresponding trade-offs.  The objective is to help embedded developers with decisions on which TCP features to use."];
+  RFC9006 -> rev_cites;
+  RFC9132 [label="RFC9132
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2021", shape=ellipse, URL="RFC9132.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes. This document obsoletes RFC 8782."];
+  RFC9132 -> rev_cites;
+  RFC9175 [label="RFC9175
+Constrained Application Protocol (CoAP):
+Echo, Request-Tag, and Token Processing
+2022", shape=ellipse, URL="RFC9175.html", target="_top", tooltip="This document specifies enhancements to the Constrained Application Protocol (CoAP) that mitigate security issues in particular use cases.  The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address.  The Request-Tag option allows the CoAP server to match block-wise message fragments belonging to the same request.  This document updates RFC 7252 with respect to the following: processing requirements for client Tokens, forbidding non-secure reuse of Tokens to ensure response-to-request binding when CoAP is used with a security protocol, and amplification mitigation (where the use of the Echo option is now recommended)."];
+  RFC9175 -> rev_cites;
+  RFC9177 [label="RFC9177
+Constrained Application Protocol (CoAP)
+Block-Wise Transfer Options Supporting
+Robust Transmission
+2022", shape=ellipse, URL="RFC9177.html", target="_top", tooltip="This document specifies alternative Constrained Application Protocol (CoAP) block-wise transfer options: Q-Block1 and Q-Block2. These options are similar to, but distinct from, the CoAP Block1 and Block2 options defined in RFC 7959. The Q-Block1 and Q-Block2 options are not intended to replace the Block1 and Block2 options but rather have the goal of supporting Non-confirmable (NON) messages for large amounts of data with fewer packet interchanges. Also, the Q-Block1 and Q-Block2 options support faster recovery should any of the blocks get lost in transmission."];
+  RFC9177 -> rev_cites;
+  RFC9362 [label="RFC9362
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Configuration Attributes for Robust
+Block Transmission
+2023", shape=ellipse, URL="RFC9362.html", target="_top", tooltip="This document specifies new DDoS Open Threat Signaling (DOTS) signal channel configuration parameters that can be negotiated between DOTS peers to enable the use of Q-Block1 and Q-Block2 Constrained Application Protocol (CoAP) options. These options enable robust and faster transmission rates for large amounts of data with less packet interchanges as well as support for faster recovery should any of the blocks get lost in transmission (especially during DDoS attacks). Also, this document defines a YANG data model for representing these new DOTS signal channel configuration parameters. This model augments the DOTS signal YANG module (ietf-dots-signal-channel) defined in RFC 9132."];
+  RFC9362 -> rev_cites;
+  RFC9430 [label="RFC9430
+Extension of the Datagram Transport
+Layer Security (DTLS) Profile for
+Authentication and Authorization for
+Constrained Environments (ACE) to
+Transport Layer Security (TLS)
+2023", shape=ellipse, URL="RFC9430.html", target="_top", tooltip="This document updates Datagram Transport Layer Security (DTLS) Profile for Authentication and Authorization for Constrained Environments (ACE) (RFC 9202) by specifying that the profile applies to TLS as well as DTLS."];
+  RFC9430 -> rev_cites;
+  RFC9482 [label="RFC9482
+Constrained Application Protocol (CoAP)
+Transfer for the Certificate Management
+Protocol
+2023", shape=ellipse, URL="RFC9482.html", target="_top", tooltip="This document specifies the use of the Constrained Application Protocol (CoAP) as a transfer mechanism for the Certificate Management Protocol (CMP).  CMP defines the interaction between various PKI entities for the purpose of certificate creation and management.  CoAP is an HTTP-like client-server protocol used by various constrained devices in the Internet of Things space."];
+  RFC9482 -> rev_cites;
+  RFC9820 [label="RFC9820
+Authentication Service Based on the
+Extensible Authentication Protocol (EAP)
+for Use with the Constrained Application
+Protocol (CoAP)
+2025", shape=ellipse, URL="RFC9820.html", target="_top", tooltip="This document specifies an authentication service that uses the Constrained Application Protocol (CoAP) as a transport method to carry the Extensible Authentication Protocol (EAP).  As such, it defines an EAP lower layer based on CoAP called CoAP-EAP.  One of the main goals is to authenticate a CoAP-enabled Internet of Things (IoT) device (EAP peer) that intends to join a security domain managed by a Controller (EAP authenticator).  Secondly, it allows deriving key material to protect CoAP messages exchanged between them based on Object Security for Constrained RESTful Environments (OSCORE), enabling the establishment of a security association between them."];
+  RFC9820 -> rev_cites;
+}

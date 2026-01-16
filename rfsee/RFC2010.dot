@@ -1,0 +1,39 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2010 [label="RFC2010
+Operational Criteria for Root Name
+Servers
+1996", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies the operational requirements of root name servers, including host hardware capacities, name server software revisions, network connectivity, and physical environment.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2010;
+  RFC2870 [label="RFC2870
+Root Name Server Operational
+Requirements
+2000", shape=ellipse, URL="RFC2870.html", target="_top", tooltip="The primary focus of this document is to provide guidelines for operation of the root name servers.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC2870 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC2010 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2010 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2010;
+
+  cites [label="cites", shape=box];
+  RFC2010 -> cites;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2010;
+}

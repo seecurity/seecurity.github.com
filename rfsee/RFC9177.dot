@@ -1,0 +1,141 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9177 [label="RFC9177
+Constrained Application Protocol (CoAP)
+Block-Wise Transfer Options Supporting
+Robust Transmission
+2022", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies alternative Constrained Application Protocol (CoAP) block-wise transfer options: Q-Block1 and Q-Block2. These options are similar to, but distinct from, the CoAP Block1 and Block2 options defined in RFC 7959. The Q-Block1 and Q-Block2 options are not intended to replace the Block1 and Block2 options but rather have the goal of supporting Non-confirmable (NON) messages for large amounts of data with fewer packet interchanges. Also, the Q-Block1 and Q-Block2 options support faster recovery should any of the blocks get lost in transmission."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9177;
+
+  obs [label="obsoletes", shape=box];
+  RFC9177 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9177 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9177;
+
+  cites [label="cites", shape=box];
+  RFC9177 -> cites;
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, URL="RFC7252.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."];
+  cites -> RFC7252;
+  RFC7959 [label="RFC7959
+Block-Wise Transfers in the Constrained
+Application Protocol (CoAP)
+2016", shape=ellipse, URL="RFC7959.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful transfer protocol for constrained nodes and networks. Basic CoAP messages work well for small payloads from sensors and actuators; however, applications will need to transfer larger payloads occasionally -- for instance, for firmware updates. In contrast to HTTP, where TCP does the grunt work of segmenting and resequencing, CoAP is based on datagram transports such as UDP or Datagram Transport Layer Security (DTLS). These transports only offer fragmentation, which is even more problematic in constrained nodes and networks, limiting the maximum size of resource representations that can practically be transferred. Instead of relying on IP fragmentation, this specification extends basic CoAP with a pair of Block options for transferring multiple blocks of information from a resource representation in multiple request-response pairs. In many important cases, the Block options enable a server to be truly stateless: the server can handle each block transfer separately, with no need for a connection setup or other server-side memory of previous block transfers. Essentially, the Block options provide a minimal way to transfer larger representations in a block-wise fashion. A CoAP implementation that does not support these options generally is limited in the size of the representations that can be exchanged, so there is an expectation that the Block options will be widely used in CoAP implementations. Therefore, this specification updates RFC 7252."];
+  cites -> RFC7959;
+  RFC8323 [label="RFC8323
+CoAP (Constrained Application Protocol)
+over TCP, TLS, and WebSockets
+2018", shape=ellipse, URL="RFC8323.html", target="_top", tooltip="The Constrained Application Protocol (CoAP), although inspired by HTTP, was designed to use UDP instead of TCP. The message layer of CoAP over UDP includes support for reliable delivery, simple congestion control, and flow control. Some environments benefit from the availability of CoAP carried over reliable transports such as TCP or Transport Layer Security (TLS). This document outlines the changes required to use CoAP over TCP, TLS, and WebSockets transports. It also formally updates RFC 7641 for use with these transports and RFC 7959 to enable the use of larger messages over a reliable transport."];
+  cites -> RFC8323;
+  RFC9132 [label="RFC9132
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2021", shape=ellipse, URL="RFC9132.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes. This document obsoletes RFC 8782."];
+  cites -> RFC9132;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8132 [label="RFC8132
+PATCH and FETCH Methods for the
+Constrained Application Protocol (CoAP)
+2017", shape=ellipse, URL="RFC8132.html", target="_top", tooltip="The methods defined in RFC 7252 for the Constrained Application Protocol (CoAP) only allow access to a complete resource, not to parts of a resource. In case of resources with larger or complex data, or in situations where resource continuity is required, replacing or requesting the whole resource is undesirable. Several applications using CoAP need to access parts of the resources. This specification defines the new CoAP methods, FETCH, PATCH, and iPATCH, which are used to access and update parts of a resource."];
+  cites -> RFC8132;
+  RFC9175 [label="RFC9175
+Constrained Application Protocol (CoAP):
+Echo, Request-Tag, and Token Processing
+2022", shape=ellipse, URL="RFC9175.html", target="_top", tooltip="This document specifies enhancements to the Constrained Application Protocol (CoAP) that mitigate security issues in particular use cases.  The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address.  The Request-Tag option allows the CoAP server to match block-wise message fragments belonging to the same request.  This document updates RFC 7252 with respect to the following: processing requirements for client Tokens, forbidding non-secure reuse of Tokens to ensure response-to-request binding when CoAP is used with a security protocol, and amplification mitigation (where the use of the Echo option is now recommended)."];
+  cites -> RFC9175;
+  RFC7967 [label="RFC7967
+Constrained Application Protocol (CoAP)
+Option for No Server Response
+2016", shape=ellipse, URL="RFC7967.html", target="_top", tooltip="There can be machine-to-machine (M2M) scenarios where server responses to client requests are redundant. This kind of open-loop exchange (with no response path from the server to the client) may be desired to minimize resource consumption in constrained systems while updating many resources simultaneously or performing high-frequency updates. CoAP already provides Non-confirmable (NON) messages that are not acknowledged by the recipient. However, the request/response semantics still require the server to respond with a status code indicating the result of the attempt to understand and satisfy the request, per RFC 7252. This specification introduces a CoAP option called 'No-Response'. Using this option, the client can explicitly express to the server its disinterest in all responses against the particular request. This option also provides granular control to enable expression of disinterest to a particular response class or a combination of response classes. The server MAY decide to suppress the response by not transmitting it back to the client according to the value of the No-Response option in the request. This option may be effective for both unicast and multicast requests. This document also discusses a few examples of applications that benefit from this option."];
+  cites -> RFC7967;
+  RFC8613 [label="RFC8613
+Object Security for Constrained RESTful
+Environments (OSCORE)
+2019", shape=ellipse, URL="RFC8613.html", target="_top", tooltip="This document defines Object Security for Constrained RESTful Environments (OSCORE), a method for application-layer protection of the Constrained Application Protocol (CoAP), using CBOR Object Signing and Encryption (COSE). OSCORE provides end-to-end protection between endpoints communicating using CoAP or CoAP-mappable HTTP. OSCORE is designed for constrained nodes and networks supporting a range of proxy operations, including translation between different transport protocols. Although an optional functionality of CoAP, OSCORE alters CoAP options processing and IANA registration. Therefore, this document updates RFC 7252."];
+  cites -> RFC8613;
+  RFC7641 [label="RFC7641
+Observing Resources in the Constrained
+Application Protocol (CoAP)
+2015", shape=ellipse, URL="RFC7641.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful application protocol for constrained nodes and networks.  The state of a resource on a CoAP server can change over time.  This document specifies a simple protocol extension for CoAP that enables CoAP clients to observe resources, i.e., to retrieve a representation of a resource and keep this representation updated by the server over a period of time.  The protocol follows a best-effort approach for sending new representations to clients and provides eventual consistency between the state observed by each client and the actual resource state at the server."];
+  cites -> RFC7641;
+  RFC8742 [label="RFC8742
+Concise Binary Object Representation
+(CBOR) Sequences
+2020", shape=ellipse, URL="RFC8742.html", target="_top", tooltip="This document describes the Concise Binary Object Representation (CBOR) Sequence format and associated media type application/cbor-seq. A CBOR Sequence consists of any number of encoded CBOR data items, simply concatenated in sequence. Structured syntax suffixes for media types allow other media types to build on them and make it explicit that they are built on an existing media type as their foundation. This specification defines and registers +cbor-seq as a structured syntax suffix for CBOR Sequences."];
+  cites -> RFC8742;
+  RFC8949 [label="RFC8949
+Concise Binary Object Representation
+(CBOR)
+2020", shape=ellipse, URL="RFC8949.html", target="_top", tooltip="The Concise Binary Object Representation (CBOR) is a data format whose design goals include the possibility of extremely small code size, fairly small message size, and extensibility without the need for version negotiation. These design goals make it different from earlier binary serializations such as ASN.1 and MessagePack. This document obsoletes RFC 7049, providing editorial improvements, new details, and errata fixes while keeping full compatibility with the interchange format of RFC 7049. It does not create a new version of the format."];
+  cites -> RFC8949;
+  RFC8610 [label="RFC8610
+Concise Data Definition Language (CDDL):
+A Notational Convention to Express
+Concise Binary Object Representation
+(CBOR) and JSON Data Structures
+2019", shape=ellipse, URL="RFC8610.html", target="_top", tooltip="This document proposes a notational convention to express Concise Binary Object Representation (CBOR) data structures (RFC 7049).  Its main goal is to provide an easy and unambiguous way to express structures for protocol messages and data formats that use CBOR or JSON."];
+  cites -> RFC8610;
+  RFC8974 [label="RFC8974
+Extended Tokens and Stateless Clients in
+the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, URL="RFC8974.html", target="_top", tooltip="This document provides considerations for alleviating Constrained Application Protocol (CoAP) clients and intermediaries of keeping per-request state. To facilitate this, this document additionally introduces a new, optional CoAP protocol extension for extended token lengths. This document updates RFCs 7252 and 8323 with an extended definition of the TKL field in the CoAP message header."];
+  cites -> RFC8974;
+  RFC6928 [label="RFC6928
+Increasing TCP's Initial Window
+2013", shape=ellipse, URL="RFC6928.html", target="_top", tooltip="This document proposes an experiment to increase the permitted TCP initial window (IW) from between 2 and 4 segments, as specified in RFC 3390, to 10 segments with a fallback to the existing recommendation when performance issues are detected.  It discusses the motivation behind the increase, the advantages and disadvantages of the higher initial window, and presents results from several large-scale experiments showing that the higher initial window improves the overall performance of many web services without resulting in a congestion collapse.  The document closes with a discussion of usage and deployment for further experimental purposes recommended by the IETF TCP Maintenance and Minor Extensions (TCPM) working group."];
+  cites -> RFC6928;
+  RFC8075 [label="RFC8075
+Guidelines for Mapping Implementations:
+HTTP to the Constrained Application
+Protocol (CoAP)
+2017", shape=ellipse, URL="RFC8075.html", target="_top", tooltip="This document provides reference information for implementing a cross-protocol network proxy that performs translation from the HTTP protocol to the Constrained Application Protocol (CoAP).  This will enable an HTTP client to access resources on a CoAP server through the proxy.  This document describes how an HTTP request is mapped to a CoAP request and how a CoAP response is mapped back to an HTTP response.  This includes guidelines for status code, URI, and media type mappings, as well as additional interworking advice."];
+  cites -> RFC8075;
+  RFC6838 [label="RFC6838
+Media Type Specifications and
+Registration Procedures
+2013", shape=ellipse, URL="RFC6838.html", target="_top", tooltip="This document defines procedures for the specification and registration of media types for use in HTTP, MIME, and other Internet protocols.  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6838;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9177;
+  RFC9244 [label="RFC9244
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Telemetry
+2022", shape=ellipse, URL="RFC9244.html", target="_top", tooltip="This document aims to enrich the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel protocol with various telemetry attributes, allowing for optimal Distributed Denial-of-Service (DDoS) attack mitigation. It specifies the normal traffic baseline and attack traffic telemetry attributes a DOTS client can convey to its DOTS server in the mitigation request, the mitigation status telemetry attributes a DOTS server can communicate to a DOTS client, and the mitigation efficacy telemetry attributes a DOTS client can communicate to a DOTS server. The telemetry attributes can assist the mitigator in choosing the DDoS mitigation techniques and performing optimal DDoS attack mitigation. This document specifies two YANG modules: one for representing DOTS telemetry message types and one for sharing the attack mapping details over the DOTS data channel."];
+  RFC9244 -> rev_cites;
+  RFC9277 [label="RFC9277
+On Stable Storage for Items in Concise
+Binary Object Representation (CBOR)
+2022", shape=ellipse, URL="RFC9277.html", target="_top", tooltip="This document defines a stored (file) format for Concise Binary Object Representation (CBOR) data items that is friendly to common systems that recognize file types, such as the Unix file(1) command."];
+  RFC9277 -> rev_cites;
+  RFC9362 [label="RFC9362
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Configuration Attributes for Robust
+Block Transmission
+2023", shape=ellipse, URL="RFC9362.html", target="_top", tooltip="This document specifies new DDoS Open Threat Signaling (DOTS) signal channel configuration parameters that can be negotiated between DOTS peers to enable the use of Q-Block1 and Q-Block2 Constrained Application Protocol (CoAP) options. These options enable robust and faster transmission rates for large amounts of data with less packet interchanges as well as support for faster recovery should any of the blocks get lost in transmission (especially during DDoS attacks). Also, this document defines a YANG data model for representing these new DOTS signal channel configuration parameters. This model augments the DOTS signal YANG module (ietf-dots-signal-channel) defined in RFC 9132."];
+  RFC9362 -> rev_cites;
+}

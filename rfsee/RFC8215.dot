@@ -1,0 +1,52 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8215 [label="RFC8215
+Local-Use IPv4/IPv6 Translation Prefix
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document reserves the IPv6 prefix 64:ff9b:1::/48 for local use within domains that enable IPv4/IPv6 translation mechanisms."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8215;
+
+  obs [label="obsoletes", shape=box];
+  RFC8215 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8215 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8215;
+
+  cites [label="cites", shape=box];
+  RFC8215 -> cites;
+  RFC6052 [label="RFC6052
+IPv6 Addressing of IPv4/IPv6 Translators
+2010", shape=ellipse, URL="RFC6052.html", target="_top", tooltip="This document discusses the algorithmic translation of an IPv6 address to a corresponding IPv4 address, and vice versa, using only statically configured information.  It defines a well-known prefix for use in algorithmic translations, while allowing organizations to also use network-specific prefixes when appropriate.  Algorithmic translation is used in IPv4/IPv6 translators, as well as other types of proxies and gateways (e.g., for DNS) used in IPv4/IPv6 scenarios. [STANDARDS-TRACK]"];
+  cites -> RFC6052;
+  RFC6146 [label="RFC6146
+Stateful NAT64: Network Address and
+Protocol Translation from IPv6 Clients
+to IPv4 Servers
+2011", shape=ellipse, URL="RFC6146.html", target="_top", tooltip="This document describes stateful NAT64 translation, which allows IPv6-only clients to contact IPv4 servers using unicast UDP, TCP, or ICMP.  One or more public IPv4 addresses assigned to a NAT64 translator are shared among several IPv6-only clients.  When stateful NAT64 is used in conjunction with DNS64, no changes are usually required in the IPv6 client or the IPv4 server."];
+  cites -> RFC6146;
+  RFC7915 [label="RFC7915
+IP/ICMP Translation Algorithm
+2016", shape=ellipse, URL="RFC7915.html", target="_top", tooltip="This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers).  This document obsoletes RFC 6145."];
+  cites -> RFC7915;
+  RFC1918 [label="RFC1918
+Address Allocation for Private Internets
+1996", shape=ellipse, URL="RFC1918.html", target="_top", tooltip="This document describes address allocation for private internets.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC1918;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8215;
+  RFC9313 [label="RFC9313
+Pros and Cons of IPv6 Transition
+Technologies for IPv4-as-a-Service
+(IPv4aaS)
+2022", shape=ellipse, URL="RFC9313.html", target="_top", tooltip="Several IPv6 transition technologies have been developed to provide customers with IPv4-as-a-Service (IPv4aaS) for ISPs with an IPv6-only access and/or core network. These technologies have their advantages and disadvantages. Depending on existing topology, skills, strategy, and other preferences, one of these technologies may be the most appropriate solution for a network operator. This document examines the five most prominent IPv4aaS technologies and considers a number of different aspects to provide network operators with an easy-to-use reference to assist in selecting the technology that best suits their needs."];
+  RFC9313 -> rev_cites;
+}

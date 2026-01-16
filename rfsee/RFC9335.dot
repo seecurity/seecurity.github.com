@@ -1,0 +1,107 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9335 [label="RFC9335
+Completely Encrypting RTP Header
+Extensions and Contributing Sources
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="While the Secure Real-time Transport Protocol (SRTP) provides confidentiality for the contents of a media packet, a significant amount of metadata is left unprotected, including RTP header extensions and contributing sources (CSRCs). However, this data can be moderately sensitive in many applications. While there have been previous attempts to protect this data, they have had limited deployment, due to complexity as well as technical limitations. This document updates RFC 3711, the SRTP specification, and defines Cryptex as a new mechanism that completely encrypts header extensions and CSRCs and uses simpler Session Description Protocol (SDP) signaling with the goal of facilitating deployment."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9335;
+
+  obs [label="obsoletes", shape=box];
+  RFC9335 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9335 -> updates;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  updates -> RFC3711;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9335;
+
+  cites [label="cites", shape=box];
+  RFC9335 -> cites;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  cites -> RFC3711;
+  RFC6904 [label="RFC6904
+Encryption of Header Extensions in the
+Secure Real-time Transport Protocol
+(SRTP)
+2013", shape=ellipse, URL="RFC6904.html", target="_top", tooltip="The Secure Real-time Transport Protocol (SRTP) provides authentication, but not encryption, of the headers of Real-time Transport Protocol (RTP) packets. However, RTP header extensions may carry sensitive information for which participants in multimedia sessions want confidentiality. This document provides a mechanism, extending the mechanisms of SRTP, to selectively encrypt RTP header extensions in SRTP. This document updates RFC 3711, the Secure Real-time Transport Protocol specification, to require that all future SRTP encryption transforms specify how RTP header extensions are to be encrypted."];
+  cites -> RFC6904;
+  RFC6464 [label="RFC6464
+A Real-time Transport Protocol (RTP)
+Header Extension for Client-to-Mixer
+Audio Level Indication
+2011", shape=ellipse, URL="RFC6464.html", target="_top", tooltip="This document defines a mechanism by which packets of Real-time Transport Protocol (RTP) audio streams can indicate, in an RTP header extension, the audio level of the audio sample carried in the RTP packet.  In large conferences, this can reduce the load on an audio mixer or other middlebox that wants to forward only a few of the loudest audio streams, without requiring it to decode and measure every stream that is received. [STANDARDS-TRACK]"];
+  cites -> RFC6464;
+  RFC6465 [label="RFC6465
+A Real-time Transport Protocol (RTP)
+Header Extension for Mixer-to-Client
+Audio Level Indication
+2011", shape=ellipse, URL="RFC6465.html", target="_top", tooltip="This document describes a mechanism for RTP-level mixers in audio conferences to deliver information about the audio level of individual participants.  Such audio level indicators are transported in the same RTP packets as the audio data they pertain to. [STANDARDS-TRACK]"];
+  cites -> RFC6465;
+  RFC8285 [label="RFC8285
+A General Mechanism for RTP Header
+Extensions
+2017", shape=ellipse, URL="RFC8285.html", target="_top", tooltip="This document provides a general mechanism to use the header extension feature of RTP (the Real-time Transport Protocol).  It provides the option to use a small number of small extensions in each RTP packet, where the universe of possible extensions is large and registration is decentralized.  The actual extensions in use in a session are signaled in the setup information for that session.  This document obsoletes RFC 5285."];
+  cites -> RFC8285;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8866 [label="RFC8866
+SDP: Session Description Protocol
+2021", shape=ellipse, URL="RFC8866.html", target="_top", tooltip="This memo defines the Session Description Protocol (SDP).  SDP is intended for describing multimedia sessions for the purposes of session announcement, session invitation, and other forms of multimedia session initiation.  This document obsoletes RFC 4566."];
+  cites -> RFC8866;
+  RFC9143 [label="RFC9143
+Negotiating Media Multiplexing Using the
+Session Description Protocol (SDP)
+2022", shape=ellipse, URL="RFC9143.html", target="_top", tooltip="This specification defines a new Session Description Protocol (SDP) Grouping Framework extension called 'BUNDLE'. The extension can be used with the SDP offer/answer mechanism to negotiate the usage of a single transport (5-tuple) for sending and receiving media described by multiple SDP media descriptions (m= sections). Such transport is referred to as a BUNDLE transport, and the media is referred to as bundled media. The m= sections that use the BUNDLE transport form a BUNDLE group. This specification defines a new RTP Control Protocol (RTCP) Source Description (SDES) item and a new RTP header extension. This specification updates RFCs 3264, 5888, and 7941. This specification obsoletes RFC 8843."];
+  cites -> RFC9143;
+  RFC8859 [label="RFC8859
+A Framework for Session Description
+Protocol (SDP) Attributes When
+Multiplexing
+2021", shape=ellipse, URL="RFC8859.html", target="_top", tooltip="The purpose of this specification is to provide a framework for analyzing the multiplexing characteristics of Session Description Protocol (SDP) attributes when SDP is used to negotiate the usage of a single 5-tuple for sending and receiving media associated with multiple media descriptions. This specification also categorizes the existing SDP attributes based on the framework described herein."];
+  cites -> RFC8859;
+  RFC3264 [label="RFC3264
+An Offer/Answer Model with Session
+Description Protocol (SDP)
+2002", shape=ellipse, URL="RFC3264.html", target="_top", tooltip="This document defines a mechanism by which two entities can make use of the Session Description Protocol (SDP) to arrive at a common view of a multimedia session between them.  In the model, one participant offers the other a description of the desired session from their perspective, and the other participant answers with the desired session from their perspective.  This offer/answer model is most useful in unicast sessions where information from both participants is needed for the complete view of the session.  The offer/answer model is used by protocols like the Session Initiation Protocol (SIP). [STANDARDS-TRACK]"];
+  cites -> RFC3264;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC7714 [label="RFC7714
+AES-GCM Authenticated Encryption in the
+Secure Real-time Transport Protocol
+(SRTP)
+2015", shape=ellipse, URL="RFC7714.html", target="_top", tooltip="This document defines how the AES-GCM Authenticated Encryption with Associated Data family of algorithms can be used to provide confidentiality and data authentication in the Secure Real-time Transport Protocol (SRTP)."];
+  cites -> RFC7714;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9335;
+  RFC9626 [label="RFC9626
+Video Frame Marking RTP Header Extension
+2025", shape=ellipse, URL="RFC9626.html", target="_top", tooltip="This document describes a Video Frame Marking RTP header extension used to convey information about video frames that is critical for error recovery and packet forwarding in RTP middleboxes or network nodes.  It is most useful when media is encrypted and essential when the middlebox or node has no access to the media decryption keys.  It is also useful for codec-agnostic processing of encrypted or unencrypted media, while it also supports extensions for codec-specific information."];
+  RFC9626 -> rev_cites;
+}

@@ -1,0 +1,40 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6412 [label="RFC6412
+Terminology for Benchmarking Link-State
+IGP Data-Plane Route Convergence
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the terminology for benchmarking link-state Interior Gateway Protocol (IGP) route convergence.  The terminology is to be used for benchmarking IGP convergence time through externally observable (black-box) data-plane measurements.  The terminology can be applied to any link-state IGP, such as IS-IS and OSPF.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6412;
+
+  obs [label="obsoletes", shape=box];
+  RFC6412 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6412 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6412;
+
+  cites [label="cites", shape=box];
+  RFC6412 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6412;
+  RFC6894 [label="RFC6894
+Methodology for Benchmarking MPLS
+Traffic Engineered (MPLS-TE) Fast
+Reroute Protection
+2013", shape=ellipse, URL="RFC6894.html", target="_top", tooltip="This document describes the methodology for benchmarking MPLS Fast Reroute (FRR) protection mechanisms for link and node protection.  This document provides test methodologies and testbed setup for measuring failover times of Fast Reroute techniques while considering factors (such as underlying links) that might impact recovery times for real-time applications bound to MPLS Traffic Engineered (MPLS-TE) tunnels."];
+  RFC6894 -> rev_cites;
+  RFC7747 [label="RFC7747
+Basic BGP Convergence Benchmarking
+Methodology for Data-Plane Convergence
+2016", shape=ellipse, URL="RFC7747.html", target="_top", tooltip="BGP is widely deployed and used by several service providers as the default inter-AS (Autonomous System) routing protocol.  It is of utmost importance to ensure that when a BGP peer or a downstream link of a BGP peer fails, the alternate paths are rapidly used and routes via these alternate paths are installed.  This document provides the basic BGP benchmarking methodology using existing BGP convergence terminology as defined in RFC 4098."];
+  RFC7747 -> rev_cites;
+}

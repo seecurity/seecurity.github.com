@@ -1,0 +1,136 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7854 [label="RFC7854
+BGP Monitoring Protocol (BMP)
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines the BGP Monitoring Protocol (BMP), which can be used to monitor BGP sessions.  BMP is intended to provide a convenient interface for obtaining route views.  Prior to the introduction of BMP, screen scraping was the most commonly used approach to obtaining such views.  The design goals are to keep BMP simple, useful, easily implemented, and minimally service affecting.  BMP is not suitable for use as a routing protocol."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7854;
+
+  obs [label="obsoletes", shape=box];
+  RFC7854 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7854 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7854;
+  RFC8671 [label="RFC8671
+Support for Adj-RIB-Out in the BGP
+Monitoring Protocol (BMP)
+2019", shape=ellipse, URL="RFC8671.html", target="_top", tooltip="The BGP Monitoring Protocol (BMP) only defines access to the Adj-RIB-In Routing Information Bases (RIBs).  This document updates BMP (RFC 7854) by adding access to the Adj-RIB-Out RIBs.  It also adds a new flag to the peer header to distinguish between Adj-RIB-In and Adj-RIB-Out."];
+  RFC8671 -> updated_by;
+  RFC9069 [label="RFC9069
+Support for Local RIB in the BGP
+Monitoring Protocol (BMP)
+2022", shape=ellipse, URL="RFC9069.html", target="_top", tooltip="The BGP Monitoring Protocol (BMP) defines access to local Routing Information Bases (RIBs).  This document updates BMP (RFC 7854) by adding access to the Local Routing Information Base (Loc-RIB), as defined in RFC 4271.  The Loc-RIB contains the routes that have been selected by the local BGP speaker's Decision Process."];
+  RFC9069 -> updated_by;
+  RFC9515 [label="RFC9515
+Revision to Registration Procedures for
+Multiple BMP Registries
+2023", shape=ellipse, URL="RFC9515.html", target="_top", tooltip="This document updates RFC 7854, BGP Monitoring Protocol (BMP), by changing the registration procedures for several registries.  Specifically, any BMP registry with a range of 32768-65530 designated Specification Required has that range redesignated as First Come First Served."];
+  RFC9515 -> updated_by;
+  RFC9736 [label="RFC9736
+The BGP Monitoring Protocol (BMP) Peer
+Up Message Namespace
+2025", shape=ellipse, URL="RFC9736.html", target="_top", tooltip="RFC 7854, the BGP Monitoring Protocol (BMP), uses different message types for different purposes. Most of these are structured as Type, Length, Value (TLV). One message type, the Peer Up message, lacks a set of TLVs defined for its use, instead sharing a namespace with the Initiation message. Experience has shown that this namespace sharing was a mistake, as it hampers the extension of the protocol. This document updates RFC 7854 by creating an independent namespace for the Peer Up message. It also updates RFCs 8671 and 9069 by moving defined codepoints into the newly introduced registry. Compliant implementations of RFCs 7854, 8671, and 9069 also comply with this specification."];
+  RFC9736 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC7854 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC6793 [label="RFC6793
+BGP Support for Four-Octet Autonomous
+System (AS) Number Space
+2012", shape=ellipse, URL="RFC6793.html", target="_top", tooltip="The Autonomous System number is encoded as a two-octet entity in the base BGP specification.  This document describes extensions to BGP to carry the Autonomous System numbers as four-octet entities.  This document obsoletes RFC 4893 and updates RFC 4271. [STANDARDS-TRACK]"];
+  cites -> RFC6793;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC1213 [label="RFC1213
+Management Information Base for Network
+Management of TCP/IP-based internets:
+MIB-II
+1991", shape=ellipse, URL="RFC1213.html", target="_top", tooltip="This memo defines the second version of the Management Information Base (MIB-II) for use with network management protocols in TCP/IP-based internets. [STANDARDS-TRACK]"];
+  cites -> RFC1213;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  cites -> RFC7606;
+  RFC1155 [label="RFC1155
+Structure and identification of
+management information for TCP/IP-based
+internets
+1990", shape=ellipse, URL="RFC1155.html", target="_top", tooltip="This RFC is a re-release of RFC 1065, with a changed Status of this Memo, plus a few minor typographical corrections.  The technical content of the document is unchanged from RFC 1065. [STANDARDS-TRACK]"];
+  cites -> RFC1155;
+  RFC2856 [label="RFC2856
+Textual Conventions for Additional High
+Capacity Data Types
+2000", shape=ellipse, URL="RFC2856.html", target="_top", tooltip="This memo specifies new textual conventions for additional high capacity data types, intended for SNMP implementations which already support the Counter64 data type. [STANDARDS-TRACK]"];
+  cites -> RFC2856;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  cites -> RFC4724;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+  RFC4303 [label="RFC4303
+IP Encapsulating Security Payload (ESP)
+2005", shape=ellipse, URL="RFC4303.html", target="_top", tooltip="This document describes an updated version of the Encapsulating Security Payload (ESP) protocol, which is designed to provide a mix of security services in IPv4 and IPv6.  ESP is used to provide confidentiality, data origin authentication, connectionless integrity, an anti-replay service (a form of partial sequence integrity), and limited traffic flow confidentiality.  This document obsoletes RFC 2406 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4303;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7854;
+  RFC8549 [label="RFC8549
+Export of BGP Community Information in
+IP Flow Information Export (IPFIX)
+2019", shape=ellipse, URL="RFC8549.html", target="_top", tooltip="By introducing new Information Elements (IEs), this document extends the existing BGP-related IEs to enable IP Flow Information Export (IPFIX) to export BGP community information, including the BGP Standard Communities defined in RFC 1997, BGP Extended Communities defined in RFC 4360, and BGP Large Communities defined in RFC 8092.  According to the network operator's BGP community planning, network traffic information can then be accumulated and analyzed at the BGP community granularity, which represents the traffic of different kinds of customers, services, or geographical regions.  Network traffic information at the BGP community granularity is useful for network traffic analysis and engineering."];
+  RFC8549 -> rev_cites;
+  RFC8671 [label="RFC8671
+Support for Adj-RIB-Out in the BGP
+Monitoring Protocol (BMP)
+2019", shape=ellipse, URL="RFC8671.html", target="_top", tooltip="The BGP Monitoring Protocol (BMP) only defines access to the Adj-RIB-In Routing Information Bases (RIBs).  This document updates BMP (RFC 7854) by adding access to the Adj-RIB-Out RIBs.  It also adds a new flag to the peer header to distinguish between Adj-RIB-In and Adj-RIB-Out."];
+  RFC8671 -> rev_cites;
+  RFC9069 [label="RFC9069
+Support for Local RIB in the BGP
+Monitoring Protocol (BMP)
+2022", shape=ellipse, URL="RFC9069.html", target="_top", tooltip="The BGP Monitoring Protocol (BMP) defines access to local Routing Information Bases (RIBs).  This document updates BMP (RFC 7854) by adding access to the Local Routing Information Base (Loc-RIB), as defined in RFC 4271.  The Loc-RIB contains the routes that have been selected by the local BGP speaker's Decision Process."];
+  RFC9069 -> rev_cites;
+  RFC9087 [label="RFC9087
+Segment Routing Centralized BGP Egress
+Peer Engineering
+2021", shape=ellipse, URL="RFC9087.html", target="_top", tooltip="Segment Routing (SR) leverages source routing. A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows for the enforcement of a flow through any topological path while maintaining per-flow state only at the ingress node of the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change on the forwarding plane. It requires a minor extension to the existing link-state routing protocols. This document illustrates the application of Segment Routing to solve the BGP Egress Peer Engineering (BGP-EPE) requirement. The SR-based BGP-EPE solution allows a centralized (Software-Defined Networking, or SDN) controller to program any egress peer policy at ingress border routers or at hosts within the domain."];
+  RFC9087 -> rev_cites;
+  RFC9232 [label="RFC9232
+Network Telemetry Framework
+2022", shape=ellipse, URL="RFC9232.html", target="_top", tooltip="Network telemetry is a technology for gaining network insight and facilitating efficient and automated network management.  It encompasses various techniques for remote data generation, collection, correlation, and consumption.  This document describes an architectural framework for network telemetry, motivated by challenges that are encountered as part of the operation of networks and by the requirements that ensue.  This document clarifies the terminology and classifies the modules and components of a network telemetry system from different perspectives.  The framework and taxonomy help to set a common ground for the collection of related work and provide guidance for related technique and standard developments."];
+  RFC9232 -> rev_cites;
+  RFC9515 [label="RFC9515
+Revision to Registration Procedures for
+Multiple BMP Registries
+2023", shape=ellipse, URL="RFC9515.html", target="_top", tooltip="This document updates RFC 7854, BGP Monitoring Protocol (BMP), by changing the registration procedures for several registries.  Specifically, any BMP registry with a range of 32768-65530 designated Specification Required has that range redesignated as First Come First Served."];
+  RFC9515 -> rev_cites;
+  RFC9736 [label="RFC9736
+The BGP Monitoring Protocol (BMP) Peer
+Up Message Namespace
+2025", shape=ellipse, URL="RFC9736.html", target="_top", tooltip="RFC 7854, the BGP Monitoring Protocol (BMP), uses different message types for different purposes. Most of these are structured as Type, Length, Value (TLV). One message type, the Peer Up message, lacks a set of TLVs defined for its use, instead sharing a namespace with the Initiation message. Experience has shown that this namespace sharing was a mistake, as it hampers the extension of the protocol. This document updates RFC 7854 by creating an independent namespace for the Peer Up message. It also updates RFCs 8671 and 9069 by moving defined codepoints into the newly introduced registry. Compliant implementations of RFCs 7854, 8671, and 9069 also comply with this specification."];
+  RFC9736 -> rev_cites;
+}

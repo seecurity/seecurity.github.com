@@ -1,0 +1,56 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5092 [label="RFC5092
+IMAP URL Scheme
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="IMAP (RFC 3501) is a rich protocol for accessing remote message stores. It provides an ideal mechanism for accessing public mailing list archives as well as private and shared message stores. This document defines a URL scheme for referencing objects on an IMAP server. This document obsoletes RFC 2192. It also updates RFC 4467. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5092;
+
+  obs [label="obsoletes", shape=box];
+  RFC5092 -> obs;
+  RFC2192 [label="RFC2192
+IMAP URL Scheme
+1997", shape=ellipse, URL="RFC2192.html", target="_top", tooltip="This document defines a URL scheme for referencing objects on an IMAP server. [STANDARDS-TRACK]"];
+  obs -> RFC2192;
+
+  updates [label="updates", shape=box];
+  RFC5092 -> updates;
+  RFC4467 [label="RFC4467
+Internet Message Access Protocol (IMAP)
+- URLAUTH Extension
+2006", shape=ellipse, URL="RFC4467.html", target="_top", tooltip="This document describes the URLAUTH extension to the Internet Message Access Protocol (IMAP) (RFC 3501) and the IMAP URL Scheme (IMAPURL) (RFC 2192). This extension provides a means by which an IMAP client can use URLs carrying authorization to access limited message data on the IMAP server. An IMAP server that supports this extension indicates this with a capability name of URLAUTH. [STANDARDS-TRACK]"];
+  updates -> RFC4467;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5092;
+  RFC5593 [label="RFC5593
+Internet Message Access Protocol (IMAP)
+- URL Access Identifier Extension
+2009", shape=ellipse, URL="RFC5593.html", target="_top", tooltip="The existing IMAP URL specification (RFC 5092) lists several <access> identifiers and <access> identifier prefixes that can be used to restrict access to URLAUTH-generated URLs. However, these identifiers do not provide facilities for new services such as streaming. This document proposes a set of new <access> identifiers as well as an IANA mechanism to register new <access> identifiers for future applications. This document updates RFC 5092. [STANDARDS-TRACK]"];
+  RFC5593 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5092 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5092;
+  RFC5423 [label="RFC5423
+Internet Message Store Events
+2009", shape=ellipse, URL="RFC5423.html", target="_top", tooltip="One of the missing features in the existing Internet mail and messaging standards is a facility for server-to-server and server-to- client event notifications related to message store events. As the scope of Internet mail expands to support more diverse media (such as voice mail) and devices (such as cell phones) and to provide rich interactions with other services (such as web portals and legal compliance systems), the need for an interoperable notification system increases. This document attempts to enumerate the types of events that interest real-world consumers of such a system. This document describes events and event parameters that are useful for several cases, including notification to administrative systems and end users. This is not intended as a replacement for a message access facility such as IMAP. [STANDARDS-TRACK]"];
+  RFC5423 -> rev_cites;
+  RFC5593 [label="RFC5593
+Internet Message Access Protocol (IMAP)
+- URL Access Identifier Extension
+2009", shape=ellipse, URL="RFC5593.html", target="_top", tooltip="The existing IMAP URL specification (RFC 5092) lists several <access> identifiers and <access> identifier prefixes that can be used to restrict access to URLAUTH-generated URLs. However, these identifiers do not provide facilities for new services such as streaming. This document proposes a set of new <access> identifiers as well as an IANA mechanism to register new <access> identifiers for future applications. This document updates RFC 5092. [STANDARDS-TRACK]"];
+  RFC5593 -> rev_cites;
+  RFC6196 [label="RFC6196
+Moving mailserver: URI Scheme to
+Historic
+2011", shape=ellipse, URL="RFC6196.html", target="_top", tooltip="This document registers the mailserver: URI scheme as historic in the IANA URI registry. [STANDARDS-TRACK]"];
+  RFC6196 -> rev_cites;
+}

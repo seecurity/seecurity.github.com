@@ -1,0 +1,106 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4577 [label="RFC4577
+OSPF as the Provider/Customer Edge
+Protocol for BGP/MPLS IP Virtual Private
+Networks (VPNs)
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="Many Service Providers offer Virtual Private Network (VPN) services to their customers, using a technique in which customer edge routers (CE routers) are routing peers of provider edge routers (PE routers). The Border Gateway Protocol (BGP) is used to distribute the customer's routes across the provider's IP backbone network, and Multiprotocol Label Switching (MPLS) is used to tunnel customer packets across the provider's backbone. This is known as a BGP/MPLS IP VPN. The base specification for BGP/MPLS IP VPNs presumes that the routing protocol on the interface between a PE router and a CE router is BGP. This document extends that specification by allowing the routing protocol on the PE/CE interface to be the Open Shortest Path First (OSPF) protocol. This document updates RFC 4364. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4577;
+
+  obs [label="obsoletes", shape=box];
+  RFC4577 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4577 -> updates;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  updates -> RFC4364;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4577;
+
+  cites [label="cites", shape=box];
+  RFC4577 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4577;
+  RFC6565 [label="RFC6565
+OSPFv3 as a Provider Edge to Customer
+Edge (PE-CE) Routing Protocol
+2012", shape=ellipse, URL="RFC6565.html", target="_top", tooltip="Many Service Providers (SPs) offer Virtual Private Network (VPN) services to their customers using a technique in which Customer Edge (CE) routers are routing peers of Provider Edge (PE) routers.  The Border Gateway Protocol (BGP) is used to distribute the customer's routes across the provider's IP backbone network, and Multiprotocol Label Switching (MPLS) is used to tunnel customer packets across the provider's backbone.  Support currently exists for both IPv4 and IPv6 VPNs; however, only Open Shortest Path First version 2 (OSPFv2) as PE-CE protocol is specified.  This document extends those specifications to support OSPF version 3 (OSPFv3) as a PE-CE routing protocol.  The OSPFv3 PE-CE functionality is identical to that of OSPFv2 except for the differences described in this document. [STANDARDS-TRACK]"];
+  RFC6565 -> rev_cites;
+  RFC8049 [label="RFC8049
+YANG Data Model for L3VPN Service
+Delivery
+2017", shape=ellipse, URL="RFC8049.html", target="_top", tooltip="This document defines a YANG data model that can be used for communication between customers and network operators and to deliver a Layer 3 provider-provisioned VPN service.  This document is limited to BGP PE-based VPNs as described in RFCs 4026, 4110, and 4364.  This model is intended to be instantiated at the management system to deliver the overall service.  It is not a configuration model to be used directly on network elements.  This model provides an abstracted view of the Layer 3 IP VPN service configuration components.  It will be up to the management system to take this model as input and use specific configuration models to configure the different network elements to deliver the service.  How the configuration of network elements is done is out of scope for this document."];
+  RFC8049 -> rev_cites;
+  RFC8299 [label="RFC8299
+YANG Data Model for L3VPN Service
+Delivery
+2018", shape=ellipse, URL="RFC8299.html", target="_top", tooltip="This document defines a YANG data model that can be used for communication between customers and network operators and to deliver a Layer 3 provider-provisioned VPN service. This document is limited to BGP PE-based VPNs as described in RFCs 4026, 4110, and 4364. This model is intended to be instantiated at the management system to deliver the overall service. It is not a configuration model to be used directly on network elements. This model provides an abstracted view of the Layer 3 IP VPN service configuration components. It will be up to the management system to take this model as input and use specific configuration models to configure the different network elements to deliver the service. How the configuration of network elements is done is out of scope for this document. This document obsoletes RFC 8049; it replaces the unimplementable module in that RFC with a new module with the same name that is not backward compatible. The changes are a series of small fixes to the YANG module and some clarifications to the text."];
+  RFC8299 -> rev_cites;
+  RFC8379 [label="RFC8379
+OSPF Graceful Link Shutdown
+2018", shape=ellipse, URL="RFC8379.html", target="_top", tooltip="When a link is being prepared to be taken out of service, the traffic needs to be diverted from both ends of the link. Increasing the metric to the highest value on one side of the link is not sufficient to divert the traffic flowing in the other direction. It is useful for the routers in an OSPFv2 or OSPFv3 routing domain to be able to advertise a link as being in a graceful-shutdown state to indicate impending maintenance activity on the link. This information can be used by the network devices to reroute the traffic effectively. This document describes the protocol extensions to disseminate graceful-link-shutdown information in OSPFv2 and OSPFv3."];
+  RFC8379 -> rev_cites;
+  RFC9129 [label="RFC9129
+YANG Data Model for the OSPF Protocol
+2022", shape=ellipse, URL="RFC9129.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage OSPF.  The model is based on YANG 1.1 as defined in RFC 7950 and conforms to the Network Management Datastore Architecture (NMDA) as described in RFC 8342."];
+  RFC9129 -> rev_cites;
+  RFC9181 [label="RFC9181
+A Common YANG Data Model for Layer 2 and
+Layer 3 VPNs
+2022", shape=ellipse, URL="RFC9181.html", target="_top", tooltip="This document defines a common YANG module that is meant to be reused by various VPN-related modules such as Layer 3 VPN and Layer 2 VPN network models."];
+  RFC9181 -> rev_cites;
+  RFC9182 [label="RFC9182
+A YANG Network Data Model for Layer 3
+VPNs
+2022", shape=ellipse, URL="RFC9182.html", target="_top", tooltip="As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), which is used for communication between customers and service providers, this document defines an L3VPN Network Model (L3NM) that can be used for the provisioning of Layer 3 Virtual Private Network (L3VPN) services within a service provider network. The model provides a network-centric view of L3VPN services. The L3NM is meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. The model can also facilitate communication between a service orchestrator and a network controller/orchestrator."];
+  RFC9182 -> rev_cites;
+  RFC9552 [label="RFC9552
+Distribution of Link-State and Traffic
+Engineering Information Using BGP
+2023", shape=ellipse, URL="RFC9552.html", target="_top", tooltip="In many environments, a component external to a network is called upon to perform computations based on the network topology and the current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism applies to physical and virtual (e.g., tunnel) IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs). This document obsoletes RFC 7752 by completely replacing that document. It makes some small changes and clarifications to the previous specification. This document also obsoletes RFC 9029 by incorporating the updates that it made to RFC 7752."];
+  RFC9552 -> rev_cites;
+  RFC9833 [label="RFC9833
+A Common YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9833.html", target="_top", tooltip="The document specifies a common attachment circuits (ACs) YANG data
+model, which is designed to be reusable by other models.  This design
+is meant to ensure consistent AC structures among models that
+manipulate ACs.  For example, this common model can be reused by
+service models to expose ACs as a service, service models that
+require binding a service to a set of ACs, network and device models
+to provision ACs, etc."];
+  RFC9833 -> rev_cites;
+  RFC9834 [label="RFC9834
+YANG Data Models for Bearers and
+Attachment Circuits as a Service (ACaaS)
+2025", shape=ellipse, URL="RFC9834.html", target="_top", tooltip="Delivery of network services assumes that appropriate setup is
+provisioned over the links that connect customer termination points
+and a provider network. The required setup to allow successful data
+exchange over these links is referred to as an attachment circuit
+(AC), while the underlying link is referred to as a bearer. This document specifies a YANG service data model for ACs. This model
+can be used for the provisioning of ACs before or during service
+provisioning (e.g., RFC 9543 Network Slice Service). The document also specifies a YANG service data model for managing
+bearers over which ACs are established."];
+  RFC9834 -> rev_cites;
+  RFC9835 [label="RFC9835
+A Network YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9835.html", target="_top", tooltip="This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in the YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf- opsawg-teas-attachment-circuit). The module augments the base network ('ietf-network') and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs)."];
+  RFC9835 -> rev_cites;
+}

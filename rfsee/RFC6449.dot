@@ -1,0 +1,47 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6449 [label="RFC6449
+Complaint Feedback Loop Operational
+Recommendations
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="Complaint Feedback Loops similar to those described herein have existed for more than a decade, resulting in many de facto standards and best practices. This document is an attempt to codify, and thus clarify, the ways that both providers and consumers of these feedback mechanisms intend to use the feedback, describing some already common industry practices. This document is the result of cooperative efforts within the Messaging Anti-Abuse Working Group, a trade organization separate from the IETF. The original MAAWG document upon which this document is based was published in April, 2010. This document does not represent the consensus of the IETF; rather it is being published as an Informational RFC to make it widely available to the Internet community and simplify reference to this material from IETF work. This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6449;
+
+  obs [label="obsoletes", shape=box];
+  RFC6449 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6449 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6449;
+
+  cites [label="cites", shape=box];
+  RFC6449 -> cites;
+  RFC5598 [label="RFC5598
+Internet Mail Architecture
+2009", shape=ellipse, URL="RFC5598.html", target="_top", tooltip="Over its thirty-five-year history, Internet Mail has changed significantly in scale and complexity, as it has become a global infrastructure service.  These changes have been evolutionary, rather than revolutionary, reflecting a strong desire to preserve both its installed base and its usefulness.  To collaborate productively on this large and complex system, all participants need to work from a common view of it and use a common language to describe its components and the interactions among them.  But the many differences in perspective currently make it difficult to know exactly what another participant means.  To serve as the necessary common frame of reference, this document describes the enhanced Internet Mail architecture, reflecting the current service.  This memo provides information for the Internet community."];
+  cites -> RFC5598;
+  RFC5322 [label="RFC5322
+Internet Message Format
+2008", shape=ellipse, URL="RFC5322.html", target="_top", tooltip="This document specifies the Internet Message Format (IMF), a syntax for text messages that are sent between computer users, within the framework of electronic mail messages.  This specification is a revision of Request For Comments (RFC) 2822, which itself superseded Request For Comments (RFC) 822, Standard for the Format of ARPA Internet Text Messages, updating it to reflect current practice and incorporating incremental changes that were specified in other RFCs. [STANDARDS-TRACK]"];
+  cites -> RFC5322;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6449;
+  RFC6650 [label="RFC6650
+Creation and Use of Email Feedback
+Reports: An Applicability Statement for
+the Abuse Reporting Format (ARF)
+2012", shape=ellipse, URL="RFC6650.html", target="_top", tooltip="RFC 5965 defines an extensible, machine-readable format intended for mail operators to report feedback about received email to other parties.  This applicability statement describes common methods for utilizing this format for reporting both abuse and authentication failure events.  Mailbox Providers of any size, mail-sending entities, and end users can use these methods as a basis to create procedures that best suit them.  Some related optional mechanisms are also discussed. [STANDARDS-TRACK]"];
+  RFC6650 -> rev_cites;
+  RFC9477 [label="RFC9477
+Complaint Feedback Loop Address Header
+2023", shape=ellipse, URL="RFC9477.html", target="_top", tooltip="This document describes a method that allows a Message Originator to specify a Complaint Feedback Loop (CFBL) address as a message header field. It also defines the rules for processing and forwarding such a complaint. The motivation for this arises out of the absence of a standardized and automated way to provide Mailbox Providers with an address for a CFBL. Currently, providing and maintaining such an address is a manual and time-consuming process for Message Originators and Mailbox Providers. The mechanism specified in this document is being published as an experiment to gather feedback and gauge the interest of implementers and deployers. This document is produced through the Independent RFC Stream and was not subject to the IETF's approval process."];
+  RFC9477 -> rev_cites;
+}

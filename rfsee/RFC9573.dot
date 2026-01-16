@@ -1,0 +1,132 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9573 [label="RFC9573
+MVPN/EVPN Tunnel Aggregation with Common
+Labels
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Multicast VPN (MVPN) specifications allow a single Point-to-Multipoint (P2MP) tunnel to carry traffic of multiple IP VPNs (referred to as VPNs in this document).  The EVPN specifications allow a single P2MP tunnel to carry traffic of multiple Broadcast Domains (BDs).  These features require the ingress router of the P2MP tunnel to allocate an upstream-assigned MPLS label for each VPN or for each BD.  A packet sent on a P2MP tunnel then carries the label that is mapped to its VPN or BD (in some cases, a distinct upstream-assigned label is needed for each flow.) Since each ingress router allocates labels independently, with no coordination among the ingress routers, the egress routers may need to keep track of a large number of labels.  The number of labels may need to be as large as, or larger than, the product of the number of ingress routers times the number of VPNs or BDs.  However, the number of labels can be greatly reduced if the association between a label and a VPN or BD is made by provisioning, so that all ingress routers assign the same label to a particular VPN or BD.  New procedures are needed in order to take advantage of such provisioned labels.  These new procedures also apply to Multipoint-to-Multipoint (MP2MP) tunnels.  This document updates RFCs 6514, 7432, and 7582 by specifying the necessary procedures."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9573;
+
+  obs [label="obsoletes", shape=box];
+  RFC9573 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9573 -> updates;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  updates -> RFC6514;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  updates -> RFC7432;
+  RFC7582 [label="RFC7582
+Multicast Virtual Private Network
+(MVPN): Using Bidirectional P-Tunnels
+2015", shape=ellipse, URL="RFC7582.html", target="_top", tooltip="A set of prior RFCs specify procedures for supporting multicast in BGP/MPLS IP VPNs.  These procedures allow customer multicast data to travel across a service provider's backbone network through a set of multicast tunnels.  The tunnels are advertised in certain BGP multicast auto-discovery routes, by means of a BGP attribute known as the Provider Multicast Service Interface (PMSI) Tunnel attribute.  Encodings have been defined that allow the PMSI Tunnel attribute to identify bidirectional (multipoint-to-multipoint) multicast distribution trees.  However, the prior RFCs do not provide all the necessary procedures for using bidirectional tunnels to support multicast VPNs.  This document updates RFCs 6513, 6514, and 6625 by specifying those procedures.  In particular, it specifies the procedures for assigning customer multicast flows (unidirectional or bidirectional) to specific bidirectional tunnels in the provider backbone, for advertising such assignments, and for determining which flows have been assigned to which tunnels."];
+  updates -> RFC7582;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9573;
+
+  cites [label="cites", shape=box];
+  RFC9573 -> cites;
+  RFC5331 [label="RFC5331
+MPLS Upstream Label Assignment and
+Context-Specific Label Space
+2008", shape=ellipse, URL="RFC5331.html", target="_top", tooltip="RFC 3031 limits the MPLS architecture to downstream-assigned MPLS labels.  This document introduces the notion of upstream-assigned MPLS labels.  It describes the procedures for upstream MPLS label assignment and introduces the concept of a Context-Specific Label Space. [STANDARDS-TRACK]"];
+  cites -> RFC5331;
+  RFC8279 [label="RFC8279
+Multicast Using Bit Index Explicit
+Replication (BIER)
+2017", shape=ellipse, URL="RFC8279.html", target="_top", tooltip="This document specifies a new architecture for the forwarding of multicast data packets.  It provides optimal forwarding of multicast packets through a multicast domain.  However, it does not require a protocol for explicitly building multicast distribution trees, nor does it require intermediate nodes to maintain any per-flow state.  This architecture is known as Bit Index Explicit Replication (BIER).  When a multicast data packet enters the domain, the ingress router determines the set of egress routers to which the packet needs to be sent.  The ingress router then encapsulates the packet in a BIER header.  The BIER header contains a bit string in which each bit represents exactly one egress router in the domain; to forward the packet to a given set of egress routers, the bits corresponding to those routers are set in the BIER header.  The procedures for forwarding a packet based on its BIER header are specified in this document.  Elimination of the per-flow state and the explicit tree-building protocols results in a considerable simplification."];
+  cites -> RFC8279;
+  RFC8556 [label="RFC8556
+Multicast VPN Using Bit Index Explicit
+Replication (BIER)
+2019", shape=ellipse, URL="RFC8556.html", target="_top", tooltip="The Multicast Virtual Private Network (MVPN) specifications require the use of multicast tunnels (P-tunnels) that traverse a service provider's backbone network.  The P-tunnels are used for carrying multicast traffic across the backbone.  A variety of P-tunnel types are supported.  Bit Index Explicit Replication (BIER) is a new architecture that provides optimal multicast forwarding through a multicast domain, without requiring intermediate routers to maintain any per-flow state or to engage in an explicit tree-building protocol.  This document specifies the protocol and procedures that allow MVPN to use BIER as the method of carrying multicast traffic over a service provider's backbone network."];
+  cites -> RFC8556;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  cites -> RFC7432;
+  RFC4360 [label="RFC4360
+BGP Extended Communities Attribute
+2006", shape=ellipse, URL="RFC4360.html", target="_top", tooltip="This document describes the extended community BGP-4 attribute.  This attribute provides a mechanism for labeling information carried in BGP-4.  These labels can be used to control the distribution of this information, or for other applications. [STANDARDS-TRACK]"];
+  cites -> RFC4360;
+  RFC6513 [label="RFC6513
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6513.html", target="_top", tooltip="In order for IP multicast traffic within a BGP/MPLS IP VPN (Virtual Private Network) to travel from one VPN site to another, special protocols and procedures must be implemented by the VPN Service Provider.  These protocols and procedures are specified in this document. [STANDARDS-TRACK]"];
+  cites -> RFC6513;
+  RFC6514 [label="RFC6514
+BGP Encodings and Procedures for
+Multicast in MPLS/BGP IP VPNs
+2012", shape=ellipse, URL="RFC6514.html", target="_top", tooltip="This document describes the BGP encodings and procedures for exchanging the information elements required by Multicast in MPLS/BGP IP VPNs, as specified in RFC 6513. [STANDARDS-TRACK]"];
+  cites -> RFC6514;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC8660 [label="RFC8660
+Segment Routing with the MPLS Data Plane
+2019", shape=ellipse, URL="RFC8660.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm.  A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header.  In the MPLS data plane, the SR header is instantiated through a label stack.  This document specifies the forwarding behavior to allow instantiating SR over the MPLS data plane (SR-MPLS)."];
+  cites -> RFC8660;
+  RFC7582 [label="RFC7582
+Multicast Virtual Private Network
+(MVPN): Using Bidirectional P-Tunnels
+2015", shape=ellipse, URL="RFC7582.html", target="_top", tooltip="A set of prior RFCs specify procedures for supporting multicast in BGP/MPLS IP VPNs.  These procedures allow customer multicast data to travel across a service provider's backbone network through a set of multicast tunnels.  The tunnels are advertised in certain BGP multicast auto-discovery routes, by means of a BGP attribute known as the Provider Multicast Service Interface (PMSI) Tunnel attribute.  Encodings have been defined that allow the PMSI Tunnel attribute to identify bidirectional (multipoint-to-multipoint) multicast distribution trees.  However, the prior RFCs do not provide all the necessary procedures for using bidirectional tunnels to support multicast VPNs.  This document updates RFCs 6513, 6514, and 6625 by specifying those procedures.  In particular, it specifies the procedures for assigning customer multicast flows (unidirectional or bidirectional) to specific bidirectional tunnels in the provider backbone, for advertising such assignments, and for determining which flows have been assigned to which tunnels."];
+  cites -> RFC7582;
+  RFC7524 [label="RFC7524
+Inter-Area Point-to-Multipoint (P2MP)
+Segmented Label Switched Paths (LSPs)
+2015", shape=ellipse, URL="RFC7524.html", target="_top", tooltip="This document describes procedures for building inter-area point-to-multipoint (P2MP) segmented service label switched paths (LSPs) by partitioning such LSPs into intra-area segments and using BGP as the inter-area routing and Label Distribution Protocol (LDP).  Within each IGP area, the intra-area segments are either carried over intra-area P2MP LSPs, using P2MP LSP hierarchy, or instantiated using ingress replication.  The intra-area P2MP LSPs may be signaled using P2MP RSVP-TE or P2MP multipoint LDP (mLDP).  If ingress replication is used within an IGP area, then (multipoint-to-point) LDP LSPs or (point-to-point) RSVP-TE LSPs may be used in the IGP area.  The applications/services that use such inter-area service LSPs may be BGP Multicast VPN, Virtual Private LAN Service (VPLS) multicast, or global table multicast over MPLS."];
+  cites -> RFC7524;
+  RFC9572 [label="RFC9572
+Updates to EVPN Broadcast, Unknown
+Unicast, or Multicast (BUM) Procedures
+2024", shape=ellipse, URL="RFC9572.html", target="_top", tooltip="This document specifies updated procedures for handling Broadcast, Unknown Unicast, or Multicast (BUM) traffic in Ethernet VPNs (EVPNs), including selective multicast and segmentation of provider tunnels.  This document updates RFC 7432."];
+  cites -> RFC9572;
+  RFC7902 [label="RFC7902
+Registry and Extensions for P-Multicast
+Service Interface Tunnel Attribute Flags
+2016", shape=ellipse, URL="RFC7902.html", target="_top", tooltip="The BGP-based control procedures for Multicast Virtual Private Networks (MVPNs) make use of a BGP attribute known as the P-Multicast Service Interface (PMSI) Tunnel attribute.  The attribute contains a one-octet Flags field.  The purpose of this document is to establish an IANA registry for the assignment of the bits in this field.  Since the Flags field contains only eight bits, this document also defines a new BGP Extended Community, Additional PMSI Tunnel Attribute Flags, that can be used to carry additional flags for the P-Multicast Service Interface (PMSI) Tunnel attribute.  This document updates RFC 6514."];
+  cites -> RFC7902;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9573;
+  RFC9572 [label="RFC9572
+Updates to EVPN Broadcast, Unknown
+Unicast, or Multicast (BUM) Procedures
+2024", shape=ellipse, URL="RFC9572.html", target="_top", tooltip="This document specifies updated procedures for handling Broadcast, Unknown Unicast, or Multicast (BUM) traffic in Ethernet VPNs (EVPNs), including selective multicast and segmentation of provider tunnels.  This document updates RFC 7432."];
+  RFC9572 -> rev_cites;
+  RFC9856 [label="RFC9856
+Multicast Source Redundancy in EVPNs
+2025", shape=ellipse, URL="RFC9856.html", target="_top", tooltip="In Ethernet Virtual Private Networks (EVPNs), IP multicast traffic replication and delivery play a crucial role in enabling efficient and scalable Layer 2 and Layer 3 services.  A common deployment scenario involves redundant multicast sources that ensure high availability and resiliency.  However, the presence of redundant sources can lead to duplicate IP multicast traffic in the network, causing inefficiencies and increased overhead.  This document specifies extensions to the EVPN multicast procedures that allow for the suppression of duplicate IP multicast traffic from redundant sources.  The proposed mechanisms enhance the EVPN's capability to deliver multicast traffic efficiently while maintaining high availability.  These extensions are applicable to various EVPN deployment scenarios and provide guidelines to ensure consistent and predictable behavior across diverse network topologies."];
+  RFC9856 -> rev_cites;
+}

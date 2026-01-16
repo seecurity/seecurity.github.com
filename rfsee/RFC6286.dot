@@ -1,0 +1,68 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6286 [label="RFC6286
+Autonomous-System-Wide Unique BGP
+Identifier for BGP-4
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="To accommodate situations where the current requirements for the BGP Identifier are not met, this document relaxes the definition of the BGP Identifier to be a 4-octet, unsigned, non-zero integer and relaxes the uniqueness requirement so that only Autonomous-System-wide (AS-wide) uniqueness of the BGP Identifiers is required.  These revisions to the base BGP specification do not introduce any backward compatibility issues.  This document updates RFC 4271. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6286;
+
+  obs [label="obsoletes", shape=box];
+  RFC6286 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6286 -> updates;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  updates -> RFC4271;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6286;
+
+  cites [label="cites", shape=box];
+  RFC6286 -> cites;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC4893 [label="RFC4893
+BGP Support for Four-octet AS Number
+Space
+2007", shape=ellipse, URL="RFC4893.html", target="_top", tooltip="Currently the Autonomous System (AS) number is encoded as a two-octet entity in BGP.  This document describes extensions to BGP to carry the Autonomous System number as a four-octet entity. [STANDARDS-TRACK]"];
+  cites -> RFC4893;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6286;
+  RFC7552 [label="RFC7552
+Updates to LDP for IPv6
+2015", shape=ellipse, URL="RFC7552.html", target="_top", tooltip="The Label Distribution Protocol (LDP) specification defines procedures to exchange label bindings over either IPv4 or IPv6 networks, or both.  This document corrects and clarifies the LDP behavior when an IPv6 network is used (with or without IPv4).  This document updates RFCs 5036 and 6720."];
+  RFC7552 -> rev_cites;
+  RFC8635 [label="RFC8635
+Router Keying for BGPsec
+2019", shape=ellipse, URL="RFC8635.html", target="_top", tooltip="BGPsec-speaking routers are provisioned with private keys in order to sign BGPsec announcements.  The corresponding public keys are published in the Global Resource Public Key Infrastructure (RPKI), enabling verification of BGPsec messages.  This document describes two methods of generating the public-private key pairs: router-driven and operator-driven."];
+  RFC8635 -> rev_cites;
+  RFC9086 [label="RFC9086
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+BGP Egress Peer Engineering
+2021", shape=ellipse, URL="RFC9086.html", target="_top", tooltip="A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with a list of segment identifiers (SIDs). A segment can represent any instruction, topological or service based. SR segments allow steering a flow through any topological path and service chain while maintaining per-flow state only at the ingress node of the SR domain. This document describes an extension to Border Gateway Protocol - Link State (BGP-LS) for advertisement of BGP Peering Segments along with their BGP peering node information so that efficient BGP Egress Peer Engineering (EPE) policies and strategies can be computed based on Segment Routing."];
+  RFC9086 -> rev_cites;
+  RFC9703 [label="RFC9703
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+Egress Peer Engineering (EPE) Segment
+Identifiers (SIDs) with MPLS Data Plane
+2024", shape=ellipse, URL="RFC9703.html", target="_top", tooltip="Egress Peer Engineering (EPE) is an application of Segment Routing (SR) that solves the problem of egress peer selection.  The SR-based BGP-EPE solution allows a centralized controller, e.g., a Software-Defined Network (SDN) controller, to program any egress peer.  The EPE solution requires the node or the SDN controller to program 1) the PeerNode Segment Identifier (SID) describing a session between two nodes, 2) the PeerAdj SID describing the link or links that are used by the sessions between peer nodes, and 3) the PeerSet SID describing any connected interface to any peer in the related group.  This document provides new sub-TLVs for EPE-SIDs that are used in the Target FEC Stack TLV (Type 1) in MPLS Ping and Traceroute procedures."];
+  RFC9703 -> rev_cites;
+  RFC9830 [label="RFC9830
+Advertising Segment Routing Policies in
+BGP
+2025", shape=ellipse, URL="RFC9830.html", target="_top", tooltip="A Segment Routing (SR) Policy is an ordered list of segments (also referred to as instructions) that define a source-routed policy. An SR Policy consists of one or more Candidate Paths (CPs), each comprising one or more segment lists. A headend can be provisioned with these CPs using various mechanisms such as Command-Line Interface (CLI), Network Configuration Protocol (NETCONF), Path Computation Element Communication Protocol (PCEP), or BGP. This document specifies how BGP can be used to distribute SR Policy CPs. It introduces a BGP SAFI for advertising a CP of an SR Policy and defines sub-TLVs for the Tunnel Encapsulation Attribute to signal information related to these CPs. Furthermore, this document updates RFC 9012 by extending the Color Extended Community to support additional steering modes over SR Policy."];
+  RFC9830 -> rev_cites;
+}

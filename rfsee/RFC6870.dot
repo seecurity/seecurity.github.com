@@ -1,0 +1,86 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6870 [label="RFC6870
+Pseudowire Preferential Forwarding
+Status Bit
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a mechanism for signaling the active and standby status of redundant Pseudowires (PWs) between their termination points. A set of Redundant PWs is configured between Provider Edge (PE) nodes in single-segment pseudowire (SS-PW) applications or between Terminating Provider Edge (T-PE) nodes in Multi-Segment Pseudowire (MS-PW) applications. In order for the PE/T-PE nodes to indicate the preferred PW to use for forwarding PW packets to one another, a new status bit is defined. This bit indicates a Preferential Forwarding status with a value of active or standby for each PW in a redundant set. In addition, a second status bit is defined to allow peer PE nodes to coordinate a switchover operation of the PW. Finally, this document updates RFC 4447 by adding details to the handling of the PW status code bits in the PW Status TLV."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6870;
+
+  obs [label="obsoletes", shape=box];
+  RFC6870 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6870 -> updates;
+  RFC4447 [label="RFC4447
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2006", shape=ellipse, URL="RFC4447.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDU) and transmitting them over pseudowires.  It is also possible to use pseudowires to provide low-rate Time Division Multiplexed and a Synchronous Optical NETworking circuit emulation over an MPLS-enabled network.  This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to Label Distribution Protocol (LDP).  Procedures for encapsulating Layer 2 PDUs are specified in a set of companion documents. [STANDARDS-TRACK]"];
+  updates -> RFC4447;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6870;
+  RFC7771 [label="RFC7771
+Switching Provider Edge (S-PE)
+Protection for MPLS and MPLS Transport
+Profile (MPLS-TP) Static Multi-Segment
+Pseudowires
+2016", shape=ellipse, URL="RFC7771.html", target="_top", tooltip="In MPLS and MPLS Transport Profile (MPLS-TP) environments, statically provisioned Single-Segment Pseudowires (SS-PWs) are protected against tunnel failure via MPLS-level and MPLS-TP-level tunnel protection.  With statically provisioned Multi-Segment Pseudowires (MS-PWs), each segment of the MS-PW is likewise protected from tunnel failures via MPLS-level and MPLS-TP-level tunnel protection.  However, static MS-PWs are not protected end-to-end against failure of one of the Switching Provider Edge Routers (S-PEs) along the path of the MS-PW.  This document describes how to achieve this protection via redundant MS-PWs by updating the existing procedures in RFC 6870.  It also contains an optional approach based on MPLS-TP Linear Protection."];
+  RFC7771 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC6870 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6870;
+  RFC7275 [label="RFC7275
+Inter-Chassis Communication Protocol for
+Layer 2 Virtual Private Network (L2VPN)
+Provider Edge (PE) Redundancy
+2014", shape=ellipse, URL="RFC7275.html", target="_top", tooltip="This document specifies an Inter-Chassis Communication Protocol (ICCP) that enables Provider Edge (PE) device redundancy for Virtual Private Wire Service (VPWS) and Virtual Private LAN Service (VPLS) applications.  The protocol runs within a set of two or more PEs, forming a Redundancy Group, for the purpose of synchronizing data among the systems.  It accommodates multi-chassis attachment circuit redundancy mechanisms as well as pseudowire redundancy mechanisms."];
+  RFC7275 -> rev_cites;
+  RFC7309 [label="RFC7309
+Redundancy Mechanism for Inter-domain
+VPLS Service
+2014", shape=ellipse, URL="RFC7309.html", target="_top", tooltip="In many existing Virtual Private LAN Service (VPLS) inter-domain deployments (based on RFC 4762), pseudowire (PW) connectivity offers no Provider Edge (PE) node redundancy, or offers PE node redundancy with only a single domain.  This deployment approach incurs a high risk of service interruption, since at least one domain will not offer PE node redundancy.  This document describes an inter-domain VPLS solution that provides PE node redundancy across domains."];
+  RFC7309 -> rev_cites;
+  RFC7771 [label="RFC7771
+Switching Provider Edge (S-PE)
+Protection for MPLS and MPLS Transport
+Profile (MPLS-TP) Static Multi-Segment
+Pseudowires
+2016", shape=ellipse, URL="RFC7771.html", target="_top", tooltip="In MPLS and MPLS Transport Profile (MPLS-TP) environments, statically provisioned Single-Segment Pseudowires (SS-PWs) are protected against tunnel failure via MPLS-level and MPLS-TP-level tunnel protection.  With statically provisioned Multi-Segment Pseudowires (MS-PWs), each segment of the MS-PW is likewise protected from tunnel failures via MPLS-level and MPLS-TP-level tunnel protection.  However, static MS-PWs are not protected end-to-end against failure of one of the Switching Provider Edge Routers (S-PEs) along the path of the MS-PW.  This document describes how to achieve this protection via redundant MS-PWs by updating the existing procedures in RFC 6870.  It also contains an optional approach based on MPLS-TP Linear Protection."];
+  RFC7771 -> rev_cites;
+  RFC7795 [label="RFC7795
+Pseudowire Redundancy on the Switching
+Provider Edge (S-PE)
+2016", shape=ellipse, URL="RFC7795.html", target="_top", tooltip="This document describes Multi-Segment Pseudowire (MS-PW) protection scenarios in which pseudowire redundancy is provided on the Switching Provider Edge (S-PE) as defined in RFC 5659.  Operations of the S-PEs that provide PW redundancy are specified in this document.  Signaling of the Preferential Forwarding status as defined in RFCs 6870 and 6478 is reused.  This document does not require any change to the Terminating Provider Edges (T-PEs) of MS-PW."];
+  RFC7795 -> rev_cites;
+  RFC8024 [label="RFC8024
+Multi-Chassis Passive Optical Network
+(MC-PON) Protection in MPLS
+2016", shape=ellipse, URL="RFC8024.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) is being extended to the edge of operator networks including the network access nodes.  Separately, network access nodes such as Passive Optical Network (PON) Optical Line Terminations (OLTs) have evolved to support first-mile access protection, where one or more physical OLTs provide first-mile diversity to the customer edge.  Multihoming support is needed on the MPLS-enabled PON OLT to provide resiliency for provided services.  This document describes the Multi-Chassis PON (MC-PON) protection architecture in MPLS and also specifies the Inter-Chassis Communication Protocol (ICCP) extension to support it."];
+  RFC8024 -> rev_cites;
+  RFC8184 [label="RFC8184
+Dual-Homing Protection for MPLS and the
+MPLS Transport Profile (MPLS-TP)
+Pseudowires
+2017", shape=ellipse, URL="RFC8184.html", target="_top", tooltip="This document describes a framework and several scenarios for a pseudowire (PW) dual-homing local protection mechanism that avoids unnecessary switchovers and does not depend on whether a control plane is used.  A Dual-Node Interconnection (DNI) PW is used to carry traffic between the dual-homing Provider Edge (PE) nodes when a failure occurs in one of the Attachment Circuits (AC) or PWs.  This PW dual-homing local protection mechanism is complementary to existing PW protection mechanisms."];
+  RFC8184 -> rev_cites;
+  RFC8185 [label="RFC8185
+Dual-Homing Coordination for MPLS
+Transport Profile (MPLS-TP) Pseudowires
+Protection
+2017", shape=ellipse, URL="RFC8185.html", target="_top", tooltip="In some scenarios, MPLS Transport Profile (MPLS-TP) pseudowires (PWs) (RFC 5921) may be statically configured when a dynamic control plane is not available.  A fast protection mechanism for MPLS-TP PWs is needed to protect against the failure of an Attachment Circuit (AC), the failure of a Provider Edge (PE), or a failure in the Packet Switched Network (PSN).  The framework and typical scenarios of dual- homing PW local protection are described in RFC 8184.  This document proposes a dual-homing coordination mechanism for MPLS-TP PWs that is used for state exchange and switchover coordination between the dual- homing PEs for dual-homing PW local protection."];
+  RFC8185 -> rev_cites;
+  RFC9014 [label="RFC9014
+Interconnect Solution for Ethernet VPN
+(EVPN) Overlay Networks
+2021", shape=ellipse, URL="RFC9014.html", target="_top", tooltip="This document describes how Network Virtualization Overlays (NVOs) can be connected to a Wide Area Network (WAN) in order to extend the Layer 2 connectivity required for some tenants.  The solution analyzes the interaction between NVO networks running Ethernet Virtual Private Networks (EVPNs) and other Layer 2 VPN (L2VPN) technologies used in the WAN, such as Virtual Private LAN Services (VPLSs), VPLS extensions for Provider Backbone Bridging (PBB-VPLS), EVPN, or PBB-EVPN.  It also describes how the existing technical specifications apply to the interconnection and extends the EVPN procedures needed in some cases.  In particular, this document describes how EVPN routes are processed on Gateways (GWs) that interconnect EVPN-Overlay and EVPN-MPLS networks, as well as the Interconnect Ethernet Segment (I-ES), to provide multihoming.  This document also describes the use of the Unknown MAC Route (UMR) to avoid issues of a Media Access Control (MAC) scale on Data Center Network Virtualization Edge (NVE) devices."];
+  RFC9014 -> rev_cites;
+}

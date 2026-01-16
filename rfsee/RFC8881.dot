@@ -1,0 +1,62 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8881 [label="RFC8881
+Network File System (NFS) Version 4
+Minor Version 1 Protocol
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the Network File System (NFS) version 4 minor version 1, including features retained from the base protocol (NFS version 4 minor version 0, which is specified in RFC 7530) and protocol extensions made subsequently. The later minor version has no dependencies on NFS version 4 minor version 0, and is considered a separate protocol. This document obsoletes RFC 5661. It substantially revises the treatment of features relating to multi-server namespace, superseding the description of those features appearing in RFC 5661."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8881;
+
+  obs [label="obsoletes", shape=box];
+  RFC8881 -> obs;
+  RFC5661 [label="RFC5661
+Network File System (NFS) Version 4
+Minor Version 1 Protocol
+2010", shape=ellipse, URL="RFC5661.html", target="_top", tooltip="This document describes the Network File System (NFS) version 4 minor version 1, including features retained from the base protocol (NFS version 4 minor version 0, which is specified in RFC 3530) and protocol extensions made subsequently.  Major extensions introduced in NFS version 4 minor version 1 include Sessions, Directory Delegations, and parallel NFS (pNFS).  NFS version 4 minor version 1 has no dependencies on NFS version 4 minor version 0, and it is considered a separate protocol.  Thus, this document neither updates nor obsoletes RFC 3530.  NFS minor version 1 is deemed superior to NFS minor version 0 with no loss of functionality, and its use is preferred over version 0.  Both NFS minor versions 0 and 1 can be used simultaneously on the same network, between the same client and server. [STANDARDS-TRACK]"];
+  obs -> RFC5661;
+
+  updates [label="updates", shape=box];
+  RFC8881 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8881;
+
+  cites [label="cites", shape=box];
+  RFC8881 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8881;
+  RFC9237 [label="RFC9237
+An Authorization Information Format
+(AIF) for Authentication and
+Authorization for Constrained
+Environments (ACE)
+2022", shape=ellipse, URL="RFC9237.html", target="_top", tooltip="Information about which entities are authorized to perform what operations on which constituents of other entities is a crucial component of producing an overall system that is secure. Conveying precise authorization information is especially critical in highly automated systems with large numbers of entities, such as the Internet of Things. This specification provides a generic information model and format for representing such authorization information, as well as two variants of a specific instantiation of that format for use with Representational State Transfer (REST) resources identified by URI path."];
+  RFC9237 -> rev_cites;
+  RFC9561 [label="RFC9561
+Using the Parallel NFS (pNFS) SCSI
+Layout to Access Non-Volatile Memory
+Express (NVMe) Storage Devices
+2024", shape=ellipse, URL="RFC9561.html", target="_top", tooltip="This document specifies how to use the Parallel Network File System (pNFS) Small Computer System Interface (SCSI) Layout Type to access storage devices using the Non-Volatile Memory Express (NVMe) protocol family."];
+  RFC9561 -> rev_cites;
+  RFC9737 [label="RFC9737
+Reporting Errors in NFSv4.2 via
+LAYOUTRETURN
+2025", shape=ellipse, URL="RFC9737.html", target="_top", tooltip="The Parallel Network File System (pNFS) allows for a file's metadata and data to be on different servers (i.e., the metadata server (MDS) and the data server (DS)).  When the MDS is restarted, the client can still modify the data file component.  During the recovery phase of startup, the MDS and the DSs work together to recover state.  If the client has not encountered errors with the data files, then the state can be recovered and the resilvering of the data files can be avoided.  With any errors, there is no means by which the client can report errors to the MDS.  As such, the MDS has to assume that a file needs resilvering.  This document presents an extension to RFC 8435 to allow the client to update the metadata via LAYOUTRETURN and avoid the resilvering."];
+  RFC9737 -> rev_cites;
+  RFC9754 [label="RFC9754
+Extensions for Opening and Delegating
+Files in NFSv4.2
+2025", shape=ellipse, URL="RFC9754.html", target="_top", tooltip="The Network File System v4 (NFSv4) allows a client to both open a file and be granted a delegation of that file.  This delegation provides the client the right to authoritatively cache metadata on the file locally.  This document presents several extensions for both opening the file and delegating it to the client.  This document extends NFSv4.2 (see RFC 7863)."];
+  RFC9754 -> rev_cites;
+  RFC9766 [label="RFC9766
+Extensions for Weak Cache Consistency in
+NFSv4.2's Flexible File Layout
+2025", shape=ellipse, URL="RFC9766.html", target="_top", tooltip="This document specifies extensions to NFSv4.2 for improving Weak Cache Consistency (WCC).  These extensions introduce mechanisms that ensure partial writes performed under a Parallel NFS (pNFS) layout remain coherent and correctly tracked.  The solution addresses concurrency and data integrity concerns that may arise when multiple clients write to the same file through separate data servers.  By defining additional interactions among clients, metadata servers, and data servers, this specification enhances the reliability of NFSv4 in parallel-access environments and ensures consistency across diverse deployment scenarios."];
+  RFC9766 -> rev_cites;
+}

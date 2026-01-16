@@ -1,0 +1,63 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6210 [label="RFC6210
+Experiment: Hash Functions with
+Parameters in the Cryptographic Message
+Syntax (CMS) and S/MIME
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="New hash algorithms are being developed that may include parameters.  Cryptographic Message Syntax (CMS) has not currently defined any hash algorithms with parameters, but anecdotal evidence suggests that defining one could cause major problems.  This document defines just such an algorithm and describes how to use it so that experiments can be run to find out how bad including hash parameters will be.  This document defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6210;
+
+  obs [label="obsoletes", shape=box];
+  RFC6210 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6210 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6210;
+
+  cites [label="cites", shape=box];
+  RFC6210 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC2231 [label="RFC2231
+MIME Parameter Value and Encoded Word
+Extensions: Character Sets, Languages,
+and Continuations
+1997", shape=ellipse, URL="RFC2231.html", target="_top", tooltip="This memo defines extensions to the RFC 2045 media type and RFC 2183 disposition parameter value mechanisms.  This memo also defines an extension to the encoded words defined in RFC 2047 to allow the specification of the language to be used for display as well as the character set. [STANDARDS-TRACK]"];
+  cites -> RFC2231;
+  RFC5912 [label="RFC5912
+New ASN.1 Modules for the Public Key
+Infrastructure Using X.509 (PKIX)
+2010", shape=ellipse, URL="RFC5912.html", target="_top", tooltip="The Public Key Infrastructure using X.509 (PKIX) certificate format, and many associated formats, are expressed using ASN.1.  The current ASN.1 modules conform to the 1988 version of ASN.1.  This document updates those ASN.1 modules to conform to the 2002 version of ASN.1.  There are no bits-on-the-wire changes to any of the formats; this is simply a change to the syntax.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5912;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6210;
+  RFC6211 [label="RFC6211
+Cryptographic Message Syntax (CMS)
+Algorithm Identifier Protection
+Attribute
+2011", shape=ellipse, URL="RFC6211.html", target="_top", tooltip="The Cryptographic Message Syntax (CMS), unlike X.509/PKIX certificates, is vulnerable to algorithm substitution attacks.  In an algorithm substitution attack, the attacker changes either the algorithm being used or the parameters of the algorithm in order to change the result of a signature verification process.  In X.509 certificates, the signature algorithm is protected because it is duplicated in the TBSCertificate.signature field with the proviso that the validator is to compare both fields as part of the signature validation process.  This document defines a new attribute that contains a copy of the relevant algorithm identifiers so that they are protected by the signature or authentication process. [STANDARDS-TRACK]"];
+  RFC6211 -> rev_cites;
+  RFC7107 [label="RFC7107
+Object Identifier Registry for the
+S/MIME Mail Security Working Group
+2014", shape=ellipse, URL="RFC7107.html", target="_top", tooltip="When the S/MIME Mail Security Working Group was chartered, an object identifier arc was donated by RSA Data Security for use by that working group.  This document describes the object identifiers that were assigned in that donated arc, transfers control of that arc to IANA, and establishes IANA allocation policies for any future assignments within that arc."];
+  RFC7107 -> rev_cites;
+  RFC8933 [label="RFC8933
+Update to the Cryptographic Message
+Syntax (CMS) for Algorithm Identifier
+Protection
+2020", shape=ellipse, URL="RFC8933.html", target="_top", tooltip="This document updates the Cryptographic Message Syntax (CMS) specified in RFC 5652 to ensure that algorithm identifiers in signed-data and authenticated-data content types are adequately protected."];
+  RFC8933 -> rev_cites;
+}

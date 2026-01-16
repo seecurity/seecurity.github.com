@@ -1,0 +1,37 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2354 [label="RFC2354
+Options for Repair of Streaming Media
+1998", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document summarizes a range of possible techniques for the repair of continuous media streams subject to packet loss.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2354;
+
+  obs [label="obsoletes", shape=box];
+  RFC2354 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2354 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2354;
+
+  cites [label="cites", shape=box];
+  RFC2354 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2354;
+  RFC7104 [label="RFC7104
+Duplication Grouping Semantics in the
+Session Description Protocol
+2014", shape=ellipse, URL="RFC7104.html", target="_top", tooltip="Packet loss is undesirable for real-time multimedia sessions, but it can occur due to congestion or other unplanned network outages.  This is especially true for IP multicast networks, where packet loss patterns can vary greatly between receivers.  One technique that can be used to recover from packet loss without incurring unbounded delay for all the receivers is to duplicate the packets and send them in separate redundant streams.  This document defines the semantics for grouping redundant streams in the Session Description Protocol (SDP).  The semantics defined in this document are to be used with the SDP Grouping Framework.  Grouping semantics at the Synchronization Source (SSRC) level are also defined in this document for RTP streams using SSRC multiplexing."];
+  RFC7104 -> rev_cites;
+  RFC7198 [label="RFC7198
+Duplicating RTP Streams
+2014", shape=ellipse, URL="RFC7198.html", target="_top", tooltip="Packet loss is undesirable for real-time multimedia sessions but can occur due to a variety of reasons including unplanned network outages.  In unicast transmissions, recovering from such an outage can be difficult depending on the outage duration, due to the potentially large number of missing packets.  In multicast transmissions, recovery is even more challenging as many receivers could be impacted by the outage.  For this challenge, one solution that does not incur unbounded delay is to duplicate the packets and send them in separate redundant streams, provided that the underlying network satisfies certain requirements.  This document explains how Real-time Transport Protocol (RTP) streams can be duplicated without breaking RTP or RTP Control Protocol (RTCP) rules."];
+  RFC7198 -> rev_cites;
+}

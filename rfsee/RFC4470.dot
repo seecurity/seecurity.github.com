@@ -1,0 +1,73 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4470 [label="RFC4470
+Minimally Covering NSEC Records and
+DNSSEC On-line Signing
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes how to construct DNSSEC NSEC resource records that cover a smaller range of names than called for by RFC 4034.  By generating and signing these records on demand, authoritative name servers can effectively stop the disclosure of zone contents otherwise made possible by walking the chain of NSEC records in a signed zone. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4470;
+
+  obs [label="obsoletes", shape=box];
+  RFC4470 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4470 -> updates;
+  RFC4035 [label="RFC4035
+Protocol Modifications for the DNS
+Security Extensions
+2005", shape=ellipse, URL="RFC4035.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of new resource records and protocol modifications that add data origin authentication and data integrity to the DNS. This document describes the DNSSEC protocol modifications. This document defines the concept of a signed zone, along with the requirements for serving and resolving by using DNSSEC. These techniques allow a security-aware resolver to authenticate both DNS resource records and authoritative DNS error indications. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  updates -> RFC4035;
+  RFC4034 [label="RFC4034
+Resource Records for the DNS Security
+Extensions
+2005", shape=ellipse, URL="RFC4034.html", target="_top", tooltip="This document is part of a family of documents that describe the DNS Security Extensions (DNSSEC). The DNS Security Extensions are a collection of resource records and protocol modifications that provide source authentication for the DNS. This document defines the public key (DNSKEY), delegation signer (DS), resource record digital signature (RRSIG), and authenticated denial of existence (NSEC) resource records. The purpose and format of each resource record is described in detail, and an example of each resource record is given. This document obsoletes RFC 2535 and incorporates changes from all updates to RFC 2535. [STANDARDS-TRACK]"];
+  updates -> RFC4034;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4470;
+
+  cites [label="cites", shape=box];
+  RFC4470 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4470;
+  RFC4471 [label="RFC4471
+Derivation of DNS Name Predecessor and
+Successor
+2006", shape=ellipse, URL="RFC4471.html", target="_top", tooltip="This document describes two methods for deriving the canonically-ordered predecessor and successor of a DNS name.  These methods may be used for dynamic NSEC resource record synthesis, enabling security-aware name servers to provide authenticated denial of existence without disclosing other owner names in a DNSSEC secured zone.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC4471 -> rev_cites;
+  RFC5074 [label="RFC5074
+DNSSEC Lookaside Validation (DLV)
+2007", shape=ellipse, URL="RFC5074.html", target="_top", tooltip="DNSSEC Lookaside Validation (DLV) is a mechanism for publishing DNS Security (DNSSEC) trust anchors outside of the DNS delegation chain.  It allows validating resolvers to validate DNSSEC-signed data from zones whose ancestors either aren't signed or don't publish Delegation Signer (DS) records for their children.  This memo provides information for the Internet community."];
+  RFC5074 -> rev_cites;
+  RFC7129 [label="RFC7129
+Authenticated Denial of Existence in the
+DNS
+2014", shape=ellipse, URL="RFC7129.html", target="_top", tooltip="Authenticated denial of existence allows a resolver to validate that a certain domain name does not exist. It is also used to signal that a domain name exists but does not have the specific resource record (RR) type you were asking for. When returning a negative DNS Security Extensions (DNSSEC) response, a name server usually includes up to two NSEC records. With NSEC version 3 (NSEC3), this amount is three. This document provides additional background commentary and some context for the NSEC and NSEC3 mechanisms used by DNSSEC to provide authenticated denial-of-existence responses."];
+  RFC7129 -> rev_cites;
+  RFC9076 [label="RFC9076
+DNS Privacy Considerations
+2021", shape=ellipse, URL="RFC9076.html", target="_top", tooltip="This document describes the privacy issues associated with the use of the DNS by Internet users.  It provides general observations about typical current privacy practices.  It is intended to be an analysis of the present situation and does not prescribe solutions.  This document obsoletes RFC 7626."];
+  RFC9076 -> rev_cites;
+  RFC9276 [label="RFC9276
+Guidance for NSEC3 Parameter Settings
+2022", shape=ellipse, URL="RFC9276.html", target="_top", tooltip="NSEC3 is a DNSSEC mechanism providing proof of nonexistence by asserting that there are no names that exist between two domain names within a zone.  Unlike its counterpart NSEC, NSEC3 avoids directly disclosing the bounding domain name pairs.  This document provides guidance on setting NSEC3 parameters based on recent operational deployment experience.  This document updates RFC 5155 with guidance about selecting NSEC3 iteration and salt parameters."];
+  RFC9276 -> rev_cites;
+  RFC9364 [label="RFC9364
+DNS Security Extensions (DNSSEC)
+2023", shape=ellipse, URL="RFC9364.html", target="_top", tooltip="This document describes the DNS Security Extensions (commonly called DNSSEC) that are specified in RFCs 4033, 4034, and 4035, as well as a handful of others.  One purpose is to introduce all of the RFCs in one place so that the reader can understand the many aspects of DNSSEC.  This document does not update any of those RFCs.  A second purpose is to state that using DNSSEC for origin authentication of DNS data is the best current practice.  A third purpose is to provide a single reference for other documents that want to refer to DNSSEC."];
+  RFC9364 -> rev_cites;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+  RFC9824 [label="RFC9824
+Compact Denial of Existence in DNSSEC
+2025", shape=ellipse, URL="RFC9824.html", target="_top", tooltip="This document describes a technique to generate a signed DNS response on demand for a nonexistent name by claiming that the name exists but doesn't have any data for the queried record type. Such responses require only one minimally covering NSEC or NSEC3 record, allow online signing servers to minimize signing operations and response sizes, and prevent zone content disclosure. This document updates RFCs 4034 and 4035."];
+  RFC9824 -> rev_cites;
+}

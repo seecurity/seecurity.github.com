@@ -1,0 +1,89 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8406 [label="RFC8406
+Taxonomy of Coding Techniques for
+Efficient Network Communications
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document summarizes recommended terminology for Network Coding concepts and constructs.  It provides a comprehensive set of terms in order to avoid ambiguities in future IRTF and IETF documents on Network Coding.  This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG), and it is in line with the terminology used by the RFCs produced by the Reliable Multicast Transport (RMT) and FEC Framework (FECFRAME) IETF working groups."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8406;
+
+  obs [label="obsoletes", shape=box];
+  RFC8406 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8406 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8406;
+
+  cites [label="cites", shape=box];
+  RFC8406 -> cites;
+  RFC5052 [label="RFC5052
+Forward Error Correction (FEC) Building
+Block
+2007", shape=ellipse, URL="RFC5052.html", target="_top", tooltip="This document describes how to use Forward Error Correction (FEC) codes to efficiently provide and/or augment reliability for bulk data transfer over IP multicast.  This document defines a framework for the definition of the information that needs to be communicated in order to use an FEC code for bulk data transfer, in addition to the encoded data itself, and for definition of formats and codes for communication of that information.  Both information communicated with the encoded data itself and information that needs to be communicated 'out-of-band' are considered.  The procedures for specifying new FEC codes, defining the information communication requirements associated with those codes and registering them with the Internet Assigned Numbers Authority (IANA) are also described.  The requirements on Content Delivery Protocols that wish to use FEC codes defined within this framework are also defined.  The companion document titled The Use of Forward Error Correction (FEC) in Reliable Multicast describes some applications of FEC codes for delivering content.  This document obsoletes RFC 3452. [STANDARDS-TRACK]"];
+  cites -> RFC5052;
+  RFC5740 [label="RFC5740
+NACK-Oriented Reliable Multicast (NORM)
+Transport Protocol
+2009", shape=ellipse, URL="RFC5740.html", target="_top", tooltip="This document describes the messages and procedures of the Negative- ACKnowledgment (NACK) Oriented Reliable Multicast (NORM) protocol.  This protocol can provide end-to-end reliable transport of bulk data objects or streams over generic IP multicast routing and forwarding services.  NORM uses a selective, negative acknowledgment mechanism for transport reliability and offers additional protocol mechanisms to allow for operation with minimal a priori coordination among senders and receivers.  A congestion control scheme is specified to allow the NORM protocol to fairly share available network bandwidth with other transport protocols such as Transmission Control Protocol (TCP).  It is capable of operating with both reciprocal multicast routing among senders and receivers and with asymmetric connectivity (possibly a unicast return path) between the senders and receivers.  The protocol offers a number of features to allow different types of applications or possibly other higher-level transport protocols to utilize its service in different ways.  The protocol leverages the use of FEC-based (forward error correction) repair and other IETF Reliable Multicast Transport (RMT) building blocks in its design.  This document obsoletes RFC 3940. [STANDARDS-TRACK]"];
+  cites -> RFC5740;
+  RFC5775 [label="RFC5775
+Asynchronous Layered Coding (ALC)
+Protocol Instantiation
+2010", shape=ellipse, URL="RFC5775.html", target="_top", tooltip="This document describes the Asynchronous Layered Coding (ALC) protocol, a massively scalable reliable content delivery protocol.  Asynchronous Layered Coding combines the Layered Coding Transport (LCT) building block, a multiple rate congestion control building block and the Forward Error Correction (FEC) building block to provide congestion controlled reliable asynchronous delivery of content to an unlimited number of concurrent receivers from a single sender.  This document obsoletes RFC 3450. [STANDARDS-TRACK]"];
+  cites -> RFC5775;
+  RFC6363 [label="RFC6363
+Forward Error Correction (FEC) Framework
+2011", shape=ellipse, URL="RFC6363.html", target="_top", tooltip="This document describes a framework for using Forward Error Correction (FEC) codes with applications in public and private IP networks to provide protection against packet loss.  The framework supports applying FEC to arbitrary packet flows over unreliable transport and is primarily intended for real-time, or streaming, media.  This framework can be used to define Content Delivery Protocols that provide FEC for streaming media delivery or other packet flows.  Content Delivery Protocols defined using this framework can support any FEC scheme (and associated FEC codes) that is compliant with various requirements defined in this document.  Thus, Content Delivery Protocols can be defined that are not specific to a particular FEC scheme, and FEC schemes can be defined that are not specific to a particular Content Delivery Protocol. [STANDARDS-TRACK]"];
+  cites -> RFC6363;
+  RFC6726 [label="RFC6726
+FLUTE - File Delivery over
+Unidirectional Transport
+2012", shape=ellipse, URL="RFC6726.html", target="_top", tooltip="This document defines File Delivery over Unidirectional Transport (FLUTE), a protocol for the unidirectional delivery of files over the Internet, which is particularly suited to multicast networks.  The specification builds on Asynchronous Layered Coding, the base protocol designed for massively scalable multicast distribution.  This document obsoletes RFC 3926. [STANDARDS-TRACK]"];
+  cites -> RFC6726;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8406;
+  RFC8517 [label="RFC8517
+An Inventory of Transport-Centric
+Functions Provided by Middleboxes: An
+Operator Perspective
+2019", shape=ellipse, URL="RFC8517.html", target="_top", tooltip="This document summarizes an operator's perception of the benefits that may be provided by intermediary devices that execute functions beyond normal IP forwarding. Such intermediary devices are often called middleboxes. RFC 3234 defines a taxonomy of middleboxes and issues in the Internet. Most of those middleboxes utilize or modify application- layer data. This document primarily focuses on devices that observe and act on information carried in the transport layer, and especially information carried in TCP packets."];
+  RFC8517 -> rev_cites;
+  RFC8680 [label="RFC8680
+Forward Error Correction (FEC) Framework
+Extension to Sliding Window Codes
+2020", shape=ellipse, URL="RFC8680.html", target="_top", tooltip="RFC 6363 describes a framework for using Forward Error Correction (FEC) codes to provide protection against packet loss.  The framework supports applying FEC to arbitrary packet flows over unreliable transport and is primarily intended for real-time, or streaming, media.  However, FECFRAME as per RFC 6363 is restricted to block FEC codes.  This document updates RFC 6363 to support FEC codes based on a sliding encoding window, in addition to block FEC codes, in a backward-compatible way.  During multicast/broadcast real-time content delivery, the use of sliding window codes significantly improves robustness in harsh environments, with less repair traffic and lower FEC-related added latency."];
+  RFC8680 -> rev_cites;
+  RFC8681 [label="RFC8681
+Sliding Window Random Linear Code (RLC)
+Forward Erasure Correction (FEC) Schemes
+for FECFRAME
+2020", shape=ellipse, URL="RFC8681.html", target="_top", tooltip="This document describes two fully specified Forward Erasure Correction (FEC) Schemes for Sliding Window Random Linear Codes (RLC), one for RLC over the Galois Field (a.k.a., Finite Field) GF(2), a second one for RLC over the Galois Field GF(2^8), each time with the possibility of controlling the code density.  They can protect arbitrary media streams along the lines defined by FECFRAME extended to Sliding Window FEC Codes.  These Sliding Window FEC Codes rely on an encoding window that slides over the source symbols, generating new repair symbols whenever needed.  Compared to block FEC codes, these Sliding Window FEC Codes offer key advantages with real-time flows in terms of reduced FEC-related latency while often providing improved packet erasure recovery capabilities."];
+  RFC8681 -> rev_cites;
+  RFC8975 [label="RFC8975
+Network Coding for Satellite Systems
+2021", shape=ellipse, URL="RFC8975.html", target="_top", tooltip="This document is a product of the Coding for Efficient Network Communications Research Group (NWCRG). It conforms to the directions found in the NWCRG taxonomy (RFC 8406). The objective is to contribute to a larger deployment of Network Coding techniques in and above the network layer in satellite communication systems. This document also identifies open research issues related to the deployment of Network Coding in satellite communication systems."];
+  RFC8975 -> rev_cites;
+  RFC9265 [label="RFC9265
+Forward Erasure Correction (FEC) Coding
+and Congestion Control in Transport
+2022", shape=ellipse, URL="RFC9265.html", target="_top", tooltip="Forward Erasure Correction (FEC) is a reliability mechanism that is distinct and separate from the retransmission logic in reliable transfer protocols such as TCP. FEC coding can help deal with losses at the end of transfers or with networks having non-congestion losses. However, FEC coding mechanisms should not hide congestion signals. This memo offers a discussion of how FEC coding and congestion control can coexist. Another objective is to encourage the research community to also consider congestion control aspects when proposing and comparing FEC coding solutions in communication systems. This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). The scope of the document is end-to-end communications; FEC coding for tunnels is out of the scope of the document."];
+  RFC9265 -> rev_cites;
+  RFC9407 [label="RFC9407
+Tetrys: An On-the-Fly Network Coding
+Protocol
+2023", shape=ellipse, URL="RFC9407.html", target="_top", tooltip="This document describes Tetrys, which is an on-the-fly network coding protocol that can be used to transport delay-sensitive and loss-sensitive data over a lossy network. Tetrys may recover from erasures within an RTT-independent delay thanks to the transmission of coded packets. This document is a record of the experience gained by the authors while developing and testing the Tetrys protocol in real conditions. This document is a product of the Coding for Efficient NetWork Communications Research Group (NWCRG). It conforms to the NWCRG taxonomy described in RFC 8406."];
+  RFC9407 -> rev_cites;
+  RFC9426 [label="RFC9426
+BATched Sparse (BATS) Coding Scheme for
+Multi-hop Data Transport
+2023", shape=ellipse, URL="RFC9426.html", target="_top", tooltip="In general, linear network coding can improve the network communication performance in terms of throughput, latency, and reliability.  BATched Sparse (BATS) code is a class of efficient linear network coding scheme with a matrix generalization of fountain codes as the outer code and batch-based linear network coding as the inner code.  This document describes a baseline BATS coding scheme for communication through multi-hop networks and discusses the related research issues towards a more sophisticated BATS coding scheme.  This document is a product of the Coding for Efficient Network Communications Research Group (NWCRG)."];
+  RFC9426 -> rev_cites;
+}

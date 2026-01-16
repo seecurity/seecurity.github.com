@@ -1,0 +1,360 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8834 [label="RFC8834
+Media Transport and Use of RTP in WebRTC
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="The framework for Web Real-Time Communication (WebRTC) provides support for direct interactive rich communication using audio, video, text, collaboration, games, etc.  between two peers' web browsers.  This memo describes the media transport aspects of the WebRTC framework.  It specifies how the Real-time Transport Protocol (RTP) is used in the WebRTC context and gives requirements for which RTP features, profiles, and extensions need to be supported."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8834;
+
+  obs [label="obsoletes", shape=box];
+  RFC8834 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8834 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8834;
+
+  cites [label="cites", shape=box];
+  RFC8834 -> cites;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC8825 [label="RFC8825
+Overview: Real-Time Protocols for
+Browser-Based Applications
+2021", shape=ellipse, URL="RFC8825.html", target="_top", tooltip="This document gives an overview and context of a protocol suite intended for use with real-time applications that can be deployed in browsers -- real-time communication on the Web. It intends to serve as a starting and coordination point to make sure that (1) all the parts that are needed to achieve this goal are findable and (2) the parts that belong in the Internet protocol suite are fully specified and on the right publication track. This document is an applicability statement -- it does not itself specify any protocol, but it specifies which other specifications implementations are supposed to follow to be compliant with Web Real-Time Communication (WebRTC)."];
+  cites -> RFC8825;
+  RFC7478 [label="RFC7478
+Web Real-Time Communication Use Cases
+and Requirements
+2015", shape=ellipse, URL="RFC7478.html", target="_top", tooltip="This document describes web-based real-time communication use cases. Requirements on the browser functionality are derived from the use cases. This document was developed in an initial phase of the work with rather minor updates at later stages. It has not really served as a tool in deciding features or scope for the WG's efforts so far. It is being published to record the early conclusions of the WG. It will not be used as a set of rigid guidelines that specifications and implementations will be held to in the future."];
+  cites -> RFC7478;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7656 [label="RFC7656
+A Taxonomy of Semantics and Mechanisms
+for Real-Time Transport Protocol (RTP)
+Sources
+2015", shape=ellipse, URL="RFC7656.html", target="_top", tooltip="The terminology about, and associations among, Real-time Transport Protocol (RTP) sources can be complex and somewhat opaque.  This document describes a number of existing and proposed properties and relationships among RTP sources and defines common terminology for discussing protocol entities and their relationships."];
+  cites -> RFC7656;
+  RFC8108 [label="RFC8108
+Sending Multiple RTP Streams in a Single
+RTP Session
+2017", shape=ellipse, URL="RFC8108.html", target="_top", tooltip="This memo expands and clarifies the behavior of Real-time Transport Protocol (RTP) endpoints that use multiple synchronization sources (SSRCs).  This occurs, for example, when an endpoint sends multiple RTP streams in a single RTP session.  This memo updates RFC 3550 with regard to handling multiple SSRCs per endpoint in RTP sessions, with a particular focus on RTP Control Protocol (RTCP) behavior.  It also updates RFC 4585 to change and clarify the calculation of the timeout of SSRCs and the inclusion of feedback messages."];
+  cites -> RFC8108;
+  RFC8861 [label="RFC8861
+Sending Multiple RTP Streams in a Single
+RTP Session: Grouping RTP Control
+Protocol (RTCP) Reception Statistics and
+Other Feedback
+2021", shape=ellipse, URL="RFC8861.html", target="_top", tooltip="RTP allows multiple RTP streams to be sent in a single session but requires each Synchronization Source (SSRC) to send RTP Control Protocol (RTCP) reception quality reports for every other SSRC visible in the session.  This causes the number of RTCP reception reports to grow with the number of SSRCs, rather than the number of endpoints.  In many cases, most of these RTCP reception reports are unnecessary, since all SSRCs of an endpoint are normally co-located and see the same reception quality.  This memo defines a Reporting Group extension to RTCP to reduce the reporting overhead in such scenarios."];
+  cites -> RFC8861;
+  RFC8843 [label="RFC8843
+Negotiating Media Multiplexing Using the
+Session Description Protocol (SDP)
+2021", shape=ellipse, URL="RFC8843.html", target="_top", tooltip="This specification defines a new Session Description Protocol (SDP) Grouping Framework extension called 'BUNDLE'. The extension can be used with the SDP offer/answer mechanism to negotiate the usage of a single transport (5-tuple) for sending and receiving media described by multiple SDP media descriptions (m= sections). Such transport is referred to as a BUNDLE transport, and the media is referred to as bundled media. The m= sections that use the BUNDLE transport form a BUNDLE group. This specification defines a new RTP Control Protocol (RTCP) Source Description (SDES) item and a new RTP header extension. This specification updates RFCs 3264, 5888, and 7941."];
+  cites -> RFC8843;
+  RFC4566 [label="RFC4566
+SDP: Session Description Protocol
+2006", shape=ellipse, URL="RFC4566.html", target="_top", tooltip="This memo defines the Session Description Protocol (SDP).  SDP is intended for describing multimedia sessions for the purposes of session announcement, session invitation, and other forms of multimedia session initiation. [STANDARDS-TRACK]"];
+  cites -> RFC4566;
+  RFC3556 [label="RFC3556
+Session Description Protocol (SDP)
+Bandwidth Modifiers for RTP Control
+Protocol (RTCP) Bandwidth
+2003", shape=ellipse, URL="RFC3556.html", target="_top", tooltip="This document defines an extension to the Session Description Protocol (SDP) to specify two additional modifiers for the bandwidth attribute.  These modifiers may be used to specify the bandwidth allowed for RTP Control Protocol (RTCP) packets in a Real-time Transport Protocol (RTP) session. [STANDARDS-TRACK]"];
+  cites -> RFC3556;
+  RFC5124 [label="RFC5124
+Extended Secure RTP Profile for Real-
+time Transport Control Protocol
+(RTCP)-Based Feedback (RTP/SAVPF)
+2008", shape=ellipse, URL="RFC5124.html", target="_top", tooltip="An RTP profile (SAVP) for secure real-time communications and another profile (AVPF) to provide timely feedback from the receivers to a sender are defined in RFC 3711 and RFC 4585, respectively.  This memo specifies the combination of both profiles to enable secure RTP communications with feedback. [STANDARDS-TRACK]"];
+  cites -> RFC5124;
+  RFC7007 [label="RFC7007
+Update to Remove DVI4 from the
+Recommended Codecs for the RTP Profile
+for Audio and Video Conferences with
+Minimal Control (RTP/AVP)
+2013", shape=ellipse, URL="RFC7007.html", target="_top", tooltip="The RTP Profile for Audio and Video Conferences with Minimal Control (RTP/AVP) is the basis for many other profiles, such as the Secure Real-time Transport Protocol (RTP/SAVP), the Extended RTP Profile for Real-time Transport Control Protocol (RTCP)-Based Feedback (RTP/AVPF), and the Extended Secure RTP Profile for RTCP-Based Feedback (RTP/SAVPF).  This document updates RFC 3551, the RTP/AVP profile (and by extension, the profiles that build upon it), to reflect changes in audio codec usage since that document was originally published."];
+  cites -> RFC7007;
+  RFC3551 [label="RFC3551
+RTP Profile for Audio and Video
+Conferences with Minimal Control
+2003", shape=ellipse, URL="RFC3551.html", target="_top", tooltip="This document describes a profile called RTP/AVP for the use of the real-time transport protocol (RTP), version 2, and the associated control protocol, RTCP, within audio and video multiparticipant conferences with minimal control.  It provides interpretations of generic fields within the RTP specification suitable for audio and video conferences.  In particular, this document defines a set of default mappings from payload type numbers to encodings.  This document also describes how audio and video data may be carried within RTP.  It defines a set of standard encodings and their names when used within RTP.  The descriptions provide pointers to reference implementations and the detailed standards.  This document is meant as an aid for implementors of audio, video and other real-time multimedia applications.  This memorandum obsoletes RFC 1890.  It is mostly backwards-compatible except for functions removed because two interoperable implementations were not found.  The additions to RFC 1890 codify existing practice in the use of payload formats under this profile and include new payload formats defined since RFC 1890 was published. [STANDARDS-TRACK]"];
+  cites -> RFC3551;
+  RFC4585 [label="RFC4585
+Extended RTP Profile for Real-time
+Transport Control Protocol (RTCP)-Based
+Feedback (RTP/AVPF)
+2006", shape=ellipse, URL="RFC4585.html", target="_top", tooltip="Real-time media streams that use RTP are, to some degree, resilient against packet losses.  Receivers may use the base mechanisms of the Real-time Transport Control Protocol (RTCP) to report packet reception statistics and thus allow a sender to adapt its transmission behavior in the mid-term.  This is the sole means for feedback and feedback-based error repair (besides a few codec-specific mechanisms).  This document defines an extension to the Audio-visual Profile (AVP) that enables receivers to provide, statistically, more immediate feedback to the senders and thus allows for short-term adaptation and efficient feedback-based repair mechanisms to be implemented.  This early feedback profile (AVPF) maintains the AVP bandwidth constraints for RTCP and preserves scalability to large groups. [STANDARDS-TRACK]"];
+  cites -> RFC4585;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  cites -> RFC3711;
+  RFC8827 [label="RFC8827
+WebRTC Security Architecture
+2021", shape=ellipse, URL="RFC8827.html", target="_top", tooltip="This document defines the security architecture for WebRTC, a protocol suite intended for use with real-time applications that can be deployed in browsers -- real-time communication on the Web."];
+  cites -> RFC8827;
+  RFC7874 [label="RFC7874
+WebRTC Audio Codec and Processing
+Requirements
+2016", shape=ellipse, URL="RFC7874.html", target="_top", tooltip="This document outlines the audio codec and processing requirements for WebRTC endpoints."];
+  cites -> RFC7874;
+  RFC7742 [label="RFC7742
+WebRTC Video Processing and Codec
+Requirements
+2016", shape=ellipse, URL="RFC7742.html", target="_top", tooltip="This specification provides the requirements and considerations for WebRTC applications to send and receive video across a network.  It specifies the video processing that is required as well as video codecs and their parameters."];
+  cites -> RFC7742;
+  RFC7160 [label="RFC7160
+Support for Multiple Clock Rates in an
+RTP Session
+2014", shape=ellipse, URL="RFC7160.html", target="_top", tooltip="This document clarifies the RTP specification regarding the use of different clock rates in an RTP session.  It also provides guidance on how legacy RTP implementations that use multiple clock rates can interoperate with RTP implementations that use the algorithm described in this document.  It updates RFC 3550."];
+  cites -> RFC7160;
+  RFC8860 [label="RFC8860
+Sending Multiple Types of Media in a
+Single RTP Session
+2021", shape=ellipse, URL="RFC8860.html", target="_top", tooltip="This document specifies how an RTP session can contain RTP streams with media from multiple media types such as audio, video, and text.  This has been restricted by the RTP specifications (RFCs 3550 and 3551), and thus this document updates RFCs 3550 and 3551 to enable this behaviour for applications that satisfy the applicability for using multiple media types in a single RTP session."];
+  cites -> RFC8860;
+  RFC8872 [label="RFC8872
+Guidelines for Using the Multiplexing
+Features of RTP to Support Multiple
+Media Streams
+2021", shape=ellipse, URL="RFC8872.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is a flexible protocol that can be used in a wide range of applications, networks, and system topologies.  That flexibility makes for wide applicability but can complicate the application design process.  One particular design question that has received much attention is how to support multiple media streams in RTP.  This memo discusses the available options and design trade-offs, and provides guidelines on how to use the multiplexing features of RTP to support multiple media streams."];
+  cites -> RFC8872;
+  RFC5761 [label="RFC5761
+Multiplexing RTP Data and Control
+Packets on a Single Port
+2010", shape=ellipse, URL="RFC5761.html", target="_top", tooltip="This memo discusses issues that arise when multiplexing RTP data packets and RTP Control Protocol (RTCP) packets on a single UDP port.  It updates RFC 3550 and RFC 3551 to describe when such multiplexing is and is not appropriate, and it explains how the Session Description Protocol (SDP) can be used to signal multiplexed sessions. [STANDARDS-TRACK]"];
+  cites -> RFC5761;
+  RFC8858 [label="RFC8858
+Indicating Exclusive Support of RTP and
+RTP Control Protocol (RTCP) Multiplexing
+Using the Session Description Protocol
+(SDP)
+2021", shape=ellipse, URL="RFC8858.html", target="_top", tooltip="This document defines a new Session Description Protocol (SDP) media-level attribute, 'rtcp-mux-only', that can be used by an endpoint to indicate exclusive support of RTP and RTP Control Protocol (RTCP) multiplexing.  The document also updates RFC 5761 by clarifying that an offerer can use a mechanism to indicate that it is not able to send and receive RTCP on separate ports."];
+  cites -> RFC8858;
+  RFC6263 [label="RFC6263
+Application Mechanism for Keeping Alive
+the NAT Mappings Associated with RTP /
+RTP Control Protocol (RTCP) Flows
+2011", shape=ellipse, URL="RFC6263.html", target="_top", tooltip="This document lists the different mechanisms that enable applications using the Real-time Transport Protocol (RTP) and the RTP Control Protocol (RTCP) to keep their RTP Network Address Translator (NAT) mappings alive.  It also makes a recommendation for a preferred mechanism.  This document is not applicable to Interactive Connectivity Establishment (ICE) agents. [STANDARDS-TRACK]"];
+  cites -> RFC6263;
+  RFC5506 [label="RFC5506
+Support for Reduced-Size Real-Time
+Transport Control Protocol (RTCP):
+Opportunities and Consequences
+2009", shape=ellipse, URL="RFC5506.html", target="_top", tooltip="This memo discusses benefits and issues that arise when allowing Real-time Transport Protocol (RTCP) packets to be transmitted with reduced size.  The size can be reduced if the rules on how to create compound packets outlined in RFC 3550 are removed or changed.  Based on that analysis, this memo defines certain changes to the rules to allow feedback messages to be sent as Reduced-Size RTCP packets under certain conditions when using the RTP/AVPF (Real-time Transport Protocol / Audio-Visual Profile with Feedback) profile (RFC 4585).  This document updates RFC 3550, RFC 3711, and RFC 4585. [STANDARDS-TRACK]"];
+  cites -> RFC5506;
+  RFC4961 [label="RFC4961
+Symmetric RTP / RTP Control Protocol
+(RTCP)
+2007", shape=ellipse, URL="RFC4961.html", target="_top", tooltip="This document recommends using one UDP port pair for both communication directions of bidirectional RTP and RTP Control Protocol (RTCP) sessions, commonly called symmetric RTP and symmetric RTCP.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4961;
+  RFC5576 [label="RFC5576
+Source-Specific Media Attributes in the
+Session Description Protocol (SDP)
+2009", shape=ellipse, URL="RFC5576.html", target="_top", tooltip="The Session Description Protocol (SDP) provides mechanisms to describe attributes of multimedia sessions and of individual media streams (e.g., Real-time Transport Protocol (RTP) sessions) within a multimedia session, but does not provide any mechanism to describe individual media sources within a media stream.  This document defines a mechanism to describe RTP media sources, which are identified by their synchronization source (SSRC) identifiers, in SDP, to associate attributes with these sources, and to express relationships among sources.  It also defines several source-level attributes that can be used to describe properties of media sources. [STANDARDS-TRACK]"];
+  cites -> RFC5576;
+  RFC7022 [label="RFC7022
+Guidelines for Choosing RTP Control
+Protocol (RTCP) Canonical Names (CNAMEs)
+2013", shape=ellipse, URL="RFC7022.html", target="_top", tooltip="The RTP Control Protocol (RTCP) Canonical Name (CNAME) is a persistent transport-level identifier for an RTP endpoint. While the Synchronization Source (SSRC) identifier of an RTP endpoint may change if a collision is detected or when the RTP application is restarted, its RTCP CNAME is meant to stay unchanged, so that RTP endpoints can be uniquely identified and associated with their RTP media streams. For proper functionality, RTCP CNAMEs should be unique within the participants of an RTP session. However, the existing guidelines for choosing the RTCP CNAME provided in the RTP standard (RFC 3550) are insufficient to achieve this uniqueness. RFC 6222 was published to update those guidelines to allow endpoints to choose unique RTCP CNAMEs. Unfortunately, later investigations showed that some parts of the new algorithms were unnecessarily complicated and/or ineffective. This document addresses these concerns and replaces RFC 6222."];
+  cites -> RFC7022;
+  RFC7164 [label="RFC7164
+RTP and Leap Seconds
+2014", shape=ellipse, URL="RFC7164.html", target="_top", tooltip="This document discusses issues that arise when RTP sessions span Coordinated Universal Time (UTC) leap seconds.  It updates RFC 3550 by describing how RTP senders and receivers should behave in the presence of leap seconds."];
+  cites -> RFC7164;
+  RFC7667 [label="RFC7667
+RTP Topologies
+2015", shape=ellipse, URL="RFC7667.html", target="_top", tooltip="This document discusses point-to-point and multi-endpoint topologies used in environments based on the Real-time Transport Protocol (RTP).  In particular, centralized topologies commonly employed in the video conferencing industry are mapped to the RTP terminology."];
+  cites -> RFC7667;
+  RFC5104 [label="RFC5104
+Codec Control Messages in the RTP Audio-
+Visual Profile with Feedback (AVPF)
+2008", shape=ellipse, URL="RFC5104.html", target="_top", tooltip="This document specifies a few extensions to the messages defined in the Audio-Visual Profile with Feedback (AVPF). They are helpful primarily in conversational multimedia scenarios where centralized multipoint functionalities are in use. However, some are also usable in smaller multicast environments and point-to-point calls. The extensions discussed are messages related to the ITU-T Rec. H.271 Video Back Channel, Full Intra Request, Temporary Maximum Media Stream Bit Rate, and Temporal-Spatial Trade-off. [STANDARDS-TRACK]"];
+  cites -> RFC5104;
+  RFC8285 [label="RFC8285
+A General Mechanism for RTP Header
+Extensions
+2017", shape=ellipse, URL="RFC8285.html", target="_top", tooltip="This document provides a general mechanism to use the header extension feature of RTP (the Real-time Transport Protocol).  It provides the option to use a small number of small extensions in each RTP packet, where the universe of possible extensions is large and registration is decentralized.  The actual extensions in use in a session are signaled in the setup information for that session.  This document obsoletes RFC 5285."];
+  cites -> RFC8285;
+  RFC6051 [label="RFC6051
+Rapid Synchronisation of RTP Flows
+2010", shape=ellipse, URL="RFC6051.html", target="_top", tooltip="This memo outlines how RTP sessions are synchronised, and discusses how rapidly such synchronisation can occur. We show that most RTP sessions can be synchronised immediately, but that the use of video switching multipoint conference units (MCUs) or large source-specific multicast (SSM) groups can greatly increase the synchronisation delay. This increase in delay can be unacceptable to some applications that use layered and/or multi-description codecs. This memo introduces three mechanisms to reduce the synchronisation delay for such sessions. First, it updates the RTP Control Protocol (RTCP) timing rules to reduce the initial synchronisation delay for SSM sessions. Second, a new feedback packet is defined for use with the extended RTP profile for RTCP-based feedback (RTP/AVPF), allowing video switching MCUs to rapidly request resynchronisation. Finally, new RTP header extensions are defined to allow rapid synchronisation of late joiners, and guarantee correct timestamp-based decoding order recovery for layered codecs in the presence of clock skew. [STANDARDS-TRACK]"];
+  cites -> RFC6051;
+  RFC6464 [label="RFC6464
+A Real-time Transport Protocol (RTP)
+Header Extension for Client-to-Mixer
+Audio Level Indication
+2011", shape=ellipse, URL="RFC6464.html", target="_top", tooltip="This document defines a mechanism by which packets of Real-time Transport Protocol (RTP) audio streams can indicate, in an RTP header extension, the audio level of the audio sample carried in the RTP packet.  In large conferences, this can reduce the load on an audio mixer or other middlebox that wants to forward only a few of the loudest audio streams, without requiring it to decode and measure every stream that is received. [STANDARDS-TRACK]"];
+  cites -> RFC6464;
+  RFC6904 [label="RFC6904
+Encryption of Header Extensions in the
+Secure Real-time Transport Protocol
+(SRTP)
+2013", shape=ellipse, URL="RFC6904.html", target="_top", tooltip="The Secure Real-time Transport Protocol (SRTP) provides authentication, but not encryption, of the headers of Real-time Transport Protocol (RTP) packets. However, RTP header extensions may carry sensitive information for which participants in multimedia sessions want confidentiality. This document provides a mechanism, extending the mechanisms of SRTP, to selectively encrypt RTP header extensions in SRTP. This document updates RFC 3711, the Secure Real-time Transport Protocol specification, to require that all future SRTP encryption transforms specify how RTP header extensions are to be encrypted."];
+  cites -> RFC6904;
+  RFC6465 [label="RFC6465
+A Real-time Transport Protocol (RTP)
+Header Extension for Mixer-to-Client
+Audio Level Indication
+2011", shape=ellipse, URL="RFC6465.html", target="_top", tooltip="This document describes a mechanism for RTP-level mixers in audio conferences to deliver information about the audio level of individual participants.  Such audio level indicators are transported in the same RTP packets as the audio data they pertain to. [STANDARDS-TRACK]"];
+  cites -> RFC6465;
+  RFC4588 [label="RFC4588
+RTP Retransmission Payload Format
+2006", shape=ellipse, URL="RFC4588.html", target="_top", tooltip="RTP retransmission is an effective packet loss recovery technique for real-time applications with relaxed delay bounds.  This document describes an RTP payload format for performing retransmissions.  Retransmitted RTP packets are sent in a separate stream from the original RTP stream.  It is assumed that feedback from receivers to senders is available.  In particular, it is assumed that Real-time Transport Control Protocol (RTCP) feedback as defined in the extended RTP profile for RTCP-based feedback (denoted RTP/AVPF) is available in this memo. [STANDARDS-TRACK]"];
+  cites -> RFC4588;
+  RFC8854 [label="RFC8854
+WebRTC Forward Error Correction
+Requirements
+2021", shape=ellipse, URL="RFC8854.html", target="_top", tooltip="This document provides information and requirements for the use of Forward Error Correction (FEC) by WebRTC implementations."];
+  cites -> RFC8854;
+  RFC8836 [label="RFC8836
+Congestion Control Requirements for
+Interactive Real-Time Media
+2021", shape=ellipse, URL="RFC8836.html", target="_top", tooltip="Congestion control is needed for all data transported across the Internet, in order to promote fair usage and prevent congestion collapse. The requirements for interactive, point-to-point real-time multimedia, which needs low-delay, semi-reliable data delivery, are different from the requirements for bulk transfer like FTP or bursty transfers like web pages. Due to an increasing amount of RTP-based real-time media traffic on the Internet (e.g., with the introduction of the Web Real-Time Communication (WebRTC)), it is especially important to ensure that this kind of traffic is congestion controlled. This document describes a set of requirements that can be used to evaluate other congestion control mechanisms in order to figure out their fitness for this purpose, and in particular to provide a set of possible requirements for a real-time media congestion avoidance technique."];
+  cites -> RFC8836;
+  RFC8083 [label="RFC8083
+Multimedia Congestion Control: Circuit
+Breakers for Unicast RTP Sessions
+2017", shape=ellipse, URL="RFC8083.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is widely used in telephony, video conferencing, and telepresence applications. Such applications are often run on best-effort UDP/IP networks. If congestion control is not implemented in these applications, then network congestion can lead to uncontrolled packet loss and a resulting deterioration of the user's multimedia experience. The congestion control algorithm acts as a safety measure by stopping RTP flows from using excessive resources and protecting the network from overload. At the time of this writing, however, while there are several proprietary solutions, there is no standard algorithm for congestion control of interactive RTP flows. This document does not propose a congestion control algorithm. It instead defines a minimal set of RTP circuit breakers: conditions under which an RTP sender needs to stop transmitting media data to protect the network from excessive congestion. It is expected that, in the absence of long-lived excessive congestion, RTP applications running on best-effort IP networks will be able to operate without triggering these circuit breakers. To avoid triggering the RTP circuit breaker, any Standards Track congestion control algorithms defined for RTP will need to operate within the envelope set by these RTP circuit breaker algorithms."];
+  cites -> RFC8083;
+  RFC3611 [label="RFC3611
+RTP Control Protocol Extended Reports
+(RTCP XR)
+2003", shape=ellipse, URL="RFC3611.html", target="_top", tooltip="This document defines the Extended Report (XR) packet type for the RTP Control Protocol (RTCP), and defines how the use of XR packets can be signaled by an application if it employs the Session Description Protocol (SDP).  XR packets are composed of report blocks, and seven block types are defined here.  The purpose of the extended reporting format is to convey information that supplements the six statistics that are contained in the report blocks used by RTCP's Sender Report (SR) and Receiver Report (RR) packets.  Some applications, such as multicast inference of network characteristics (MINC) or voice over IP (VoIP) monitoring, require other and more detailed statistics.  In addition to the block types defined here, additional block types may be defined in the future by adhering to the framework that this document provides."];
+  cites -> RFC3611;
+  RFC6792 [label="RFC6792
+Guidelines for Use of the RTP Monitoring
+Framework
+2012", shape=ellipse, URL="RFC6792.html", target="_top", tooltip="This memo proposes an extensible Real-time Transport Protocol (RTP) monitoring framework for extending the RTP Control Protocol (RTCP) with a new RTCP Extended Reports (XR) block type to report new metrics regarding media transmission or reception quality.  In this framework, a new XR block should contain a single metric or a small number of metrics relevant to a single parameter of interest or concern, rather than containing a number of metrics that attempt to provide full coverage of all those parameters of concern to a specific application.  Applications may then mix and match to create a set of blocks that cover their set of concerns.  Where possible, a specific block should be designed to be reusable across more than one application, for example, for all of voice, streaming audio, and video.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6792;
+  RFC2736 [label="RFC2736
+Guidelines for Writers of RTP Payload
+Format Specifications
+1999", shape=ellipse, URL="RFC2736.html", target="_top", tooltip="This document provides general guidelines aimed at assisting the authors of RTP Payload Format specifications in deciding on good formats.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2736;
+  RFC8088 [label="RFC8088
+How to Write an RTP Payload Format
+2017", shape=ellipse, URL="RFC8088.html", target="_top", tooltip="This document contains information on how best to write an RTP payload format specification.  It provides reading tips, design practices, and practical tips on how to produce an RTP payload format specification quickly and with good results.  A template is also included with instructions."];
+  cites -> RFC8088;
+  RFC5968 [label="RFC5968
+Guidelines for Extending the RTP Control
+Protocol (RTCP)
+2010", shape=ellipse, URL="RFC5968.html", target="_top", tooltip="The RTP Control Protocol (RTCP) is used along with the Real-time Transport Protocol (RTP) to provide a control channel between media senders and receivers.  This allows constructing a feedback loop to enable application adaptation and monitoring, among other uses.  The basic reporting mechanisms offered by RTCP are generic, yet quite powerful and suffice to cover a range of uses.  This document provides guidelines on extending RTCP if those basic mechanisms prove insufficient.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5968;
+  RFC8445 [label="RFC8445
+Interactive Connectivity Establishment
+(ICE): A Protocol for Network Address
+Translator (NAT) Traversal
+2018", shape=ellipse, URL="RFC8445.html", target="_top", tooltip="This document describes a protocol for Network Address Translator (NAT) traversal for UDP-based communication. This protocol is called Interactive Connectivity Establishment (ICE). ICE makes use of the Session Traversal Utilities for NAT (STUN) protocol and its extension, Traversal Using Relay NAT (TURN). This document obsoletes RFC 5245."];
+  cites -> RFC8445;
+  RFC8826 [label="RFC8826
+Security Considerations for WebRTC
+2021", shape=ellipse, URL="RFC8826.html", target="_top", tooltip="WebRTC is a protocol suite for use with real-time applications that can be deployed in browsers -- real-time communication on the Web.  This document defines the WebRTC threat model and analyzes the security threats of WebRTC in that model."];
+  cites -> RFC8826;
+  RFC8829 [label="RFC8829
+JavaScript Session Establishment
+Protocol (JSEP)
+2021", shape=ellipse, URL="RFC8829.html", target="_top", tooltip="This document describes the mechanisms for allowing a JavaScript application to control the signaling plane of a multimedia session via the interface specified in the W3C RTCPeerConnection API and discusses how this relates to existing signaling protocols."];
+  cites -> RFC8829;
+  RFC8830 [label="RFC8830
+WebRTC MediaStream Identification in the
+Session Description Protocol
+2021", shape=ellipse, URL="RFC8830.html", target="_top", tooltip="This document specifies a Session Description Protocol (SDP) grouping mechanism for RTP media streams that can be used to specify relations between media streams. This mechanism is used to signal the association between the SDP concept of media description and the Web Real-Time Communication (WebRTC) concept of MediaStream/MediaStreamTrack using SDP signaling."];
+  cites -> RFC8830;
+  RFC4383 [label="RFC4383
+The Use of Timed Efficient Stream Loss-
+Tolerant Authentication (TESLA) in the
+Secure Real-time Transport Protocol
+(SRTP)
+2006", shape=ellipse, URL="RFC4383.html", target="_top", tooltip="This memo describes the use of the Timed Efficient Stream Loss-tolerant Authentication (RFC 4082) transform within the Secure Real-time Transport Protocol (SRTP), to provide data origin authentication for multicast and broadcast data streams. [STANDARDS-TRACK]"];
+  cites -> RFC4383;
+  RFC8837 [label="RFC8837
+Differentiated Services Code Point
+(DSCP) Packet Markings for WebRTC QoS
+2021", shape=ellipse, URL="RFC8837.html", target="_top", tooltip="Networks can provide different forwarding treatments for individual packets based on Differentiated Services Code Point (DSCP) values on a per-hop basis.  This document provides the recommended DSCP values for web browsers to use for various classes of Web Real-Time Communication (WebRTC) traffic."];
+  cites -> RFC8837;
+  RFC7657 [label="RFC7657
+Differentiated Services (Diffserv) and
+Real-Time Communication
+2015", shape=ellipse, URL="RFC7657.html", target="_top", tooltip="This memo describes the interaction between Differentiated Services (Diffserv) network quality-of-service (QoS) functionality and real- time network communication, including communication based on the Real-time Transport Protocol (RTP).  Diffserv is based on network nodes applying different forwarding treatments to packets whose IP headers are marked with different Diffserv Codepoints (DSCPs).  WebRTC applications, as well as some conferencing applications, have begun using the Session Description Protocol (SDP) bundle negotiation mechanism to send multiple traffic streams with different QoS requirements using the same network 5-tuple.  The results of using multiple DSCPs to obtain different QoS treatments within a single network 5-tuple have transport protocol interactions, particularly with congestion control functionality (e.g., reordering).  In addition, DSCP markings may be changed or removed between the traffic source and destination.  This memo covers the implications of these Diffserv aspects for real-time network communication, including WebRTC."];
+  cites -> RFC7657;
+  RFC5764 [label="RFC5764
+Datagram Transport Layer Security (DTLS)
+Extension to Establish Keys for the
+Secure Real-time Transport Protocol
+(SRTP)
+2010", shape=ellipse, URL="RFC5764.html", target="_top", tooltip="This document describes a Datagram Transport Layer Security (DTLS) extension to establish keys for Secure RTP (SRTP) and Secure RTP Control Protocol (SRTCP) flows.  DTLS keying happens on the media path, independent of any out-of-band signalling channel present. [STANDARDS-TRACK]"];
+  cites -> RFC5764;
+  RFC6562 [label="RFC6562
+Guidelines for the Use of Variable Bit
+Rate Audio with Secure RTP
+2012", shape=ellipse, URL="RFC6562.html", target="_top", tooltip="This memo discusses potential security issues that arise when using variable bit rate (VBR) audio with the secure RTP profile.  Guidelines to mitigate these issues are suggested. [STANDARDS-TRACK]"];
+  cites -> RFC6562;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8834;
+  RFC8825 [label="RFC8825
+Overview: Real-Time Protocols for
+Browser-Based Applications
+2021", shape=ellipse, URL="RFC8825.html", target="_top", tooltip="This document gives an overview and context of a protocol suite intended for use with real-time applications that can be deployed in browsers -- real-time communication on the Web. It intends to serve as a starting and coordination point to make sure that (1) all the parts that are needed to achieve this goal are findable and (2) the parts that belong in the Internet protocol suite are fully specified and on the right publication track. This document is an applicability statement -- it does not itself specify any protocol, but it specifies which other specifications implementations are supposed to follow to be compliant with Web Real-Time Communication (WebRTC)."];
+  RFC8825 -> rev_cites;
+  RFC8827 [label="RFC8827
+WebRTC Security Architecture
+2021", shape=ellipse, URL="RFC8827.html", target="_top", tooltip="This document defines the security architecture for WebRTC, a protocol suite intended for use with real-time applications that can be deployed in browsers -- real-time communication on the Web."];
+  RFC8827 -> rev_cites;
+  RFC8829 [label="RFC8829
+JavaScript Session Establishment
+Protocol (JSEP)
+2021", shape=ellipse, URL="RFC8829.html", target="_top", tooltip="This document describes the mechanisms for allowing a JavaScript application to control the signaling plane of a multimedia session via the interface specified in the W3C RTCPeerConnection API and discusses how this relates to existing signaling protocols."];
+  RFC8829 -> rev_cites;
+  RFC8835 [label="RFC8835
+Transports for WebRTC
+2021", shape=ellipse, URL="RFC8835.html", target="_top", tooltip="This document describes the data transport protocols used by Web Real-Time Communication (WebRTC), including the protocols used for interaction with intermediate boxes such as firewalls, relays, and NAT boxes."];
+  RFC8835 -> rev_cites;
+  RFC8837 [label="RFC8837
+Differentiated Services Code Point
+(DSCP) Packet Markings for WebRTC QoS
+2021", shape=ellipse, URL="RFC8837.html", target="_top", tooltip="Networks can provide different forwarding treatments for individual packets based on Differentiated Services Code Point (DSCP) values on a per-hop basis.  This document provides the recommended DSCP values for web browsers to use for various classes of Web Real-Time Communication (WebRTC) traffic."];
+  RFC8837 -> rev_cites;
+  RFC9248 [label="RFC9248
+Interoperability Profile for Relay User
+Equipment
+2022", shape=ellipse, URL="RFC9248.html", target="_top", tooltip="Video Relay Service (VRS) is a term used to describe a method by which a hearing person can communicate with a sign language speaker who is deaf, deafblind, or hard of hearing (HoH) or has a speech disability using an interpreter (i.e., a Communications Assistant (CA)) connected via a videophone to the sign language speaker and an audio telephone call to the hearing user.  The CA interprets using sign language on the videophone link and voice on the telephone link.  Often the interpreters may be employed by a company or agency, termed a provider in this document.  The provider also provides a video service that allows users to connect video devices to their service and subsequently to CAs and other sign language speakers.  It is desirable that the videophones used by the sign language speaker conform to a standard so that any device may be used with any provider and that direct video calls between sign language speakers work.  This document describes the interface between a videophone and a provider."];
+  RFC9248 -> rev_cites;
+  RFC9317 [label="RFC9317
+Operational Considerations for Streaming
+Media
+2022", shape=ellipse, URL="RFC9317.html", target="_top", tooltip="This document provides an overview of operational networking and transport protocol issues that pertain to the quality of experience (QoE) when streaming video and other high-bitrate media over the Internet. This document explains the characteristics of streaming media delivery that have surprised network designers or transport experts who lack specific media expertise, since streaming media highlights key differences between common assumptions in existing networking practices and observations of media delivery issues encountered when streaming media over those existing networks."];
+  RFC9317 -> rev_cites;
+  RFC9392 [label="RFC9392
+Sending RTP Control Protocol (RTCP)
+Feedback for Congestion Control in
+Interactive Multimedia Conferences
+2023", shape=ellipse, URL="RFC9392.html", target="_top", tooltip="This memo discusses the rate at which congestion control feedback can be sent using the RTP Control Protocol (RTCP) and the suitability of RTCP for implementing congestion control for unicast multimedia applications."];
+  RFC9392 -> rev_cites;
+  RFC9429 [label="RFC9429
+JavaScript Session Establishment
+Protocol (JSEP)
+2024", shape=ellipse, URL="RFC9429.html", target="_top", tooltip="This document describes the mechanisms for allowing a JavaScript application to control the signaling plane of a multimedia session via the interface specified in the W3C RTCPeerConnection API and discusses how this relates to existing signaling protocols. This specification obsoletes RFC 8829."];
+  RFC9429 -> rev_cites;
+}

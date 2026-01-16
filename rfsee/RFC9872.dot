@@ -1,0 +1,120 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9872 [label="RFC9872
+Recommendations for Discovering IPv6
+Prefix Used for IPv6 Address Synthesis
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="On networks providing IPv4-IPv6 translation (RFC 7915), hosts and other endpoints need to know the IPv6 prefix(es) used for translation (the NAT64 prefix (RFC 6052)).  This document provides guidelines for NAT64 prefix discovery, specifically recommending obtaining the NAT64 prefix from the Router Advertisement option (RFC 8781) when available."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9872;
+
+  obs [label="obsoletes", shape=box];
+  RFC9872 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9872 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9872;
+
+  cites [label="cites", shape=box];
+  RFC9872 -> cites;
+  RFC7915 [label="RFC7915
+IP/ICMP Translation Algorithm
+2016", shape=ellipse, URL="RFC7915.html", target="_top", tooltip="This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers).  This document obsoletes RFC 6145."];
+  cites -> RFC7915;
+  RFC6877 [label="RFC6877
+464XLAT: Combination of Stateful and
+Stateless Translation
+2013", shape=ellipse, URL="RFC6877.html", target="_top", tooltip="This document describes an architecture (464XLAT) for providing limited IPv4 connectivity across an IPv6-only network by combining existing and well-known stateful protocol translation (as described in RFC 6146) in the core and stateless protocol translation (as described in RFC 6145) at the edge.  464XLAT is a simple and scalable technique to quickly deploy limited IPv4 access service to IPv6-only edge networks without encapsulation."];
+  cites -> RFC6877;
+  RFC8305 [label="RFC8305
+Happy Eyeballs Version 2: Better
+Connectivity Using Concurrency
+2017", shape=ellipse, URL="RFC8305.html", target="_top", tooltip="Many communication protocols operating over the modern Internet use hostnames.  These often resolve to multiple IP addresses, each of which may have different performance and connectivity characteristics.  Since specific addresses or address families (IPv4 or IPv6) may be blocked, broken, or sub-optimal on a network, clients that attempt multiple connections in parallel have a chance of establishing a connection more quickly.  This document specifies requirements for algorithms that reduce this user-visible delay and provides an example algorithm, referred to as Happy Eyeballs.  This document obsoletes the original algorithm description in RFC 6555."];
+  cites -> RFC8305;
+  RFC6147 [label="RFC6147
+DNS64: DNS Extensions for Network
+Address Translation from IPv6 Clients to
+IPv4 Servers
+2011", shape=ellipse, URL="RFC6147.html", target="_top", tooltip="DNS64 is a mechanism for synthesizing AAAA records from A records.  DNS64 is used with an IPv6/IPv4 translator to enable client-server communication between an IPv6-only client and an IPv4-only server, without requiring any changes to either the IPv6 or the IPv4 node, for the class of applications that work through NATs.  This document specifies DNS64, and provides suggestions on how it should be deployed in conjunction with IPv6/IPv4 translators. [STANDARDS-TRACK]"];
+  cites -> RFC6147;
+  RFC7225 [label="RFC7225
+Discovering NAT64 IPv6 Prefixes Using
+the Port Control Protocol (PCP)
+2014", shape=ellipse, URL="RFC7225.html", target="_top", tooltip="This document defines a new Port Control Protocol (PCP) option to learn the IPv6 prefix(es) used by a PCP-controlled NAT64 device to build IPv4-converted IPv6 addresses.  This option is needed for successful communications when IPv4 addresses are used in referrals."];
+  cites -> RFC7225;
+  RFC7050 [label="RFC7050
+Discovery of the IPv6 Prefix Used for
+IPv6 Address Synthesis
+2013", shape=ellipse, URL="RFC7050.html", target="_top", tooltip="This document describes a method for detecting the presence of DNS64 and for learning the IPv6 prefix used for protocol translation on an access network.  The method depends on the existence of a well-known IPv4-only fully qualified domain name ipv4only.arpa..  The information learned enables nodes to perform local IPv6 address synthesis and to potentially avoid NAT64 on dual-stack and multi-interface deployments."];
+  cites -> RFC7050;
+  RFC7051 [label="RFC7051
+Analysis of Solution Proposals for Hosts
+to Learn NAT64 Prefix
+2013", shape=ellipse, URL="RFC7051.html", target="_top", tooltip="Hosts and applications may benefit from learning if an IPv6 address is synthesized and if NAT64 and DNS64 are present in a network.  This document analyzes all proposed solutions (known at the time of writing) for communicating whether the synthesis is taking place, what address format was used, and what IPv6 prefix was used by the NAT64 and DNS64.  These solutions enable both NAT64 avoidance and local IPv6 address synthesis.  The document concludes by recommending the standardization of the approach based on heuristic discovery."];
+  cites -> RFC7051;
+  RFC8781 [label="RFC8781
+Discovering PREF64 in Router
+Advertisements
+2020", shape=ellipse, URL="RFC8781.html", target="_top", tooltip="This document specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate prefixes of Network Address and Protocol Translation from IPv6 clients to IPv4 servers (NAT64) to hosts."];
+  cites -> RFC8781;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC6144 [label="RFC6144
+Framework for IPv4/IPv6 Translation
+2011", shape=ellipse, URL="RFC6144.html", target="_top", tooltip="This note describes a framework for IPv4/IPv6 translation.  This is in the context of replacing Network Address Translation - Protocol Translation (NAT-PT), which was deprecated by RFC 4966, and to enable networks to have IPv4 and IPv6 coexist in a somewhat rational manner while transitioning to an IPv6 network.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6144;
+  RFC6146 [label="RFC6146
+Stateful NAT64: Network Address and
+Protocol Translation from IPv6 Clients
+to IPv4 Servers
+2011", shape=ellipse, URL="RFC6146.html", target="_top", tooltip="This document describes stateful NAT64 translation, which allows IPv6-only clients to contact IPv4 servers using unicast UDP, TCP, or ICMP.  One or more public IPv4 addresses assigned to a NAT64 translator are shared among several IPv6-only clients.  When stateful NAT64 is used in conjunction with DNS64, no changes are usually required in the IPv6 client or the IPv4 server."];
+  cites -> RFC6146;
+  RFC4862 [label="RFC4862
+IPv6 Stateless Address Autoconfiguration
+2007", shape=ellipse, URL="RFC4862.html", target="_top", tooltip="This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6.  The autoconfiguration process includes generating a link-local address, generating global addresses via stateless address autoconfiguration, and the Duplicate Address Detection procedure to verify the uniqueness of the addresses on a link. [STANDARDS-TRACK]"];
+  cites -> RFC4862;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8880 [label="RFC8880
+Special Use Domain Name 'ipv4only.arpa'
+2020", shape=ellipse, URL="RFC8880.html", target="_top", tooltip="NAT64 (Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers) allows client devices using IPv6 to communicate with servers that have only IPv4 connectivity. The specification for how a client discovers its local network's NAT64 prefix (RFC 7050) defines the special name 'ipv4only.arpa' for this purpose. However, in its Domain Name Reservation Considerations section (Section 8.1), that specification (RFC 7050) indicates that the name actually has no particularly special properties that would require special handling. Consequently, despite the well-articulated special purpose of the name, 'ipv4only.arpa' was not recorded in the Special-Use Domain Names registry as a name with special properties. This document updates RFC 7050. It describes the special treatment required and formally declares the special properties of the name. It also adds similar declarations for the corresponding reverse mapping names."];
+  cites -> RFC8880;
+  RFC6052 [label="RFC6052
+IPv6 Addressing of IPv4/IPv6 Translators
+2010", shape=ellipse, URL="RFC6052.html", target="_top", tooltip="This document discusses the algorithmic translation of an IPv6 address to a corresponding IPv4 address, and vice versa, using only statically configured information.  It defines a well-known prefix for use in algorithmic translations, while allowing organizations to also use network-specific prefixes when appropriate.  Algorithmic translation is used in IPv4/IPv6 translators, as well as other types of proxies and gateways (e.g., for DNS) used in IPv4/IPv6 scenarios. [STANDARDS-TRACK]"];
+  cites -> RFC6052;
+  RFC6105 [label="RFC6105
+IPv6 Router Advertisement Guard
+2011", shape=ellipse, URL="RFC6105.html", target="_top", tooltip="Routed protocols are often susceptible to spoof attacks.  The canonical solution for IPv6 is Secure Neighbor Discovery (SEND), a solution that is non-trivial to deploy.  This document proposes a light-weight alternative and complement to SEND based on filtering in the layer-2 network fabric, using a variety of filtering criteria, including, for example, SEND status.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6105;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  cites -> RFC9499;
+  RFC9463 [label="RFC9463
+DHCP and Router Advertisement Options
+for the Discovery of Network-designated
+Resolvers (DNR)
+2023", shape=ellipse, URL="RFC9463.html", target="_top", tooltip="This document specifies new DHCP and IPv6 Router Advertisement options to discover encrypted DNS resolvers (e.g., DNS over HTTPS, DNS over TLS, and DNS over QUIC).  Particularly, it allows a host to learn an Authentication Domain Name together with a list of IP addresses and a set of service parameters to reach such encrypted DNS resolvers."];
+  cites -> RFC9463;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9872;
+}

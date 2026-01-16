@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2088 [label="RFC2088
+IMAP4 non-synchronizing literals
+1997", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Internet Message Access Protocol [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2088;
+  RFC7888 [label="RFC7888
+IMAP4 Non-synchronizing Literals
+2016", shape=ellipse, URL="RFC7888.html", target="_top", tooltip="The Internet Message Access Protocol (RFC 3501) contains the literal syntactic construct for communicating strings. When sending a literal from client to server, IMAP requires the client to wait for the server to send a command continuation request between sending the octet count and the string data. This document specifies an alternate form of literal that does not require this network round trip. This document specifies 2 IMAP extensions: LITERAL+ and LITERAL-. LITERAL+ allows the alternate form of literals in all IMAP commands. LITERAL- is the same as LITERAL+, but it disallows the alternate form of literals unless they are 4096 bytes or less. This document obsoletes RFC 2088."];
+  RFC7888 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC2088 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2088 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2088;
+  RFC4466 [label="RFC4466
+Collected Extensions to IMAP4 ABNF
+2006", shape=ellipse, URL="RFC4466.html", target="_top", tooltip="Over the years, many documents from IMAPEXT and LEMONADE working groups, as well as many individual documents, have added syntactic extensions to many base IMAP commands described in RFC 3501. For ease of reference, this document collects most of such ABNF changes in one place. This document also suggests a set of standard patterns for adding options and extensions to several existing IMAP commands defined in RFC 3501. The patterns provide for compatibility between existing and future extensions. This document updates ABNF in RFCs 2088, 2342, 3501, 3502, and 3516. It also includes part of the errata to RFC 3501. This document doesn't specify any semantic changes to the listed RFCs. [STANDARDS-TRACK]"];
+  RFC4466 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC2088 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2088;
+  RFC5738 [label="RFC5738
+IMAP Support for UTF-8
+2010", shape=ellipse, URL="RFC5738.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol version 4rev1 (IMAP4rev1) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5738 -> rev_cites;
+  RFC6855 [label="RFC6855
+IMAP Support for UTF-8
+2013", shape=ellipse, URL="RFC6855.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This specification replaces RFC 5738."];
+  RFC6855 -> rev_cites;
+}

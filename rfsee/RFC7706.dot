@@ -1,0 +1,61 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7706 [label="RFC7706
+Decreasing Access Time to Root Servers
+by Running One on Loopback
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="Some DNS recursive resolvers have longer-than-desired round-trip times to the closest DNS root server.  Some DNS recursive resolver operators want to prevent snooping of requests sent to DNS root servers by third parties.  Such resolvers can greatly decrease the round-trip time and prevent observation of requests by running a copy of the full root zone on a loopback address (such as 127.0.0.1).  This document shows how to start and maintain such a copy of the root zone that does not pose a threat to other users of the DNS, at the cost of adding some operational fragility for the operator."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7706;
+  RFC8806 [label="RFC8806
+Running a Root Server Local to a
+Resolver
+2020", shape=ellipse, URL="RFC8806.html", target="_top", tooltip="Some DNS recursive resolvers have longer-than-desired round-trip times to the closest DNS root server; those resolvers may have difficulty getting responses from the root servers, such as during a network attack. Some DNS recursive resolver operators want to prevent snooping by third parties of requests sent to DNS root servers. In both cases, resolvers can greatly decrease the round-trip time and prevent observation of requests by serving a copy of the full root zone on the same server, such as on a loopback address or in the resolver software. This document shows how to start and maintain such a copy of the root zone that does not cause problems for other users of the DNS, at the cost of adding some operational fragility for the operator. This document obsoletes RFC 7706."];
+  RFC8806 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC7706 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7706 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7706;
+
+  cites [label="cites", shape=box];
+  RFC7706 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7706;
+  RFC8324 [label="RFC8324
+DNS Privacy, Authorization, Special
+Uses, Encoding, Characters, Matching,
+and Root Structure: Time for Another
+Look?
+2018", shape=ellipse, URL="RFC8324.html", target="_top", tooltip="The basic design of the Domain Name System was completed almost 30 years ago.  The last half of that period has been characterized by significant changes in requirements and expectations, some of which either require changes to how the DNS is used or can be accommodated only poorly or not at all.  This document asks the question of whether it is time to either redesign and replace the DNS to match contemporary requirements and expectations (rather than continuing to try to design and implement incremental patches that are not fully satisfactory) or draw some clear lines about functionality that is not really needed or that should be performed in some other way."];
+  RFC8324 -> rev_cites;
+  RFC8806 [label="RFC8806
+Running a Root Server Local to a
+Resolver
+2020", shape=ellipse, URL="RFC8806.html", target="_top", tooltip="Some DNS recursive resolvers have longer-than-desired round-trip times to the closest DNS root server; those resolvers may have difficulty getting responses from the root servers, such as during a network attack. Some DNS recursive resolver operators want to prevent snooping by third parties of requests sent to DNS root servers. In both cases, resolvers can greatly decrease the round-trip time and prevent observation of requests by serving a copy of the full root zone on the same server, such as on a loopback address or in the resolver software. This document shows how to start and maintain such a copy of the root zone that does not cause problems for other users of the DNS, at the cost of adding some operational fragility for the operator. This document obsoletes RFC 7706."];
+  RFC8806 -> rev_cites;
+}

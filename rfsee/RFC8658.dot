@@ -1,0 +1,174 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8658 [label="RFC8658
+RADIUS Attributes for Softwire
+Mechanisms Based on Address plus Port
+(A+P)
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="IPv4-over-IPv6 transition mechanisms provide IPv4 connectivity services over IPv6 native networks during the IPv4/IPv6 coexistence period. DHCPv6 options have been defined to configure clients for Lightweight 4over6, Mapping of Address and Port with Encapsulation (MAP-E), Mapping of Address and Port using Translation (MAP-T) unicast softwire mechanisms, and multicast softwires. However, in many networks, configuration information is stored in an Authentication, Authorization, and Accounting (AAA) server, which utilizes the Remote Authentication Dial In User Service (RADIUS) protocol to provide centralized management for users. When a new transition mechanism is developed, new RADIUS attributes need to be defined correspondingly. This document defines new RADIUS attributes to carry softwire configuration parameters based on Address plus Port from a AAA server to a Broadband Network Gateway. Both unicast and multicast attributes are covered."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8658;
+
+  obs [label="obsoletes", shape=box];
+  RFC8658 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8658 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8658;
+
+  cites [label="cites", shape=box];
+  RFC8658 -> cites;
+  RFC6346 [label="RFC6346
+The Address plus Port (A+P) Approach to
+the IPv4 Address Shortage
+2011", shape=ellipse, URL="RFC6346.html", target="_top", tooltip="We are facing the exhaustion of the IANA IPv4 free IP address pool. Unfortunately, IPv6 is not yet deployed widely enough to fully replace IPv4, and it is unrealistic to expect that this is going to change before the depletion of IPv4 addresses. Letting hosts seamlessly communicate in an IPv4 world without assigning a unique globally routable IPv4 address to each of them is a challenging problem. This document proposes an IPv4 address sharing scheme, treating some of the port number bits as part of an extended IPv4 address (Address plus Port, or A+P). Instead of assigning a single IPv4 address to a single customer device, we propose to extend the address field by using bits from the port number range in the TCP/UDP header as additional endpoint identifiers, thus leaving a reduced range of ports available to applications. This means assigning the same IPv4 address to multiple clients (e.g., Customer Premises Equipment (CPE), mobile phones), each with its assigned port range. In the face of IPv4 address exhaustion, the need for addresses is stronger than the need to be able to address thousands of applications on a single host. If address translation is needed, the end-user should be in control of the translation process -- not some smart boxes in the core. This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6346;
+  RFC7597 [label="RFC7597
+Mapping of Address and Port with
+Encapsulation (MAP-E)
+2015", shape=ellipse, URL="RFC7597.html", target="_top", tooltip="This document describes a mechanism for transporting IPv4 packets across an IPv6 network using IP encapsulation.  It also describes a generic mechanism for mapping between IPv6 addresses and IPv4 addresses as well as transport-layer ports."];
+  cites -> RFC7597;
+  RFC7599 [label="RFC7599
+Mapping of Address and Port using
+Translation (MAP-T)
+2015", shape=ellipse, URL="RFC7599.html", target="_top", tooltip="This document specifies the solution architecture based on Mapping of Address and Port stateless IPv6-IPv4 Network Address Translation (NAT64) for providing shared or non-shared IPv4 address connectivity to and across an IPv6 network."];
+  cites -> RFC7599;
+  RFC7596 [label="RFC7596
+Lightweight 4over6: An Extension to the
+Dual-Stack Lite Architecture
+2015", shape=ellipse, URL="RFC7596.html", target="_top", tooltip="Dual-Stack Lite (DS-Lite) (RFC 6333) describes an architecture for transporting IPv4 packets over an IPv6 network.  This document specifies an extension to DS-Lite called Lightweight 4over6, which moves the Network Address and Port Translation (NAPT) function from the centralized DS-Lite tunnel concentrator to the tunnel client located in the Customer Premises Equipment (CPE).  This removes the requirement for a Carrier Grade NAT function in the tunnel concentrator and reduces the amount of centralized state that must be held to a per-subscriber level.  In order to delegate the NAPT function and make IPv4 address sharing possible, port-restricted IPv4 addresses are allocated to the CPEs."];
+  cites -> RFC7596;
+  RFC8114 [label="RFC8114
+Delivery of IPv4 Multicast Services to
+IPv4 Clients over an IPv6 Multicast
+Network
+2017", shape=ellipse, URL="RFC8114.html", target="_top", tooltip="This document specifies a solution for the delivery of IPv4 multicast services to IPv4 clients over an IPv6 multicast network.  The solution relies upon a stateless IPv4-in-IPv6 encapsulation scheme and uses an IPv6 multicast distribution tree to deliver IPv4 multicast traffic.  The solution is particularly useful for the delivery of multicast service offerings to customers serviced by Dual-Stack Lite (DS-Lite)."];
+  cites -> RFC8114;
+  RFC2865 [label="RFC2865
+Remote Authentication Dial In User
+Service (RADIUS)
+2000", shape=ellipse, URL="RFC2865.html", target="_top", tooltip="This document describes a protocol for carrying authentication, authorization, and configuration information between a Network Access Server which desires to authenticate its links and a shared Authentication Server. [STANDARDS-TRACK]"];
+  cites -> RFC2865;
+  RFC7598 [label="RFC7598
+DHCPv6 Options for Configuration of
+Softwire Address and Port-Mapped Clients
+2015", shape=ellipse, URL="RFC7598.html", target="_top", tooltip="This document specifies DHCPv6 options, termed Softwire46 options, for the provisioning of Softwire46 Customer Edge (CE) devices.  Softwire46 is a collective term used to refer to architectures based on the notion of IPv4 Address plus Port (A+P) for providing IPv4 connectivity across an IPv6 network."];
+  cites -> RFC7598;
+  RFC8026 [label="RFC8026
+Unified IPv4-in-IPv6 Softwire Customer
+Premises Equipment (CPE): A DHCPv6-Based
+Prioritization Mechanism
+2016", shape=ellipse, URL="RFC8026.html", target="_top", tooltip="In IPv6-only provider networks, transporting IPv4 packets encapsulated in IPv6 is a common solution to the problem of IPv4 service continuity.  A number of differing functional approaches have been developed for this, each having their own specific characteristics.  As these approaches share a similar functional architecture and use the same data plane mechanisms, this memo specifies a DHCPv6 option, whereby a single instance of Customer Premises Equipment (CPE) can interwork with all of the standardized and proposed approaches to providing encapsulated IPv4-in-IPv6 services by providing a prioritization mechanism."];
+  cites -> RFC8026;
+  RFC8115 [label="RFC8115
+DHCPv6 Option for IPv4-Embedded
+Multicast and Unicast IPv6 Prefixes
+2017", shape=ellipse, URL="RFC8115.html", target="_top", tooltip="This document defines a Dynamic Host Configuration Protocol version 6 (DHCPv6) Option for multicast IPv4 service continuity solutions, which is used to carry the IPv6 prefixes to be used to build unicast and multicast IPv4-embedded IPv6 addresses."];
+  cites -> RFC8115;
+  RFC6333 [label="RFC6333
+Dual-Stack Lite Broadband Deployments
+Following IPv4 Exhaustion
+2011", shape=ellipse, URL="RFC6333.html", target="_top", tooltip="This document revisits the dual-stack model and introduces the Dual- Stack Lite technology aimed at better aligning the costs and benefits of deploying IPv6 in service provider networks.  Dual-Stack Lite enables a broadband service provider to share IPv4 addresses among customers by combining two well-known technologies: IP in IP (IPv4- in-IPv6) and Network Address Translation (NAT). [STANDARDS-TRACK]"];
+  cites -> RFC6333;
+  RFC6519 [label="RFC6519
+RADIUS Extensions for Dual-Stack Lite
+2012", shape=ellipse, URL="RFC6519.html", target="_top", tooltip="Dual-Stack Lite is a solution to offer both IPv4 and IPv6 connectivity to customers that are addressed only with an IPv6 prefix.  Dual-Stack Lite requires pre-configuration of the Dual-Stack Lite Address Family Transition Router (AFTR) tunnel information on the Basic Bridging BroadBand (B4) element.  In many networks, the customer profile information may be stored in Authentication, Authorization, and Accounting (AAA) servers, while client configurations are mainly provided through the Dynamic Host Configuration Protocol (DHCP).  This document specifies a new Remote Authentication Dial-In User Service (RADIUS) attribute to carry the Dual-Stack Lite AFTR tunnel name; the RADIUS attribute is defined based on the equivalent DHCPv6 OPTION_AFTR_NAME option.  This RADIUS attribute is meant to be used between the RADIUS server and the Network Access Server (NAS); it is not intended to be used directly between the B4 element and the RADIUS server. [STANDARDS-TRACK]"];
+  cites -> RFC6519;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6929 [label="RFC6929
+Remote Authentication Dial In User
+Service (RADIUS) Protocol Extensions
+2013", shape=ellipse, URL="RFC6929.html", target="_top", tooltip="The Remote Authentication Dial-In User Service (RADIUS) protocol is nearing exhaustion of its current 8-bit Attribute Type space.  In addition, experience shows a growing need for complex grouping, along with attributes that can carry more than 253 octets of data.  This document defines changes to RADIUS that address all of the above problems."];
+  cites -> RFC6929;
+  RFC6158 [label="RFC6158
+RADIUS Design Guidelines
+2011", shape=ellipse, URL="RFC6158.html", target="_top", tooltip="This document provides guidelines for the design of attributes used by the Remote Authentication Dial In User Service (RADIUS) protocol.  It is expected that these guidelines will prove useful to authors and reviewers of future RADIUS attribute specifications, within the IETF as well as other Standards Development Organizations (SDOs).  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6158;
+  RFC8044 [label="RFC8044
+Data Types in RADIUS
+2017", shape=ellipse, URL="RFC8044.html", target="_top", tooltip="RADIUS specifications have used data types for two decades without defining them as managed entities.  During this time, RADIUS implementations have named the data types and have used them in attribute definitions.  This document updates the specifications to better follow established practice.  We do this by naming the data types defined in RFC 6158, which have been used since at least the publication of RFC 2865.  We provide an IANA registry for the data types and update the RADIUS Attribute Types registry to include a Data Type field for each attribute.  Finally, we recommend that authors of RADIUS specifications use these types in preference to existing practice.  This document updates RFCs 2865, 3162, 4072, 6158, 6572, and 7268."];
+  cites -> RFC8044;
+  RFC3162 [label="RFC3162
+RADIUS and IPv6
+2001", shape=ellipse, URL="RFC3162.html", target="_top", tooltip="This document specifies the operation of RADIUS (Remote Authentication Dial In User Service) when run over IPv6 as well as the RADIUS attributes used to support IPv6 network access. [STANDARDS-TRACK]"];
+  cites -> RFC3162;
+  RFC6052 [label="RFC6052
+IPv6 Addressing of IPv4/IPv6 Translators
+2010", shape=ellipse, URL="RFC6052.html", target="_top", tooltip="This document discusses the algorithmic translation of an IPv6 address to a corresponding IPv4 address, and vice versa, using only statically configured information.  It defines a well-known prefix for use in algorithmic translations, while allowing organizations to also use network-specific prefixes when appropriate.  Algorithmic translation is used in IPv4/IPv6 translators, as well as other types of proxies and gateways (e.g., for DNS) used in IPv4/IPv6 scenarios. [STANDARDS-TRACK]"];
+  cites -> RFC6052;
+  RFC5080 [label="RFC5080
+Common Remote Authentication Dial In
+User Service (RADIUS) Implementation
+Issues and Suggested Fixes
+2007", shape=ellipse, URL="RFC5080.html", target="_top", tooltip="This document describes common issues seen in Remote Authentication Dial In User Service (RADIUS) implementations and suggests some fixes.  Where applicable, ambiguities and errors in previous RADIUS specifications are clarified. [STANDARDS-TRACK]"];
+  cites -> RFC5080;
+  RFC2869 [label="RFC2869
+RADIUS Extensions
+2000", shape=ellipse, URL="RFC2869.html", target="_top", tooltip="This document describes additional attributes for carrying authentication, authorization and accounting information between a Network Access Server (NAS) and a shared Accounting Server using the Remote Authentication Dial In User Service (RADIUS) protocol described in RFC 2865 and RFC 2866.  This memo provides information for the Internet community."];
+  cites -> RFC2869;
+  RFC8415 [label="RFC8415
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2018", shape=ellipse, URL="RFC8415.html", target="_top", tooltip="This document describes the Dynamic Host Configuration Protocol for IPv6 (DHCPv6): an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly, or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC). This document updates the text from RFC 3315 (the original DHCPv6 specification) and incorporates prefix delegation (RFC 3633), stateless DHCPv6 (RFC 3736), an option to specify an upper bound for how long a client should wait before refreshing information (RFC 4242), a mechanism for throttling DHCPv6 clients when DHCPv6 service is not available (RFC 7083), and relay agent handling of unknown messages (RFC 7283). In addition, this document clarifies the interactions between models of operation (RFC 7550). As such, this document obsoletes RFC 3315, RFC 3633, RFC 3736, RFC 4242, RFC 7083, RFC 7283, and RFC 7550."];
+  cites -> RFC8415;
+  RFC6977 [label="RFC6977
+Triggering DHCPv6 Reconfiguration from
+Relay Agents
+2013", shape=ellipse, URL="RFC6977.html", target="_top", tooltip="This document defines two new DHCPv6 messages: Reconfigure-Request and Reconfigure-Reply.  The Reconfigure-Request message is sent by a DHCPv6 relay agent to notify a DHCPv6 server about a configuration information change, so that the DHCPv6 server can send a Reconfigure message accordingly.  The Reconfigure-Reply message is used by the server to acknowledge the receipt of the Reconfigure-Request message."];
+  cites -> RFC6977;
+  RFC5176 [label="RFC5176
+Dynamic Authorization Extensions to
+Remote Authentication Dial In User
+Service (RADIUS)
+2008", shape=ellipse, URL="RFC5176.html", target="_top", tooltip="This document describes a currently deployed extension to the Remote Authentication Dial In User Service (RADIUS) protocol, allowing dynamic changes to a user session, as implemented by network access server products.  This includes support for disconnecting users and changing authorizations applicable to a user session.  This memo provides information for the Internet community."];
+  cites -> RFC5176;
+  RFC2607 [label="RFC2607
+Proxy Chaining and Policy Implementation
+in Roaming
+1999", shape=ellipse, URL="RFC2607.html", target="_top", tooltip="This document describes how proxy chaining and policy implementation can be supported in roaming systems.  This memo provides information for the Internet community."];
+  cites -> RFC2607;
+  RFC6614 [label="RFC6614
+Transport Layer Security (TLS)
+Encryption for RADIUS
+2012", shape=ellipse, URL="RFC6614.html", target="_top", tooltip="This document specifies a transport profile for RADIUS using Transport Layer Security (TLS) over TCP as the transport protocol.  This enables dynamic trust relationships between RADIUS servers. [STANDARDS-TRACK]"];
+  cites -> RFC6614;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC3575 [label="RFC3575
+IANA Considerations for RADIUS (Remote
+Authentication Dial In User Service)
+2003", shape=ellipse, URL="RFC3575.html", target="_top", tooltip="This document describes the IANA considerations for the Remote Authentication Dial In User Service (RADIUS). [STANDARDS-TRACK]"];
+  cites -> RFC3575;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8658;
+  RFC9313 [label="RFC9313
+Pros and Cons of IPv6 Transition
+Technologies for IPv4-as-a-Service
+(IPv4aaS)
+2022", shape=ellipse, URL="RFC9313.html", target="_top", tooltip="Several IPv6 transition technologies have been developed to provide customers with IPv4-as-a-Service (IPv4aaS) for ISPs with an IPv6-only access and/or core network. These technologies have their advantages and disadvantages. Depending on existing topology, skills, strategy, and other preferences, one of these technologies may be the most appropriate solution for a network operator. This document examines the five most prominent IPv4aaS technologies and considers a number of different aspects to provide network operators with an easy-to-use reference to assist in selecting the technology that best suits their needs."];
+  RFC9313 -> rev_cites;
+}

@@ -1,0 +1,370 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7858 [label="RFC7858
+Specification for DNS over Transport
+Layer Security (TLS)
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the use of Transport Layer Security (TLS) to provide privacy for DNS. Encryption provided by TLS eliminates opportunities for eavesdropping and on-path tampering with DNS queries in the network, such as discussed in RFC 7626. In addition, this document specifies two usage profiles for DNS over TLS and provides advice on performance considerations to minimize overhead from using TCP and TLS with DNS. This document focuses on securing stub-to-recursive traffic, as per the charter of the DPRIVE Working Group. It does not prevent future applications of the protocol to recursive-to-authoritative traffic."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7858;
+
+  obs [label="obsoletes", shape=box];
+  RFC7858 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7858 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7858;
+  RFC8310 [label="RFC8310
+Usage Profiles for DNS over TLS and DNS
+over DTLS
+2018", shape=ellipse, URL="RFC8310.html", target="_top", tooltip="This document discusses usage profiles, based on one or more authentication mechanisms, which can be used for DNS over Transport Layer Security (TLS) or Datagram TLS (DTLS).  These profiles can increase the privacy of DNS transactions compared to using only cleartext DNS.  This document also specifies new authentication mechanisms -- it describes several ways that a DNS client can use an authentication domain name to authenticate a (D)TLS connection to a DNS server.  Additionally, it defines (D)TLS protocol profiles for DNS clients and servers implementing DNS over (D)TLS.  This document updates RFC 7858."];
+  RFC8310 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC7858 -> cites;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC7626 [label="RFC7626
+DNS Privacy Considerations
+2015", shape=ellipse, URL="RFC7626.html", target="_top", tooltip="This document describes the privacy issues associated with the use of the DNS by Internet users.  It is intended to be an analysis of the present situation and does not prescribe solutions."];
+  cites -> RFC7626;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+  RFC7258 [label="RFC7258
+Pervasive Monitoring Is an Attack
+2014", shape=ellipse, URL="RFC7258.html", target="_top", tooltip="Pervasive monitoring is a technical attack that should be mitigated in the design of IETF protocols, where possible."];
+  cites -> RFC7258;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5246 [label="RFC5246
+The Transport Layer Security (TLS)
+Protocol Version 1.2
+2008", shape=ellipse, URL="RFC5246.html", target="_top", tooltip="This document specifies Version 1.2 of the Transport Layer Security (TLS) protocol.  The TLS protocol provides communications security over the Internet.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery. [STANDARDS-TRACK]"];
+  cites -> RFC5246;
+  RFC7766 [label="RFC7766
+DNS Transport over TCP - Implementation
+Requirements
+2016", shape=ellipse, URL="RFC7766.html", target="_top", tooltip="This document specifies the requirement for support of TCP as a transport protocol for DNS implementations and provides guidelines towards DNS-over-TCP performance on par with that of DNS-over-UDP.  This document obsoletes RFC 5966 and therefore updates RFC 1035 and RFC 1123."];
+  cites -> RFC7766;
+  RFC7828 [label="RFC7828
+The edns-tcp-keepalive EDNS0 Option
+2016", shape=ellipse, URL="RFC7828.html", target="_top", tooltip="DNS messages between clients and servers may be received over either UDP or TCP. UDP transport involves keeping less state on a busy server, but can cause truncation and retries over TCP. Additionally, UDP can be exploited for reflection attacks. Using TCP would reduce retransmits and amplification. However, clients commonly use TCP only for retries and servers typically use idle timeouts on the order of seconds. This document defines an EDNS0 option (edns-tcp-keepalive) that allows DNS servers to signal a variable idle timeout. This signalling encourages the use of long-lived TCP connections by allowing the state associated with TCP transport to be managed effectively with minimal impact on the DNS transaction time."];
+  cites -> RFC7828;
+  RFC7413 [label="RFC7413
+TCP Fast Open
+2014", shape=ellipse, URL="RFC7413.html", target="_top", tooltip="This document describes an experimental TCP mechanism called TCP Fast Open (TFO).  TFO allows data to be carried in the SYN and SYN-ACK packets and consumed by the receiving end during the initial connection handshake, and saves up to one full round-trip time (RTT) compared to the standard TCP, which requires a three-way handshake (3WHS) to complete before data can be exchanged.  However, TFO deviates from the standard TCP semantics, since the data in the SYN could be replayed to an application in some rare circumstances.  Applications should not use TFO unless they can tolerate this issue, as detailed in the Applicability section."];
+  cites -> RFC7413;
+  RFC5077 [label="RFC5077
+Transport Layer Security (TLS) Session
+Resumption without Server-Side State
+2008", shape=ellipse, URL="RFC5077.html", target="_top", tooltip="This document describes a mechanism that enables the Transport Layer Security (TLS) server to resume sessions and avoid keeping per-client session state.  The TLS server encapsulates the session state into a ticket and forwards it to the client.  The client can subsequently resume a session using the obtained ticket.  This document obsoletes RFC 4507. [STANDARDS-TRACK]"];
+  cites -> RFC5077;
+  RFC7435 [label="RFC7435
+Opportunistic Security: Some Protection
+Most of the Time
+2014", shape=ellipse, URL="RFC7435.html", target="_top", tooltip="This document defines the concept Opportunistic Security in the context of communications protocols.  Protocol designs based on Opportunistic Security use encryption even when authentication is not available, and use authentication when possible, thereby removing barriers to the widespread use of encryption on the Internet."];
+  cites -> RFC7435;
+  RFC3646 [label="RFC3646
+DNS Configuration options for Dynamic
+Host Configuration Protocol for IPv6
+(DHCPv6)
+2003", shape=ellipse, URL="RFC3646.html", target="_top", tooltip="This document describes Dynamic Host Configuration Protocol for IPv6 (DHCPv6) options for passing a list of available DNS recursive name servers and a domain search list to a client."];
+  cites -> RFC3646;
+  RFC7469 [label="RFC7469
+Public Key Pinning Extension for HTTP
+2015", shape=ellipse, URL="RFC7469.html", target="_top", tooltip="This document defines a new HTTP header that allows web host operators to instruct user agents to remember (pin) the hosts' cryptographic identities over a period of time.  During that time, user agents (UAs) will require that the host presents a certificate chain including at least one Subject Public Key Info structure whose fingerprint matches one of the pinned fingerprints for that host.  By effectively reducing the number of trusted authorities who can authenticate the domain during the lifetime of the pin, pinning may reduce the incidence of man-in-the-middle attacks due to compromised Certification Authorities."];
+  cites -> RFC7469;
+  RFC6234 [label="RFC6234
+US Secure Hash Algorithms (SHA and SHA-
+based HMAC and HKDF)
+2011", shape=ellipse, URL="RFC6234.html", target="_top", tooltip="Federal Information Processing Standard, FIPS"];
+  cites -> RFC6234;
+  RFC4648 [label="RFC4648
+The Base16, Base32, and Base64 Data
+Encodings
+2006", shape=ellipse, URL="RFC4648.html", target="_top", tooltip="This document describes the commonly used base 64, base 32, and base 16 encoding schemes.  It also discusses the use of line-feeds in encoded data, use of padding in encoded data, use of non-alphabet characters in encoded data, use of different encoding alphabets, and canonical encodings. [STANDARDS-TRACK]"];
+  cites -> RFC4648;
+  RFC6335 [label="RFC6335
+Internet Assigned Numbers Authority
+(IANA) Procedures for the Management of
+the Service Name and Transport Protocol
+Port Number Registry
+2011", shape=ellipse, URL="RFC6335.html", target="_top", tooltip="This document defines the procedures that the Internet Assigned Numbers Authority (IANA) uses when handling assignment and other requests related to the Service Name and Transport Protocol Port Number registry. It also discusses the rationale and principles behind these procedures and how they facilitate the long-term sustainability of the registry. This document updates IANA's procedures by obsoleting the previous UDP and TCP port assignment procedures defined in Sections 8 and 9.1 of the IANA Allocation Guidelines, and it updates the IANA service name and port assignment procedures for UDP-Lite, the Datagram Congestion Control Protocol (DCCP), and the Stream Control Transmission Protocol (SCTP). It also updates the DNS SRV specification to clarify what a service name is and how it is registered. This memo documents an Internet Best Current Practice."];
+  cites -> RFC6335;
+  RFC7120 [label="RFC7120
+Early IANA Allocation of Standards Track
+Code Points
+2014", shape=ellipse, URL="RFC7120.html", target="_top", tooltip="This memo describes the process for early allocation of code points by IANA from registries for which Specification Required, RFC Required, IETF Review, or Standards Action policies apply.  This process can be used to alleviate the problem where code point allocation is needed to facilitate desired or required implementation and deployment experience prior to publication of an RFC, which would normally trigger code point allocation.  The procedures in this document are intended to apply only to IETF Stream documents."];
+  cites -> RFC7120;
+  RFC3234 [label="RFC3234
+Middleboxes: Taxonomy and Issues
+2002", shape=ellipse, URL="RFC3234.html", target="_top", tooltip="This document is intended as part of an IETF discussion about middleboxes - defined as any intermediary box performing functions apart from normal, standard functions of an IP router on the data path between a source host and destination host.  This document establishes a catalogue or taxonomy of middleboxes, cites previous and current IETF work concerning middleboxes, and attempts to identify some preliminary conclusions.  It does not, however, claim to be definitive.  This memo provides information for the Internet community."];
+  cites -> RFC3234;
+  RFC7830 [label="RFC7830
+The EDNS(0) Padding Option
+2016", shape=ellipse, URL="RFC7830.html", target="_top", tooltip="This document specifies the EDNS(0) Padding option, which allows DNS clients and servers to pad request and response messages by a variable number of octets."];
+  cites -> RFC7830;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7858;
+  RFC7901 [label="RFC7901
+CHAIN Query Requests in DNS
+2016", shape=ellipse, URL="RFC7901.html", target="_top", tooltip="This document defines an EDNS0 extension that can be used by a security-aware validating resolver configured to use a forwarding resolver to send a single query, requesting a complete validation path along with the regular query answer.  The reduction in queries potentially lowers the latency and reduces the need to send multiple queries at once.  This extension mandates the use of source-IP- verified transport such as TCP or UDP with EDNS-COOKIE, so it cannot be abused in amplification attacks."];
+  RFC7901 -> rev_cites;
+  RFC7929 [label="RFC7929
+DNS-Based Authentication of Named
+Entities (DANE) Bindings for OpenPGP
+2016", shape=ellipse, URL="RFC7929.html", target="_top", tooltip="OpenPGP is a message format for email (and file) encryption that lacks a standardized lookup mechanism to securely obtain OpenPGP public keys.  DNS-Based Authentication of Named Entities (DANE) is a method for publishing public keys in DNS.  This document specifies a DANE method for publishing and locating OpenPGP public keys in DNS for a specific email address using a new OPENPGPKEY DNS resource record.  Security is provided via Secure DNS, however the OPENPGPKEY record is not a replacement for verification of authenticity via the web of trust or manual verification.  The OPENPGPKEY record can be used to encrypt an email that would otherwise have to be sent unencrypted."];
+  RFC7929 -> rev_cites;
+  RFC8094 [label="RFC8094
+DNS over Datagram Transport Layer
+Security (DTLS)
+2017", shape=ellipse, URL="RFC8094.html", target="_top", tooltip="DNS queries and responses are visible to network elements on the path between the DNS client and its server. These queries and responses can contain privacy-sensitive information, which is valuable to protect. This document proposes the use of Datagram Transport Layer Security (DTLS) for DNS, to protect against passive listeners and certain active attacks. As latency is critical for DNS, this proposal also discusses mechanisms to reduce DTLS round trips and reduce the DTLS handshake size. The proposed mechanism runs over port 853."];
+  RFC8094 -> rev_cites;
+  RFC8280 [label="RFC8280
+Research into Human Rights Protocol
+Considerations
+2017", shape=ellipse, URL="RFC8280.html", target="_top", tooltip="This document aims to propose guidelines for human rights considerations, similar to the work done on the guidelines for privacy considerations (RFC 6973). The other parts of this document explain the background of the guidelines and how they were developed. This document is the first milestone in a longer-term research effort. It has been reviewed by the Human Rights Protocol Considerations (HRPC) Research Group and also by individuals from outside the research group."];
+  RFC8280 -> rev_cites;
+  RFC8310 [label="RFC8310
+Usage Profiles for DNS over TLS and DNS
+over DTLS
+2018", shape=ellipse, URL="RFC8310.html", target="_top", tooltip="This document discusses usage profiles, based on one or more authentication mechanisms, which can be used for DNS over Transport Layer Security (TLS) or Datagram TLS (DTLS).  These profiles can increase the privacy of DNS transactions compared to using only cleartext DNS.  This document also specifies new authentication mechanisms -- it describes several ways that a DNS client can use an authentication domain name to authenticate a (D)TLS connection to a DNS server.  Additionally, it defines (D)TLS protocol profiles for DNS clients and servers implementing DNS over (D)TLS.  This document updates RFC 7858."];
+  RFC8310 -> rev_cites;
+  RFC8324 [label="RFC8324
+DNS Privacy, Authorization, Special
+Uses, Encoding, Characters, Matching,
+and Root Structure: Time for Another
+Look?
+2018", shape=ellipse, URL="RFC8324.html", target="_top", tooltip="The basic design of the Domain Name System was completed almost 30 years ago.  The last half of that period has been characterized by significant changes in requirements and expectations, some of which either require changes to how the DNS is used or can be accommodated only poorly or not at all.  This document asks the question of whether it is time to either redesign and replace the DNS to match contemporary requirements and expectations (rather than continuing to try to design and implement incremental patches that are not fully satisfactory) or draw some clear lines about functionality that is not really needed or that should be performed in some other way."];
+  RFC8324 -> rev_cites;
+  RFC8404 [label="RFC8404
+Effects of Pervasive Encryption on
+Operators
+2018", shape=ellipse, URL="RFC8404.html", target="_top", tooltip="Pervasive monitoring attacks on the privacy of Internet users are of serious concern to both user and operator communities.  RFC 7258 discusses the critical need to protect users' privacy when developing IETF specifications and also recognizes that making networks unmanageable to mitigate pervasive monitoring is not an acceptable outcome: an appropriate balance is needed.  This document discusses current security and network operations as well as management practices that may be impacted by the shift to increased use of encryption to help guide protocol development in support of manageable and secure networks."];
+  RFC8404 -> rev_cites;
+  RFC8467 [label="RFC8467
+Padding Policies for Extension
+Mechanisms for DNS (EDNS(0))
+2018", shape=ellipse, URL="RFC8467.html", target="_top", tooltip="RFC 7830 specifies the Padding option for Extension Mechanisms for DNS (EDNS(0)) but does not specify the actual padding length for specific applications.  This memo lists the possible options (padding policies), discusses the implications of each option, and provides a recommended (experimental) option."];
+  RFC8467 -> rev_cites;
+  RFC8484 [label="RFC8484
+DNS Queries over HTTPS (DoH)
+2018", shape=ellipse, URL="RFC8484.html", target="_top", tooltip="This document defines a protocol for sending DNS queries and getting DNS responses over HTTPS.  Each DNS query-response pair is mapped into an HTTP exchange."];
+  RFC8484 -> rev_cites;
+  RFC8490 [label="RFC8490
+DNS Stateful Operations
+2019", shape=ellipse, URL="RFC8490.html", target="_top", tooltip="This document defines a new DNS OPCODE for DNS Stateful Operations (DSO).  DSO messages communicate operations within persistent stateful sessions using Type Length Value (TLV) syntax.  Three TLVs are defined that manage session timeouts, termination, and encryption padding, and a framework is defined for extensions to enable new stateful operations.  This document updates RFC 1035 by adding a new DNS header OPCODE that has both different message semantics and a new result code.  This document updates RFC 7766 by redefining a session, providing new guidance on connection reuse, and providing a new mechanism for handling session idle timeouts."];
+  RFC8490 -> rev_cites;
+  RFC8499 [label="RFC8499
+DNS Terminology
+2019", shape=ellipse, URL="RFC8499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has sometimes changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document obsoletes RFC 7719 and updates RFC 2308."];
+  RFC8499 -> rev_cites;
+  RFC8618 [label="RFC8618
+Compacted-DNS (C-DNS): A Format for DNS
+Packet Capture
+2019", shape=ellipse, URL="RFC8618.html", target="_top", tooltip="This document describes a data representation for collections of DNS messages.  The format is designed for efficient storage and transmission of large packet captures of DNS traffic; it attempts to minimize the size of such packet capture files but retain the full DNS message contents along with the most useful transport metadata.  It is intended to assist with the development of DNS traffic- monitoring applications."];
+  RFC8618 -> rev_cites;
+  RFC8683 [label="RFC8683
+Additional Deployment Guidelines for
+NAT64/464XLAT in Operator and Enterprise
+Networks
+2019", shape=ellipse, URL="RFC8683.html", target="_top", tooltip="This document describes how Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers (NAT64) (including 464XLAT) can be deployed in an IPv6 network -- whether it's cellular ISP, broadband ISP, or enterprise -- and the possible optimizations.  This document also discusses issues to be considered when having IPv6-only connectivity, such as: a) DNS64, b) applications or devices that use literal IPv4 addresses or non-IPv6-compliant APIs, and c) IPv4-only hosts or applications."];
+  RFC8683 -> rev_cites;
+  RFC8686 [label="RFC8686
+Application-Layer Traffic Optimization
+(ALTO) Cross-Domain Server Discovery
+2020", shape=ellipse, URL="RFC8686.html", target="_top", tooltip="The goal of Application-Layer Traffic Optimization (ALTO) is to provide guidance to applications that have to select one or several hosts from a set of candidates capable of providing a desired resource. ALTO is realized by a client-server protocol. Before an ALTO client can ask for guidance, it needs to discover one or more ALTO servers that can provide suitable guidance. In some deployment scenarios, in particular if the information about the network topology is partitioned and distributed over several ALTO servers, it may be necessary to discover an ALTO server outside of the ALTO client's own network domain, in order to get appropriate guidance. This document details applicable scenarios, itemizes requirements, and specifies a procedure for ALTO cross-domain server discovery. Technically, the procedure specified in this document takes one IP address or prefix and a U-NAPTR Service Parameter (typically, ALTO:https) as parameters. It performs DNS lookups (for NAPTR resource records in the in-addr.arpa. or ip6.arpa. trees) and returns one or more URIs of information resources related to that IP address or prefix."];
+  RFC8686 -> rev_cites;
+  RFC8744 [label="RFC8744
+Issues and Requirements for Server Name
+Identification (SNI) Encryption in TLS
+2020", shape=ellipse, URL="RFC8744.html", target="_top", tooltip="This document describes the general problem of encrypting the Server Name Identification (SNI) TLS parameter. The proposed solutions hide a hidden service behind a fronting service, only disclosing the SNI of the fronting service to external observers. This document lists known attacks against SNI encryption, discusses the current HTTP co-tenancy solution, and presents requirements for future TLS-layer solutions. In practice, it may well be that no solution can meet every requirement and that practical solutions will have to make some compromises."];
+  RFC8744 -> rev_cites;
+  RFC8765 [label="RFC8765
+DNS Push Notifications
+2020", shape=ellipse, URL="RFC8765.html", target="_top", tooltip="The Domain Name System (DNS) was designed to return matching records efficiently for queries for data that are relatively static.  When those records change frequently, DNS is still efficient at returning the updated results when polled, as long as the polling rate is not too high.  But, there exists no mechanism for a client to be asynchronously notified when these changes occur.  This document defines a mechanism for a client to be notified of such changes to DNS records, called DNS Push Notifications."];
+  RFC8765 -> rev_cites;
+  RFC8777 [label="RFC8777
+DNS Reverse IP Automatic Multicast
+Tunneling (AMT) Discovery
+2020", shape=ellipse, URL="RFC8777.html", target="_top", tooltip="This document updates RFC 7450, Automatic Multicast Tunneling (or AMT), by modifying the relay discovery process.  A new DNS resource record named AMTRELAY is defined for publishing AMT relays for source-specific multicast channels.  The reverse IP DNS zone for a multicast sender's IP address is configured to use AMTRELAY resource records to advertise a set of AMT relays that can receive and forward multicast traffic from that sender over an AMT tunnel.  Other extensions and clarifications to the relay discovery process are also defined."];
+  RFC8777 -> rev_cites;
+  RFC8781 [label="RFC8781
+Discovering PREF64 in Router
+Advertisements
+2020", shape=ellipse, URL="RFC8781.html", target="_top", tooltip="This document specifies a Neighbor Discovery option to be used in Router Advertisements (RAs) to communicate prefixes of Network Address and Protocol Translation from IPv6 clients to IPv4 servers (NAT64) to hosts."];
+  RFC8781 -> rev_cites;
+  RFC8782 [label="RFC8782
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2020", shape=ellipse, URL="RFC8782.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes."];
+  RFC8782 -> rev_cites;
+  RFC8783 [label="RFC8783
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Data Channel
+Specification
+2020", shape=ellipse, URL="RFC8783.html", target="_top", tooltip="The document specifies a Distributed Denial-of-Service Open Threat Signaling (DOTS) data channel used for bulk exchange of data that cannot easily or appropriately communicated through the DOTS signal channel under attack conditions. This is a companion document to Distributed Denial-of-Service Open Threat Signaling (DOTS) Signal Channel Specification (RFC 8782)."];
+  RFC8783 -> rev_cites;
+  RFC8901 [label="RFC8901
+Multi-Signer DNSSEC Models
+2020", shape=ellipse, URL="RFC8901.html", target="_top", tooltip="Many enterprises today employ the service of multiple DNS providers to distribute their authoritative DNS service.  Deploying DNSSEC in such an environment may present some challenges, depending on the configuration and feature set in use.  In particular, when each DNS provider independently signs zone data with their own keys, additional key-management mechanisms are necessary.  This document presents deployment models that accommodate this scenario and describes these key-management requirements.  These models do not require any changes to the behavior of validating resolvers, nor do they impose the new key-management requirements on authoritative servers not involved in multi-signer configurations."];
+  RFC8901 -> rev_cites;
+  RFC8932 [label="RFC8932
+Recommendations for DNS Privacy Service
+Operators
+2020", shape=ellipse, URL="RFC8932.html", target="_top", tooltip="This document presents operational, policy, and security considerations for DNS recursive resolver operators who choose to offer DNS privacy services. With these recommendations, the operator can make deliberate decisions regarding which services to provide, as well as understanding how those decisions and the alternatives impact the privacy of users. This document also presents a non-normative framework to assist writers of a Recursive operator Privacy Statement, analogous to DNS Security Extensions (DNSSEC) Policies and DNSSEC Practice Statements described in RFC 6841."];
+  RFC8932 -> rev_cites;
+  RFC8973 [label="RFC8973
+DDoS Open Threat Signaling (DOTS) Agent
+Discovery
+2021", shape=ellipse, URL="RFC8973.html", target="_top", tooltip="This document specifies mechanisms to configure DDoS Open Threat Signaling (DOTS) clients with their DOTS servers.  The discovery procedure also covers the DOTS signal channel Call Home.  It can be useful to know the appropriate DOTS server for a given location in order to engage mitigation actions.  This is true even in cases where the DOTS client cannot localize the attack: cases where it only knows that some resources are under attack and that help is needed."];
+  RFC8973 -> rev_cites;
+  RFC9076 [label="RFC9076
+DNS Privacy Considerations
+2021", shape=ellipse, URL="RFC9076.html", target="_top", tooltip="This document describes the privacy issues associated with the use of the DNS by Internet users.  It provides general observations about typical current privacy practices.  It is intended to be an analysis of the present situation and does not prescribe solutions.  This document obsoletes RFC 7626."];
+  RFC9076 -> rev_cites;
+  RFC9102 [label="RFC9102
+TLS DNSSEC Chain Extension
+2021", shape=ellipse, URL="RFC9102.html", target="_top", tooltip="This document describes an experimental TLS extension for the in-band transport of the complete set of records that can be validated by DNSSEC and that are needed to perform DNS-Based Authentication of Named Entities (DANE) of a TLS server. This extension obviates the need to perform separate, out-of-band DNS lookups. When the requisite DNS records do not exist, the extension conveys a denial-of-existence proof that can be validated. This experimental extension is developed outside the IETF and is published here to guide implementation of the extension and to ensure interoperability among implementations."];
+  RFC9102 -> rev_cites;
+  RFC9103 [label="RFC9103
+DNS Zone Transfer over TLS
+2021", shape=ellipse, URL="RFC9103.html", target="_top", tooltip="DNS zone transfers are transmitted in cleartext, which gives attackers the opportunity to collect the content of a zone by eavesdropping on network connections.  The DNS Transaction Signature (TSIG) mechanism is specified to restrict direct zone transfer to authorized clients only, but it does not add confidentiality.  This document specifies the use of TLS, rather than cleartext, to prevent zone content collection via passive monitoring of zone transfers: XFR over TLS (XoT).  Additionally, this specification updates RFC 1995 and RFC 5936 with respect to efficient use of TCP connections and RFC 7766 with respect to the recommended number of connections between a client and server for each transport."];
+  RFC9103 -> rev_cites;
+  RFC9132 [label="RFC9132
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2021", shape=ellipse, URL="RFC9132.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes. This document obsoletes RFC 8782."];
+  RFC9132 -> rev_cites;
+  RFC9210 [label="RFC9210
+DNS Transport over TCP - Operational
+Requirements
+2022", shape=ellipse, URL="RFC9210.html", target="_top", tooltip="This document updates RFCs 1123 and 1536.  This document requires the operational practice of permitting DNS messages to be carried over TCP on the Internet as a Best Current Practice.  This operational requirement is aligned with the implementation requirements in RFC 7766.  The use of TCP includes both DNS over unencrypted TCP as well as over an encrypted TLS session.  The document also considers the consequences of this form of DNS communication and the potential operational issues that can arise when this Best Current Practice is not upheld."];
+  RFC9210 -> rev_cites;
+  RFC9250 [label="RFC9250
+DNS over Dedicated QUIC Connections
+2022", shape=ellipse, URL="RFC9250.html", target="_top", tooltip="This document describes the use of QUIC to provide transport confidentiality for DNS.  The encryption provided by QUIC has similar properties to those provided by TLS, while QUIC transport eliminates the head-of-line blocking issues inherent with TCP and provides more efficient packet-loss recovery than UDP.  DNS over QUIC (DoQ) has privacy properties similar to DNS over TLS (DoT) specified in RFC 7858, and latency characteristics similar to classic DNS over UDP.  This specification describes the use of DoQ as a general-purpose transport for DNS and includes the use of DoQ for stub to recursive, recursive to authoritative, and zone transfer scenarios."];
+  RFC9250 -> rev_cites;
+  RFC9267 [label="RFC9267
+Common Implementation Anti-Patterns
+Related to Domain Name System (DNS)
+Resource Record (RR) Processing
+2022", shape=ellipse, URL="RFC9267.html", target="_top", tooltip="This memo describes common vulnerabilities related to Domain Name System (DNS) resource record (RR) processing as seen in several DNS client implementations.  These vulnerabilities may lead to successful Denial-of-Service and Remote Code Execution attacks against the affected software.  Where applicable, violations of RFC 1035 are mentioned."];
+  RFC9267 -> rev_cites;
+  RFC9399 [label="RFC9399
+Internet X.509 Public Key
+Infrastructure: Logotypes in X.509
+Certificates
+2023", shape=ellipse, URL="RFC9399.html", target="_top", tooltip="This document specifies a certificate extension for including logotypes in public key certificates and attribute certificates.  This document obsoletes RFCs 3709 and 6170."];
+  RFC9399 -> rev_cites;
+  RFC9445 [label="RFC9445
+RADIUS Extensions for DHCP-Configured
+Services
+2023", shape=ellipse, URL="RFC9445.html", target="_top", tooltip="This document specifies two new Remote Authentication Dial-In User Service (RADIUS) attributes that carry DHCP options. The specification is generic and can be applicable to any service that relies upon DHCP. Both DHCPv4- and DHCPv6-configured services are covered. Also, this document updates RFC 4014 by relaxing a constraint on permitted RADIUS attributes in the RADIUS Attributes DHCP suboption."];
+  RFC9445 -> rev_cites;
+  RFC9446 [label="RFC9446
+Reflections on Ten Years Past the
+Snowden Revelations
+2023", shape=ellipse, URL="RFC9446.html", target="_top", tooltip="This memo contains the thoughts and recountings of events that transpired during and after the release of information about the United States National Security Agency (NSA) by Edward Snowden in 2013.  There are four perspectives: that of someone who was involved with sifting through the information to responsibly inform the public, that of a security area director of the IETF, that of a human rights expert, and that of a computer science and affiliate law professor.  The purpose of this memo is to provide some historical perspective, while at the same time offering a view as to what security and privacy challenges the technical community should consider.  These essays do not represent a consensus view, but that of the individual authors."];
+  RFC9446 -> rev_cites;
+  RFC9461 [label="RFC9461
+Service Binding Mapping for DNS Servers
+2023", shape=ellipse, URL="RFC9461.html", target="_top", tooltip="The SVCB DNS resource record type expresses a bound collection of endpoint metadata, for use when establishing a connection to a named service.  DNS itself can be such a service, when the server is identified by a domain name.  This document provides the SVCB mapping for named DNS servers, allowing them to indicate support for encrypted transport protocols."];
+  RFC9461 -> rev_cites;
+  RFC9462 [label="RFC9462
+Discovery of Designated Resolvers
+2023", shape=ellipse, URL="RFC9462.html", target="_top", tooltip="This document defines Discovery of Designated Resolvers (DDR), a set of mechanisms for DNS clients to use DNS records to discover a resolver's encrypted DNS configuration.  An Encrypted DNS Resolver discovered in this manner is referred to as a Designated Resolver.  These mechanisms can be used to move from unencrypted DNS to encrypted DNS when only the IP address of a resolver is known.  These mechanisms are designed to be limited to cases where Unencrypted DNS Resolvers and their Designated Resolvers are operated by the same entity or cooperating entities.  It can also be used to discover support for encrypted DNS protocols when the name of an Encrypted DNS Resolver is known."];
+  RFC9462 -> rev_cites;
+  RFC9463 [label="RFC9463
+DHCP and Router Advertisement Options
+for the Discovery of Network-designated
+Resolvers (DNR)
+2023", shape=ellipse, URL="RFC9463.html", target="_top", tooltip="This document specifies new DHCP and IPv6 Router Advertisement options to discover encrypted DNS resolvers (e.g., DNS over HTTPS, DNS over TLS, and DNS over QUIC).  Particularly, it allows a host to learn an Authentication Domain Name together with a list of IP addresses and a set of service parameters to reach such encrypted DNS resolvers."];
+  RFC9463 -> rev_cites;
+  RFC9464 [label="RFC9464
+Internet Key Exchange Protocol Version 2
+(IKEv2) Configuration for Encrypted DNS
+2023", shape=ellipse, URL="RFC9464.html", target="_top", tooltip="This document specifies new Internet Key Exchange Protocol Version 2 (IKEv2) Configuration Payload Attribute Types to assign DNS resolvers that support encrypted DNS protocols, such as DNS over HTTPS (DoH), DNS over TLS (DoT), and DNS over QUIC (DoQ)."];
+  RFC9464 -> rev_cites;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  RFC9499 -> rev_cites;
+  RFC9505 [label="RFC9505
+A Survey of Worldwide Censorship
+Techniques
+2023", shape=ellipse, URL="RFC9505.html", target="_top", tooltip="This document describes technical mechanisms employed in network censorship that regimes around the world use for blocking or impairing Internet traffic.  It aims to make designers, implementers, and users of Internet protocols aware of the properties exploited and mechanisms used for censoring end-user access to information.  This document makes no suggestions on individual protocol considerations, and is purely informational, intended as a reference.  This document is a product of the Privacy Enhancement and Assessment Research Group (PEARG) in the IRTF."];
+  RFC9505 -> rev_cites;
+  RFC9520 [label="RFC9520
+Negative Caching of DNS Resolution
+Failures
+2023", shape=ellipse, URL="RFC9520.html", target="_top", tooltip="In the DNS, resolvers employ caching to reduce both latency for end users and load on authoritative name servers. The process of resolution may result in one of three types of responses: (1) a response containing the requested data, (2) a response indicating the requested data does not exist, or (3) a non-response due to a resolution failure in which the resolver does not receive any useful information regarding the data's existence. This document concerns itself only with the third type. RFC 2308 specifies requirements for DNS negative caching. There, caching of TYPE 2 responses is mandatory and caching of TYPE 3 responses is optional. This document updates RFC 2308 to require negative caching for DNS resolution failures. RFC 4035 allows DNSSEC validation failure caching. This document updates RFC 4035 to require caching for DNSSEC validation failures. RFC 4697 prohibits aggressive requerying for NS records at a failed zone's parent zone. This document updates RFC 4697 to expand this requirement to all query types and to all ancestor zones."];
+  RFC9520 -> rev_cites;
+  RFC9526 [label="RFC9526
+Simple Provisioning of Public Names for
+Residential Networks
+2024", shape=ellipse, URL="RFC9526.html", target="_top", tooltip="Home network owners may have devices or services hosted on their home network that they wish to access from the Internet (i.e., from a network outside of the home network). Home networks are increasingly numbered using IPv6 addresses, which in principle makes this access simpler, but accessing home networks from the Internet requires the names and IP addresses of these devices and services to be made available in the public DNS. This document describes how a Home Naming Authority (NHA) instructs the outsourced infrastructure to publish these pieces of information in the public DNS. The names and IP addresses of the home network are set in the Public Homenet Zone by the Homenet Naming Authority (HNA), which in turn instructs an outsourced infrastructure to publish the zone on behalf of the home network owner."];
+  RFC9526 -> rev_cites;
+  RFC9527 [label="RFC9527
+DHCPv6 Options for the Homenet Naming
+Authority
+2024", shape=ellipse, URL="RFC9527.html", target="_top", tooltip="This document defines DHCPv6 options so that a Homenet Naming Authority (HNA) can automatically set the appropriate configuration and outsource the authoritative naming service for the home network.  In most cases, the outsourcing mechanism is transparent for the end user."];
+  RFC9527 -> rev_cites;
+  RFC9539 [label="RFC9539
+Unilateral Opportunistic Deployment of
+Encrypted Recursive-to-Authoritative DNS
+2024", shape=ellipse, URL="RFC9539.html", target="_top", tooltip="This document sets out steps that DNS servers (recursive resolvers and authoritative servers) can take unilaterally (without any coordination with other peers) to defend DNS query privacy against a passive network monitor. The protections provided by the guidance in this document can be defeated by an active attacker, but they should be simpler and less risky to deploy than more powerful defenses. The goal of this document is to simplify and speed up deployment of opportunistic encrypted transport in the recursive-to-authoritative hop of the DNS ecosystem. Wider easy deployment of the underlying encrypted transport on an opportunistic basis may facilitate the future specification of stronger cryptographic protections against more-powerful attacks."];
+  RFC9539 -> rev_cites;
+  RFC9606 [label="RFC9606
+DNS Resolver Information
+2024", shape=ellipse, URL="RFC9606.html", target="_top", tooltip="This document specifies a method for DNS resolvers to publish information about themselves.  DNS clients can use the resolver information to identify the capabilities of DNS resolvers.  How DNS clients use such information is beyond the scope of this document."];
+  RFC9606 -> rev_cites;
+  RFC9620 [label="RFC9620
+Guidelines for Human Rights Protocol and
+Architecture Considerations
+2024", shape=ellipse, URL="RFC9620.html", target="_top", tooltip="This document sets guidelines for human rights considerations for developers working on network protocols and architectures, similar to the work done on the guidelines for privacy considerations (RFC 6973). This is an updated version of the guidelines for human rights considerations in RFC 8280. This document is a product of the Human Right Protocol Considerations (HRPC) Research Group in the IRTF."];
+  RFC9620 -> rev_cites;
+  RFC9665 [label="RFC9665
+Service Registration Protocol for DNS-
+Based Service Discovery
+2025", shape=ellipse, URL="RFC9665.html", target="_top", tooltip="The Service Registration Protocol (SRP) for DNS-based Service Discovery (DNS-SD) uses the standard DNS Update mechanism to enable DNS-SD using only unicast packets.  This makes it possible to deploy DNS-SD without multicast, which greatly improves scalability and improves performance on networks where multicast service is not an optimal choice, particularly IEEE 802.11 (Wi-Fi) and IEEE 802.15.4 networks.  DNS-SD Service registration uses public keys and SIG(0) to allow services to defend their registrations."];
+  RFC9665 -> rev_cites;
+  RFC9704 [label="RFC9704
+Establishing Local DNS Authority in
+Validated Split-Horizon Environments
+2025", shape=ellipse, URL="RFC9704.html", target="_top", tooltip="When split-horizon DNS is deployed by a network, certain domain names can be resolved authoritatively by a network-provided DNS resolver.  DNS clients that are not configured to use this resolver by default can use it for these specific domains only.  This specification defines a mechanism for domain owners to inform DNS clients about local resolvers that are authorized to answer authoritatively for certain subdomains."];
+  RFC9704 -> rev_cites;
+  RFC9726 [label="RFC9726
+Operational Considerations for Use of
+DNS in Internet of Things (IoT) Devices
+2025", shape=ellipse, URL="RFC9726.html", target="_top", tooltip="This document details considerations about how Internet of Things (IoT) devices use IP addresses and DNS names. These concerns become acute as network operators begin deploying Manufacturer Usage Descriptions (MUD), as specified in RFC 8520, to control device access. Also, this document makes recommendations on when and how to use DNS names in MUD files."];
+  RFC9726 -> rev_cites;
+  RFC9761 [label="RFC9761
+Manufacturer Usage Description (MUD) for
+TLS and DTLS Profiles for Internet of
+Things (IoT) Devices
+2025", shape=ellipse, URL="RFC9761.html", target="_top", tooltip="This memo extends the Manufacturer Usage Description (MUD) specification to allow manufacturers to define TLS and DTLS profile parameters.  This allows a network security service to identify unexpected (D)TLS usage, which can indicate the presence of unauthorized software, malware, or security policy-violating traffic on an endpoint."];
+  RFC9761 -> rev_cites;
+}

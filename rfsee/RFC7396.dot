@@ -1,0 +1,56 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7396 [label="RFC7396
+JSON Merge Patch
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This specification defines the JSON merge patch format and processing rules.  The merge patch format is primarily intended for use with the HTTP PATCH method as a means of describing a set of modifications to a target resource's content."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7396;
+
+  obs [label="obsoletes", shape=box];
+  RFC7396 -> obs;
+  RFC7386 [label="RFC7386
+JSON Merge Patch
+2014", shape=ellipse, URL="RFC7386.html", target="_top", tooltip="This specification defines the JSON merge patch format and processing rules.  The merge patch format is primarily intended for use with the HTTP PATCH method as a means of describing a set of modifications to a target resource's content."];
+  obs -> RFC7386;
+
+  updates [label="updates", shape=box];
+  RFC7396 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7396;
+
+  cites [label="cites", shape=box];
+  RFC7396 -> cites;
+  RFC5789 [label="RFC5789
+PATCH Method for HTTP
+2010", shape=ellipse, URL="RFC5789.html", target="_top", tooltip="Several applications extending the Hypertext Transfer Protocol (HTTP) require a feature to do partial resource modification.  The existing HTTP PUT method only allows a complete replacement of a document.  This proposal adds a new HTTP method, PATCH, to modify an existing HTTP resource. [STANDARDS-TRACK]"];
+  cites -> RFC5789;
+  RFC7159 [label="RFC7159
+The JavaScript Object Notation (JSON)
+Data Interchange Format
+2014", shape=ellipse, URL="RFC7159.html", target="_top", tooltip="JavaScript Object Notation (JSON) is a lightweight, text-based, language-independent data interchange format. It was derived from the ECMAScript Programming Language Standard. JSON defines a small set of formatting rules for the portable representation of structured data. This document removes inconsistencies with other specifications of JSON, repairs specification errors, and offers experience-based interoperability guidance."];
+  cites -> RFC7159;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7396;
+  RFC8132 [label="RFC8132
+PATCH and FETCH Methods for the
+Constrained Application Protocol (CoAP)
+2017", shape=ellipse, URL="RFC8132.html", target="_top", tooltip="The methods defined in RFC 7252 for the Constrained Application Protocol (CoAP) only allow access to a complete resource, not to parts of a resource. In case of resources with larger or complex data, or in situations where resource continuity is required, replacing or requesting the whole resource is undesirable. Several applications using CoAP need to access parts of the resources. This specification defines the new CoAP methods, FETCH, PATCH, and iPATCH, which are used to access and update parts of a resource."];
+  RFC8132 -> rev_cites;
+  RFC8895 [label="RFC8895
+Application-Layer Traffic Optimization
+(ALTO) Incremental Updates Using Server-
+Sent Events (SSE)
+2020", shape=ellipse, URL="RFC8895.html", target="_top", tooltip="The Application-Layer Traffic Optimization (ALTO) protocol (RFC 7285) provides network-related information, called network information resources, to client applications so that clients can make informed decisions in utilizing network resources.  This document presents a mechanism to allow an ALTO server to push updates to ALTO clients to achieve two benefits: (1) updates can be incremental, in that if only a small section of an information resource changes, the ALTO server can send just the changes and (2) updates can be immediate, in that the ALTO server can send updates as soon as they are available."];
+  RFC8895 -> rev_cites;
+  RFC9530 [label="RFC9530
+Digest Fields
+2024", shape=ellipse, URL="RFC9530.html", target="_top", tooltip="This document defines HTTP fields that support integrity digests. The Content-Digest field can be used for the integrity of HTTP message content. The Repr-Digest field can be used for the integrity of HTTP representations. Want-Content-Digest and Want-Repr-Digest can be used to indicate a sender's interest and preferences for receiving the respective Integrity fields. This document obsoletes RFC 3230 and the Digest and Want-Digest HTTP fields."];
+  RFC9530 -> rev_cites;
+}

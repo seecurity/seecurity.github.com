@@ -1,0 +1,87 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9567 [label="RFC9567
+DNS Error Reporting
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="DNS error reporting is a lightweight reporting mechanism that provides the operator of an authoritative server with reports on DNS resource records that fail to resolve or validate. A domain owner or DNS hosting organization can use these reports to improve domain hosting. The reports are based on extended DNS errors as described in RFC 8914. When a domain name fails to resolve or validate due to a misconfiguration or an attack, the operator of the authoritative server may be unaware of this. To mitigate this lack of feedback, this document describes a method for a validating resolver to automatically signal an error to a monitoring agent specified by the authoritative server. The error is encoded in the QNAME; thus, the very act of sending the query is to report the error."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9567;
+
+  obs [label="obsoletes", shape=box];
+  RFC9567 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9567 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9567;
+
+  cites [label="cites", shape=box];
+  RFC9567 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC9499 [label="RFC9499
+DNS Terminology
+2024", shape=ellipse, URL="RFC9499.html", target="_top", tooltip="The Domain Name System (DNS) is defined in literally dozens of different RFCs. The terminology used by implementers and developers of DNS protocols, and by operators of DNS systems, has changed in the decades since the DNS was first defined. This document gives current definitions for many of the terms used in the DNS in a single document. This document updates RFC 2308 by clarifying the definitions of forwarder and QNAME. It obsoletes RFC 8499 by adding multiple terms and clarifications. Comprehensive lists of changed and new definitions can be found in Appendices A and B."];
+  cites -> RFC9499;
+  RFC8914 [label="RFC8914
+Extended DNS Errors
+2020", shape=ellipse, URL="RFC8914.html", target="_top", tooltip="This document defines an extensible method to return additional information about the cause of DNS errors.  Though created primarily to extend SERVFAIL to provide additional information about the cause of DNS and DNSSEC failures, the Extended DNS Errors option defined in this document allows all response types to contain extended error information.  Extended DNS Error information does not change the processing of RCODEs."];
+  cites -> RFC8914;
+  RFC8020 [label="RFC8020
+NXDOMAIN: There Really Is Nothing
+Underneath
+2016", shape=ellipse, URL="RFC8020.html", target="_top", tooltip="This document states clearly that when a DNS resolver receives a response with a response code of NXDOMAIN, it means that the domain name which is thus denied AND ALL THE NAMES UNDER IT do not exist. This document clarifies RFC 1034 and modifies a portion of RFC 2308: it updates both of them."];
+  cites -> RFC8020;
+  RFC8198 [label="RFC8198
+Aggressive Use of DNSSEC-Validated Cache
+2017", shape=ellipse, URL="RFC8198.html", target="_top", tooltip="The DNS relies upon caching to scale; however, the cache lookup generally requires an exact match. This document specifies the use of NSEC/NSEC3 resource records to allow DNSSEC-validating resolvers to generate negative answers within a range and positive answers from wildcards. This increases performance, decreases latency, decreases resource utilization on both authoritative and recursive servers, and increases privacy. Also, it may help increase resilience to certain DoS attacks in some circumstances. This document updates RFC 4035 by allowing validating resolvers to generate negative answers based upon NSEC/NSEC3 records and positive answers in the presence of wildcards."];
+  cites -> RFC8198;
+  RFC6891 [label="RFC6891
+Extension Mechanisms for DNS (EDNS(0))
+2013", shape=ellipse, URL="RFC6891.html", target="_top", tooltip="The Domain Name System's wire protocol includes a number of fixed fields whose range has been or soon will be exhausted and does not allow requestors to advertise their capabilities to responders. This document describes backward-compatible mechanisms for allowing the protocol to grow. This document updates the Extension Mechanisms for DNS (EDNS(0)) specification (and obsoletes RFC 2671) based on feedback from deployment experience in several implementations. It also obsoletes RFC 2673 (Binary Labels in the Domain Name System) and adds considerations on the use of extended labels in the DNS."];
+  cites -> RFC6891;
+  RFC7766 [label="RFC7766
+DNS Transport over TCP - Implementation
+Requirements
+2016", shape=ellipse, URL="RFC7766.html", target="_top", tooltip="This document specifies the requirement for support of TCP as a transport protocol for DNS implementations and provides guidelines towards DNS-over-TCP performance on par with that of DNS-over-UDP.  This document obsoletes RFC 5966 and therefore updates RFC 1035 and RFC 1123."];
+  cites -> RFC7766;
+  RFC7873 [label="RFC7873
+Domain Name System (DNS) Cookies
+2016", shape=ellipse, URL="RFC7873.html", target="_top", tooltip="DNS Cookies are a lightweight DNS transaction security mechanism that provides limited protection to DNS servers and clients against a variety of increasingly common denial-of-service and amplification/ forgery or cache poisoning attacks by off-path attackers.  DNS Cookies are tolerant of NAT, NAT-PT (Network Address Translation - Protocol Translation), and anycast and can be incrementally deployed. (Since DNS Cookies are only returned to the IP address from which they were originally received, they cannot be used to generally track Internet users.)"];
+  cites -> RFC7873;
+  RFC2308 [label="RFC2308
+Negative Caching of DNS Queries (DNS
+NCACHE)
+1998", shape=ellipse, URL="RFC2308.html", target="_top", tooltip="RFC1034 provided a description of how to cache negative responses.  It however had a fundamental flaw in that it did not allow a name server to hand out those cached responses to other resolvers, thereby greatly reducing the effect of the caching.  This document addresses issues raise in the light of experience and replaces RFC1034 Section 4.3.4. [STANDARDS-TRACK]"];
+  cites -> RFC2308;
+  RFC4592 [label="RFC4592
+The Role of Wildcards in the Domain Name
+System
+2006", shape=ellipse, URL="RFC4592.html", target="_top", tooltip="This is an update to the wildcard definition of RFC 1034.  The interaction with wildcards and CNAME is changed, an error condition is removed, and the words defining some concepts central to wildcards are changed.  The overall goal is not to change wildcards, but to refine the definition of RFC 1034. [STANDARDS-TRACK]"];
+  cites -> RFC4592;
+  RFC9156 [label="RFC9156
+DNS Query Name Minimisation to Improve
+Privacy
+2021", shape=ellipse, URL="RFC9156.html", target="_top", tooltip="This document describes a technique called QNAME minimisation to improve DNS privacy, where the DNS resolver no longer always sends the full original QNAME and original QTYPE to the upstream name server.  This document obsoletes RFC 7816."];
+  cites -> RFC9156;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9567;
+  RFC9859 [label="RFC9859
+Generalized DNS Notifications
+2025", shape=ellipse, URL="RFC9859.html", target="_top", tooltip="This document generalizes and extends the use of DNS NOTIFY (RFC 1996) beyond conventional zone transfer hints to allow other types of actions that were previously lacking a trigger mechanism to be triggered via the DNS. Notifications merely nudge the receiver to initiate a predefined action promptly (instead of on a schedule); they do not alter the action itself (including any security checks it might employ). To enable this functionality, a method for discovering the receiver endpoint for such notification messages is introduced, via the new DSYNC record type. Notification types are recorded in a new registry, with initial support for parental NS and DS record updates including DNSSEC bootstrapping."];
+  RFC9859 -> rev_cites;
+}

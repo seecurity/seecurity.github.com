@@ -1,0 +1,452 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3501 [label="RFC3501
+INTERNET MESSAGE ACCESS PROTOCOL -
+VERSION 4rev1
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Internet Message Access Protocol, Version 4rev1 (IMAP4rev1) allows a client to access and manipulate electronic mail messages on a server.  IMAP4rev1 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders.  IMAP4rev1 also provides the capability for an offline client to resynchronize with the server.  IMAP4rev1 includes operations for creating, deleting, and renaming mailboxes, checking for new messages, permanently removing messages, setting and clearing flags, RFC 2822 and RFC 2045 parsing, searching, and selective fetching of message attributes, texts, and portions thereof.  Messages in IMAP4rev1 are accessed by the use of numbers.  These numbers are either message sequence numbers or unique identifiers.  IMAP4rev1 supports a single server.  A mechanism for accessing configuration information to support multiple IMAP4rev1 servers is discussed in RFC 2244.  IMAP4rev1 does not specify a means of posting mail; this function is handled by a mail transfer protocol such as RFC 2821. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3501;
+  RFC9051 [label="RFC9051
+Internet Message Access Protocol (IMAP)
+- Version 4rev2
+2021", shape=ellipse, URL="RFC9051.html", target="_top", tooltip="The Internet Message Access Protocol Version 4rev2 (IMAP4rev2) allows a client to access and manipulate electronic mail messages on a server. IMAP4rev2 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders. IMAP4rev2 also provides the capability for an offline client to resynchronize with the server. IMAP4rev2 includes operations for creating, deleting, and renaming mailboxes; checking for new messages; removing messages permanently; setting and clearing flags; parsing per RFCs 5322, 2045, and 2231; searching; and selective fetching of message attributes, texts, and portions thereof. Messages in IMAP4rev2 are accessed by the use of numbers. These numbers are either message sequence numbers or unique identifiers. IMAP4rev2 does not specify a means of posting mail; this function is handled by a mail submission protocol such as the one specified in RFC 6409."];
+  RFC9051 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC3501 -> obs;
+  RFC2060 [label="RFC2060
+Internet Message Access Protocol -
+Version 4rev1
+1996", shape=ellipse, URL="RFC2060.html", target="_top", tooltip="The Internet Message Access Protocol, Version 4rev1 (IMAP4rev1) allows a client to access and manipulate electronic mail messages on a server. [STANDARDS-TRACK]"];
+  obs -> RFC2060;
+
+  updates [label="updates", shape=box];
+  RFC3501 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3501;
+  RFC4466 [label="RFC4466
+Collected Extensions to IMAP4 ABNF
+2006", shape=ellipse, URL="RFC4466.html", target="_top", tooltip="Over the years, many documents from IMAPEXT and LEMONADE working groups, as well as many individual documents, have added syntactic extensions to many base IMAP commands described in RFC 3501. For ease of reference, this document collects most of such ABNF changes in one place. This document also suggests a set of standard patterns for adding options and extensions to several existing IMAP commands defined in RFC 3501. The patterns provide for compatibility between existing and future extensions. This document updates ABNF in RFCs 2088, 2342, 3501, 3502, and 3516. It also includes part of the errata to RFC 3501. This document doesn't specify any semantic changes to the listed RFCs. [STANDARDS-TRACK]"];
+  RFC4466 -> updated_by;
+  RFC4469 [label="RFC4469
+Internet Message Access Protocol (IMAP)
+CATENATE Extension
+2006", shape=ellipse, URL="RFC4469.html", target="_top", tooltip="The CATENATE extension to the Internet Message Access Protocol (IMAP) extends the APPEND command to allow clients to create messages on the IMAP server that may contain a combination of new data along with parts of (or entire) messages already on the server.  Using this extension, the client can catenate parts of an already existing message onto a new message without having to first download the data and then upload it back to the server. [STANDARDS-TRACK]"];
+  RFC4469 -> updated_by;
+  RFC4551 [label="RFC4551
+IMAP Extension for Conditional STORE
+Operation or Quick Flag Changes
+Resynchronization
+2006", shape=ellipse, URL="RFC4551.html", target="_top", tooltip="Often, multiple IMAP (RFC 3501) clients need to coordinate changes to a common IMAP mailbox. Examples include different clients working on behalf of the same user, and multiple users accessing shared mailboxes. These clients need a mechanism to synchronize state changes for messages within the mailbox. They must be able to guarantee that only one client can change message state (e.g., message flags) at any time. An example of such an application is use of an IMAP mailbox as a message queue with multiple dequeueing clients. The Conditional Store facility provides a protected update mechanism for message state information that can detect and resolve conflicts between multiple writing mail clients. The Conditional Store facility also allows a client to quickly resynchronize mailbox flag changes. This document defines an extension to IMAP (RFC 3501). [STANDARDS-TRACK]"];
+  RFC4551 -> updated_by;
+  RFC5032 [label="RFC5032
+WITHIN Search Extension to the IMAP
+Protocol
+2007", shape=ellipse, URL="RFC5032.html", target="_top", tooltip="This document describes the WITHIN extension to IMAP SEARCH.  IMAP SEARCH returns messages whose internal date is within or outside a specified interval.  The mechanism described here, OLDER and YOUNGER, differs from BEFORE and SINCE in that the client specifies an interval, rather than a date.  WITHIN is useful for persistent searches where either the device does not have the capacity to perform the search at regular intervals or the network is of limited bandwidth and thus there is a desire to reduce network traffic from sending repeated requests and redundant responses. [STANDARDS-TRACK]"];
+  RFC5032 -> updated_by;
+  RFC5182 [label="RFC5182
+IMAP Extension for Referencing the Last
+SEARCH Result
+2008", shape=ellipse, URL="RFC5182.html", target="_top", tooltip="Many IMAP clients use the result of a SEARCH command as the input to perform another operation, for example, fetching the found messages, deleting them, or copying them to another mailbox. This can be achieved using standard IMAP operations described in RFC 3501; however, this would be suboptimal. The server will send the list of found messages to the client; after that, the client will have to parse the list, reformat it, and send it back to the server. The client can't pipeline the SEARCH command with the subsequent command, and, as a result, the server might not be able to perform some optimizations. This document proposes an IMAP extension that allows a client to tell a server to use the result of a SEARCH (or Unique Identifier (UID) SEARCH) command as an input to any subsequent command. [STANDARDS-TRACK]"];
+  RFC5182 -> updated_by;
+  RFC5738 [label="RFC5738
+IMAP Support for UTF-8
+2010", shape=ellipse, URL="RFC5738.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol version 4rev1 (IMAP4rev1) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5738 -> updated_by;
+  RFC6186 [label="RFC6186
+Use of SRV Records for Locating Email
+Submission/Access Services
+2011", shape=ellipse, URL="RFC6186.html", target="_top", tooltip="This specification describes how SRV records can be used to locate email services. [STANDARDS-TRACK]"];
+  RFC6186 -> updated_by;
+  RFC6858 [label="RFC6858
+Simplified POP and IMAP Downgrading for
+Internationalized Email
+2013", shape=ellipse, URL="RFC6858.html", target="_top", tooltip="This document specifies a method for IMAP and POP servers to serve internationalized messages to conventional clients.  The specification is simple, easy to implement, and provides only rudimentary results."];
+  RFC6858 -> updated_by;
+  RFC7817 [label="RFC7817
+Updated Transport Layer Security (TLS)
+Server Identity Check Procedure for
+Email-Related Protocols
+2016", shape=ellipse, URL="RFC7817.html", target="_top", tooltip="This document describes the Transport Layer Security (TLS) server identity verification procedure for SMTP Submission, IMAP, POP, and ManageSieve clients.  It replaces Section 2.4 (Server Identity Check) of RFC 2595 and updates Section 4.1 (Processing After the STARTTLS Command) of RFC 3207, Section 11.1 (STARTTLS Security Considerations) of RFC 3501, and Section 2.2.1 (Server Identity Check) of RFC 5804."];
+  RFC7817 -> updated_by;
+  RFC8314 [label="RFC8314
+Cleartext Considered Obsolete: Use of
+Transport Layer Security (TLS) for Email
+Submission and Access
+2018", shape=ellipse, URL="RFC8314.html", target="_top", tooltip="This specification outlines current recommendations for the use of Transport Layer Security (TLS) to provide confidentiality of email traffic between a Mail User Agent (MUA) and a Mail Submission Server or Mail Access Server.  This document updates RFCs 1939, 2595, 3501, 5068, 6186, and 6409."];
+  RFC8314 -> updated_by;
+  RFC8437 [label="RFC8437
+IMAP UNAUTHENTICATE Extension for
+Connection Reuse
+2018", shape=ellipse, URL="RFC8437.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to allow an administrative client to reuse the same IMAP connection on behalf of multiple IMAP user identities."];
+  RFC8437 -> updated_by;
+  RFC8474 [label="RFC8474
+IMAP Extension for Object Identifiers
+2018", shape=ellipse, URL="RFC8474.html", target="_top", tooltip="This document updates RFC 3501 (IMAP4rev1) with persistent identifiers on mailboxes and messages to allow clients to more efficiently reuse cached data when resources have changed location on the server."];
+  RFC8474 -> updated_by;
+  RFC8996 [label="RFC8996
+Deprecating TLS 1.0 and TLS 1.1
+2021", shape=ellipse, URL="RFC8996.html", target="_top", tooltip="This document formally deprecates Transport Layer Security (TLS) versions 1.0 (RFC 2246) and 1.1 (RFC 4346). Accordingly, those documents have been moved to Historic status. These versions lack support for current and recommended cryptographic algorithms and mechanisms, and various government and industry profiles of applications using TLS now mandate avoiding these old TLS versions. TLS version 1.2 became the recommended version for IETF protocols in 2008 (subsequently being obsoleted by TLS version 1.3 in 2018), providing sufficient time to transition away from older versions. Removing support for older versions from implementations reduces the attack surface, reduces opportunity for misconfiguration, and streamlines library and product maintenance. This document also deprecates Datagram TLS (DTLS) version 1.0 (RFC 4347) but not DTLS version 1.2, and there is no DTLS version 1.1. This document updates many RFCs that normatively refer to TLS version 1.0 or TLS version 1.1, as described herein. This document also updates the best practices for TLS usage in RFC 7525; hence, it is part of BCP 195."];
+  RFC8996 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3501 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3501;
+  RFC3819 [label="RFC3819
+Advice for Internet Subnetwork Designers
+2004", shape=ellipse, URL="RFC3819.html", target="_top", tooltip="This document provides advice to the designers of digital communication equipment, link-layer protocols, and packet-switched local networks (collectively referred to as subnetworks), who wish to support the Internet protocols but may be unfamiliar with the Internet architecture and the implications of their design choices on the performance and efficiency of the Internet.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  RFC3819 -> rev_cites;
+  RFC4468 [label="RFC4468
+Message Submission BURL Extension
+2006", shape=ellipse, URL="RFC4468.html", target="_top", tooltip="The submission profile of Simple Mail Transfer Protocol (SMTP) provides a standard way for an email client to submit a complete message for delivery.  This specification extends the submission profile by adding a new BURL command that can be used to fetch submission data from an Internet Message Access Protocol (IMAP) server.  This permits a mail client to inject content from an IMAP server into the SMTP infrastructure without downloading it to the client and uploading it back to the server. [STANDARDS-TRACK]"];
+  RFC4468 -> rev_cites;
+  RFC4550 [label="RFC4550
+Internet Email to Support Diverse
+Service Environments (Lemonade) Profile
+2006", shape=ellipse, URL="RFC4550.html", target="_top", tooltip="This document describes a profile (a set of required extensions, restrictions, and usage modes) of the IMAP and mail submission protocols. This profile allows clients (especially those that are constrained in memory, bandwidth, processing power, or other areas) to efficiently use IMAP and Submission to access and submit mail. This includes the ability to forward received mail without needing to download and upload the mail, to optimize submission, and to efficiently resynchronize in case of loss of connectivity with the server. The Internet Email to Support Diverse Service Environments (Lemonade) profile relies upon extensions to IMAP and Mail Submission protocols; specifically, the URLAUTH and CATENATE IMAP protocol (RFC 3501) extensions and the BURL extension to the SUBMIT protocol (RFC 4409). [STANDARDS-TRACK]"];
+  RFC4550 -> rev_cites;
+  RFC4686 [label="RFC4686
+Analysis of Threats Motivating
+DomainKeys Identified Mail (DKIM)
+2006", shape=ellipse, URL="RFC4686.html", target="_top", tooltip="This document provides an analysis of some threats against Internet mail that are intended to be addressed by signature-based mail authentication, in particular DomainKeys Identified Mail.  It discusses the nature and location of the bad actors, what their capabilities are, and what they intend to accomplish via their attacks.  This memo provides information for the Internet community."];
+  RFC4686 -> rev_cites;
+  RFC4959 [label="RFC4959
+IMAP Extension for Simple Authentication
+and Security Layer (SASL) Initial Client
+Response
+2007", shape=ellipse, URL="RFC4959.html", target="_top", tooltip="To date, the Internet Message Access Protocol (IMAP) has used a Simple Authentication and Security Layer (SASL) profile which always required at least one complete round trip for an authentication, as it did not support an initial client response argument. This additional round trip at the beginning of the session is undesirable, especially when round-trip costs are high. This document defines an extension to IMAP which allows clients and servers to avoid this round trip by allowing an initial client response argument to the IMAP AUTHENTICATE command. [STANDARDS-TRACK]"];
+  RFC4959 -> rev_cites;
+  RFC4978 [label="RFC4978
+The IMAP COMPRESS Extension
+2007", shape=ellipse, URL="RFC4978.html", target="_top", tooltip="The COMPRESS extension allows an IMAP connection to be effectively and efficiently compressed. [STANDARDS-TRACK]"];
+  RFC4978 -> rev_cites;
+  RFC5032 [label="RFC5032
+WITHIN Search Extension to the IMAP
+Protocol
+2007", shape=ellipse, URL="RFC5032.html", target="_top", tooltip="This document describes the WITHIN extension to IMAP SEARCH.  IMAP SEARCH returns messages whose internal date is within or outside a specified interval.  The mechanism described here, OLDER and YOUNGER, differs from BEFORE and SINCE in that the client specifies an interval, rather than a date.  WITHIN is useful for persistent searches where either the device does not have the capacity to perform the search at regular intervals or the network is of limited bandwidth and thus there is a desire to reduce network traffic from sending repeated requests and redundant responses. [STANDARDS-TRACK]"];
+  RFC5032 -> rev_cites;
+  RFC5161 [label="RFC5161
+The IMAP ENABLE Extension
+2008", shape=ellipse, URL="RFC5161.html", target="_top", tooltip="Most IMAP extensions are used by the client when it wants to and the server supports it.  However, a few extensions require the server to know whether a client supports that extension.  The ENABLE extension allows an IMAP client to say which extensions it supports. [STANDARDS-TRACK]"];
+  RFC5161 -> rev_cites;
+  RFC5162 [label="RFC5162
+IMAP4 Extensions for Quick Mailbox
+Resynchronization
+2008", shape=ellipse, URL="RFC5162.html", target="_top", tooltip="This document defines an IMAP4 extension, which gives an IMAP client the ability to quickly resynchronize any previously opened mailbox as part of the SELECT command, without the need for server-side state or additional client round-trips.  This extension also introduces a new response that allows for a more compact representation of a list of expunged messages (and always includes the Unique Identifiers (UIDs) expunged). [STANDARDS-TRACK]"];
+  RFC5162 -> rev_cites;
+  RFC5183 [label="RFC5183
+Sieve Email Filtering: Environment
+Extension
+2008", shape=ellipse, URL="RFC5183.html", target="_top", tooltip="This document describes the environment extension to the Sieve email filtering language.  The environment extension gives a Sieve script access to information about the Sieve interpreter itself, where it is running, and about any transport connection currently involved in transferring the message. [STANDARDS-TRACK]"];
+  RFC5183 -> rev_cites;
+  RFC5255 [label="RFC5255
+Internet Message Access Protocol
+Internationalization
+2008", shape=ellipse, URL="RFC5255.html", target="_top", tooltip="Internet Message Access Protocol (IMAP) version 4rev1 has basic support for non-ASCII characters in mailbox names and search substrings.  It also supports non-ASCII message headers and content encoded as specified by Multipurpose Internet Mail Extensions (MIME).  This specification defines a collection of IMAP extensions that improve international support including language negotiation for international error text, translations for namespace prefixes, and comparator negotiation for search, sort, and thread. [STANDARDS-TRACK]"];
+  RFC5255 -> rev_cites;
+  RFC5257 [label="RFC5257
+Internet Message Access Protocol -
+ANNOTATE Extension
+2008", shape=ellipse, URL="RFC5257.html", target="_top", tooltip="The ANNOTATE extension to the Internet Message Access Protocol permits clients and servers to maintain meta data for messages, or individual message parts, stored in a mailbox on the server. For example, this can be used to attach comments and other useful information to a message. It is also possible to attach annotations to specific parts of a message, so that, for example, they could be marked as seen, or important, or a comment added. Note that this document was the product of a WG that had good consensus on how to approach the problem. Nevertheless, the WG felt it did not have enough information on implementation and deployment hurdles to meet all of the requirements of a Proposed Standard. The IETF solicits implementations and implementation reports in order to make further progress. Implementers should be aware that this specification may change in an incompatible manner when going to Proposed Standard status. However, any incompatible changes will result in a new capability name being used to prevent problems with any deployments of the experimental extension. This memo defines an Experimental Protocol for the Internet community."];
+  RFC5257 -> rev_cites;
+  RFC5259 [label="RFC5259
+Internet Message Access Protocol -
+CONVERT Extension
+2008", shape=ellipse, URL="RFC5259.html", target="_top", tooltip="CONVERT defines extensions to IMAP allowing clients to request adaptation and/or transcoding of attachments.  Clients can specify the conversion details or allow servers to decide based on knowledge of client capabilities, on user or administrator preferences, or on server settings. [STANDARDS-TRACK]"];
+  RFC5259 -> rev_cites;
+  RFC5260 [label="RFC5260
+Sieve Email Filtering: Date and Index
+Extensions
+2008", shape=ellipse, URL="RFC5260.html", target="_top", tooltip="This document describes the date and index extensions to the Sieve email filtering language.  The date extension gives Sieve the ability to test date and time values in various ways.  The index extension provides a means to limit header and address tests to specific instances of header fields when header fields are repeated. [STANDARDS-TRACK]"];
+  RFC5260 -> rev_cites;
+  RFC5423 [label="RFC5423
+Internet Message Store Events
+2009", shape=ellipse, URL="RFC5423.html", target="_top", tooltip="One of the missing features in the existing Internet mail and messaging standards is a facility for server-to-server and server-to- client event notifications related to message store events. As the scope of Internet mail expands to support more diverse media (such as voice mail) and devices (such as cell phones) and to provide rich interactions with other services (such as web portals and legal compliance systems), the need for an interoperable notification system increases. This document attempts to enumerate the types of events that interest real-world consumers of such a system. This document describes events and event parameters that are useful for several cases, including notification to administrative systems and end users. This is not intended as a replacement for a message access facility such as IMAP. [STANDARDS-TRACK]"];
+  RFC5423 -> rev_cites;
+  RFC5442 [label="RFC5442
+LEMONADE Architecture - Supporting Open
+Mobile Alliance (OMA) Mobile Email (MEM)
+Using Internet Mail
+2009", shape=ellipse, URL="RFC5442.html", target="_top", tooltip="This document specifies the architecture for mobile email, as described by the Open Mobile Alliance (OMA), using Internet Mail protocols.  This architecture was an important consideration for much of the work of the LEMONADE (Enhancements to Internet email to Support Diverse Service Environments) working group in the IETF.  This document also describes how the LEMONADE architecture meets OMA's requirements for their Mobile Email (MEM) service.  This memo provides information for the Internet community."];
+  RFC5442 -> rev_cites;
+  RFC5463 [label="RFC5463
+Sieve Email Filtering:  Ihave Extension
+2009", shape=ellipse, URL="RFC5463.html", target="_top", tooltip="This document describes the ihave extension to the Sieve email filtering language.  The ihave extension provides a means to write scripts that can take advantage of optional Sieve features but can still run when those optional features are not available.  The extension also defines a new error control command intended to be used to report situations where no combination of available extensions satisfies the needs of the script. [STANDARDS-TRACK]"];
+  RFC5463 -> rev_cites;
+  RFC5464 [label="RFC5464
+The IMAP METADATA Extension
+2009", shape=ellipse, URL="RFC5464.html", target="_top", tooltip="The METADATA extension to the Internet Message Access Protocol permits clients and servers to maintain annotations or metadata on IMAP servers.  It is possible to have annotations on a per-mailbox basis or on the server as a whole.  For example, this would allow comments about the purpose of a particular mailbox to be attached to that mailbox, or a message of the day containing server status information to be made available to anyone logging in to the server. [STANDARDS-TRACK]"];
+  RFC5464 -> rev_cites;
+  RFC5465 [label="RFC5465
+The IMAP NOTIFY Extension
+2009", shape=ellipse, URL="RFC5465.html", target="_top", tooltip="This document defines an IMAP extension that allows a client to request specific kinds of unsolicited notifications for specified mailboxes, such as messages being added to or deleted from such mailboxes. [STANDARDS-TRACK]"];
+  RFC5465 -> rev_cites;
+  RFC5466 [label="RFC5466
+IMAP4 Extension for Named Searches
+(Filters)
+2009", shape=ellipse, URL="RFC5466.html", target="_top", tooltip="The document defines a way to persistently store named IMAP (RFC 3501) searches on the server.  Such named searches can be subsequently referenced in a SEARCH or any other command that accepts a search criterion as a parameter. [STANDARDS-TRACK]"];
+  RFC5466 -> rev_cites;
+  RFC5530 [label="RFC5530
+IMAP Response Codes
+2009", shape=ellipse, URL="RFC5530.html", target="_top", tooltip="IMAP responses consist of a response type (OK, NO, BAD), an optional machine-readable response code, and a human-readable text. This document collects and documents a variety of machine-readable response codes, for better interoperation and error reporting. [STANDARDS-TRACK]"];
+  RFC5530 -> rev_cites;
+  RFC5598 [label="RFC5598
+Internet Mail Architecture
+2009", shape=ellipse, URL="RFC5598.html", target="_top", tooltip="Over its thirty-five-year history, Internet Mail has changed significantly in scale and complexity, as it has become a global infrastructure service.  These changes have been evolutionary, rather than revolutionary, reflecting a strong desire to preserve both its installed base and its usefulness.  To collaborate productively on this large and complex system, all participants need to work from a common view of it and use a common language to describe its components and the interactions among them.  But the many differences in perspective currently make it difficult to know exactly what another participant means.  To serve as the necessary common frame of reference, this document describes the enhanced Internet Mail architecture, reflecting the current service.  This memo provides information for the Internet community."];
+  RFC5598 -> rev_cites;
+  RFC5738 [label="RFC5738
+IMAP Support for UTF-8
+2010", shape=ellipse, URL="RFC5738.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol version 4rev1 (IMAP4rev1) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5738 -> rev_cites;
+  RFC5788 [label="RFC5788
+IMAP4 Keyword Registry
+2010", shape=ellipse, URL="RFC5788.html", target="_top", tooltip="The aim of this document is to establish a new IANA registry for IMAP keywords and to define a procedure for keyword registration, in order to improve interoperability between different IMAP clients. [STANDARDS TRACK]"];
+  RFC5788 -> rev_cites;
+  RFC5819 [label="RFC5819
+IMAP4 Extension for Returning STATUS
+Information in Extended LIST
+2010", shape=ellipse, URL="RFC5819.html", target="_top", tooltip="Many IMAP clients display information about total number of messages / total number of unseen messages in IMAP mailboxes.  In order to do that, they are forced to issue a LIST or LSUB command and to list all available mailboxes, followed by a STATUS command for each mailbox found.  This document provides an extension to LIST command that allows the client to request STATUS information for mailboxes together with other information typically returned by the LIST command. [STANDARDS-TRACK]"];
+  RFC5819 -> rev_cites;
+  RFC6009 [label="RFC6009
+Sieve Email Filtering: Delivery Status
+Notifications and Deliver-By Extensions
+2010", shape=ellipse, URL="RFC6009.html", target="_top", tooltip="This document describes the envelope-dsn, redirect-dsn, envelope-deliverby, and redirect-deliverby extensions to the Sieve email filtering language.  The envelope-dsn and envelope- deliverby extensions provide access to additional envelope information provided by the delivery status notification (DSN) and Deliver-By SMTP extensions, respectively.  The redirect-dsn and redirect-deliverby extensions extend Sieve's redirect action to provide control over delivery status notification and Deliver-By parameters, respectively. [STANDARDS-TRACK]"];
+  RFC6009 -> rev_cites;
+  RFC6154 [label="RFC6154
+IMAP LIST Extension for Special-Use
+Mailboxes
+2011", shape=ellipse, URL="RFC6154.html", target="_top", tooltip="Some IMAP message stores include special-use mailboxes, such as those used to hold draft messages or sent messages.  Many mail clients allow users to specify where draft or sent messages should be put, but configuring them requires that the user know which mailboxes the server has set aside for these purposes.  This extension adds new optional mailbox attributes that a server may include in IMAP LIST command responses to identify special-use mailboxes to the client, easing configuration. [STANDARDS-TRACK]"];
+  RFC6154 -> rev_cites;
+  RFC6186 [label="RFC6186
+Use of SRV Records for Locating Email
+Submission/Access Services
+2011", shape=ellipse, URL="RFC6186.html", target="_top", tooltip="This specification describes how SRV records can be used to locate email services. [STANDARDS-TRACK]"];
+  RFC6186 -> rev_cites;
+  RFC6196 [label="RFC6196
+Moving mailserver: URI Scheme to
+Historic
+2011", shape=ellipse, URL="RFC6196.html", target="_top", tooltip="This document registers the mailserver: URI scheme as historic in the IANA URI registry. [STANDARDS-TRACK]"];
+  RFC6196 -> rev_cites;
+  RFC6203 [label="RFC6203
+IMAP4 Extension for Fuzzy Search
+2011", shape=ellipse, URL="RFC6203.html", target="_top", tooltip="This document describes an IMAP protocol extension enabling a server to perform searches with inexact matching and assigning relevancy scores for matched messages. [STANDARDS-TRACK]"];
+  RFC6203 -> rev_cites;
+  RFC6237 [label="RFC6237
+IMAP4 Multimailbox SEARCH Extension
+2011", shape=ellipse, URL="RFC6237.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the round trips and waiting for various searches to complete, and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6237 -> rev_cites;
+  RFC6530 [label="RFC6530
+Overview and Framework for
+Internationalized Email
+2012", shape=ellipse, URL="RFC6530.html", target="_top", tooltip="Full use of electronic mail throughout the world requires that (subject to other constraints) people be able to use close variations on their own names (written correctly in their own languages and scripts) as mailbox names in email addresses.  This document introduces a series of specifications that define mechanisms and protocol extensions needed to fully support internationalized email addresses.  These changes include an SMTP extension and extension of email header syntax to accommodate UTF-8 data.  The document set also includes discussion of key assumptions and issues in deploying fully internationalized email.  This document is a replacement for RFC 4952; it reflects additional issues identified since that document was published. [STANDARDS-TRACK]"];
+  RFC6530 -> rev_cites;
+  RFC6595 [label="RFC6595
+A Simple Authentication and Security
+Layer (SASL) and GSS-API Mechanism for
+the Security Assertion Markup Language
+(SAML)
+2012", shape=ellipse, URL="RFC6595.html", target="_top", tooltip="The Security Assertion Markup Language (SAML) has found its usage on the Internet for Web Single Sign-On.  The Simple Authentication and Security Layer (SASL) and the Generic Security Service Application Program Interface (GSS-API) are application frameworks to generalize authentication.  This memo specifies a SASL mechanism and a GSS-API mechanism for SAML 2.0 that allows the integration of existing SAML Identity Providers with applications using SASL and GSS-API. [STANDARDS-TRACK]"];
+  RFC6595 -> rev_cites;
+  RFC6616 [label="RFC6616
+A Simple Authentication and Security
+Layer (SASL) and Generic Security
+Service Application Program Interface
+(GSS-API) Mechanism for OpenID
+2012", shape=ellipse, URL="RFC6616.html", target="_top", tooltip="OpenID has found its usage on the Internet for Web Single Sign-On.  Simple Authentication and Security Layer (SASL) and the Generic Security Service Application Program Interface (GSS-API) are application frameworks to generalize authentication.  This memo specifies a SASL and GSS-API mechanism for OpenID that allows the integration of existing OpenID Identity Providers with applications using SASL and GSS-API. [STANDARDS-TRACK]"];
+  RFC6616 -> rev_cites;
+  RFC6650 [label="RFC6650
+Creation and Use of Email Feedback
+Reports: An Applicability Statement for
+the Abuse Reporting Format (ARF)
+2012", shape=ellipse, URL="RFC6650.html", target="_top", tooltip="RFC 5965 defines an extensible, machine-readable format intended for mail operators to report feedback about received email to other parties.  This applicability statement describes common methods for utilizing this format for reporting both abuse and authentication failure events.  Mailbox Providers of any size, mail-sending entities, and end users can use these methods as a basis to create procedures that best suit them.  Some related optional mechanisms are also discussed. [STANDARDS-TRACK]"];
+  RFC6650 -> rev_cites;
+  RFC6785 [label="RFC6785
+Support for Internet Message Access
+Protocol (IMAP) Events in Sieve
+2012", shape=ellipse, URL="RFC6785.html", target="_top", tooltip="Sieve defines an email filtering language that can, in principle, plug into any point in the processing of an email message.  As defined in the base specification, it plugs into mail delivery.  This document defines how Sieve can plug into points in IMAP where messages are created or changed, adding the option of user-defined or installation-defined filtering (or, with Sieve extensions, features such as notifications).  Because this requires future Sieve extensions to specify their interactions with this one, this document updates the base Sieve specification, RFC 5228. [STANDARDS-TRACK]"];
+  RFC6785 -> rev_cites;
+  RFC6851 [label="RFC6851
+Internet Message Access Protocol (IMAP)
+- MOVE Extension
+2013", shape=ellipse, URL="RFC6851.html", target="_top", tooltip="This document defines an IMAP extension consisting of two new commands, MOVE and UID MOVE, that are used to move messages from one mailbox to another. [STANDARDS-TRACK]"];
+  RFC6851 -> rev_cites;
+  RFC6855 [label="RFC6855
+IMAP Support for UTF-8
+2013", shape=ellipse, URL="RFC6855.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This specification replaces RFC 5738."];
+  RFC6855 -> rev_cites;
+  RFC6858 [label="RFC6858
+Simplified POP and IMAP Downgrading for
+Internationalized Email
+2013", shape=ellipse, URL="RFC6858.html", target="_top", tooltip="This document specifies a method for IMAP and POP servers to serve internationalized messages to conventional clients.  The specification is simple, easy to implement, and provides only rudimentary results."];
+  RFC6858 -> rev_cites;
+  RFC6919 [label="RFC6919
+Further Key Words for Use in RFCs to
+Indicate Requirement Levels
+2013", shape=ellipse, URL="RFC6919.html", target="_top", tooltip="RFC 2119 defines a standard set of key words for describing requirements of a specification. Many IETF documents have found that these words cannot accurately capture the nuanced requirements of their specification. This document defines additional key words that can be used to address alternative requirements scenarios. Authors who follow these guidelines should incorporate this phrase near the beginning of their document: The key words MUST (BUT WE KNOW YOU WON\'T), SHOULD CONSIDER, REALLY SHOULD NOT, OUGHT TO, WOULD PROBABLY, MAY WISH TO, COULD, POSSIBLE, and MIGHT in this document are to be interpreted as described in RFC 6919."];
+  RFC6919 -> rev_cites;
+  RFC7017 [label="RFC7017
+IMAP Access to IETF Email List Archives
+2013", shape=ellipse, URL="RFC7017.html", target="_top", tooltip="The IETF makes heavy use of email lists to conduct its work.  This often involves accessing the archived history of those email lists.  Participants would like to have the ability to browse and search those archives using standard IMAP clients.  This memo captures the requirements for providing a service that would allow such browsing and searching, and it is intended as input to a later activity for the design and development of such a service."];
+  RFC7017 -> rev_cites;
+  RFC7162 [label="RFC7162
+IMAP Extensions: Quick Flag Changes
+Resynchronization (CONDSTORE) and Quick
+Mailbox Resynchronization (QRESYNC)
+2014", shape=ellipse, URL="RFC7162.html", target="_top", tooltip="Often, multiple IMAP (RFC 3501) clients need to coordinate changes to a common IMAP mailbox. Examples include different clients working on behalf of the same user and multiple users accessing shared mailboxes. These clients need a mechanism to efficiently synchronize state changes for messages within the mailbox. Initially defined in RFC 4551, the Conditional Store facility provides a protected update mechanism for message state information and a mechanism for requesting only changes to the message state. This memo updates that mechanism and obsoletes RFC 4551, based on operational experience. This document additionally updates another IMAP extension, Quick Resynchronization, which builds on the Conditional STORE extension to provide an IMAP client the ability to fully resynchronize a mailbox as part of the SELECT/EXAMINE command, without the need for additional server-side state or client round trips. Hence, this memo obsoletes RFC 5162. Finally, this document also updates the line-length recommendation in Section 3.2.1.5 of RFC 2683."];
+  RFC7162 -> rev_cites;
+  RFC7281 [label="RFC7281
+Authentication-Results Registration for
+S/MIME Signature Verification
+2014", shape=ellipse, URL="RFC7281.html", target="_top", tooltip="RFC 7001 specifies the Authentication-Results header field for conveying results of message authentication checks.  This document defines a new authentication method to be used in the Authentication- Results header field for S/MIME-related signature checks."];
+  RFC7281 -> rev_cites;
+  RFC7377 [label="RFC7377
+IMAP4 Multimailbox SEARCH Extension
+2014", shape=ellipse, URL="RFC7377.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the delays caused by many round trips and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX, UIDVALIDITY, and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466 and obsoletes RFC 6237."];
+  RFC7377 -> rev_cites;
+  RFC7508 [label="RFC7508
+Securing Header Fields with S/MIME
+2015", shape=ellipse, URL="RFC7508.html", target="_top", tooltip="This document describes how the S/MIME protocol can be extended in order to secure message header fields defined in RFC 5322.  This technology provides security services such as data integrity, non-repudiation, and confidentiality.  This extension is referred to as 'Secure Headers'."];
+  RFC7508 -> rev_cites;
+  RFC7613 [label="RFC7613
+Preparation, Enforcement, and Comparison
+of Internationalized Strings
+Representing Usernames and Passwords
+2015", shape=ellipse, URL="RFC7613.html", target="_top", tooltip="This document describes updated methods for handling Unicode strings representing usernames and passwords.  The previous approach was known as SASLprep (RFC 4013) and was based on stringprep (RFC 3454).  The methods specified in this document provide a more sustainable approach to the handling of internationalized usernames and passwords.  The preparation, enforcement, and comparison of internationalized strings (PRECIS) framework, RFC 7564, obsoletes RFC 3454, and this document obsoletes RFC 4013."];
+  RFC7613 -> rev_cites;
+  RFC7624 [label="RFC7624
+Confidentiality in the Face of Pervasive
+Surveillance: A Threat Model and Problem
+Statement
+2015", shape=ellipse, URL="RFC7624.html", target="_top", tooltip="Since the initial revelations of pervasive surveillance in 2013, several classes of attacks on Internet communications have been discovered.  In this document, we develop a threat model that describes these attacks on Internet confidentiality.  We assume an attacker that is interested in undetected, indiscriminate eavesdropping.  The threat model is based on published, verified attacks."];
+  RFC7624 -> rev_cites;
+  RFC7628 [label="RFC7628
+A Set of Simple Authentication and
+Security Layer (SASL) Mechanisms for
+OAuth
+2015", shape=ellipse, URL="RFC7628.html", target="_top", tooltip="OAuth enables a third-party application to obtain limited access to a protected resource, either on behalf of a resource owner by orchestrating an approval interaction or by allowing the third-party application to obtain access on its own behalf. This document defines how an application client uses credentials obtained via OAuth over the Simple Authentication and Security Layer (SASL) to access a protected resource at a resource server. Thereby, it enables schemes defined within the OAuth framework for non-HTTP-based application protocols. Clients typically store the user's long-term credential. This does, however, lead to significant security vulnerabilities, for example, when such a credential leaks. A significant benefit of OAuth for usage in those clients is that the password is replaced by a shared secret with higher entropy, i.e., the token. Tokens typically provide limited access rights and can be managed and revoked separately from the user's long-term password."];
+  RFC7628 -> rev_cites;
+  RFC7817 [label="RFC7817
+Updated Transport Layer Security (TLS)
+Server Identity Check Procedure for
+Email-Related Protocols
+2016", shape=ellipse, URL="RFC7817.html", target="_top", tooltip="This document describes the Transport Layer Security (TLS) server identity verification procedure for SMTP Submission, IMAP, POP, and ManageSieve clients.  It replaces Section 2.4 (Server Identity Check) of RFC 2595 and updates Section 4.1 (Processing After the STARTTLS Command) of RFC 3207, Section 11.1 (STARTTLS Security Considerations) of RFC 3501, and Section 2.2.1 (Server Identity Check) of RFC 5804."];
+  RFC7817 -> rev_cites;
+  RFC7832 [label="RFC7832
+Application Bridging for Federated
+Access Beyond Web (ABFAB) Use Cases
+2016", shape=ellipse, URL="RFC7832.html", target="_top", tooltip="Federated identity is typically associated with web-based services at present, but there is growing interest in its application in non-web-based contexts.  The goal of this memo is to document a selection of the wide variety of these contexts whose user experience could be improved through the use of technologies based on the Application Bridging for Federated Access Beyond web (ABFAB) architecture and specifications."];
+  RFC7832 -> rev_cites;
+  RFC7888 [label="RFC7888
+IMAP4 Non-synchronizing Literals
+2016", shape=ellipse, URL="RFC7888.html", target="_top", tooltip="The Internet Message Access Protocol (RFC 3501) contains the literal syntactic construct for communicating strings. When sending a literal from client to server, IMAP requires the client to wait for the server to send a command continuation request between sending the octet count and the string data. This document specifies an alternate form of literal that does not require this network round trip. This document specifies 2 IMAP extensions: LITERAL+ and LITERAL-. LITERAL+ allows the alternate form of literals in all IMAP commands. LITERAL- is the same as LITERAL+, but it disallows the alternate form of literals unless they are 4096 bytes or less. This document obsoletes RFC 2088."];
+  RFC7888 -> rev_cites;
+  RFC7889 [label="RFC7889
+The IMAP APPENDLIMIT Extension
+2016", shape=ellipse, URL="RFC7889.html", target="_top", tooltip="This document defines an extension to the IMAP service whereby a server can inform the client about maximum message upload sizes, allowing the client to avoid sending APPEND commands that will fail because the messages are too large."];
+  RFC7889 -> rev_cites;
+  RFC8098 [label="RFC8098
+Message Disposition Notification
+2017", shape=ellipse, URL="RFC8098.html", target="_top", tooltip="This memo defines a MIME content type that may be used by a Mail User Agent (MUA) or electronic mail gateway to report the disposition of a message after it has been successfully delivered to a recipient. This content type is intended to be machine processable. Additional message header fields are also defined to permit Message Disposition Notifications (MDNs) to be requested by the sender of a message. The purpose is to extend Internet Mail to support functionality often found in other messaging systems, such as X.400 and the proprietary LAN-based systems, and are often referred to as read receipts, acknowledgements, or receipt notifications. The intention is to do this while respecting privacy concerns, which have often been expressed when such functions have been discussed in the past. Because many messages are sent between the Internet and other messaging systems (such as X.400 or the proprietary LAN-based systems), the MDN protocol is designed to be useful in a multiprotocol messaging environment. To this end, the protocol described in this memo provides for the carriage of foreign addresses, in addition to those normally used in Internet Mail. Additional attributes may also be defined to support tunneling of foreign notifications through Internet Mail. This document is an Internet Standard. It obsoletes RFC 3798 and updates RFC 2046 (message/partial media type handling) and RFC 3461 (Original-Recipient header field generation requirement)."];
+  RFC8098 -> rev_cites;
+  RFC8265 [label="RFC8265
+Preparation, Enforcement, and Comparison
+of Internationalized Strings
+Representing Usernames and Passwords
+2017", shape=ellipse, URL="RFC8265.html", target="_top", tooltip="This document describes updated methods for handling Unicode strings representing usernames and passwords.  The previous approach was known as SASLprep (RFC 4013) and was based on Stringprep (RFC 3454).  The methods specified in this document provide a more sustainable approach to the handling of internationalized usernames and passwords.  This document obsoletes RFC 7613."];
+  RFC8265 -> rev_cites;
+  RFC8314 [label="RFC8314
+Cleartext Considered Obsolete: Use of
+Transport Layer Security (TLS) for Email
+Submission and Access
+2018", shape=ellipse, URL="RFC8314.html", target="_top", tooltip="This specification outlines current recommendations for the use of Transport Layer Security (TLS) to provide confidentiality of email traffic between a Mail User Agent (MUA) and a Mail Submission Server or Mail Access Server.  This document updates RFCs 1939, 2595, 3501, 5068, 6186, and 6409."];
+  RFC8314 -> rev_cites;
+  RFC8437 [label="RFC8437
+IMAP UNAUTHENTICATE Extension for
+Connection Reuse
+2018", shape=ellipse, URL="RFC8437.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to allow an administrative client to reuse the same IMAP connection on behalf of multiple IMAP user identities."];
+  RFC8437 -> rev_cites;
+  RFC8440 [label="RFC8440
+IMAP4 Extension for Returning MYRIGHTS
+Information in Extended LIST
+2018", shape=ellipse, URL="RFC8440.html", target="_top", tooltip="This document defines an extension to the Internet Message Access Protocol (IMAP) LIST command that allows the client to request the set of rights that the logged-in user has been granted on mailboxes, along with other information typically returned by the LIST command."];
+  RFC8440 -> rev_cites;
+  RFC8457 [label="RFC8457
+IMAP $Important Keyword and \Important
+Special-Use Attribute
+2018", shape=ellipse, URL="RFC8457.html", target="_top", tooltip="RFC 6154 created an IMAP special-use LIST extension and defined an initial set of attributes.  This document defines a new attribute, \Important, and establishes a new IANA registry for IMAP folder attributes, which include the attributes defined in RFCs 5258, 3501, and 6154.  This document also defines a new IMAP keyword, $Important, and registers it in the registry defined in RFC 5788."];
+  RFC8457 -> rev_cites;
+  RFC8460 [label="RFC8460
+SMTP TLS Reporting
+2018", shape=ellipse, URL="RFC8460.html", target="_top", tooltip="A number of protocols exist for establishing encrypted channels between SMTP Mail Transfer Agents (MTAs), including STARTTLS, DNS- Based Authentication of Named Entities (DANE) TLSA, and MTA Strict Transport Security (MTA-STS).  These protocols can fail due to misconfiguration or active attack, leading to undelivered messages or delivery over unencrypted or unauthenticated channels.  This document describes a reporting mechanism and format by which sending systems can share statistics and specific information about potential failures with recipient domains.  Recipient domains can then use this information to both detect potential attacks and diagnose unintentional misconfigurations."];
+  RFC8460 -> rev_cites;
+  RFC8474 [label="RFC8474
+IMAP Extension for Object Identifiers
+2018", shape=ellipse, URL="RFC8474.html", target="_top", tooltip="This document updates RFC 3501 (IMAP4rev1) with persistent identifiers on mailboxes and messages to allow clients to more efficiently reuse cached data when resources have changed location on the server."];
+  RFC8474 -> rev_cites;
+  RFC8508 [label="RFC8508
+IMAP REPLACE Extension
+2019", shape=ellipse, URL="RFC8508.html", target="_top", tooltip="This document defines an IMAP extension that can be used to replace an existing message in a message store with a new message.  Message replacement is a common operation for clients that automatically save drafts or notes as a user composes them."];
+  RFC8508 -> rev_cites;
+  RFC8621 [label="RFC8621
+The JSON Meta Application Protocol
+(JMAP) for Mail
+2019", shape=ellipse, URL="RFC8621.html", target="_top", tooltip="This document specifies a data model for synchronising email data with a server using the JSON Meta Application Protocol (JMAP).  Clients can use this to efficiently search, access, organise, and send messages, and to get push notifications for fast resynchronisation when new messages are delivered or a change is made in another client."];
+  RFC8621 -> rev_cites;
+  RFC8689 [label="RFC8689
+SMTP Require TLS Option
+2019", shape=ellipse, URL="RFC8689.html", target="_top", tooltip="The SMTP STARTTLS option, used in negotiating transport-level encryption of SMTP connections, is not as useful from a security standpoint as it might be because of its opportunistic nature; message delivery is, by default, prioritized over security.  This document describes an SMTP service extension, REQUIRETLS, and a message header field, TLS-Required.  If the REQUIRETLS option or TLS-Required message header field is used when sending a message, it asserts a request on the part of the message sender to override the default negotiation of TLS, either by requiring that TLS be negotiated when the message is relayed or by requesting that recipient-side policy mechanisms such as MTA-STS and DNS-Based Authentication of Named Entities (DANE) be ignored when relaying a message for which security is unimportant."];
+  RFC8689 -> rev_cites;
+  RFC8970 [label="RFC8970
+IMAP4 Extension: Message Preview
+Generation
+2020", shape=ellipse, URL="RFC8970.html", target="_top", tooltip="This document specifies an Internet Message Access Protocol (IMAP) protocol extension that allows a client to request a server-generated abbreviated text representation of message data that is useful as a contextual preview of the entire message."];
+  RFC8970 -> rev_cites;
+  RFC8996 [label="RFC8996
+Deprecating TLS 1.0 and TLS 1.1
+2021", shape=ellipse, URL="RFC8996.html", target="_top", tooltip="This document formally deprecates Transport Layer Security (TLS) versions 1.0 (RFC 2246) and 1.1 (RFC 4346). Accordingly, those documents have been moved to Historic status. These versions lack support for current and recommended cryptographic algorithms and mechanisms, and various government and industry profiles of applications using TLS now mandate avoiding these old TLS versions. TLS version 1.2 became the recommended version for IETF protocols in 2008 (subsequently being obsoleted by TLS version 1.3 in 2018), providing sufficient time to transition away from older versions. Removing support for older versions from implementations reduces the attack surface, reduces opportunity for misconfiguration, and streamlines library and product maintenance. This document also deprecates Datagram TLS (DTLS) version 1.0 (RFC 4347) but not DTLS version 1.2, and there is no DTLS version 1.1. This document updates many RFCs that normatively refer to TLS version 1.0 or TLS version 1.1, as described herein. This document also updates the best practices for TLS usage in RFC 7525; hence, it is part of BCP 195."];
+  RFC8996 -> rev_cites;
+  RFC9042 [label="RFC9042
+Sieve Email Filtering: Delivery by
+MAILBOXID
+2021", shape=ellipse, URL="RFC9042.html", target="_top", tooltip="The OBJECTID capability of IMAP (RFC 8474) allows clients to identify mailboxes by a unique identifier that survives renaming. This document extends the Sieve email filtering language (RFC 5228) to allow using that same unique identifier as a target for fileinto rules and for testing the existence of mailboxes."];
+  RFC9042 -> rev_cites;
+  RFC9051 [label="RFC9051
+Internet Message Access Protocol (IMAP)
+- Version 4rev2
+2021", shape=ellipse, URL="RFC9051.html", target="_top", tooltip="The Internet Message Access Protocol Version 4rev2 (IMAP4rev2) allows a client to access and manipulate electronic mail messages on a server. IMAP4rev2 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders. IMAP4rev2 also provides the capability for an offline client to resynchronize with the server. IMAP4rev2 includes operations for creating, deleting, and renaming mailboxes; checking for new messages; removing messages permanently; setting and clearing flags; parsing per RFCs 5322, 2045, and 2231; searching; and selective fetching of message attributes, texts, and portions thereof. Messages in IMAP4rev2 are accessed by the use of numbers. These numbers are either message sequence numbers or unique identifiers. IMAP4rev2 does not specify a means of posting mail; this function is handled by a mail submission protocol such as the one specified in RFC 6409."];
+  RFC9051 -> rev_cites;
+  RFC9208 [label="RFC9208
+IMAP QUOTA Extension
+2022", shape=ellipse, URL="RFC9208.html", target="_top", tooltip="This document defines a QUOTA extension of the Internet Message Access Protocol (IMAP) (see RFCs 3501 and 9051) that permits administrative limits on resource usage (quotas) to be manipulated through the IMAP protocol. This document obsoletes RFC 2087 but attempts to remain backwards compatible whenever possible."];
+  RFC9208 -> rev_cites;
+  RFC9394 [label="RFC9394
+IMAP PARTIAL Extension for Paged SEARCH
+and FETCH
+2023", shape=ellipse, URL="RFC9394.html", target="_top", tooltip="The PARTIAL extension of the Internet Message Access Protocol (see RFCs 3501 and 9051) allows clients to limit the number of SEARCH results returned, as well as to perform incremental (paged) searches. This also helps servers to optimize resource usage when performing searches. This document extends the PARTIAL SEARCH return option originally specified in RFC 5267. It also clarifies some interactions between RFC 5267 and RFCs 4731 and 9051. This document updates RFCs 4731 and 5267."];
+  RFC9394 -> rev_cites;
+  RFC9586 [label="RFC9586
+IMAP Extension for Using and Returning
+Unique Identifiers (UIDs) Only
+2024", shape=ellipse, URL="RFC9586.html", target="_top", tooltip="The UIDONLY extension to the Internet Message Access Protocol (RFCs 3501 and 9051) allows clients to enable a mode in which information about mailbox changes is returned using only Unique Identifiers (UIDs). Message numbers are not returned in responses and cannot be used in requests once this extension is enabled. This helps both clients and servers to reduce resource usage required to maintain a map between message numbers and UIDs. This document defines an experimental IMAP extension."];
+  RFC9586 -> rev_cites;
+  RFC9698 [label="RFC9698
+The JMAPACCESS Extension for IMAP
+2025", shape=ellipse, URL="RFC9698.html", target="_top", tooltip="This document defines an IMAP extension to let clients know that the messages in this IMAP server are also available via the JSON Meta Application Protocol (JMAP), and how.  It is intended for clients that want to migrate gradually to JMAP or use JMAP extensions within an IMAP client."];
+  RFC9698 -> rev_cites;
+  RFC9738 [label="RFC9738
+IMAP MESSAGELIMIT Extension
+2025", shape=ellipse, URL="RFC9738.html", target="_top", tooltip="The MESSAGELIMIT extension of the Internet Message Access Protocol (RFCs 3501 and 9051) allows servers to announce a limit on the number of messages that can be processed in a single FETCH, SEARCH, STORE, COPY, or MOVE command (or their UID variants), or in a single APPEND or UID EXPUNGE command.  This helps servers to control resource usage when performing various IMAP operations.  This helps clients to know the message limit enforced by the corresponding IMAP server and avoid issuing commands that would exceed such limit."];
+  RFC9738 -> rev_cites;
+  RFC9755 [label="RFC9755
+IMAP Support for UTF-8
+2025", shape=ellipse, URL="RFC9755.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol, specifically IMAP4rev1 (RFC 3501), to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This specification replaces RFC 6855.  This specification does not extend IMAP4rev2 (RFC 9051), since that protocol includes everything in this extension."];
+  RFC9755 -> rev_cites;
+}

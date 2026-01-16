@@ -1,0 +1,98 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8043 [label="RFC8043
+Source-Address-Dependent Routing and
+Source Address Selection for IPv6 Hosts:
+Overview of the Problem Space
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document presents the source-address-dependent routing (SADR) problem space from the host's perspective. Both multihomed hosts and hosts with multiple interfaces are considered. Several network architectures are presented to illustrate why source address selection and next-hop resolution are needed in view of source-address-dependent routing. The document is scoped on identifying a set of scenarios for source-address-dependent routing from the host's perspective and analyzing a set of solutions to mitigate encountered issues. The document does not make any solution recommendations."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8043;
+
+  obs [label="obsoletes", shape=box];
+  RFC8043 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8043 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8043;
+
+  cites [label="cites", shape=box];
+  RFC8043 -> cites;
+  RFC2827 [label="RFC2827
+Network Ingress Filtering: Defeating
+Denial of Service Attacks which employ
+IP Source Address Spoofing
+2000", shape=ellipse, URL="RFC2827.html", target="_top", tooltip="This paper discusses a simple, effective, and straightforward method for using ingress traffic filtering to prohibit DoS (Denial of Service) attacks which use forged IP addresses to be propagated from 'behind' an Internet Service Provider's (ISP) aggregation point.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2827;
+  RFC3704 [label="RFC3704
+Ingress Filtering for Multihomed
+Networks
+2004", shape=ellipse, URL="RFC3704.html", target="_top", tooltip="BCP 38, RFC 2827, is designed to limit the impact of distributed denial of service attacks, by denying traffic with spoofed addresses access to the network, and to help ensure that traffic is traceable to its correct source network.  As a side effect of protecting the Internet against such attacks, the network implementing the solution also protects itself from this and other attacks, such as spoofed management access to networking equipment.  There are cases when this may create problems, e.g., with multihoming.  This document describes the current ingress filtering operational mechanisms, examines generic issues related to ingress filtering, and delves into the effects on multihoming in particular.  This memo updates RFC 2827.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3704;
+  RFC6724 [label="RFC6724
+Default Address Selection for Internet
+Protocol Version 6 (IPv6)
+2012", shape=ellipse, URL="RFC6724.html", target="_top", tooltip="This document describes two algorithms, one for source address selection and one for destination address selection. The algorithms specify default behavior for all Internet Protocol version 6 (IPv6) implementations. They do not override choices made by applications or upper-layer protocols, nor do they preclude the development of more advanced mechanisms for address selection. The two algorithms share a common context, including an optional mechanism for allowing administrators to provide policy that can override the default behavior. In dual-stack implementations, the destination address selection algorithm can consider both IPv4 and IPv6 addresses -- depending on the available source addresses, the algorithm might prefer IPv6 addresses over IPv4 addresses, or vice versa. Default address selection as defined in this specification applies to all IPv6 nodes, including both hosts and routers. This document obsoletes RFC 3484. [STANDARDS-TRACK]"];
+  cites -> RFC6724;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC6296 [label="RFC6296
+IPv6-to-IPv6 Network Prefix Translation
+2011", shape=ellipse, URL="RFC6296.html", target="_top", tooltip="This document describes a stateless, transport-agnostic IPv6-to-IPv6 Network Prefix Translation (NPTv6) function that provides the address-independence benefit associated with IPv4-to-IPv4 NAT (NAPT44) and provides a 1:1 relationship between addresses in the inside and outside prefixes, preserving end-to-end reachability at the network layer.  This document defines an Experimental Protocol for the Internet community."];
+  cites -> RFC6296;
+  RFC4116 [label="RFC4116
+IPv4 Multihoming Practices and
+Limitations
+2005", shape=ellipse, URL="RFC4116.html", target="_top", tooltip="Multihoming is an essential component of service for many Internet sites.  This document describes some implementation strategies for multihoming with IPv4 and enumerates features for comparison with other multihoming proposals (particularly those related to IPv6).  This memo provides information for the Internet community."];
+  cites -> RFC4116;
+  RFC8028 [label="RFC8028
+First-Hop Router Selection by Hosts in a
+Multi-Prefix Network
+2016", shape=ellipse, URL="RFC8028.html", target="_top", tooltip="This document describes expected IPv6 host behavior in a scenario that has more than one prefix, each allocated by an upstream network that is assumed to implement BCP 38 ingress filtering, when the host has multiple routers to choose from.  It also applies to other scenarios such as the usage of stateful firewalls that effectively act as address-based filters.  Host behavior in choosing a first-hop router may interact with source address selection in a given implementation.  However, the selection of the source address for a packet is done before the first-hop router for that packet is chosen.  Given that the network or host is, or appears to be, multihomed with multiple provider-allocated addresses, that the host has elected to use a source address in a given prefix, and that some but not all neighboring routers are advertising that prefix in their Router Advertisement Prefix Information Options, this document specifies to which router a host should present its transmission.  It updates RFC 4861."];
+  cites -> RFC8028;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC4191 [label="RFC4191
+Default Router Preferences and More-
+Specific Routes
+2005", shape=ellipse, URL="RFC4191.html", target="_top", tooltip="This document describes an optional extension to Router Advertisement messages for communicating default router preferences and more-specific routes from routers to hosts.  This improves the ability of hosts to pick an appropriate router, especially when the host is multi-homed and the routers are on different links.  The preference values and specific routes advertised to hosts require administrative configuration; they are not automatically derived from routing tables. [STANDARDS-TRACK]"];
+  cites -> RFC4191;
+  RFC7157 [label="RFC7157
+IPv6 Multihoming without Network Address
+Translation
+2014", shape=ellipse, URL="RFC7157.html", target="_top", tooltip="Network Address and Port Translation (NAPT) works well for conserving global addresses and addressing multihoming requirements because an IPv4 NAPT router implements three functions: source address selection, next-hop resolution, and (optionally) DNS resolution.  For IPv6 hosts, one approach could be the use of IPv6-to-IPv6 Network Prefix Translation (NPTv6).  However, NAT and NPTv6 should be avoided, if at all possible, to permit transparent end-to-end connectivity.  In this document, we analyze the use cases of multihoming.  We also describe functional requirements and possible solutions for multihoming without the use of NAT in IPv6 for hosts and small IPv6 networks that would otherwise be unable to meet minimum IPv6-allocation criteria.  We conclude that DHCPv6-based solutions are suitable to solve the multihoming issues described in this document, but NPTv6 may be required as an intermediate solution."];
+  cites -> RFC7157;
+  RFC7788 [label="RFC7788
+Home Networking Control Protocol
+2016", shape=ellipse, URL="RFC7788.html", target="_top", tooltip="This document describes the Home Networking Control Protocol (HNCP), an extensible configuration protocol, and a set of requirements for home network devices.  HNCP is described as a profile of and extension to the Distributed Node Consensus Protocol (DNCP).  HNCP enables discovery of network borders, automated configuration of addresses, name resolution, service discovery, and the use of any routing protocol that supports routing based on both the source and destination address."];
+  cites -> RFC7788;
+  RFC7556 [label="RFC7556
+Multiple Provisioning Domain
+Architecture
+2015", shape=ellipse, URL="RFC7556.html", target="_top", tooltip="This document is a product of the work of the Multiple Interfaces Architecture Design team.  It outlines a solution framework for some of the issues experienced by nodes that can be attached to multiple networks simultaneously.  The framework defines the concept of a Provisioning Domain (PvD), which is a consistent set of network configuration information.  PvD-aware nodes learn PvD-specific information from the networks they are attached to and/or other sources.  PvDs are used to enable separation and configuration consistency in the presence of multiple concurrent connections."];
+  cites -> RFC7556;
+  RFC7078 [label="RFC7078
+Distributing Address Selection Policy
+Using DHCPv6
+2014", shape=ellipse, URL="RFC7078.html", target="_top", tooltip="RFC 6724 defines default address selection mechanisms for IPv6 that allow nodes to select an appropriate address when faced with multiple source and/or destination addresses to choose between.  RFC 6724 allows for the future definition of methods to administratively configure the address selection policy information.  This document defines a new DHCPv6 option for such configuration, allowing a site administrator to distribute address selection policy overriding the default address selection parameters and policy table, and thus allowing the administrator to control the address selection behavior of nodes in their site."];
+  cites -> RFC7078;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8043;
+  RFC9284 [label="RFC9284
+Multihoming Deployment Considerations
+for DDoS Open Threat Signaling (DOTS)
+2022", shape=ellipse, URL="RFC9284.html", target="_top", tooltip="This document discusses multihoming considerations for DDoS Open Threat Signaling (DOTS).  The goal is to provide some guidance for DOTS clients and client-domain DOTS gateways when multihomed."];
+  RFC9284 -> rev_cites;
+}

@@ -1,0 +1,39 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8050 [label="RFC8050
+Multi-Threaded Routing Toolkit (MRT)
+Routing Information Export Format with
+BGP Additional Path Extensions
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document extends the Multi-threaded Routing Toolkit (MRT) export format for Border Gateway Protocol (BGP) routing information by supporting the advertisement of multiple paths in BGP extensions."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8050;
+
+  obs [label="obsoletes", shape=box];
+  RFC8050 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8050 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8050;
+
+  cites [label="cites", shape=box];
+  RFC8050 -> cites;
+  RFC6396 [label="RFC6396
+Multi-Threaded Routing Toolkit (MRT)
+Routing Information Export Format
+2011", shape=ellipse, URL="RFC6396.html", target="_top", tooltip="This document describes the MRT format for routing information export.  This format was developed in concert with the Multi-threaded Routing Toolkit (MRT) from whence the format takes it name.  The format can be used to export routing protocol messages, state changes, and routing information base contents. [STANDARDS-TRACK]"];
+  cites -> RFC6396;
+  RFC7911 [label="RFC7911
+Advertisement of Multiple Paths in BGP
+2016", shape=ellipse, URL="RFC7911.html", target="_top", tooltip="This document defines a BGP extension that allows the advertisement of multiple paths for the same address prefix without the new paths implicitly replacing any previous ones.  The essence of the extension is that each path is identified by a Path Identifier in addition to the address prefix."];
+  cites -> RFC7911;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8050;
+}

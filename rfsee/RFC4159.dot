@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4159 [label="RFC4159
+Deprecation of ip6.int
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document advises of the deprecation of the use of ip6.int for Standards Conformant IPv6 implementations.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4159;
+
+  obs [label="obsoletes", shape=box];
+  RFC4159 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4159 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4159;
+
+  cites [label="cites", shape=box];
+  RFC4159 -> cites;
+  RFC3152 [label="RFC3152
+Delegation of IP6.ARPA
+2001", shape=ellipse, URL="RFC3152.html", target="_top", tooltip="This document discusses the need for delegation of the IP6.ARPA DNS zone, and specifies a plan for the technical operation thereof.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3152;
+  RFC3596 [label="RFC3596
+DNS Extensions to Support IP Version 6
+2003", shape=ellipse, URL="RFC3596.html", target="_top", tooltip="This document defines the changes that need to be made to the Domain Name System (DNS) to support hosts running IP version 6 (IPv6).  The changes include a resource record type to store an IPv6 address, a domain to support lookups based on an IPv6 address, and updated definitions of existing query types that return Internet addresses as part of additional section processing.  The extensions are designed to be compatible with existing applications and, in particular, DNS implementations themselves. [STANDARDS-TRACK]"];
+  cites -> RFC3596;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4159;
+  RFC6303 [label="RFC6303
+Locally Served DNS Zones
+2011", shape=ellipse, URL="RFC6303.html", target="_top", tooltip="Experience with the Domain Name System (DNS) has shown that there are a number of DNS zones that all iterative resolvers and recursive nameservers should automatically serve, unless configured otherwise.  RFC 4193 specifies that this should occur for D.F.IP6.ARPA.  This document extends the practice to cover the IN-ADDR.ARPA zones for RFC 1918 address space and other well-known zones with similar characteristics.  This memo documents an Internet Best Current Practice."];
+  RFC6303 -> rev_cites;
+  RFC9121 [label="RFC9121
+Deprecating Infrastructure int Domains
+2023", shape=ellipse, URL="RFC9121.html", target="_top", tooltip="This document deprecates the use of any int domain names that were designated for infrastructure purposes by the IETF, and it identifies them for removal from the int top-level domain.  Any implementations that involve these domains are now deprecated.  This document also changes the status of RFC 1528 and RFC 1706 to Historic."];
+  RFC9121 -> rev_cites;
+}

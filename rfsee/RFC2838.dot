@@ -1,0 +1,40 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2838 [label="RFC2838
+Uniform Resource Identifiers for
+Television Broadcasts
+2000", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a widely-implemented URI scheme, as World-Wide Web browsers are starting to appear on a variety of consumer electronic devices, such as television sets and television set-top boxes, which are capable of receiving television programming from either terrestrial broadcast, satellite broadcast, or cable.  In this context there is a need to reference television broadcasts using the URI format described in RFC 2396.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2838;
+
+  obs [label="obsoletes", shape=box];
+  RFC2838 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2838 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2838;
+
+  cites [label="cites", shape=box];
+  RFC2838 -> cites;
+  RFC2396 [label="RFC2396
+Uniform Resource Identifiers (URI):
+Generic Syntax
+1998", shape=ellipse, URL="RFC2396.html", target="_top", tooltip="This document defines a grammar that is a superset of all valid URI, such that an implementation can parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier type. [STANDARDS-TRACK]"];
+  cites -> RFC2396;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2838;
+  RFC5724 [label="RFC5724
+URI Scheme for Global System for Mobile
+Communications (GSM) Short Message
+Service (SMS)
+2010", shape=ellipse, URL="RFC5724.html", target="_top", tooltip="This memo specifies the Uniform Resource Identifier (URI) scheme sms for specifying one or more recipients for an SMS message.  SMS messages are two-way paging messages that can be sent from and received by a mobile phone or a suitably equipped networked device. [STANDARDS-TRACK]"];
+  RFC5724 -> rev_cites;
+}

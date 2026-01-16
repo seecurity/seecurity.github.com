@@ -1,0 +1,275 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8754 [label="RFC8754
+IPv6 Segment Routing Header (SRH)
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="Segment Routing can be applied to the IPv6 data plane using a new type of Routing Extension Header called the Segment Routing Header (SRH).  This document describes the SRH and how it is used by nodes that are Segment Routing (SR) capable."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8754;
+
+  obs [label="obsoletes", shape=box];
+  RFC8754 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8754 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8754;
+  RFC9800 [label="RFC9800
+Compressed SRv6 Segment List Encoding
+2025", shape=ellipse, URL="RFC9800.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) is the instantiation of Segment Routing (SR) on the IPv6 data plane. This document specifies new flavors for the SRv6 endpoint behaviors defined in RFC 8986, which enable the compression of an SRv6 segment list. Such compression significantly reduces the size of the SRv6 encapsulation needed to steer packets over long segment lists. This document updates RFC 8754 by allowing a Segment List entry in the Segment Routing Header (SRH) to be either an IPv6 address, as specified in RFC 8754, or a REPLACE-CSID container in packed format, as specified in this document."];
+  RFC9800 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC8754 -> cites;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  cites -> RFC8200;
+  RFC3704 [label="RFC3704
+Ingress Filtering for Multihomed
+Networks
+2004", shape=ellipse, URL="RFC3704.html", target="_top", tooltip="BCP 38, RFC 2827, is designed to limit the impact of distributed denial of service attacks, by denying traffic with spoofed addresses access to the network, and to help ensure that traffic is traceable to its correct source network.  As a side effect of protecting the Internet against such attacks, the network implementing the solution also protects itself from this and other attacks, such as spoofed management access to networking equipment.  There are cases when this may create problems, e.g., with multihoming.  This document describes the current ingress filtering operational mechanisms, examines generic issues related to ingress filtering, and delves into the effects on multihoming in particular.  This memo updates RFC 2827.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3704;
+  RFC2104 [label="RFC2104
+HMAC: Keyed-Hashing for Message
+Authentication
+1997", shape=ellipse, URL="RFC2104.html", target="_top", tooltip="This document describes HMAC, a mechanism for message authentication using cryptographic hash functions.  HMAC can be used with any iterative cryptographic hash function, e.g., MD5, SHA-1, in combination with a secret shared key.  The cryptographic strength of HMAC depends on the properties of the underlying hash function.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind"];
+  cites -> RFC2104;
+  RFC6407 [label="RFC6407
+The Group Domain of Interpretation
+2011", shape=ellipse, URL="RFC6407.html", target="_top", tooltip="This document describes the Group Domain of Interpretation (GDOI) protocol specified in RFC 3547.  The GDOI provides group key management to support secure group communications according to the architecture specified in RFC 4046.  The GDOI manages group security associations, which are used by IPsec and potentially other data security protocols.  This document replaces RFC 3547. [STANDARDS-TRACK]"];
+  cites -> RFC6407;
+  RFC4107 [label="RFC4107
+Guidelines for Cryptographic Key
+Management
+2005", shape=ellipse, URL="RFC4107.html", target="_top", tooltip="The question often arises of whether a given security system requires some form of automated key management, or whether manual keying is sufficient.  This memo provides guidelines for making such decisions.  When symmetric cryptographic mechanisms are used in a protocol, the presumption is that automated key management is generally but not always needed.  If manual keying is proposed, the burden of proving that automated key management is not required falls to the proposer.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4107;
+  RFC5308 [label="RFC5308
+Routing IPv6 with IS-IS
+2008", shape=ellipse, URL="RFC5308.html", target="_top", tooltip="This document specifies a method for exchanging IPv6 routing information using the IS-IS routing protocol.  The described method utilizes two new TLVs: a reachability TLV and an interface address TLV to distribute the necessary IPv6 information throughout a routing domain.  Using this method, one can route IPv6 along with IPv4 and OSI using a single intra-domain routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC5308;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC5095 [label="RFC5095
+Deprecation of Type 0 Routing Headers in
+IPv6
+2007", shape=ellipse, URL="RFC5095.html", target="_top", tooltip="The functionality provided by IPv6's Type 0 Routing Header can be exploited in order to achieve traffic amplification over a remote path for the purposes of generating denial-of-service traffic.  This document updates the IPv6 specification to deprecate the use of IPv6 Type 0 Routing Headers, in light of this security concern. [STANDARDS-TRACK]"];
+  cites -> RFC5095;
+  RFC2473 [label="RFC2473
+Generic Packet Tunneling in IPv6
+Specification
+1998", shape=ellipse, URL="RFC2473.html", target="_top", tooltip="This document defines the model and generic mechanisms for IPv6 encapsulation of Internet packets, such as IPv6 and IPv4. [STANDARDS-TRACK]"];
+  cites -> RFC2473;
+  RFC4443 [label="RFC4443
+Internet Control Message Protocol
+(ICMPv6) for the Internet Protocol
+Version 6 (IPv6) Specification
+2006", shape=ellipse, URL="RFC4443.html", target="_top", tooltip="This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC4443;
+  RFC6438 [label="RFC6438
+Using the IPv6 Flow Label for Equal Cost
+Multipath Routing and Link Aggregation
+in Tunnels
+2011", shape=ellipse, URL="RFC6438.html", target="_top", tooltip="The IPv6 flow label has certain restrictions on its use.  This document describes how those restrictions apply when using the flow label for load balancing by equal cost multipath routing and for link aggregation, particularly for IP-in-IPv6 tunneled traffic. [STANDARDS-TRACK]"];
+  cites -> RFC6438;
+  RFC6437 [label="RFC6437
+IPv6 Flow Label Specification
+2011", shape=ellipse, URL="RFC6437.html", target="_top", tooltip="This document specifies the IPv6 Flow Label field and the minimum requirements for IPv6 nodes labeling flows, IPv6 nodes forwarding labeled packets, and flow state establishment methods. Even when mentioned as examples of possible uses of the flow labeling, more detailed requirements for specific use cases are out of the scope for this document. The usage of the Flow Label field enables efficient IPv6 flow classification based only on IPv6 main header fields in fixed positions. [STANDARDS-TRACK]"];
+  cites -> RFC6437;
+  RFC2827 [label="RFC2827
+Network Ingress Filtering: Defeating
+Denial of Service Attacks which employ
+IP Source Address Spoofing
+2000", shape=ellipse, URL="RFC2827.html", target="_top", tooltip="This paper discusses a simple, effective, and straightforward method for using ingress traffic filtering to prohibit DoS (Denial of Service) attacks which use forged IP addresses to be propagated from 'behind' an Internet Service Provider's (ISP) aggregation point.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2827;
+  RFC4302 [label="RFC4302
+IP Authentication Header
+2005", shape=ellipse, URL="RFC4302.html", target="_top", tooltip="This document describes an updated version of the IP Authentication Header (AH), which is designed to provide authentication services in IPv4 and IPv6.  This document obsoletes RFC 2402 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4302;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8754;
+  RFC8799 [label="RFC8799
+Limited Domains and Internet Protocols
+2020", shape=ellipse, URL="RFC8799.html", target="_top", tooltip="There is a noticeable trend towards network behaviors and semantics that are specific to a particular set of requirements applied within a limited region of the Internet. Policies, default parameters, the options supported, the style of network management, and security requirements may vary between such limited regions. This document reviews examples of such limited domains (also known as controlled environments), notes emerging solutions, and includes a related taxonomy. It then briefly discusses the standardization of protocols for limited domains. Finally, it shows the need for a precise definition of limited domain membership and for mechanisms to allow nodes to join a domain securely and to find other members, including boundary nodes. This document is the product of the research of the authors. It has been produced through discussions and consultation within the IETF but is not the product of IETF consensus."];
+  RFC8799 -> rev_cites;
+  RFC8883 [label="RFC8883
+ICMPv6 Errors for Discarding Packets Due
+to Processing Limits
+2020", shape=ellipse, URL="RFC8883.html", target="_top", tooltip="Network nodes may discard packets if they are unable to process protocol headers of packets due to processing constraints or limits.  When such packets are dropped, the sender receives no indication, so it cannot take action to address the cause of discarded packets.  This specification defines several new ICMPv6 errors that can be sent by a node that discards packets because it is unable to process the protocol headers.  A node that receives such an ICMPv6 error may use the information to diagnose packet loss and may modify what it sends in future packets to avoid subsequent packet discards."];
+  RFC8883 -> rev_cites;
+  RFC8986 [label="RFC8986
+Segment Routing over IPv6 (SRv6) Network
+Programming
+2021", shape=ellipse, URL="RFC8986.html", target="_top", tooltip="The Segment Routing over IPv6 (SRv6) Network Programming framework enables a network operator or an application to specify a packet processing program by encoding a sequence of instructions in the IPv6 packet header. Each instruction is implemented on one or several nodes in the network and identified by an SRv6 Segment Identifier in the packet. This document defines the SRv6 Network Programming concept and specifies the base set of SRv6 behaviors that enables the creation of interoperable overlays with underlay optimization."];
+  RFC8986 -> rev_cites;
+  RFC9025 [label="RFC9025
+Deterministic Networking (DetNet) Data
+Plane: MPLS over UDP/IP
+2021", shape=ellipse, URL="RFC9025.html", target="_top", tooltip="This document specifies the MPLS Deterministic Networking (DetNet) data plane operation and encapsulation over an IP network.  The approach is based on the operation of MPLS-over-UDP technology."];
+  RFC9025 -> rev_cites;
+  RFC9181 [label="RFC9181
+A Common YANG Data Model for Layer 2 and
+Layer 3 VPNs
+2022", shape=ellipse, URL="RFC9181.html", target="_top", tooltip="This document defines a common YANG module that is meant to be reused by various VPN-related modules such as Layer 3 VPN and Layer 2 VPN network models."];
+  RFC9181 -> rev_cites;
+  RFC9252 [label="RFC9252
+BGP Overlay Services Based on Segment
+Routing over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9252.html", target="_top", tooltip="This document defines procedures and messages for SRv6-based BGP services, including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and Internet services.  It builds on BGP/MPLS IP Virtual Private Networks (VPNs) (RFC 4364) and BGP MPLS-Based Ethernet VPN (RFC 7432)."];
+  RFC9252 -> rev_cites;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  RFC9256 -> rev_cites;
+  RFC9259 [label="RFC9259
+Operations, Administration, and
+Maintenance (OAM) in Segment Routing
+over IPv6 (SRv6)
+2022", shape=ellipse, URL="RFC9259.html", target="_top", tooltip="This document describes how the existing IPv6 mechanisms for ping and traceroute can be used in a Segment Routing over IPv6 (SRv6) network.  The document also specifies the OAM flag (O-flag) in the Segment Routing Header (SRH) for performing controllable and predictable flow sampling from segment endpoints.  In addition, the document describes how a centralized monitoring system performs a path continuity check between any nodes within an SRv6 domain."];
+  RFC9259 -> rev_cites;
+  RFC9288 [label="RFC9288
+Recommendations on the Filtering of IPv6
+Packets Containing IPv6 Extension
+Headers at Transit Routers
+2022", shape=ellipse, URL="RFC9288.html", target="_top", tooltip="This document analyzes the security implications of IPv6 Extension Headers and associated IPv6 options.  Additionally, it discusses the operational and interoperability implications of discarding packets based on the IPv6 Extension Headers and IPv6 options they contain.  Finally, it provides advice on the filtering of such IPv6 packets at transit routers for traffic not directed to them, for those cases where such filtering is deemed as necessary."];
+  RFC9288 -> rev_cites;
+  RFC9343 [label="RFC9343
+IPv6 Application of the Alternate-
+Marking Method
+2022", shape=ellipse, URL="RFC9343.html", target="_top", tooltip="This document describes how the Alternate-Marking Method can be used as a passive performance measurement tool in an IPv6 domain.  It defines an Extension Header Option to encode Alternate-Marking information in both the Hop-by-Hop Options Header and Destination Options Header."];
+  RFC9343 -> rev_cites;
+  RFC9352 [label="RFC9352
+IS-IS Extensions to Support Segment
+Routing over the IPv6 Data Plane
+2023", shape=ellipse, URL="RFC9352.html", target="_top", tooltip="The Segment Routing (SR) architecture allows a flexible definition of the end-to-end path by encoding it as a sequence of topological elements called segments. It can be implemented over the MPLS or the IPv6 data plane. This document describes the IS-IS extensions required to support SR over the IPv6 data plane. This document updates RFC 7370 by modifying an existing registry."];
+  RFC9352 -> rev_cites;
+  RFC9433 [label="RFC9433
+Segment Routing over IPv6 for the Mobile
+User Plane
+2023", shape=ellipse, URL="RFC9433.html", target="_top", tooltip="This document discusses the applicability of Segment Routing over IPv6 (SRv6) to the user plane of mobile networks. The network programming nature of SRv6 accomplishes mobile user-plane functions in a simple manner. The statelessness of SRv6 and its ability to control both service layer path and underlying transport can be beneficial to the mobile user plane, providing flexibility, end-to-end network slicing, and Service Level Agreement (SLA) control for various applications. This document discusses how SRv6 could be used as the user plane of mobile networks. This document also specifies the SRv6 Endpoint Behaviors required for mobility use cases."];
+  RFC9433 -> rev_cites;
+  RFC9487 [label="RFC9487
+Export of Segment Routing over IPv6
+Information in IP Flow Information
+Export (IPFIX)
+2023", shape=ellipse, URL="RFC9487.html", target="_top", tooltip="This document introduces new IP Flow Information Export (IPFIX) Information Elements (IEs) to identify a set of information related to Segment Routing over IPv6 (SRv6) such as data contained in a Segment Routing Header (SRH), the SRv6 control plane, and the SRv6 Endpoint behavior that traffic is being forwarded with."];
+  RFC9487 -> rev_cites;
+  RFC9491 [label="RFC9491
+Integration of the Network Service
+Header (NSH) and Segment Routing for
+Service Function Chaining (SFC)
+2023", shape=ellipse, URL="RFC9491.html", target="_top", tooltip="This document describes the integration of the Network Service Header (NSH) and Segment Routing (SR), as well as encapsulation details, to efficiently support Service Function Chaining (SFC) while maintaining separation of the service and transport planes as originally intended by the SFC architecture. Combining these technologies allows SR to be used for steering packets between Service Function Forwarders (SFFs) along a given Service Function Path (SFP), whereas the NSH is responsible for maintaining the integrity of the service plane, the SFC instance context, and any associated metadata. This integration demonstrates that the NSH and SR can work cooperatively and provide a network operator with the flexibility to use whichever transport technology makes sense in specific areas of their network infrastructure while still maintaining an end-to-end service plane using the NSH."];
+  RFC9491 -> rev_cites;
+  RFC9513 [label="RFC9513
+OSPFv3 Extensions for Segment Routing
+over IPv6 (SRv6)
+2023", shape=ellipse, URL="RFC9513.html", target="_top", tooltip="The Segment Routing (SR) architecture allows a flexible definition of the end-to-end path by encoding it as a sequence of topological elements called segments.  It can be implemented over an MPLS or IPv6 data plane.  This document describes the OSPFv3 extensions required to support SR over the IPv6 data plane."];
+  RFC9513 -> rev_cites;
+  RFC9514 [label="RFC9514
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+over IPv6 (SRv6)
+2023", shape=ellipse, URL="RFC9514.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) allows for a flexible definition of end-to-end paths within various topologies by encoding paths as sequences of topological or functional sub-paths called segments. These segments are advertised by various protocols such as BGP, IS-IS, and OSPFv3. This document defines extensions to BGP - Link State (BGP-LS) to advertise SRv6 segments along with their behaviors and other attributes via BGP. The BGP-LS address-family solution for SRv6 described in this document is similar to BGP-LS for SR for the MPLS data plane, which is defined in RFC 9085."];
+  RFC9514 -> rev_cites;
+  RFC9524 [label="RFC9524
+Segment Routing Replication for
+Multipoint Service Delivery
+2024", shape=ellipse, URL="RFC9524.html", target="_top", tooltip="This document describes the Segment Routing Replication segment for multipoint service delivery.  A Replication segment allows a packet to be replicated from a replication node to downstream nodes."];
+  RFC9524 -> rev_cites;
+  RFC9602 [label="RFC9602
+Segment Routing over IPv6 (SRv6) Segment
+Identifiers in the IPv6 Addressing
+Architecture
+2024", shape=ellipse, URL="RFC9602.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) uses IPv6 as the underlying data plane.  Thus, Segment Identifiers (SIDs) used by SRv6 can resemble IPv6 addresses and behave like them while exhibiting slightly different behaviors in some situations.  This document explores the characteristics of SRv6 SIDs and focuses on the relationship of SRv6 SIDs to the IPv6 Addressing Architecture.  This document allocates and makes a dedicated prefix available for SRv6 SIDs."];
+  RFC9602 -> rev_cites;
+  RFC9603 [label="RFC9603
+Path Computation Element Communication
+Protocol (PCEP) Extensions for IPv6
+Segment Routing
+2024", shape=ellipse, URL="RFC9603.html", target="_top", tooltip="Segment Routing (SR) can be used to steer packets through a network using the IPv6 or MPLS data plane, employing the source routing paradigm. An SR Path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), explicit configuration, or a Path Computation Element (PCE). Since SR can be applied to both MPLS and IPv6 data planes, a PCE should be able to compute an SR Path for both MPLS and IPv6 data planes. The Path Computation Element Communication Protocol (PCEP) extension and mechanisms to support SR-MPLS have been defined. This document outlines the necessary extensions to support SR for the IPv6 data plane within PCEP."];
+  RFC9603 -> rev_cites;
+  RFC9604 [label="RFC9604
+Carrying Binding Label/SID in PCE-Based
+Networks
+2024", shape=ellipse, URL="RFC9604.html", target="_top", tooltip="In order to provide greater scalability, network confidentiality, and service independence, Segment Routing (SR) utilizes a Binding Segment Identifier (BSID), as described in RFC 8402.  It is possible to associate a BSID to an RSVP-TE-signaled Traffic Engineering (TE) Label Switched Path (LSP) or an SR TE path.  The BSID can be used by an upstream node for steering traffic into the appropriate TE path to enforce SR policies.  This document specifies the concept of binding value, which can be either an MPLS label or a Segment Identifier (SID).  It further specifies an extension to Path Computation Element Communication Protocol (PCEP) for reporting the binding value by a Path Computation Client (PCC) to the Path Computation Element (PCE) to support PCE-based TE policies."];
+  RFC9604 -> rev_cites;
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, URL="RFC9689.html", target="_top", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."];
+  RFC9689 -> rev_cites;
+  RFC9723 [label="RFC9723
+BGP Colored Prefix Routing (CPR) for
+Services Based on Segment Routing over
+IPv6 (SRv6)
+2025", shape=ellipse, URL="RFC9723.html", target="_top", tooltip="This document describes a mechanism to advertise IPv6 prefixes in BGP that are associated with Color Extended Communities to establish end-to-end intent-aware paths for Segment Routing over IPv6 (SRv6) services. Such IPv6 prefixes are called Colored Prefixes, and this mechanism is called Colored Prefix Routing (CPR). In SRv6 networks, the Colored Prefixes are the SRv6 locators associated with different intents. SRv6 services (e.g., SRv6 VPN services) with a specific intent could be assigned with SRv6 Segment Identifiers (SIDs) under the corresponding SRv6 locators, which are advertised as Colored Prefixes. This operational methodology allows the SRv6 service traffic to be steered into end-to-end intent-aware paths based on the longest prefix matching of SRv6 Service SIDs to the Colored Prefixes. The existing IPv6 Address Family and Color Extended Community are reused to advertise IPv6 Colored Prefixes without new BGP extensions; thus, this mechanism is easy to interoperate and can be deployed incrementally in multi-Autonomous System (AS) networks that belong to the same trusted domain."];
+  RFC9723 -> rev_cites;
+  RFC9746 [label="RFC9746
+BGP EVPN Multihoming Extensions for
+Split-Horizon Filtering
+2025", shape=ellipse, URL="RFC9746.html", target="_top", tooltip="An Ethernet Virtual Private Network (EVPN) is commonly used with Network Virtualization Overlay (NVO) tunnels as well as with MPLS and Segment Routing (SR) tunnels. The multihoming procedures in EVPN may vary based on the type of tunnel used within the EVPN Broadcast Domain. Specifically, there are two multihoming split-horizon procedures designed to prevent looped frames on multihomed Customer Edge (CE) devices: the Ethernet Segment Identifier (ESI) Label-based procedure and the local-bias procedure. The ESI Label-based split-horizon procedure is applied to MPLS-based tunnels such as MPLS over UDP (MPLSoUDP), while the local-bias procedure is used for other tunnels such as Virtual eXtensible Local Area Network (VXLAN) tunnels. Current specifications do not allow operators to choose which split-horizon procedure to use for tunnel encapsulations that support both methods. Examples of tunnels that may support both procedures include MPLSoUDP, MPLS over GRE (MPLSoGRE), Generic Network Virtualization Encapsulation (Geneve), and Segment Routing over IPv6 (SRv6) tunnels. This document updates the EVPN multihoming procedures described in RFCs 7432 and 8365, enabling operators to select the split-horizon procedure that meets their specific requirements."];
+  RFC9746 -> rev_cites;
+  RFC9800 [label="RFC9800
+Compressed SRv6 Segment List Encoding
+2025", shape=ellipse, URL="RFC9800.html", target="_top", tooltip="Segment Routing over IPv6 (SRv6) is the instantiation of Segment Routing (SR) on the IPv6 data plane. This document specifies new flavors for the SRv6 endpoint behaviors defined in RFC 8986, which enable the compression of an SRv6 segment list. Such compression significantly reduces the size of the SRv6 encapsulation needed to steer packets over long segment lists. This document updates RFC 8754 by allowing a Segment List entry in the Segment Routing Header (SRH) to be either an IPv6 address, as specified in RFC 8754, or a REPLACE-CSID container in packed format, as specified in this document."];
+  RFC9800 -> rev_cites;
+  RFC9801 [label="RFC9801
+Private Line Emulation over Packet
+Switched Networks
+2025", shape=ellipse, URL="RFC9801.html", target="_top", tooltip="This document expands the applicability of Virtual Private Wire Service (VPWS) bit-stream payloads beyond Time Division Multiplexing (TDM) signals and provides pseudowire transport with complete signal transparency over Packet Switched Networks (PSNs)."];
+  RFC9801 -> rev_cites;
+  RFC9819 [label="RFC9819
+Argument Signaling for BGP Services in
+Segment Routing over IPv6 (SRv6)
+2025", shape=ellipse, URL="RFC9819.html", target="_top", tooltip="RFC 9252 defines procedures and messages for BGP overlay services for Segment Routing over IPv6 (SRv6), including Layer 3 Virtual Private Network (L3VPN), Ethernet VPN (EVPN), and global Internet routing.  This document updates RFC 9252 and provides more detailed specifications for the signaling and processing of SRv6 Segment Identifier advertisements for BGP overlay service routes associated with SRv6 Endpoint Behaviors that support arguments."];
+  RFC9819 -> rev_cites;
+  RFC9830 [label="RFC9830
+Advertising Segment Routing Policies in
+BGP
+2025", shape=ellipse, URL="RFC9830.html", target="_top", tooltip="A Segment Routing (SR) Policy is an ordered list of segments (also referred to as instructions) that define a source-routed policy. An SR Policy consists of one or more Candidate Paths (CPs), each comprising one or more segment lists. A headend can be provisioned with these CPs using various mechanisms such as Command-Line Interface (CLI), Network Configuration Protocol (NETCONF), Path Computation Element Communication Protocol (PCEP), or BGP. This document specifies how BGP can be used to distribute SR Policy CPs. It introduces a BGP SAFI for advertising a CP of an SR Policy and defines sub-TLVs for the Tunnel Encapsulation Attribute to signal information related to these CPs. Furthermore, this document updates RFC 9012 by extending the Color Extended Community to support additional steering modes over SR Policy."];
+  RFC9830 -> rev_cites;
+  RFC9831 [label="RFC9831
+Segment Type Extensions for BGP Segment
+Routing (SR) Policy
+2025", shape=ellipse, URL="RFC9831.html", target="_top", tooltip="This document specifies the signaling of additional Segment Routing (SR) Segment Types for SR Policies in BGP using the SR Policy Subsequent Address Family Identifier (SAFI)."];
+  RFC9831 -> rev_cites;
+  RFC9855 [label="RFC9855
+Topology Independent Fast Reroute Using
+Segment Routing
+2025", shape=ellipse, URL="RFC9855.html", target="_top", tooltip="This document presents Topology Independent Loop-Free Alternate (TI-LFA) Fast Reroute (FRR), which is aimed at providing protection of node and Adjacency segments within the Segment Routing (SR) framework.  This FRR behavior builds on proven IP FRR concepts being LFAs, Remote LFAs (RLFAs), and Directed Loop-Free Alternates (DLFAs).  It extends these concepts to provide guaranteed coverage in any two-connected networks using a link-state IGP.  An important aspect of TI-LFA is the FRR path selection approach establishing protection over the expected post-convergence paths from the Point of Local Repair (PLR), reducing the operational need to control the tie-breaks among various FRR options."];
+  RFC9855 -> rev_cites;
+  RFC9860 [label="RFC9860
+Multicast-Only Fast Reroute (MoFRR)
+Based on Topology Independent Loop-Free
+Alternate (TI-LFA) Fast Reroute
+2025", shape=ellipse, URL="RFC9860.html", target="_top", tooltip="This document specifies the use of Topology Independent Loop-Free Alternate (TI-LFA) mechanisms with Multicast-only Fast Reroute (MoFRR) for Protocol Independent Multicast (PIM).  The TI-LFA provides Fast Reroute (FRR) protection for unicast traffic in IP networks by precomputing backup paths that avoid potential failures.  By integrating TI-LFA with MoFRR, this document extends the benefits of FRR mechanisms to multicast traffic, enabling enhanced resilience and minimized packet loss in multicast networks.  The document outlines an optional approach to implement TI-LFA in conjunction with MoFRR for PIM, ensuring that multicast traffic is rapidly rerouted in the event of a failure."];
+  RFC9860 -> rev_cites;
+}

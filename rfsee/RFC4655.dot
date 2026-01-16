@@ -1,0 +1,721 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4655 [label="RFC4655
+A Path Computation Element (PCE)-Based
+Architecture
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="Constraint-based path computation is a fundamental building block for traffic engineering systems such as Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) networks. Path computation in large, multi-domain, multi-region, or multi-layer networks is complex and may require special computational components and cooperation between the different network domains. This document specifies the architecture for a Path Computation Element (PCE)-based model to address this problem space. This document does not attempt to provide a detailed description of all the architectural components, but rather it describes a set of building blocks for the PCE architecture from which solutions may be constructed. This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4655;
+
+  obs [label="obsoletes", shape=box];
+  RFC4655 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4655 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4655;
+
+  cites [label="cites", shape=box];
+  RFC4655 -> cites;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC3473 [label="RFC3473
+Generalized Multi-Protocol Label
+Switching (GMPLS) Signaling Resource
+ReserVation Protocol-Traffic Engineering
+(RSVP-TE) Extensions
+2003", shape=ellipse, URL="RFC3473.html", target="_top", tooltip="This document describes extensions to Multi-Protocol Label Switching (MPLS) Resource ReserVation Protocol - Traffic Engineering (RSVP-TE) signaling required to support Generalized MPLS.  Generalized MPLS extends the MPLS control plane to encompass time-division (e.g., Synchronous Optical Network and Synchronous Digital Hierarchy, SONET/SDH), wavelength (optical lambdas) and spatial switching (e.g., incoming port or fiber to outgoing port or fiber).  This document presents a RSVP-TE specific description of the extensions.  A generic functional description can be found in separate documents. [STANDARDS-TRACK]"];
+  cites -> RFC3473;
+  RFC2702 [label="RFC2702
+Requirements for Traffic Engineering
+Over MPLS
+1999", shape=ellipse, URL="RFC2702.html", target="_top", tooltip="This document presents a set of requirements for Traffic Engineering over Multiprotocol Label Switching (MPLS).  It identifies the functional capabilities required to implement policies that facilitate efficient and reliable network operations in an MPLS domain.  This memo provides information for the Internet community."];
+  cites -> RFC2702;
+  RFC4105 [label="RFC4105
+Requirements for Inter-Area MPLS Traffic
+Engineering
+2005", shape=ellipse, URL="RFC4105.html", target="_top", tooltip="This document lists a detailed set of functional requirements for the support of inter-area MPLS Traffic Engineering (inter-area MPLS TE).  It is intended that solutions that specify procedures and protocol extensions for inter-area MPLS TE satisfy these requirements.  This memo provides information for the Internet community."];
+  cites -> RFC4105;
+  RFC4216 [label="RFC4216
+MPLS Inter-Autonomous System (AS)
+Traffic Engineering (TE) Requirements
+2005", shape=ellipse, URL="RFC4216.html", target="_top", tooltip="This document discusses requirements for the support of inter-AS MPLS Traffic Engineering (MPLS TE).  Its main objective is to present a set of requirements and scenarios which would result in general guidelines for the definition, selection, and specification development for any technical solution(s) meeting these requirements and supporting the scenarios.  This memo provides information for the Internet community."];
+  cites -> RFC4216;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC3812 [label="RFC3812
+Multiprotocol Label Switching (MPLS)
+Traffic Engineering (TE) Management
+Information Base (MIB)
+2004", shape=ellipse, URL="RFC3812.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects for Multiprotocol Label Switching (MPLS) based traffic engineering (TE). [STANDARDS-TRACK]"];
+  cites -> RFC3812;
+  RFC3630 [label="RFC3630
+Traffic Engineering (TE) Extensions to
+OSPF Version 2
+2003", shape=ellipse, URL="RFC3630.html", target="_top", tooltip="This document describes extensions to the OSPF protocol version 2 to support intra-area Traffic Engineering (TE), using Opaque Link State Advertisements."];
+  cites -> RFC3630;
+  RFC3748 [label="RFC3748
+Extensible Authentication Protocol (EAP)
+2004", shape=ellipse, URL="RFC3748.html", target="_top", tooltip="This document defines the Extensible Authentication Protocol (EAP), an authentication framework which supports multiple authentication methods.  EAP typically runs directly over data link layers such as Point-to-Point Protocol (PPP) or IEEE 802, without requiring IP.  EAP provides its own support for duplicate elimination and retransmission, but is reliant on lower layer ordering guarantees.  Fragmentation is not supported within EAP itself; however, individual EAP methods may support this.  This document obsoletes RFC 2284.  A summary of the changes between this document and RFC 2284 is available in Appendix A. [STANDARDS-TRACK]"];
+  cites -> RFC3748;
+  RFC3413 [label="RFC3413
+Simple Network Management Protocol
+(SNMP) Applications
+2002", shape=ellipse, URL="RFC3413.html", target="_top", tooltip="This document describes five types of Simple Network Management Protocol (SNMP) applications which make use of an SNMP engine as described in STD 62, RFC 3411.  The types of application described are Command Generators, Command Responders, Notification Originators, Notification Receivers, and Proxy Forwarders.  This document also defines Management Information Base (MIB) modules for specifying targets of management operations, for notification filtering, and for proxy forwarding.  This document obsoletes RFC 2573. [STANDARDS-TRACK]"];
+  cites -> RFC3413;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4655;
+  RFC4657 [label="RFC4657
+Path Computation Element (PCE)
+Communication Protocol Generic
+Requirements
+2006", shape=ellipse, URL="RFC4657.html", target="_top", tooltip="The PCE model is described in the PCE Architecture document and facilitates path computation requests from Path Computation Clients (PCCs) to Path Computation Elements (PCEs).  This document specifies generic requirements for a communication protocol between PCCs and PCEs, and also between PCEs where cooperation between PCEs is desirable.  Subsequent documents will specify application-specific requirements for the PCE communication protocol.  This memo provides information for the Internet community."];
+  RFC4657 -> rev_cites;
+  RFC4674 [label="RFC4674
+Requirements for Path Computation
+Element (PCE) Discovery
+2006", shape=ellipse, URL="RFC4674.html", target="_top", tooltip="This document presents a set of requirements for a Path Computation Element (PCE) discovery mechanism that would allow a Path Computation Client (PCC) to discover dynamically and automatically a set of PCEs along with certain information relevant for PCE selection.  It is intended that solutions that specify procedures and protocols or extensions to existing protocols for such PCE discovery satisfy these requirements.  This memo provides information for the Internet community."];
+  RFC4674 -> rev_cites;
+  RFC4726 [label="RFC4726
+A Framework for Inter-Domain
+Multiprotocol Label Switching Traffic
+Engineering
+2006", shape=ellipse, URL="RFC4726.html", target="_top", tooltip="This document provides a framework for establishing and controlling Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineered (TE) Label Switched Paths (LSPs) in multi-domain networks. For the purposes of this document, a domain is considered to be any collection of network elements within a common sphere of address management or path computational responsibility. Examples of such domains include Interior Gateway Protocol (IGP) areas and Autonomous Systems (ASes). This memo provides information for the Internet community."];
+  RFC4726 -> rev_cites;
+  RFC4920 [label="RFC4920
+Crankback Signaling Extensions for MPLS
+and GMPLS RSVP-TE
+2007", shape=ellipse, URL="RFC4920.html", target="_top", tooltip="In a distributed, constraint-based routing environment, the information used to compute a path may be out of date. This means that Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineered (TE) Label Switched Path (LSP) setup requests may be blocked by links or nodes without sufficient resources. Crankback is a scheme whereby setup failure information is returned from the point of failure to allow new setup attempts to be made avoiding the blocked resources. Crankback can also be applied to LSP recovery to indicate the location of the failed link or node. This document specifies crankback signaling extensions for use in MPLS signaling using RSVP-TE as defined in RSVP-TE: Extensions to RSVP for LSP Tunnels, RFC 3209, and GMPLS signaling as defined in Generalized Multi-Protocol Label Switching (GMPLS) Signaling Functional Description, RFC 3473. These extensions mean that the LSP setup request can be retried on an alternate path that detours around blocked links or nodes. This offers significant improvements in the successful setup and recovery ratios for LSPs, especially in situations where a large number of setup requests are triggered at the same time. [STANDARDS-TRACK]"];
+  RFC4920 -> rev_cites;
+  RFC4927 [label="RFC4927
+Path Computation Element Communication
+Protocol (PCECP) Specific Requirements
+for Inter-Area MPLS and GMPLS Traffic
+Engineering
+2007", shape=ellipse, URL="RFC4927.html", target="_top", tooltip="For scalability purposes, a network may comprise multiple Interior Gateway Protocol (IGP) areas.  An inter-area Traffic Engineered Label Switched Path (TE-LSP) is an LSP that transits through at least two IGP areas.  In a multi-area network, topology visibility remains local to a given area, and a head-end Label Switching Router (LSR) cannot compute an inter-area shortest constrained path.  One key application of the Path Computation Element (PCE)-based architecture is the computation of inter-area TE-LSP paths.  The PCE Communication Protocol (PCECP) is used to communicate computation requests from Path Computation Clients (PCCs) to PCEs, and to return computed paths in responses.  This document lists a detailed set of PCECP-specific requirements for support of inter-area TE-LSP path computation.  It complements the generic requirements for a PCE Communication Protocol.  This memo provides information for the Internet community."];
+  RFC4927 -> rev_cites;
+  RFC5088 [label="RFC5088
+OSPF Protocol Extensions for Path
+Computation Element (PCE) Discovery
+2008", shape=ellipse, URL="RFC5088.html", target="_top", tooltip="There are various circumstances where it is highly desirable for a Path Computation Client (PCC) to be able to dynamically and automatically discover a set of Path Computation Elements (PCEs), along with information that can be used by the PCC for PCE selection.  When the PCE is a Label Switching Router (LSR) participating in the Interior Gateway Protocol (IGP), or even a server participating passively in the IGP, a simple and efficient way to announce PCEs consists of using IGP flooding.  For that purpose, this document defines extensions to the Open Shortest Path First (OSPF) routing protocol for the advertisement of PCE Discovery information within an OSPF area or within the entire OSPF routing domain. [STANDARDS-TRACK]"];
+  RFC5088 -> rev_cites;
+  RFC5089 [label="RFC5089
+IS-IS Protocol Extensions for Path
+Computation Element (PCE) Discovery
+2008", shape=ellipse, URL="RFC5089.html", target="_top", tooltip="There are various circumstances where it is highly desirable for a Path Computation Client (PCC) to be able to dynamically and automatically discover a set of Path Computation Elements (PCEs), along with information that can be used by the PCC for PCE selection.  When the PCE is a Label Switching Router (LSR) participating in the Interior Gateway Protocol (IGP), or even a server participating passively in the IGP, a simple and efficient way to announce PCEs consists of using IGP flooding.  For that purpose, this document defines extensions to the Intermediate System to Intermediate System (IS-IS) routing protocol for the advertisement of PCE Discovery information within an IS-IS area or within the entire IS-IS routing domain. [STANDARDS-TRACK]"];
+  RFC5089 -> rev_cites;
+  RFC5145 [label="RFC5145
+Framework for MPLS-TE to GMPLS Migration
+2008", shape=ellipse, URL="RFC5145.html", target="_top", tooltip="The migration from Multiprotocol Label Switching (MPLS) Traffic Engineering (TE) to Generalized MPLS (GMPLS) is the process of evolving an MPLS-TE control plane to a GMPLS control plane. An appropriate migration strategy will be selected based on various factors including the service provider's network deployment plan, customer demand, and operational policy. This document presents several migration models and strategies for migrating from MPLS-TE to GMPLS. In the course of migration, MPLS-TE and GMPLS devices, or networks, may coexist that may require interworking between MPLS-TE and GMPLS protocols. Aspects of the required interworking are discussed as it will influence the choice of a migration strategy. This framework document provides a migration toolkit to aid the operator in selection of an appropriate strategy. This framework document also lists a set of solutions that may aid in interworking, and highlights a set of potential issues. This memo provides information for the Internet community."];
+  RFC5145 -> rev_cites;
+  RFC5146 [label="RFC5146
+Interworking Requirements to Support
+Operation of MPLS-TE over GMPLS Networks
+2008", shape=ellipse, URL="RFC5146.html", target="_top", tooltip="Operation of a Multiprotocol Label Switching (MPLS) traffic engineering (TE) network as a client network to a Generalized MPLS (GMPLS) network has enhanced operational capabilities compared to those provided by a coexistent protocol model (i.e., operation of MPLS-TE over an independently managed transport layer). The GMPLS network may be a packet or a non-packet network, and may itself be a multi-layer network supporting both packet and non-packet technologies. An MPLS-TE Label Switched Path (LSP) originates and terminates on an MPLS Label Switching Router (LSR). The GMPLS network provides transparent transport for the end-to-end MPLS-TE LSP. This document describes a framework and Service Provider requirements for operating MPLS-TE networks over GMPLS networks. This memo provides information for the Internet community."];
+  RFC5146 -> rev_cites;
+  RFC5150 [label="RFC5150
+Label Switched Path Stitching with
+Generalized Multiprotocol Label
+Switching Traffic Engineering (GMPLS TE)
+2008", shape=ellipse, URL="RFC5150.html", target="_top", tooltip="In certain scenarios, there may be a need to combine several Generalized Multiprotocol Label Switching (GMPLS) Label Switched Paths (LSPs) such that a single end-to-end (e2e) LSP is realized and all traffic from one constituent LSP is switched onto the next LSP. We will refer to this as LSP stitching, the key requirement being that a constituent LSP not be allocated to more than one e2e LSP. The constituent LSPs will be referred to as LSP segments (S-LSPs). This document describes extensions to the existing GMPLS signaling protocol (Resource Reservation Protocol-Traffic Engineering (RSVP-TE)) to establish e2e LSPs created from S-LSPs, and describes how the LSPs can be managed using the GMPLS signaling and routing protocols. It may be possible to configure a GMPLS node to switch the traffic from an LSP for which it is the egress, to another LSP for which it is the ingress, without requiring any signaling or routing extensions whatsoever and such that the operation is completely transparent to other nodes. This will also result in LSP stitching in the data plane. However, this document does not cover this scenario of LSP stitching. [STANDARDS-TRACK]"];
+  RFC5150 -> rev_cites;
+  RFC5151 [label="RFC5151
+Inter-Domain MPLS and GMPLS Traffic
+Engineering -- Resource Reservation
+Protocol-Traffic Engineering (RSVP-TE)
+Extensions
+2008", shape=ellipse, URL="RFC5151.html", target="_top", tooltip="This document describes procedures and protocol extensions for the use of Resource Reservation Protocol-Traffic Engineering (RSVP-TE) signaling in Multiprotocol Label Switching-Traffic Engineering (MPLS-TE) packet networks and Generalized MPLS (GMPLS) packet and non-packet networks to support the establishment and maintenance of Label Switched Paths that cross domain boundaries. For the purpose of this document, a domain is considered to be any collection of network elements within a common realm of address space or path computation responsibility. Examples of such domains include Autonomous Systems, Interior Gateway Protocol (IGP) routing areas, and GMPLS overlay networks. [STANDARDS-TRACK]"];
+  RFC5151 -> rev_cites;
+  RFC5152 [label="RFC5152
+A Per-Domain Path Computation Method for
+Establishing Inter-Domain Traffic
+Engineering (TE) Label Switched Paths
+(LSPs)
+2008", shape=ellipse, URL="RFC5152.html", target="_top", tooltip="This document specifies a per-domain path computation technique for establishing inter-domain Traffic Engineering (TE) Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Label Switched Paths (LSPs). In this document, a domain refers to a collection of network elements within a common sphere of address management or path computational responsibility such as Interior Gateway Protocol (IGP) areas and Autonomous Systems. Per-domain computation applies where the full path of an inter-domain TE LSP cannot be or is not determined at the ingress node of the TE LSP, and is not signaled across domain boundaries. This is most likely to arise owing to TE visibility limitations. The signaling message indicates the destination and nodes up to the next domain boundary. It may also indicate further domain boundaries or domain identifiers. The path through each domain, possibly including the choice of exit point from the domain, must be determined within the domain. [STANDARDS-TRACK]"];
+  RFC5152 -> rev_cites;
+  RFC5253 [label="RFC5253
+Applicability Statement for Layer 1
+Virtual Private Network (L1VPN) Basic
+Mode
+2008", shape=ellipse, URL="RFC5253.html", target="_top", tooltip="This document provides an applicability statement on the use of Generalized Multiprotocol Label Switching (GMPLS) protocols and mechanisms to support Basic Mode Layer 1 Virtual Private Networks (L1VPNs). L1VPNs provide customer services and connectivity at Layer 1 over Layer 1 networks. The operation of L1VPNs is divided into the Basic Mode and the Enhanced Mode, where the Basic Mode of operation does not feature any exchange of routing information between the Layer 1 network and the customer domain. This document examines how GMPLS protocols can be used to satisfy the requirements of a Basic Mode L1VPN. This memo provides information for the Internet community."];
+  RFC5253 -> rev_cites;
+  RFC5298 [label="RFC5298
+Analysis of Inter-Domain Label Switched
+Path (LSP) Recovery
+2008", shape=ellipse, URL="RFC5298.html", target="_top", tooltip="Protection and recovery are important features of service offerings in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. Increasingly, MPLS and GMPLS networks are being extended from single domain scope to multi-domain environments. Various schemes and processes have been developed to establish Label Switched Paths (LSPs) in multi-domain environments. These are discussed in RFC 4726: A Framework for Inter-Domain Multiprotocol Label Switching Traffic Engineering. This document analyzes the application of these techniques to protection and recovery in multi-domain networks. The main focus for this document is on establishing end-to-end diverse Traffic Engineering (TE) LSPs in multi-domain networks. This memo provides information for the Internet community."];
+  RFC5298 -> rev_cites;
+  RFC5339 [label="RFC5339
+Evaluation of Existing GMPLS Protocols
+against Multi-Layer and Multi-Region
+Networks (MLN/MRN)
+2008", shape=ellipse, URL="RFC5339.html", target="_top", tooltip="This document provides an evaluation of Generalized Multiprotocol Label Switching (GMPLS) protocols and mechanisms against the requirements for Multi-Layer Networks (MLNs) and Multi-Region Networks (MRNs).  In addition, this document identifies areas where additional protocol extensions or procedures are needed to satisfy these requirements, and provides guidelines for potential extensions.  This memo provides information for the Internet community."];
+  RFC5339 -> rev_cites;
+  RFC5376 [label="RFC5376
+Inter-AS Requirements for the Path
+Computation Element Communication
+Protocol (PCECP)
+2008", shape=ellipse, URL="RFC5376.html", target="_top", tooltip="Multiprotocol Label Switching Traffic Engineered (MPLS TE) Label Switched Paths (LSPs) may be established wholly within an Autonomous System (AS) or may cross AS boundaries. The Path Computation Element (PCE) is a component that is capable of computing constrained paths for (G)MPLS TE LSPs. The PCE Communication Protocol (PCECP) is defined to allow communication between Path Computation Clients (PCCs) and PCEs, as well as between PCEs. The PCECP is used to request constrained paths and to supply computed paths in response. Generic requirements for the PCECP are set out in Path Computation Element (PCE) Communication Protocol Generic Requirements, RFC 4657. This document extends those requirements to cover the use of PCECP in support of inter-AS MPLS TE. This memo provides information for the Internet community."];
+  RFC5376 -> rev_cites;
+  RFC5394 [label="RFC5394
+Policy-Enabled Path Computation
+Framework
+2008", shape=ellipse, URL="RFC5394.html", target="_top", tooltip="The Path Computation Element (PCE) architecture introduces the concept of policy in the context of path computation.  This document provides additional details on policy within the PCE architecture and also provides context for the support of PCE Policy.  This document introduces the use of the Policy Core Information Model (PCIM) as a framework for supporting path computation policy.  This document also provides representative scenarios for the support of PCE Policy.  This memo provides information for the Internet community."];
+  RFC5394 -> rev_cites;
+  RFC5440 [label="RFC5440
+Path Computation Element (PCE)
+Communication Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5440.html", target="_top", tooltip="This document specifies the Path Computation Element (PCE) Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a PCE, or between two PCEs.  Such interactions include path computation requests and path computation replies as well as notifications of specific states related to the use of a PCE in the context of Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering.  PCEP is designed to be flexible and extensible so as to easily allow for the addition of further messages and objects, should further requirements be expressed in the future. [STANDARDS-TRACK]"];
+  RFC5440 -> rev_cites;
+  RFC5441 [label="RFC5441
+A Backward-Recursive PCE-Based
+Computation (BRPC) Procedure to Compute
+Shortest Constrained Inter-Domain
+Traffic Engineering Label Switched Paths
+2009", shape=ellipse, URL="RFC5441.html", target="_top", tooltip="The ability to compute shortest constrained Traffic Engineering Label Switched Paths (TE LSPs) in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks across multiple domains has been identified as a key requirement.  In this context, a domain is a collection of network elements within a common sphere of address management or path computational responsibility such as an IGP area or an Autonomous Systems.  This document specifies a procedure relying on the use of multiple Path Computation Elements (PCEs) to compute such inter-domain shortest constrained paths across a predetermined sequence of domains, using a backward-recursive path computation technique.  This technique preserves confidentiality across domains, which is sometimes required when domains are managed by different service providers. [STANDARDS-TRACK]"];
+  RFC5441 -> rev_cites;
+  RFC5468 [label="RFC5468
+Performance Analysis of Inter-Domain
+Path Computation Methodologies
+2009", shape=ellipse, URL="RFC5468.html", target="_top", tooltip="This document presents a performance comparison between the per-domain path computation method and the Path Computation Element (PCE) Architecture-based Backward Recursive Path Computation (BRPC) procedure.  Metrics to capture the significant performance aspects are identified, and detailed simulations are carried out on realistic scenarios.  A performance analysis for each of the path computation methods is then undertaken.  This memo provides information for the Internet community."];
+  RFC5468 -> rev_cites;
+  RFC5520 [label="RFC5520
+Preserving Topology Confidentiality in
+Inter-Domain Path Computation Using a
+Path-Key-Based Mechanism
+2009", shape=ellipse, URL="RFC5520.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering (TE) Label Switched Paths (LSPs) may be computed by Path Computation Elements (PCEs). Where the TE LSP crosses multiple domains, such as Autonomous Systems (ASes), the path may be computed by multiple PCEs that cooperate, with each responsible for computing a segment of the path. However, in some cases (e.g., when ASes are administered by separate Service Providers), it would break confidentiality rules for a PCE to supply a path segment to a PCE in another domain, thus disclosing AS-internal topology information. This issue may be circumvented by returning a loose hop and by invoking a new path computation from the domain boundary Label Switching Router (LSR) during TE LSP setup as the signaling message enters the second domain, but this technique has several issues including the problem of maintaining path diversity. This document defines a mechanism to hide the contents of a segment of a path, called the Confidential Path Segment (CPS). The CPS may be replaced by a path-key that can be conveyed in the PCE Communication Protocol (PCEP) and signaled within in a Resource Reservation Protocol TE (RSVP-TE) explicit route object. [STANDARDS-TRACK]"];
+  RFC5520 -> rev_cites;
+  RFC5521 [label="RFC5521
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Route Exclusions
+2009", shape=ellipse, URL="RFC5521.html", target="_top", tooltip="The Path Computation Element (PCE) provides functions of path computation in support of traffic engineering (TE) in Multi-Protocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. When a Path Computation Client (PCC) requests a PCE for a route, it may be useful for the PCC to specify, as constraints to the path computation, abstract nodes, resources, and Shared Risk Link Groups (SRLGs) that are to be explicitly excluded from the computed route. Such constraints are termed route exclusions. The PCE Communication Protocol (PCEP) is designed as a communication protocol between PCCs and PCEs. This document presents PCEP extensions for route exclusions. [STANDARDS-TRACK]"];
+  RFC5521 -> rev_cites;
+  RFC5541 [label="RFC5541
+Encoding of Objective Functions in the
+Path Computation Element Communication
+Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5541.html", target="_top", tooltip="The computation of one or a set of Traffic Engineering Label Switched Paths (TE LSPs) in MultiProtocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks is subject to a set of one or more specific optimization criteria, referred to as objective functions (e.g., minimum cost path, widest path, etc.). In the Path Computation Element (PCE) architecture, a Path Computation Client (PCC) may want a path to be computed for one or more TE LSPs according to a specific objective function. Thus, the PCC needs to instruct the PCE to use the correct objective function. Furthermore, it is possible that not all PCEs support the same set of objective functions; therefore, it is useful for the PCC to be able to automatically discover the set of objective functions supported by each PCE. This document defines extensions to the PCE communication Protocol (PCEP) to allow a PCE to indicate the set of objective functions it supports. Extensions are also defined so that a PCC can indicate in a path computation request the required objective function, and a PCE can report in a path computation reply the objective function that was used for path computation. This document defines objective function code types for six objective functions previously listed in the PCE requirements work, and provides the definition of four new metric types that apply to a set of synchronized requests. [STANDARDS-TRACK]"];
+  RFC5541 -> rev_cites;
+  RFC5553 [label="RFC5553
+Resource Reservation Protocol (RSVP)
+Extensions for Path Key Support
+2009", shape=ellipse, URL="RFC5553.html", target="_top", tooltip="The paths taken by Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering (TE) Label Switched Paths (LSPs) may be computed by Path Computation Elements (PCEs). Where the TE LSP crosses multiple domains, such as Autonomous Systems (ASes), the path may be computed by multiple PCEs that cooperate, with each responsible for computing a segment of the path. To preserve confidentiality of topology within each AS, the PCEs support a mechanism to hide the contents of a segment of a path (such as the segment of the path that traverses an AS), called the Confidential Path Segment (CPS), by encoding the contents as a Path Key Subobject (PKS) and embedding this subobject within the result of its path computation. This document describes how to carry Path Key Subobjects in the Resource Reservation Protocol (RSVP) Explicit Route Objects (EROs) and Record Route Objects (RROs) so as to facilitate confidentiality in the signaling of inter-domain TE LSPs. [STANDARDS-TRACK]"];
+  RFC5553 -> rev_cites;
+  RFC5557 [label="RFC5557
+Path Computation Element Communication
+Protocol (PCEP) Requirements and
+Protocol Extensions in Support of Global
+Concurrent Optimization
+2009", shape=ellipse, URL="RFC5557.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) allows Path Computation Clients (PCCs) to request path computations from Path Computation Elements (PCEs), and lets the PCEs return responses. When computing or reoptimizing the routes of a set of Traffic Engineering Label Switched Paths (TE LSPs) through a network, it may be advantageous to perform bulk path computations in order to avoid blocking problems and to achieve more optimal network-wide solutions. Such bulk optimization is termed Global Concurrent Optimization (GCO). A GCO is able to simultaneously consider the entire topology of the network and the complete set of existing TE LSPs, and their respective constraints, and look to optimize or reoptimize the entire network to satisfy all constraints for all TE LSPs. A GCO may also be applied to some subset of the TE LSPs in a network. The GCO application is primarily a Network Management System (NMS) solution. This document provides application-specific requirements and the PCEP extensions in support of GCO applications. [STANDARDS-TRACK]"];
+  RFC5557 -> rev_cites;
+  RFC5623 [label="RFC5623
+Framework for PCE-Based Inter-Layer MPLS
+and GMPLS Traffic Engineering
+2009", shape=ellipse, URL="RFC5623.html", target="_top", tooltip="A network may comprise multiple layers. It is important to globally optimize network resource utilization, taking into account all layers rather than optimizing resource utilization at each layer independently. This allows better network efficiency to be achieved through a process that we call inter-layer traffic engineering. The Path Computation Element (PCE) can be a powerful tool to achieve inter-layer traffic engineering. This document describes a framework for applying the PCE-based architecture to inter-layer Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) traffic engineering. It provides suggestions for the deployment of PCE in support of multi-layer networks. This document also describes network models where PCE performs inter-layer traffic engineering, and the relationship between PCE and a functional component called the Virtual Network Topology Manager (VNTM). This memo provides information for the Internet community."];
+  RFC5623 -> rev_cites;
+  RFC5671 [label="RFC5671
+Applicability of the Path Computation
+Element (PCE) to Point-to-Multipoint
+(P2MP) MPLS and GMPLS Traffic
+Engineering (TE)
+2009", shape=ellipse, URL="RFC5671.html", target="_top", tooltip="The Path Computation Element (PCE) provides path computation functions in support of traffic engineering in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. Extensions to the MPLS and GMPLS signaling and routing protocols have been made in support of point-to-multipoint (P2MP) Traffic Engineered (TE) Label Switched Paths (LSPs). This document examines the applicability of PCE to path computation for P2MP TE LSPs in MPLS and GMPLS networks. It describes the motivation for using a PCE to compute these paths and examines which of the PCE architectural models are appropriate. This memo provides information for the Internet community."];
+  RFC5671 -> rev_cites;
+  RFC5817 [label="RFC5817
+Graceful Shutdown in MPLS and
+Generalized MPLS Traffic Engineering
+Networks
+2010", shape=ellipse, URL="RFC5817.html", target="_top", tooltip="MPLS-TE Graceful Shutdown is a method for explicitly notifying the nodes in a Traffic Engineering (TE) enabled network that the TE capability on a link or on an entire Label Switching Router (LSR) is going to be disabled. MPLS-TE graceful shutdown mechanisms are tailored toward addressing planned outage in the network. This document provides requirements and protocol mechanisms to reduce or eliminate traffic disruption in the event of a planned shutdown of a network resource. These operations are equally applicable to both MPLS-TE and its Generalized MPLS (GMPLS) extensions. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5817 -> rev_cites;
+  RFC5824 [label="RFC5824
+Requirements for Supporting Customer
+Resource ReSerVation Protocol (RSVP) and
+RSVP Traffic Engineering (RSVP-TE) over
+a BGP/MPLS IP-VPN
+2010", shape=ellipse, URL="RFC5824.html", target="_top", tooltip="Today, customers expect to run triple-play services through BGP/MPLS IP-VPNs. Some service providers will deploy services that request Quality of Service (QoS) guarantees from a local Customer Edge (CE) to a remote CE across the network. As a result, the application (e.g., voice, video, bandwidth-guaranteed data pipe, etc.) requirements for an end-to-end QoS and reserving an adequate bandwidth continue to increase. Service providers can use both an MPLS and an MPLS Traffic Engineering (MPLS-TE) Label Switched Path (LSP) to meet their service objectives. This document describes service-provider requirements for supporting a customer Resource ReSerVation Protocol (RSVP) and RSVP-TE over a BGP/MPLS IP-VPN. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5824 -> rev_cites;
+  RFC5828 [label="RFC5828
+Generalized Multiprotocol Label
+Switching (GMPLS) Ethernet Label
+Switching Architecture and Framework
+2010", shape=ellipse, URL="RFC5828.html", target="_top", tooltip="There has been significant recent work in increasing the capabilities of Ethernet switches and Ethernet forwarding models.  As a consequence, the role of Ethernet is rapidly expanding into transport networks that previously were the domain of other technologies such as Synchronous Optical Network (SONET) / Synchronous Digital Hierarchy (SDH), Time-Division Multiplexing (TDM), and Asynchronous Transfer Mode (ATM).  This document defines an architecture and framework for a Generalized- MPLS-based control plane for Ethernet in this transport network capacity.  GMPLS has already been specified for similar technologies.  Some additional extensions to the GMPLS control plane are needed, and this document provides a framework for these extensions.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5828 -> rev_cites;
+  RFC5862 [label="RFC5862
+Path Computation Clients (PCC) - Path
+Computation Element (PCE) Requirements
+for Point-to-Multipoint MPLS-TE
+2010", shape=ellipse, URL="RFC5862.html", target="_top", tooltip="The Path Computation Element (PCE) provides path computation functions in support of traffic engineering in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. Extensions to the MPLS and GMPLS signaling and routing protocols have been made in support of point-to-multipoint (P2MP) Traffic Engineered (TE) Label Switched Paths (LSPs). The use of PCE in MPLS networks is already established, and since P2MP TE LSP routes are sometimes complex to compute, it is likely that PCE will be used for P2MP LSPs. Generic requirements for a communication protocol between Path Computation Clients (PCCs) and PCEs are presented in RFC 4657, Path Computation Element (PCE) Communication Protocol Generic Requirements. This document complements the generic requirements and presents a detailed set of PCC-PCE communication protocol requirements for point-to-multipoint MPLS/GMPLS traffic engineering. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5862 -> rev_cites;
+  RFC5886 [label="RFC5886
+A Set of Monitoring Tools for Path
+Computation Element (PCE)-Based
+Architecture
+2010", shape=ellipse, URL="RFC5886.html", target="_top", tooltip="A Path Computation Element (PCE)-based architecture has been specified for the computation of Traffic Engineering (TE) Label Switched Paths (LSPs) in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks in the context of single or multiple domains (where a domain refers to a collection of network elements within a common sphere of address management or path computational responsibility such as Interior Gateway Protocol (IGP) areas and Autonomous Systems). Path Computation Clients (PCCs) send computation requests to PCEs, and these may forward the requests to and cooperate with other PCEs forming a path computation chain. In PCE-based environments, it is thus critical to monitor the state of the path computation chain for troubleshooting and performance monitoring purposes: liveness of each element (PCE) involved in the PCE chain and detection of potential resource contention states and statistics in terms of path computation times are examples of such metrics of interest. This document specifies procedures and extensions to the Path Computation Element Protocol (PCEP) in order to gather such information. [STANDARDS-TRACK]"];
+  RFC5886 -> rev_cites;
+  RFC6006 [label="RFC6006
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Point-to-Multipoint Traffic
+Engineering Label Switched Paths
+2010", shape=ellipse, URL="RFC6006.html", target="_top", tooltip="Point-to-point Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering Label Switched Paths (TE LSPs) may be established using signaling techniques, but their paths may first need to be determined. The Path Computation Element (PCE) has been identified as an appropriate technology for the determination of the paths of point-to-multipoint (P2MP) TE LSPs. This document describes extensions to the PCE communication Protocol (PCEP) to handle requests and responses for the computation of paths for P2MP TE LSPs. [STANDARDS-TRACK]"];
+  RFC6006 -> rev_cites;
+  RFC6007 [label="RFC6007
+Use of the Synchronization VECtor (SVEC)
+List for Synchronized Dependent Path
+Computations
+2010", shape=ellipse, URL="RFC6007.html", target="_top", tooltip="A Path Computation Element (PCE) may be required to perform dependent path computations. Dependent path computations are requests that need to be synchronized in order to meet specific objectives. An example of a dependent request would be a PCE computing a set of services that are required to be diverse (disjointed) from each other. When a PCE computes sets of dependent path computation requests concurrently, use of the Synchronization VECtor (SVEC) list is required for association among the sets of dependent path computation requests. The SVEC object is optional and carried within the Path Computation Element Communication Protocol (PCEP) PCRequest (PCReq) message. This document does not specify the PCEP SVEC object or procedure. This informational document clarifies the use of the SVEC list for synchronized path computations when computing dependent requests. The document also describes a number of usage scenarios for SVEC lists within single-domain and multi-domain environments. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6007 -> rev_cites;
+  RFC6060 [label="RFC6060
+Generalized Multiprotocol Label
+Switching (GMPLS) Control of Ethernet
+Provider Backbone Traffic Engineering
+(PBB-TE)
+2011", shape=ellipse, URL="RFC6060.html", target="_top", tooltip="This specification is complementary to the GMPLS Ethernet Label Switching Architecture and Framework and describes the technology-specific aspects of GMPLS control for Provider Backbone Bridge Traffic Engineering (PBB-TE).  The necessary GMPLS extensions and mechanisms are described to establish Ethernet PBB-TE point-to-point (P2P) and point-to-multipoint (P2MP) connections.  This document supports, but does not modify, the standard IEEE data plane. [STANDARDS-TRACK]"];
+  RFC6060 -> rev_cites;
+  RFC6163 [label="RFC6163
+Framework for GMPLS and Path Computation
+Element (PCE) Control of Wavelength
+Switched Optical Networks (WSONs)
+2011", shape=ellipse, URL="RFC6163.html", target="_top", tooltip="This document provides a framework for applying Generalized Multi-Protocol Label Switching (GMPLS) and the Path Computation Element (PCE) architecture to the control of Wavelength Switched Optical Networks (WSONs). In particular, it examines Routing and Wavelength Assignment (RWA) of optical paths. This document focuses on topological elements and path selection constraints that are common across different WSON environments; as such, it does not address optical impairments in any depth. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6163 -> rev_cites;
+  RFC6373 [label="RFC6373
+MPLS Transport Profile (MPLS-TP) Control
+Plane Framework
+2011", shape=ellipse, URL="RFC6373.html", target="_top", tooltip="The MPLS Transport Profile (MPLS-TP) supports static provisioning of transport paths via a Network Management System (NMS) and dynamic provisioning of transport paths via a control plane. This document provides the framework for MPLS-TP dynamic provisioning and covers control-plane addressing, routing, path computation, signaling, traffic engineering, and path recovery. MPLS-TP uses GMPLS as the control plane for MPLS-TP Label Switched Paths (LSPs). MPLS-TP also uses the pseudowire (PW) control plane for pseudowires. Management-plane functions are out of scope of this document. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network as defined by the ITU-T. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6373 -> rev_cites;
+  RFC6457 [label="RFC6457
+PCC-PCE Communication and PCE Discovery
+Requirements for Inter-Layer Traffic
+Engineering
+2011", shape=ellipse, URL="RFC6457.html", target="_top", tooltip="The Path Computation Element (PCE) provides functions of path computation in support of traffic engineering in networks controlled by Multi-Protocol Label Switching (MPLS) and Generalized MPLS (GMPLS). MPLS and GMPLS networks may be constructed from layered client/server networks. It is advantageous for overall network efficiency to provide end-to-end traffic engineering across multiple network layers. PCE is a candidate solution for such requirements. Generic requirements for a communication protocol between Path Computation Clients (PCCs) and PCEs are presented in RFC 4657, Path Computation Element (PCE) Communication Protocol Generic Requirements. Generic requirements for a PCE discovery protocol are presented in RFC 4674, Requirements for Path Computation Element (PCE) Discovery. This document complements the generic requirements and presents detailed sets of PCC-PCE communication protocol requirements and PCE discovery protocol requirements for inter-layer traffic engineering. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6457 -> rev_cites;
+  RFC6566 [label="RFC6566
+A Framework for the Control of
+Wavelength Switched Optical Networks
+(WSONs) with Impairments
+2012", shape=ellipse, URL="RFC6566.html", target="_top", tooltip="As an optical signal progresses along its path, it may be altered by the various physical processes in the optical fibers and devices it encounters. When such alterations result in signal degradation, these processes are usually referred to as impairments. These physical characteristics may be important constraints to consider when using a GMPLS control plane to support path setup and maintenance in wavelength switched optical networks. This document provides a framework for applying GMPLS protocols and the Path Computation Element (PCE) architecture to support Impairment-Aware Routing and Wavelength Assignment (IA-RWA) in wavelength switched optical networks. Specifically, this document discusses key computing constraints, scenarios, and architectural processes: routing, wavelength assignment, and impairment validation. This document does not define optical data plane aspects; impairment parameters; or measurement of, or assessment and qualification of, a route; rather, it describes the architectural and information components for protocol solutions. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6566 -> rev_cites;
+  RFC6601 [label="RFC6601
+Generic Connection Admission Control
+(GCAC) Algorithm Specification for
+IP/MPLS Networks
+2012", shape=ellipse, URL="RFC6601.html", target="_top", tooltip="This document presents a generic connection admission control (GCAC) reference model and algorithm for IP-/MPLS-based networks.  Service provider (SP) IP/MPLS networks need an MPLS GCAC mechanism, as one motivational example, to reject Voice over IP (VoIP) calls when additional calls would adversely affect calls already in progress.  Without MPLS GCAC, connections on congested links will suffer degraded quality.  The MPLS GCAC algorithm can be optionally implemented in vendor equipment and deployed by service providers.  MPLS GCAC interoperates between vendor equipment and across multiple service provider domains.  The MPLS GCAC algorithm uses available standard mechanisms for MPLS-based networks, such as RSVP, Diffserv-aware MPLS Traffic Engineering (DS-TE), Path Computation Element (PCE), Next Steps in Signaling (NSIS), Diffserv, and OSPF.  The MPLS GCAC algorithm does not include aspects of CAC that might be considered vendor proprietary implementations, such as detailed path selection mechanisms.  MPLS GCAC functions are implemented in a distributed manner to deliver the objective Quality of Service (QoS) for specified QoS constraints.  The objective is that the source is able to compute a source route with high likelihood that via-elements along the selected path will in fact admit the request.  In some cases (e.g., multiple Autonomous Systems (ASes)), this objective cannot always be met, but this document summarizes methods that partially meet this objective.  MPLS GCAC is applicable to any service or flow that must meet an objective QoS (delay, jitter, packet loss rate) for a specified quantity of traffic.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6601 -> rev_cites;
+  RFC6805 [label="RFC6805
+The Application of the Path Computation
+Element Architecture to the
+Determination of a Sequence of Domains
+in MPLS and GMPLS
+2012", shape=ellipse, URL="RFC6805.html", target="_top", tooltip="Computing optimum routes for Label Switched Paths (LSPs) across multiple domains in MPLS Traffic Engineering (MPLS-TE) and GMPLS networks presents a problem because no single point of path computation is aware of all of the links and resources in each domain. A solution may be achieved using the Path Computation Element (PCE) architecture. Where the sequence of domains is known a priori, various techniques can be employed to derive an optimum path. If the domains are simply connected, or if the preferred points of interconnection are also known, the Per-Domain Path Computation technique can be used. Where there are multiple connections between domains and there is no preference for the choice of points of interconnection, the Backward-Recursive PCE-based Computation (BRPC) procedure can be used to derive an optimal path. This document examines techniques to establish the optimum path when the sequence of domains is not known in advance. The document shows how the PCE architecture can be extended to allow the optimum sequence of domains to be selected, and the optimum end-to-end path to be derived through the use of a hierarchical relationship between domains. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6805 -> rev_cites;
+  RFC7025 [label="RFC7025
+Requirements for GMPLS Applications of
+PCE
+2013", shape=ellipse, URL="RFC7025.html", target="_top", tooltip="The initial effort of the PCE (Path Computation Element) WG focused mainly on MPLS.  As a next step, this document describes functional requirements for GMPLS applications of PCE."];
+  RFC7025 -> rev_cites;
+  RFC7062 [label="RFC7062
+Framework for GMPLS and PCE Control of
+G.709 Optical Transport Networks
+2013", shape=ellipse, URL="RFC7062.html", target="_top", tooltip="This document provides a framework to allow the development of protocol extensions to support Generalized Multi-Protocol Label Switching (GMPLS) and Path Computation Element (PCE) control of Optical Transport Networks (OTNs) as specified in ITU-T Recommendation G.709 as published in 2012."];
+  RFC7062 -> rev_cites;
+  RFC7149 [label="RFC7149
+Software-Defined Networking: A
+Perspective from within a Service
+Provider Environment
+2014", shape=ellipse, URL="RFC7149.html", target="_top", tooltip="Software-Defined Networking (SDN) has been one of the major buzz words of the networking industry for the past couple of years. And yet, no clear definition of what SDN actually covers has been broadly admitted so far. This document aims to clarify the SDN landscape by providing a perspective on requirements, issues, and other considerations about SDN, as seen from within a service provider environment. It is not meant to endlessly discuss what SDN truly means but rather to suggest a functional taxonomy of the techniques that can be used under an SDN umbrella and to elaborate on the various pending issues the combined activation of such techniques inevitably raises. As such, a definition of SDN is only mentioned for the sake of clarification."];
+  RFC7149 -> rev_cites;
+  RFC7150 [label="RFC7150
+Conveying Vendor-Specific Constraints in
+the Path Computation Element
+Communication Protocol
+2014", shape=ellipse, URL="RFC7150.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) is used to convey path computation requests and responses both between Path Computation Clients (PCCs) and Path Computation Elements (PCEs) and between cooperating PCEs. In PCEP, the path computation requests carry details of the constraints and objective functions that the PCC wishes the PCE to apply in its computation. This document defines a facility to carry vendor-specific information in PCEP using a dedicated object and a new Type-Length-Variable that can be carried in any existing PCEP object."];
+  RFC7150 -> rev_cites;
+  RFC7334 [label="RFC7334
+PCE-Based Computation Procedure to
+Compute Shortest Constrained Point-to-
+Multipoint (P2MP) Inter-Domain Traffic
+Engineering Label Switched Paths
+2014", shape=ellipse, URL="RFC7334.html", target="_top", tooltip="The ability to compute paths for constrained point-to-multipoint (P2MP) Traffic Engineering Label Switched Paths (TE LSPs) across multiple domains has been identified as a key requirement for the deployment of P2MP services in MPLS- and GMPLS-controlled networks. The Path Computation Element (PCE) has been recognized as an appropriate technology for the determination of inter-domain paths of P2MP TE LSPs. This document describes an experiment to provide procedures and extensions to the PCE Communication Protocol (PCEP) for the computation of inter-domain paths for P2MP TE LSPs."];
+  RFC7334 -> rev_cites;
+  RFC7399 [label="RFC7399
+Unanswered Questions in the Path
+Computation Element Architecture
+2014", shape=ellipse, URL="RFC7399.html", target="_top", tooltip="The Path Computation Element (PCE) architecture is set out in RFC 4655. The architecture is extended for multi-layer networking with the introduction of the Virtual Network Topology Manager (VNTM) in RFC 5623 and generalized to Hierarchical PCE (H-PCE) in RFC 6805. These three architectural views of PCE deliberately leave some key questions unanswered, especially with respect to the interactions between architectural components. This document draws out those questions and discusses them in an architectural context with reference to other architectural components, existing protocols, and recent IETF efforts. This document does not update the architecture documents and does not define how protocols or components must be used. It does, however, suggest how the architectural components might be combined to provide advanced PCE function."];
+  RFC7399 -> rev_cites;
+  RFC7420 [label="RFC7420
+Path Computation Element Communication
+Protocol (PCEP) Management Information
+Base (MIB) Module
+2014", shape=ellipse, URL="RFC7420.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects for modeling of the Path Computation Element Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a Path Computation Element (PCE), or between two PCEs."];
+  RFC7420 -> rev_cites;
+  RFC7426 [label="RFC7426
+Software-Defined Networking (SDN):
+Layers and Architecture Terminology
+2015", shape=ellipse, URL="RFC7426.html", target="_top", tooltip="Software-Defined Networking (SDN) refers to a new approach for network programmability, that is, the capacity to initialize, control, change, and manage network behavior dynamically via open interfaces.  SDN emphasizes the role of software in running networks through the introduction of an abstraction for the data forwarding plane and, by doing so, separates it from the control plane.  This separation allows faster innovation cycles at both planes as experience has already shown.  However, there is increasing confusion as to what exactly SDN is, what the layer structure is in an SDN architecture, and how layers interface with each other.  This document, a product of the IRTF Software-Defined Networking Research Group (SDNRG), addresses these questions and provides a concise reference for the SDN research community based on relevant peer-reviewed literature, the RFC series, and relevant documents by other standards organizations."];
+  RFC7426 -> rev_cites;
+  RFC7439 [label="RFC7439
+Gap Analysis for Operating IPv6-Only
+MPLS Networks
+2015", shape=ellipse, URL="RFC7439.html", target="_top", tooltip="This document reviews the Multiprotocol Label Switching (MPLS) protocol suite in the context of IPv6 and identifies gaps that must be addressed in order to allow MPLS-related protocols and applications to be used with IPv6-only networks. This document is intended to focus on gaps in the standards defining the MPLS suite, and is not intended to highlight particular vendor implementations (or lack thereof) in the context of IPv6-only MPLS functionality. In the data plane, MPLS fully supports IPv6, and MPLS labeled packets can be carried over IPv6 packets in a variety of encapsulations. However, support for IPv6 among MPLS control-plane protocols, MPLS applications, MPLS Operations, Administration, and Maintenance (OAM), and MIB modules is mixed, with some protocols having major gaps. For most major gaps, work is in progress to upgrade the relevant protocols."];
+  RFC7439 -> rev_cites;
+  RFC7449 [label="RFC7449
+Path Computation Element Communication
+Protocol (PCEP) Requirements for
+Wavelength Switched Optical Network
+(WSON) Routing and Wavelength Assignment
+2015", shape=ellipse, URL="RFC7449.html", target="_top", tooltip="This memo provides application-specific requirements for the Path Computation Element Communication Protocol (PCEP) for the support of Wavelength Switched Optical Networks (WSONs).  Lightpath provisioning in WSONs requires a Routing and Wavelength Assignment (RWA) process.  From a path computation perspective, wavelength assignment is the process of determining which wavelength can be used on each hop of a path and forms an additional routing constraint to optical light path computation.  Requirements for PCEP extensions in support of optical impairments will be addressed in a separate document."];
+  RFC7449 -> rev_cites;
+  RFC7470 [label="RFC7470
+Conveying Vendor-Specific Constraints in
+the Path Computation Element
+Communication Protocol
+2015", shape=ellipse, URL="RFC7470.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) is used to convey path computation requests and responses both between Path Computation Clients (PCCs) and Path Computation Elements (PCEs) and between cooperating PCEs. In PCEP, the path computation requests carry details of the constraints and objective functions that the PCC wishes the PCE to apply in its computation. This document defines a facility to carry vendor-specific information in PCEP using a dedicated object and a new Type-Length-Value (TLV) that can be carried in any PCEP object that supports TLVs. This document obsoletes RFC 7150. The only changes from that document are a clarification of the use of the new Type-Length-Value and the allocation of a different code point for the VENDOR-INFORMATION object."];
+  RFC7470 -> rev_cites;
+  RFC7471 [label="RFC7471
+OSPF Traffic Engineering (TE) Metric
+Extensions
+2015", shape=ellipse, URL="RFC7471.html", target="_top", tooltip="In certain networks, such as, but not limited to, financial information networks (e.g., stock market data providers), network performance information (e.g., link propagation delay) is becoming critical to data path selection. This document describes common extensions to RFC 3630 Traffic Engineering (TE) Extensions to OSPF Version 2 and RFC 5329 Traffic Engineering Extensions to OSPF Version 3 to enable network performance information to be distributed in a scalable fashion. The information distributed using OSPF TE Metric Extensions can then be used to make path selection decisions based on network performance. Note that this document only covers the mechanisms by which network performance information is distributed. The mechanisms for measuring network performance information or using that information, once distributed, are outside the scope of this document."];
+  RFC7471 -> rev_cites;
+  RFC7491 [label="RFC7491
+A PCE-Based Architecture for
+Application-Based Network Operations
+2015", shape=ellipse, URL="RFC7491.html", target="_top", tooltip="Services such as content distribution, distributed databases, or inter-data center connectivity place a set of new requirements on the operation of networks. They need on-demand and application-specific reservation of network connectivity, reliability, and resources (such as bandwidth) in a variety of network applications (such as point-to-point connectivity, network virtualization, or mobile back-haul) and in a range of network technologies from packet (IP/MPLS) down to optical. An environment that operates to meet these types of requirements is said to have Application-Based Network Operations (ABNO). ABNO brings together many existing technologies and may be seen as the use of a toolbox of existing components enhanced with a few new elements. This document describes an architecture and framework for ABNO, showing how these components fit together. It provides a cookbook of existing technologies to satisfy the architecture and meet the needs of the applications."];
+  RFC7491 -> rev_cites;
+  RFC7551 [label="RFC7551
+RSVP-TE Extensions for Associated
+Bidirectional Label Switched Paths
+(LSPs)
+2015", shape=ellipse, URL="RFC7551.html", target="_top", tooltip="This document describes Resource Reservation Protocol (RSVP) extensions to bind two point-to-point unidirectional Label Switched Paths (LSPs) into an associated bidirectional LSP.  The association is achieved by defining new Association Types for use in ASSOCIATION and in Extended ASSOCIATION Objects.  One of these types enables independent provisioning of the associated bidirectional LSPs on both sides, while the other enables single-sided provisioning.  The REVERSE_LSP Object is also defined to enable a single endpoint to trigger creation of the reverse LSP and to specify parameters of the reverse LSP in the single-sided provisioning case."];
+  RFC7551 -> rev_cites;
+  RFC7554 [label="RFC7554
+Using IEEE 802.15.4e Time-Slotted
+Channel Hopping (TSCH) in the Internet
+of Things (IoT): Problem Statement
+2015", shape=ellipse, URL="RFC7554.html", target="_top", tooltip="This document describes the environment, problem statement, and goals for using the Time-Slotted Channel Hopping (TSCH) Medium Access Control (MAC) protocol of IEEE 802.14.4e in the context of Low-Power and Lossy Networks (LLNs).  The set of goals enumerated in this document form an initial set only."];
+  RFC7554 -> rev_cites;
+  RFC7709 [label="RFC7709
+Requirements for Very Fast Setup of
+GMPLS Label Switched Paths (LSPs)
+2015", shape=ellipse, URL="RFC7709.html", target="_top", tooltip="Establishment and control of Label Switch Paths (LSPs) have become mainstream tools of commercial and government network providers. One of the elements of further evolving such networks is scaling their performance in terms of LSP bandwidth and traffic loads, LSP intensity (e.g., rate of LSP creation, deletion, and modification), LSP set up delay, quality-of-service differentiation, and different levels of resilience. The goal of this document is to present target scaling objectives and the related protocol requirements for Generalized Multi-Protocol Label Switching (GMPLS)."];
+  RFC7709 -> rev_cites;
+  RFC7752 [label="RFC7752
+North-Bound Distribution of Link-State
+and Traffic Engineering (TE) Information
+Using BGP
+2016", shape=ellipse, URL="RFC7752.html", target="_top", tooltip="In a number of environments, a component external to a network is called upon to perform computations based on the network topology and current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a new BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism is applicable to physical and virtual IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs)."];
+  RFC7752 -> rev_cites;
+  RFC7813 [label="RFC7813
+IS-IS Path Control and Reservation
+2016", shape=ellipse, URL="RFC7813.html", target="_top", tooltip="IEEE 802.1Qca Path Control and Reservation (PCR) specifies explicit path control via IS-IS in Layer 2 networks in order to move beyond the shortest path capabilities provided by IEEE 802.1aq Shortest Path Bridging (SPB).  IS-IS PCR provides capabilities for the establishment and control of explicit forwarding trees in a Layer 2 network domain.  This document specifies the sub-TLVs for IS-IS PCR."];
+  RFC7813 -> rev_cites;
+  RFC7823 [label="RFC7823
+Performance-Based Path Selection for
+Explicitly Routed Label Switched Paths
+(LSPs) Using TE Metric Extensions
+2016", shape=ellipse, URL="RFC7823.html", target="_top", tooltip="In certain networks, it is critical to consider network performance criteria when selecting the path for an explicitly routed RSVP-TE Label Switched Path (LSP).  Such performance criteria can include latency, jitter, and loss or other indications such as the conformance to link performance objectives and non-RSVP TE traffic load.  This specification describes how a path computation function may use network performance data, such as is advertised via the OSPF and IS-IS TE metric extensions (defined outside the scope of this document) to perform such path selections."];
+  RFC7823 -> rev_cites;
+  RFC7897 [label="RFC7897
+Domain Subobjects for the Path
+Computation Element Communication
+Protocol (PCEP)
+2016", shape=ellipse, URL="RFC7897.html", target="_top", tooltip="The ability to compute shortest constrained Traffic Engineering Label Switched Paths (TE LSPs) in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks across multiple domains has been identified as a key requirement.  In this context, a domain is a collection of network elements within a common sphere of address management or path computational responsibility such as an Interior Gateway Protocol (IGP) area or an Autonomous System (AS).  This document specifies a representation and encoding of a domain sequence, which is defined as an ordered sequence of domains traversed to reach the destination domain to be used by Path Computation Elements (PCEs) to compute inter-domain constrained shortest paths across a predetermined sequence of domains.  This document also defines new subobjects to be used to encode domain identifiers."];
+  RFC7897 -> rev_cites;
+  RFC7898 [label="RFC7898
+Domain Subobjects for Resource
+Reservation Protocol - Traffic
+Engineering (RSVP-TE)
+2016", shape=ellipse, URL="RFC7898.html", target="_top", tooltip="The Resource Reservation Protocol - Traffic Engineering (RSVP-TE) specification and the Generalized Multiprotocol Label Switching (GMPLS) extensions to RSVP-TE allow abstract nodes and resources to be explicitly included in a path setup. Further, Exclude Route extensions to RSVP-TE allow abstract nodes and resources to be explicitly excluded in a path setup. This document specifies new subobjects to include or exclude Autonomous Systems (ASes), which are identified by a 4-byte AS number, and Interior Gateway Protocol (IGP) areas during path setup."];
+  RFC7898 -> rev_cites;
+  RFC7926 [label="RFC7926
+Problem Statement and Architecture for
+Information Exchange between
+Interconnected Traffic-Engineered
+Networks
+2016", shape=ellipse, URL="RFC7926.html", target="_top", tooltip="In Traffic-Engineered (TE) systems, it is sometimes desirable to establish an end-to-end TE path with a set of constraints (such as bandwidth) across one or more networks from a source to a destination. TE information is the data relating to nodes and TE links that is used in the process of selecting a TE path. TE information is usually only available within a network. We call such a zone of visibility of TE information a domain. An example of a domain may be an IGP area or an Autonomous System. In order to determine the potential to establish a TE path through a series of connected networks, it is necessary to have available a certain amount of TE information about each network. This need not be the full set of TE information available within each network but does need to express the potential of providing TE connectivity. This subset of TE information is called TE reachability information. This document sets out the problem statement for the exchange of TE information between interconnected TE networks in support of end-to-end TE path establishment and describes the best current practice architecture to meet this problem statement. For reasons that are explained in this document, this work is limited to simple TE constraints and information that determine TE reachability."];
+  RFC7926 -> rev_cites;
+  RFC7971 [label="RFC7971
+Application-Layer Traffic Optimization
+(ALTO) Deployment Considerations
+2016", shape=ellipse, URL="RFC7971.html", target="_top", tooltip="Many Internet applications are used to access resources such as pieces of information or server processes that are available in several equivalent replicas on different hosts.  This includes, but is not limited to, peer-to-peer file sharing applications.  The goal of Application-Layer Traffic Optimization (ALTO) is to provide guidance to applications that have to select one or several hosts from a set of candidates capable of providing a desired resource.  This memo discusses deployment-related issues of ALTO.  It addresses different use cases of ALTO such as peer-to-peer file sharing and Content Delivery Networks (CDNs) and presents corresponding examples.  The document also includes recommendations for network administrators and application designers planning to deploy ALTO, such as recommendations on how to generate ALTO map information."];
+  RFC7971 -> rev_cites;
+  RFC8051 [label="RFC8051
+Applicability of a Stateful Path
+Computation Element (PCE)
+2017", shape=ellipse, URL="RFC8051.html", target="_top", tooltip="A stateful Path Computation Element (PCE) maintains information about Label Switched Path (LSP) characteristics and resource usage within a network in order to provide traffic-engineering calculations for its associated Path Computation Clients (PCCs).  This document describes general considerations for a stateful PCE deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases.  PCE Communication Protocol (PCEP) extensions required for stateful PCE usage are covered in separate documents."];
+  RFC8051 -> rev_cites;
+  RFC8231 [label="RFC8231
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Stateful
+PCE
+2017", shape=ellipse, URL="RFC8231.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) provides mechanisms for Path Computation Elements (PCEs) to perform path computations in response to Path Computation Client (PCC) requests. Although PCEP explicitly makes no assumptions regarding the information available to the PCE, it also makes no provisions for PCE control of timing and sequence of path computations within and across PCEP sessions. This document describes a set of extensions to PCEP to enable stateful control of MPLS-TE and GMPLS Label Switched Paths (LSPs) via PCEP."];
+  RFC8231 -> rev_cites;
+  RFC8233 [label="RFC8233
+Extensions to the Path Computation
+Element Communication Protocol (PCEP) to
+Compute Service-Aware Label Switched
+Paths (LSPs)
+2017", shape=ellipse, URL="RFC8233.html", target="_top", tooltip="In certain networks, such as, but not limited to, financial information networks (e.g., stock market data providers), network performance criteria (e.g., latency) are becoming as critical to data path selection as other metrics and constraints. These metrics are associated with the Service Level Agreement (SLA) between customers and service providers. The link bandwidth utilization (the total bandwidth of a link in actual use for the forwarding) is another important factor to consider during path computation. IGP Traffic Engineering (TE) Metric Extensions describe mechanisms with which network performance information is distributed via OSPF and IS-IS, respectively. The Path Computation Element Communication Protocol (PCEP) provides mechanisms for Path Computation Elements (PCEs) to perform path computations in response to Path Computation Client (PCC) requests. This document describes the extension to PCEP to carry latency, delay variation, packet loss, and link bandwidth utilization as constraints for end-to-end path computation."];
+  RFC8233 -> rev_cites;
+  RFC8282 [label="RFC8282
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Inter-Layer MPLS and GMPLS Traffic
+Engineering
+2017", shape=ellipse, URL="RFC8282.html", target="_top", tooltip="The Path Computation Element (PCE) provides path computation functions in support of traffic engineering in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. MPLS and GMPLS networks may be constructed from layered service networks. It is advantageous for overall network efficiency to provide end-to-end traffic engineering across multiple network layers through a process called inter-layer traffic engineering. PCE is a candidate solution for such requirements. The PCE Communication Protocol (PCEP) is designed as a communication protocol between Path Computation Clients (PCCs) and PCEs. This document presents PCEP extensions for inter-layer traffic engineering."];
+  RFC8282 -> rev_cites;
+  RFC8283 [label="RFC8283
+An Architecture for Use of PCE and the
+PCE Communication Protocol (PCEP) in a
+Network with Central Control
+2017", shape=ellipse, URL="RFC8283.html", target="_top", tooltip="The Path Computation Element (PCE) is a core component of Software- Defined Networking (SDN) systems. It can compute optimal paths for traffic across a network and can also update the paths to reflect changes in the network or traffic demands. PCE was developed to derive paths for MPLS Label Switched Paths (LSPs), which are supplied to the head end of the LSP using the Path Computation Element Communication Protocol (PCEP). SDN has a broader applicability than signaled MPLS traffic-engineered (TE) networks, and the PCE may be used to determine paths in a range of use cases including static LSPs, segment routing, Service Function Chaining (SFC), and most forms of a routed or switched network. It is, therefore, reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. This document briefly introduces the architecture for PCE as a central controller, examines the motivations and applicability for PCEP as a control protocol in this environment, and introduces the implications for the protocol. A PCE-based central controller can simplify the processing of a distributed control plane by blending it with elements of SDN and without necessarily completely replacing it. This document does not describe use cases in detail and does not define protocol extensions: that work is left for other documents."];
+  RFC8283 -> rev_cites;
+  RFC8306 [label="RFC8306
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Point-to-Multipoint Traffic
+Engineering Label Switched Paths
+2017", shape=ellipse, URL="RFC8306.html", target="_top", tooltip="Point-to-point Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering Label Switched Paths (TE LSPs) may be established using signaling techniques, but their paths may first need to be determined. The Path Computation Element (PCE) has been identified as an appropriate technology for the determination of the paths of point-to-multipoint (P2MP) TE LSPs. This document describes extensions to the PCE Communication Protocol (PCEP) to handle requests and responses for the computation of paths for P2MP TE LSPs. This document obsoletes RFC 6006."];
+  RFC8306 -> rev_cites;
+  RFC8408 [label="RFC8408
+Conveying Path Setup Type in PCE
+Communication Protocol (PCEP) Messages
+2018", shape=ellipse, URL="RFC8408.html", target="_top", tooltip="A Path Computation Element (PCE) can compute Traffic Engineering (TE) paths through a network; these paths are subject to various constraints.  Currently, TE paths are Label Switched Paths (LSPs) that are set up using the RSVP-TE signaling protocol.  However, other TE path setup methods are possible within the PCE architecture.  This document proposes an extension to the PCE Communication Protocol (PCEP) to allow support for different path setup methods over a given PCEP session."];
+  RFC8408 -> rev_cites;
+  RFC8413 [label="RFC8413
+Framework for Scheduled Use of Resources
+2018", shape=ellipse, URL="RFC8413.html", target="_top", tooltip="Time-Scheduled (TS) reservation of Traffic Engineering (TE) resources can be used to provide resource booking for TE Label Switched Paths so as to better guarantee services for customers and to improve the efficiency of network resource usage at any moment in time, including network usage that is planned for the future.  This document provides a framework that describes and discusses the architecture for supporting scheduled reservation of TE resources.  This document does not describe specific protocols or protocol extensions needed to realize this service."];
+  RFC8413 -> rev_cites;
+  RFC8453 [label="RFC8453
+Framework for Abstraction and Control of
+TE Networks (ACTN)
+2018", shape=ellipse, URL="RFC8453.html", target="_top", tooltip="Traffic Engineered (TE) networks have a variety of mechanisms to facilitate the separation of the data plane and control plane. They also have a range of management and provisioning protocols to configure and activate network resources. These mechanisms represent key technologies for enabling flexible and dynamic networking. The term Traffic Engineered network refers to a network that uses any connection-oriented technology under the control of a distributed or centralized control plane to support dynamic provisioning of end-to- end connectivity. Abstraction of network resources is a technique that can be applied to a single network domain or across multiple domains to create a single virtualized network that is under the control of a network operator or the customer of the operator that actually owns the network resources. This document provides a framework for Abstraction and Control of TE Networks (ACTN) to support virtual network services and connectivity services."];
+  RFC8453 -> rev_cites;
+  RFC8549 [label="RFC8549
+Export of BGP Community Information in
+IP Flow Information Export (IPFIX)
+2019", shape=ellipse, URL="RFC8549.html", target="_top", tooltip="By introducing new Information Elements (IEs), this document extends the existing BGP-related IEs to enable IP Flow Information Export (IPFIX) to export BGP community information, including the BGP Standard Communities defined in RFC 1997, BGP Extended Communities defined in RFC 4360, and BGP Large Communities defined in RFC 8092.  According to the network operator's BGP community planning, network traffic information can then be accumulated and analyzed at the BGP community granularity, which represents the traffic of different kinds of customers, services, or geographical regions.  Network traffic information at the BGP community granularity is useful for network traffic analysis and engineering."];
+  RFC8549 -> rev_cites;
+  RFC8557 [label="RFC8557
+Deterministic Networking Problem
+Statement
+2019", shape=ellipse, URL="RFC8557.html", target="_top", tooltip="This paper documents the needs in various industries to establish multi-hop paths for characterized flows with deterministic properties."];
+  RFC8557 -> rev_cites;
+  RFC8604 [label="RFC8604
+Interconnecting Millions of Endpoints
+with Segment Routing
+2019", shape=ellipse, URL="RFC8604.html", target="_top", tooltip="This document describes an application of Segment Routing to scale the network to support hundreds of thousands of network nodes, and tens of millions of physical underlay endpoints.  This use case can be applied to the interconnection of massive-scale Data Centers (DCs) and/or large aggregation networks.  Forwarding tables of midpoint and leaf nodes only require a few tens of thousands of entries.  This may be achieved by the inherently scaleable nature of Segment Routing and the design proposed in this document."];
+  RFC8604 -> rev_cites;
+  RFC8623 [label="RFC8623
+Stateful Path Computation Element (PCE)
+Protocol Extensions for Usage with
+Point-to-Multipoint TE Label Switched
+Paths (LSPs)
+2019", shape=ellipse, URL="RFC8623.html", target="_top", tooltip="The Path Computation Element (PCE) has been identified as an appropriate technology for the determination of the paths of point- to-multipoint (P2MP) TE Label Switched Paths (LSPs).  This document provides extensions required for the Path Computation Element Communication Protocol (PCEP) so as to enable the usage of a stateful PCE capability in supporting P2MP TE LSPs."];
+  RFC8623 -> rev_cites;
+  RFC8637 [label="RFC8637
+Applicability of the Path Computation
+Element (PCE) to the Abstraction and
+Control of TE Networks (ACTN)
+2019", shape=ellipse, URL="RFC8637.html", target="_top", tooltip="Abstraction and Control of TE Networks (ACTN) refers to the set of virtual network (VN) operations needed to orchestrate, control, and manage large-scale multidomain TE networks so as to facilitate network programmability, automation, efficient resource sharing, and end-to-end virtual service-aware connectivity and network function virtualization services. The Path Computation Element (PCE) is a component, application, or network node that is capable of computing a network path or route based on a network graph and applying computational constraints. The PCE serves requests from Path Computation Clients (PCCs) that communicate with it over a local API or using the Path Computation Element Communication Protocol (PCEP). This document examines the applicability of PCE to the ACTN framework."];
+  RFC8637 -> rev_cites;
+  RFC8655 [label="RFC8655
+Deterministic Networking Architecture
+2019", shape=ellipse, URL="RFC8655.html", target="_top", tooltip="This document provides the overall architecture for Deterministic Networking (DetNet), which provides a capability to carry specified unicast or multicast data flows for real-time applications with extremely low data loss rates and bounded latency within a network domain.  Techniques used include 1) reserving data-plane resources for individual (or aggregated) DetNet flows in some or all of the intermediate nodes along the path of the flow, 2) providing explicit routes for DetNet flows that do not immediately change with the network topology, and 3) distributing data from DetNet flow packets over time and/or space to ensure delivery of each packet's data in spite of the loss of a path.  DetNet operates at the IP layer and delivers service over lower-layer technologies such as MPLS and Time- Sensitive Networking (TSN) as defined by IEEE 802.1."];
+  RFC8655 -> rev_cites;
+  RFC8668 [label="RFC8668
+Advertising Layer 2 Bundle Member Link
+Attributes in IS-IS
+2019", shape=ellipse, URL="RFC8668.html", target="_top", tooltip="There are deployments where the Layer 3 interface on which IS-IS operates is a Layer 2 interface bundle. Existing IS-IS advertisements only support advertising link attributes of the Layer 3 interface. If entities external to IS-IS wish to control traffic flows on the individual physical links that comprise the Layer 2 interface bundle, link attribute information about the bundle members is required. This document introduces the ability for IS-IS to advertise the link attributes of Layer 2 (L2) Bundle Members."];
+  RFC8668 -> rev_cites;
+  RFC8685 [label="RFC8685
+Path Computation Element Communication
+Protocol (PCEP) Extensions for the
+Hierarchical Path Computation Element
+(H-PCE) Architecture
+2019", shape=ellipse, URL="RFC8685.html", target="_top", tooltip="The Hierarchical Path Computation Element (H-PCE) architecture is defined in RFC 6805. It provides a mechanism to derive an optimum end-to-end path in a multi-domain environment by using a hierarchical relationship between domains to select the optimum sequence of domains and optimum paths across those domains. This document defines extensions to the Path Computation Element Communication Protocol (PCEP) to support H-PCE procedures."];
+  RFC8685 -> rev_cites;
+  RFC8694 [label="RFC8694
+Applicability of the Path Computation
+Element to Inter-area and Inter-AS MPLS
+and GMPLS Traffic Engineering
+2019", shape=ellipse, URL="RFC8694.html", target="_top", tooltip="The Path Computation Element (PCE) may be used for computing services that traverse multi-area and multi-Autonomous System (multi-AS) Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic-Engineered (TE) networks. This document examines the applicability of the PCE architecture, protocols, and protocol extensions for computing multi-area and multi-AS paths in MPLS and GMPLS networks."];
+  RFC8694 -> rev_cites;
+  RFC8745 [label="RFC8745
+Path Computation Element Communication
+Protocol (PCEP) Extensions for
+Associating Working and Protection Label
+Switched Paths (LSPs) with Stateful PCE
+2020", shape=ellipse, URL="RFC8745.html", target="_top", tooltip="An active stateful Path Computation Element (PCE) is capable of computing as well as controlling via Path Computation Element Communication Protocol (PCEP) Multiprotocol Label Switching Traffic Engineering (MPLS-TE) Label Switched Paths (LSPs).  Furthermore, it is also possible for an active stateful PCE to create, maintain, and delete LSPs.  This document defines the PCEP extension to associate two or more LSPs to provide end-to-end path protection."];
+  RFC8745 -> rev_cites;
+  RFC8751 [label="RFC8751
+Hierarchical Stateful Path Computation
+Element (PCE)
+2020", shape=ellipse, URL="RFC8751.html", target="_top", tooltip="A stateful Path Computation Element (PCE) maintains information on the current network state received from the Path Computation Clients (PCCs), including computed Label Switched Paths (LSPs), reserved resources within the network, and pending path computation requests. This information may then be considered when computing the path for a new traffic-engineered LSP or for any associated/dependent LSPs. The path-computation response from a PCE helps the PCC to gracefully establish the computed LSP. The Hierarchical Path Computation Element (H-PCE) architecture allows the optimum sequence of interconnected domains to be selected and network policy to be applied if applicable, via the use of a hierarchical relationship between PCEs. Combining the capabilities of stateful PCE and the hierarchical PCE would be advantageous. This document describes general considerations and use cases for the deployment of stateful, but not stateless, PCEs using the hierarchical PCE architecture."];
+  RFC8751 -> rev_cites;
+  RFC8779 [label="RFC8779
+Path Computation Element Communication
+Protocol (PCEP) Extensions for GMPLS
+2020", shape=ellipse, URL="RFC8779.html", target="_top", tooltip="A Path Computation Element (PCE) provides path computation functions for Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. Additional requirements for GMPLS are identified in RFC 7025. This memo provides extensions to the Path Computation Element Communication Protocol (PCEP) for the support of the GMPLS control plane to address those requirements."];
+  RFC8779 -> rev_cites;
+  RFC8780 [label="RFC8780
+The Path Computation Element
+Communication Protocol (PCEP) Extension
+for Wavelength Switched Optical Network
+(WSON) Routing and Wavelength Assignment
+(RWA)
+2020", shape=ellipse, URL="RFC8780.html", target="_top", tooltip="This document provides Path Computation Element Communication Protocol (PCEP) extensions for the support of Routing and Wavelength Assignment (RWA) in Wavelength Switched Optical Networks (WSONs).  Path provisioning in WSONs requires an RWA process.  From a path computation perspective, wavelength assignment is the process of determining which wavelength can be used on each hop of a path and forms an additional routing constraint to optical path computation."];
+  RFC8780 -> rev_cites;
+  RFC8799 [label="RFC8799
+Limited Domains and Internet Protocols
+2020", shape=ellipse, URL="RFC8799.html", target="_top", tooltip="There is a noticeable trend towards network behaviors and semantics that are specific to a particular set of requirements applied within a limited region of the Internet. Policies, default parameters, the options supported, the style of network management, and security requirements may vary between such limited regions. This document reviews examples of such limited domains (also known as controlled environments), notes emerging solutions, and includes a related taxonomy. It then briefly discusses the standardization of protocols for limited domains. Finally, it shows the need for a precise definition of limited domain membership and for mechanisms to allow nodes to join a domain securely and to find other members, including boundary nodes. This document is the product of the research of the authors. It has been produced through discussions and consultation within the IETF but is not the product of IETF consensus."];
+  RFC8799 -> rev_cites;
+  RFC8800 [label="RFC8800
+Path Computation Element Communication
+Protocol (PCEP) Extension for Label
+Switched Path (LSP) Diversity Constraint
+Signaling
+2020", shape=ellipse, URL="RFC8800.html", target="_top", tooltip="This document introduces a simple mechanism to associate a group of Label Switched Paths (LSPs) via an extension to the Path Computation Element Communication Protocol (PCEP) with the purpose of computing diverse (disjointed) paths for those LSPs.  The proposed extension allows a Path Computation Client (PCC) to advertise to a Path Computation Element (PCE) that a particular LSP belongs to a particular Disjoint Association Group; thus, the PCE knows that the LSPs in the same group need to be disjoint from each other."];
+  RFC8800 -> rev_cites;
+  RFC8821 [label="RFC8821
+PCE-Based Traffic Engineering (TE) in
+Native IP Networks
+2021", shape=ellipse, URL="RFC8821.html", target="_top", tooltip="This document defines an architecture for providing traffic engineering in a native IP network using multiple BGP sessions and a Path Computation Element (PCE)-based central control mechanism.  It defines the Centralized Control Dynamic Routing (CCDR) procedures and identifies needed extensions for the Path Computation Element Communication Protocol (PCEP)."];
+  RFC8821 -> rev_cites;
+  RFC9005 [label="RFC9005
+Path Computation Element Communication
+Protocol (PCEP) Extension for
+Associating Policies and Label Switched
+Paths (LSPs)
+2021", shape=ellipse, URL="RFC9005.html", target="_top", tooltip="This document introduces a simple mechanism to associate policies with a group of Label Switched Paths (LSPs) via an extension to the Path Computation Element Communication Protocol (PCEP).  The extension allows a PCEP speaker to advertise to a PCEP peer that a particular LSP belongs to a particular Policy Association Group (PAG)."];
+  RFC9005 -> rev_cites;
+  RFC9050 [label="RFC9050
+Path Computation Element Communication
+Protocol (PCEP) Procedures and
+Extensions for Using the PCE as a
+Central Controller (PCECC) of LSPs
+2021", shape=ellipse, URL="RFC9050.html", target="_top", tooltip="The Path Computation Element (PCE) is a core component of Software-Defined Networking (SDN) systems. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN and without necessarily completely replacing it. Thus, the Label Switched Path (LSP) can be calculated/set up/initiated and the label-forwarding entries can also be downloaded through a centralized PCE server to each network device along the path while leveraging the existing PCE technologies as much as possible. This document specifies the procedures and Path Computation Element Communication Protocol (PCEP) extensions for using the PCE as the central controller for provisioning labels along the path of the static LSP."];
+  RFC9050 -> rev_cites;
+  RFC9168 [label="RFC9168
+Path Computation Element Communication
+Protocol (PCEP) Extension for Flow
+Specification
+2022", shape=ellipse, URL="RFC9168.html", target="_top", tooltip="The Path Computation Element (PCE) is a functional component capable of selecting paths through a traffic engineering (TE) network. These paths may be supplied in response to requests for computation or may be unsolicited requests issued by the PCE to network elements. Both approaches use the PCE Communication Protocol (PCEP) to convey the details of the computed path. Traffic flows may be categorized and described using Flow Specifications. RFC 8955 defines the Flow Specification and describes how Flow Specification components are used to describe traffic flows. RFC 8955 also defines how Flow Specifications may be distributed in BGP to allow specific traffic flows to be associated with routes. This document specifies a set of extensions to PCEP to support dissemination of Flow Specifications. This allows a PCE to indicate what traffic should be placed on each path that it is aware of. The extensions defined in this document include the creation, update, and withdrawal of Flow Specifications via PCEP and can be applied to tunnels initiated by the PCE or to tunnels where control is delegated to the PCE by the Path Computation Client (PCC). Furthermore, a PCC requesting a new path can include Flow Specifications in the request to indicate the purpose of the tunnel allowing the PCE to factor this into the path computation."];
+  RFC9168 -> rev_cites;
+  RFC9217 [label="RFC9217
+Current Open Questions in Path-Aware
+Networking
+2022", shape=ellipse, URL="RFC9217.html", target="_top", tooltip="In contrast to the present Internet architecture, a path-aware internetworking architecture has two important properties: it exposes the properties of available Internet paths to endpoints, and it provides for endpoints and applications to use these properties to select paths through the Internet for their traffic. While this property of path awareness already exists in many Internet-connected networks within single domains and via administrative interfaces to the network layer, a fully path-aware internetwork expands these concepts across layers and across the Internet. This document poses questions in path-aware networking, open as of 2021, that must be answered in the design, development, and deployment of path-aware internetworks. It was originally written to frame discussions in the Path Aware Networking Research Group (PANRG), and has been published to snapshot current thinking in this space."];
+  RFC9217 -> rev_cites;
+  RFC9262 [label="RFC9262
+Tree Engineering for Bit Index Explicit
+Replication (BIER-TE)
+2022", shape=ellipse, URL="RFC9262.html", target="_top", tooltip="This memo describes per-packet stateless strict and loose path steered replication and forwarding for Bit Index Explicit Replication (BIER) packets (RFC 8279); it is called Tree Engineering for Bit Index Explicit Replication (BIER-TE) and is intended to be used as the path steering mechanism for Traffic Engineering with BIER. BIER-TE introduces a new semantic for bit positions (BPs). These BPs indicate adjacencies of the network topology, as opposed to (non-TE) BIER in which BPs indicate Bit-Forwarding Egress Routers (BFERs). A BIER-TE packets BitString therefore indicates the edges of the (loop-free) tree across which the packets are forwarded by BIER-TE. BIER-TE can leverage BIER forwarding engines with little changes. Co-existence of BIER and BIER-TE forwarding in the same domain is possible -- for example, by using separate BIER subdomains (SDs). Except for the optional routed adjacencies, BIER-TE does not require a BIER routing underlay and can therefore operate without depending on a routing protocol such as the Interior Gateway Protocol (IGP)."];
+  RFC9262 -> rev_cites;
+  RFC9346 [label="RFC9346
+IS-IS Extensions in Support of Inter-
+Autonomous System (AS) MPLS and GMPLS
+Traffic Engineering
+2023", shape=ellipse, URL="RFC9346.html", target="_top", tooltip="This document describes extensions to the Intermediate System to Intermediate System (IS-IS) protocol to support Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering (TE) for multiple Autonomous Systems (ASes). It defines IS-IS extensions for the flooding of TE information about inter-AS links, which can be used to perform inter-AS TE path computation. No support for flooding information from within one AS to another AS is proposed or defined in this document. This document builds on RFC 5316 by adding support for IPv6-only operation. This document obsoletes RFC 5316."];
+  RFC9346 -> rev_cites;
+  RFC9356 [label="RFC9356
+Advertising Layer 2 Bundle Member Link
+Attributes in OSPF
+2023", shape=ellipse, URL="RFC9356.html", target="_top", tooltip="There are deployments where the Layer 3 (L3) interface on which OSPF operates is a Layer 2 (L2) interface bundle. Existing OSPF advertisements only support advertising link attributes of the L3 interface. If entities external to OSPF wish to control traffic flows on the individual physical links that comprise the L2 interface bundle, link attribute information for the bundle members is required. This document defines the protocol extensions for OSPF to advertise the link attributes of L2 bundle members. The document also specifies the advertisement of these OSPF extensions via the Border Gateway Protocol - Link State (BGP-LS) and thereby updates RFC 9085."];
+  RFC9356 -> rev_cites;
+  RFC9358 [label="RFC9358
+Path Computation Element Communication
+Protocol (PCEP) Extensions for
+Establishing Relationships between Sets
+of Label Switched Paths and Virtual
+Networks
+2023", shape=ellipse, URL="RFC9358.html", target="_top", tooltip="This document describes how to extend the Path Computation Element Communication Protocol (PCEP) association mechanism introduced by RFC 8697 to further associate sets of Label Switched Paths (LSPs) with a higher-level structure such as a Virtual Network (VN) requested by a customer or application.  This extended association mechanism can be used to facilitate control of a VN using the PCE architecture."];
+  RFC9358 -> rev_cites;
+  RFC9488 [label="RFC9488
+Local Protection Enforcement in the Path
+Computation Element Communication
+Protocol (PCEP)
+2023", shape=ellipse, URL="RFC9488.html", target="_top", tooltip="This document updates RFC 5440 to clarify usage of the Local Protection Desired bit signaled in the Path Computation Element Communication Protocol (PCEP).  This document also introduces a new flag for signaling protection enforcement in PCEP."];
+  RFC9488 -> rev_cites;
+  RFC9504 [label="RFC9504
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Stateful
+PCE Usage in GMPLS-Controlled Networks
+2023", shape=ellipse, URL="RFC9504.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) has been extended to support stateful PCE functions where the stateful PCE maintains information about paths and resource usage within a network; however, these extensions do not cover all requirements for GMPLS networks. This document provides the extensions required for PCEP so as to enable the usage of a stateful PCE capability in GMPLS-controlled networks."];
+  RFC9504 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+  RFC9552 [label="RFC9552
+Distribution of Link-State and Traffic
+Engineering Information Using BGP
+2023", shape=ellipse, URL="RFC9552.html", target="_top", tooltip="In many environments, a component external to a network is called upon to perform computations based on the network topology and the current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism applies to physical and virtual (e.g., tunnel) IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs). This document obsoletes RFC 7752 by completely replacing that document. It makes some small changes and clarifications to the previous specification. This document also obsoletes RFC 9029 by incorporating the updates that it made to RFC 7752."];
+  RFC9552 -> rev_cites;
+  RFC9604 [label="RFC9604
+Carrying Binding Label/SID in PCE-Based
+Networks
+2024", shape=ellipse, URL="RFC9604.html", target="_top", tooltip="In order to provide greater scalability, network confidentiality, and service independence, Segment Routing (SR) utilizes a Binding Segment Identifier (BSID), as described in RFC 8402.  It is possible to associate a BSID to an RSVP-TE-signaled Traffic Engineering (TE) Label Switched Path (LSP) or an SR TE path.  The BSID can be used by an upstream node for steering traffic into the appropriate TE path to enforce SR policies.  This document specifies the concept of binding value, which can be either an MPLS label or a Segment Identifier (SID).  It further specifies an extension to Path Computation Element Communication Protocol (PCEP) for reporting the binding value by a Path Computation Client (PCC) to the Path Computation Element (PCE) to support PCE-based TE policies."];
+  RFC9604 -> rev_cites;
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, URL="RFC9689.html", target="_top", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."];
+  RFC9689 -> rev_cites;
+  RFC9717 [label="RFC9717
+A Routing Architecture for Satellite
+Networks
+2025", shape=ellipse, URL="RFC9717.html", target="_top", tooltip="Satellite networks present some interesting challenges for packet networking. The entire topology is continually in motion, with links far less reliable than what is common in terrestrial networks. Some changes to link connectivity can be anticipated due to orbital dynamics. This document proposes a scalable routing architecture for satellite networks based on existing routing protocols and mechanisms that is enhanced with scheduled link connectivity change information. This document proposes no protocol changes. This document presents the author's view and is neither the product of the IETF nor a consensus view of the community."];
+  RFC9717 -> rev_cites;
+  RFC9730 [label="RFC9730
+Interworking of GMPLS Control and
+Centralized Controller Systems
+2025", shape=ellipse, URL="RFC9730.html", target="_top", tooltip="Generalized Multiprotocol Label Switching (GMPLS) control allows each network element (NE) to perform local resource discovery, routing, and signaling in a distributed manner. The advancement of software-defined transport networking technology enables a group of NEs to be managed through centralized controller hierarchies. This helps to tackle challenges arising from multiple domains, vendors, and technologies. An example of such a centralized architecture is the Abstraction and Control of Traffic-Engineered Networks (ACTN) controller hierarchy, as described in RFC 8453. Both the distributed and centralized control planes have their respective advantages and should complement each other in the system, rather than compete. This document outlines how the GMPLS distributed control plane can work together with a centralized controller system in a transport network."];
+  RFC9730 -> rev_cites;
+  RFC9732 [label="RFC9732
+A Framework for NRP-Based Enhanced
+Virtual Private Networks
+2025", shape=ellipse, URL="RFC9732.html", target="_top", tooltip="This document describes a framework for Enhanced Virtual Private Networks (VPNs) based on Network Resource Partitions (NRPs) in order to support the needs of applications with specific traffic performance requirements (e.g., low latency, bounded jitter).  NRP-based enhanced VPNs leverage the VPN and Traffic Engineering (TE) technologies and add characteristics that specific services require beyond those provided by conventional VPNs.  Typically, an NRP-based enhanced VPN will be used to underpin network slicing, but it could also be of use in its own right providing enhanced connectivity services between customer sites.  This document also provides an overview of relevant technologies in different network layers and identifies some areas for potential new work."];
+  RFC9732 -> rev_cites;
+  RFC9753 [label="RFC9753
+Extension for Stateful PCE to Allow
+Optional Processing of Path Computation
+Element Communication Protocol (PCEP)
+Objects
+2025", shape=ellipse, URL="RFC9753.html", target="_top", tooltip="This document introduces a mechanism to mark some of the Path Computation Element Communication Protocol (PCEP) objects as optional during PCEP message exchange, so the stateful Path Computation Element (PCE) model can relax some constraints during path computation and setup.  This document introduces this relaxation to stateful PCE, and it updates RFC 8231."];
+  RFC9753 -> rev_cites;
+  RFC9826 [label="RFC9826
+A YANG Data Model for the Path
+Computation Element Communication
+Protocol (PCEP)
+2025", shape=ellipse, URL="RFC9826.html", target="_top", tooltip="This document defines a YANG data model for the management of the Path Computation Element Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a Path Computation Element (PCE), or between two PCEs."];
+  RFC9826 -> rev_cites;
+  RFC9843 [label="RFC9843
+IGP Flexible Algorithms: Bandwidth,
+Delay, Metrics, and Constraints
+2025", shape=ellipse, URL="RFC9843.html", target="_top", tooltip="Many networks configure the IGP link metric relative to the link capacity, and high bandwidth traffic gets routed per the link capacity. Flexible Algorithms provide mechanisms to create constraint-based paths in an IGP. This specification documents a generic metric-type and a set of bandwidth-related constraints to be used in Flexible Algorithms. This document updates RFC 9350."];
+  RFC9843 -> rev_cites;
+  RFC9857 [label="RFC9857
+Advertisement of Segment Routing
+Policies Using BGP - Link State
+2025", shape=ellipse, URL="RFC9857.html", target="_top", tooltip="This document describes a mechanism used to collect Segment Routing (SR) Policy information that is locally available in a node and advertise it into BGP - Link State (BGP-LS) updates.  Such information can be used by external components for path computation, reoptimization, service placement, network visualization, etc."];
+  RFC9857 -> rev_cites;
+  RFC9862 [label="RFC9862
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Segment
+Routing (SR) Policy Candidate Paths
+2025", shape=ellipse, URL="RFC9862.html", target="_top", tooltip="A Segment Routing (SR) Policy is an ordered list of instructions called segments that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated. An SR Policy is made of one or more Candidate Paths. This document specifies the Path Computation Element Communication Protocol (PCEP) extension to signal Candidate Paths of an SR Policy. Additionally, this document updates RFC 8231 to allow delegation and setup of an SR Label Switched Path (LSP) without using the path computation request and reply messages. This document is applicable to both Segment Routing over MPLS (SR-MPLS) and Segment Routing over IPv6 (SRv6)."];
+  RFC9862 -> rev_cites;
+}

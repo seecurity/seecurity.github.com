@@ -1,0 +1,212 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6285 [label="RFC6285
+Unicast-Based Rapid Acquisition of
+Multicast RTP Sessions
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="When an RTP receiver joins a multicast session, it may need to acquire and parse certain Reference Information before it can process any data sent in the multicast session. Depending on the join time, length of the Reference Information repetition (or appearance) interval, size of the Reference Information, and the application and transport properties, the time lag before an RTP receiver can usefully consume the multicast data, which we refer to as the Acquisition Delay, varies and can be large. This is an undesirable phenomenon for receivers that frequently switch among different multicast sessions, such as video broadcasts. In this document, we describe a method using the existing RTP and RTP Control Protocol (RTCP) machinery that reduces the acquisition delay. In this method, an auxiliary unicast RTP session carrying the Reference Information to the receiver precedes or accompanies the multicast stream. This unicast RTP flow can be transmitted at a faster than natural bitrate to further accelerate the acquisition. The motivating use case for this capability is multicast applications that carry real-time compressed audio and video. However, this method can also be used in other types of multicast applications where the acquisition delay is long enough to be a problem. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6285;
+
+  obs [label="obsoletes", shape=box];
+  RFC6285 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6285 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6285;
+
+  cites [label="cites", shape=box];
+  RFC6285 -> cites;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC5760 [label="RFC5760
+RTP Control Protocol (RTCP) Extensions
+for Single-Source Multicast Sessions
+with Unicast Feedback
+2010", shape=ellipse, URL="RFC5760.html", target="_top", tooltip="This document specifies an extension to the Real-time Transport Control Protocol (RTCP) to use unicast feedback to a multicast sender.  The proposed extension is useful for single-source multicast sessions such as Source-Specific Multicast (SSM) communication where the traditional model of many-to-many group communication is either not available or not desired.  In addition, it can be applied to any group that might benefit from a sender-controlled summarized reporting mechanism. [STANDARDS-TRACK]"];
+  cites -> RFC5760;
+  RFC4588 [label="RFC4588
+RTP Retransmission Payload Format
+2006", shape=ellipse, URL="RFC4588.html", target="_top", tooltip="RTP retransmission is an effective packet loss recovery technique for real-time applications with relaxed delay bounds.  This document describes an RTP payload format for performing retransmissions.  Retransmitted RTP packets are sent in a separate stream from the original RTP stream.  It is assumed that feedback from receivers to senders is available.  In particular, it is assumed that Real-time Transport Control Protocol (RTCP) feedback as defined in the extended RTP profile for RTCP-based feedback (denoted RTP/AVPF) is available in this memo. [STANDARDS-TRACK]"];
+  cites -> RFC4588;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4604 [label="RFC4604
+Using Internet Group Management Protocol
+Version 3 (IGMPv3) and Multicast
+Listener Discovery Protocol Version 2
+(MLDv2) for Source-Specific Multicast
+2006", shape=ellipse, URL="RFC4604.html", target="_top", tooltip="The Internet Group Management Protocol Version 3 (IGMPv3) and the Multicast Listener Discovery Protocol Version 2 (MLDv2) are protocols that allow a host to inform its neighboring routers of its desire to receive IPv4 and IPv6 multicast transmissions, respectively.  Source-specific multicast (SSM) is a form of multicast in which a receiver is required to specify both the network-layer address of the source and the multicast destination address in order to receive the multicast transmission.  This document defines the notion of an SSM-aware router and host, and clarifies and (in some cases) modifies the behavior of IGMPv3 and MLDv2 on SSM-aware routers and hosts to accommodate source-specific multicast.  This document updates the IGMPv3 and MLDv2 specifications. [STANDARDS-TRACK]"];
+  cites -> RFC4604;
+  RFC3376 [label="RFC3376
+Internet Group Management Protocol,
+Version 3
+2002", shape=ellipse, URL="RFC3376.html", target="_top", tooltip="None"];
+  cites -> RFC3376;
+  RFC3810 [label="RFC3810
+Multicast Listener Discovery Version 2
+(MLDv2) for IPv6
+2004", shape=ellipse, URL="RFC3810.html", target="_top", tooltip="This document updates RFC 2710, and it specifies Version 2 of the ulticast Listener Discovery Protocol (MLDv2).  MLD is used by an IPv6 router to discover the presence of multicast listeners on directly attached links, and to discover which multicast addresses are of interest to those neighboring nodes.  MLDv2 is designed to be interoperable with MLDv1.  MLDv2 adds the ability for a node to report interest in listening to packets with a particular multicast address only from specific source addresses or from all sources except for specific source addresses. [STANDARDS-TRACK]"];
+  cites -> RFC3810;
+  RFC6015 [label="RFC6015
+RTP Payload Format for 1-D Interleaved
+Parity Forward Error Correction (FEC)
+2010", shape=ellipse, URL="RFC6015.html", target="_top", tooltip="This document defines a new RTP payload format for the Forward Error Correction (FEC) that is generated by the 1-D interleaved parity code from a source media encapsulated in RTP.  The 1-D interleaved parity code is a systematic code, where a number of repair symbols are generated from a set of source symbols and sent in a repair flow separate from the source flow that carries the source symbols.  The 1-D interleaved parity code offers a good protection against bursty packet losses at a cost of reasonable complexity.  The new payload format defined in this document should only be used (with some exceptions) as a part of the Digital Video Broadcasting-IPTV (DVB- IPTV) Application-layer FEC specification. [STANDARDS-TRACK]"];
+  cites -> RFC6015;
+  RFC4585 [label="RFC4585
+Extended RTP Profile for Real-time
+Transport Control Protocol (RTCP)-Based
+Feedback (RTP/AVPF)
+2006", shape=ellipse, URL="RFC4585.html", target="_top", tooltip="Real-time media streams that use RTP are, to some degree, resilient against packet losses.  Receivers may use the base mechanisms of the Real-time Transport Control Protocol (RTCP) to report packet reception statistics and thus allow a sender to adapt its transmission behavior in the mid-term.  This is the sole means for feedback and feedback-based error repair (besides a few codec-specific mechanisms).  This document defines an extension to the Audio-visual Profile (AVP) that enables receivers to provide, statistically, more immediate feedback to the senders and thus allows for short-term adaptation and efficient feedback-based repair mechanisms to be implemented.  This early feedback profile (AVPF) maintains the AVP bandwidth constraints for RTCP and preserves scalability to large groups. [STANDARDS-TRACK]"];
+  cites -> RFC4585;
+  RFC6284 [label="RFC6284
+Port Mapping between Unicast and
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6284.html", target="_top", tooltip="This document presents a port mapping solution that allows RTP receivers to choose their own ports for an auxiliary unicast session in RTP applications using both unicast and multicast services.  The solution provides protection against denial-of-service or packet amplification attacks that could be used to cause one or more RTP packets to be sent to a victim client. [STANDARDS-TRACK]"];
+  cites -> RFC6284;
+  RFC6222 [label="RFC6222
+Guidelines for Choosing RTP Control
+Protocol (RTCP) Canonical Names (CNAMEs)
+2011", shape=ellipse, URL="RFC6222.html", target="_top", tooltip="The RTP Control Protocol (RTCP) Canonical Name (CNAME) is a persistent transport-level identifier for an RTP endpoint.  While the Synchronization Source (SSRC) identifier of an RTP endpoint may change if a collision is detected or when the RTP application is restarted, its RTCP CNAME is meant to stay unchanged, so that RTP endpoints can be uniquely identified and associated with their RTP media streams.  For proper functionality, RTCP CNAMEs should be unique within the participants of an RTP session.  However, the existing guidelines for choosing the RTCP CNAME provided in the RTP standard are insufficient to achieve this uniqueness.  This memo updates those guidelines to allow endpoints to choose unique RTCP CNAMEs. [STANDARDS-TRACK]"];
+  cites -> RFC6222;
+  RFC5506 [label="RFC5506
+Support for Reduced-Size Real-Time
+Transport Control Protocol (RTCP):
+Opportunities and Consequences
+2009", shape=ellipse, URL="RFC5506.html", target="_top", tooltip="This memo discusses benefits and issues that arise when allowing Real-time Transport Protocol (RTCP) packets to be transmitted with reduced size.  The size can be reduced if the rules on how to create compound packets outlined in RFC 3550 are removed or changed.  Based on that analysis, this memo defines certain changes to the rules to allow feedback messages to be sent as Reduced-Size RTCP packets under certain conditions when using the RTP/AVPF (Real-time Transport Protocol / Audio-Visual Profile with Feedback) profile (RFC 4585).  This document updates RFC 3550, RFC 3711, and RFC 4585. [STANDARDS-TRACK]"];
+  cites -> RFC5506;
+  RFC5285 [label="RFC5285
+A General Mechanism for RTP Header
+Extensions
+2008", shape=ellipse, URL="RFC5285.html", target="_top", tooltip="This document provides a general mechanism to use the header extension feature of RTP (the Real-Time Transport Protocol).  It provides the option to use a small number of small extensions in each RTP packet, where the universe of possible extensions is large and registration is de-centralized.  The actual extensions in use in a session are signaled in the setup information for that session. [STANDARDS-TRACK]"];
+  cites -> RFC5285;
+  RFC6051 [label="RFC6051
+Rapid Synchronisation of RTP Flows
+2010", shape=ellipse, URL="RFC6051.html", target="_top", tooltip="This memo outlines how RTP sessions are synchronised, and discusses how rapidly such synchronisation can occur. We show that most RTP sessions can be synchronised immediately, but that the use of video switching multipoint conference units (MCUs) or large source-specific multicast (SSM) groups can greatly increase the synchronisation delay. This increase in delay can be unacceptable to some applications that use layered and/or multi-description codecs. This memo introduces three mechanisms to reduce the synchronisation delay for such sessions. First, it updates the RTP Control Protocol (RTCP) timing rules to reduce the initial synchronisation delay for SSM sessions. Second, a new feedback packet is defined for use with the extended RTP profile for RTCP-based feedback (RTP/AVPF), allowing video switching MCUs to rapidly request resynchronisation. Finally, new RTP header extensions are defined to allow rapid synchronisation of late joiners, and guarantee correct timestamp-based decoding order recovery for layered codecs in the presence of clock skew. [STANDARDS-TRACK]"];
+  cites -> RFC6051;
+  RFC5762 [label="RFC5762
+RTP and the Datagram Congestion Control
+Protocol (DCCP)
+2010", shape=ellipse, URL="RFC5762.html", target="_top", tooltip="The Real-time Transport Protocol (RTP) is a widely used transport for real-time multimedia on IP networks.  The Datagram Congestion Control Protocol (DCCP) is a transport protocol that provides desirable services for real-time applications.  This memo specifies a mapping of RTP onto DCCP, along with associated signalling, such that real- time applications can make use of the services provided by DCCP. [STANDARDS-TRACK]"];
+  cites -> RFC5762;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+  RFC5888 [label="RFC5888
+The Session Description Protocol (SDP)
+Grouping Framework
+2010", shape=ellipse, URL="RFC5888.html", target="_top", tooltip="In this specification, we define a framework to group m lines in the Session Description Protocol (SDP) for different purposes.  This framework uses the group and mid SDP attributes, both of which are defined in this specification.  Additionally, we specify how to use the framework for two different purposes: for lip synchronization and for receiving a media flow consisting of several media streams on different transport addresses.  This document obsoletes RFC 3388. [STANDARDS-TRACK]"];
+  cites -> RFC5888;
+  RFC6128 [label="RFC6128
+RTP Control Protocol (RTCP) Port for
+Source-Specific Multicast (SSM) Sessions
+2011", shape=ellipse, URL="RFC6128.html", target="_top", tooltip="The Session Description Protocol (SDP) has an attribute that allows RTP applications to specify an address and a port associated with the RTP Control Protocol (RTCP) traffic.  In RTP-based source-specific multicast (SSM) sessions, the same attribute is used to designate the address and the RTCP port of the Feedback Target in the SDP description.  However, the RTCP port associated with the SSM session itself cannot be specified by the same attribute to avoid ambiguity, and thus, is required to be derived from the m= line of the media description.  Deriving the RTCP port from the m= line imposes an unnecessary restriction.  This document removes this restriction by introducing a new SDP attribute. [STANDARDS-TRACK]"];
+  cites -> RFC6128;
+  RFC5761 [label="RFC5761
+Multiplexing RTP Data and Control
+Packets on a Single Port
+2010", shape=ellipse, URL="RFC5761.html", target="_top", tooltip="This memo discusses issues that arise when multiplexing RTP data packets and RTP Control Protocol (RTCP) packets on a single UDP port.  It updates RFC 3550 and RFC 3551 to describe when such multiplexing is and is not appropriate, and it explains how the Session Description Protocol (SDP) can be used to signal multiplexed sessions. [STANDARDS-TRACK]"];
+  cites -> RFC5761;
+  RFC5576 [label="RFC5576
+Source-Specific Media Attributes in the
+Session Description Protocol (SDP)
+2009", shape=ellipse, URL="RFC5576.html", target="_top", tooltip="The Session Description Protocol (SDP) provides mechanisms to describe attributes of multimedia sessions and of individual media streams (e.g., Real-time Transport Protocol (RTP) sessions) within a multimedia session, but does not provide any mechanism to describe individual media sources within a media stream.  This document defines a mechanism to describe RTP media sources, which are identified by their synchronization source (SSRC) identifiers, in SDP, to associate attributes with these sources, and to express relationships among sources.  It also defines several source-level attributes that can be used to describe properties of media sources. [STANDARDS-TRACK]"];
+  cites -> RFC5576;
+  RFC4566 [label="RFC4566
+SDP: Session Description Protocol
+2006", shape=ellipse, URL="RFC4566.html", target="_top", tooltip="This memo defines the Session Description Protocol (SDP).  SDP is intended for describing multimedia sessions for the purposes of session announcement, session invitation, and other forms of multimedia session initiation. [STANDARDS-TRACK]"];
+  cites -> RFC4566;
+  RFC3605 [label="RFC3605
+Real Time Control Protocol (RTCP)
+attribute in Session Description
+Protocol (SDP)
+2003", shape=ellipse, URL="RFC3605.html", target="_top", tooltip="The Session Description Protocol (SDP) is used to describe the parameters of media streams used in multimedia sessions.  When a session requires multiple ports, SDP assumes that these ports have consecutive numbers.  However, when the session crosses a network address translation device that also uses port mapping, the ordering of ports can be destroyed by the translation.  To handle this, we propose an extension attribute to SDP."];
+  cites -> RFC3605;
+  RFC4787 [label="RFC4787
+Network Address Translation (NAT)
+Behavioral Requirements for Unicast UDP
+2007", shape=ellipse, URL="RFC4787.html", target="_top", tooltip="This document defines basic terminology for describing different types of Network Address Translation (NAT) behavior when handling Unicast UDP and also defines a set of requirements that would allow many applications, such as multimedia communications or online gaming, to work consistently.  Developing NATs that meet this set of requirements will greatly increase the likelihood that these applications will function properly.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4787;
+  RFC2827 [label="RFC2827
+Network Ingress Filtering: Defeating
+Denial of Service Attacks which employ
+IP Source Address Spoofing
+2000", shape=ellipse, URL="RFC2827.html", target="_top", tooltip="This paper discusses a simple, effective, and straightforward method for using ingress traffic filtering to prohibit DoS (Denial of Service) attacks which use forged IP addresses to be propagated from 'behind' an Internet Service Provider's (ISP) aggregation point.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2827;
+  RFC3711 [label="RFC3711
+The Secure Real-time Transport Protocol
+(SRTP)
+2004", shape=ellipse, URL="RFC3711.html", target="_top", tooltip="This document describes the Secure Real-time Transport Protocol (SRTP), a profile of the Real-time Transport Protocol (RTP), which can provide confidentiality, message authentication, and replay protection to the RTP traffic and to the control traffic for RTP, the Real-time Transport Control Protocol (RTCP). [STANDARDS-TRACK]"];
+  cites -> RFC3711;
+  RFC5764 [label="RFC5764
+Datagram Transport Layer Security (DTLS)
+Extension to Establish Keys for the
+Secure Real-time Transport Protocol
+(SRTP)
+2010", shape=ellipse, URL="RFC5764.html", target="_top", tooltip="This document describes a Datagram Transport Layer Security (DTLS) extension to establish keys for Secure RTP (SRTP) and Secure RTP Control Protocol (SRTCP) flows.  DTLS keying happens on the media path, independent of any out-of-band signalling channel present. [STANDARDS-TRACK]"];
+  cites -> RFC5764;
+  RFC5077 [label="RFC5077
+Transport Layer Security (TLS) Session
+Resumption without Server-Side State
+2008", shape=ellipse, URL="RFC5077.html", target="_top", tooltip="This document describes a mechanism that enables the Transport Layer Security (TLS) server to resume sessions and avoid keeping per-client session state.  The TLS server encapsulates the session state into a ticket and forwards it to the client.  The client can subsequently resume a session using the obtained ticket.  This document obsoletes RFC 4507. [STANDARDS-TRACK]"];
+  cites -> RFC5077;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6285;
+  RFC6284 [label="RFC6284
+Port Mapping between Unicast and
+Multicast RTP Sessions
+2011", shape=ellipse, URL="RFC6284.html", target="_top", tooltip="This document presents a port mapping solution that allows RTP receivers to choose their own ports for an auxiliary unicast session in RTP applications using both unicast and multicast services.  The solution provides protection against denial-of-service or packet amplification attacks that could be used to cause one or more RTP packets to be sent to a victim client. [STANDARDS-TRACK]"];
+  RFC6284 -> rev_cites;
+  RFC6332 [label="RFC6332
+Multicast Acquisition Report Block Type
+for RTP Control Protocol (RTCP) Extended
+Reports (XRs)
+2011", shape=ellipse, URL="RFC6332.html", target="_top", tooltip="In most RTP-based multicast applications, the RTP source sends inter- related data.  Due to this interdependency, randomly joining RTP receivers usually cannot start consuming the multicast data right after they join the session.  Thus, they often experience a random acquisition delay.  An RTP receiver can use one or more different approaches to achieve rapid acquisition.  Yet, due to various factors, performance of the rapid acquisition methods usually varies.  Furthermore, in some cases, the RTP receiver can do a simple multicast join (in other cases, it is compelled to do so).  For quality reporting, monitoring, and diagnostic purposes, it is important to collect detailed information from the RTP receivers about their acquisition and presentation experiences.  This document addresses this issue by defining a new report block type, called the Multicast Acquisition (MA) report block, within the framework of RTP Control Protocol (RTCP) Extended Reports (XRs) (RFC 3611).  This document also defines the necessary signaling of the new MA report block type in the Session Description Protocol (SDP). [STANDARDS-TRACK]"];
+  RFC6332 -> rev_cites;
+  RFC6642 [label="RFC6642
+RTP Control Protocol (RTCP) Extension
+for a Third-Party Loss Report
+2012", shape=ellipse, URL="RFC6642.html", target="_top", tooltip="In a large RTP session using the RTP Control Protocol (RTCP) feedback mechanism defined in RFC 4585, a feedback target may experience transient overload if some event causes a large number of receivers to send feedback at once.  This overload is usually avoided by ensuring that feedback reports are forwarded to all receivers, allowing them to avoid sending duplicate feedback reports.  However, there are cases where it is not recommended to forward feedback reports, and this may allow feedback implosion.  This memo discusses these cases and defines a new RTCP Third-Party Loss Report that can be used to inform receivers that the feedback target is aware of some loss event, allowing them to suppress feedback.  Associated Session Description Protocol (SDP) signaling is also defined. [STANDARDS-TRACK]"];
+  RFC6642 -> rev_cites;
+  RFC6659 [label="RFC6659
+Considerations for Deploying the Rapid
+Acquisition of Multicast RTP Sessions
+(RAMS) Method
+2012", shape=ellipse, URL="RFC6659.html", target="_top", tooltip="The Rapid Acquisition of Multicast RTP Sessions (RAMS) solution is a method based on RTP and the RTP Control Protocol (RTCP) that enables an RTP receiver to rapidly acquire and start consuming the RTP multicast data.  Upon a request from the RTP receiver, an auxiliary unicast RTP retransmission session is set up between a retransmission server and the RTP receiver, over which the reference information about the new multicast stream the RTP receiver is about to join is transmitted at an accelerated rate.  This often precedes, but may also accompany, the multicast stream itself.  When there is only one multicast stream to be acquired, the RAMS solution works in a straightforward manner.  However, when there are two or more multicast streams to be acquired from the same or different multicast RTP sessions, care should be taken to configure each RAMS session appropriately.  This document provides example scenarios and discusses how the RAMS solution could be used in such scenarios.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6659 -> rev_cites;
+  RFC7667 [label="RFC7667
+RTP Topologies
+2015", shape=ellipse, URL="RFC7667.html", target="_top", tooltip="This document discusses point-to-point and multi-endpoint topologies used in environments based on the Real-time Transport Protocol (RTP).  In particular, centralized topologies commonly employed in the video conferencing industry are mapped to the RTP terminology."];
+  RFC7667 -> rev_cites;
+  RFC8286 [label="RFC8286
+RTP/RTCP Extension for RTP Splicing
+Notification
+2017", shape=ellipse, URL="RFC8286.html", target="_top", tooltip="Content splicing is a process that replaces the content of a main multimedia stream with other multimedia content and that delivers the substitutive multimedia content to the receivers for a period of time. The splicer is designed to handle RTP splicing and needs to know when to start and end the splicing. This memo defines two RTP/RTCP extensions to indicate the splicing-related information to the splicer: an RTP header extension that conveys the information in band and an RTP Control Protocol (RTCP) packet that conveys the information out of band."];
+  RFC8286 -> rev_cites;
+  RFC8859 [label="RFC8859
+A Framework for Session Description
+Protocol (SDP) Attributes When
+Multiplexing
+2021", shape=ellipse, URL="RFC8859.html", target="_top", tooltip="The purpose of this specification is to provide a framework for analyzing the multiplexing characteristics of Session Description Protocol (SDP) attributes when SDP is used to negotiate the usage of a single 5-tuple for sending and receiving media associated with multiple media descriptions. This specification also categorizes the existing SDP attributes based on the framework described herein."];
+  RFC8859 -> rev_cites;
+}

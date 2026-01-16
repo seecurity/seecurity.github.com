@@ -1,0 +1,36 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3951 [label="RFC3951
+Internet Low Bit Rate Codec (iLBC)
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies a speech codec suitable for robust voice communication over IP.  The codec is developed by Global IP Sound (GIPS).  It is designed for narrow band speech and results in a payload bit rate of 13.33 kbit/s for 30 ms frames and 15.20 kbit/s for 20 ms frames.  The codec enables graceful speech quality degradation in the case of lost frames, which occurs in connection with lost or delayed IP packets.  This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3951;
+
+  obs [label="obsoletes", shape=box];
+  RFC3951 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3951 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3951;
+
+  cites [label="cites", shape=box];
+  RFC3951 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3951;
+  RFC6366 [label="RFC6366
+Requirements for an Internet Audio Codec
+2011", shape=ellipse, URL="RFC6366.html", target="_top", tooltip="This document provides specific requirements for an Internet audio codec.  These requirements address quality, sampling rate, bit-rate, and packet-loss robustness, as well as other desirable properties.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6366 -> rev_cites;
+  RFC7655 [label="RFC7655
+RTP Payload Format for G.711.0
+2015", shape=ellipse, URL="RFC7655.html", target="_top", tooltip="This document specifies the Real-time Transport Protocol (RTP) payload format for ITU-T Recommendation G.711.0.  ITU-T Rec.  G.711.0 defines a lossless and stateless compression for G.711 packet payloads typically used in IP networks.  This document also defines a storage mode format for G.711.0 and a media type registration for the G.711.0 RTP payload format."];
+  RFC7655 -> rev_cites;
+}

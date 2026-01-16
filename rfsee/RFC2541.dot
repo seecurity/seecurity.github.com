@@ -1,0 +1,71 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC2541 [label="RFC2541
+DNS Security Operational Considerations
+1999", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document discusses these operational aspects for keys and signatures used in connection with the KEY and SIG DNS resource records.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC2541;
+  RFC4641 [label="RFC4641
+DNSSEC Operational Practices
+2006", shape=ellipse, URL="RFC4641.html", target="_top", tooltip="This document describes a set of practices for operating the DNS with security extensions (DNSSEC). The target audience is zone administrators deploying DNSSEC. The document discusses operational aspects of using keys and signatures in the DNS. It discusses issues of key generation, key storage, signature generation, key rollover, and related policies. This document obsoletes RFC 2541, as it covers more operational ground and gives more up-to-date requirements with respect to key sizes and the new DNSSEC specification. This memo provides information for the Internet community."];
+  RFC4641 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC2541 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC2541 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC2541;
+
+  cites [label="cites", shape=box];
+  RFC2541 -> cites;
+  RFC2535 [label="RFC2535
+Domain Name System Security Extensions
+1999", shape=ellipse, URL="RFC2535.html", target="_top", tooltip="This document incorporates feedback on RFC 2065 from early implementers and potential users. [STANDARDS-TRACK]"];
+  cites -> RFC2535;
+  RFC1750 [label="RFC1750
+Randomness Recommendations for Security
+1994", shape=ellipse, URL="RFC1750.html", target="_top", tooltip="Choosing random quantities to foil a resourceful and motivated adversary is surprisingly difficult.  This paper points out many pitfalls in using traditional pseudo-random number generation techniques for choosing such quantities.  It recommends the use of truly random hardware techniques and shows that the existing hardware on many systems can be used for this purpose.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1750;
+  RFC2137 [label="RFC2137
+Secure Domain Name System Dynamic Update
+1997", shape=ellipse, URL="RFC2137.html", target="_top", tooltip="This memo describes how to use DNSSEC digital signatures covering requests and data to secure updates and restrict updates to those authorized to perform them as indicated by the updater's possession of cryptographic keys. [STANDARDS-TRACK]"];
+  cites -> RFC2137;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC2065 [label="RFC2065
+Domain Name System Security Extensions
+1997", shape=ellipse, URL="RFC2065.html", target="_top", tooltip="The Domain Name System (DNS) has become a critical operational part of the Internet infrastructure yet it has no strong security mechanisms to assure data integrity or authentication.  Extensions to the DNS are described that provide these services to security aware resolvers or applications through the use of cryptographic digital signatures. [STANDARDS-TRACK]"];
+  cites -> RFC2065;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC2541;
+  RFC2535 [label="RFC2535
+Domain Name System Security Extensions
+1999", shape=ellipse, URL="RFC2535.html", target="_top", tooltip="This document incorporates feedback on RFC 2065 from early implementers and potential users. [STANDARDS-TRACK]"];
+  RFC2535 -> rev_cites;
+  RFC3110 [label="RFC3110
+RSA/SHA-1 SIGs and RSA KEYs in the
+Domain Name System (DNS)
+2001", shape=ellipse, URL="RFC3110.html", target="_top", tooltip="This document describes how to produce RSA/SHA1 SIG resource records (RRs) in Section 3 and, so as to completely replace RFC 2537, describes how to produce RSA KEY RRs in Section 2. [STANDARDS-TRACK]"];
+  RFC3110 -> rev_cites;
+  RFC9210 [label="RFC9210
+DNS Transport over TCP - Operational
+Requirements
+2022", shape=ellipse, URL="RFC9210.html", target="_top", tooltip="This document updates RFCs 1123 and 1536.  This document requires the operational practice of permitting DNS messages to be carried over TCP on the Internet as a Best Current Practice.  This operational requirement is aligned with the implementation requirements in RFC 7766.  The use of TCP includes both DNS over unencrypted TCP as well as over an encrypted TLS session.  The document also considers the consequences of this form of DNS communication and the potential operational issues that can arise when this Best Current Practice is not upheld."];
+  RFC9210 -> rev_cites;
+}

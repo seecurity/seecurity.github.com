@@ -1,0 +1,69 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8586 [label="RFC8586
+Loop Detection in Content Delivery
+Networks (CDNs)
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines the CDN-Loop request header field for HTTP.  CDN-Loop addresses an operational need that occurs when an HTTP request is intentionally forwarded between Content Delivery Networks (CDNs), but is then accidentally or maliciously re-routed back into the original CDN causing a non-terminating loop.  The new header field can be used to identify the error and terminate the loop."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8586;
+
+  obs [label="obsoletes", shape=box];
+  RFC8586 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8586 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8586;
+
+  cites [label="cites", shape=box];
+  RFC8586 -> cites;
+  RFC7230 [label="RFC7230
+Hypertext Transfer Protocol (HTTP/1.1):
+Message Syntax and Routing
+2014", shape=ellipse, URL="RFC7230.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems.  This document provides an overview of HTTP architecture and its associated terminology, defines the http and https Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations."];
+  cites -> RFC7230;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+  RFC7231 [label="RFC7231
+Hypertext Transfer Protocol (HTTP/1.1):
+Semantics and Content
+2014", shape=ellipse, URL="RFC7231.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless \%application- level protocol for distributed, collaborative, hypertext information systems.  This document defines the semantics of HTTP/1.1 messages, as expressed by request methods, request header fields, response status codes, and response header fields, along with the payload of messages (metadata and body content) and mechanisms for content negotiation."];
+  cites -> RFC7231;
+  RFC4122 [label="RFC4122
+A Universally Unique IDentifier (UUID)
+URN Namespace
+2005", shape=ellipse, URL="RFC4122.html", target="_top", tooltip="This specification defines a Uniform Resource Name namespace for UUIDs (Universally Unique IDentifier), also known as GUIDs (Globally Unique IDentifier). A UUID is 128 bits long, and can guarantee uniqueness across space and time. UUIDs were originally used in the Apollo Network Computing System and later in the Open Software Foundation\'s (OSF) Distributed Computing Environment (DCE), and then in Microsoft Windows platforms. This specification is derived from the DCE specification with the kind permission of the OSF (now known as The Open Group). Information from earlier versions of the DCE specification have been incorporated into this document. [STANDARDS-TRACK]"];
+  cites -> RFC4122;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8586;
+  RFC8768 [label="RFC8768
+Constrained Application Protocol (CoAP)
+Hop-Limit Option
+2020", shape=ellipse, URL="RFC8768.html", target="_top", tooltip="The presence of Constrained Application Protocol (CoAP) proxies may lead to infinite forwarding loops, which is undesirable.  To prevent and detect such loops, this document specifies the Hop-Limit CoAP option."];
+  RFC8768 -> rev_cites;
+  RFC9209 [label="RFC9209
+The Proxy-Status HTTP Response Header
+Field
+2022", shape=ellipse, URL="RFC9209.html", target="_top", tooltip="This document defines the Proxy-Status HTTP response field to convey the details of an intermediary's response handling, including generated errors."];
+  RFC9209 -> rev_cites;
+}

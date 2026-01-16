@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5544 [label="RFC5544
+Syntax for Binding Documents with Time-
+Stamps
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes an envelope that can be used to bind a file (not necessarily protected by means of cryptographic techniques) with one or more time-stamp tokens obtained for that file, where time-stamp token has the meaning defined in RFC 3161 or its successors. Additional types of temporal evidence are also allowed. The proposed envelope is based on the Cryptographic Message Syntax as defined in RFC 5652. This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5544;
+
+  obs [label="obsoletes", shape=box];
+  RFC5544 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5544 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5544;
+  RFC5955 [label="RFC5955
+The application/timestamped-data Media
+Type
+2010", shape=ellipse, URL="RFC5955.html", target="_top", tooltip="This document defines a new media type for TimeStampedData envelopes as described in RFC 5544.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5955 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5544 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5544;
+  RFC5955 [label="RFC5955
+The application/timestamped-data Media
+Type
+2010", shape=ellipse, URL="RFC5955.html", target="_top", tooltip="This document defines a new media type for TimeStampedData envelopes as described in RFC 5544.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5955 -> rev_cites;
+  RFC7107 [label="RFC7107
+Object Identifier Registry for the
+S/MIME Mail Security Working Group
+2014", shape=ellipse, URL="RFC7107.html", target="_top", tooltip="When the S/MIME Mail Security Working Group was chartered, an object identifier arc was donated by RSA Data Security for use by that working group.  This document describes the object identifiers that were assigned in that donated arc, transfers control of that arc to IANA, and establishes IANA allocation policies for any future assignments within that arc."];
+  RFC7107 -> rev_cites;
+}

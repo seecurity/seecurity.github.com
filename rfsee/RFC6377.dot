@@ -1,0 +1,46 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6377 [label="RFC6377
+DomainKeys Identified Mail (DKIM) and
+Mailing Lists
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="DomainKeys Identified Mail (DKIM) allows an ADministrative Management Domain (ADMD) to assume some responsibility for a message.  Based on deployment experience with DKIM, this document provides guidance for the use of DKIM with scenarios that include Mailing List Managers (MLMs).  This memo documents an Internet Best Current Practice."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6377;
+
+  obs [label="obsoletes", shape=box];
+  RFC6377 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6377 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6377;
+
+  cites [label="cites", shape=box];
+  RFC6377 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6377;
+  RFC6376 [label="RFC6376
+DomainKeys Identified Mail (DKIM)
+Signatures
+2011", shape=ellipse, URL="RFC6376.html", target="_top", tooltip="DomainKeys Identified Mail (DKIM) permits a person, role, or organization that owns the signing domain to claim some responsibility for a message by associating the domain with the message. This can be an author's organization, an operational relay, or one of their agents. DKIM separates the question of the identity of the Signer of the message from the purported author of the message. Assertion of responsibility is validated through a cryptographic signature and by querying the Signer's domain directly to retrieve the appropriate public key. Message transit from author to recipient is through relays that typically make no substantive change to the message content and thus preserve the DKIM signature. This memo obsoletes RFC 4871 and RFC 5672. [STANDARDS-TRACK]"];
+  RFC6376 -> rev_cites;
+  RFC7960 [label="RFC7960
+Interoperability Issues between Domain-
+based Message Authentication, Reporting,
+and Conformance (DMARC) and Indirect
+Email Flows
+2016", shape=ellipse, URL="RFC7960.html", target="_top", tooltip="Domain-based Message Authentication, Reporting, and Conformance (DMARC) introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  However, the DMARC mechanism enables potentially disruptive interoperability issues when messages do not flow directly from the author's administrative domain to the final Recipients.  Collectively, these email flows are referred to as indirect email flows.  This document describes these interoperability issues and presents possible methods for addressing them."];
+  RFC7960 -> rev_cites;
+  RFC8617 [label="RFC8617
+The Authenticated Received Chain (ARC)
+Protocol
+2019", shape=ellipse, URL="RFC8617.html", target="_top", tooltip="The Authenticated Received Chain (ARC) protocol provides an authenticated chain of custody for a message, allowing each entity that handles the message to see what entities handled it before and what the message's authentication assessment was at each step in the handling. ARC allows Internet Mail Handlers to attach assertions of message authentication assessment to individual messages. As messages traverse ARC-enabled Internet Mail Handlers, additional ARC assertions can be attached to messages to form ordered sets of ARC assertions that represent the authentication assessment at each step of the message-handling paths. ARC-enabled Internet Mail Handlers can process sets of ARC assertions to inform message disposition decisions, identify Internet Mail Handlers that might break existing authentication mechanisms, and convey original authentication assessments across trust boundaries."];
+  RFC8617 -> rev_cites;
+}

@@ -1,0 +1,99 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7786 [label="RFC7786
+TCP Modifications for Congestion
+Exposure (ConEx)
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="Congestion Exposure (ConEx) is a mechanism by which senders inform the network about expected congestion based on congestion feedback from previous packets in the same flow.  This document describes the necessary modifications to use ConEx with the Transmission Control Protocol (TCP)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7786;
+
+  obs [label="obsoletes", shape=box];
+  RFC7786 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7786 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7786;
+
+  cites [label="cites", shape=box];
+  RFC7786 -> cites;
+  RFC6789 [label="RFC6789
+Congestion Exposure (ConEx) Concepts and
+Use Cases
+2012", shape=ellipse, URL="RFC6789.html", target="_top", tooltip="This document provides the entry point to the set of documentation about the Congestion Exposure (ConEx) protocol.  It explains the motivation for including a ConEx marking at the IP layer: to expose information about congestion to network nodes.  Although such information may have a number of uses, this document focuses on how the information communicated by the ConEx marking can serve as the basis for significantly more efficient and effective traffic management than what exists on the Internet today.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6789;
+  RFC7713 [label="RFC7713
+Congestion Exposure (ConEx) Concepts,
+Abstract Mechanism, and Requirements
+2015", shape=ellipse, URL="RFC7713.html", target="_top", tooltip="This document describes an abstract mechanism by which senders inform the network about the congestion recently encountered by packets in the same flow.  Today, network elements at any layer may signal congestion to the receiver by dropping packets or by Explicit Congestion Notification (ECN) markings, and the receiver passes this information back to the sender in transport-layer feedback.  The mechanism described here enables the sender to also relay this congestion information back into the network in-band at the IP layer, such that the total amount of congestion from all elements on the path is revealed to all IP elements along the path, where it could, for example, be used to provide input to traffic management.  This mechanism is called Congestion Exposure, or ConEx.  The companion document, Congestion Exposure (ConEx) Concepts and Use Cases (RFC 6789), provides the entry point to the set of ConEx documentation."];
+  cites -> RFC7713;
+  RFC7837 [label="RFC7837
+IPv6 Destination Option for Congestion
+Exposure (ConEx)
+2016", shape=ellipse, URL="RFC7837.html", target="_top", tooltip="Congestion Exposure (ConEx) is a mechanism by which senders inform the network about the congestion encountered by packets earlier in the same flow.  This document specifies an IPv6 destination option that is capable of carrying ConEx markings in IPv6 datagrams."];
+  cites -> RFC7837;
+  RFC3168 [label="RFC3168
+The Addition of Explicit Congestion
+Notification (ECN) to IP
+2001", shape=ellipse, URL="RFC3168.html", target="_top", tooltip="This memo specifies the incorporation of ECN (Explicit Congestion Notification) to TCP and IP, including ECN's use of two bits in the IP header. [STANDARDS-TRACK]"];
+  cites -> RFC3168;
+  RFC2018 [label="RFC2018
+TCP Selective Acknowledgment Options
+1996", shape=ellipse, URL="RFC2018.html", target="_top", tooltip="This memo proposes an implementation of SACK and discusses its performance and related issues. [STANDARDS-TRACK]"];
+  cites -> RFC2018;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC7141 [label="RFC7141
+Byte and Packet Congestion Notification
+2014", shape=ellipse, URL="RFC7141.html", target="_top", tooltip="This document provides recommendations of best current practice for dropping or marking packets using any active queue management (AQM) algorithm, including Random Early Detection (RED), BLUE, Pre- Congestion Notification (PCN), and newer schemes such as CoDel (Controlled Delay) and PIE (Proportional Integral controller Enhanced).  We give three strong recommendations: (1) packet size should be taken into account when transports detect and respond to congestion indications, (2) packet size should not be taken into account when network equipment creates congestion signals (marking, dropping), and therefore (3) in the specific case of RED, the byte- mode packet drop variant that drops fewer small packets should not be used.  This memo updates RFC 2309 to deprecate deliberate preferential treatment of small packets in AQM algorithms."];
+  cites -> RFC7141;
+  RFC5682 [label="RFC5682
+Forward RTO-Recovery (F-RTO): An
+Algorithm for Detecting Spurious
+Retransmission Timeouts with TCP
+2009", shape=ellipse, URL="RFC5682.html", target="_top", tooltip="The purpose of this document is to move the F-RTO (Forward RTO-Recovery) functionality for TCP in RFC 4138 from Experimental to Standards Track status. The F-RTO support for Stream Control Transmission Protocol (SCTP) in RFC 4138 remains with Experimental status. See Appendix B for the differences between this document and RFC 4138. Spurious retransmission timeouts cause suboptimal TCP performance because they often result in unnecessary retransmission of the last window of data. This document describes the F-RTO detection algorithm for detecting spurious TCP retransmission timeouts. F-RTO is a TCP sender-only algorithm that does not require any TCP options to operate. After retransmitting the first unacknowledged segment triggered by a timeout, the F-RTO algorithm of the TCP sender monitors the incoming acknowledgments to determine whether the timeout was spurious. It then decides whether to send new segments or retransmit unacknowledged segments. The algorithm effectively helps to avoid additional unnecessary retransmissions and thereby improves TCP performance in the case of a spurious timeout. [STANDARDS-TRACK]"];
+  cites -> RFC5682;
+  RFC3708 [label="RFC3708
+Using TCP Duplicate Selective
+Acknowledgement (DSACKs) and Stream
+Control Transmission Protocol (SCTP)
+Duplicate Transmission Sequence Numbers
+(TSNs) to Detect Spurious
+Retransmissions
+2004", shape=ellipse, URL="RFC3708.html", target="_top", tooltip="TCP and Stream Control Transmission Protocol (SCTP) provide notification of duplicate segment receipt through Duplicate Selective Acknowledgement (DSACKs) and Duplicate Transmission Sequence Number (TSN) notification, respectively.  This document presents conservative methods of using this information to identify unnecessary retransmissions for various applications.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3708;
+  RFC3522 [label="RFC3522
+The Eifel Detection Algorithm for TCP
+2003", shape=ellipse, URL="RFC3522.html", target="_top", tooltip="The Eifel detection algorithm allows a TCP sender to detect a posteriori whether it has entered loss recovery unnecessarily.  It requires that the TCP Timestamps option defined in RFC 1323 be enabled for a connection.  The Eifel detection algorithm makes use of the fact that the TCP Timestamps option eliminates the retransmission ambiguity in TCP.  Based on the timestamp of the first acceptable ACK that arrives during loss recovery, it decides whether loss recovery was entered unnecessarily.  The Eifel detection algorithm provides a basis for future TCP enhancements.  This includes response algorithms to back out of loss recovery by restoring a TCP sender's congestion control state.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3522;
+  RFC4015 [label="RFC4015
+The Eifel Response Algorithm for TCP
+2005", shape=ellipse, URL="RFC4015.html", target="_top", tooltip="Based on an appropriate detection algorithm, the Eifel response algorithm provides a way for a TCP sender to respond to a detected spurious timeout.  It adapts the retransmission timer to avoid further spurious timeouts and (depending on the detection algorithm) can avoid the often unnecessary go-back-N retransmits that would otherwise be sent.  In addition, the Eifel response algorithm restores the congestion control state in such a way that packet bursts are avoided. [STANDARDS-TRACK]"];
+  cites -> RFC4015;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC6582 [label="RFC6582
+The NewReno Modification to TCP's Fast
+Recovery Algorithm
+2012", shape=ellipse, URL="RFC6582.html", target="_top", tooltip="RFC 5681 documents the following four intertwined TCP congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  RFC 5681 explicitly allows certain modifications of these algorithms, including modifications that use the TCP Selective Acknowledgment (SACK) option (RFC 2883), and modifications that respond to partial acknowledgments (ACKs that cover new data, but not all the data outstanding when loss was detected) in the absence of SACK.  This document describes a specific algorithm for responding to partial acknowledgments, referred to as NewReno.  This response to partial acknowledgments was first proposed by Janey Hoe.  This document obsoletes RFC 3782. [STANDARDS-TRACK]"];
+  cites -> RFC6582;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7786;
+  RFC7837 [label="RFC7837
+IPv6 Destination Option for Congestion
+Exposure (ConEx)
+2016", shape=ellipse, URL="RFC7837.html", target="_top", tooltip="Congestion Exposure (ConEx) is a mechanism by which senders inform the network about the congestion encountered by packets earlier in the same flow.  This document specifies an IPv6 destination option that is capable of carrying ConEx markings in IPv6 datagrams."];
+  RFC7837 -> rev_cites;
+}

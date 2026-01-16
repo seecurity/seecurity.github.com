@@ -1,0 +1,391 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9291 [label="RFC9291
+A YANG Network Data Model for Layer 2
+VPNs
+2022", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines an L2VPN Network Model (L2NM) that can be used to manage the provisioning of Layer 2 Virtual Private Network (L2VPN) services within a network (e.g., a service provider network). The L2NM complements the L2VPN Service Model (L2SM) by providing a network-centric view of the service that is internal to a service provider. The L2NM is particularly meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. Also, this document defines a YANG module to manage Ethernet segments and the initial versions of two IANA-maintained modules that include a set of identities of BGP Layer 2 encapsulation types and pseudowire types."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9291;
+
+  obs [label="obsoletes", shape=box];
+  RFC9291 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9291 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9291;
+
+  cites [label="cites", shape=box];
+  RFC9291 -> cites;
+  RFC8466 [label="RFC8466
+A YANG Data Model for Layer 2 Virtual
+Private Network (L2VPN) Service Delivery
+2018", shape=ellipse, URL="RFC8466.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure a Layer 2 provider-provisioned VPN service. It is up to a management system to take this as an input and generate specific configuration models to configure the different network elements to deliver the service. How this configuration of network elements is done is out of scope for this document. The YANG data model defined in this document includes support for point-to-point Virtual Private Wire Services (VPWSs) and multipoint Virtual Private LAN Services (VPLSs) that use Pseudowires signaled using the Label Distribution Protocol (LDP) and the Border Gateway Protocol (BGP) as described in RFCs 4761 and 6624. The YANG data model defined in this document conforms to the Network Management Datastore Architecture defined in RFC 8342."];
+  cites -> RFC8466;
+  RFC4761 [label="RFC4761
+Virtual Private LAN Service (VPLS) Using
+BGP for Auto-Discovery and Signaling
+2007", shape=ellipse, URL="RFC4761.html", target="_top", tooltip="Virtual Private LAN Service (VPLS), also known as Transparent LAN Service and Virtual Private Switched Network service, is a useful Service Provider offering. The service offers a Layer 2 Virtual Private Network (VPN); however, in the case of VPLS, the customers in the VPN are connected by a multipoint Ethernet LAN, in contrast to the usual Layer 2 VPNs, which are point-to-point in nature. This document describes the functions required to offer VPLS, a mechanism for signaling a VPLS, and rules for forwarding VPLS frames across a packet switched network. [STANDARDS-TRACK]"];
+  cites -> RFC4761;
+  RFC4762 [label="RFC4762
+Virtual Private LAN Service (VPLS) Using
+Label Distribution Protocol (LDP)
+Signaling
+2007", shape=ellipse, URL="RFC4762.html", target="_top", tooltip="This document describes a Virtual Private LAN Service (VPLS) solution using pseudowires, a service previously implemented over other tunneling technologies and known as Transparent LAN Services (TLS). A VPLS creates an emulated LAN segment for a given set of users; i.e., it creates a Layer 2 broadcast domain that is fully capable of learning and forwarding on Ethernet MAC addresses and that is closed to a given set of users. Multiple VPLS services can be supported from a single Provider Edge (PE) node. This document describes the control plane functions of signaling pseudowire labels using Label Distribution Protocol (LDP), extending RFC 4447. It is agnostic to discovery protocols. The data plane functions of forwarding are also described, focusing in particular on the learning of MAC addresses. The encapsulation of VPLS packets is described by RFC 4448. [STANDARDS-TRACK]"];
+  cites -> RFC4762;
+  RFC4664 [label="RFC4664
+Framework for Layer 2 Virtual Private
+Networks (L2VPNs)
+2006", shape=ellipse, URL="RFC4664.html", target="_top", tooltip="This document provides a framework for Layer 2 Provider Provisioned Virtual Private Networks (L2VPNs).  This framework is intended to aid in standardizing protocols and mechanisms to support interoperable L2VPNs.  This memo provides information for the Internet community."];
+  cites -> RFC4664;
+  RFC8214 [label="RFC8214
+Virtual Private Wire Service Support in
+Ethernet VPN
+2017", shape=ellipse, URL="RFC8214.html", target="_top", tooltip="This document describes how Ethernet VPN (EVPN) can be used to support the Virtual Private Wire Service (VPWS) in MPLS/IP networks.  EVPN accomplishes the following for VPWS: provides Single-Active as well as All-Active multihoming with flow-based load-balancing, eliminates the need for Pseudowire (PW) signaling, and provides fast protection convergence upon node or link failure."];
+  cites -> RFC8214;
+  RFC7623 [label="RFC7623
+Provider Backbone Bridging Combined with
+Ethernet VPN (PBB-EVPN)
+2015", shape=ellipse, URL="RFC7623.html", target="_top", tooltip="This document discusses how Ethernet Provider Backbone Bridging (PBB) can be combined with Ethernet VPN (EVPN) in order to reduce the number of BGP MAC Advertisement routes by aggregating Customer/Client MAC (C-MAC) addresses via Provider Backbone MAC (B-MAC) address, provide client MAC address mobility using C-MAC aggregation, confine the scope of C-MAC learning to only active flows, offer per-site policies, and avoid C-MAC address flushing on topology changes.  The combined solution is referred to as PBB-EVPN."];
+  cites -> RFC7623;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  cites -> RFC7432;
+  RFC8365 [label="RFC8365
+A Network Virtualization Overlay
+Solution Using Ethernet VPN (EVPN)
+2018", shape=ellipse, URL="RFC8365.html", target="_top", tooltip="This document specifies how Ethernet VPN (EVPN) can be used as a Network Virtualization Overlay (NVO) solution and explores the various tunnel encapsulation options over IP and their impact on the EVPN control plane and procedures.  In particular, the following encapsulation options are analyzed: Virtual Extensible LAN (VXLAN), Network Virtualization using Generic Routing Encapsulation (NVGRE), and MPLS over GRE.  This specification is also applicable to Generic Network Virtualization Encapsulation (GENEVE); however, some incremental work is required, which will be covered in a separate document.  This document also specifies new multihoming procedures for split-horizon filtering and mass withdrawal.  It also specifies EVPN route constructions for VXLAN/NVGRE encapsulations and Autonomous System Border Router (ASBR) procedures for multihoming of Network Virtualization Edge (NVE) devices."];
+  cites -> RFC8365;
+  RFC7267 [label="RFC7267
+Dynamic Placement of Multi-Segment
+Pseudowires
+2014", shape=ellipse, URL="RFC7267.html", target="_top", tooltip="RFC 5254 describes the service provider requirements for extending the reach of pseudowires (PWs) across multiple Packet Switched Network domains.  A multi-segment PW is defined as a set of two or more contiguous PW segments that behave and function as a single point-to-point PW.  This document describes extensions to the PW control protocol to dynamically place the segments of the multi-segment pseudowire among a set of Provider Edge (PE) routers.  This document also updates RFC 6073 by updating the value of the Length field of the PW Switching Point PE Sub-TLV Type 0x06 to 14."];
+  cites -> RFC7267;
+  RFC9181 [label="RFC9181
+A Common YANG Data Model for Layer 2 and
+Layer 3 VPNs
+2022", shape=ellipse, URL="RFC9181.html", target="_top", tooltip="This document defines a common YANG module that is meant to be reused by various VPN-related modules such as Layer 3 VPN and Layer 2 VPN network models."];
+  cites -> RFC9181;
+  RFC8342 [label="RFC8342
+Network Management Datastore
+Architecture (NMDA)
+2018", shape=ellipse, URL="RFC8342.html", target="_top", tooltip="Datastores are a fundamental concept binding the data models written in the YANG data modeling language to network management protocols such as the Network Configuration Protocol (NETCONF) and RESTCONF.  This document defines an architectural framework for datastores based on the experience gained with the initial simpler model, addressing requirements that were not well supported in the initial model.  This document updates RFC 7950."];
+  cites -> RFC8342;
+  RFC6241 [label="RFC6241
+Network Configuration Protocol (NETCONF)
+2011", shape=ellipse, URL="RFC6241.html", target="_top", tooltip="The Network Configuration Protocol (NETCONF) defined in this document provides mechanisms to install, manipulate, and delete the configuration of network devices.  It uses an Extensible Markup Language (XML)-based data encoding for the configuration data as well as the protocol messages.  The NETCONF protocol operations are realized as remote procedure calls (RPCs).  This document obsoletes RFC 4741. [STANDARDS-TRACK]"];
+  cites -> RFC6241;
+  RFC7950 [label="RFC7950
+The YANG 1.1 Data Modeling Language
+2016", shape=ellipse, URL="RFC7950.html", target="_top", tooltip="YANG is a data modeling language used to model configuration data, state data, Remote Procedure Calls, and notifications for network management protocols.  This document describes the syntax and semantics of version 1.1 of the YANG language.  YANG version 1.1 is a maintenance release of the YANG language, addressing ambiguities and defects in the original specification.  There are a small number of backward incompatibilities from YANG version 1.  This document also specifies the YANG mappings to the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC7950;
+  RFC4026 [label="RFC4026
+Provider Provisioned Virtual Private
+Network (VPN) Terminology
+2005", shape=ellipse, URL="RFC4026.html", target="_top", tooltip="The widespread interest in provider-provisioned Virtual Private Network (VPN) solutions lead to memos proposing different and overlapping solutions. The IETF working groups (first Provider Provisioned VPNs and later Layer 2 VPNs and Layer 3 VPNs) have discussed these proposals and documented specifications. This has lead to the development of a partially new set of concepts used to describe the set of VPN services. To a certain extent, more than one term covers the same concept, and sometimes the same term covers more than one concept. This document seeks to make the terminology in the area clearer and more intuitive. This memo provides information for the Internet community."];
+  cites -> RFC4026;
+  RFC8309 [label="RFC8309
+Service Models Explained
+2018", shape=ellipse, URL="RFC8309.html", target="_top", tooltip="The IETF has produced many modules in the YANG modeling language. The majority of these modules are used to construct data models to model devices or monolithic functions. A small number of YANG modules have been defined to model services (for example, the Layer 3 Virtual Private Network Service Model (L3SM) produced by the L3SM working group and documented in RFC 8049). This document describes service models as used within the IETF and also shows where a service model might fit into a software-defined networking architecture. Note that service models do not make any assumption of how a service is actually engineered and delivered for a customer; details of how network protocols and devices are engineered to deliver a service are captured in other modules that are not exposed through the interface between the customer and the provider."];
+  cites -> RFC8309;
+  RFC8969 [label="RFC8969
+A Framework for Automating Service and
+Network Management with YANG
+2021", shape=ellipse, URL="RFC8969.html", target="_top", tooltip="Data models provide a programmatic approach to represent services and networks. Concretely, they can be used to derive configuration information for network and service components, and state information that will be monitored and tracked. Data models can be used during the service and network management life cycle (e.g., service instantiation, service provisioning, service optimization, service monitoring, service diagnosing, and service assurance). Data models are also instrumental in the automation of network management, and they can provide closed-loop control for adaptive and deterministic service creation, delivery, and maintenance. This document describes a framework for service and network management automation that takes advantage of YANG modeling technologies. This framework is drawn from a network operator perspective irrespective of the origin of a data model; thus, it can accommodate YANG modules that are developed outside the IETF."];
+  cites -> RFC8969;
+  RFC8340 [label="RFC8340
+YANG Tree Diagrams
+2018", shape=ellipse, URL="RFC8340.html", target="_top", tooltip="This document captures the current syntax used in YANG module tree diagrams.  The purpose of this document is to provide a single location for this definition.  This syntax may be updated from time to time based on the evolution of the YANG language."];
+  cites -> RFC8340;
+  RFC7297 [label="RFC7297
+IP Connectivity Provisioning Profile
+(CPP)
+2014", shape=ellipse, URL="RFC7297.html", target="_top", tooltip="This document describes the Connectivity Provisioning Profile (CPP) and proposes a CPP template to capture IP/MPLS connectivity requirements to be met within a service delivery context (e.g., Voice over IP or IP TV). The CPP defines the set of IP transfer parameters to be supported by the underlying transport network together with a reachability scope and bandwidth/capacity needs. Appropriate performance metrics, such as one-way delay or one-way delay variation, are used to characterize an IP transfer service. Both global and restricted reachability scopes can be captured in the CPP. Such a generic CPP template is meant to (1) facilitate the automation of the service negotiation and activation procedures, thus accelerating service provisioning, (2) set (traffic) objectives of Traffic Engineering functions and service management functions, and (3) improve service and network management systems with 'decision- making' capabilities based upon negotiated/offered CPPs."];
+  cites -> RFC7297;
+  RFC8453 [label="RFC8453
+Framework for Abstraction and Control of
+TE Networks (ACTN)
+2018", shape=ellipse, URL="RFC8453.html", target="_top", tooltip="Traffic Engineered (TE) networks have a variety of mechanisms to facilitate the separation of the data plane and control plane. They also have a range of management and provisioning protocols to configure and activate network resources. These mechanisms represent key technologies for enabling flexible and dynamic networking. The term Traffic Engineered network refers to a network that uses any connection-oriented technology under the control of a distributed or centralized control plane to support dynamic provisioning of end-to- end connectivity. Abstraction of network resources is a technique that can be applied to a single network domain or across multiple domains to create a single virtualized network that is under the control of a network operator or the customer of the operator that actually owns the network resources. This document provides a framework for Abstraction and Control of TE Networks (ACTN) to support virtual network services and connectivity services."];
+  cites -> RFC8453;
+  RFC8345 [label="RFC8345
+A YANG Data Model for Network Topologies
+2018", shape=ellipse, URL="RFC8345.html", target="_top", tooltip="This document defines an abstract (generic, or base) YANG data model for network/service topologies and inventories.  The data model serves as a base model that is augmented with technology-specific details in other, more specific topology and inventory data models."];
+  cites -> RFC8345;
+  RFC8343 [label="RFC8343
+A YANG Data Model for Interface
+Management
+2018", shape=ellipse, URL="RFC8343.html", target="_top", tooltip="This document defines a YANG data model for the management of network interfaces. It is expected that interface-type-specific data models augment the generic interfaces data model defined in this document. The data model includes definitions for configuration and system state (status information and counters for the collection of statistics). The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in RFC 8342. This document obsoletes RFC 7223."];
+  cites -> RFC8343;
+  RFC8960 [label="RFC8960
+A YANG Data Model for MPLS Base
+2020", shape=ellipse, URL="RFC8960.html", target="_top", tooltip="This document contains a specification of the MPLS base YANG data model.  The MPLS base YANG data model serves as a base framework for configuring and managing an MPLS switching subsystem on an MPLS-enabled router.  It is expected that other MPLS YANG data models (e.g., MPLS Label Switched Path (LSP) static, LDP, or RSVP-TE YANG data models) will augment the MPLS base YANG data model."];
+  cites -> RFC8960;
+  RFC8519 [label="RFC8519
+YANG Data Model for Network Access
+Control Lists (ACLs)
+2019", shape=ellipse, URL="RFC8519.html", target="_top", tooltip="This document defines a data model for Access Control Lists (ACLs).  An ACL is a user-ordered set of rules used to configure the forwarding behavior in a device.  Each rule is used to find a match on a packet and define actions that will be performed on the packet."];
+  cites -> RFC8519;
+  RFC8584 [label="RFC8584
+Framework for Ethernet VPN Designated
+Forwarder Election Extensibility
+2019", shape=ellipse, URL="RFC8584.html", target="_top", tooltip="An alternative to the default Designated Forwarder (DF) selection algorithm in Ethernet VPNs (EVPNs) is defined.  The DF is the Provider Edge (PE) router responsible for sending Broadcast, Unknown Unicast, and Multicast (BUM) traffic to a multihomed Customer Edge (CE) device on a given VLAN on a particular Ethernet Segment (ES).  In addition, the ability to influence the DF election result for a VLAN based on the state of the associated Attachment Circuit (AC) is specified.  This document clarifies the DF election Finite State Machine in EVPN services.  Therefore, it updates the EVPN specification (RFC 7432)."];
+  cites -> RFC8584;
+  RFC3644 [label="RFC3644
+Policy Quality of Service (QoS)
+Information Model
+2003", shape=ellipse, URL="RFC3644.html", target="_top", tooltip="This document presents an object-oriented information model for representing Quality of Service (QoS) network management policies.  This document is based on the IETF Policy Core Information Model and its extensions.  It defines an information model for QoS enforcement for differentiated and integrated services using policy.  It is important to note that this document defines an information model, which by definition is independent of any particular data storage mechanism and access protocol."];
+  cites -> RFC3644;
+  RFC5880 [label="RFC5880
+Bidirectional Forwarding Detection (BFD)
+2010", shape=ellipse, URL="RFC5880.html", target="_top", tooltip="This document describes a protocol intended to detect faults in the bidirectional path between two forwarding engines, including interfaces, data link(s), and to the extent possible the forwarding engines themselves, with potentially very low latency.  It operates independently of media, data protocols, and routing protocols. [STANDARDS-TRACK]"];
+  cites -> RFC5880;
+  RFC6624 [label="RFC6624
+Layer 2 Virtual Private Networks Using
+BGP for Auto-Discovery and Signaling
+2012", shape=ellipse, URL="RFC6624.html", target="_top", tooltip="Layer 2 Virtual Private Networks (L2VPNs) based on Frame Relay or ATM circuits have been around a long time; more recently, Ethernet VPNs, including Virtual Private LAN Service, have become popular.  Traditional L2VPNs often required a separate Service Provider infrastructure for each type and yet another for the Internet and IP VPNs.  In addition, L2VPN provisioning was cumbersome.  This document presents a new approach to the problem of offering L2VPN services where the L2VPN customer's experience is virtually identical to that offered by traditional L2VPNs, but such that a Service Provider can maintain a single network for L2VPNs, IP VPNs, and the Internet, as well as a common provisioning methodology for all services.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6624;
+  RFC7209 [label="RFC7209
+Requirements for Ethernet VPN (EVPN)
+2014", shape=ellipse, URL="RFC7209.html", target="_top", tooltip="The widespread adoption of Ethernet L2VPN services and the advent of new applications for the technology (e.g., data center interconnect) have culminated in a new set of requirements that are not readily addressable by the current Virtual Private LAN Service (VPLS) solution.  In particular, multihoming with all-active forwarding is not supported, and there's no existing solution to leverage Multipoint-to-Multipoint (MP2MP) Label Switched Paths (LSPs) for optimizing the delivery of multi-destination frames.  Furthermore, the provisioning of VPLS, even in the context of BGP-based auto-discovery, requires network operators to specify various network parameters on top of the access configuration.  This document specifies the requirements for an Ethernet VPN (EVPN) solution, which addresses the above issues."];
+  cites -> RFC7209;
+  RFC6074 [label="RFC6074
+Provisioning, Auto-Discovery, and
+Signaling in Layer 2 Virtual Private
+Networks (L2VPNs)
+2011", shape=ellipse, URL="RFC6074.html", target="_top", tooltip="Provider Provisioned Layer 2 Virtual Private Networks (L2VPNs) may have different provisioning models, i.e., models for what information needs to be configured in what entities.  Once configured, the provisioning information is distributed by a discovery process.  When the discovery process is complete, a signaling protocol is automatically invoked to set up the mesh of pseudowires (PWs) that form the (virtual) backbone of the L2VPN.  This document specifies a number of L2VPN provisioning models, and further specifies the semantic structure of the endpoint identifiers required by each model.  It discusses the distribution of these identifiers by the discovery process, especially when discovery is based on the Border Gateway Protocol (BGP).  It then specifies how the endpoint identifiers are carried in the two signaling protocols that are used to set up PWs, the Label Distribution Protocol (LDP), and the Layer 2 Tunneling Protocol version 3 (L2TPv3). [STANDARDS- TRACK]"];
+  cites -> RFC6074;
+  RFC8077 [label="RFC8077
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2017", shape=ellipse, URL="RFC8077.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDUs) and then transmitting them over pseudowires (PWs). It is also possible to use pseudowires to provide low-rate Time-Division Multiplexed and Synchronous Optical NETworking circuit emulation over an MPLS-enabled network. This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to the Label Distribution Protocol (LDP). Procedures for encapsulating Layer 2 PDUs are specified in other documents. This document is a rewrite of RFC 4447 for publication as an Internet Standard."];
+  cites -> RFC8077;
+  RFC4667 [label="RFC4667
+Layer 2 Virtual Private Network (L2VPN)
+Extensions for Layer 2 Tunneling
+Protocol (L2TP)
+2006", shape=ellipse, URL="RFC4667.html", target="_top", tooltip="The Layer 2 Tunneling Protocol (L2TP) provides a standard method for setting up and managing L2TP sessions to tunnel a variety of L2 protocols.  One of the reference models supported by L2TP describes the use of an L2TP session to connect two Layer 2 circuits attached to a pair of peering L2TP Access Concentrators (LACs), which is a basic form of Layer 2 Virtual Private Network (L2VPN).  This document defines the protocol extensions for L2TP to set up different types of L2VPNs in a unified fashion. [STANDARDS-TRACK]"];
+  cites -> RFC4667;
+  RFC4446 [label="RFC4446
+IANA Allocations for Pseudowire Edge to
+Edge Emulation (PWE3)
+2006", shape=ellipse, URL="RFC4446.html", target="_top", tooltip="This document allocates the fixed pseudowire identifier and other fixed protocol values for protocols that have been defined in the Pseudo Wire Edge to Edge (PWE3) working group.  Detailed IANA allocation instructions are also included in this document.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4446;
+  RFC3032 [label="RFC3032
+MPLS Label Stack Encoding
+2001", shape=ellipse, URL="RFC3032.html", target="_top", tooltip="This document specifies the encoding to be used by an LSR in order to transmit labeled packets on Point-to-Point Protocol (PPP) data links, on LAN data links, and possibly on other data links as well.  This document also specifies rules and procedures for processing the various fields of the label stack encoding. [STANDARDS-TRACK]"];
+  cites -> RFC3032;
+  RFC4448 [label="RFC4448
+Encapsulation Methods for Transport of
+Ethernet over MPLS Networks
+2006", shape=ellipse, URL="RFC4448.html", target="_top", tooltip="An Ethernet pseudowire (PW) is used to carry Ethernet/802.3 Protocol Data Units (PDUs) over an MPLS network.  This enables service providers to offer emulated Ethernet services over existing MPLS networks.  This document specifies the encapsulation of Ethernet/802.3 PDUs within a pseudowire.  It also specifies the procedures for using a PW to provide a point-to-point Ethernet service. [STANDARDS-TRACK]"];
+  cites -> RFC4448;
+  RFC4553 [label="RFC4553
+Structure-Agnostic Time Division
+Multiplexing (TDM) over Packet (SAToP)
+2006", shape=ellipse, URL="RFC4553.html", target="_top", tooltip="This document describes a pseudowire encapsulation for Time Division Multiplexing (TDM) bit-streams (T1, E1, T3, E3) that disregards any structure that may be imposed on these streams, in particular the structure imposed by the standard TDM framing. [STANDARDS-TRACK]"];
+  cites -> RFC4553;
+  RFC4618 [label="RFC4618
+Encapsulation Methods for Transport of
+PPP/High-Level Data Link Control (HDLC)
+over MPLS Networks
+2006", shape=ellipse, URL="RFC4618.html", target="_top", tooltip="A pseudowire (PW) can be used to carry Point to Point Protocol (PPP) or High-Level Data Link Control (HDLC) Protocol Data Units over a Multiprotocol Label Switching (MPLS) network without terminating the PPP/HDLC protocol.  This enables service providers to offer emulated HDLC, or PPP link services over existing MPLS networks.  This document specifies the encapsulation of PPP/HDLC Packet Data Units (PDUs) within a pseudowire. [STANDARDS-TRACK]"];
+  cites -> RFC4618;
+  RFC4619 [label="RFC4619
+Encapsulation Methods for Transport of
+Frame Relay over Multiprotocol Label
+Switching (MPLS) Networks
+2006", shape=ellipse, URL="RFC4619.html", target="_top", tooltip="A frame relay pseudowire is a mechanism that exists between a provider's edge network nodes and that supports as faithfully as possible frame relay services over an MPLS packet switched network (PSN).  This document describes the detailed encapsulation necessary to transport frame relay packets over an MPLS network. [STANDARDS-TRACK]"];
+  cites -> RFC4619;
+  RFC4717 [label="RFC4717
+Encapsulation Methods for Transport of
+Asynchronous Transfer Mode (ATM) over
+MPLS Networks
+2006", shape=ellipse, URL="RFC4717.html", target="_top", tooltip="An Asynchronous Transfer Mode (ATM) Pseudowire (PW) is used to carry ATM cells over an MPLS network.  This enables service providers to offer emulated ATM services over existing MPLS networks.  This document specifies methods for the encapsulation of ATM cells within a pseudowire.  It also specifies the procedures for using a PW to provide an ATM service. [STANDARDS-TRACK]"];
+  cites -> RFC4717;
+  RFC4816 [label="RFC4816
+Pseudowire Emulation Edge-to-Edge (PWE3)
+Asynchronous Transfer Mode (ATM)
+Transparent Cell Transport Service
+2007", shape=ellipse, URL="RFC4816.html", target="_top", tooltip="The document describes a transparent cell transport service that makes use of the N-to-one cell relay mode for Pseudowire Emulation Edge-to-Edge (PWE3) Asynchronous Transfer-Mode (ATM) cell encapsulation. [STANDARDS-TRACK]"];
+  cites -> RFC4816;
+  RFC4842 [label="RFC4842
+Synchronous Optical Network/Synchronous
+Digital Hierarchy (SONET/SDH) Circuit
+Emulation over Packet (CEP)
+2007", shape=ellipse, URL="RFC4842.html", target="_top", tooltip="This document provides encapsulation formats and semantics for emulating Synchronous Optical Network/Synchronous Digital Hierarchy (SONET/SDH) circuits and services over MPLS. [STANDARDS-TRACK]"];
+  cites -> RFC4842;
+  RFC5086 [label="RFC5086
+Structure-Aware Time Division
+Multiplexed (TDM) Circuit Emulation
+Service over Packet Switched Network
+(CESoPSN)
+2007", shape=ellipse, URL="RFC5086.html", target="_top", tooltip="This document describes a method for encapsulating structured (NxDS0) Time Division Multiplexed (TDM) signals as pseudowires over packet-switching networks (PSNs).  In this regard, it complements similar work for structure-agnostic emulation of TDM bit-streams (see RFC 4553).  This memo provides information for the Internet community."];
+  cites -> RFC5086;
+  RFC2507 [label="RFC2507
+IP Header Compression
+1999", shape=ellipse, URL="RFC2507.html", target="_top", tooltip="This document describes how to compress multiple IP headers and TCP and UDP headers per hop over point to point links. [STANDARDS-TRACK]"];
+  cites -> RFC2507;
+  RFC2508 [label="RFC2508
+Compressing IP/UDP/RTP Headers for Low-
+Speed Serial Links
+1999", shape=ellipse, URL="RFC2508.html", target="_top", tooltip="This document describes a method for compressing the headers of IP/UDP/RTP datagrams to reduce overhead on low-speed serial links. [STANDARDS-TRACK]"];
+  cites -> RFC2508;
+  RFC3545 [label="RFC3545
+Enhanced Compressed RTP (CRTP) for Links
+with High Delay, Packet Loss and
+Reordering
+2003", shape=ellipse, URL="RFC3545.html", target="_top", tooltip="This document describes a header compression scheme for point to point links with packet loss and long delays.  It is based on Compressed Real-time Transport Protocol (CRTP), the IP/UDP/RTP header compression described in RFC 2508.  CRTP does not perform well on such links: packet loss results in context corruption and due to the long delay, many more packets are discarded before the context is repaired.  To correct the behavior of CRTP over such links, a few extensions to the protocol are specified here.  The extensions aim to reduce context corruption by changing the way the compressor updates the context at the decompressor: updates are repeated and include updates to full and differential context parameters.  With these extensions, CRTP performs well over links with packet loss, packet reordering and long delays. [STANDARDS-TRACK]"];
+  cites -> RFC3545;
+  RFC4863 [label="RFC4863
+Wildcard Pseudowire Type
+2007", shape=ellipse, URL="RFC4863.html", target="_top", tooltip="Pseudowire signaling requires that the Pseudowire Type (PW Type) be identical in both directions.  For certain applications the configuration of the PW Type is most easily accomplished by configuring this information at just one PW endpoint.  In any form of LDP-based signaling, each PW endpoint must initiate the creation of a unidirectional LSP.  In order to allow the initiation of these two LSPs to remain independent, a means is needed for allowing the PW endpoint (lacking a priori knowledge of the PW Type) to initiate the creation of an LSP.  This document defines a Wildcard PW Type to satisfy this need. [STANDARDS-TRACK]"];
+  cites -> RFC4863;
+  RFC4901 [label="RFC4901
+Protocol Extensions for Header
+Compression over MPLS
+2007", shape=ellipse, URL="RFC4901.html", target="_top", tooltip="This specification defines how to use Multi-Protocol Label Switching (MPLS) to route Header-Compressed (HC) packets over an MPLS label switched path.  HC can significantly reduce packet-header overhead and, in combination with MPLS, can also increases bandwidth efficiency and processing scalability in terms of the maximum number of simultaneous compressed flows that use HC at each router).  Here we define how MPLS pseudowires are used to transport the HC context and control messages between the ingress and egress MPLS label switching routers.  This is defined for a specific set of existing HC mechanisms that might be used, for example, to support voice over IP.  This specification also describes extension mechanisms to allow support for future, as yet to be defined, HC protocols.  In this specification, each HC protocol operates independently over a single pseudowire instance, very much as it would over a single point-to-point link. [STANDARDS-TRACK]"];
+  cites -> RFC4901;
+  RFC5087 [label="RFC5087
+Time Division Multiplexing over IP
+(TDMoIP)
+2007", shape=ellipse, URL="RFC5087.html", target="_top", tooltip="Time Division Multiplexing over IP (TDMoIP) is a structure-aware method for transporting Time Division Multiplexed (TDM) signals using pseudowires (PWs).  Being structure-aware, TDMoIP is able to ensure TDM structure integrity, and thus withstand network degradations better than structure-agnostic transport.  Structure-aware methods can distinguish individual channels, enabling packet loss concealment and bandwidth conservation.  Accessibility of TDM signaling facilitates mechanisms that exploit or manipulate signaling.  This memo provides information for the Internet community."];
+  cites -> RFC5087;
+  RFC5143 [label="RFC5143
+Synchronous Optical Network/Synchronous
+Digital Hierarchy (SONET/SDH) Circuit
+Emulation Service over MPLS (CEM)
+Encapsulation
+2008", shape=ellipse, URL="RFC5143.html", target="_top", tooltip="This document describes a historical method for encapsulating Synchronous Optical Network/Synchronous Digital Hierarchy (SONET/SDH) Path signals for transport across packet-switched networks (PSNs).  The PSNs explicitly supported by this document include MPLS and IP.  Note that RFC 4842 describes the standards-track protocol for this functionality, and new implementations must use RFC 4842 rather than this document except when interoperability with older implementations is desired.  This memo defines a Historic Document for the Internet community."];
+  cites -> RFC5143;
+  RFC5795 [label="RFC5795
+The RObust Header Compression (ROHC)
+Framework
+2010", shape=ellipse, URL="RFC5795.html", target="_top", tooltip="The Robust Header Compression (ROHC) protocol provides an efficient, flexible, and future-proof header compression concept. It is designed to operate efficiently and robustly over various link technologies with different characteristics. The ROHC framework, along with a set of compression profiles, was initially defined in RFC 3095. To improve and simplify the ROHC specifications, this document explicitly defines the ROHC framework and the profile for uncompressed separately. More specifically, the definition of the framework does not modify or update the definition of the framework specified by RFC 3095. This specification obsoletes RFC 4995. It fixes one interoperability issue that was erroneously introduced in RFC 4995, and adds some minor clarifications. [STANDARDS-TRACK]"];
+  cites -> RFC5795;
+  RFC6307 [label="RFC6307
+Encapsulation Methods for Transport of
+Fibre Channel Traffic over MPLS Networks
+2012", shape=ellipse, URL="RFC6307.html", target="_top", tooltip="A Fibre Channel pseudowire (PW) is used to carry Fibre Channel traffic over an MPLS network.  This enables service providers to take advantage of MPLS to offer emulated Fibre Channel services.  This document specifies the encapsulation of Fibre Channel traffic within a pseudowire.  It also specifies the common procedures for using a PW to provide a Fibre Channel service. [STANDARDS-TRACK]"];
+  cites -> RFC6307;
+  RFC6991 [label="RFC6991
+Common YANG Data Types
+2013", shape=ellipse, URL="RFC6991.html", target="_top", tooltip="This document introduces a collection of common data types to be used with the YANG data modeling language.  This document obsoletes RFC 6021."];
+  cites -> RFC6991;
+  RFC8294 [label="RFC8294
+Common YANG Data Types for the Routing
+Area
+2017", shape=ellipse, URL="RFC8294.html", target="_top", tooltip="This document defines a collection of common data types using the YANG data modeling language.  These derived common types are designed to be imported by other modules defined in the routing area."];
+  cites -> RFC8294;
+  RFC8040 [label="RFC8040
+RESTCONF Protocol
+2017", shape=ellipse, URL="RFC8040.html", target="_top", tooltip="This document describes an HTTP-based protocol that provides a programmatic interface for accessing data defined in YANG, using the datastore concepts defined in the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC8040;
+  RFC6242 [label="RFC6242
+Using the NETCONF Protocol over Secure
+Shell (SSH)
+2011", shape=ellipse, URL="RFC6242.html", target="_top", tooltip="This document describes a method for invoking and running the Network Configuration Protocol (NETCONF) within a Secure Shell (SSH) session as an SSH subsystem.  This document obsoletes RFC 4742. [STANDARDS-TRACK]"];
+  cites -> RFC6242;
+  RFC8446 [label="RFC8446
+The Transport Layer Security (TLS)
+Protocol Version 1.3
+2018", shape=ellipse, URL="RFC8446.html", target="_top", tooltip="This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery. This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations."];
+  cites -> RFC8446;
+  RFC8341 [label="RFC8341
+Network Configuration Access Control
+Model
+2018", shape=ellipse, URL="RFC8341.html", target="_top", tooltip="The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability. There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content. This document defines such an access control model. This document obsoletes RFC 6536."];
+  cites -> RFC8341;
+  RFC3688 [label="RFC3688
+The IETF XML Registry
+2004", shape=ellipse, URL="RFC3688.html", target="_top", tooltip="This document describes an IANA maintained registry for IETF standards which use Extensible Markup Language (XML) related items such as Namespaces, Document Type Declarations (DTDs), Schemas, and Resource Description Framework (RDF) Schemas."];
+  cites -> RFC3688;
+  RFC6020 [label="RFC6020
+YANG - A Data Modeling Language for the
+Network Configuration Protocol (NETCONF)
+2010", shape=ellipse, URL="RFC6020.html", target="_top", tooltip="YANG is a data modeling language used to model configuration and state data manipulated by the Network Configuration Protocol (NETCONF), NETCONF remote procedure calls, and NETCONF notifications. [STANDARDS-TRACK]"];
+  cites -> RFC6020;
+  RFC7951 [label="RFC7951
+JSON Encoding of Data Modeled with YANG
+2016", shape=ellipse, URL="RFC7951.html", target="_top", tooltip="This document defines encoding rules for representing configuration data, state data, parameters of Remote Procedure Call (RPC) operations or actions, and notifications defined using YANG as JavaScript Object Notation (JSON) text."];
+  cites -> RFC7951;
+  RFC8792 [label="RFC8792
+Handling Long Lines in Content of
+Internet-Drafts and RFCs
+2020", shape=ellipse, URL="RFC8792.html", target="_top", tooltip="This document defines two strategies for handling long lines in width-bounded text content.  One strategy, called the single backslash strategy, is based on the historical use of a single backslash ('\') character to indicate where line-folding has occurred, with the continuation occurring with the first character that is not a space character (' ') on the next line.  The second strategy, called the double backslash strategy, extends the first strategy by adding a second backslash character to identify where the continuation begins and is thereby able to handle cases not supported by the first strategy.  Both strategies use a self-describing header enabling automated reconstitution of the original content."];
+  cites -> RFC8792;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9291;
+  RFC9375 [label="RFC9375
+A YANG Data Model for Network and VPN
+Service Performance Monitoring
+2023", shape=ellipse, URL="RFC9375.html", target="_top", tooltip="The data model for network topologies defined in RFC 8345 introduces vertical layering relationships between networks that can be augmented to cover network and service topologies.  This document defines a YANG module for performance monitoring (PM) of both underlay networks and overlay VPN services that can be used to monitor and manage network performance on the topology of both layers."];
+  RFC9375 -> rev_cites;
+  RFC9408 [label="RFC9408
+A YANG Network Data Model for Service
+Attachment Points (SAPs)
+2023", shape=ellipse, URL="RFC9408.html", target="_top", tooltip="This document defines a YANG data model for representing an abstract view of the provider network topology that contains the points from which its services can be attached (e.g., basic connectivity, VPN, network slices). Also, the model can be used to retrieve the points where the services are actually being delivered to customers (including peer networks). This document augments the 'ietf-network' data model defined in RFC 8345 by adding the concept of Service Attachment Points (SAPs). The SAPs are the network reference points to which network services, such as Layer 3 Virtual Private Network (L3VPN) or Layer 2 Virtual Private Network (L2VPN), can be attached. One or multiple services can be bound to the same SAP. Both User-to-Network Interface (UNI) and Network-to-Network Interface (NNI) are supported in the SAP data model."];
+  RFC9408 -> rev_cites;
+  RFC9732 [label="RFC9732
+A Framework for NRP-Based Enhanced
+Virtual Private Networks
+2025", shape=ellipse, URL="RFC9732.html", target="_top", tooltip="This document describes a framework for Enhanced Virtual Private Networks (VPNs) based on Network Resource Partitions (NRPs) in order to support the needs of applications with specific traffic performance requirements (e.g., low latency, bounded jitter).  NRP-based enhanced VPNs leverage the VPN and Traffic Engineering (TE) technologies and add characteristics that specific services require beyond those provided by conventional VPNs.  Typically, an NRP-based enhanced VPN will be used to underpin network slicing, but it could also be of use in its own right providing enhanced connectivity services between customer sites.  This document also provides an overview of relevant technologies in different network layers and identifies some areas for potential new work."];
+  RFC9732 -> rev_cites;
+  RFC9833 [label="RFC9833
+A Common YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9833.html", target="_top", tooltip="The document specifies a common attachment circuits (ACs) YANG data
+model, which is designed to be reusable by other models.  This design
+is meant to ensure consistent AC structures among models that
+manipulate ACs.  For example, this common model can be reused by
+service models to expose ACs as a service, service models that
+require binding a service to a set of ACs, network and device models
+to provision ACs, etc."];
+  RFC9833 -> rev_cites;
+  RFC9834 [label="RFC9834
+YANG Data Models for Bearers and
+Attachment Circuits as a Service (ACaaS)
+2025", shape=ellipse, URL="RFC9834.html", target="_top", tooltip="Delivery of network services assumes that appropriate setup is
+provisioned over the links that connect customer termination points
+and a provider network. The required setup to allow successful data
+exchange over these links is referred to as an attachment circuit
+(AC), while the underlying link is referred to as a bearer. This document specifies a YANG service data model for ACs. This model
+can be used for the provisioning of ACs before or during service
+provisioning (e.g., RFC 9543 Network Slice Service). The document also specifies a YANG service data model for managing
+bearers over which ACs are established."];
+  RFC9834 -> rev_cites;
+  RFC9835 [label="RFC9835
+A Network YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9835.html", target="_top", tooltip="This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in the YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf- opsawg-teas-attachment-circuit). The module augments the base network ('ietf-network') and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs)."];
+  RFC9835 -> rev_cites;
+  RFC9836 [label="RFC9836
+A YANG Data Model for Augmenting VPN
+Service and Network Models with
+Attachment Circuits
+2025", shape=ellipse, URL="RFC9836.html", target="_top", tooltip="This document defines a YANG data model, referred to as the AC Glue
+model, to augment the LxVPN Service Model (LxSM) and LxVPN Network
+Model (LxNM) with references to attachment circuits (ACs).  The AC
+Glue model enables a provider to associate Layer 2/3 VPN (LxVPN)
+services with the underlying AC infrastructure, thereby facilitating
+consistent provisioning and management of new or existing ACs in
+conjunction with LxVPN services.  Specifically, by introducing an
+integrated approach to AC and LxVPN management, this model supports
+Attachment Circuit as a Service (ACaaS) and provides a standardized
+mechanism for aligning AC/VPN requests with the network
+configurations required to deliver them."];
+  RFC9836 -> rev_cites;
+  RFC9889 [label="RFC9889
+A Realization of Network Slices for 5G
+Networks Using Current IP/MPLS
+Technologies
+2025", shape=ellipse, URL="RFC9889.html", target="_top", tooltip="Network slicing is a feature that was introduced by the 3rd Generation Partnership Project (3GPP) in Mobile Networks. Realization of 5G slicing implies requirements for all mobile domains, including the Radio Access Network (RAN), Core Network (CN), and Transport Network (TN). This document describes a network slice realization model for IP/MPLS networks with a focus on the Transport Network fulfilling the service objectives for 5G slicing connectivity. The realization model reuses many building blocks commonly used in service provider networks at the current time."];
+  RFC9889 -> rev_cites;
+}

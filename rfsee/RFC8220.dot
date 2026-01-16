@@ -1,0 +1,39 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8220 [label="RFC8220
+Protocol Independent Multicast (PIM)
+over Virtual Private LAN Service (VPLS)
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the procedures and recommendations for Virtual Private LAN Service (VPLS) Provider Edges (PEs) to facilitate replication of multicast traffic to only certain ports (behind which there are interested Protocol Independent Multicast (PIM) routers and/or Internet Group Management Protocol (IGMP) hosts) via PIM snooping and proxying. With PIM snooping, PEs passively listen to certain PIM control messages to build control and forwarding states while transparently flooding those messages. With PIM proxying, PEs do not flood PIM Join/Prune messages but only generate their own and send them out of certain ports, based on the control states built from downstream Join/Prune messages. PIM proxying is required when PIM Join suppression is enabled on the Customer Edge (CE) devices and is useful for reducing PIM control traffic in a VPLS domain. This document also describes PIM relay, which can be viewed as lightweight proxying, where all downstream Join/Prune messages are simply forwarded out of certain ports and are not flooded, thereby avoiding the triggering of PIM Join suppression on CE devices."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8220;
+
+  obs [label="obsoletes", shape=box];
+  RFC8220 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8220 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8220;
+
+  cites [label="cites", shape=box];
+  RFC8220 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8220;
+}

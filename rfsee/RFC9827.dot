@@ -1,0 +1,76 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9827 [label="RFC9827
+Renaming the Extended Sequence Numbers
+(ESN) Transform Type in the Internet Key
+Exchange Protocol Version 2 (IKEv2)
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document clarifies and extends the meaning of Transform Type 5 in Internet Key Exchange Protocol Version 2 (IKEv2).  It updates RFC 7296 by renaming Transform Type 5 from Extended Sequence Numbers (ESN) to Sequence Numbers (SN).  It also renames two currently defined values for this Transform Type: value 0 from No Extended Sequence Numbers to 32-bit Sequential Numbers and value 1 from Extended Sequence Numbers to Partially Transmitted 64-bit Sequential Numbers."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9827;
+
+  obs [label="obsoletes", shape=box];
+  RFC9827 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9827 -> updates;
+  RFC7296 [label="RFC7296
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2014", shape=ellipse, URL="RFC7296.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document obsoletes RFC 5996, and includes all of the errata for it.  It advances IKEv2 to be an Internet Standard."];
+  updates -> RFC7296;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9827;
+
+  cites [label="cites", shape=box];
+  RFC9827 -> cites;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC4302 [label="RFC4302
+IP Authentication Header
+2005", shape=ellipse, URL="RFC4302.html", target="_top", tooltip="This document describes an updated version of the IP Authentication Header (AH), which is designed to provide authentication services in IPv4 and IPv6.  This document obsoletes RFC 2402 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4302;
+  RFC4303 [label="RFC4303
+IP Encapsulating Security Payload (ESP)
+2005", shape=ellipse, URL="RFC4303.html", target="_top", tooltip="This document describes an updated version of the Encapsulating Security Payload (ESP) protocol, which is designed to provide a mix of security services in IPv4 and IPv6.  ESP is used to provide confidentiality, data origin authentication, connectionless integrity, an anti-replay service (a form of partial sequence integrity), and limited traffic flow confidentiality.  This document obsoletes RFC 2406 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4303;
+  RFC7296 [label="RFC7296
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2014", shape=ellipse, URL="RFC7296.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document obsoletes RFC 5996, and includes all of the errata for it.  It advances IKEv2 to be an Internet Standard."];
+  cites -> RFC7296;
+  RFC9838 [label="RFC9838
+Group Key Management Using the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2025", shape=ellipse, URL="RFC9838.html", target="_top", tooltip="This document presents an extension to the Internet Key Exchange Protocol Version 2 (IKEv2) for the purpose of group key management. The protocol is in conformance with the Multicast Security (MSEC) Group Key Management architecture, which contains two components: member registration and group rekeying. Both components are required for a Group Controller/Key Server (GCKS) to provide authorized Group Members (GMs) with IPsec Group Security Associations (GSAs). The GMs then exchange IP multicast or other group traffic as IPsec packets. This document obsoletes RFC 6407."];
+  cites -> RFC9838;
+  RFC8750 [label="RFC8750
+Implicit Initialization Vector (IV) for
+Counter-Based Ciphers in Encapsulating
+Security Payload (ESP)
+2020", shape=ellipse, URL="RFC8750.html", target="_top", tooltip="Encapsulating Security Payload (ESP) sends an initialization vector (IV) in each packet.  The size of the IV depends on the applied transform and is usually 8 or 16 octets for the transforms defined at the time this document was written.  When used with IPsec, some algorithms, such as AES-GCM, AES-CCM, and ChaCha20-Poly1305, take the IV to generate a nonce that is used as an input parameter for encrypting and decrypting.  This IV must be unique but can be predictable.  As a result, the value provided in the ESP Sequence Number (SN) can be used instead to generate the nonce.  This avoids sending the IV itself and saves 8 octets per packet in the case of AES-GCM, AES-CCM, and ChaCha20-Poly1305.  This document describes how to do this."];
+  cites -> RFC8750;
+  RFC9347 [label="RFC9347
+Aggregation and Fragmentation Mode for
+Encapsulating Security Payload (ESP) and
+Its Use for IP Traffic Flow Security
+(IP-TFS)
+2023", shape=ellipse, URL="RFC9347.html", target="_top", tooltip="This document describes a mechanism for aggregation and fragmentation of IP packets when they are being encapsulated in Encapsulating Security Payload (ESP).  This new payload type can be used for various purposes, such as decreasing encapsulation overhead for small IP packets; however, the focus in this document is to enhance IP Traffic Flow Security (IP-TFS) by adding Traffic Flow Confidentiality (TFC) to encrypted IP-encapsulated traffic.  TFC is provided by obscuring the size and frequency of IP traffic using a fixed-size, constant-send-rate IPsec tunnel.  The solution allows for congestion control, as well as nonconstant send-rate usage."];
+  cites -> RFC9347;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9827;
+  RFC9838 [label="RFC9838
+Group Key Management Using the Internet
+Key Exchange Protocol Version 2 (IKEv2)
+2025", shape=ellipse, URL="RFC9838.html", target="_top", tooltip="This document presents an extension to the Internet Key Exchange Protocol Version 2 (IKEv2) for the purpose of group key management. The protocol is in conformance with the Multicast Security (MSEC) Group Key Management architecture, which contains two components: member registration and group rekeying. Both components are required for a Group Controller/Key Server (GCKS) to provide authorized Group Members (GMs) with IPsec Group Security Associations (GSAs). The GMs then exchange IP multicast or other group traffic as IPsec packets. This document obsoletes RFC 6407."];
+  RFC9838 -> rev_cites;
+}

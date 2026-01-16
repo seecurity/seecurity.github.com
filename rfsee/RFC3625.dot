@@ -1,0 +1,39 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3625 [label="RFC3625
+The QCP File Format and Media Types for
+Speech Data
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC 2658 specifies the streaming format for 3GPP2 13KK vocoder (High Rate Speech Service Option 17 for Wideband Spread Spectrum Communications Systems, also known as QCELP 13K vocoder) data, but does not specify a storage format.  Many implementations have been using the QCP file format (named for its file extension) for exchanging QCELP 13K data as well as Enhanced Variable Rate Coder (EVRC) and Selectable Mode Vocoders (SMV) data. (For example, Eudora(r), QuickTime(r), and cmda2000(r) handsets).  This document specifies the QCP file format and updates the audio/qcelp media registration to specify this format for storage, and registers the audio/evrc-qcp and audio/smv-qcp media types for EVRC and SMV (respectively) data stored in this format."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3625;
+
+  obs [label="obsoletes", shape=box];
+  RFC3625 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3625 -> updates;
+  RFC3555 [label="RFC3555
+MIME Type Registration of RTP Payload
+Formats
+2003", shape=ellipse, URL="RFC3555.html", target="_top", tooltip="This document defines the procedure to register RTP Payload Formats as audio, video or other MIME subtype names.  This is useful in a text- based format or control protocol to identify the type of an RTP transmission.  This document also registers all the RTP payload formats defined in the RTP Profile for Audio and Video Conferences as MIME subtypes.  Some of these may also be used for transfer modes other than RTP. [STANDARDS-TRACK]"];
+  updates -> RFC3555;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3625;
+
+  cites [label="cites", shape=box];
+  RFC3625 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3625;
+  RFC6381 [label="RFC6381
+The 'Codecs' and 'Profiles' Parameters
+for Bucket Media Types
+2011", shape=ellipse, URL="RFC6381.html", target="_top", tooltip="Several MIME type/subtype combinations exist that can contain different media formats. A receiving agent thus needs to examine the details of such media content to determine if the specific elements can be rendered given an available set of codecs. Especially when the end system has limited resources, or the connection to the end system has limited bandwidth, it is helpful to know from the Content- Type alone if the content can be rendered. This document specifies two parameters, 'codecs' and 'profiles', that are used with various MIME types or type/subtype combinations to allow for unambiguous specification of the codecs employed by the media formats contained within, or the profile(s) of the overall container format. This document obsoletes RFC 4281; RFC 4281 defines the 'codecs' parameter, which this document retains in a backwards compatible manner with minor clarifications; the 'profiles' parameter is added by this document. By labeling content with the specific codecs indicated to render the contained media, receiving systems can determine if the codecs are supported by the end system, and if not, can take appropriate action (such as rejecting the content, sending notification of the situation, transcoding the content to a supported type, fetching and installing the required codecs, further inspection to determine if it will be sufficient to support a subset of the indicated codecs, etc.). Similarly, the profiles can provide an overall indication, to the receiver, of the specifications with which the content complies. This is an indication of the compatibility of the container format and its contents to some specification. The receiver may be able to work out the extent to which it can handle and render the content by examining to see which of the declared profiles it supports, and what they mean. [STANDARDS-TRACK]"];
+  RFC6381 -> rev_cites;
+}

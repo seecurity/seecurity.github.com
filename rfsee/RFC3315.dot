@@ -1,0 +1,928 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3315 [label="RFC3315
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2003", shape=ellipse, fillcolor="#e8f0ff", tooltip="None"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3315;
+  RFC8415 [label="RFC8415
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2018", shape=ellipse, URL="RFC8415.html", target="_top", tooltip="This document describes the Dynamic Host Configuration Protocol for IPv6 (DHCPv6): an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly, or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC). This document updates the text from RFC 3315 (the original DHCPv6 specification) and incorporates prefix delegation (RFC 3633), stateless DHCPv6 (RFC 3736), an option to specify an upper bound for how long a client should wait before refreshing information (RFC 4242), a mechanism for throttling DHCPv6 clients when DHCPv6 service is not available (RFC 7083), and relay agent handling of unknown messages (RFC 7283). In addition, this document clarifies the interactions between models of operation (RFC 7550). As such, this document obsoletes RFC 3315, RFC 3633, RFC 3736, RFC 4242, RFC 7083, RFC 7283, and RFC 7550."];
+  RFC8415 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC3315 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3315 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3315;
+  RFC4361 [label="RFC4361
+Node-specific Client Identifiers for
+Dynamic Host Configuration Protocol
+Version Four (DHCPv4)
+2006", shape=ellipse, URL="RFC4361.html", target="_top", tooltip="This document specifies the format that is to be used for encoding Dynamic Host Configuration Protocol Version Four (DHCPv4) client identifiers, so that those identifiers will be interchangeable with identifiers used in the DHCPv6 protocol.  This document also addresses and corrects some problems in RFC 2131 and RFC 2132 with respect to the handling of DHCP client identifiers. [STANDARDS-TRACK]"];
+  RFC4361 -> updated_by;
+  RFC5494 [label="RFC5494
+IANA Allocation Guidelines for the
+Address Resolution Protocol (ARP)
+2009", shape=ellipse, URL="RFC5494.html", target="_top", tooltip="This document specifies the IANA guidelines for allocating new values in the Address Resolution Protocol (ARP).  This document also reserves some numbers for experimentation purposes.  The changes also affect other protocols that employ values from the ARP name spaces. [STANDARDS-TRACK]"];
+  RFC5494 -> updated_by;
+  RFC6221 [label="RFC6221
+Lightweight DHCPv6 Relay Agent
+2011", shape=ellipse, URL="RFC6221.html", target="_top", tooltip="This document proposes a Lightweight DHCPv6 Relay Agent (LDRA) that is used to insert relay agent options in DHCPv6 message exchanges identifying client-facing interfaces.  The LDRA can be implemented in existing access nodes (such as Digital Subscriber Link Access Multiplexers (DSLAMs) and Ethernet switches) that do not support IPv6 control or routing functions. [STANDARDS-TRACK]"];
+  RFC6221 -> updated_by;
+  RFC6422 [label="RFC6422
+Relay-Supplied DHCP Options
+2011", shape=ellipse, URL="RFC6422.html", target="_top", tooltip="DHCPv6 relay agents cannot communicate with DHCPv6 clients directly. However, in some cases, the relay agent possesses some information that would be useful to the DHCPv6 client. This document describes a mechanism whereby the DHCPv6 relay agent can provide such information to the DHCPv6 server, which can, in turn, pass this information on to the DHCP client. This document updates RFC 3315 (DHCPv6) by making explicit the implicit requirement that relay agents not modify the content of encapsulation payloads as they are relayed back toward clients. [STANDARDS-TRACK]"];
+  RFC6422 -> updated_by;
+  RFC6644 [label="RFC6644
+Rebind Capability in DHCPv6 Reconfigure
+Messages
+2012", shape=ellipse, URL="RFC6644.html", target="_top", tooltip="This document updates RFC 3315 (DHCPv6) to allow the Rebind message type to appear in the Reconfigure Message option of a Reconfigure message.  It extends the Reconfigure message to allow a DHCPv6 server to cause a DHCPv6 client to send a Rebind message.  The document also clarifies how a DHCPv6 client responds to a received Reconfigure message. [STANDARDS-TRACK]"];
+  RFC6644 -> updated_by;
+  RFC7083 [label="RFC7083
+Modification to Default Values of
+SOL_MAX_RT and INF_MAX_RT
+2013", shape=ellipse, URL="RFC7083.html", target="_top", tooltip="This document updates RFC 3315 by redefining the default values for SOL_MAX_RT and INF_MAX_RT and defining options through which a DHCPv6 server can override the client's default value for SOL_MAX_RT and INF_MAX_RT with new values."];
+  RFC7083 -> updated_by;
+  RFC7227 [label="RFC7227
+Guidelines for Creating New DHCPv6
+Options
+2014", shape=ellipse, URL="RFC7227.html", target="_top", tooltip="This document provides guidance to prospective DHCPv6 option developers to help them create option formats that are easily adoptable by existing DHCPv6 software.  It also provides guidelines for expert reviewers to evaluate new registrations.  This document updates RFC 3315."];
+  RFC7227 -> updated_by;
+  RFC7283 [label="RFC7283
+Handling Unknown DHCPv6 Messages
+2014", shape=ellipse, URL="RFC7283.html", target="_top", tooltip="DHCPv6 is not specific about handling messages with unknown types.  This memo describes the problems associated with receiving DHCPv6 messages with unknown types, and defines how a DHCPv6 server, client, or relay agent should behave when receiving unknown DHCPv6 messages.  This document also provides advice for authors of future documents that define new messages to be sent from DHCP servers to DHCP relay agents.  This document updates RFC 3315."];
+  RFC7283 -> updated_by;
+  RFC7550 [label="RFC7550
+Issues and Recommendations with Multiple
+Stateful DHCPv6 Options
+2015", shape=ellipse, URL="RFC7550.html", target="_top", tooltip="The Dynamic Host Configuration Protocol for IPv6 (DHCPv6) specification defined two stateful options, IA_NA and IA_TA, but did not anticipate the development of additional stateful options.  DHCPv6 Prefix Delegation added the IA_PD option, which is stateful.  Applications that use IA_NA and IA_PD together have revealed issues that need to be addressed.  This document updates RFCs 3315 and 3633 to address these issues."];
+  RFC7550 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC3315 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3315;
+  RFC3723 [label="RFC3723
+Securing Block Storage Protocols over IP
+2004", shape=ellipse, URL="RFC3723.html", target="_top", tooltip="This document discusses how to secure block storage and storage discovery protocols running over IP (Internet Protocol) using IPsec and IKE (Internet Key Exchange).  Threat models and security protocols are developed for iSCSI (Internet Protocol Small Computer System Interface), iFCP (Internet Fibre Channel Storage Networking) and FCIP (Fibre Channel over TCP/IP), as well as the iSNS (Internet Storage Name Server) and SLPv2 (Service Location Protocol v2) discovery protocols.  Performance issues and resource constraints are analyzed. [STANDARDS-TRACK]"];
+  RFC3723 -> rev_cites;
+  RFC4039 [label="RFC4039
+Rapid Commit Option for the Dynamic Host
+Configuration Protocol version 4
+(DHCPv4)
+2005", shape=ellipse, URL="RFC4039.html", target="_top", tooltip="This document defines a new Dynamic Host Configuration Protocol version 4 (DHCPv4) option, modeled on the DHCPv6 Rapid Commit option, for obtaining IP address and configuration information using a 2-message exchange rather than the usual 4-message exchange, expediting client configuration. [STANDARDS-TRACK]"];
+  RFC4039 -> rev_cites;
+  RFC4058 [label="RFC4058
+Protocol for Carrying Authentication for
+Network Access (PANA) Requirements
+2005", shape=ellipse, URL="RFC4058.html", target="_top", tooltip="It is expected that future IP devices will have a variety of access technologies to gain network connectivity.  Currently there are access-specific mechanisms for providing client information to the network for authentication and authorization purposes.  In addition to being limited to specific access media (e.g., 802.1X for IEEE 802 links), some of these protocols are limited to specific network topologies (e.g., PPP for point-to-point links).  The goal of this document is to identify the requirements for a link-layer agnostic protocol that allows a host and a network to authenticate each other for network access.  This protocol will run between a client's device and an agent in the network where the agent might be a client of the AAA infrastructure.  This memo provides information for the Internet community."];
+  RFC4058 -> rev_cites;
+  RFC4192 [label="RFC4192
+Procedures for Renumbering an IPv6
+Network without a Flag Day
+2005", shape=ellipse, URL="RFC4192.html", target="_top", tooltip="This document describes a procedure that can be used to renumber a network from one prefix to another.  It uses IPv6's intrinsic ability to assign multiple addresses to a network interface to provide continuity of network service through a make-before-break transition, as well as addresses naming and configuration management issues.  It also uses other IPv6 features to minimize the effort and time required to complete the transition from the old prefix to the new prefix.  This memo provides information for the Internet community."];
+  RFC4192 -> rev_cites;
+  RFC4215 [label="RFC4215
+Analysis on IPv6 Transition in Third
+Generation Partnership Project (3GPP)
+Networks
+2005", shape=ellipse, URL="RFC4215.html", target="_top", tooltip="This document analyzes the transition to IPv6 in Third Generation Partnership Project (3GPP) packet networks. These networks are based on General Packet Radio Service (GPRS) technology, and the radio network architecture is based on Global System for Mobile Communications (GSM) or Universal Mobile Telecommunications System (UMTS)/Wideband Code Division Multiple Access (WCDMA) technology. The focus is on analyzing different transition scenarios and applicable transition mechanisms and finding solutions for those transition scenarios. In these scenarios, the User Equipment (UE) connects to other nodes, e.g., in the Internet, and IPv6/IPv4 transition mechanisms are needed. This memo provides information for the Internet community."];
+  RFC4215 -> rev_cites;
+  RFC4241 [label="RFC4241
+A Model of IPv6/IPv4 Dual Stack Internet
+Access Service
+2005", shape=ellipse, URL="RFC4241.html", target="_top", tooltip="This memo is a digest of the user network interface specification of NTT Communications' dual stack ADSL access service, which provide a IPv6/IPv4 dual stack services to home users.  In order to simplify user setup, these services have a mechanism to configure IPv6 specific parameters automatically.  The memo focuses on two basic parameters: the prefix assigned to the user and the addresses of IPv6 DNS servers, and it specifies a way to deliver these parameters to Customer Premises Equipment (CPE) automatically.  This memo provides information for the Internet community."];
+  RFC4241 -> rev_cites;
+  RFC4242 [label="RFC4242
+Information Refresh Time Option for
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2005", shape=ellipse, URL="RFC4242.html", target="_top", tooltip="This document describes a Dynamic Host Configuration Protocol for IPv6 (DHCPv6) option for specifying an upper bound for how long a client should wait before refreshing information retrieved from DHCPv6.  It is used with stateless DHCPv6 as there are no addresses or other entities with lifetimes that can tell the client when to contact the DHCPv6 server to refresh its configuration. [STANDARDS-TRACK]"];
+  RFC4242 -> rev_cites;
+  RFC4280 [label="RFC4280
+Dynamic Host Configuration Protocol
+(DHCP) Options for Broadcast and
+Multicast Control Servers
+2005", shape=ellipse, URL="RFC4280.html", target="_top", tooltip="This document defines new options to discover the Broadcast and Multicast Service (BCMCS) controller in an IP network.  BCMCS is being developed for Third generation (3G) cellular telephone networks.  Users of the service interact with a controller in the network via the Mobile Node (MN) to derive information required to receive Broadcast and Multicast Service.  Dynamic Host Configuration Protocol can be used to configure the MN to access a particular controller.  This document defines the related options and option codes. [STANDARDS-TRACK]"];
+  RFC4280 -> rev_cites;
+  RFC4361 [label="RFC4361
+Node-specific Client Identifiers for
+Dynamic Host Configuration Protocol
+Version Four (DHCPv4)
+2006", shape=ellipse, URL="RFC4361.html", target="_top", tooltip="This document specifies the format that is to be used for encoding Dynamic Host Configuration Protocol Version Four (DHCPv4) client identifiers, so that those identifiers will be interchangeable with identifiers used in the DHCPv6 protocol.  This document also addresses and corrects some problems in RFC 2131 and RFC 2132 with respect to the handling of DHCP client identifiers. [STANDARDS-TRACK]"];
+  RFC4361 -> rev_cites;
+  RFC4388 [label="RFC4388
+Dynamic Host Configuration Protocol
+(DHCP) Leasequery
+2006", shape=ellipse, URL="RFC4388.html", target="_top", tooltip="A Dynamic Host Configuration Protocol version 4 (DHCPv4) server is the authoritative source of IP addresses that it has provided to DHCPv4 clients.  Other processes and devices that already make use of DHCPv4 may need to access this information.  The leasequery protocol provides these processes and devices a lightweight way to access IP address information. [STANDARDS-TRACK]"];
+  RFC4388 -> rev_cites;
+  RFC4429 [label="RFC4429
+Optimistic Duplicate Address Detection
+(DAD) for IPv6
+2006", shape=ellipse, URL="RFC4429.html", target="_top", tooltip="Optimistic Duplicate Address Detection is an interoperable modification of the existing IPv6 Neighbor Discovery (RFC 2461) and Stateless Address Autoconfiguration (RFC 2462) processes.  The intention is to minimize address configuration delays in the successful case, to reduce disruption as far as possible in the failure case, and to remain interoperable with unmodified hosts and routers. [STANDARDS-TRACK]"];
+  RFC4429 -> rev_cites;
+  RFC4472 [label="RFC4472
+Operational Considerations and Issues
+with IPv6 DNS
+2006", shape=ellipse, URL="RFC4472.html", target="_top", tooltip="This memo presents operational considerations and issues with IPv6 Domain Name System (DNS), including a summary of special IPv6 addresses, documentation of known DNS implementation misbehavior, recommendations and considerations on how to perform DNS naming for service provisioning and for DNS resolver IPv6 support, considerations for DNS updates for both the forward and reverse trees, and miscellaneous issues.  This memo is aimed to include a summary of information about IPv6 DNS considerations for those who have experience with IPv4 DNS.  This memo provides information for the Internet community."];
+  RFC4472 -> rev_cites;
+  RFC4779 [label="RFC4779
+ISP IPv6 Deployment Scenarios in
+Broadband Access Networks
+2007", shape=ellipse, URL="RFC4779.html", target="_top", tooltip="This document provides a detailed description of IPv6 deployment and integration methods and scenarios in today\'s Service Provider (SP) Broadband (BB) networks in coexistence with deployed IPv4 services.  Cable/HFC, BB Ethernet, xDSL, and WLAN are the main BB technologies that are currently deployed, and discussed in this document.  The emerging Broadband Power Line Communications (PLC/BPL) access technology is also discussed for completeness.  In this document we will discuss main components of IPv6 BB networks, their differences from IPv4 BB networks, and how IPv6 is deployed and integrated in each of these networks using tunneling mechanisms and native IPv6.  This memo provides information for the Internet community."];
+  RFC4779 -> rev_cites;
+  RFC4795 [label="RFC4795
+Link-local Multicast Name Resolution
+(LLMNR)
+2007", shape=ellipse, URL="RFC4795.html", target="_top", tooltip="The goal of Link-Local Multicast Name Resolution (LLMNR) is to enable name resolution in scenarios in which conventional DNS name resolution is not possible.  LLMNR supports all current and future DNS formats, types, and classes, while operating on a separate port from DNS, and with a distinct resolver cache.  Since LLMNR only operates on the local link, it cannot be considered a substitute for DNS.  This memo provides information for the Internet community."];
+  RFC4795 -> rev_cites;
+  RFC4862 [label="RFC4862
+IPv6 Stateless Address Autoconfiguration
+2007", shape=ellipse, URL="RFC4862.html", target="_top", tooltip="This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6.  The autoconfiguration process includes generating a link-local address, generating global addresses via stateless address autoconfiguration, and the Duplicate Address Detection procedure to verify the uniqueness of the addresses on a link. [STANDARDS-TRACK]"];
+  RFC4862 -> rev_cites;
+  RFC4903 [label="RFC4903
+Multi-Link Subnet Issues
+2007", shape=ellipse, URL="RFC4903.html", target="_top", tooltip="There have been several proposals around the notion that a subnet may span multiple links connected by routers.  This memo documents the issues and potential problems that have been raised with such an approach.  This memo provides information for the Internet community."];
+  RFC4903 -> rev_cites;
+  RFC4907 [label="RFC4907
+Architectural Implications of Link
+Indications
+2007", shape=ellipse, URL="RFC4907.html", target="_top", tooltip="A link indication represents information provided by the link layer to higher layers regarding the state of the link.  This document describes the role of link indications within the Internet architecture.  While the judicious use of link indications can provide performance benefits, inappropriate use can degrade both robustness and performance.  This document summarizes current proposals, describes the architectural issues, and provides examples of appropriate and inappropriate uses of link indications.  This memo provides information for the Internet community."];
+  RFC4907 -> rev_cites;
+  RFC4925 [label="RFC4925
+Softwire Problem Statement
+2007", shape=ellipse, URL="RFC4925.html", target="_top", tooltip="This document captures the problem statement for the Softwires Working Group, which is developing standards for the discovery, control, and encapsulation methods for connecting IPv4 networks across IPv6-only networks as well as IPv6 networks across IPv4-only networks.  The standards will encourage multiple, inter-operable vendor implementations by identifying, and extending where necessary, existing standard protocols to resolve a selected set of IPv4/IPv6 and IPv6/IPv4 transition problems.  This document describes the specific problems (Hubs and Spokes and Mesh) that will be solved by the standards developed by the Softwires Working Group.  Some requirements (and non-requirements) are also identified to better describe the specific problem scope.  This memo provides information for the Internet community."];
+  RFC4925 -> rev_cites;
+  RFC4942 [label="RFC4942
+IPv6 Transition/Co-existence Security
+Considerations
+2007", shape=ellipse, URL="RFC4942.html", target="_top", tooltip="The transition from a pure IPv4 network to a network where IPv4 and IPv6 coexist brings a number of extra security considerations that need to be taken into account when deploying IPv6 and operating the dual-protocol network and the associated transition mechanisms. This document attempts to give an overview of the various issues grouped into three categories: o issues due to the IPv6 protocol itself, o issues due to transition mechanisms, and o issues due to IPv6 deployment. This memo provides information for the Internet community."];
+  RFC4942 -> rev_cites;
+  RFC4947 [label="RFC4947
+Address Resolution Mechanisms for IP
+Datagrams over MPEG-2 Networks
+2007", shape=ellipse, URL="RFC4947.html", target="_top", tooltip="This document describes the process of binding/associating IPv4/IPv6 addresses with MPEG-2 Transport Streams (TS). This procedure is known as Address Resolution (AR) or Neighbor Discovery (ND). Such address resolution complements the higher-layer resource discovery tools that are used to advertise IP sessions. In MPEG-2 Networks, an IP address must be associated with a Packet ID (PID) value and a specific Transmission Multiplex. This document reviews current methods appropriate to a range of technologies (such as DVB (Digital Video Broadcasting), ATSC (Advanced Television Systems Committee), DOCSIS (Data-Over-Cable Service Interface Specifications), and variants). It also describes the interaction with well-known protocols for address management including DHCP, ARP, and the ND protocol. This memo provides information for the Internet community."];
+  RFC4947 -> rev_cites;
+  RFC4957 [label="RFC4957
+Link-Layer Event Notifications for
+Detecting Network Attachments
+2007", shape=ellipse, URL="RFC4957.html", target="_top", tooltip="Certain network access technologies are capable of providing various types of link-layer status information to IP.  Link-layer event notifications can help IP expeditiously detect configuration changes.  This document provides a non-exhaustive catalogue of information available from well-known access technologies.  This memo provides information for the Internet community."];
+  RFC4957 -> rev_cites;
+  RFC5080 [label="RFC5080
+Common Remote Authentication Dial In
+User Service (RADIUS) Implementation
+Issues and Suggested Fixes
+2007", shape=ellipse, URL="RFC5080.html", target="_top", tooltip="This document describes common issues seen in Remote Authentication Dial In User Service (RADIUS) implementations and suggests some fixes.  Where applicable, ambiguities and errors in previous RADIUS specifications are clarified. [STANDARDS-TRACK]"];
+  RFC5080 -> rev_cites;
+  RFC5121 [label="RFC5121
+Transmission of IPv6 via the IPv6
+Convergence Sublayer over IEEE 802.16
+Networks
+2008", shape=ellipse, URL="RFC5121.html", target="_top", tooltip="IEEE Std 802.16 is an air interface specification for fixed and mobile Broadband Wireless Access Systems.  Service-specific convergence sublayers to which upper-layer protocols interface are a part of the IEEE 802.16 MAC (Medium Access Control).  The Packet convergence sublayer (CS) is used for the transport of all packet- based protocols such as Internet Protocol (IP) and IEEE 802.3 LAN/MAN CSMA/CD Access Method (Ethernet).  IPv6 packets can be sent and received via the IP-specific part of the Packet CS.  This document specifies the addressing and operation of IPv6 over the IP-specific part of the Packet CS for hosts served by a network that utilizes the IEEE Std 802.16 air interface.  It recommends the assignment of a unique prefix (or prefixes) to each host and allows the host to use multiple identifiers within that prefix, including support for randomly generated interface identifiers. [STANDARDS-TRACK]"];
+  RFC5121 -> rev_cites;
+  RFC5191 [label="RFC5191
+Protocol for Carrying Authentication for
+Network Access (PANA)
+2008", shape=ellipse, URL="RFC5191.html", target="_top", tooltip="This document defines the Protocol for Carrying Authentication for Network Access (PANA), a network-layer transport for Extensible Authentication Protocol (EAP) to enable network access authentication between clients and access networks.  In EAP terms, PANA is a UDP-based EAP lower layer that runs between the EAP peer and the EAP authenticator. [STANDARDS-TRACK]"];
+  RFC5191 -> rev_cites;
+  RFC5192 [label="RFC5192
+DHCP Options for Protocol for Carrying
+Authentication for Network Access (PANA)
+Authentication Agents
+2008", shape=ellipse, URL="RFC5192.html", target="_top", tooltip="This document defines new DHCPv4 and DHCPv6 options that contain a list of IP addresses to locate one or more PANA (Protocol for carrying Authentication for Network Access) Authentication Agents (PAAs).  This is one of the methods that a PANA Client (PaC) can use to locate PAAs. [STANDARDS-TRACK]"];
+  RFC5192 -> rev_cites;
+  RFC5213 [label="RFC5213
+Proxy Mobile IPv6
+2008", shape=ellipse, URL="RFC5213.html", target="_top", tooltip="Network-based mobility management enables IP mobility for a host without requiring its participation in any mobility-related signaling.  The network is responsible for managing IP mobility on behalf of the host.  The mobility entities in the network are responsible for tracking the movements of the host and initiating the required mobility signaling on its behalf.  This specification describes a network-based mobility management protocol and is referred to as Proxy Mobile IPv6. [STANDARDS-TRACK]"];
+  RFC5213 -> rev_cites;
+  RFC5223 [label="RFC5223
+Discovering Location-to-Service
+Translation (LoST) Servers Using the
+Dynamic Host Configuration Protocol
+(DHCP)
+2008", shape=ellipse, URL="RFC5223.html", target="_top", tooltip="The Location-to-Service Translation (LoST) Protocol describes an XML- based protocol for mapping service identifiers and geospatial or civic location information to service contact Uniform Resource Locators (URLs). LoST servers can be located anywhere, but a placement closer to the end host, e.g., in the access network, is desirable. In disaster situations with intermittent network connectivity, such a LoST server placement provides benefits regarding the resiliency of emergency service communication. This document describes how a LoST client can discover a LoST server using the Dynamic Host Configuration Protocol (DHCP). [STANDARDS-TRACK]"];
+  RFC5223 -> rev_cites;
+  RFC5268 [label="RFC5268
+Mobile IPv6 Fast Handovers
+2008", shape=ellipse, URL="RFC5268.html", target="_top", tooltip="Mobile IPv6 enables a Mobile Node (MN) to maintain its connectivity to the Internet when moving from one Access Router to another, a process referred to as handover.  During handover, there is a period during which the Mobile Node is unable to send or receive packets because of link switching delay and IP protocol operations.  This handover latency resulting from standard Mobile IPv6 procedures, namely movement detection, new Care-of Address configuration, and Binding Update, is often unacceptable to real-time traffic such as Voice over IP (VoIP).  Reducing the handover latency could be beneficial to non-real-time, throughput-sensitive applications as well.  This document specifies a protocol to improve handover latency due to Mobile IPv6 procedures.  This document does not address improving the link switching latency. [STANDARDS-TRACK]"];
+  RFC5268 -> rev_cites;
+  RFC5375 [label="RFC5375
+IPv6 Unicast Address Assignment
+Considerations
+2008", shape=ellipse, URL="RFC5375.html", target="_top", tooltip="One fundamental aspect of any IP communications infrastructure is its addressing plan.  With its new address architecture and allocation policies, the introduction of IPv6 into a network means that network designers and operators need to reconsider their existing approaches to network addressing.  Lack of guidelines on handling this aspect of network design could slow down the deployment and integration of IPv6.  This document aims to provide the information and recommendations relevant to planning the addressing aspects of IPv6 deployments.  The document also provides IPv6 addressing case studies for both an enterprise and an ISP network.  This memo provides information for the Internet community."];
+  RFC5375 -> rev_cites;
+  RFC5379 [label="RFC5379
+Guidelines for Using the Privacy
+Mechanism for SIP
+2010", shape=ellipse, URL="RFC5379.html", target="_top", tooltip="This is an informational document that provides guidelines for using the privacy mechanism for the Session Initiation Protocol (SIP) that is specified in RFC 3323 and subsequently extended in RFCs 3325 and 4244.  It is intended to clarify the handling of the target SIP headers/parameters and the Session Description Protocol (SDP) parameters for each of the privacy header values (priv-values).  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5379 -> rev_cites;
+  RFC5417 [label="RFC5417
+Control And Provisioning of Wireless
+Access Points (CAPWAP) Access Controller
+DHCP Option
+2009", shape=ellipse, URL="RFC5417.html", target="_top", tooltip="The Control And Provisioning of Wireless Access Points Protocol allows a Wireless Termination Point to use DHCP to discover the Access Controllers to which it is to connect.  This document describes the DHCP options to be used by the CAPWAP Protocol. [STANDARDS-TRACK]"];
+  RFC5417 -> rev_cites;
+  RFC5453 [label="RFC5453
+Reserved IPv6 Interface Identifiers
+2009", shape=ellipse, URL="RFC5453.html", target="_top", tooltip="Interface identifiers in IPv6 unicast addresses are used to identify interfaces on a link.  They are required to be unique within a subnet.  Several RFCs have specified interface identifiers or identifier ranges that have a special meaning attached to them.  An IPv6 node autoconfiguring an interface identifier in these ranges will encounter unexpected consequences.  Since there is no centralized repository for such reserved identifiers, this document aims to create one. [STANDARDS-TRACK]"];
+  RFC5453 -> rev_cites;
+  RFC5460 [label="RFC5460
+DHCPv6 Bulk Leasequery
+2009", shape=ellipse, URL="RFC5460.html", target="_top", tooltip="The Dynamic Host Configuration Protocol for IPv6 (DHCPv6) has been extended with a Leasequery capability that allows a client to request information about DHCPv6 bindings.  That mechanism is limited to queries for individual bindings.  In some situations individual binding queries may not be efficient, or even possible.  This document expands on the Leasequery protocol, adding new query types and allowing for bulk transfer of DHCPv6 binding data via TCP. [STANDARDS-TRACK]"];
+  RFC5460 -> rev_cites;
+  RFC5494 [label="RFC5494
+IANA Allocation Guidelines for the
+Address Resolution Protocol (ARP)
+2009", shape=ellipse, URL="RFC5494.html", target="_top", tooltip="This document specifies the IANA guidelines for allocating new values in the Address Resolution Protocol (ARP).  This document also reserves some numbers for experimentation purposes.  The changes also affect other protocols that employ values from the ARP name spaces. [STANDARDS-TRACK]"];
+  RFC5494 -> rev_cites;
+  RFC5505 [label="RFC5505
+Principles of Internet Host
+Configuration
+2009", shape=ellipse, URL="RFC5505.html", target="_top", tooltip="This document describes principles of Internet host configuration.  It covers issues relating to configuration of Internet-layer parameters, as well as parameters affecting higher-layer protocols.  This memo provides information for the Internet community."];
+  RFC5505 -> rev_cites;
+  RFC5534 [label="RFC5534
+Failure Detection and Locator Pair
+Exploration Protocol for IPv6
+Multihoming
+2009", shape=ellipse, URL="RFC5534.html", target="_top", tooltip="This document specifies how the level 3 multihoming Shim6 protocol (Shim6) detects failures between two communicating nodes.  It also specifies an exploration protocol for switching to another pair of interfaces and/or addresses between the same nodes if a failure occurs and an operational pair can be found. [STANDARDS-TRACK]"];
+  RFC5534 -> rev_cites;
+  RFC5558 [label="RFC5558
+Virtual Enterprise Traversal (VET)
+2010", shape=ellipse, URL="RFC5558.html", target="_top", tooltip="Enterprise networks connect routers over various link types, and may also connect to provider networks and/or the global Internet.  Enterprise network nodes require a means to automatically provision IP addresses/prefixes and support internetworking operation in a wide variety of use cases including Small Office, Home Office (SOHO) networks, Mobile Ad hoc Networks (MANETs), multi-organizational corporate networks and the interdomain core of the global Internet itself.  This document specifies a Virtual Enterprise Traversal (VET) abstraction for autoconfiguration and operation of nodes in enterprise networks.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5558 -> rev_cites;
+  RFC5568 [label="RFC5568
+Mobile IPv6 Fast Handovers
+2009", shape=ellipse, URL="RFC5568.html", target="_top", tooltip="Mobile IPv6 enables a mobile node (MN) to maintain its connectivity to the Internet when moving from one Access Router to another, a process referred to as handover. During handover, there is a period during which the mobile node is unable to send or receive packets because of link-switching delay and IP protocol operations. This handover latency resulting from standard Mobile IPv6 procedures (namely, movement detection, new Care-of Address configuration, and Binding Update) is often unacceptable to real-time traffic such as Voice over IP (VoIP). Reducing the handover latency could be beneficial to non-real-time, throughput-sensitive applications as well. This document specifies a protocol to improve handover latency due to Mobile IPv6 procedures. This document does not address improving the link-switching latency. This document updates the packet formats for the Handover Initiate (HI) and Handover Acknowledge (HAck) messages to the Mobility Header Type. [STANDARDS-TRACK]"];
+  RFC5568 -> rev_cites;
+  RFC5571 [label="RFC5571
+Softwire Hub and Spoke Deployment
+Framework with Layer Two Tunneling
+Protocol Version 2 (L2TPv2)
+2009", shape=ellipse, URL="RFC5571.html", target="_top", tooltip="This document describes the framework of the Softwire Hub and Spoke solution with the Layer Two Tunneling Protocol version 2 (L2TPv2).  The implementation details specified in this document should be followed to achieve interoperability among different vendor implementations. [STANDARDS-TRACK]"];
+  RFC5571 -> rev_cites;
+  RFC5677 [label="RFC5677
+IEEE 802.21 Mobility Services Framework
+Design (MSFD)
+2009", shape=ellipse, URL="RFC5677.html", target="_top", tooltip="This document describes a mobility services framework design (MSFD) for the IEEE 802.21 Media Independent Handover (MIH) protocol that addresses identified issues associated with the transport of MIH messages.  The document also describes mechanisms for Mobility Services (MoS) discovery and transport-layer mechanisms for the reliable delivery of MIH messages.  This document does not provide mechanisms for securing the communication between a mobile node (MN) and the Mobility Server.  Instead, it is assumed that either lower-layer (e.g., link-layer) security mechanisms or overall system-specific proprietary security solutions are used. [STANDARDS-TRACK]"];
+  RFC5677 -> rev_cites;
+  RFC5678 [label="RFC5678
+Dynamic Host Configuration Protocol
+(DHCPv4 and DHCPv6) Options for IEEE
+802.21 Mobility Services (MoS) Discovery
+2009", shape=ellipse, URL="RFC5678.html", target="_top", tooltip="This document defines new Dynamic Host Configuration Protocol (DHCPv4 and DHCPv6) options that contain a list of IP addresses and a list of domain names that can be mapped to servers providing IEEE 802.21 type of Mobility Service (MoS) (see RFC 5677).  These Mobility Services are used to assist a mobile node (MN) in handover preparation (network discovery) and handover decision (network selection).  The services addressed in this document are the Media Independent Handover Services defined in IEEE 802.21. [STANDARDS-TRACK]"];
+  RFC5678 -> rev_cites;
+  RFC5692 [label="RFC5692
+Transmission of IP over Ethernet over
+IEEE 802.16 Networks
+2009", shape=ellipse, URL="RFC5692.html", target="_top", tooltip="This document describes the transmission of IPv4 over Ethernet, as well as IPv6 over Ethernet, in an access network deploying the IEEE 802.16 cellular radio transmission technology.  The Ethernet on top of IEEE 802.16 is realized by bridging connections that IEEE 802.16 provides between a base station and its associated subscriber stations.  Due to the resource constraints of radio transmission systems and the limitations of the IEEE 802.16 Media Access Control (MAC) functionality for the realization of an Ethernet, the transmission of IP over Ethernet over IEEE 802.16 may considerably benefit by adding IP-specific support functions in the Ethernet over IEEE 802.16 while maintaining full compatibility with standard IP over Ethernet behavior. [STANDARDS-TRACK]"];
+  RFC5692 -> rev_cites;
+  RFC5779 [label="RFC5779
+Diameter Proxy Mobile IPv6: Mobile
+Access Gateway and Local Mobility Anchor
+Interaction with Diameter Server
+2010", shape=ellipse, URL="RFC5779.html", target="_top", tooltip="This specification defines Authentication, Authorization, and Accounting (AAA) interactions between Proxy Mobile IPv6 entities (both Mobile Access Gateway and Local Mobility Anchor) and a AAA server within a Proxy Mobile IPv6 Domain.  These AAA interactions are primarily used to download and update mobile node specific policy profile information between Proxy Mobile IPv6 entities and a remote policy store. [STANDARDS-TRACK]"];
+  RFC5779 -> rev_cites;
+  RFC5887 [label="RFC5887
+Renumbering Still Needs Work
+2010", shape=ellipse, URL="RFC5887.html", target="_top", tooltip="This document reviews the existing mechanisms for site renumbering for both IPv4 and IPv6, and it identifies operational issues with those mechanisms.  It also summarises current technical proposals for additional mechanisms.  Finally, there is a gap analysis identifying possible areas for future work.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5887 -> rev_cites;
+  RFC5908 [label="RFC5908
+Network Time Protocol (NTP) Server
+Option for DHCPv6
+2010", shape=ellipse, URL="RFC5908.html", target="_top", tooltip="The NTP Server Option for Dynamic Host Configuration Protocol for IPv6 (DHCPv6) provides NTPv4 (Network Time Protocol version 4) server location information to DHCPv6 hosts. [STANDARDS-TRACK]"];
+  RFC5908 -> rev_cites;
+  RFC5942 [label="RFC5942
+IPv6 Subnet Model: The Relationship
+between Links and Subnet Prefixes
+2010", shape=ellipse, URL="RFC5942.html", target="_top", tooltip="IPv6 specifies a model of a subnet that is different than the IPv4 subnet model.  The subtlety of the differences has resulted in incorrect implementations that do not interoperate.  This document spells out the most important difference: that an IPv6 address isn't automatically associated with an IPv6 on-link prefix.  This document also updates (partially due to security concerns caused by incorrect implementations) a part of the definition of on-link from RFC 4861. [STANDARDS-TRACK]"];
+  RFC5942 -> rev_cites;
+  RFC5970 [label="RFC5970
+DHCPv6 Options for Network Boot
+2010", shape=ellipse, URL="RFC5970.html", target="_top", tooltip="The Dynamic Host Configuration Protocol for IPv6 (DHCPv6) provides a framework for passing configuration information to nodes on a network.  This document describes new options for DHCPv6 that SHOULD be used for booting a node from the network. [STANDARDS-TRACK]"];
+  RFC5970 -> rev_cites;
+  RFC5986 [label="RFC5986
+Discovering the Local Location
+Information Server (LIS)
+2010", shape=ellipse, URL="RFC5986.html", target="_top", tooltip="Discovery of the correct Location Information Server (LIS) in the local access network is necessary for Devices that wish to acquire location information from the network.  A method is described for the discovery of a LIS in the access network serving a Device.  Dynamic Host Configuration Protocol (DHCP) options for IP versions 4 and 6 are defined that specify a domain name.  This domain name is then used as input to a URI-enabled NAPTR (U-NAPTR) resolution process. [STANDARDS-TRACK]"];
+  RFC5986 -> rev_cites;
+  RFC6011 [label="RFC6011
+Session Initiation Protocol (SIP) User
+Agent Configuration
+2010", shape=ellipse, URL="RFC6011.html", target="_top", tooltip="This document defines procedures for how a SIP User Agent should locate, retrieve, and maintain current configuration information from a Configuration Service.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6011 -> rev_cites;
+  RFC6059 [label="RFC6059
+Simple Procedures for Detecting Network
+Attachment in IPv6
+2010", shape=ellipse, URL="RFC6059.html", target="_top", tooltip="Detecting Network Attachment allows hosts to assess if its existing addressing or routing configuration is valid for a newly connected network.  This document provides simple procedures for Detecting Network Attachment in IPv6 hosts, and procedures for routers to support such services. [STANDARDS-TRACK]"];
+  RFC6059 -> rev_cites;
+  RFC6092 [label="RFC6092
+Recommended Simple Security Capabilities
+in Customer Premises Equipment (CPE) for
+Providing Residential IPv6 Internet
+Service
+2011", shape=ellipse, URL="RFC6092.html", target="_top", tooltip="This document identifies a set of recommendations for the makers of devices and describes how to provide for simple security capabilities at the perimeter of local-area IPv6 networks in Internet-enabled homes and small offices.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6092 -> rev_cites;
+  RFC6104 [label="RFC6104
+Rogue IPv6 Router Advertisement Problem
+Statement
+2011", shape=ellipse, URL="RFC6104.html", target="_top", tooltip="When deploying IPv6, whether IPv6-only or dual-stack, routers are configured to send IPv6 Router Advertisements (RAs) to convey information to nodes that enable them to autoconfigure on the network.  This information includes the implied default router address taken from the observed source address of the RA message, as well as on-link prefix information.  However, unintended misconfigurations by users or administrators, or possibly malicious attacks on the network, may lead to bogus RAs being present, which in turn can cause operational problems for hosts on the network.  In this document, we summarise the scenarios in which rogue RAs may be observed and present a list of possible solutions to the problem.  We focus on the unintended causes of rogue RAs in the text.  The goal of this text is to be Informational, and as such to present a framework around which solutions can be proposed and discussed.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6104 -> rev_cites;
+  RFC6106 [label="RFC6106
+IPv6 Router Advertisement Options for
+DNS Configuration
+2010", shape=ellipse, URL="RFC6106.html", target="_top", tooltip="This document specifies IPv6 Router Advertisement options to allow IPv6 routers to advertise a list of DNS recursive server addresses and a DNS Search List to IPv6 hosts. [STANDARDS-TRACK]"];
+  RFC6106 -> rev_cites;
+  RFC6139 [label="RFC6139
+Routing and Addressing in Networks with
+Global Enterprise Recursion (RANGER)
+Scenarios
+2011", shape=ellipse, URL="RFC6139.html", target="_top", tooltip="Routing and Addressing in Networks with Global Enterprise Recursion (RANGER) (RFC 5720) provides an architectural framework for scalable routing and addressing.  It provides an incrementally deployable approach for scalability, provider independence, mobility, multihoming, traffic engineering, and security.  This document describes a series of use cases in order to showcase the architectural capabilities.  It further shows how the RANGER architecture restores the network-within-network principles originally intended for the sustained growth of the Internet.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6139 -> rev_cites;
+  RFC6153 [label="RFC6153
+DHCPv4 and DHCPv6 Options for Access
+Network Discovery and Selection Function
+(ANDSF) Discovery
+2011", shape=ellipse, URL="RFC6153.html", target="_top", tooltip="This document defines new Dynamic Host Configuration Protocol (DHCPv4 and DHCPv6) options to enable a mobile node to discover Access Network Discovery and Selection Function (ANDSF) entities in an IP network.  ANDSF is being developed in the Third Generation Partnership Project (3GPP) and provides inter-system mobility policies and access-network-specific information to the mobile nodes (MNs). [STANDARDS-TRACK]"];
+  RFC6153 -> rev_cites;
+  RFC6155 [label="RFC6155
+Use of Device Identity in HTTP-Enabled
+Location Delivery (HELD)
+2011", shape=ellipse, URL="RFC6155.html", target="_top", tooltip="When a Location Information Server receives a request for location information (using the locationRequest message), described in the base HTTP-Enabled Location Delivery (HELD) specification, it uses the source IP address of the arriving message as a pointer to the location determination process. This is sufficient in environments where the location of a Device can be determined based on its IP address. Two additional use cases are addressed by this document. In the first, location configuration requires additional or alternative identifiers from the source IP address provided in the request. In the second, an entity other than the Device requests the location of the Device. This document extends the HELD protocol to allow the location request message to carry Device identifiers. Privacy and security considerations describe the conditions where requests containing identifiers are permitted. [STANDARDS-TRACK]"];
+  RFC6155 -> rev_cites;
+  RFC6204 [label="RFC6204
+Basic Requirements for IPv6 Customer
+Edge Routers
+2011", shape=ellipse, URL="RFC6204.html", target="_top", tooltip="This document specifies requirements for an IPv6 Customer Edge (CE) router.  Specifically, the current version of this document focuses on the basic provisioning of an IPv6 CE router and the provisioning of IPv6 hosts attached to it.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6204 -> rev_cites;
+  RFC6221 [label="RFC6221
+Lightweight DHCPv6 Relay Agent
+2011", shape=ellipse, URL="RFC6221.html", target="_top", tooltip="This document proposes a Lightweight DHCPv6 Relay Agent (LDRA) that is used to insert relay agent options in DHCPv6 message exchanges identifying client-facing interfaces.  The LDRA can be implemented in existing access nodes (such as Digital Subscriber Link Access Multiplexers (DSLAMs) and Ethernet switches) that do not support IPv6 control or routing functions. [STANDARDS-TRACK]"];
+  RFC6221 -> rev_cites;
+  RFC6225 [label="RFC6225
+Dynamic Host Configuration Protocol
+Options for Coordinate-Based Location
+Configuration Information
+2011", shape=ellipse, URL="RFC6225.html", target="_top", tooltip="This document specifies Dynamic Host Configuration Protocol options (both DHCPv4 and DHCPv6) for the coordinate-based geographic location of the client.  The Location Configuration Information (LCI) includes Latitude, Longitude, and Altitude, with resolution or uncertainty indicators for each.  Separate parameters indicate the reference datum for each of these values.  This document obsoletes RFC 3825. [STANDARDS-TRACK]"];
+  RFC6225 -> rev_cites;
+  RFC6272 [label="RFC6272
+Internet Protocols for the Smart Grid
+2011", shape=ellipse, URL="RFC6272.html", target="_top", tooltip="This note identifies the key infrastructure protocols of the Internet Protocol Suite for use in the Smart Grid.  The target audience is those people seeking guidance on how to construct an appropriate Internet Protocol Suite profile for the Smart Grid.  In practice, such a profile would consist of selecting what is needed for Smart Grid deployment from the picture presented here.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6272 -> rev_cites;
+  RFC6276 [label="RFC6276
+DHCPv6 Prefix Delegation for Network
+Mobility (NEMO)
+2011", shape=ellipse, URL="RFC6276.html", target="_top", tooltip="One aspect of network mobility support is the assignment of a prefix or prefixes to a mobile router for use on the links in the mobile network.  This document specifies how DHCPv6 prefix delegation can be used for this configuration task.  The mobile router plays the role of requesting router, while the home agent assumes the role of delegating router.  When the mobile router is outside its home network, the mobile router also assumes the role of DHCPv6 relay agent, co-located with the requesting router function. [STANDARDS-TRACK]"];
+  RFC6276 -> rev_cites;
+  RFC6282 [label="RFC6282
+Compression Format for IPv6 Datagrams
+over IEEE 802.15.4-Based Networks
+2011", shape=ellipse, URL="RFC6282.html", target="_top", tooltip="This document updates RFC 4944, Transmission of IPv6 Packets over IEEE 802.15.4 Networks.  This document specifies an IPv6 header compression format for IPv6 packet delivery in Low Power Wireless Personal Area Networks (6LoWPANs).  The compression format relies on shared context to allow compression of arbitrary prefixes.  How the information is maintained in that shared context is out of scope.  This document specifies compression of multicast addresses and a framework for compressing next headers.  UDP header compression is specified within this framework. [STANDARDS-TRACK]"];
+  RFC6282 -> rev_cites;
+  RFC6308 [label="RFC6308
+Overview of the Internet Multicast
+Addressing Architecture
+2011", shape=ellipse, URL="RFC6308.html", target="_top", tooltip="The lack of up-to-date documentation on IP multicast address allocation and assignment procedures has caused a great deal of confusion.  To clarify the situation, this memo describes the allocation and assignment techniques and mechanisms currently (as of this writing) in use.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6308 -> rev_cites;
+  RFC6320 [label="RFC6320
+Protocol for Access Node Control
+Mechanism in Broadband Networks
+2011", shape=ellipse, URL="RFC6320.html", target="_top", tooltip="This document describes the Access Node Control Protocol (ANCP). ANCP operates between a Network Access Server (NAS) and an Access Node (e.g., a Digital Subscriber Line Access Multiplexer (DSLAM)) in a multi-service reference architecture in order to perform operations related to Quality of Service, service, and subscribers. Use cases for ANCP are documented in RFC 5851. As well as describing the base ANCP protocol, this document specifies capabilities for Digital Subscriber Line (DSL) topology discovery, line configuration, and remote line connectivity testing. The design of ANCP allows for protocol extensions in other documents if they are needed to support other use cases and other access technologies. ANCP is based on the General Switch Management Protocol version 3 (GSMPv3) described in RFC 3292, but with many modifications and extensions, to the point that the two protocols are not interoperable. For this reason, ANCP was assigned a separate version number to distinguish it. [STANDARDS-TRACK]"];
+  RFC6320 -> rev_cites;
+  RFC6324 [label="RFC6324
+Routing Loop Attack Using IPv6 Automatic
+Tunnels: Problem Statement and Proposed
+Mitigations
+2011", shape=ellipse, URL="RFC6324.html", target="_top", tooltip="This document is concerned with security vulnerabilities in IPv6-in- IPv4 automatic tunnels.  These vulnerabilities allow an attacker to take advantage of inconsistencies between the IPv4 routing state and the IPv6 routing state.  The attack forms a routing loop that can be abused as a vehicle for traffic amplification to facilitate denial- of-service (DoS) attacks.  The first aim of this document is to inform on this attack and its root causes.  The second aim is to present some possible mitigation measures.  It should be noted that at the time of this writing there are no known reports of malicious attacks exploiting these vulnerabilities.  Nonetheless, these vulnerabilities can be activated by accidental misconfiguration.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6324 -> rev_cites;
+  RFC6334 [label="RFC6334
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6) Option for Dual-Stack Lite
+2011", shape=ellipse, URL="RFC6334.html", target="_top", tooltip="This document specifies a DHCPv6 option that is meant to be used by a Dual-Stack Lite Basic Bridging BroadBand (B4) element to discover the IPv6 address of its corresponding Address Family Transition Router (AFTR). [STANDARDS-TRACK]"];
+  RFC6334 -> rev_cites;
+  RFC6355 [label="RFC6355
+Definition of the UUID-Based DHCPv6
+Unique Identifier (DUID-UUID)
+2011", shape=ellipse, URL="RFC6355.html", target="_top", tooltip="This document defines a new DHCPv6 Unique Identifier (DUID) type called DUID-UUID.  DUID-UUIDs are derived from the already-standardized Universally Unique IDentifier (UUID) format.  DUID-UUID makes it possible for devices to use UUIDs to identify themselves to DHC servers and vice versa.  UUIDs are globally unique and readily available on many systems, making them convenient identifiers to leverage within DHCP. [STANDARDS-TRACK]"];
+  RFC6355 -> rev_cites;
+  RFC6418 [label="RFC6418
+Multiple Interfaces and Provisioning
+Domains Problem Statement
+2011", shape=ellipse, URL="RFC6418.html", target="_top", tooltip="This document describes issues encountered by a node attached to multiple provisioning domains.  This node receives configuration information from each of its provisioning domains, where some configuration objects are global to the node and others are local to the interface.  Issues such as selecting the wrong interface to send traffic happen when conflicting node-scoped configuration objects are received and inappropriately used.  Moreover, other issues are the result of simultaneous attachment to multiple networks, such as domain selection or addressing and naming space overlaps, regardless of the provisioning mechanism.  While multiple provisioning domains are typically seen on nodes with multiple interfaces, this document also discusses situations involving single-interface nodes.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6418 -> rev_cites;
+  RFC6422 [label="RFC6422
+Relay-Supplied DHCP Options
+2011", shape=ellipse, URL="RFC6422.html", target="_top", tooltip="DHCPv6 relay agents cannot communicate with DHCPv6 clients directly. However, in some cases, the relay agent possesses some information that would be useful to the DHCPv6 client. This document describes a mechanism whereby the DHCPv6 relay agent can provide such information to the DHCPv6 server, which can, in turn, pass this information on to the DHCP client. This document updates RFC 3315 (DHCPv6) by making explicit the implicit requirement that relay agents not modify the content of encapsulation payloads as they are relayed back toward clients. [STANDARDS-TRACK]"];
+  RFC6422 -> rev_cites;
+  RFC6434 [label="RFC6434
+IPv6 Node Requirements
+2011", shape=ellipse, URL="RFC6434.html", target="_top", tooltip="This document defines requirements for IPv6 nodes.  It is expected that IPv6 will be deployed in a wide range of devices and situations.  Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6434 -> rev_cites;
+  RFC6440 [label="RFC6440
+The EAP Re-authentication Protocol (ERP)
+Local Domain Name DHCPv6 Option
+2011", shape=ellipse, URL="RFC6440.html", target="_top", tooltip="In order to derive a Domain-Specific Root Key (DSRK) from the Extended Master Session Key (EMSK) generated as a side effect of an Extensible Authentication Protocol (EAP) method, the EAP peer must discover the name of the domain to which it is attached. This document specifies a Dynamic Host Configuration Protocol Version 6 (DHCPv6) option designed to allow a DHCPv6 server to inform clients using the EAP Re-authentication Protocol (ERP) EAP method of the name of the local domain for ERP. [STANDARDS-TRACK]"];
+  RFC6440 -> rev_cites;
+  RFC6459 [label="RFC6459
+IPv6 in 3rd Generation Partnership
+Project (3GPP) Evolved Packet System
+(EPS)
+2012", shape=ellipse, URL="RFC6459.html", target="_top", tooltip="The use of cellular broadband for accessing the Internet and other data services via smartphones, tablets, and notebook/netbook computers has increased rapidly as a result of high-speed packet data networks such as HSPA, HSPA+, and now Long-Term Evolution (LTE) being deployed.  Operators that have deployed networks based on 3rd Generation Partnership Project (3GPP) network architectures are facing IPv4 address shortages at the Internet registries and are feeling pressure to migrate to IPv6.  This document describes the support for IPv6 in 3GPP network architectures.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6459 -> rev_cites;
+  RFC6519 [label="RFC6519
+RADIUS Extensions for Dual-Stack Lite
+2012", shape=ellipse, URL="RFC6519.html", target="_top", tooltip="Dual-Stack Lite is a solution to offer both IPv4 and IPv6 connectivity to customers that are addressed only with an IPv6 prefix.  Dual-Stack Lite requires pre-configuration of the Dual-Stack Lite Address Family Transition Router (AFTR) tunnel information on the Basic Bridging BroadBand (B4) element.  In many networks, the customer profile information may be stored in Authentication, Authorization, and Accounting (AAA) servers, while client configurations are mainly provided through the Dynamic Host Configuration Protocol (DHCP).  This document specifies a new Remote Authentication Dial-In User Service (RADIUS) attribute to carry the Dual-Stack Lite AFTR tunnel name; the RADIUS attribute is defined based on the equivalent DHCPv6 OPTION_AFTR_NAME option.  This RADIUS attribute is meant to be used between the RADIUS server and the Network Access Server (NAS); it is not intended to be used directly between the B4 element and the RADIUS server. [STANDARDS-TRACK]"];
+  RFC6519 -> rev_cites;
+  RFC6603 [label="RFC6603
+Prefix Exclude Option for DHCPv6-based
+Prefix Delegation
+2012", shape=ellipse, URL="RFC6603.html", target="_top", tooltip="This specification defines an optional mechanism to allow exclusion of one specific prefix from a delegated prefix set when using DHCPv6-based prefix delegation.  The new mechanism updates RFC 3633. [STANDARDS-TRACK]"];
+  RFC6603 -> rev_cites;
+  RFC6607 [label="RFC6607
+Virtual Subnet Selection Options for
+DHCPv4 and DHCPv6
+2012", shape=ellipse, URL="RFC6607.html", target="_top", tooltip="This memo defines a DHCPv4 Virtual Subnet Selection (VSS) option, a DHCPv6 VSS option, and the DHCPv4 VSS and VSS-Control sub-options carried in the DHCPv4 Relay Agent Information option. These are intended for use by DHCP clients, relay agents, and proxy clients in situations where VSS information needs to be passed to the DHCP server for proper address or prefix allocation to take place. For the DHCPv4 option and Relay Agent Information sub-options, this memo documents and extends existing usage as per RFC 3942. This memo updates RFC 3046 regarding details relating to the copying of sub- options (see Section 8)."];
+  RFC6607 -> rev_cites;
+  RFC6610 [label="RFC6610
+DHCP Options for Home Information
+Discovery in Mobile IPv6 (MIPv6)
+2012", shape=ellipse, URL="RFC6610.html", target="_top", tooltip="This document defines a DHCP-based scheme to enable dynamic discovery of Mobile IPv6 home network information.  New DHCP options are defined that allow a mobile node to request the home agent IP address, Fully Qualified Domain Name (FQDN), or home network prefix and obtain it via the DHCP response. [STANDARDS-TRACK]"];
+  RFC6610 -> rev_cites;
+  RFC6611 [label="RFC6611
+Mobile IPv6 (MIPv6) Bootstrapping for
+the Integrated Scenario
+2012", shape=ellipse, URL="RFC6611.html", target="_top", tooltip="Mobile IPv6 bootstrapping can be categorized into two primary scenarios: the split scenario and the integrated scenario.  In the split scenario, the mobile node's mobility service is authorized by a different service authorizer than the network access authorizer.  In the integrated scenario, the mobile node's mobility service is authorized by the same service authorizer as the network access service authorizer.  This document defines a method for home agent information discovery for the integrated scenario. [STANDARDS-TRACK]"];
+  RFC6611 -> rev_cites;
+  RFC6629 [label="RFC6629
+Considerations on the Application of the
+Level 3 Multihoming Shim Protocol for
+IPv6 (Shim6)
+2012", shape=ellipse, URL="RFC6629.html", target="_top", tooltip="This document discusses some considerations on the applicability of the level 3 multihoming Shim protocol for IPv6 (Shim6) and associated support protocols and mechanisms to provide site multihoming capabilities in IPv6.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6629 -> rev_cites;
+  RFC6630 [label="RFC6630
+EAP Re-authentication Protocol
+Extensions for Authenticated
+Anticipatory Keying (ERP/AAK)
+2012", shape=ellipse, URL="RFC6630.html", target="_top", tooltip="The Extensible Authentication Protocol (EAP) is a generic framework supporting multiple types of authentication methods. The EAP Re-authentication Protocol (ERP) specifies extensions to EAP and the EAP keying hierarchy to support an EAP method-independent protocol for efficient re-authentication between the peer and an EAP re-authentication server through any authenticator. Authenticated Anticipatory Keying (AAK) is a method by which cryptographic keying material may be established upon one or more Candidate Attachment Points (CAPs) prior to handover. AAK uses the AAA infrastructure for key transport. This document specifies the extensions necessary to enable AAK support in ERP. [STANDARDS-TRACK]"];
+  RFC6630 -> rev_cites;
+  RFC6632 [label="RFC6632
+An Overview of the IETF Network
+Management Standards
+2012", shape=ellipse, URL="RFC6632.html", target="_top", tooltip="This document gives an overview of the IETF network management standards and summarizes existing and ongoing development of IETF Standards Track network management protocols and data models.  The document refers to other overview documents, where they exist and classifies the standards for easy orientation.  The purpose of this document is, on the one hand, to help system developers and users to select appropriate standard management protocols and data models to address relevant management needs.  On the other hand, the document can be used as an overview and guideline by other Standard Development Organizations or bodies planning to use IETF management technologies and data models.  This document does not cover Operations, Administration, and Maintenance (OAM) technologies on the data-path, e.g., OAM of tunnels, MPLS Transport Profile (MPLS-TP) OAM, and pseudowire as well as the corresponding management models.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6632 -> rev_cites;
+  RFC6644 [label="RFC6644
+Rebind Capability in DHCPv6 Reconfigure
+Messages
+2012", shape=ellipse, URL="RFC6644.html", target="_top", tooltip="This document updates RFC 3315 (DHCPv6) to allow the Rebind message type to appear in the Reconfigure Message option of a Reconfigure message.  It extends the Reconfigure message to allow a DHCPv6 server to cause a DHCPv6 client to send a Rebind message.  The document also clarifies how a DHCPv6 client responds to a received Reconfigure message. [STANDARDS-TRACK]"];
+  RFC6644 -> rev_cites;
+  RFC6653 [label="RFC6653
+DHCPv6 Prefix Delegation in Long-Term
+Evolution (LTE) Networks
+2012", shape=ellipse, URL="RFC6653.html", target="_top", tooltip="As interest in IPv6 deployment in cellular networks increases, several migration issues have been being raised; IPv6 prefix management is the issue addressed in this document.  Based on the idea that DHCPv6 servers can manage prefixes, we use DHCPv6 Prefix Delegation to address such prefix management issues as an access router offloading delegation of prefixes and release tasks to a DHCPv6 server.  The access router first requests a prefix for an incoming mobile node from the DHCPv6 server.  The access router may next do stateless or stateful address allocation to the mobile node, e.g., with a Router Advertisement or using DHCP.  We also describe prefix management using Authentication, Authorization, and Accounting (AAA) servers.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6653 -> rev_cites;
+  RFC6704 [label="RFC6704
+Forcerenew Nonce Authentication
+2012", shape=ellipse, URL="RFC6704.html", target="_top", tooltip="Dynamic Host Configuration Protocol (DHCP) FORCERENEW allows for the reconfiguration of a single host by forcing the DHCP client into a Renew state on a trigger from the DHCP server.  In the Forcerenew Nonce Authentication protocol, the server sends a nonce to the client in the initial DHCP ACK that is used for subsequent validation of a FORCERENEW message.  This document updates RFC 3203. [STANDARDS-TRACK]"];
+  RFC6704 -> rev_cites;
+  RFC6706 [label="RFC6706
+Asymmetric Extended Route Optimization
+(AERO)
+2012", shape=ellipse, URL="RFC6706.html", target="_top", tooltip="Nodes attached to common multi-access link types (e.g., multicast- capable, shared media, non-broadcast multiple access (NBMA), etc.) can exchange packets as neighbors on the link, but they may not always be provisioned with sufficient routing information for optimal neighbor selection.  Such nodes should therefore be able to discover a trusted intermediate router on the link that provides both forwarding services to reach off-link destinations and redirection services to inform the node of an on-link neighbor that is closer to the final destination.  This redirection can provide a useful route optimization, since the triangular path from the ingress link neighbor, to the intermediate router, and finally to the egress link neighbor may be considerably longer than the direct path from ingress to egress.  However, ordinary redirection may lead to operational issues on certain link types and/or in certain deployment scenarios.  This document therefore introduces an Asymmetric Extended Route Optimization (AERO) capability that addresses the issues.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6706 -> rev_cites;
+  RFC6731 [label="RFC6731
+Improved Recursive DNS Server Selection
+for Multi-Interfaced Nodes
+2012", shape=ellipse, URL="RFC6731.html", target="_top", tooltip="A multi-interfaced node is connected to multiple networks, some of which might be utilizing private DNS namespaces.  A node commonly receives recursive DNS server configuration information from all connected networks.  Some of the recursive DNS servers might have information about namespaces other servers do not have.  When a multi-interfaced node needs to utilize DNS, the node has to choose which of the recursive DNS servers to use.  This document describes DHCPv4 and DHCPv6 options that can be used to configure nodes with information required to perform informed recursive DNS server selection decisions. [STANDARDS-TRACK]"];
+  RFC6731 -> rev_cites;
+  RFC6775 [label="RFC6775
+Neighbor Discovery Optimization for IPv6
+over Low-Power Wireless Personal Area
+Networks (6LoWPANs)
+2012", shape=ellipse, URL="RFC6775.html", target="_top", tooltip="The IETF work in IPv6 over Low-power Wireless Personal Area Network (6LoWPAN) defines 6LoWPANs such as IEEE 802.15.4.  This and other similar link technologies have limited or no usage of multicast signaling due to energy conservation.  In addition, the wireless network may not strictly follow the traditional concept of IP subnets and IP links.  IPv6 Neighbor Discovery was not designed for non- transitive wireless links, as its reliance on the traditional IPv6 link concept and its heavy use of multicast make it inefficient and sometimes impractical in a low-power and lossy network.  This document describes simple optimizations to IPv6 Neighbor Discovery, its addressing mechanisms, and duplicate address detection for Low- power Wireless Personal Area Networks and similar networks.  The document thus updates RFC 4944 to specify the use of the optimizations defined here. [STANDARDS-TRACK]"];
+  RFC6775 -> rev_cites;
+  RFC6784 [label="RFC6784
+Kerberos Options for DHCPv6
+2012", shape=ellipse, URL="RFC6784.html", target="_top", tooltip="This document defines four new options for the Dynamic Host Configuration Protocol for IPv6 (DHCPv6).  These options are used to carry configuration information for Kerberos. [STANDARDS-TRACK]"];
+  RFC6784 -> rev_cites;
+  RFC6788 [label="RFC6788
+The Line-Identification Option
+2012", shape=ellipse, URL="RFC6788.html", target="_top", tooltip="In Ethernet-based aggregation networks, several subscriber premises may be logically connected to the same interface of an Edge Router.  This document proposes a method for the Edge Router to identify the subscriber premises using the contents of the received Router Solicitation messages.  The applicability is limited to broadband network deployment scenarios in which multiple user ports are mapped to the same virtual interface on the Edge Router. [STANDARDS-TRACK]"];
+  RFC6788 -> rev_cites;
+  RFC6842 [label="RFC6842
+Client Identifier Option in DHCP Server
+Replies
+2013", shape=ellipse, URL="RFC6842.html", target="_top", tooltip="This document updates RFC 2131 Dynamic Host Configuration Protocol by addressing the issues arising from that document's specification that the server MUST NOT return the 'client identifier' option to the client. [STANDARDS-TRACK]"];
+  RFC6842 -> rev_cites;
+  RFC6853 [label="RFC6853
+DHCPv6 Redundancy Deployment
+Considerations
+2013", shape=ellipse, URL="RFC6853.html", target="_top", tooltip="This document provides information for those wishing to use DHCPv6 to support their deployment of IPv6.  In particular, it discusses the provision of semi-redundant DHCPv6 services."];
+  RFC6853 -> rev_cites;
+  RFC6866 [label="RFC6866
+Problem Statement for Renumbering IPv6
+Hosts with Static Addresses in
+Enterprise Networks
+2013", shape=ellipse, URL="RFC6866.html", target="_top", tooltip="This document analyses the problems of updating the IPv6 addresses of hosts in enterprise networks that, for operational reasons, require static addresses."];
+  RFC6866 -> rev_cites;
+  RFC6879 [label="RFC6879
+IPv6 Enterprise Network Renumbering
+Scenarios, Considerations, and Methods
+2013", shape=ellipse, URL="RFC6879.html", target="_top", tooltip="This document analyzes events that cause renumbering and describes the current renumbering methods.  These are described in three categories: those applicable during network design, those applicable during preparation for renumbering, and those applicable during the renumbering operation."];
+  RFC6879 -> rev_cites;
+  RFC6881 [label="RFC6881
+Best Current Practice for Communications
+Services in Support of Emergency Calling
+2013", shape=ellipse, URL="RFC6881.html", target="_top", tooltip="The IETF and other standards organizations have efforts targeted at standardizing various aspects of placing emergency calls on IP networks.  This memo describes best current practice on how devices, networks, and services using IETF protocols should use such standards to make emergency calls."];
+  RFC6881 -> rev_cites;
+  RFC6883 [label="RFC6883
+IPv6 Guidance for Internet Content
+Providers and Application Service
+Providers
+2013", shape=ellipse, URL="RFC6883.html", target="_top", tooltip="This document provides guidance and suggestions for Internet Content Providers and Application Service Providers who wish to offer their service to both IPv6 and IPv4 customers.  Many of the points will also apply to hosting providers or to any enterprise network preparing for IPv6 users."];
+  RFC6883 -> rev_cites;
+  RFC6911 [label="RFC6911
+RADIUS Attributes for IPv6 Access
+Networks
+2013", shape=ellipse, URL="RFC6911.html", target="_top", tooltip="This document specifies additional IPv6 RADIUS Attributes useful in residential broadband network deployments.  The Attributes, which are used for authorization and accounting, enable assignment of a host IPv6 address and an IPv6 DNS server address via DHCPv6, assignment of an IPv6 route announced via router advertisement, assignment of a named IPv6 delegated prefix pool, and assignment of a named IPv6 pool for host DHCPv6 addressing."];
+  RFC6911 -> rev_cites;
+  RFC6939 [label="RFC6939
+Client Link-Layer Address Option in
+DHCPv6
+2013", shape=ellipse, URL="RFC6939.html", target="_top", tooltip="This document specifies the format and mechanism that is to be used for encoding the client link-layer address in DHCPv6 Relay-Forward messages by defining a new DHCPv6 Client Link-Layer Address option."];
+  RFC6939 -> rev_cites;
+  RFC6964 [label="RFC6964
+Operational Guidance for IPv6 Deployment
+in IPv4 Sites Using the Intra-Site
+Automatic Tunnel Addressing Protocol
+(ISATAP)
+2013", shape=ellipse, URL="RFC6964.html", target="_top", tooltip="Many end-user sites in the Internet today still have predominantly IPv4 internal infrastructures.  These sites range in size from small home/office networks to large corporate enterprise networks, but share the commonality that IPv4 provides satisfactory internal routing and addressing services for most applications.  As more and more IPv6-only services are deployed, however, end-user devices within such sites will increasingly require at least basic IPv6 functionality.  This document therefore provides operational guidance for deployment of IPv6 within predominantly IPv4 sites using the Intra-Site Automatic Tunnel Addressing Protocol (ISATAP)."];
+  RFC6964 -> rev_cites;
+  RFC6977 [label="RFC6977
+Triggering DHCPv6 Reconfiguration from
+Relay Agents
+2013", shape=ellipse, URL="RFC6977.html", target="_top", tooltip="This document defines two new DHCPv6 messages: Reconfigure-Request and Reconfigure-Reply.  The Reconfigure-Request message is sent by a DHCPv6 relay agent to notify a DHCPv6 server about a configuration information change, so that the DHCPv6 server can send a Reconfigure message accordingly.  The Reconfigure-Reply message is used by the server to acknowledge the receipt of the Reconfigure-Request message."];
+  RFC6977 -> rev_cites;
+  RFC7010 [label="RFC7010
+IPv6 Site Renumbering Gap Analysis
+2013", shape=ellipse, URL="RFC7010.html", target="_top", tooltip="This document briefly introduces the existing mechanisms that could be utilized for IPv6 site renumbering and tries to cover most of the explicit issues and requirements associated with IPv6 renumbering.  The content is mainly a gap analysis that provides a basis for future works to identify and develop solutions or to stimulate such development as appropriate.  The gap analysis is organized by the main steps of a renumbering process."];
+  RFC7010 -> rev_cites;
+  RFC7031 [label="RFC7031
+DHCPv6 Failover Requirements
+2013", shape=ellipse, URL="RFC7031.html", target="_top", tooltip="The DHCPv6 protocol, defined in RFC 3315, allows for multiple servers to operate on a single network; however, it does not define any way the servers could share information about currently active clients and their leases.  Some sites are interested in running multiple servers in such a way as to provide increased availability in case of server failure.  In order for this to work reliably, the cooperating primary and secondary servers must maintain a consistent database of the lease information.  RFC 3315 allows for, but does not define, any redundancy or failover mechanisms.  This document outlines requirements for DHCPv6 failover, enumerates related problems, and discusses the proposed scope of work to be conducted.  This document does not define a DHCPv6 failover protocol."];
+  RFC7031 -> rev_cites;
+  RFC7037 [label="RFC7037
+RADIUS Option for the DHCPv6 Relay Agent
+2013", shape=ellipse, URL="RFC7037.html", target="_top", tooltip="The DHCPv6 RADIUS option provides a mechanism to exchange authorization and identification information between the DHCPv6 relay agent and DHCPv6 server.  This architecture assumes that the Network Access Server (NAS) acts as both a DHCPv6 relay agent and RADIUS client.  When receiving messages from the DHCPv6 clients, the NAS consults the RADIUS server and adds the RADIUS response when forwarding the DHCPv6 client's messages to the DHCPv6 server.  The DHCPv6 server then uses that additional information to generate an appropriate response to the DHCPv6 client's requests."];
+  RFC7037 -> rev_cites;
+  RFC7039 [label="RFC7039
+Source Address Validation Improvement
+(SAVI) Framework
+2013", shape=ellipse, URL="RFC7039.html", target="_top", tooltip="Source Address Validation Improvement (SAVI) methods were developed to prevent nodes attached to the same IP link from spoofing each other's IP addresses, so as to complement ingress filtering with finer-grained, standardized IP source address validation.  This document is a framework document that describes and motivates the design of the SAVI methods.  Particular SAVI methods are described in other documents."];
+  RFC7039 -> rev_cites;
+  RFC7051 [label="RFC7051
+Analysis of Solution Proposals for Hosts
+to Learn NAT64 Prefix
+2013", shape=ellipse, URL="RFC7051.html", target="_top", tooltip="Hosts and applications may benefit from learning if an IPv6 address is synthesized and if NAT64 and DNS64 are present in a network.  This document analyzes all proposed solutions (known at the time of writing) for communicating whether the synthesis is taking place, what address format was used, and what IPv6 prefix was used by the NAT64 and DNS64.  These solutions enable both NAT64 avoidance and local IPv6 address synthesis.  The document concludes by recommending the standardization of the approach based on heuristic discovery."];
+  RFC7051 -> rev_cites;
+  RFC7066 [label="RFC7066
+IPv6 for Third Generation Partnership
+Project (3GPP) Cellular Hosts
+2013", shape=ellipse, URL="RFC7066.html", target="_top", tooltip="As the deployment of third and fourth generation cellular networks progresses, a large number of cellular hosts are being connected to the Internet.  Standardization organizations have made the Internet Protocol version 6 (IPv6) mandatory in their specifications.  However, the concept of IPv6 covers many aspects and numerous specifications.  In addition, the characteristics of cellular links in terms of bandwidth, cost, and delay put special requirements on how IPv6 is used.  This document considers IPv6 for cellular hosts that attach to the General Packet Radio Service (GPRS), Universal Mobile Telecommunications System (UMTS), or Evolved Packet System (EPS) networks (hereafter collectively referred to as Third Generation Partnership Project (3GPP) networks).  This document also lists specific IPv6 functionalities that need to be implemented in addition to what is already prescribed in the IPv6 Node Requirements document (RFC 6434).  It also discusses some issues related to the use of these components when operating in these networks.  This document obsoletes RFC 3316."];
+  RFC7066 -> rev_cites;
+  RFC7078 [label="RFC7078
+Distributing Address Selection Policy
+Using DHCPv6
+2014", shape=ellipse, URL="RFC7078.html", target="_top", tooltip="RFC 6724 defines default address selection mechanisms for IPv6 that allow nodes to select an appropriate address when faced with multiple source and/or destination addresses to choose between.  RFC 6724 allows for the future definition of methods to administratively configure the address selection policy information.  This document defines a new DHCPv6 option for such configuration, allowing a site administrator to distribute address selection policy overriding the default address selection parameters and policy table, and thus allowing the administrator to control the address selection behavior of nodes in their site."];
+  RFC7078 -> rev_cites;
+  RFC7083 [label="RFC7083
+Modification to Default Values of
+SOL_MAX_RT and INF_MAX_RT
+2013", shape=ellipse, URL="RFC7083.html", target="_top", tooltip="This document updates RFC 3315 by redefining the default values for SOL_MAX_RT and INF_MAX_RT and defining options through which a DHCPv6 server can override the client's default value for SOL_MAX_RT and INF_MAX_RT with new values."];
+  RFC7083 -> rev_cites;
+  RFC7084 [label="RFC7084
+Basic Requirements for IPv6 Customer
+Edge Routers
+2013", shape=ellipse, URL="RFC7084.html", target="_top", tooltip="This document specifies requirements for an IPv6 Customer Edge (CE) router.  Specifically, the current version of this document focuses on the basic provisioning of an IPv6 CE router and the provisioning of IPv6 hosts attached to it.  The document also covers IP transition technologies.  Two transition technologies in RFC 5969's IPv6 Rapid Deployment on IPv4 Infrastructures (6rd) and RFC 6333's Dual-Stack Lite (DS-Lite) are covered in the document.  The document obsoletes RFC 6204."];
+  RFC7084 -> rev_cites;
+  RFC7105 [label="RFC7105
+Using Device-Provided Location-Related
+Measurements in Location Configuration
+Protocols
+2014", shape=ellipse, URL="RFC7105.html", target="_top", tooltip="This document describes a protocol for a Device to provide location-related measurement data to a Location Information Server (LIS) within a request for location information.  Location-related measurement information provides observations concerning properties related to the position of a Device; this information could be data about network attachment or about the physical environment.  A LIS is able to use the location-related measurement data to improve the accuracy of the location estimate it provides to the Device.  A basic set of location-related measurements are defined, including common modes of network attachment as well as assisted Global Navigation Satellite System (GNSS) parameters."];
+  RFC7105 -> rev_cites;
+  RFC7113 [label="RFC7113
+Implementation Advice for IPv6 Router
+Advertisement Guard (RA-Guard)
+2014", shape=ellipse, URL="RFC7113.html", target="_top", tooltip="The IPv6 Router Advertisement Guard (RA-Guard) mechanism is commonly employed to mitigate attack vectors based on forged ICMPv6 Router Advertisement messages.  Many existing IPv6 deployments rely on RA-Guard as the first line of defense against the aforementioned attack vectors.  However, some implementations of RA-Guard have been found to be prone to circumvention by employing IPv6 Extension Headers.  This document describes the evasion techniques that affect the aforementioned implementations and formally updates RFC 6105, such that the aforementioned RA-Guard evasion vectors are eliminated."];
+  RFC7113 -> rev_cites;
+  RFC7148 [label="RFC7148
+Prefix Delegation Support for Proxy
+Mobile IPv6
+2014", shape=ellipse, URL="RFC7148.html", target="_top", tooltip="This specification defines extensions to the Proxy Mobile IPv6 protocol for allowing a mobile router in a Proxy Mobile IPv6 domain to obtain IP prefixes for its attached mobile networks using DHCPv6 prefix delegation.  Network-based mobility management support is provided for those delegated IP prefixes just as it is provided for the mobile node's home address.  Even if the mobile router performs a handoff and changes its network point of attachment, mobility support is ensured for all the delegated IP prefixes and for all the IP nodes in the mobile network that use IP address configuration from those delegated IP prefixes."];
+  RFC7148 -> rev_cites;
+  RFC7216 [label="RFC7216
+Location Information Server (LIS)
+Discovery Using IP Addresses and Reverse
+DNS
+2014", shape=ellipse, URL="RFC7216.html", target="_top", tooltip="The residential gateway is a device that has become an integral part of home networking equipment. Discovering a Location Information Server (LIS) is a necessary part of acquiring location information for location-based services. However, discovering a LIS when a residential gateway is present poses a configuration challenge, requiring a method that is able to work around the obstacle presented by the gateway. This document describes a solution to this problem. The solution provides alternative domain names as input to the LIS discovery process based on the network addresses assigned to a Device."];
+  RFC7216 -> rev_cites;
+  RFC7217 [label="RFC7217
+A Method for Generating Semantically
+Opaque Interface Identifiers with IPv6
+Stateless Address Autoconfiguration
+(SLAAC)
+2014", shape=ellipse, URL="RFC7217.html", target="_top", tooltip="This document specifies a method for generating IPv6 Interface Identifiers to be used with IPv6 Stateless Address Autoconfiguration (SLAAC), such that an IPv6 address configured using this method is stable within each subnet, but the corresponding Interface Identifier changes when the host moves from one network to another.  This method is meant to be an alternative to generating Interface Identifiers based on hardware addresses (e.g., IEEE LAN Media Access Control (MAC) addresses), such that the benefits of stable addresses can be achieved without sacrificing the security and privacy of users.  The method specified in this document applies to all prefixes a host may be employing, including link-local, global, and unique-local prefixes (and their corresponding addresses)."];
+  RFC7217 -> rev_cites;
+  RFC7227 [label="RFC7227
+Guidelines for Creating New DHCPv6
+Options
+2014", shape=ellipse, URL="RFC7227.html", target="_top", tooltip="This document provides guidance to prospective DHCPv6 option developers to help them create option formats that are easily adoptable by existing DHCPv6 software.  It also provides guidelines for expert reviewers to evaluate new registrations.  This document updates RFC 3315."];
+  RFC7227 -> rev_cites;
+  RFC7283 [label="RFC7283
+Handling Unknown DHCPv6 Messages
+2014", shape=ellipse, URL="RFC7283.html", target="_top", tooltip="DHCPv6 is not specific about handling messages with unknown types.  This memo describes the problems associated with receiving DHCPv6 messages with unknown types, and defines how a DHCPv6 server, client, or relay agent should behave when receiving unknown DHCPv6 messages.  This document also provides advice for authors of future documents that define new messages to be sent from DHCP servers to DHCP relay agents.  This document updates RFC 3315."];
+  RFC7283 -> rev_cites;
+  RFC7291 [label="RFC7291
+DHCP Options for the Port Control
+Protocol (PCP)
+2014", shape=ellipse, URL="RFC7291.html", target="_top", tooltip="This document specifies DHCP (IPv4 and IPv6) options to configure hosts with Port Control Protocol (PCP) server IP addresses.  The use of DHCPv4 or DHCPv6 depends on the PCP deployment scenarios.  The set of deployment scenarios to which DHCPv4 or DHCPv6 can be applied is outside the scope of this document."];
+  RFC7291 -> rev_cites;
+  RFC7298 [label="RFC7298
+Babel Hashed Message Authentication Code
+(HMAC) Cryptographic Authentication
+2014", shape=ellipse, URL="RFC7298.html", target="_top", tooltip="This document describes a cryptographic authentication mechanism for the Babel routing protocol.  This document updates RFC 6126.  The mechanism allocates two new TLV types for the authentication data, uses Hashed Message Authentication Code (HMAC), and is both optional and backward compatible."];
+  RFC7298 -> rev_cites;
+  RFC7341 [label="RFC7341
+DHCPv4-over-DHCPv6 (DHCP 4o6) Transport
+2014", shape=ellipse, URL="RFC7341.html", target="_top", tooltip="IPv4 connectivity is still needed as networks migrate towards IPv6.  Users require IPv4 configuration even if the uplink to their service provider supports IPv6 only.  This document describes a mechanism for obtaining IPv4 configuration information dynamically in IPv6 networks by carrying DHCPv4 messages over DHCPv6 transport.  Two new DHCPv6 messages and two new DHCPv6 options are defined for this purpose."];
+  RFC7341 -> rev_cites;
+  RFC7381 [label="RFC7381
+Enterprise IPv6 Deployment Guidelines
+2014", shape=ellipse, URL="RFC7381.html", target="_top", tooltip="Enterprise network administrators worldwide are in various stages of preparing for or deploying IPv6 into their networks.  The administrators face different challenges than operators of Internet access providers and have reasons for different priorities.  The overall problem for many administrators will be to offer Internet- facing services over IPv6 while continuing to support IPv4, and while introducing IPv6 access within the enterprise IT network.  The overall transition will take most networks from an IPv4-only environment to a dual-stack network environment and eventually an IPv6-only operating mode.  This document helps provide a framework for enterprise network architects or administrators who may be faced with many of these challenges as they consider their IPv6 support strategies."];
+  RFC7381 -> rev_cites;
+  RFC7421 [label="RFC7421
+Analysis of the 64-bit Boundary in IPv6
+Addressing
+2015", shape=ellipse, URL="RFC7421.html", target="_top", tooltip="The IPv6 unicast addressing format includes a separation between the prefix used to route packets to a subnet and the interface identifier used to specify a given interface connected to that subnet.  Currently, the interface identifier is defined as 64 bits long for almost every case, leaving 64 bits for the subnet prefix.  This document describes the advantages of this fixed boundary and analyzes the issues that would be involved in treating it as a variable boundary."];
+  RFC7421 -> rev_cites;
+  RFC7428 [label="RFC7428
+Transmission of IPv6 Packets over ITU-T
+G.9959 Networks
+2015", shape=ellipse, URL="RFC7428.html", target="_top", tooltip="This document describes the frame format for transmission of IPv6 packets as well as a method of forming IPv6 link-local addresses and statelessly autoconfigured IPv6 addresses on ITU-T G.9959 networks."];
+  RFC7428 -> rev_cites;
+  RFC7513 [label="RFC7513
+Source Address Validation Improvement
+(SAVI) Solution for DHCP
+2015", shape=ellipse, URL="RFC7513.html", target="_top", tooltip="This document specifies the procedure for creating a binding between a DHCPv4/DHCPv6-assigned IP address and a binding anchor on a Source Address Validation Improvement (SAVI) device.  The bindings set up by this procedure are used to filter packets with forged source IP addresses.  This mechanism complements BCP 38 (RFC 2827) ingress filtering, providing finer-grained source IP address validation."];
+  RFC7513 -> rev_cites;
+  RFC7550 [label="RFC7550
+Issues and Recommendations with Multiple
+Stateful DHCPv6 Options
+2015", shape=ellipse, URL="RFC7550.html", target="_top", tooltip="The Dynamic Host Configuration Protocol for IPv6 (DHCPv6) specification defined two stateful options, IA_NA and IA_TA, but did not anticipate the development of additional stateful options.  DHCPv6 Prefix Delegation added the IA_PD option, which is stateful.  Applications that use IA_NA and IA_PD together have revealed issues that need to be addressed.  This document updates RFCs 3315 and 3633 to address these issues."];
+  RFC7550 -> rev_cites;
+  RFC7556 [label="RFC7556
+Multiple Provisioning Domain
+Architecture
+2015", shape=ellipse, URL="RFC7556.html", target="_top", tooltip="This document is a product of the work of the Multiple Interfaces Architecture Design team.  It outlines a solution framework for some of the issues experienced by nodes that can be attached to multiple networks simultaneously.  The framework defines the concept of a Provisioning Domain (PvD), which is a consistent set of network configuration information.  PvD-aware nodes learn PvD-specific information from the networks they are attached to and/or other sources.  PvDs are used to enable separation and configuration consistency in the presence of multiple concurrent connections."];
+  RFC7556 -> rev_cites;
+  RFC7559 [label="RFC7559
+Packet-Loss Resiliency for Router
+Solicitations
+2015", shape=ellipse, URL="RFC7559.html", target="_top", tooltip="When an interface on a host is initialized, the host transmits Router Solicitations in order to minimize the amount of time it needs to wait until the next unsolicited multicast Router Advertisement is received.  In certain scenarios, these Router Solicitations transmitted by the host might be lost.  This document specifies a mechanism for hosts to cope with the loss of the initial Router Solicitations."];
+  RFC7559 -> rev_cites;
+  RFC7576 [label="RFC7576
+General Gap Analysis for Autonomic
+Networking
+2015", shape=ellipse, URL="RFC7576.html", target="_top", tooltip="This document provides a problem statement and general gap analysis for an IP-based Autonomic Network that is mainly based on distributed network devices. The document provides background by reviewing the current status of autonomic aspects of IP networks and the extent to which current network management depends on centralization and human administrators. Finally, the document outlines the general features that are missing from current network abilities and are needed in the ideal Autonomic Network concept. This document is a product of the IRTF's Network Management Research Group."];
+  RFC7576 -> rev_cites;
+  RFC7598 [label="RFC7598
+DHCPv6 Options for Configuration of
+Softwire Address and Port-Mapped Clients
+2015", shape=ellipse, URL="RFC7598.html", target="_top", tooltip="This document specifies DHCPv6 options, termed Softwire46 options, for the provisioning of Softwire46 Customer Edge (CE) devices.  Softwire46 is a collective term used to refer to architectures based on the notion of IPv4 Address plus Port (A+P) for providing IPv4 connectivity across an IPv6 network."];
+  RFC7598 -> rev_cites;
+  RFC7600 [label="RFC7600
+IPv4 Residual Deployment via IPv6 - A
+Stateless Solution (4rd)
+2015", shape=ellipse, URL="RFC7600.html", target="_top", tooltip="This document specifies a stateless solution for service providers to progressively deploy IPv6-only network domains while still offering IPv4 service to customers.  The solution's distinctive properties are that TCP/UDP IPv4 packets are valid TCP/UDP IPv6 packets during domain traversal and that IPv4 fragmentation rules are fully preserved end to end.  Each customer can be assigned one public IPv4 address, several public IPv4 addresses, or a shared address with a restricted port set."];
+  RFC7600 -> rev_cites;
+  RFC7608 [label="RFC7608
+IPv6 Prefix Length Recommendation for
+Forwarding
+2015", shape=ellipse, URL="RFC7608.html", target="_top", tooltip="IPv6 prefix length, as in IPv4, is a parameter conveyed and used in IPv6 routing and forwarding processes in accordance with the Classless Inter-domain Routing (CIDR) architecture.  The length of an IPv6 prefix may be any number from zero to 128, although subnets using stateless address autoconfiguration (SLAAC) for address allocation conventionally use a /64 prefix.  Hardware and software implementations of routing and forwarding should therefore impose no rules on prefix length, but implement longest-match-first on prefixes of any valid length."];
+  RFC7608 -> rev_cites;
+  RFC7610 [label="RFC7610
+DHCPv6-Shield: Protecting against Rogue
+DHCPv6 Servers
+2015", shape=ellipse, URL="RFC7610.html", target="_top", tooltip="This document specifies a mechanism for protecting hosts connected to a switched network against rogue DHCPv6 servers.  It is based on DHCPv6 packet filtering at the layer 2 device at which the packets are received.  A similar mechanism has been widely deployed in IPv4 networks ('DHCP snooping'); hence, it is desirable that similar functionality be provided for IPv6 networks.  This document specifies a Best Current Practice for the implementation of DHCPv6-Shield."];
+  RFC7610 -> rev_cites;
+  RFC7653 [label="RFC7653
+DHCPv6 Active Leasequery
+2015", shape=ellipse, URL="RFC7653.html", target="_top", tooltip="The Dynamic Host Configuration Protocol for IPv6 (DHCPv6) has been extended with a Leasequery capability that allows a requestor to request information about DHCPv6 bindings.  That mechanism is limited to queries for DHCPv6 binding data updates prior to the time the DHCPv6 server receives the Leasequery request.  Continuous update of an external requestor with Leasequery data is sometimes desired.  This document expands on the DHCPv6 Leasequery protocol and allows for active transfer of real-time DHCPv6 binding information data via TCP.  This document also updates DHCPv6 Bulk Leasequery (RFC 5460) by adding new options."];
+  RFC7653 -> rev_cites;
+  RFC7668 [label="RFC7668
+IPv6 over BLUETOOTH(R) Low Energy
+2015", shape=ellipse, URL="RFC7668.html", target="_top", tooltip="Bluetooth Smart is the brand name for the Bluetooth low energy feature in the Bluetooth specification defined by the Bluetooth Special Interest Group.  The standard Bluetooth radio has been widely implemented and available in mobile phones, notebook computers, audio headsets, and many other devices.  The low-power version of Bluetooth is a specification that enables the use of this air interface with devices such as sensors, smart meters, appliances, etc.  The low-power variant of Bluetooth has been standardized since revision 4.0 of the Bluetooth specifications, although version 4.1 or newer is required for IPv6.  This document describes how IPv6 is transported over Bluetooth low energy using IPv6 over Low-power Wireless Personal Area Network (6LoWPAN) techniques."];
+  RFC7668 -> rev_cites;
+  RFC7678 [label="RFC7678
+Attribute-Value Pairs for Provisioning
+Customer Equipment Supporting IPv4-Over-
+IPv6 Transitional Solutions
+2015", shape=ellipse, URL="RFC7678.html", target="_top", tooltip="During the transition from IPv4 to IPv6, customer equipment may have to support one of the various transition methods that have been defined for carrying IPv4 packets over IPv6.  This document enumerates the information that needs to be provisioned on a customer edge router to support a list of transition techniques based on tunneling IPv4 in IPv6, with a view to defining reusable components for a reasonable transition path between these techniques.  To the extent that the provisioning is done dynamically, Authentication, Authorization, and Accounting (AAA) support is needed to provide the information to the network server responsible for passing the information to the customer equipment.  This document specifies Diameter (RFC 6733) Attribute-Value Pairs (AVPs) to be used for that purpose."];
+  RFC7678 -> rev_cites;
+  RFC7707 [label="RFC7707
+Network Reconnaissance in IPv6 Networks
+2016", shape=ellipse, URL="RFC7707.html", target="_top", tooltip="IPv6 offers a much larger address space than that of its IPv4 counterpart.  An IPv6 subnet of size /64 can (in theory) accommodate approximately 1.844 * 10^19 hosts, thus resulting in a much lower host density (#hosts/#addresses) than is typical in IPv4 networks, where a site typically has 65,000 or fewer unique addresses.  As a result, it is widely assumed that it would take a tremendous effort to perform address-scanning attacks against IPv6 networks; therefore, IPv6 address-scanning attacks have been considered unfeasible.  This document formally obsoletes RFC 5157, which first discussed this assumption, by providing further analysis on how traditional address-scanning techniques apply to IPv6 networks and exploring some additional techniques that can be employed for IPv6 network reconnaissance."];
+  RFC7707 -> rev_cites;
+  RFC7710 [label="RFC7710
+Captive-Portal Identification Using DHCP
+or Router Advertisements (RAs)
+2015", shape=ellipse, URL="RFC7710.html", target="_top", tooltip="In many environments offering short-term or temporary Internet access (such as coffee shops), it is common to start new connections in a captive-portal mode. This highly restricts what the customer can do until the customer has authenticated. This document describes a DHCP option (and a Router Advertisement (RA) extension) to inform clients that they are behind some sort of captive-portal device and that they will need to authenticate to get Internet access. It is not a full solution to address all of the issues that clients may have with captive portals; it is designed to be used in larger solutions. The method of authenticating to and interacting with the captive portal is out of scope for this document."];
+  RFC7710 -> rev_cites;
+  RFC7721 [label="RFC7721
+Security and Privacy Considerations for
+IPv6 Address Generation Mechanisms
+2016", shape=ellipse, URL="RFC7721.html", target="_top", tooltip="This document discusses privacy and security considerations for several IPv6 address generation mechanisms, both standardized and non-standardized.  It evaluates how different mechanisms mitigate different threats and the trade-offs that implementors, developers, and users face in choosing different addresses or address generation mechanisms."];
+  RFC7721 -> rev_cites;
+  RFC7774 [label="RFC7774
+Multicast Protocol for Low-Power and
+Lossy Networks (MPL) Parameter
+Configuration Option for DHCPv6
+2016", shape=ellipse, URL="RFC7774.html", target="_top", tooltip="This document defines a way to configure a parameter set for MPL (Multicast Protocol for Low-Power and Lossy Networks) via a DHCPv6 option.  MPL has a set of parameters to control its behavior, and the parameter set is often configured as a network-wide parameter because the parameter set should be identical for each MPL Forwarder in an MPL Domain.  Using the MPL Parameter Configuration Option defined in this document, a network can easily be configured with a single set of MPL parameters."];
+  RFC7774 -> rev_cites;
+  RFC7787 [label="RFC7787
+Distributed Node Consensus Protocol
+2016", shape=ellipse, URL="RFC7787.html", target="_top", tooltip="This document describes the Distributed Node Consensus Protocol (DNCP), a generic state synchronization protocol that uses the Trickle algorithm and hash trees.  DNCP is an abstract protocol and must be combined with a specific profile to make a complete implementable protocol."];
+  RFC7787 -> rev_cites;
+  RFC7788 [label="RFC7788
+Home Networking Control Protocol
+2016", shape=ellipse, URL="RFC7788.html", target="_top", tooltip="This document describes the Home Networking Control Protocol (HNCP), an extensible configuration protocol, and a set of requirements for home network devices.  HNCP is described as a profile of and extension to the Distributed Node Consensus Protocol (DNCP).  HNCP enables discovery of network borders, automated configuration of addresses, name resolution, service discovery, and the use of any routing protocol that supports routing based on both the source and destination address."];
+  RFC7788 -> rev_cites;
+  RFC7819 [label="RFC7819
+Privacy Considerations for DHCP
+2016", shape=ellipse, URL="RFC7819.html", target="_top", tooltip="DHCP is a protocol that is used to provide addressing and configuration information to IPv4 hosts.  This document discusses the various identifiers used by DHCP and the potential privacy issues."];
+  RFC7819 -> rev_cites;
+  RFC7824 [label="RFC7824
+Privacy Considerations for DHCPv6
+2016", shape=ellipse, URL="RFC7824.html", target="_top", tooltip="DHCPv6 is a protocol that is used to provide addressing and configuration information to IPv6 hosts.  This document describes the privacy issues associated with the use of DHCPv6 by Internet users.  It is intended to be an analysis of the present situation and does not propose any solutions."];
+  RFC7824 -> rev_cites;
+  RFC7839 [label="RFC7839
+Access-Network-Identifier Option in DHCP
+2016", shape=ellipse, URL="RFC7839.html", target="_top", tooltip="This document specifies the format and mechanism that is to be used for encoding Access-Network Identifiers in DHCPv4 and DHCPv6 messages by defining new Access-Network-Identifier options and sub-options."];
+  RFC7839 -> rev_cites;
+  RFC7844 [label="RFC7844
+Anonymity Profiles for DHCP Clients
+2016", shape=ellipse, URL="RFC7844.html", target="_top", tooltip="Some DHCP options carry unique identifiers.  These identifiers can enable device tracking even if the device administrator takes care of randomizing other potential identifications like link-layer addresses or IPv6 addresses.  The anonymity profiles are designed for clients that wish to remain anonymous to the visited network.  The profiles provide guidelines on the composition of DHCP or DHCPv6 messages, designed to minimize disclosure of identifying information."];
+  RFC7844 -> rev_cites;
+  RFC7934 [label="RFC7934
+Host Address Availability
+Recommendations
+2016", shape=ellipse, URL="RFC7934.html", target="_top", tooltip="This document recommends that networks provide general-purpose end hosts with multiple global IPv6 addresses when they attach, and it describes the benefits of and the options for doing so."];
+  RFC7934 -> rev_cites;
+  RFC7943 [label="RFC7943
+A Method for Generating Semantically
+Opaque Interface Identifiers (IIDs) with
+the Dynamic Host Configuration Protocol
+for IPv6 (DHCPv6)
+2016", shape=ellipse, URL="RFC7943.html", target="_top", tooltip="This document describes a method for selecting IPv6 Interface Identifiers that can be employed by Dynamic Host Configuration Protocol for IPv6 (DHCPv6) servers when leasing non-temporary IPv6 addresses to DHCPv6 clients.  This method is a DHCPv6 server-side algorithm that does not require any updates to the existing DHCPv6 specifications.  The aforementioned method results in stable addresses within each subnet, even in the presence of multiple DHCPv6 servers or DHCPv6 server reinstallments.  It is a DHCPv6 variant of the method specified in RFC 7217 for IPv6 Stateless Address Autoconfiguration."];
+  RFC7943 -> rev_cites;
+  RFC7969 [label="RFC7969
+Customizing DHCP Configuration on the
+Basis of Network Topology
+2016", shape=ellipse, URL="RFC7969.html", target="_top", tooltip="DHCP servers have evolved over the years to provide significant functionality beyond that described in the DHCP base specifications.  One aspect of this functionality is support for context-specific configuration information.  This memo describes some such features and explains their operation."];
+  RFC7969 -> rev_cites;
+  RFC8026 [label="RFC8026
+Unified IPv4-in-IPv6 Softwire Customer
+Premises Equipment (CPE): A DHCPv6-Based
+Prioritization Mechanism
+2016", shape=ellipse, URL="RFC8026.html", target="_top", tooltip="In IPv6-only provider networks, transporting IPv4 packets encapsulated in IPv6 is a common solution to the problem of IPv4 service continuity.  A number of differing functional approaches have been developed for this, each having their own specific characteristics.  As these approaches share a similar functional architecture and use the same data plane mechanisms, this memo specifies a DHCPv6 option, whereby a single instance of Customer Premises Equipment (CPE) can interwork with all of the standardized and proposed approaches to providing encapsulated IPv4-in-IPv6 services by providing a prioritization mechanism."];
+  RFC8026 -> rev_cites;
+  RFC8028 [label="RFC8028
+First-Hop Router Selection by Hosts in a
+Multi-Prefix Network
+2016", shape=ellipse, URL="RFC8028.html", target="_top", tooltip="This document describes expected IPv6 host behavior in a scenario that has more than one prefix, each allocated by an upstream network that is assumed to implement BCP 38 ingress filtering, when the host has multiple routers to choose from.  It also applies to other scenarios such as the usage of stateful firewalls that effectively act as address-based filters.  Host behavior in choosing a first-hop router may interact with source address selection in a given implementation.  However, the selection of the source address for a packet is done before the first-hop router for that packet is chosen.  Given that the network or host is, or appears to be, multihomed with multiple provider-allocated addresses, that the host has elected to use a source address in a given prefix, and that some but not all neighboring routers are advertising that prefix in their Router Advertisement Prefix Information Options, this document specifies to which router a host should present its transmission.  It updates RFC 4861."];
+  RFC8028 -> rev_cites;
+  RFC8074 [label="RFC8074
+Source Address Validation Improvement
+(SAVI) for Mixed Address Assignment
+Methods Scenario
+2017", shape=ellipse, URL="RFC8074.html", target="_top", tooltip="In networks that use multiple techniques for address assignment, the spoofing of addresses assigned by each technique can be prevented using the appropriate Source Address Validation Improvement (SAVI) methods.  This document reviews how multiple SAVI methods can coexist in a single SAVI device and how collisions are resolved when the same binding entry is discovered by two or more methods."];
+  RFC8074 -> rev_cites;
+  RFC8105 [label="RFC8105
+Transmission of IPv6 Packets over
+Digital Enhanced Cordless
+Telecommunications (DECT) Ultra Low
+Energy (ULE)
+2017", shape=ellipse, URL="RFC8105.html", target="_top", tooltip="Digital Enhanced Cordless Telecommunications (DECT) Ultra Low Energy (ULE) is a low-power air interface technology that is proposed by the DECT Forum and is defined and specified by ETSI. The DECT air interface technology has been used worldwide in communication devices for more than 20 years. It has primarily been used to carry voice for cordless telephony but has also been deployed for data-centric services. DECT ULE is a recent addition to the DECT interface primarily intended for low-bandwidth, low-power applications such as sensor devices, smart meters, home automation, etc. As the DECT ULE interface inherits many of the capabilities from DECT, it benefits from operation that is long-range and interference-free, worldwide- reserved frequency band, low silicon prices, and maturity. There is an added value in the ability to communicate with IPv6 over DECT ULE, such as for Internet of Things applications. This document describes how IPv6 is transported over DECT ULE using IPv6 over Low-Power Wireless Personal Area Network (6LoWPAN) techniques."];
+  RFC8105 -> rev_cites;
+  RFC8106 [label="RFC8106
+IPv6 Router Advertisement Options for
+DNS Configuration
+2017", shape=ellipse, URL="RFC8106.html", target="_top", tooltip="This document specifies IPv6 Router Advertisement (RA) options (called DNS RA options) to allow IPv6 routers to advertise a list of DNS Recursive Server Addresses and a DNS Search List to IPv6 hosts. This document, which obsoletes RFC 6106, defines a higher default value of the lifetime of the DNS RA options to reduce the likelihood of expiry of the options on links with a relatively high rate of packet loss."];
+  RFC8106 -> rev_cites;
+  RFC8115 [label="RFC8115
+DHCPv6 Option for IPv4-Embedded
+Multicast and Unicast IPv6 Prefixes
+2017", shape=ellipse, URL="RFC8115.html", target="_top", tooltip="This document defines a Dynamic Host Configuration Protocol version 6 (DHCPv6) Option for multicast IPv4 service continuity solutions, which is used to carry the IPv6 prefixes to be used to build unicast and multicast IPv4-embedded IPv6 addresses."];
+  RFC8115 -> rev_cites;
+  RFC8117 [label="RFC8117
+Current Hostname Practice Considered
+Harmful
+2017", shape=ellipse, URL="RFC8117.html", target="_top", tooltip="Giving a hostname to your computer and publishing it as you roam from one network to another is the Internet's equivalent of walking around with a name tag affixed to your lapel. This current practice can significantly compromise your privacy, and something should change in order to mitigate these privacy threats. There are several possible remedies, such as fixing a variety of protocols or avoiding disclosing a hostname at all. This document describes some of the protocols that reveal hostnames today and sketches another possible remedy, which is to replace static hostnames by frequently changing randomized values."];
+  RFC8117 -> rev_cites;
+  RFC8136 [label="RFC8136
+Additional Transition Functionality for
+IPv6
+2017", shape=ellipse, URL="RFC8136.html", target="_top", tooltip="This document proposes an additional mechanism intended to both facilitate transition from IPv4 to IPv6 and improve the latter's security and privacy."];
+  RFC8136 -> rev_cites;
+  RFC8155 [label="RFC8155
+Traversal Using Relays around NAT (TURN)
+Server Auto Discovery
+2017", shape=ellipse, URL="RFC8155.html", target="_top", tooltip="Current Traversal Using Relays around NAT (TURN) server discovery mechanisms are relatively static and limited to explicit configuration. These are usually under the administrative control of the application or TURN service provider, and not the enterprise, ISP, or the network in which the client is located. Enterprises and ISPs wishing to provide their own TURN servers need auto-discovery mechanisms that a TURN client could use with minimal or no configuration. This document describes three such mechanisms for TURN server discovery. This document updates RFC 5766 to relax the requirement for mutual authentication in certain cases."];
+  RFC8155 -> rev_cites;
+  RFC8156 [label="RFC8156
+DHCPv6 Failover Protocol
+2017", shape=ellipse, URL="RFC8156.html", target="_top", tooltip="DHCPv6 as defined in Dynamic Host Configuration Protocol for IPv6 (DHCPv6) (RFC 3315) does not offer server redundancy.  This document defines a protocol implementation to provide DHCPv6 failover, a mechanism for running two servers with the capability for either server to take over clients' leases in case of server failure or network partition.  It meets the requirements for DHCPv6 failover detailed in DHCPv6 Failover Requirements (RFC 7031)."];
+  RFC8156 -> rev_cites;
+  RFC8163 [label="RFC8163
+Transmission of IPv6 over Master-
+Slave/Token-Passing (MS/TP) Networks
+2017", shape=ellipse, URL="RFC8163.html", target="_top", tooltip="Master-Slave/Token-Passing (MS/TP) is a medium access control method for the RS-485 physical layer and is used primarily in building automation networks.  This specification defines the frame format for transmission of IPv6 packets and the method of forming link-local and statelessly autoconfigured IPv6 addresses on MS/TP networks."];
+  RFC8163 -> rev_cites;
+  RFC8168 [label="RFC8168
+DHCPv6 Prefix-Length Hint Issues
+2017", shape=ellipse, URL="RFC8168.html", target="_top", tooltip="DHCPv6 Prefix Delegation allows a client to include a prefix-length hint value in the IA_PD option to indicate a preference for the size of the prefix to be delegated, but it is unclear about how the client and server should act in different situations involving the prefix-length hint.  This document provides a summary of the existing problems with the prefix-length hint and guidance on what the client and server could do in different situations."];
+  RFC8168 -> rev_cites;
+  RFC8191 [label="RFC8191
+Home Network Prefix Renumbering in Proxy
+Mobile IPv6 (PMIPv6)
+2017", shape=ellipse, URL="RFC8191.html", target="_top", tooltip="In the basic Proxy Mobile IPv6 (PMIPv6) specification, a Mobile Node (MN) is assigned with a Home Network Prefix (HNP) during its initial attachment, and the MN configures its Home Address (HoA) with the HNP.  During the movement of the MN, the HNP remains unchanged to keep ongoing communications associated with the HoA.  However, the current PMIPv6 specification does not specify related operations when HNP renumbering has occurred (e.g., due to change of service provider or site topology, etc.).  In this document, a solution to support HNP renumbering is proposed, as an optional extension of the PMIPv6 specification."];
+  RFC8191 -> rev_cites;
+  RFC8213 [label="RFC8213
+Security of Messages Exchanged between
+Servers and Relay Agents
+2017", shape=ellipse, URL="RFC8213.html", target="_top", tooltip="The Dynamic Host Configuration Protocol for IPv4 (DHCPv4) has no guidance for how to secure messages exchanged between servers and relay agents.  The Dynamic Host Configuration Protocol for IPv6 (DHCPv6) states that IPsec should be used to secure messages exchanged between servers and relay agents but does not require encryption.  With recent concerns about pervasive monitoring and other attacks, it is appropriate to require securing relay-to-relay and relay-to-server communication for DHCPv6 and relay-to-server communication for DHCPv4."];
+  RFC8213 -> rev_cites;
+  RFC8273 [label="RFC8273
+Unique IPv6 Prefix per Host
+2017", shape=ellipse, URL="RFC8273.html", target="_top", tooltip="This document outlines an approach utilizing existing IPv6 protocols to allow hosts to be assigned a unique IPv6 prefix (instead of a unique IPv6 address from a shared IPv6 prefix).  Benefits of using a unique IPv6 prefix over a unique service-provider IPv6 address include improved host isolation and enhanced subscriber management on shared network segments."];
+  RFC8273 -> rev_cites;
+  RFC8302 [label="RFC8302
+Transparent Interconnection of Lots of
+Links (TRILL): ARP and Neighbor
+Discovery (ND) Optimization
+2018", shape=ellipse, URL="RFC8302.html", target="_top", tooltip="This document describes mechanisms to optimize the Address Resolution Protocol (ARP) and Neighbor Discovery (ND) traffic in a Transparent Interconnection of Lots of Links (TRILL) campus.  TRILL switches maintain a cache of IP / Media Access Control (MAC) address / Data Label bindings that are learned from ARP/ND requests and responses that pass through them.  In many cases, this cache allows an edge Routing Bridge (RBridge) to avoid flooding an ARP/ND request by either responding to it directly or encapsulating it and unicasting it.  Such optimization reduces packet flooding over a TRILL campus."];
+  RFC8302 -> rev_cites;
+  RFC8310 [label="RFC8310
+Usage Profiles for DNS over TLS and DNS
+over DTLS
+2018", shape=ellipse, URL="RFC8310.html", target="_top", tooltip="This document discusses usage profiles, based on one or more authentication mechanisms, which can be used for DNS over Transport Layer Security (TLS) or Datagram TLS (DTLS).  These profiles can increase the privacy of DNS transactions compared to using only cleartext DNS.  This document also specifies new authentication mechanisms -- it describes several ways that a DNS client can use an authentication domain name to authenticate a (D)TLS connection to a DNS server.  Additionally, it defines (D)TLS protocol profiles for DNS clients and servers implementing DNS over (D)TLS.  This document updates RFC 7858."];
+  RFC8310 -> rev_cites;
+  RFC8357 [label="RFC8357
+Generalized UDP Source Port for DHCP
+Relay
+2018", shape=ellipse, URL="RFC8357.html", target="_top", tooltip="This document defines an extension to the DHCP protocols that allows a relay agent to use any available source port for upstream communications.  The extension also allows inclusion of a DHCP option that can be used to statelessly route responses back to the appropriate source port on downstream communications."];
+  RFC8357 -> rev_cites;
+  RFC8371 [label="RFC8371
+Mobile Node Identifier Types for MIPv6
+2018", shape=ellipse, URL="RFC8371.html", target="_top", tooltip="This document defines additional identifier type numbers for use with the mobile node identifier option for Mobile IPv6 (MIPv6) as defined by RFC 4283."];
+  RFC8371 -> rev_cites;
+  RFC8376 [label="RFC8376
+Low-Power Wide Area Network (LPWAN)
+Overview
+2018", shape=ellipse, URL="RFC8376.html", target="_top", tooltip="Low-Power Wide Area Networks (LPWANs) are wireless technologies with characteristics such as large coverage areas, low bandwidth, possibly very small packet and application-layer data sizes, and long battery life operation.  This memo is an informational overview of the set of LPWAN technologies being considered in the IETF and of the gaps that exist between the needs of those technologies and the goal of running IP in LPWANs."];
+  RFC8376 -> rev_cites;
+  RFC8386 [label="RFC8386
+Privacy Considerations for Protocols
+Relying on IP Broadcast or Multicast
+2018", shape=ellipse, URL="RFC8386.html", target="_top", tooltip="A number of application-layer protocols make use of IP broadcast or multicast messages for functions such as local service discovery or name resolution.  Some of these functions can only be implemented efficiently using such mechanisms.  When using broadcast or multicast messages, a passive observer in the same broadcast or multicast domain can trivially record these messages and analyze their content.  Therefore, designers of protocols that make use of broadcast or multicast messages need to take special care when designing their protocols."];
+  RFC8386 -> rev_cites;
+  RFC8404 [label="RFC8404
+Effects of Pervasive Encryption on
+Operators
+2018", shape=ellipse, URL="RFC8404.html", target="_top", tooltip="Pervasive monitoring attacks on the privacy of Internet users are of serious concern to both user and operator communities.  RFC 7258 discusses the critical need to protect users' privacy when developing IETF specifications and also recognizes that making networks unmanageable to mitigate pervasive monitoring is not an acceptable outcome: an appropriate balance is needed.  This document discusses current security and network operations as well as management practices that may be impacted by the shift to increased use of encryption to help guide protocol development in support of manageable and secure networks."];
+  RFC8404 -> rev_cites;
+  RFC8415 [label="RFC8415
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6)
+2018", shape=ellipse, URL="RFC8415.html", target="_top", tooltip="This document describes the Dynamic Host Configuration Protocol for IPv6 (DHCPv6): an extensible mechanism for configuring nodes with network configuration parameters, IP addresses, and prefixes. Parameters can be provided statelessly, or in combination with stateful assignment of one or more IPv6 addresses and/or IPv6 prefixes. DHCPv6 can operate either in place of or in addition to stateless address autoconfiguration (SLAAC). This document updates the text from RFC 3315 (the original DHCPv6 specification) and incorporates prefix delegation (RFC 3633), stateless DHCPv6 (RFC 3736), an option to specify an upper bound for how long a client should wait before refreshing information (RFC 4242), a mechanism for throttling DHCPv6 clients when DHCPv6 service is not available (RFC 7083), and relay agent handling of unknown messages (RFC 7283). In addition, this document clarifies the interactions between models of operation (RFC 7550). As such, this document obsoletes RFC 3315, RFC 3633, RFC 3736, RFC 4242, RFC 7083, RFC 7283, and RFC 7550."];
+  RFC8415 -> rev_cites;
+  RFC8504 [label="RFC8504
+IPv6 Node Requirements
+2019", shape=ellipse, URL="RFC8504.html", target="_top", tooltip="This document defines requirements for IPv6 nodes. It is expected that IPv6 will be deployed in a wide range of devices and situations. Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments. This document obsoletes RFC 6434, and in turn RFC 4294."];
+  RFC8504 -> rev_cites;
+  RFC8994 [label="RFC8994
+An Autonomic Control Plane (ACP)
+2021", shape=ellipse, URL="RFC8994.html", target="_top", tooltip="Autonomic functions need a control plane to communicate, which depends on some addressing and routing.  This Autonomic Control Plane should ideally be self-managing and be as independent as possible of configuration.  This document defines such a plane and calls it the Autonomic Control Plane, with the primary use as a control plane for autonomic functions.  It also serves as a virtual out-of-band channel for Operations, Administration, and Management (OAM) communications over a network that provides automatically configured, hop-by-hop authenticated and encrypted communications via automatically configured IPv6 even when the network is not configured or is misconfigured."];
+  RFC8994 -> rev_cites;
+}

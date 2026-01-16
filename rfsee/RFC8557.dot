@@ -1,0 +1,61 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8557 [label="RFC8557
+Deterministic Networking Problem
+Statement
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="This paper documents the needs in various industries to establish multi-hop paths for characterized flows with deterministic properties."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8557;
+
+  obs [label="obsoletes", shape=box];
+  RFC8557 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8557 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8557;
+
+  cites [label="cites", shape=box];
+  RFC8557 -> cites;
+  RFC8578 [label="RFC8578
+Deterministic Networking Use Cases
+2019", shape=ellipse, URL="RFC8578.html", target="_top", tooltip="This document presents use cases for diverse industries that have in common a need for deterministic flows. Deterministic in this context means that such flows provide guaranteed bandwidth, bounded latency, and other properties germane to the transport of time-sensitive data.  These use cases differ notably in their network topologies and specific desired behavior, providing as a group broad industry context for Deterministic Networking (DetNet).  For each use case, this document will identify the use case, identify representative solutions used today, and describe potential improvements that DetNet can enable."];
+  cites -> RFC8578;
+  RFC4655 [label="RFC4655
+A Path Computation Element (PCE)-Based
+Architecture
+2006", shape=ellipse, URL="RFC4655.html", target="_top", tooltip="Constraint-based path computation is a fundamental building block for traffic engineering systems such as Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) networks. Path computation in large, multi-domain, multi-region, or multi-layer networks is complex and may require special computational components and cooperation between the different network domains. This document specifies the architecture for a Path Computation Element (PCE)-based model to address this problem space. This document does not attempt to provide a detailed description of all the architectural components, but rather it describes a set of building blocks for the PCE architecture from which solutions may be constructed. This memo provides information for the Internet community."];
+  cites -> RFC4655;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC7384 [label="RFC7384
+Security Requirements of Time Protocols
+in Packet Switched Networks
+2014", shape=ellipse, URL="RFC7384.html", target="_top", tooltip="As time and frequency distribution protocols are becoming increasingly common and widely deployed, concern about their exposure to various security threats is increasing.  This document defines a set of security requirements for time protocols, focusing on the Precision Time Protocol (PTP) and the Network Time Protocol (NTP).  This document also discusses the security impacts of time protocol practices, the performance implications of external security practices on time protocols, and the dependencies between other security services and time synchronization."];
+  cites -> RFC7384;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8557;
+  RFC8655 [label="RFC8655
+Deterministic Networking Architecture
+2019", shape=ellipse, URL="RFC8655.html", target="_top", tooltip="This document provides the overall architecture for Deterministic Networking (DetNet), which provides a capability to carry specified unicast or multicast data flows for real-time applications with extremely low data loss rates and bounded latency within a network domain.  Techniques used include 1) reserving data-plane resources for individual (or aggregated) DetNet flows in some or all of the intermediate nodes along the path of the flow, 2) providing explicit routes for DetNet flows that do not immediately change with the network topology, and 3) distributing data from DetNet flow packets over time and/or space to ensure delivery of each packet's data in spite of the loss of a path.  DetNet operates at the IP layer and delivers service over lower-layer technologies such as MPLS and Time- Sensitive Networking (TSN) as defined by IEEE 802.1."];
+  RFC8655 -> rev_cites;
+  RFC8799 [label="RFC8799
+Limited Domains and Internet Protocols
+2020", shape=ellipse, URL="RFC8799.html", target="_top", tooltip="There is a noticeable trend towards network behaviors and semantics that are specific to a particular set of requirements applied within a limited region of the Internet. Policies, default parameters, the options supported, the style of network management, and security requirements may vary between such limited regions. This document reviews examples of such limited domains (also known as controlled environments), notes emerging solutions, and includes a related taxonomy. It then briefly discusses the standardization of protocols for limited domains. Finally, it shows the need for a precise definition of limited domain membership and for mechanisms to allow nodes to join a domain securely and to find other members, including boundary nodes. This document is the product of the research of the authors. It has been produced through discussions and consultation within the IETF but is not the product of IETF consensus."];
+  RFC8799 -> rev_cites;
+  RFC9450 [label="RFC9450
+Reliable and Available Wireless (RAW)
+Use Cases
+2023", shape=ellipse, URL="RFC9450.html", target="_top", tooltip="The wireless medium presents significant specific challenges to achieve properties similar to those of wired deterministic networks.  At the same time, a number of use cases cannot be solved with wires and justify the extra effort of going wireless.  This document presents wireless use cases (such as aeronautical communications, amusement parks, industrial applications, pro audio and video, gaming, Unmanned Aerial Vehicle (UAV) and vehicle-to-vehicle (V2V) control, edge robotics, and emergency vehicles), demanding reliable and available behavior."];
+  RFC9450 -> rev_cites;
+}

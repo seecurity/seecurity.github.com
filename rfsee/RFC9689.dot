@@ -1,0 +1,273 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9689;
+
+  obs [label="obsoletes", shape=box];
+  RFC9689 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9689 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9689;
+
+  cites [label="cites", shape=box];
+  RFC9689 -> cites;
+  RFC4655 [label="RFC4655
+A Path Computation Element (PCE)-Based
+Architecture
+2006", shape=ellipse, URL="RFC4655.html", target="_top", tooltip="Constraint-based path computation is a fundamental building block for traffic engineering systems such as Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) networks. Path computation in large, multi-domain, multi-region, or multi-layer networks is complex and may require special computational components and cooperation between the different network domains. This document specifies the architecture for a Path Computation Element (PCE)-based model to address this problem space. This document does not attempt to provide a detailed description of all the architectural components, but rather it describes a set of building blocks for the PCE architecture from which solutions may be constructed. This memo provides information for the Internet community."];
+  cites -> RFC4655;
+  RFC7025 [label="RFC7025
+Requirements for GMPLS Applications of
+PCE
+2013", shape=ellipse, URL="RFC7025.html", target="_top", tooltip="The initial effort of the PCE (Path Computation Element) WG focused mainly on MPLS.  As a next step, this document describes functional requirements for GMPLS applications of PCE."];
+  cites -> RFC7025;
+  RFC8231 [label="RFC8231
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Stateful
+PCE
+2017", shape=ellipse, URL="RFC8231.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) provides mechanisms for Path Computation Elements (PCEs) to perform path computations in response to Path Computation Client (PCC) requests. Although PCEP explicitly makes no assumptions regarding the information available to the PCE, it also makes no provisions for PCE control of timing and sequence of path computations within and across PCEP sessions. This document describes a set of extensions to PCEP to enable stateful control of MPLS-TE and GMPLS Label Switched Paths (LSPs) via PCEP."];
+  cites -> RFC8231;
+  RFC8281 [label="RFC8281
+Path Computation Element Communication
+Protocol (PCEP) Extensions for PCE-
+Initiated LSP Setup in a Stateful PCE
+Model
+2017", shape=ellipse, URL="RFC8281.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) provides mechanisms for Path Computation Elements (PCEs) to perform path computations in response to Path Computation Client (PCC) requests. The extensions for stateful PCE provide active control of Multiprotocol Label Switching (MPLS) Traffic Engineering Label Switched Paths (TE LSPs) via PCEP, for a model where the PCC delegates control over one or more locally configured LSPs to the PCE. This document describes the creation and deletion of PCE-initiated LSPs under the stateful PCE model."];
+  cites -> RFC8281;
+  RFC7399 [label="RFC7399
+Unanswered Questions in the Path
+Computation Element Architecture
+2014", shape=ellipse, URL="RFC7399.html", target="_top", tooltip="The Path Computation Element (PCE) architecture is set out in RFC 4655. The architecture is extended for multi-layer networking with the introduction of the Virtual Network Topology Manager (VNTM) in RFC 5623 and generalized to Hierarchical PCE (H-PCE) in RFC 6805. These three architectural views of PCE deliberately leave some key questions unanswered, especially with respect to the interactions between architectural components. This document draws out those questions and discusses them in an architectural context with reference to other architectural components, existing protocols, and recent IETF efforts. This document does not update the architecture documents and does not define how protocols or components must be used. It does, however, suggest how the architectural components might be combined to provide advanced PCE function."];
+  cites -> RFC7399;
+  RFC7491 [label="RFC7491
+A PCE-Based Architecture for
+Application-Based Network Operations
+2015", shape=ellipse, URL="RFC7491.html", target="_top", tooltip="Services such as content distribution, distributed databases, or inter-data center connectivity place a set of new requirements on the operation of networks. They need on-demand and application-specific reservation of network connectivity, reliability, and resources (such as bandwidth) in a variety of network applications (such as point-to-point connectivity, network virtualization, or mobile back-haul) and in a range of network technologies from packet (IP/MPLS) down to optical. An environment that operates to meet these types of requirements is said to have Application-Based Network Operations (ABNO). ABNO brings together many existing technologies and may be seen as the use of a toolbox of existing components enhanced with a few new elements. This document describes an architecture and framework for ABNO, showing how these components fit together. It provides a cookbook of existing technologies to satisfy the architecture and meet the needs of the applications."];
+  cites -> RFC7491;
+  RFC8283 [label="RFC8283
+An Architecture for Use of PCE and the
+PCE Communication Protocol (PCEP) in a
+Network with Central Control
+2017", shape=ellipse, URL="RFC8283.html", target="_top", tooltip="The Path Computation Element (PCE) is a core component of Software- Defined Networking (SDN) systems. It can compute optimal paths for traffic across a network and can also update the paths to reflect changes in the network or traffic demands. PCE was developed to derive paths for MPLS Label Switched Paths (LSPs), which are supplied to the head end of the LSP using the Path Computation Element Communication Protocol (PCEP). SDN has a broader applicability than signaled MPLS traffic-engineered (TE) networks, and the PCE may be used to determine paths in a range of use cases including static LSPs, segment routing, Service Function Chaining (SFC), and most forms of a routed or switched network. It is, therefore, reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. This document briefly introduces the architecture for PCE as a central controller, examines the motivations and applicability for PCEP as a control protocol in this environment, and introduces the implications for the protocol. A PCE-based central controller can simplify the processing of a distributed control plane by blending it with elements of SDN and without necessarily completely replacing it. This document does not describe use cases in detail and does not define protocol extensions: that work is left for other documents."];
+  cites -> RFC8283;
+  RFC9050 [label="RFC9050
+Path Computation Element Communication
+Protocol (PCEP) Procedures and
+Extensions for Using the PCE as a
+Central Controller (PCECC) of LSPs
+2021", shape=ellipse, URL="RFC9050.html", target="_top", tooltip="The Path Computation Element (PCE) is a core component of Software-Defined Networking (SDN) systems. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN and without necessarily completely replacing it. Thus, the Label Switched Path (LSP) can be calculated/set up/initiated and the label-forwarding entries can also be downloaded through a centralized PCE server to each network device along the path while leveraging the existing PCE technologies as much as possible. This document specifies the procedures and Path Computation Element Communication Protocol (PCEP) extensions for using the PCE as the central controller for provisioning labels along the path of the static LSP."];
+  cites -> RFC9050;
+  RFC9552 [label="RFC9552
+Distribution of Link-State and Traffic
+Engineering Information Using BGP
+2023", shape=ellipse, URL="RFC9552.html", target="_top", tooltip="In many environments, a component external to a network is called upon to perform computations based on the network topology and the current state of the connections within the network, including Traffic Engineering (TE) information. This is information typically distributed by IGP routing protocols within the network. This document describes a mechanism by which link-state and TE information can be collected from networks and shared with external components using the BGP routing protocol. This is achieved using a BGP Network Layer Reachability Information (NLRI) encoding format. The mechanism applies to physical and virtual (e.g., tunnel) IGP links. The mechanism described is subject to policy control. Applications of this technique include Application-Layer Traffic Optimization (ALTO) servers and Path Computation Elements (PCEs). This document obsoletes RFC 7752 by completely replacing that document. It makes some small changes and clarifications to the previous specification. This document also obsoletes RFC 9029 by incorporating the updates that it made to RFC 7752."];
+  cites -> RFC9552;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC1195 [label="RFC1195
+Use of OSI IS-IS for routing in TCP/IP
+and dual environments
+1990", shape=ellipse, URL="RFC1195.html", target="_top", tooltip="This memo specifies an integrated routing protocol, based on the OSI Intra-Domain IS-IS Routing Protocol, which may be used as an interior gateway protocol (IGP) to support TCP/IP as well as OSI.  This allows a single routing protocol to be used to support pure IP environments, pure OSI environments, and dual environments.  This specification was developed by the IS-IS working group of the Internet Engineering Task Force. [STANDARDS-TRACK]"];
+  cites -> RFC1195;
+  RFC8408 [label="RFC8408
+Conveying Path Setup Type in PCE
+Communication Protocol (PCEP) Messages
+2018", shape=ellipse, URL="RFC8408.html", target="_top", tooltip="A Path Computation Element (PCE) can compute Traffic Engineering (TE) paths through a network; these paths are subject to various constraints.  Currently, TE paths are Label Switched Paths (LSPs) that are set up using the RSVP-TE signaling protocol.  However, other TE path setup methods are possible within the PCE architecture.  This document proposes an extension to the PCE Communication Protocol (PCEP) to allow support for different path setup methods over a given PCEP session."];
+  cites -> RFC8408;
+  RFC4456 [label="RFC4456
+BGP Route Reflection: An Alternative to
+Full Mesh Internal BGP (IBGP)
+2006", shape=ellipse, URL="RFC4456.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for TCP/IP internets. Typically, all BGP speakers within a single AS must be fully meshed so that any external routing information must be re-distributed to all other routers within that Autonomous System (AS). This represents a serious scaling problem that has been well documented with several alternatives proposed. This document describes the use and design of a method known as route reflection to alleviate the need for full mesh Internal BGP (IBGP). This document obsoletes RFC 2796 and RFC 1966. [STANDARDS-TRACK]"];
+  cites -> RFC4456;
+  RFC8402 [label="RFC8402
+Segment Routing Architecture
+2018", shape=ellipse, URL="RFC8402.html", target="_top", tooltip="Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called segments. A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header."];
+  cites -> RFC8402;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  cites -> RFC9522;
+  RFC7665 [label="RFC7665
+Service Function Chaining (SFC)
+Architecture
+2015", shape=ellipse, URL="RFC7665.html", target="_top", tooltip="This document describes an architecture for the specification, creation, and ongoing maintenance of Service Function Chains (SFCs) in a network.  It includes architectural concepts, principles, and components used in the construction of composite services through deployment of SFCs, with a focus on those to be standardized in the IETF.  This document does not propose solutions, protocols, or extensions to existing protocols."];
+  cites -> RFC7665;
+  RFC8664 [label="RFC8664
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Segment
+Routing
+2019", shape=ellipse, URL="RFC8664.html", target="_top", tooltip="Segment Routing (SR) enables any head-end node to select any path without relying on a hop-by-hop signaling technique (e.g., LDP or RSVP-TE). It depends only on segments that are advertised by link-state Interior Gateway Protocols (IGPs). An SR path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), an explicit configuration, or a Path Computation Element (PCE). This document specifies extensions to the Path Computation Element Communication Protocol (PCEP) that allow a stateful PCE to compute and initiate Traffic-Engineering (TE) paths, as well as a Path Computation Client (PCC) to request a path subject to certain constraints and optimization criteria in SR networks. This document updates RFC 8408."];
+  cites -> RFC8664;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  cites -> RFC5036;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC8355 [label="RFC8355
+Resiliency Use Cases in Source Packet
+Routing in Networking (SPRING) Networks
+2018", shape=ellipse, URL="RFC8355.html", target="_top", tooltip="This document identifies and describes the requirements for a set of use cases related to Segment Routing network resiliency on Source Packet Routing in Networking (SPRING) networks."];
+  cites -> RFC8355;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  cites -> RFC9256;
+  RFC9604 [label="RFC9604
+Carrying Binding Label/SID in PCE-Based
+Networks
+2024", shape=ellipse, URL="RFC9604.html", target="_top", tooltip="In order to provide greater scalability, network confidentiality, and service independence, Segment Routing (SR) utilizes a Binding Segment Identifier (BSID), as described in RFC 8402.  It is possible to associate a BSID to an RSVP-TE-signaled Traffic Engineering (TE) Label Switched Path (LSP) or an SR TE path.  The BSID can be used by an upstream node for steering traffic into the appropriate TE path to enforce SR policies.  This document specifies the concept of binding value, which can be either an MPLS label or a Segment Identifier (SID).  It further specifies an extension to Path Computation Element Communication Protocol (PCEP) for reporting the binding value by a Path Computation Client (PCC) to the Path Computation Element (PCE) to support PCE-based TE policies."];
+  cites -> RFC9604;
+  RFC9012 [label="RFC9012
+The BGP Tunnel Encapsulation Attribute
+2021", shape=ellipse, URL="RFC9012.html", target="_top", tooltip="This document defines a BGP path attribute known as the Tunnel Encapsulation attribute, which can be used with BGP UPDATEs of various Subsequent Address Family Identifiers (SAFIs) to provide information needed to create tunnels and their corresponding encapsulation headers. It provides encodings for a number of tunnel types, along with procedures for choosing between alternate tunnels and routing packets into tunnels. This document obsoletes RFC 5512, which provided an earlier definition of the Tunnel Encapsulation attribute. RFC 5512 was never deployed in production. Since RFC 5566 relies on RFC 5512, it is likewise obsoleted. This document updates RFC 5640 by indicating that the Load-Balancing Block sub-TLV may be included in any Tunnel Encapsulation attribute where load balancing is desired."];
+  cites -> RFC9012;
+  RFC8754 [label="RFC8754
+IPv6 Segment Routing Header (SRH)
+2020", shape=ellipse, URL="RFC8754.html", target="_top", tooltip="Segment Routing can be applied to the IPv6 data plane using a new type of Routing Extension Header called the Segment Routing Header (SRH).  This document describes the SRH and how it is used by nodes that are Segment Routing (SR) capable."];
+  cites -> RFC8754;
+  RFC8986 [label="RFC8986
+Segment Routing over IPv6 (SRv6) Network
+Programming
+2021", shape=ellipse, URL="RFC8986.html", target="_top", tooltip="The Segment Routing over IPv6 (SRv6) Network Programming framework enables a network operator or an application to specify a packet processing program by encoding a sequence of instructions in the IPv6 packet header. Each instruction is implemented on one or several nodes in the network and identified by an SRv6 Segment Identifier in the packet. This document defines the SRv6 Network Programming concept and specifies the base set of SRv6 behaviors that enables the creation of interoperable overlays with underlay optimization."];
+  cites -> RFC8986;
+  RFC9603 [label="RFC9603
+Path Computation Element Communication
+Protocol (PCEP) Extensions for IPv6
+Segment Routing
+2024", shape=ellipse, URL="RFC9603.html", target="_top", tooltip="Segment Routing (SR) can be used to steer packets through a network using the IPv6 or MPLS data plane, employing the source routing paradigm. An SR Path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), explicit configuration, or a Path Computation Element (PCE). Since SR can be applied to both MPLS and IPv6 data planes, a PCE should be able to compute an SR Path for both MPLS and IPv6 data planes. The Path Computation Element Communication Protocol (PCEP) extension and mechanisms to support SR-MPLS have been defined. This document outlines the necessary extensions to support SR for the IPv6 data plane within PCEP."];
+  cites -> RFC9603;
+  RFC5541 [label="RFC5541
+Encoding of Objective Functions in the
+Path Computation Element Communication
+Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5541.html", target="_top", tooltip="The computation of one or a set of Traffic Engineering Label Switched Paths (TE LSPs) in MultiProtocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks is subject to a set of one or more specific optimization criteria, referred to as objective functions (e.g., minimum cost path, widest path, etc.). In the Path Computation Element (PCE) architecture, a Path Computation Client (PCC) may want a path to be computed for one or more TE LSPs according to a specific objective function. Thus, the PCC needs to instruct the PCE to use the correct objective function. Furthermore, it is possible that not all PCEs support the same set of objective functions; therefore, it is useful for the PCC to be able to automatically discover the set of objective functions supported by each PCE. This document defines extensions to the PCE communication Protocol (PCEP) to allow a PCE to indicate the set of objective functions it supports. Extensions are also defined so that a PCC can indicate in a path computation request the required objective function, and a PCE can report in a path computation reply the objective function that was used for path computation. This document defines objective function code types for six objective functions previously listed in the PCE requirements work, and provides the definition of four new metric types that apply to a set of synchronized requests. [STANDARDS-TRACK]"];
+  cites -> RFC5541;
+  RFC5151 [label="RFC5151
+Inter-Domain MPLS and GMPLS Traffic
+Engineering -- Resource Reservation
+Protocol-Traffic Engineering (RSVP-TE)
+Extensions
+2008", shape=ellipse, URL="RFC5151.html", target="_top", tooltip="This document describes procedures and protocol extensions for the use of Resource Reservation Protocol-Traffic Engineering (RSVP-TE) signaling in Multiprotocol Label Switching-Traffic Engineering (MPLS-TE) packet networks and Generalized MPLS (GMPLS) packet and non-packet networks to support the establishment and maintenance of Label Switched Paths that cross domain boundaries. For the purpose of this document, a domain is considered to be any collection of network elements within a common realm of address space or path computation responsibility. Examples of such domains include Autonomous Systems, Interior Gateway Protocol (IGP) routing areas, and GMPLS overlay networks. [STANDARDS-TRACK]"];
+  cites -> RFC5151;
+  RFC5150 [label="RFC5150
+Label Switched Path Stitching with
+Generalized Multiprotocol Label
+Switching Traffic Engineering (GMPLS TE)
+2008", shape=ellipse, URL="RFC5150.html", target="_top", tooltip="In certain scenarios, there may be a need to combine several Generalized Multiprotocol Label Switching (GMPLS) Label Switched Paths (LSPs) such that a single end-to-end (e2e) LSP is realized and all traffic from one constituent LSP is switched onto the next LSP. We will refer to this as LSP stitching, the key requirement being that a constituent LSP not be allocated to more than one e2e LSP. The constituent LSPs will be referred to as LSP segments (S-LSPs). This document describes extensions to the existing GMPLS signaling protocol (Resource Reservation Protocol-Traffic Engineering (RSVP-TE)) to establish e2e LSPs created from S-LSPs, and describes how the LSPs can be managed using the GMPLS signaling and routing protocols. It may be possible to configure a GMPLS node to switch the traffic from an LSP for which it is the egress, to another LSP for which it is the ingress, without requiring any signaling or routing extensions whatsoever and such that the operation is completely transparent to other nodes. This will also result in LSP stitching in the data plane. However, this document does not cover this scenario of LSP stitching. [STANDARDS-TRACK]"];
+  cites -> RFC5150;
+  RFC4206 [label="RFC4206
+Label Switched Paths (LSP) Hierarchy
+with Generalized Multi-Protocol Label
+Switching (GMPLS) Traffic Engineering
+(TE)
+2005", shape=ellipse, URL="RFC4206.html", target="_top", tooltip="To improve scalability of Generalized Multi-Protocol Label Switching (GMPLS) it may be useful to aggregate Label Switched Paths (LSPs) by creating a hierarchy of such LSPs. A way to create such a hierarchy is by (a) a Label Switching Router (LSR) creating a Traffic Engineering Label Switched Path (TE LSP), (b) the LSR forming a forwarding adjacency (FA) out of that LSP (by advertising this LSP as a Traffic Engineering (TE) link into the same instance of ISIS/OSPF as the one that was used to create the LSP), (c) allowing other LSRs to use FAs for their path computation, and (d) nesting of LSPs originated by other LSRs into that LSP (by using the label stack construct). This document describes the mechanisms to accomplish this. [PROPOSED STANDARD]"];
+  cites -> RFC4206;
+  RFC5376 [label="RFC5376
+Inter-AS Requirements for the Path
+Computation Element Communication
+Protocol (PCECP)
+2008", shape=ellipse, URL="RFC5376.html", target="_top", tooltip="Multiprotocol Label Switching Traffic Engineered (MPLS TE) Label Switched Paths (LSPs) may be established wholly within an Autonomous System (AS) or may cross AS boundaries. The Path Computation Element (PCE) is a component that is capable of computing constrained paths for (G)MPLS TE LSPs. The PCE Communication Protocol (PCECP) is defined to allow communication between Path Computation Clients (PCCs) and PCEs, as well as between PCEs. The PCECP is used to request constrained paths and to supply computed paths in response. Generic requirements for the PCECP are set out in Path Computation Element (PCE) Communication Protocol Generic Requirements, RFC 4657. This document extends those requirements to cover the use of PCECP in support of inter-AS MPLS TE. This memo provides information for the Internet community."];
+  cites -> RFC5376;
+  RFC8751 [label="RFC8751
+Hierarchical Stateful Path Computation
+Element (PCE)
+2020", shape=ellipse, URL="RFC8751.html", target="_top", tooltip="A stateful Path Computation Element (PCE) maintains information on the current network state received from the Path Computation Clients (PCCs), including computed Label Switched Paths (LSPs), reserved resources within the network, and pending path computation requests. This information may then be considered when computing the path for a new traffic-engineered LSP or for any associated/dependent LSPs. The path-computation response from a PCE helps the PCC to gracefully establish the computed LSP. The Hierarchical Path Computation Element (H-PCE) architecture allows the optimum sequence of interconnected domains to be selected and network policy to be applied if applicable, via the use of a hierarchical relationship between PCEs. Combining the capabilities of stateful PCE and the hierarchical PCE would be advantageous. This document describes general considerations and use cases for the deployment of stateful, but not stateless, PCEs using the hierarchical PCE architecture."];
+  cites -> RFC8751;
+  RFC9087 [label="RFC9087
+Segment Routing Centralized BGP Egress
+Peer Engineering
+2021", shape=ellipse, URL="RFC9087.html", target="_top", tooltip="Segment Routing (SR) leverages source routing. A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows for the enforcement of a flow through any topological path while maintaining per-flow state only at the ingress node of the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change on the forwarding plane. It requires a minor extension to the existing link-state routing protocols. This document illustrates the application of Segment Routing to solve the BGP Egress Peer Engineering (BGP-EPE) requirement. The SR-based BGP-EPE solution allows a centralized (Software-Defined Networking, or SDN) controller to program any egress peer policy at ingress border routers or at hosts within the domain."];
+  cites -> RFC9087;
+  RFC8955 [label="RFC8955
+Dissemination of Flow Specification
+Rules
+2020", shape=ellipse, URL="RFC8955.html", target="_top", tooltip="This document defines a Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute (intra-domain and inter-domain) traffic Flow Specifications for IPv4 unicast and IPv4 BGP/MPLS VPN services. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. It also specifies BGP Extended Community encoding formats, which can be used to propagate Traffic Filtering Actions along with the Flow Specification NLRI. Those Traffic Filtering Actions encode actions a routing system can take if the packet matches the Flow Specification. This document obsoletes both RFC 5575 and RFC 7674."];
+  cites -> RFC8955;
+  RFC9168 [label="RFC9168
+Path Computation Element Communication
+Protocol (PCEP) Extension for Flow
+Specification
+2022", shape=ellipse, URL="RFC9168.html", target="_top", tooltip="The Path Computation Element (PCE) is a functional component capable of selecting paths through a traffic engineering (TE) network. These paths may be supplied in response to requests for computation or may be unsolicited requests issued by the PCE to network elements. Both approaches use the PCE Communication Protocol (PCEP) to convey the details of the computed path. Traffic flows may be categorized and described using Flow Specifications. RFC 8955 defines the Flow Specification and describes how Flow Specification components are used to describe traffic flows. RFC 8955 also defines how Flow Specifications may be distributed in BGP to allow specific traffic flows to be associated with routes. This document specifies a set of extensions to PCEP to support dissemination of Flow Specifications. This allows a PCE to indicate what traffic should be placed on each path that it is aware of. The extensions defined in this document include the creation, update, and withdrawal of Flow Specifications via PCEP and can be applied to tunnels initiated by the PCE or to tunnels where control is delegated to the PCE by the Path Computation Client (PCC). Furthermore, a PCC requesting a new path can include Flow Specifications in the request to indicate the purpose of the tunnel allowing the PCE to factor this into the path computation."];
+  cites -> RFC9168;
+  RFC8300 [label="RFC8300
+Network Service Header (NSH)
+2018", shape=ellipse, URL="RFC8300.html", target="_top", tooltip="This document describes a Network Service Header (NSH) imposed on packets or frames to realize Service Function Paths (SFPs).  The NSH also provides a mechanism for metadata exchange along the instantiated service paths.  The NSH is the Service Function Chaining (SFC) encapsulation required to support the SFC architecture (defined in RFC 7665)."];
+  cites -> RFC8300;
+  RFC9491 [label="RFC9491
+Integration of the Network Service
+Header (NSH) and Segment Routing for
+Service Function Chaining (SFC)
+2023", shape=ellipse, URL="RFC9491.html", target="_top", tooltip="This document describes the integration of the Network Service Header (NSH) and Segment Routing (SR), as well as encapsulation details, to efficiently support Service Function Chaining (SFC) while maintaining separation of the service and transport planes as originally intended by the SFC architecture. Combining these technologies allows SR to be used for steering packets between Service Function Forwarders (SFFs) along a given Service Function Path (SFP), whereas the NSH is responsible for maintaining the integrity of the service plane, the SFC instance context, and any associated metadata. This integration demonstrates that the NSH and SR can work cooperatively and provide a network operator with the flexibility to use whichever transport technology makes sense in specific areas of their network infrastructure while still maintaining an end-to-end service plane using the NSH."];
+  cites -> RFC9491;
+  RFC8735 [label="RFC8735
+Scenarios and Simulation Results of PCE
+in a Native IP Network
+2020", shape=ellipse, URL="RFC8735.html", target="_top", tooltip="Requirements for providing the End-to-End (E2E) performance assurance are emerging within the service provider networks. While there are various technology solutions, there is no single solution that can fulfill these requirements for a native IP network. In particular, there is a need for a universal E2E solution that can cover both intra- and inter-domain scenarios. One feasible E2E traffic-engineering solution is the addition of central control in a native IP network. This document describes various complex scenarios and simulation results when applying the Path Computation Element (PCE) in a native IP network. This solution, referred to as Centralized Control Dynamic Routing (CCDR), integrates the advantage of using distributed protocols and the power of a centralized control technology, providing traffic engineering for native IP networks in a manner that applies equally to intra- and inter-domain scenarios."];
+  cites -> RFC8735;
+  RFC8821 [label="RFC8821
+PCE-Based Traffic Engineering (TE) in
+Native IP Networks
+2021", shape=ellipse, URL="RFC8821.html", target="_top", tooltip="This document defines an architecture for providing traffic engineering in a native IP network using multiple BGP sessions and a Path Computation Element (PCE)-based central control mechanism.  It defines the Centralized Control Dynamic Routing (CCDR) procedures and identifies needed extensions for the Path Computation Element Communication Protocol (PCEP)."];
+  cites -> RFC8821;
+  RFC8279 [label="RFC8279
+Multicast Using Bit Index Explicit
+Replication (BIER)
+2017", shape=ellipse, URL="RFC8279.html", target="_top", tooltip="This document specifies a new architecture for the forwarding of multicast data packets.  It provides optimal forwarding of multicast packets through a multicast domain.  However, it does not require a protocol for explicitly building multicast distribution trees, nor does it require intermediate nodes to maintain any per-flow state.  This architecture is known as Bit Index Explicit Replication (BIER).  When a multicast data packet enters the domain, the ingress router determines the set of egress routers to which the packet needs to be sent.  The ingress router then encapsulates the packet in a BIER header.  The BIER header contains a bit string in which each bit represents exactly one egress router in the domain; to forward the packet to a given set of egress routers, the bits corresponding to those routers are set in the BIER header.  The procedures for forwarding a packet based on its BIER header are specified in this document.  Elimination of the per-flow state and the explicit tree-building protocols results in a considerable simplification."];
+  cites -> RFC8279;
+  RFC9262 [label="RFC9262
+Tree Engineering for Bit Index Explicit
+Replication (BIER-TE)
+2022", shape=ellipse, URL="RFC9262.html", target="_top", tooltip="This memo describes per-packet stateless strict and loose path steered replication and forwarding for Bit Index Explicit Replication (BIER) packets (RFC 8279); it is called Tree Engineering for Bit Index Explicit Replication (BIER-TE) and is intended to be used as the path steering mechanism for Traffic Engineering with BIER. BIER-TE introduces a new semantic for bit positions (BPs). These BPs indicate adjacencies of the network topology, as opposed to (non-TE) BIER in which BPs indicate Bit-Forwarding Egress Routers (BFERs). A BIER-TE packets BitString therefore indicates the edges of the (loop-free) tree across which the packets are forwarded by BIER-TE. BIER-TE can leverage BIER forwarding engines with little changes. Co-existence of BIER and BIER-TE forwarding in the same domain is possible -- for example, by using separate BIER subdomains (SDs). Except for the optional routed adjacencies, BIER-TE does not require a BIER routing underlay and can therefore operate without depending on a routing protocol such as the Interior Gateway Protocol (IGP)."];
+  cites -> RFC9262;
+  RFC5440 [label="RFC5440
+Path Computation Element (PCE)
+Communication Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5440.html", target="_top", tooltip="This document specifies the Path Computation Element (PCE) Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a PCE, or between two PCEs.  Such interactions include path computation requests and path computation replies as well as notifications of specific states related to the use of a PCE in the context of Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering.  PCEP is designed to be flexible and extensible so as to easily allow for the addition of further messages and objects, should further requirements be expressed in the future. [STANDARDS-TRACK]"];
+  cites -> RFC5440;
+  RFC8253 [label="RFC8253
+PCEPS: Usage of TLS to Provide a Secure
+Transport for the Path Computation
+Element Communication Protocol (PCEP)
+2017", shape=ellipse, URL="RFC8253.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) defines the mechanisms for the communication between a Path Computation Client (PCC) and a Path Computation Element (PCE), or among PCEs. This document describes PCEPS -- the usage of Transport Layer Security (TLS) to provide a secure transport for PCEP. The additional security mechanisms are provided by the transport protocol supporting PCEP; therefore, they do not affect the flexibility and extensibility of PCEP. This document updates RFC 5440 in regards to the PCEP initialization phase procedures."];
+  cites -> RFC8253;
+  RFC3985 [label="RFC3985
+Pseudo Wire Emulation Edge-to-Edge
+(PWE3) Architecture
+2005", shape=ellipse, URL="RFC3985.html", target="_top", tooltip="This document describes an architecture for Pseudo Wire Emulation Edge-to-Edge (PWE3).  It discusses the emulation of services such as Frame Relay, ATM, Ethernet, TDM, and SONET/SDH over packet switched networks (PSNs) using IP or MPLS.  It presents the architectural framework for pseudo wires (PWs), defines terminology, and specifies the various protocol elements and their functions.  This memo provides information for the Internet community."];
+  cites -> RFC3985;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC7432 [label="RFC7432
+BGP MPLS-Based Ethernet VPN
+2015", shape=ellipse, URL="RFC7432.html", target="_top", tooltip="This document describes procedures for BGP MPLS-based Ethernet VPNs (EVPN).  The procedures described here meet the requirements specified in RFC 7209 -- Requirements for Ethernet VPN (EVPN)."];
+  cites -> RFC7432;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9689;
+}

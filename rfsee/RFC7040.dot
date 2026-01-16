@@ -1,0 +1,52 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7040 [label="RFC7040
+Public IPv4-over-IPv6 Access Network
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes a mechanism called Public 4over6, which is designed to provide IPv4 Internet connectivity over an IPv6 access network using global IPv4 addresses.  Public 4over6 was developed in the IETF and is in use in some existing deployments but is not recommended for new deployments.  Future deployments of similar scenarios should use Lightweight 4over6.  Public 4over6 follows the Hub and Spoke softwire model and uses an IPv4-in-IPv6 tunnel to forward IPv4 packets over an IPv6 access network.  The bidirectionality of the IPv4 communication is achieved by explicitly allocating global non-shared IPv4 addresses to end users and by maintaining IPv4-IPv6 address binding on the border relay.  Public 4over6 aims to provide uninterrupted IPv4 services to users, like Internet Content Providers (ICPs), etc., while an operator makes the access network transition to an IPv6-only access network."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7040;
+
+  obs [label="obsoletes", shape=box];
+  RFC7040 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7040 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7040;
+
+  cites [label="cites", shape=box];
+  RFC7040 -> cites;
+  RFC2473 [label="RFC2473
+Generic Packet Tunneling in IPv6
+Specification
+1998", shape=ellipse, URL="RFC2473.html", target="_top", tooltip="This document defines the model and generic mechanisms for IPv6 encapsulation of Internet packets, such as IPv6 and IPv4. [STANDARDS-TRACK]"];
+  cites -> RFC2473;
+  RFC4925 [label="RFC4925
+Softwire Problem Statement
+2007", shape=ellipse, URL="RFC4925.html", target="_top", tooltip="This document captures the problem statement for the Softwires Working Group, which is developing standards for the discovery, control, and encapsulation methods for connecting IPv4 networks across IPv6-only networks as well as IPv6 networks across IPv4-only networks.  The standards will encourage multiple, inter-operable vendor implementations by identifying, and extending where necessary, existing standard protocols to resolve a selected set of IPv4/IPv6 and IPv6/IPv4 transition problems.  This document describes the specific problems (Hubs and Spokes and Mesh) that will be solved by the standards developed by the Softwires Working Group.  Some requirements (and non-requirements) are also identified to better describe the specific problem scope.  This memo provides information for the Internet community."];
+  cites -> RFC4925;
+  RFC6333 [label="RFC6333
+Dual-Stack Lite Broadband Deployments
+Following IPv4 Exhaustion
+2011", shape=ellipse, URL="RFC6333.html", target="_top", tooltip="This document revisits the dual-stack model and introduces the Dual- Stack Lite technology aimed at better aligning the costs and benefits of deploying IPv6 in service provider networks.  Dual-Stack Lite enables a broadband service provider to share IPv4 addresses among customers by combining two well-known technologies: IP in IP (IPv4- in-IPv6) and Network Address Translation (NAT). [STANDARDS-TRACK]"];
+  cites -> RFC6333;
+  RFC6334 [label="RFC6334
+Dynamic Host Configuration Protocol for
+IPv6 (DHCPv6) Option for Dual-Stack Lite
+2011", shape=ellipse, URL="RFC6334.html", target="_top", tooltip="This document specifies a DHCPv6 option that is meant to be used by a Dual-Stack Lite Basic Bridging BroadBand (B4) element to discover the IPv6 address of its corresponding Address Family Transition Router (AFTR). [STANDARDS-TRACK]"];
+  cites -> RFC6334;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7040;
+  RFC7596 [label="RFC7596
+Lightweight 4over6: An Extension to the
+Dual-Stack Lite Architecture
+2015", shape=ellipse, URL="RFC7596.html", target="_top", tooltip="Dual-Stack Lite (DS-Lite) (RFC 6333) describes an architecture for transporting IPv4 packets over an IPv6 network.  This document specifies an extension to DS-Lite called Lightweight 4over6, which moves the Network Address and Port Translation (NAPT) function from the centralized DS-Lite tunnel concentrator to the tunnel client located in the Customer Premises Equipment (CPE).  This removes the requirement for a Carrier Grade NAT function in the tunnel concentrator and reduces the amount of centralized state that must be held to a per-subscriber level.  In order to delegate the NAPT function and make IPv4 address sharing possible, port-restricted IPv4 addresses are allocated to the CPEs."];
+  RFC7596 -> rev_cites;
+}

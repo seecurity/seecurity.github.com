@@ -1,0 +1,70 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6037 [label="RFC6037
+Cisco Systems' Solution for Multicast in
+BGP/MPLS IP VPNs
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the MVPN (Multicast in BGP/MPLS IP VPNs) solution designed and deployed by Cisco Systems.  The procedures specified in this document are largely a subset of the generalized MVPN framework recently standardized by the IETF.  However, as the deployment of the procedures specified herein predates the publication of IETF standards (in some cases by over five years), an implementation based on these procedures differs in some respects from a fully standards-compliant implementation.  These differences are pointed out in the document.  This document defines a Historic Document for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6037;
+
+  obs [label="obsoletes", shape=box];
+  RFC6037 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6037 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6037;
+
+  cites [label="cites", shape=box];
+  RFC6037 -> cites;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC4023 [label="RFC4023
+Encapsulating MPLS in IP or Generic
+Routing Encapsulation (GRE)
+2005", shape=ellipse, URL="RFC4023.html", target="_top", tooltip="Various applications of MPLS make use of label stacks with multiple entries.  In some cases, it is possible to replace the top label of the stack with an IP-based encapsulation, thereby enabling the application to run over networks that do not have MPLS enabled in their core routers.  This document specifies two IP-based encapsulations: MPLS-in-IP and MPLS-in-GRE (Generic Routing Encapsulation).  Each of these is applicable in some circumstances. [STANDARDS-TRACK]"];
+  cites -> RFC4023;
+  RFC4797 [label="RFC4797
+Use of Provider Edge to Provider Edge
+(PE-PE) Generic Routing Encapsulation
+(GRE) or IP in BGP/MPLS IP Virtual
+Private Networks
+2007", shape=ellipse, URL="RFC4797.html", target="_top", tooltip="This document describes an implementation strategy for BGP/MPLS IP Virtual Private Networks (VPNs) in which the outermost MPLS label (i.e., the tunnel label) is replaced with either an IP header or an IP header with Generic Routing Encapsulation (GRE). The implementation strategy described herein enables the deployment of BGP/MPLS IP VPN technology in networks whose edge devices are MPLS and VPN aware, but whose interior devices are not. This memo provides information for the Internet community."];
+  cites -> RFC4797;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6037;
+  RFC6517 [label="RFC6517
+Mandatory Features in a Layer 3
+Multicast BGP/MPLS VPN Solution
+2012", shape=ellipse, URL="RFC6517.html", target="_top", tooltip="More that one set of mechanisms to support multicast in a layer 3 BGP/MPLS VPN has been defined. These are presented in the documents that define them as optional building blocks. To enable interoperability between implementations, this document defines a subset of features that is considered mandatory for a multicast BGP/MPLS VPN implementation. This will help implementers and deployers understand which L3VPN multicast requirements are best satisfied by each option. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6517 -> rev_cites;
+  RFC7289 [label="RFC7289
+Carrier-Grade NAT (CGN) Deployment with
+BGP/MPLS IP VPNs
+2014", shape=ellipse, URL="RFC7289.html", target="_top", tooltip="This document specifies a framework to integrate a Network Address Translation (NAT) layer into an operator's network to function as a Carrier-Grade NAT (also known as CGN or Large-Scale NAT).  The CGN infrastructure will often form a NAT444 environment as the subscriber home network will likely also maintain a subscriber-side NAT function.  Exhaustion of the IPv4 address pool is a major driver compelling some operators to implement CGN.  Although operators may wish to deploy IPv6 to strategically overcome IPv4 exhaustion, near- term needs may not be satisfied with an IPv6 deployment alone.  This document provides a practical integration model that allows the CGN platform to be integrated into the network, meeting the connectivity needs of the subscriber while being mindful of not disrupting existing services and meeting the technical challenges that CGN brings.  The model included in this document utilizes BGP/MPLS IP VPNs, which allow for virtual routing separation, helping ease the CGN's impact on the network.  This document does not intend to defend the merits of CGN."];
+  RFC7289 -> rev_cites;
+  RFC9182 [label="RFC9182
+A YANG Network Data Model for Layer 3
+VPNs
+2022", shape=ellipse, URL="RFC9182.html", target="_top", tooltip="As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), which is used for communication between customers and service providers, this document defines an L3VPN Network Model (L3NM) that can be used for the provisioning of Layer 3 Virtual Private Network (L3VPN) services within a service provider network. The model provides a network-centric view of L3VPN services. The L3NM is meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. The model can also facilitate communication between a service orchestrator and a network controller/orchestrator."];
+  RFC9182 -> rev_cites;
+  RFC9466 [label="RFC9466
+PIM Assert Message Packing
+2023", shape=ellipse, URL="RFC9466.html", target="_top", tooltip="When PIM Sparse Mode (PIM-SM), including PIM Source-Specific Multicast (PIM-SSM), is used in shared LAN networks, there is often more than one upstream router. This can lead to duplicate IP multicast packets being forwarded by these PIM routers. PIM Assert messages are used to elect a single forwarder for each IP multicast traffic flow between these routers. This document defines a mechanism to send and receive information for multiple IP multicast flows in a single PackedAssert message. This optimization reduces the total number of PIM packets on the LAN and can therefore speed up the election of the single forwarder, reducing the number of duplicate IP multicast packets incurred."];
+  RFC9466 -> rev_cites;
+}

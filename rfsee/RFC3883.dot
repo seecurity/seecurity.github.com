@@ -1,0 +1,43 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3883 [label="RFC3883
+Detecting Inactive Neighbors over OSPF
+Demand Circuits (DC)
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="OSPF is a link-state intra-domain routing protocol used in IP networks.  OSPF behavior over demand circuits (DC) is optimized in RFC 1793 to minimize the amount of overhead traffic.  A part of the OSPF demand circuit extensions is the Hello suppression mechanism.  This technique allows a demand circuit to go down when no interesting traffic is going through the link.  However, it also introduces a problem, where it becomes impossible to detect an OSPF-inactive neighbor over such a link.  This memo introduces a new mechanism called neighbor probing to address the above problem. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3883;
+
+  obs [label="obsoletes", shape=box];
+  RFC3883 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3883 -> updates;
+  RFC1793 [label="RFC1793
+Extending OSPF to Support Demand
+Circuits
+1995", shape=ellipse, URL="RFC1793.html", target="_top", tooltip="This memo defines enhancements to the OSPF protocol that allow efficient operation over demand circuits. [STANDARDS-TRACK]"];
+  updates -> RFC1793;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3883;
+
+  cites [label="cites", shape=box];
+  RFC3883 -> cites;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC1793 [label="RFC1793
+Extending OSPF to Support Demand
+Circuits
+1995", shape=ellipse, URL="RFC1793.html", target="_top", tooltip="This memo defines enhancements to the OSPF protocol that allow efficient operation over demand circuits. [STANDARDS-TRACK]"];
+  cites -> RFC1793;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3883;
+}

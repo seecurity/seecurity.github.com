@@ -1,0 +1,96 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7342 [label="RFC7342
+Practices for Scaling ARP and Neighbor
+Discovery (ND) in Large Data Centers
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo documents some operational practices that allow ARP and Neighbor Discovery (ND) to scale in data center environments."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7342;
+
+  obs [label="obsoletes", shape=box];
+  RFC7342 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7342 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7342;
+
+  cites [label="cites", shape=box];
+  RFC7342 -> cites;
+  RFC6820 [label="RFC6820
+Address Resolution Problems in Large
+Data Center Networks
+2013", shape=ellipse, URL="RFC6820.html", target="_top", tooltip="This document examines address resolution issues related to the scaling of data centers with a very large number of hosts.  The scope of this document is relatively narrow, focusing on address resolution (the Address Resolution Protocol (ARP) in IPv4 and Neighbor Discovery (ND) in IPv6) within a data center.  This document is a product of the Internet Engineering Task Force (IETF)."];
+  cites -> RFC6820;
+  RFC4903 [label="RFC4903
+Multi-Link Subnet Issues
+2007", shape=ellipse, URL="RFC4903.html", target="_top", tooltip="There have been several proposals around the notion that a subnet may span multiple links connected by routers.  This memo documents the issues and potential problems that have been raised with such an approach.  This memo provides information for the Internet community."];
+  cites -> RFC4903;
+  RFC4541 [label="RFC4541
+Considerations for Internet Group
+Management Protocol (IGMP) and Multicast
+Listener Discovery (MLD) Snooping
+Switches
+2006", shape=ellipse, URL="RFC4541.html", target="_top", tooltip="This memo describes the recommendations for Internet Group Management Protocol (IGMP) and Multicast Listener Discovery (MLD) snooping switches.  These are based on best current practices for IGMPv2, with further considerations for IGMPv3- and MLDv2-snooping.  Additional areas of relevance, such as link layer topology changes and Ethernet-specific encapsulation issues, are also considered.  This memo provides information for the Internet community."];
+  cites -> RFC4541;
+  RFC4861 [label="RFC4861
+Neighbor Discovery for IP version 6
+(IPv6)
+2007", shape=ellipse, URL="RFC4861.html", target="_top", tooltip="This document specifies the Neighbor Discovery protocol for IP Version 6.  IPv6 nodes on the same link use Neighbor Discovery to discover each other's presence, to determine each other's link-layer addresses, to find routers, and to maintain reachability information about the paths to active neighbors. [STANDARDS-TRACK]"];
+  cites -> RFC4861;
+  RFC7048 [label="RFC7048
+Neighbor Unreachability Detection Is Too
+Impatient
+2014", shape=ellipse, URL="RFC7048.html", target="_top", tooltip="IPv6 Neighbor Discovery includes Neighbor Unreachability Detection.  That function is very useful when a host has an alternative neighbor -- for instance, when there are multiple default routers -- since it allows the host to switch to the alternative neighbor in a short time.  By default, this time is 3 seconds after the node starts probing.  However, if there are no alternative neighbors, this timeout behavior is far too impatient.  This document specifies relaxed rules for Neighbor Discovery retransmissions that allow an implementation to choose different timeout behavior based on whether or not there are alternative neighbors.  This document updates RFC 4861."];
+  cites -> RFC7048;
+  RFC3971 [label="RFC3971
+SEcure Neighbor Discovery (SEND)
+2005", shape=ellipse, URL="RFC3971.html", target="_top", tooltip="IPv6 nodes use the Neighbor Discovery Protocol (NDP) to discover other nodes on the link, to determine their link-layer addresses to find routers, and to maintain reachability information about the paths to active neighbors.  If not secured, NDP is vulnerable to various attacks.  This document specifies security mechanisms for NDP.  Unlike those in the original NDP specifications, these mechanisms do not use IPsec. [STANDARDS-TRACK]"];
+  cites -> RFC3971;
+  RFC1027 [label="RFC1027
+Using ARP to implement transparent
+subnet gateways
+1987", shape=ellipse, URL="RFC1027.html", target="_top", tooltip="This RFC describes the use of the Address Resolution Protocol (ARP) by subnet gateways to permit hosts on the connected subnets to communicate without being aware of the existence of subnets, using the technique of Proxy ARP."];
+  cites -> RFC1027;
+  RFC4389 [label="RFC4389
+Neighbor Discovery Proxies (ND Proxy)
+2006", shape=ellipse, URL="RFC4389.html", target="_top", tooltip="Bridging multiple links into a single entity has several operational advantages.  A single subnet prefix is sufficient to support multiple physical links.  There is no need to allocate subnet numbers to the different networks, simplifying management.  Bridging some types of media requires network-layer support, however.  This document describes these cases and specifies the IP-layer support that enables bridging under these circumstances.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC4389;
+  RFC1076 [label="RFC1076
+HEMS monitoring and control language
+1988", shape=ellipse, URL="RFC1076.html", target="_top", tooltip="This RFC specifies a query language for monitoring and control of network entities.  This RFC supercedes RFC 1023, extending the query language and providing more discussion of the underlying issues.  This language is a component of the High-Level Entity Monitoring System (HEMS) described in RFC 1021 and RFC 1022.  Readers may wish to consult these RFCs when reading this memo.  RFC 1024 contains detailed assignments of numbers and structures used in this system.  Portions of RFC 1024 that define query language structures are superceded by definitions in this memo.  This memo assumes a knowledge of the ISO data encoding standard, ASN.1."];
+  cites -> RFC1076;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7342;
+  RFC7586 [label="RFC7586
+The Scalable Address Resolution Protocol
+(SARP) for Large Data Centers
+2015", shape=ellipse, URL="RFC7586.html", target="_top", tooltip="This document introduces the Scalable Address Resolution Protocol (SARP), an architecture that uses proxy gateways to scale large data center networks.  SARP is based on fast proxies that significantly reduce switches' Filtering Database (FDB) table sizes and reduce impact of ARP and Neighbor Discovery (ND) on network elements in an environment where hosts within one subnet (or VLAN) can spread over various locations.  SARP is targeted for massive data centers with a significant number of Virtual Machines (VMs) that can move across various physical locations."];
+  RFC7586 -> rev_cites;
+  RFC9898 [label="RFC9898
+Neighbor Discovery Considerations in
+IPv6 Deployments
+2025", shape=ellipse, URL="RFC9898.html", target="_top", tooltip="The Neighbor Discovery (ND) protocol is a critical component of the
+IPv6 architecture. The protocol uses multicast in many messages. It
+also assumes a security model where all nodes on a link are trusted.
+Such a design might be inefficient in some scenarios (e.g., use of
+multicast in wireless networks) or when nodes are not trustworthy
+(e.g., public access networks). These security and operational issues
+and the associated mitigation solutions are documented in more than
+twenty RFCs. There is a need to track these issues and solutions in a
+single document. To that aim, this document summarizes the published ND issues and
+then describes how all these issues originate from three causes.
+Addressing the issues is made simpler by addressing the causes. This
+document also analyzes the mitigation solutions and demonstrates that
+isolating hosts into different subnets and links can help to address
+the three causes. Guidance is provided for selecting a suitable
+isolation method to prevent potential ND issues."];
+  RFC9898 -> rev_cites;
+}

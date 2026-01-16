@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5004 [label="RFC5004
+Avoid BGP Best Path Transitions from One
+External to Another
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="In this document, we propose an extension to the BGP route selection rules that would avoid unnecessary best path transitions between external paths under certain conditions.  The proposed extension would help the overall network stability, and more importantly, would eliminate certain BGP route oscillations in which more than one external path from one BGP speaker contributes to the churn. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5004;
+
+  obs [label="obsoletes", shape=box];
+  RFC5004 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5004 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5004;
+
+  cites [label="cites", shape=box];
+  RFC5004 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3345 [label="RFC3345
+Border Gateway Protocol (BGP) Persistent
+Route Oscillation Condition
+2002", shape=ellipse, URL="RFC3345.html", target="_top", tooltip="None"];
+  cites -> RFC3345;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5004;
+  RFC8669 [label="RFC8669
+Segment Routing Prefix Segment
+Identifier Extensions for BGP
+2019", shape=ellipse, URL="RFC8669.html", target="_top", tooltip="Segment Routing (SR) leverages the source-routing paradigm. A node steers a packet through an ordered list of instructions called segments. A segment can represent any instruction, topological or service based. The ingress node prepends an SR header to a packet containing a set of segment identifiers (SIDs). Each SID represents a topological or service-based instruction. Per-flow state is maintained only on the ingress node of the SR domain. An SR domain is defined as a single administrative domain for global SID assignment. This document defines an optional, transitive BGP attribute for announcing information about BGP Prefix Segment Identifiers (BGP Prefix-SIDs) and the specification for SR-MPLS SIDs."];
+  RFC8669 -> rev_cites;
+}

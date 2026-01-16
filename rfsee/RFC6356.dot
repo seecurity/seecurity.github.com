@@ -1,0 +1,90 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6356 [label="RFC6356
+Coupled Congestion Control for Multipath
+Transport Protocols
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="Often endpoints are connected by multiple paths, but communications are usually restricted to a single path per connection. Resource usage within the network would be more efficient were it possible for these multiple paths to be used concurrently. Multipath TCP is a proposal to achieve multipath transport in TCP. New congestion control algorithms are needed for multipath transport protocols such as Multipath TCP, as single path algorithms have a series of issues in the multipath context. One of the prominent problems is that running existing algorithms such as standard TCP independently on each path would give the multipath flow more than its fair share at a bottleneck link traversed by more than one of its subflows. Further, it is desirable that a source with multiple paths available will transfer more traffic using the least congested of the paths, achieving a property called resource pooling where a bundle of links effectively behaves like one shared link with bigger capacity. This would increase the overall efficiency of the network and also its robustness to failure. This document presents a congestion control algorithm that couples the congestion control algorithms running on different subflows by linking their increase functions, and dynamically controls the overall aggressiveness of the multipath flow. The result is a practical algorithm that is fair to TCP at bottlenecks while moving traffic away from congested links. This document defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6356;
+
+  obs [label="obsoletes", shape=box];
+  RFC6356 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6356 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6356;
+
+  cites [label="cites", shape=box];
+  RFC6356 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5681 [label="RFC5681
+TCP Congestion Control
+2009", shape=ellipse, URL="RFC5681.html", target="_top", tooltip="This document defines TCP's four intertwined congestion control algorithms: slow start, congestion avoidance, fast retransmit, and fast recovery.  In addition, the document specifies how TCP should begin transmission after a relatively long idle period, as well as discussing various acknowledgment generation methods.  This document obsoletes RFC 2581. [STANDARDS-TRACK]"];
+  cites -> RFC5681;
+  RFC3465 [label="RFC3465
+TCP Congestion Control with Appropriate
+Byte Counting (ABC)
+2003", shape=ellipse, URL="RFC3465.html", target="_top", tooltip="This document proposes a small modification to the way TCP increases its congestion window.  Rather than the traditional method of increasing the congestion window by a constant amount for each arriving acknowledgment, the document suggests basing the increase on the number of previously unacknowledged bytes each ACK covers.  This change improves the performance of TCP, as well as closes a security hole TCP receivers can use to induce the sender into increasing the sending rate too rapidly.  This memo defines an Experimental Protocol for the Internet community."];
+  cites -> RFC3465;
+  RFC6181 [label="RFC6181
+Threat Analysis for TCP Extensions for
+Multipath Operation with Multiple
+Addresses
+2011", shape=ellipse, URL="RFC6181.html", target="_top", tooltip="Multipath TCP (MPTCP for short) describes the extensions proposed for TCP so that endpoints of a given TCP connection can use multiple paths to exchange data.  Such extensions enable the exchange of segments using different source-destination address pairs, resulting in the capability of using multiple paths in a significant number of scenarios.  Some level of multihoming and mobility support can be achieved through these extensions.  However, the support for multiple IP addresses per endpoint may have implications on the security of the resulting MPTCP.  This note includes a threat analysis for MPTCP.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6181;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6356;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+  RFC8041 [label="RFC8041
+Use Cases and Operational Experience
+with Multipath TCP
+2017", shape=ellipse, URL="RFC8041.html", target="_top", tooltip="This document discusses both use cases and operational experience with Multipath TCP (MPTCP) in real networks.  It lists several prominent use cases where Multipath TCP has been considered and is being used.  It also gives insight to some heuristics and decisions that have helped to realize these use cases and suggests possible improvements."];
+  RFC8041 -> rev_cites;
+  RFC8095 [label="RFC8095
+Services Provided by IETF Transport
+Protocols and Congestion Control
+Mechanisms
+2017", shape=ellipse, URL="RFC8095.html", target="_top", tooltip="This document describes, surveys, and classifies the protocol mechanisms provided by existing IETF protocols, as background for determining a common set of transport services.  It examines the Transmission Control Protocol (TCP), Multipath TCP, the Stream Control Transmission Protocol (SCTP), the User Datagram Protocol (UDP), UDP-Lite, the Datagram Congestion Control Protocol (DCCP), the Internet Control Message Protocol (ICMP), the Real-Time Transport Protocol (RTP), File Delivery over Unidirectional Transport / Asynchronous Layered Coding (FLUTE/ALC) for Reliable Multicast, NACK- Oriented Reliable Multicast (NORM), Transport Layer Security (TLS), Datagram TLS (DTLS), and the Hypertext Transport Protocol (HTTP), when HTTP is used as a pseudotransport.  This survey provides background for the definition of transport services within the TAPS working group."];
+  RFC8095 -> rev_cites;
+  RFC8684 [label="RFC8684
+TCP Extensions for Multipath Operation
+with Multiple Addresses
+2020", shape=ellipse, URL="RFC8684.html", target="_top", tooltip="TCP/IP communication is currently restricted to a single path per connection, yet multiple paths often exist between peers. The simultaneous use of these multiple paths for a TCP/IP session would improve resource usage within the network and thus improve user experience through higher throughput and improved resilience to network failure. Multipath TCP provides the ability to simultaneously use multiple paths between peers. This document presents a set of extensions to traditional TCP to support multipath operation. The protocol offers the same type of service to applications as TCP (i.e., a reliable bytestream), and it provides the components necessary to establish and use multiple TCP flows across potentially disjoint paths. This document specifies v1 of Multipath TCP, obsoleting v0 as specified in RFC 6824, through clarifications and modifications primarily driven by deployment experience."];
+  RFC8684 -> rev_cites;
+  RFC8774 [label="RFC8774
+The Quantum Bug
+2020", shape=ellipse, URL="RFC8774.html", target="_top", tooltip="The age of quantum networking is upon us, and with it comes entanglement: a procedure in which a state (i.e., a bit) can be transferred instantly, with no measurable delay between peers.  This will lead to a perceived round-trip time of zero seconds on some Internet paths, a capability which was not predicted and so not included as a possibility in many protocol specifications.  Worse than the millennium bug, this unexpected value is bound to cause serious Internet failures unless the specifications are fixed in time."];
+  RFC8774 -> rev_cites;
+  RFC9265 [label="RFC9265
+Forward Erasure Correction (FEC) Coding
+and Congestion Control in Transport
+2022", shape=ellipse, URL="RFC9265.html", target="_top", tooltip="Forward Erasure Correction (FEC) is a reliability mechanism that is distinct and separate from the retransmission logic in reliable transfer protocols such as TCP. FEC coding can help deal with losses at the end of transfers or with networks having non-congestion losses. However, FEC coding mechanisms should not hide congestion signals. This memo offers a discussion of how FEC coding and congestion control can coexist. Another objective is to encourage the research community to also consider congestion control aspects when proposing and comparing FEC coding solutions in communication systems. This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). The scope of the document is end-to-end communications; FEC coding for tunnels is out of the scope of the document."];
+  RFC9265 -> rev_cites;
+  RFC9743 [label="RFC9743
+Specifying New Congestion Control
+Algorithms
+2025", shape=ellipse, URL="RFC9743.html", target="_top", tooltip="RFC 5033 discusses the principles and guidelines for standardizing new congestion control algorithms.  This document obsoletes RFC 5033 to reflect changes in the congestion control landscape by providing a framework for the development and assessment of congestion control mechanisms, promoting stability across diverse network paths.  This document seeks to ensure that proposed congestion control algorithms operate efficiently and without harm when used in the global Internet.  It emphasizes the need for comprehensive testing and validation to prevent adverse interactions with existing flows."];
+  RFC9743 -> rev_cites;
+  RFC9897 [label="RFC9897
+Datagram Congestion Control Protocol
+(DCCP) Extensions for Multipath
+Operation with Multiple Addresses
+2026", shape=ellipse, URL="RFC9897.html", target="_top", tooltip="Datagram Congestion Control Protocol (DCCP) communications, as defined in RFC 4340, are inherently restricted to a single path per connection, despite the availability of multiple network paths between peers. The ability to utilize multiple paths simultaneously for a DCCP session can enhance network resource utilization, improve throughput, and increase resilience to network failures, ultimately enhancing the user experience. Use cases for Multipath DCCP (MP-DCCP) include mobile devices (e.g., handsets and vehicles) and residential home gateways that maintain simultaneous connections to distinct network types such as cellular and Wireless Local Area Networks (WLANs) or cellular and fixed access networks. Compared to existing multipath transport protocols, such as Multipath TCP (MPTCP), MP-DCCP is particularly suited for latency-sensitive applications with varying requirements for reliability and in-order delivery. This document specifies a set of protocol extensions to DCCP that enable multipath operations. These extensions maintain the same service model as DCCP while introducing mechanisms to establish and utilize multiple concurrent DCCP flows across different network paths."];
+  RFC9897 -> rev_cites;
+}

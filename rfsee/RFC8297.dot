@@ -1,0 +1,56 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8297 [label="RFC8297
+An HTTP Status Code for Indicating Hints
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo introduces an informational HTTP status code that can be used to convey hints that help a client make preparations for processing the final response."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8297;
+
+  obs [label="obsoletes", shape=box];
+  RFC8297 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8297 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8297;
+
+  cites [label="cites", shape=box];
+  RFC8297 -> cites;
+  RFC7540 [label="RFC7540
+Hypertext Transfer Protocol Version 2
+(HTTP/2)
+2015", shape=ellipse, URL="RFC7540.html", target="_top", tooltip="This specification describes an optimized expression of the semantics of the Hypertext Transfer Protocol (HTTP), referred to as HTTP version 2 (HTTP/2). HTTP/2 enables a more efficient use of network resources and a reduced perception of latency by introducing header field compression and allowing multiple concurrent exchanges on the same connection. It also introduces unsolicited push of representations from servers to clients. This specification is an alternative to, but does not obsolete, the HTTP/1.1 message syntax. HTTP's existing semantics remain unchanged."];
+  cites -> RFC7540;
+  RFC7231 [label="RFC7231
+Hypertext Transfer Protocol (HTTP/1.1):
+Semantics and Content
+2014", shape=ellipse, URL="RFC7231.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless \%application- level protocol for distributed, collaborative, hypertext information systems.  This document defines the semantics of HTTP/1.1 messages, as expressed by request methods, request header fields, response status codes, and response header fields, along with the payload of messages (metadata and body content) and mechanisms for content negotiation."];
+  cites -> RFC7231;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8297;
+  RFC9205 [label="RFC9205
+Building Protocols with HTTP
+2022", shape=ellipse, URL="RFC9205.html", target="_top", tooltip="Applications often use HTTP as a substrate to create HTTP-based APIs. This document specifies best practices for writing specifications that use HTTP to define new application protocols. It is written primarily to guide IETF efforts to define application protocols using HTTP for deployment on the Internet but might be applicable in other situations. This document obsoletes RFC 3205."];
+  RFC9205 -> rev_cites;
+  RFC9292 [label="RFC9292
+Binary Representation of HTTP Messages
+2022", shape=ellipse, URL="RFC9292.html", target="_top", tooltip="This document defines a binary format for representing HTTP messages."];
+  RFC9292 -> rev_cites;
+}

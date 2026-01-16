@@ -1,0 +1,48 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3884 [label="RFC3884
+Use of IPsec Transport Mode for Dynamic
+Routing
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="IPsec can secure the links of a multihop network to protect communication between trusted components, e.g., for a secure virtual network (VN), overlay, or virtual private network (VPN).  Virtual links established by IPsec tunnel mode can conflict with routing and forwarding inside VNs because IP routing depends on references to interfaces and next-hop IP addresses.  The IPsec tunnel mode specification is ambiguous on this issue, so even compliant implementations cannot be trusted to avoid conflicts.  An alternative to tunnel mode uses non-IPsec IPIP encapsulation together with IPsec transport mode, which we call IIPtran.  IPIP encapsulation occurs as a separate initial step, as the result of a forwarding lookup of the VN packet.  IPsec transport mode processes the resulting (tunneled) IP packet with an SA determined through a security association database (SAD) match on the tunnel header.  IIPtran supports dynamic routing inside the VN without changes to the current IPsec architecture.  IIPtran demonstrates how to configure any compliant IPsec implementation to avoid the aforementioned conflicts.  IIPtran is also compared to several alternative mechanisms for VN routing and their respective impact on IPsec, routing, policy enforcement, and interactions with the Internet Key Exchange (IKE).  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3884;
+
+  obs [label="obsoletes", shape=box];
+  RFC3884 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3884 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3884;
+
+  cites [label="cites", shape=box];
+  RFC3884 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3884;
+  RFC4891 [label="RFC4891
+Using IPsec to Secure IPv6-in-IPv4
+Tunnels
+2007", shape=ellipse, URL="RFC4891.html", target="_top", tooltip="This document gives guidance on securing manually configured IPv6-in- IPv4 tunnels using IPsec in transport mode.  No additional protocol extensions are described beyond those available with the IPsec framework.  This memo provides information for the Internet community."];
+  RFC4891 -> rev_cites;
+  RFC5739 [label="RFC5739
+IPv6 Configuration in Internet Key
+Exchange Protocol Version 2 (IKEv2)
+2010", shape=ellipse, URL="RFC5739.html", target="_top", tooltip="When Internet Key Exchange Protocol version 2 (IKEv2) is used for remote VPN access (client to VPN gateway), the gateway assigns the client an IP address from the internal network using IKEv2 configuration payloads.  The configuration payloads specified in RFC 4306 work well for IPv4 but make it difficult to use certain features of IPv6.  This document specifies new configuration attributes for IKEv2 that allows the VPN gateway to assign IPv6 prefixes to clients, enabling all features of IPv6 to be used with the client-gateway virtual link.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5739 -> rev_cites;
+  RFC6071 [label="RFC6071
+IP Security (IPsec) and Internet Key
+Exchange (IKE) Document Roadmap
+2011", shape=ellipse, URL="RFC6071.html", target="_top", tooltip="Over the past few years, the number of RFCs that define and use IPsec and Internet Key Exchange (IKE) has greatly proliferated. This is complicated by the fact that these RFCs originate from numerous IETF working groups: the original IPsec WG, its various spin-offs, and other WGs that use IPsec and/or IKE to protect their protocols' traffic. This document is a snapshot of IPsec- and IKE-related RFCs. It includes a brief description of each RFC, along with background information explaining the motivation and context of IPsec's outgrowths and extensions. It obsoletes RFC 2411, the previous IP Security Document Roadmap. The obsoleted IPsec roadmap (RFC 2411) briefly described the interrelationship of the various classes of base IPsec documents. The major focus of RFC 2411 was to specify the recommended contents of documents specifying additional encryption and authentication algorithms. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6071 -> rev_cites;
+  RFC9837 [label="RFC9837
+The IPv6 VPN Service Destination Option
+2025", shape=ellipse, URL="RFC9837.html", target="_top", tooltip="This document describes an experiment in which VPN service information is encoded in an experimental IPv6 Destination Option. The experimental IPv6 Destination Option is called the VPN Service Option. One purpose of this experiment is to demonstrate that the VPN Service Option can be deployed in a production network. Another purpose is to demonstrate that the security measures described in this document are sufficient to protect a VPN. Finally, this document encourages replication of the experiment."];
+  RFC9837 -> rev_cites;
+}

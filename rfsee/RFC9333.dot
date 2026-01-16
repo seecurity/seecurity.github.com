@@ -1,0 +1,86 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9333 [label="RFC9333
+Minimal IP Encapsulating Security
+Payload (ESP)
+2023", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes the minimal properties that an IP Encapsulating Security Payload (ESP) implementation needs to meet to remain interoperable with the standard ESP as defined in RFC 4303. Such a minimal version of ESP is not intended to become a replacement of ESP in RFC 4303. Instead, a minimal implementation is expected to be optimized for constrained environments while remaining interoperable with implementations of ESP. In addition, this document provides some considerations for implementing minimal ESP in a constrained environment, such as limiting the number of flash writes, handling frequent wakeup and sleep states, limiting wakeup time, and reducing the use of random generation. This document does not update or modify RFC 4303. It provides a compact description of how to implement the minimal version of that protocol. RFC 4303 remains the authoritative description."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9333;
+
+  obs [label="obsoletes", shape=box];
+  RFC9333 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9333 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9333;
+
+  cites [label="cites", shape=box];
+  RFC9333 -> cites;
+  RFC4303 [label="RFC4303
+IP Encapsulating Security Payload (ESP)
+2005", shape=ellipse, URL="RFC4303.html", target="_top", tooltip="This document describes an updated version of the Encapsulating Security Payload (ESP) protocol, which is designed to provide a mix of security services in IPv4 and IPv6.  ESP is used to provide confidentiality, data origin authentication, connectionless integrity, an anti-replay service (a form of partial sequence integrity), and limited traffic flow confidentiality.  This document obsoletes RFC 2406 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4303;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC7815 [label="RFC7815
+Minimal Internet Key Exchange Version 2
+(IKEv2) Initiator Implementation
+2016", shape=ellipse, URL="RFC7815.html", target="_top", tooltip="This document describes a minimal initiator version of the Internet Key Exchange version 2 (IKEv2) protocol for constrained nodes. IKEv2 is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs). IKEv2 includes several optional features, which are not needed in minimal implementations. This document describes what is required from the minimal implementation and also describes various optimizations that can be done. The protocol described here is interoperable with a full IKEv2 implementation using shared secret authentication (IKEv2 does not require the use of certificate authentication). This minimal initiator implementation can only talk to a full IKEv2 implementation acting as the responder; thus, two minimal initiator implementations cannot talk to each other. This document does not update or modify RFC 7296 but provides a more compact description of the minimal version of the protocol. If this document and RFC 7296 conflict, then RFC 7296 is the authoritative description."];
+  cites -> RFC7815;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC7296 [label="RFC7296
+Internet Key Exchange Protocol Version 2
+(IKEv2)
+2014", shape=ellipse, URL="RFC7296.html", target="_top", tooltip="This document describes version 2 of the Internet Key Exchange (IKE) protocol.  IKE is a component of IPsec used for performing mutual authentication and establishing and maintaining Security Associations (SAs).  This document obsoletes RFC 5996, and includes all of the errata for it.  It advances IKEv2 to be an Internet Standard."];
+  cites -> RFC7296;
+  RFC8221 [label="RFC8221
+Cryptographic Algorithm Implementation
+Requirements and Usage Guidance for
+Encapsulating Security Payload (ESP) and
+Authentication Header (AH)
+2017", shape=ellipse, URL="RFC8221.html", target="_top", tooltip="This document replaces RFC 7321, Cryptographic Algorithm Implementation Requirements and Usage Guidance for Encapsulating Security Payload (ESP) and Authentication Header (AH).  The goal of this document is to enable ESP and AH to benefit from cryptography that is up to date while making IPsec interoperable."];
+  cites -> RFC8221;
+  RFC5297 [label="RFC5297
+Synthetic Initialization Vector (SIV)
+Authenticated Encryption Using the
+Advanced Encryption Standard (AES)
+2008", shape=ellipse, URL="RFC5297.html", target="_top", tooltip="This memo describes SIV (Synthetic Initialization Vector), a block cipher mode of operation.  SIV takes a key, a plaintext, and multiple variable-length octet strings that will be authenticated but not encrypted.  It produces a ciphertext having the same length as the plaintext and a synthetic initialization vector.  Depending on how it is used, SIV achieves either the goal of deterministic authenticated encryption or the goal of nonce-based, misuse-resistant authenticated encryption.  This memo provides information for the Internet community."];
+  cites -> RFC5297;
+  RFC8452 [label="RFC8452
+AES-GCM-SIV: Nonce Misuse-Resistant
+Authenticated Encryption
+2019", shape=ellipse, URL="RFC8452.html", target="_top", tooltip="This memo specifies two authenticated encryption algorithms that are nonce misuse resistant -- that is, they do not fail catastrophically if a nonce is repeated. This document is the product of the Crypto Forum Research Group."];
+  cites -> RFC8452;
+  RFC8750 [label="RFC8750
+Implicit Initialization Vector (IV) for
+Counter-Based Ciphers in Encapsulating
+Security Payload (ESP)
+2020", shape=ellipse, URL="RFC8750.html", target="_top", tooltip="Encapsulating Security Payload (ESP) sends an initialization vector (IV) in each packet.  The size of the IV depends on the applied transform and is usually 8 or 16 octets for the transforms defined at the time this document was written.  When used with IPsec, some algorithms, such as AES-GCM, AES-CCM, and ChaCha20-Poly1305, take the IV to generate a nonce that is used as an input parameter for encrypting and decrypting.  This IV must be unique but can be predictable.  As a result, the value provided in the ESP Sequence Number (SN) can be used instead to generate the nonce.  This avoids sending the IV itself and saves 8 octets per packet in the case of AES-GCM, AES-CCM, and ChaCha20-Poly1305.  This document describes how to do this."];
+  cites -> RFC8750;
+  RFC4086 [label="RFC4086
+Randomness Requirements for Security
+2005", shape=ellipse, URL="RFC4086.html", target="_top", tooltip="Security systems are built on strong cryptographic algorithms that foil pattern analysis attempts. However, the security of these systems is dependent on generating secret quantities for passwords, cryptographic keys, and similar quantities. The use of pseudo-random processes to generate secret quantities can result in pseudo-security. A sophisticated attacker may find it easier to reproduce the environment that produced the secret quantities and to search the resulting small set of possibilities than to locate the quantities in the whole of the potential number space. Choosing random quantities to foil a resourceful and motivated adversary is surprisingly difficult. This document points out many pitfalls in using poor entropy sources or traditional pseudo-random number generation techniques for generating such quantities. It recommends the use of truly random hardware techniques and shows that the existing hardware on many systems can be used for this purpose. It provides suggestions to ameliorate the problem when a hardware solution is not available, and it gives examples of how large such quantities need to be for some applications. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4086;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9333;
+}

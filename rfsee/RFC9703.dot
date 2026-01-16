@@ -1,0 +1,114 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9703 [label="RFC9703
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+Egress Peer Engineering (EPE) Segment
+Identifiers (SIDs) with MPLS Data Plane
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="Egress Peer Engineering (EPE) is an application of Segment Routing (SR) that solves the problem of egress peer selection.  The SR-based BGP-EPE solution allows a centralized controller, e.g., a Software-Defined Network (SDN) controller, to program any egress peer.  The EPE solution requires the node or the SDN controller to program 1) the PeerNode Segment Identifier (SID) describing a session between two nodes, 2) the PeerAdj SID describing the link or links that are used by the sessions between peer nodes, and 3) the PeerSet SID describing any connected interface to any peer in the related group.  This document provides new sub-TLVs for EPE-SIDs that are used in the Target FEC Stack TLV (Type 1) in MPLS Ping and Traceroute procedures."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9703;
+
+  obs [label="obsoletes", shape=box];
+  RFC9703 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9703 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9703;
+
+  cites [label="cites", shape=box];
+  RFC9703 -> cites;
+  RFC9087 [label="RFC9087
+Segment Routing Centralized BGP Egress
+Peer Engineering
+2021", shape=ellipse, URL="RFC9087.html", target="_top", tooltip="Segment Routing (SR) leverages source routing. A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with an SR header. A segment can represent any instruction, topological or service based. SR allows for the enforcement of a flow through any topological path while maintaining per-flow state only at the ingress node of the SR domain. The Segment Routing architecture can be directly applied to the MPLS data plane with no change on the forwarding plane. It requires a minor extension to the existing link-state routing protocols. This document illustrates the application of Segment Routing to solve the BGP Egress Peer Engineering (BGP-EPE) requirement. The SR-based BGP-EPE solution allows a centralized (Software-Defined Networking, or SDN) controller to program any egress peer policy at ingress border routers or at hosts within the domain."];
+  cites -> RFC9087;
+  RFC9256 [label="RFC9256
+Segment Routing Policy Architecture
+2022", shape=ellipse, URL="RFC9256.html", target="_top", tooltip="Segment Routing (SR) allows a node to steer a packet flow along any path. Intermediate per-path states are eliminated thanks to source routing. SR Policy is an ordered list of segments (i.e., instructions) that represent a source-routed policy. Packet flows are steered into an SR Policy on a node where it is instantiated called a headend node. The packets steered into an SR Policy carry an ordered list of segments associated with that SR Policy. This document updates RFC 8402 as it details the concepts of SR Policy and steering into an SR Policy."];
+  cites -> RFC9256;
+  RFC9086 [label="RFC9086
+Border Gateway Protocol - Link State
+(BGP-LS) Extensions for Segment Routing
+BGP Egress Peer Engineering
+2021", shape=ellipse, URL="RFC9086.html", target="_top", tooltip="A node steers a packet through a controlled set of instructions, called segments, by prepending the packet with a list of segment identifiers (SIDs). A segment can represent any instruction, topological or service based. SR segments allow steering a flow through any topological path and service chain while maintaining per-flow state only at the ingress node of the SR domain. This document describes an extension to Border Gateway Protocol - Link State (BGP-LS) for advertisement of BGP Peering Segments along with their BGP peering node information so that efficient BGP Egress Peer Engineering (EPE) policies and strategies can be computed based on Segment Routing."];
+  cites -> RFC9086;
+  RFC8287 [label="RFC8287
+Label Switched Path (LSP)
+Ping/Traceroute for Segment Routing (SR)
+IGP-Prefix and IGP-Adjacency Segment
+Identifiers (SIDs) with MPLS Data Planes
+2017", shape=ellipse, URL="RFC8287.html", target="_top", tooltip="A Segment Routing (SR) architecture leverages source routing and tunneling paradigms and can be directly applied to the use of a Multiprotocol Label Switching (MPLS) data plane. A node steers a packet through a controlled set of instructions called segments by prepending the packet with an SR header. The segment assignment and forwarding semantic nature of SR raises additional considerations for connectivity verification and fault isolation for a Label Switched Path (LSP) within an SR architecture. This document illustrates the problem and defines extensions to perform LSP Ping and Traceroute for Segment Routing IGP-Prefix and IGP-Adjacency Segment Identifiers (SIDs) with an MPLS data plane."];
+  cites -> RFC8287;
+  RFC8690 [label="RFC8690
+Clarification of Segment ID Sub-TLV
+Length for RFC 8287
+2019", shape=ellipse, URL="RFC8690.html", target="_top", tooltip="RFC 8287 defines the extensions to perform LSP Ping and Traceroute for Segment Routing IGP-Prefix and IGP-Adjacency Segment Identifiers (SIDs) with the MPLS data plane. RFC 8287 proposes three Target Forwarding Equivalence Class (FEC) Stack sub-TLVs. While RFC 8287 defines the format and procedure to handle those sub-TLVs, it does not sufficiently clarify how the length of the Segment ID sub-TLVs should be computed to be included in the Length field of the sub-TLVs. This ambiguity has resulted in interoperability issues. This document updates RFC 8287 by clarifying the length of each of the Segment ID sub-TLVs defined in RFC 8287."];
+  cites -> RFC8690;
+  RFC8664 [label="RFC8664
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Segment
+Routing
+2019", shape=ellipse, URL="RFC8664.html", target="_top", tooltip="Segment Routing (SR) enables any head-end node to select any path without relying on a hop-by-hop signaling technique (e.g., LDP or RSVP-TE). It depends only on segments that are advertised by link-state Interior Gateway Protocols (IGPs). An SR path can be derived from a variety of mechanisms, including an IGP Shortest Path Tree (SPT), an explicit configuration, or a Path Computation Element (PCE). This document specifies extensions to the Path Computation Element Communication Protocol (PCEP) that allow a stateful PCE to compute and initiate Traffic-Engineering (TE) paths, as well as a Path Computation Client (PCC) to request a path subject to certain constraints and optimization criteria in SR networks. This document updates RFC 8408."];
+  cites -> RFC8664;
+  RFC8403 [label="RFC8403
+A Scalable and Topology-Aware MPLS Data-
+Plane Monitoring System
+2018", shape=ellipse, URL="RFC8403.html", target="_top", tooltip="This document describes features of an MPLS path monitoring system and related use cases.  Segment-based routing enables a scalable and simple method to monitor data-plane liveliness of the complete set of paths belonging to a single domain.  The MPLS monitoring system adds features to the traditional MPLS ping and Label Switched Path (LSP) trace, in a very complementary way.  MPLS topology awareness reduces management and control-plane involvement of Operations, Administration, and Maintenance (OAM) measurements while enabling new OAM features."];
+  cites -> RFC8403;
+  RFC7705 [label="RFC7705
+Autonomous System Migration Mechanisms
+and Their Effects on the BGP AS_PATH
+Attribute
+2015", shape=ellipse, URL="RFC7705.html", target="_top", tooltip="This document discusses some existing commonly used BGP mechanisms for Autonomous System Number (ASN) migration that are not formally part of the BGP4 protocol specification.  It is necessary to document these de facto standards to ensure that they are properly supported in future BGP protocol work."];
+  cites -> RFC7705;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  cites -> RFC8029;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6793 [label="RFC6793
+BGP Support for Four-Octet Autonomous
+System (AS) Number Space
+2012", shape=ellipse, URL="RFC6793.html", target="_top", tooltip="The Autonomous System number is encoded as a two-octet entity in the base BGP specification.  This document describes extensions to BGP to carry the Autonomous System numbers as four-octet entities.  This document obsoletes RFC 4893 and updates RFC 4271. [STANDARDS-TRACK]"];
+  cites -> RFC6793;
+  RFC5065 [label="RFC5065
+Autonomous System Confederations for BGP
+2007", shape=ellipse, URL="RFC5065.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for Transmission Control Protocol/Internet Protocol (TCP/IP) networks. BGP requires that all BGP speakers within a single autonomous system (AS) must be fully meshed. This represents a serious scaling problem that has been well documented in a number of proposals. This document describes an extension to BGP that may be used to create a confederation of autonomous systems that is represented as a single autonomous system to BGP peers external to the confederation, thereby removing the full mesh requirement. The intention of this extension is to aid in policy administration and reduce the management complexity of maintaining a large autonomous system. This document obsoletes RFC 3065. [STANDARDS-TRACK]"];
+  cites -> RFC5065;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC6286 [label="RFC6286
+Autonomous-System-Wide Unique BGP
+Identifier for BGP-4
+2011", shape=ellipse, URL="RFC6286.html", target="_top", tooltip="To accommodate situations where the current requirements for the BGP Identifier are not met, this document relaxes the definition of the BGP Identifier to be a 4-octet, unsigned, non-zero integer and relaxes the uniqueness requirement so that only Autonomous-System-wide (AS-wide) uniqueness of the BGP Identifiers is required.  These revisions to the base BGP specification do not introduce any backward compatibility issues.  This document updates RFC 4271. [STANDARDS-TRACK]"];
+  cites -> RFC6286;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9703;
+  RFC9884 [label="RFC9884
+Label Switched Path Ping for Segment
+Routing Path Segment Identifier with
+MPLS Data Plane
+2025", shape=ellipse, URL="RFC9884.html", target="_top", tooltip="Segment Routing (SR) leverages source routing to steer packets through an ordered list of instructions called segments.  SR can be instantiated over the MPLS data plane.  Path Segment Identifiers (PSIDs) are used to identify and correlate bidirectional or end-to-end paths in SR networks.  This document defines procedures (i.e., six new Target Forwarding Equivalence Class (FEC) Stack sub-TLVs) for the use of LSP Ping to support connectivity verification and fault isolation for SR paths that include PSIDs.  The mechanisms described enable the validation and tracing of SR paths with Path SIDs in MPLS networks, complementing existing SR-MPLS Operations, Administration, and Maintenance (OAM) capabilities."];
+  RFC9884 -> rev_cites;
+}

@@ -1,0 +1,291 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8779 [label="RFC8779
+Path Computation Element Communication
+Protocol (PCEP) Extensions for GMPLS
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="A Path Computation Element (PCE) provides path computation functions for Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. Additional requirements for GMPLS are identified in RFC 7025. This memo provides extensions to the Path Computation Element Communication Protocol (PCEP) for the support of the GMPLS control plane to address those requirements."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8779;
+
+  obs [label="obsoletes", shape=box];
+  RFC8779 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8779 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8779;
+  RFC9756 [label="RFC9756
+Update to the IANA Path Communication
+Element Protocol (PCEP) Numbers
+Registration Procedures and the
+Allowance of Experimental Error Codes
+2025", shape=ellipse, URL="RFC9756.html", target="_top", tooltip="This document updates the registration procedure within the IANA Path Computation Element Protocol (PCEP) Numbers registry group. This specification changes some of the registries with Standards Action to IETF Review as defined in RFC 8126 and thus updates RFCs 8231, 8233, 8281, 8623, 8664, 8685, 8697, 8733, 8745, 8779, 8780, 8800, 8934, 9050, 9059, 9168, 9357, 9504, 9603, and 9604. Designating experimental use sub-ranges within codepoint registries is often beneficial for protocol experimentation in controlled environments. Although the registries for PCEP messages, objects, and TLV types have sub-ranges assigned for Experimental Use, the registry for PCEP Error-Types and Error-values currently does not. This document updates RFC 5440 by designating a specific range of PCEP Error-Types for Experimental Use."];
+  RFC9756 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC8779 -> cites;
+  RFC4655 [label="RFC4655
+A Path Computation Element (PCE)-Based
+Architecture
+2006", shape=ellipse, URL="RFC4655.html", target="_top", tooltip="Constraint-based path computation is a fundamental building block for traffic engineering systems such as Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) networks. Path computation in large, multi-domain, multi-region, or multi-layer networks is complex and may require special computational components and cooperation between the different network domains. This document specifies the architecture for a Path Computation Element (PCE)-based model to address this problem space. This document does not attempt to provide a detailed description of all the architectural components, but rather it describes a set of building blocks for the PCE architecture from which solutions may be constructed. This memo provides information for the Internet community."];
+  cites -> RFC4655;
+  RFC5440 [label="RFC5440
+Path Computation Element (PCE)
+Communication Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5440.html", target="_top", tooltip="This document specifies the Path Computation Element (PCE) Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a PCE, or between two PCEs.  Such interactions include path computation requests and path computation replies as well as notifications of specific states related to the use of a PCE in the context of Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering.  PCEP is designed to be flexible and extensible so as to easily allow for the addition of further messages and objects, should further requirements be expressed in the future. [STANDARDS-TRACK]"];
+  cites -> RFC5440;
+  RFC5521 [label="RFC5521
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Route Exclusions
+2009", shape=ellipse, URL="RFC5521.html", target="_top", tooltip="The Path Computation Element (PCE) provides functions of path computation in support of traffic engineering (TE) in Multi-Protocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. When a Path Computation Client (PCC) requests a PCE for a route, it may be useful for the PCC to specify, as constraints to the path computation, abstract nodes, resources, and Shared Risk Link Groups (SRLGs) that are to be explicitly excluded from the computed route. Such constraints are termed route exclusions. The PCE Communication Protocol (PCEP) is designed as a communication protocol between PCCs and PCEs. This document presents PCEP extensions for route exclusions. [STANDARDS-TRACK]"];
+  cites -> RFC5521;
+  RFC5541 [label="RFC5541
+Encoding of Objective Functions in the
+Path Computation Element Communication
+Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5541.html", target="_top", tooltip="The computation of one or a set of Traffic Engineering Label Switched Paths (TE LSPs) in MultiProtocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks is subject to a set of one or more specific optimization criteria, referred to as objective functions (e.g., minimum cost path, widest path, etc.). In the Path Computation Element (PCE) architecture, a Path Computation Client (PCC) may want a path to be computed for one or more TE LSPs according to a specific objective function. Thus, the PCC needs to instruct the PCE to use the correct objective function. Furthermore, it is possible that not all PCEs support the same set of objective functions; therefore, it is useful for the PCC to be able to automatically discover the set of objective functions supported by each PCE. This document defines extensions to the PCE communication Protocol (PCEP) to allow a PCE to indicate the set of objective functions it supports. Extensions are also defined so that a PCC can indicate in a path computation request the required objective function, and a PCE can report in a path computation reply the objective function that was used for path computation. This document defines objective function code types for six objective functions previously listed in the PCE requirements work, and provides the definition of four new metric types that apply to a set of synchronized requests. [STANDARDS-TRACK]"];
+  cites -> RFC5541;
+  RFC5520 [label="RFC5520
+Preserving Topology Confidentiality in
+Inter-Domain Path Computation Using a
+Path-Key-Based Mechanism
+2009", shape=ellipse, URL="RFC5520.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering (TE) Label Switched Paths (LSPs) may be computed by Path Computation Elements (PCEs). Where the TE LSP crosses multiple domains, such as Autonomous Systems (ASes), the path may be computed by multiple PCEs that cooperate, with each responsible for computing a segment of the path. However, in some cases (e.g., when ASes are administered by separate Service Providers), it would break confidentiality rules for a PCE to supply a path segment to a PCE in another domain, thus disclosing AS-internal topology information. This issue may be circumvented by returning a loose hop and by invoking a new path computation from the domain boundary Label Switching Router (LSR) during TE LSP setup as the signaling message enters the second domain, but this technique has several issues including the problem of maintaining path diversity. This document defines a mechanism to hide the contents of a segment of a path, called the Confidential Path Segment (CPS). The CPS may be replaced by a path-key that can be conveyed in the PCE Communication Protocol (PCEP) and signaled within in a Resource Reservation Protocol TE (RSVP-TE) explicit route object. [STANDARDS-TRACK]"];
+  cites -> RFC5520;
+  RFC7025 [label="RFC7025
+Requirements for GMPLS Applications of
+PCE
+2013", shape=ellipse, URL="RFC7025.html", target="_top", tooltip="The initial effort of the PCE (Path Computation Element) WG focused mainly on MPLS.  As a next step, this document describes functional requirements for GMPLS applications of PCE."];
+  cites -> RFC7025;
+  RFC7449 [label="RFC7449
+Path Computation Element Communication
+Protocol (PCEP) Requirements for
+Wavelength Switched Optical Network
+(WSON) Routing and Wavelength Assignment
+2015", shape=ellipse, URL="RFC7449.html", target="_top", tooltip="This memo provides application-specific requirements for the Path Computation Element Communication Protocol (PCEP) for the support of Wavelength Switched Optical Networks (WSONs).  Lightpath provisioning in WSONs requires a Routing and Wavelength Assignment (RWA) process.  From a path computation perspective, wavelength assignment is the process of determining which wavelength can be used on each hop of a path and forms an additional routing constraint to optical light path computation.  Requirements for PCEP extensions in support of optical impairments will be addressed in a separate document."];
+  cites -> RFC7449;
+  RFC3471 [label="RFC3471
+Generalized Multi-Protocol Label
+Switching (GMPLS) Signaling Functional
+Description
+2003", shape=ellipse, URL="RFC3471.html", target="_top", tooltip="This document describes extensions to Multi-Protocol Label Switching (MPLS) signaling required to support Generalized MPLS.  Generalized MPLS extends the MPLS control plane to encompass time-division (e.g., Synchronous Optical Network and Synchronous Digital Hierarchy, SONET/SDH), wavelength (optical lambdas) and spatial switching (e.g., incoming port or fiber to outgoing port or fiber).  This document presents a functional description of the extensions.  Protocol specific formats and mechanisms, and technology specific details are specified in separate documents. [STANDARDS-TRACK]"];
+  cites -> RFC3471;
+  RFC3473 [label="RFC3473
+Generalized Multi-Protocol Label
+Switching (GMPLS) Signaling Resource
+ReserVation Protocol-Traffic Engineering
+(RSVP-TE) Extensions
+2003", shape=ellipse, URL="RFC3473.html", target="_top", tooltip="This document describes extensions to Multi-Protocol Label Switching (MPLS) Resource ReserVation Protocol - Traffic Engineering (RSVP-TE) signaling required to support Generalized MPLS.  Generalized MPLS extends the MPLS control plane to encompass time-division (e.g., Synchronous Optical Network and Synchronous Digital Hierarchy, SONET/SDH), wavelength (optical lambdas) and spatial switching (e.g., incoming port or fiber to outgoing port or fiber).  This document presents a RSVP-TE specific description of the extensions.  A generic functional description can be found in separate documents. [STANDARDS-TRACK]"];
+  cites -> RFC3473;
+  RFC4328 [label="RFC4328
+Generalized Multi-Protocol Label
+Switching (GMPLS) Signaling Extensions
+for G.709 Optical Transport Networks
+Control
+2006", shape=ellipse, URL="RFC4328.html", target="_top", tooltip="This document is a companion to the Generalized Multi-Protocol Label Switching (GMPLS) signaling documents.  It describes the technology-specific information needed to extend GMPLS signaling to control Optical Transport Networks (OTN); it also includes the so-called pre-OTN developments. [STANDARDS-TRACK]"];
+  cites -> RFC4328;
+  RFC4606 [label="RFC4606
+Generalized Multi-Protocol Label
+Switching (GMPLS) Extensions for
+Synchronous Optical Network (SONET) and
+Synchronous Digital Hierarchy (SDH)
+Control
+2006", shape=ellipse, URL="RFC4606.html", target="_top", tooltip="This document provides minor clarification to RFC 3946. This document is a companion to the Generalized Multi-protocol Label Switching (GMPLS) signaling. It defines the Synchronous Optical Network (SONET)/Synchronous Digital Hierarchy (SDH) technology-specific information needed when GMPLS signaling is used. [STANDARDS-TRACK]"];
+  cites -> RFC4606;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC3477 [label="RFC3477
+Signalling Unnumbered Links in Resource
+ReSerVation Protocol - Traffic
+Engineering (RSVP-TE)
+2003", shape=ellipse, URL="RFC3477.html", target="_top", tooltip="Current signalling used by Multi-Protocol Label Switching Traffic Engineering (MPLS TE) does not provide support for unnumbered links.  This document defines procedures and extensions to Resource ReSerVation Protocol (RSVP) for Label Switched Path (LSP) Tunnels (RSVP-TE), one of the MPLS TE signalling protocols, that are needed in order to support unnumbered links. [STANDARDS-TRACK]"];
+  cites -> RFC3477;
+  RFC6205 [label="RFC6205
+Generalized Labels for Lambda-Switch-
+Capable (LSC) Label Switching Routers
+2011", shape=ellipse, URL="RFC6205.html", target="_top", tooltip="Technology in the optical domain is constantly evolving, and, as a consequence, new equipment providing lambda switching capability has been developed and is currently being deployed. Generalized MPLS (GMPLS) is a family of protocols that can be used to operate networks built from a range of technologies including wavelength (or lambda) switching. For this purpose, GMPLS defined a wavelength label as only having significance between two neighbors. Global wavelength semantics are not considered. In order to facilitate interoperability in a network composed of next generation lambda-switch-capable equipment, this document defines a standard lambda label format that is compliant with the Dense Wavelength Division Multiplexing (DWDM) and Coarse Wavelength Division Multiplexing (CWDM) grids defined by the International Telecommunication Union Telecommunication Standardization Sector. The label format defined in this document can be used in GMPLS signaling and routing protocols. [STANDARDS-TRACK]"];
+  cites -> RFC6205;
+  RFC8282 [label="RFC8282
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Inter-Layer MPLS and GMPLS Traffic
+Engineering
+2017", shape=ellipse, URL="RFC8282.html", target="_top", tooltip="The Path Computation Element (PCE) provides path computation functions in support of traffic engineering in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. MPLS and GMPLS networks may be constructed from layered service networks. It is advantageous for overall network efficiency to provide end-to-end traffic engineering across multiple network layers through a process called inter-layer traffic engineering. PCE is a candidate solution for such requirements. The PCE Communication Protocol (PCEP) is designed as a communication protocol between Path Computation Clients (PCCs) and PCEs. This document presents PCEP extensions for inter-layer traffic engineering."];
+  cites -> RFC8282;
+  RFC6163 [label="RFC6163
+Framework for GMPLS and Path Computation
+Element (PCE) Control of Wavelength
+Switched Optical Networks (WSONs)
+2011", shape=ellipse, URL="RFC6163.html", target="_top", tooltip="This document provides a framework for applying Generalized Multi-Protocol Label Switching (GMPLS) and the Path Computation Element (PCE) architecture to the control of Wavelength Switched Optical Networks (WSONs). In particular, it examines Routing and Wavelength Assignment (RWA) of optical paths. This document focuses on topological elements and path selection constraints that are common across different WSON environments; as such, it does not address optical impairments in any depth. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6163;
+  RFC4872 [label="RFC4872
+RSVP-TE Extensions in Support of End-to-
+End Generalized Multi-Protocol Label
+Switching (GMPLS) Recovery
+2007", shape=ellipse, URL="RFC4872.html", target="_top", tooltip="This document describes protocol-specific procedures and extensions for Generalized Multi-Protocol Label Switching (GMPLS) Resource ReSerVation Protocol - Traffic Engineering (RSVP-TE) signaling to support end-to-end Label Switched Path (LSP) recovery that denotes protection and restoration.  A generic functional description of GMPLS recovery can be found in a companion document, RFC 4426. [STANDARDS-TRACK]"];
+  cites -> RFC4872;
+  RFC3630 [label="RFC3630
+Traffic Engineering (TE) Extensions to
+OSPF Version 2
+2003", shape=ellipse, URL="RFC3630.html", target="_top", tooltip="This document describes extensions to the OSPF protocol version 2 to support intra-area Traffic Engineering (TE), using Opaque Link State Advertisements."];
+  cites -> RFC3630;
+  RFC6387 [label="RFC6387
+GMPLS Asymmetric Bandwidth Bidirectional
+Label Switched Paths (LSPs)
+2011", shape=ellipse, URL="RFC6387.html", target="_top", tooltip="This document defines a method for the support of GMPLS asymmetric bandwidth bidirectional Label Switched Paths (LSPs).  The approach presented is applicable to any switching technology and builds on the original Resource Reservation Protocol (RSVP) model for the transport of traffic-related parameters.  This document moves the experiment documented in RFC 5467 to the standards track and obsoletes RFC 5467. [STANDARDS-TRACK]"];
+  cites -> RFC6387;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC7570 [label="RFC7570
+Label Switched Path (LSP) Attribute in
+the Explicit Route Object (ERO)
+2015", shape=ellipse, URL="RFC7570.html", target="_top", tooltip="RFC 5420 extends RSVP-TE to specify or record generic attributes that apply to the whole of the path of a Label Switched Path (LSP).  This document defines an extension to the RSVP Explicit Route Object (ERO) and Record Route Object (RRO) to allow them to specify or record generic attributes that apply to a given hop."];
+  cites -> RFC7570;
+  RFC5088 [label="RFC5088
+OSPF Protocol Extensions for Path
+Computation Element (PCE) Discovery
+2008", shape=ellipse, URL="RFC5088.html", target="_top", tooltip="There are various circumstances where it is highly desirable for a Path Computation Client (PCC) to be able to dynamically and automatically discover a set of Path Computation Elements (PCEs), along with information that can be used by the PCC for PCE selection.  When the PCE is a Label Switching Router (LSR) participating in the Interior Gateway Protocol (IGP), or even a server participating passively in the IGP, a simple and efficient way to announce PCEs consists of using IGP flooding.  For that purpose, this document defines extensions to the Open Shortest Path First (OSPF) routing protocol for the advertisement of PCE Discovery information within an OSPF area or within the entire OSPF routing domain. [STANDARDS-TRACK]"];
+  cites -> RFC5088;
+  RFC5089 [label="RFC5089
+IS-IS Protocol Extensions for Path
+Computation Element (PCE) Discovery
+2008", shape=ellipse, URL="RFC5089.html", target="_top", tooltip="There are various circumstances where it is highly desirable for a Path Computation Client (PCC) to be able to dynamically and automatically discover a set of Path Computation Elements (PCEs), along with information that can be used by the PCC for PCE selection.  When the PCE is a Label Switching Router (LSR) participating in the Interior Gateway Protocol (IGP), or even a server participating passively in the IGP, a simple and efficient way to announce PCEs consists of using IGP flooding.  For that purpose, this document defines extensions to the Intermediate System to Intermediate System (IS-IS) routing protocol for the advertisement of PCE Discovery information within an IS-IS area or within the entire IS-IS routing domain. [STANDARDS-TRACK]"];
+  cites -> RFC5089;
+  RFC6003 [label="RFC6003
+Ethernet Traffic Parameters
+2010", shape=ellipse, URL="RFC6003.html", target="_top", tooltip="This document describes the support of Metro Ethernet Forum (MEF) Ethernet traffic parameters as described in MEF10.1 when using Generalized Multi-Protocol Label Switching (GMPLS) Resource ReSerVation Protocol - Traffic Engineering (RSVP-TE) signaling. [STANDARDS-TRACK]"];
+  cites -> RFC6003;
+  RFC2210 [label="RFC2210
+The Use of RSVP with IETF Integrated
+Services
+1997", shape=ellipse, URL="RFC2210.html", target="_top", tooltip="This note describes the use of the RSVP resource reservation protocol with the Controlled-Load and Guaranteed QoS control services. [STANDARDS-TRACK]"];
+  cites -> RFC2210;
+  RFC7139 [label="RFC7139
+GMPLS Signaling Extensions for Control
+of Evolving G.709 Optical Transport
+Networks
+2014", shape=ellipse, URL="RFC7139.html", target="_top", tooltip="ITU-T Recommendation G.709 [G709-2012] introduced new Optical channel Data Unit (ODU) containers (ODU0, ODU4, ODU2e, and ODUflex) and enhanced Optical Transport Network (OTN) flexibility. This document updates the ODU-related portions of RFC 4328 to provide extensions to GMPLS signaling to control the full set of OTN features, including ODU0, ODU4, ODU2e, and ODUflex."];
+  cites -> RFC7139;
+  RFC7792 [label="RFC7792
+RSVP-TE Signaling Extensions in Support
+of Flexi-Grid Dense Wavelength Division
+Multiplexing (DWDM) Networks
+2016", shape=ellipse, URL="RFC7792.html", target="_top", tooltip="This memo describes the extensions to the Resource Reservation Protocol - Traffic Engineering (RSVP-TE) signaling protocol to support Label Switched Paths (LSPs) in a GMPLS-controlled network that includes devices using the flexible optical grid."];
+  cites -> RFC7792;
+  RFC4003 [label="RFC4003
+GMPLS Signaling Procedure for Egress
+Control
+2005", shape=ellipse, URL="RFC4003.html", target="_top", tooltip="This document clarifies the procedures for the control of the label used on an output/downstream interface of the egress node of a Label Switched Path (LSP).  This control is also known as Egress Control.  Support for Egress Control is implicit in Generalized Multi-Protocol Label Switching (GMPLS) Signaling.  This document clarifies the specification of GMPLS Signaling and does not modify GMPLS signaling mechanisms and procedures. [STANDARDS-TRACK]"];
+  cites -> RFC4003;
+  RFC8306 [label="RFC8306
+Extensions to the Path Computation
+Element Communication Protocol (PCEP)
+for Point-to-Multipoint Traffic
+Engineering Label Switched Paths
+2017", shape=ellipse, URL="RFC8306.html", target="_top", tooltip="Point-to-point Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering Label Switched Paths (TE LSPs) may be established using signaling techniques, but their paths may first need to be determined. The Path Computation Element (PCE) has been identified as an appropriate technology for the determination of the paths of point-to-multipoint (P2MP) TE LSPs. This document describes extensions to the PCE Communication Protocol (PCEP) to handle requests and responses for the computation of paths for P2MP TE LSPs. This document obsoletes RFC 6006."];
+  cites -> RFC8306;
+  RFC5511 [label="RFC5511
+Routing Backus-Naur Form (RBNF): A
+Syntax Used to Form Encoding Rules in
+Various Routing Protocol Specifications
+2009", shape=ellipse, URL="RFC5511.html", target="_top", tooltip="Several protocols have been specified in the Routing Area of the IETF using a common variant of the Backus-Naur Form (BNF) of representing message syntax. However, there is no formal definition of this version of BNF. There is value in using the same variant of BNF for the set of protocols that are commonly used together. This reduces confusion and simplifies implementation. Updating existing documents to use some other variant of BNF that is already formally documented would be a substantial piece of work. This document provides a formal definition of the variant of BNF that has been used (that we call Routing BNF) and makes it available for use by new protocols. [STANDARDS-TRACK]"];
+  cites -> RFC5511;
+  RFC6001 [label="RFC6001
+Generalized MPLS (GMPLS) Protocol
+Extensions for Multi-Layer and Multi-
+Region Networks (MLN/MRN)
+2010", shape=ellipse, URL="RFC6001.html", target="_top", tooltip="There are specific requirements for the support of networks comprising Label Switching Routers (LSRs) participating in different data plane switching layers controlled by a single Generalized Multi-Protocol Label Switching (GMPLS) control plane instance, referred to as GMPLS Multi-Layer Networks / Multi-Region Networks (MLN/MRN). This document defines extensions to GMPLS routing and signaling protocols so as to support the operation of GMPLS Multi-Layer / Multi-Region Networks. It covers the elements of a single GMPLS control plane instance controlling multiple Label Switched Path (LSP) regions or layers within a single Traffic Engineering (TE) domain. [STANDARDS-TRACK]"];
+  cites -> RFC6001;
+  RFC4873 [label="RFC4873
+GMPLS Segment Recovery
+2007", shape=ellipse, URL="RFC4873.html", target="_top", tooltip="This document describes protocol specific procedures for GMPLS (Generalized Multi-Protocol Label Switching) RSVP-TE (Resource ReserVation Protocol - Traffic Engineering) signaling extensions to support label switched path (LSP) segment protection and restoration.  These extensions are intended to complement and be consistent with the RSVP-TE Extensions for End-to-End GMPLS Recovery (RFC 4872).  Implications and interactions with fast reroute are also addressed.  This document also updates the handling of NOTIFY_REQUEST objects. [STANDARDS-TRACK]"];
+  cites -> RFC4873;
+  RFC6123 [label="RFC6123
+Inclusion of Manageability Sections in
+Path Computation Element (PCE) Working
+Group Drafts
+2011", shape=ellipse, URL="RFC6123.html", target="_top", tooltip="It has often been the case that manageability considerations have been retrofitted to protocols after they have been specified, standardized, implemented, or deployed. This is sub-optimal. Similarly, new protocols or protocol extensions are frequently designed without due consideration of manageability requirements. The Operations Area has developed Guidelines for Considering Operations and Management of New Protocols and Protocol Extensions (RFC 5706), and those guidelines have been adopted by the Path Computation Element (PCE) Working Group. Previously, the PCE Working Group used the recommendations contained in this document to guide authors of Internet-Drafts on the contents of Manageability Considerations sections in their work. This document is retained for historic reference. This document defines a Historic Document for the Internet community."];
+  cites -> RFC6123;
+  RFC4802 [label="RFC4802
+Generalized Multiprotocol Label
+Switching (GMPLS) Traffic Engineering
+Management Information Base
+2007", shape=ellipse, URL="RFC4802.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes managed objects for Generalized Multiprotocol Label Switching (GMPLS)-based traffic engineering. [STANDARDS-TRACK]"];
+  cites -> RFC4802;
+  RFC4657 [label="RFC4657
+Path Computation Element (PCE)
+Communication Protocol Generic
+Requirements
+2006", shape=ellipse, URL="RFC4657.html", target="_top", tooltip="The PCE model is described in the PCE Architecture document and facilitates path computation requests from Path Computation Clients (PCCs) to Path Computation Elements (PCEs).  This document specifies generic requirements for a communication protocol between PCCs and PCEs, and also between PCEs where cooperation between PCEs is desirable.  Subsequent documents will specify application-specific requirements for the PCE communication protocol.  This memo provides information for the Internet community."];
+  cites -> RFC4657;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+  RFC8253 [label="RFC8253
+PCEPS: Usage of TLS to Provide a Secure
+Transport for the Path Computation
+Element Communication Protocol (PCEP)
+2017", shape=ellipse, URL="RFC8253.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) defines the mechanisms for the communication between a Path Computation Client (PCC) and a Path Computation Element (PCE), or among PCEs. This document describes PCEPS -- the usage of Transport Layer Security (TLS) to provide a secure transport for PCEP. The additional security mechanisms are provided by the transport protocol supporting PCEP; therefore, they do not affect the flexibility and extensibility of PCEP. This document updates RFC 5440 in regards to the PCEP initialization phase procedures."];
+  cites -> RFC8253;
+  RFC5920 [label="RFC5920
+Security Framework for MPLS and GMPLS
+Networks
+2010", shape=ellipse, URL="RFC5920.html", target="_top", tooltip="This document provides a security framework for Multiprotocol Label Switching (MPLS) and Generalized Multiprotocol Label Switching (GMPLS) Networks.  This document addresses the security aspects that are relevant in the context of MPLS and GMPLS.  It describes the security threats, the related defensive techniques, and the mechanisms for detection and reporting.  This document emphasizes RSVP-TE and LDP security considerations, as well as inter-AS and inter-provider security considerations for building and maintaining MPLS and GMPLS networks across different domains or different Service Providers.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5920;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8779;
+  RFC8780 [label="RFC8780
+The Path Computation Element
+Communication Protocol (PCEP) Extension
+for Wavelength Switched Optical Network
+(WSON) Routing and Wavelength Assignment
+(RWA)
+2020", shape=ellipse, URL="RFC8780.html", target="_top", tooltip="This document provides Path Computation Element Communication Protocol (PCEP) extensions for the support of Routing and Wavelength Assignment (RWA) in Wavelength Switched Optical Networks (WSONs).  Path provisioning in WSONs requires an RWA process.  From a path computation perspective, wavelength assignment is the process of determining which wavelength can be used on each hop of a path and forms an additional routing constraint to optical path computation."];
+  RFC8780 -> rev_cites;
+  RFC9050 [label="RFC9050
+Path Computation Element Communication
+Protocol (PCEP) Procedures and
+Extensions for Using the PCE as a
+Central Controller (PCECC) of LSPs
+2021", shape=ellipse, URL="RFC9050.html", target="_top", tooltip="The Path Computation Element (PCE) is a core component of Software-Defined Networking (SDN) systems. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN and without necessarily completely replacing it. Thus, the Label Switched Path (LSP) can be calculated/set up/initiated and the label-forwarding entries can also be downloaded through a centralized PCE server to each network device along the path while leveraging the existing PCE technologies as much as possible. This document specifies the procedures and Path Computation Element Communication Protocol (PCEP) extensions for using the PCE as the central controller for provisioning labels along the path of the static LSP."];
+  RFC9050 -> rev_cites;
+  RFC9504 [label="RFC9504
+Path Computation Element Communication
+Protocol (PCEP) Extensions for Stateful
+PCE Usage in GMPLS-Controlled Networks
+2023", shape=ellipse, URL="RFC9504.html", target="_top", tooltip="The Path Computation Element Communication Protocol (PCEP) has been extended to support stateful PCE functions where the stateful PCE maintains information about paths and resource usage within a network; however, these extensions do not cover all requirements for GMPLS networks. This document provides the extensions required for PCEP so as to enable the usage of a stateful PCE capability in GMPLS-controlled networks."];
+  RFC9504 -> rev_cites;
+  RFC9756 [label="RFC9756
+Update to the IANA Path Communication
+Element Protocol (PCEP) Numbers
+Registration Procedures and the
+Allowance of Experimental Error Codes
+2025", shape=ellipse, URL="RFC9756.html", target="_top", tooltip="This document updates the registration procedure within the IANA Path Computation Element Protocol (PCEP) Numbers registry group. This specification changes some of the registries with Standards Action to IETF Review as defined in RFC 8126 and thus updates RFCs 8231, 8233, 8281, 8623, 8664, 8685, 8697, 8733, 8745, 8779, 8780, 8800, 8934, 9050, 9059, 9168, 9357, 9504, 9603, and 9604. Designating experimental use sub-ranges within codepoint registries is often beneficial for protocol experimentation in controlled environments. Although the registries for PCEP messages, objects, and TLV types have sub-ranges assigned for Experimental Use, the registry for PCEP Error-Types and Error-values currently does not. This document updates RFC 5440 by designating a specific range of PCEP Error-Types for Experimental Use."];
+  RFC9756 -> rev_cites;
+  RFC9826 [label="RFC9826
+A YANG Data Model for the Path
+Computation Element Communication
+Protocol (PCEP)
+2025", shape=ellipse, URL="RFC9826.html", target="_top", tooltip="This document defines a YANG data model for the management of the Path Computation Element Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a Path Computation Element (PCE), or between two PCEs."];
+  RFC9826 -> rev_cites;
+}

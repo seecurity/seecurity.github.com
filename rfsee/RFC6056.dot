@@ -1,0 +1,251 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6056 [label="RFC6056
+Recommendations for Transport-Protocol
+Port Randomization
+2011", shape=ellipse, fillcolor="#e8f0ff", tooltip="During the last few years, awareness has been raised about a number of blind attacks that can be performed against the Transmission Control Protocol (TCP) and similar protocols.  The consequences of these attacks range from throughput reduction to broken connections or data corruption.  These attacks rely on the attacker's ability to guess or know the five-tuple (Protocol, Source Address, Destination Address, Source Port, Destination Port) that identifies the transport protocol instance to be attacked.  This document describes a number of simple and efficient methods for the selection of the client port number, such that the possibility of an attacker guessing the exact value is reduced.  While this is not a replacement for cryptographic methods for protecting the transport-protocol instance, the aforementioned port selection algorithms provide improved security with very little effort and without any key management overhead.  The algorithms described in this document are local policies that may be incrementally deployed and that do not violate the specifications of any of the transport protocols that may benefit from them, such as TCP, UDP, UDP-lite, Stream Control Transmission Protocol (SCTP), Datagram Congestion Control Protocol (DCCP), and RTP (provided that the RTP application explicitly signals the RTP and RTCP port numbers).  This memo documents an Internet Best Current Practice."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6056;
+
+  obs [label="obsoletes", shape=box];
+  RFC6056 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6056 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6056;
+
+  cites [label="cites", shape=box];
+  RFC6056 -> cites;
+  RFC5927 [label="RFC5927
+ICMP Attacks against TCP
+2010", shape=ellipse, URL="RFC5927.html", target="_top", tooltip="This document discusses the use of the Internet Control Message Protocol (ICMP) to perform a variety of attacks against the Transmission Control Protocol (TCP).  Additionally, this document describes a number of widely implemented modifications to TCP's handling of ICMP error messages that help to mitigate these issues.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC5927;
+  RFC4953 [label="RFC4953
+Defending TCP Against Spoofing Attacks
+2007", shape=ellipse, URL="RFC4953.html", target="_top", tooltip="Recent analysis of potential attacks on core Internet infrastructure indicates an increased vulnerability of TCP connections to spurious resets (RSTs), sent with forged IP source addresses (spoofing).  TCP has always been susceptible to such RST spoofing attacks, which were indirectly protected by checking that the RST sequence number was inside the current receive window, as well as via the obfuscation of TCP endpoint and port numbers.  For pairs of well-known endpoints often over predictable port pairs, such as BGP or between web servers and well-known large-scale caches, increases in the path bandwidth-delay product of a connection have sufficiently increased the receive window space that off-path third parties can brute-force generate a viable RST sequence number.  The susceptibility to attack increases with the square of the bandwidth, and thus presents a significant vulnerability for recent high-speed networks.  This document addresses this vulnerability, discussing proposed solutions at the transport level and their inherent challenges, as well as existing network level solutions and the feasibility of their deployment.  This document focuses on vulnerabilities due to spoofed TCP segments, and includes a discussion of related ICMP spoofing attacks on TCP connections.  This memo provides information for the Internet community."];
+  cites -> RFC4953;
+  RFC4301 [label="RFC4301
+Security Architecture for the Internet
+Protocol
+2005", shape=ellipse, URL="RFC4301.html", target="_top", tooltip="This document describes an updated version of the Security Architecture for IP, which is designed to provide security services for traffic at the IP layer.  This document obsoletes RFC 2401 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4301;
+  RFC2385 [label="RFC2385
+Protection of BGP Sessions via the TCP
+MD5 Signature Option
+1998", shape=ellipse, URL="RFC2385.html", target="_top", tooltip="This memo describes a TCP extension to enhance security for BGP. [STANDARDS-TRACK]"];
+  cites -> RFC2385;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  cites -> RFC5925;
+  RFC4960 [label="RFC4960
+Stream Control Transmission Protocol
+2007", shape=ellipse, URL="RFC4960.html", target="_top", tooltip="This document obsoletes RFC 2960 and RFC 3309. It describes the Stream Control Transmission Protocol (SCTP). SCTP is designed to transport Public Switched Telephone Network (PSTN) signaling messages over IP networks, but is capable of broader applications. SCTP is a reliable transport protocol operating on top of a connectionless packet network such as IP. It offers the following services to its users: -- acknowledged error-free non-duplicated transfer of user data, -- data fragmentation to conform to discovered path MTU size, -- sequenced delivery of user messages within multiple streams, with an option for order-of-arrival delivery of individual user messages, -- optional bundling of multiple user messages into a single SCTP packet, and -- network-level fault tolerance through supporting of multi-homing at either or both ends of an association. The design of SCTP includes appropriate congestion avoidance behavior and resistance to flooding and masquerade attacks. [STANDARDS-TRACK]"];
+  cites -> RFC4960;
+  RFC4340 [label="RFC4340
+Datagram Congestion Control Protocol
+(DCCP)
+2006", shape=ellipse, URL="RFC4340.html", target="_top", tooltip="The Datagram Congestion Control Protocol (DCCP) is a transport protocol that provides bidirectional unicast connections of congestion-controlled unreliable datagrams.  DCCP is suitable for applications that transfer fairly large amounts of data and that can benefit from control over the tradeoff between timeliness and reliability. [STANDARDS-TRACK]"];
+  cites -> RFC4340;
+  RFC3828 [label="RFC3828
+The Lightweight User Datagram Protocol
+(UDP-Lite)
+2004", shape=ellipse, URL="RFC3828.html", target="_top", tooltip="This document describes the Lightweight User Datagram Protocol (UDP-Lite), which is similar to the User Datagram Protocol (UDP) (RFC 768), but can also serve applications in error-prone network environments that prefer to have partially damaged payloads delivered rather than discarded.  If this feature is not used, UDP-Lite is semantically identical to UDP. [STANDARDS-TRACK]"];
+  cites -> RFC3828;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  cites -> RFC3550;
+  RFC3605 [label="RFC3605
+Real Time Control Protocol (RTCP)
+attribute in Session Description
+Protocol (SDP)
+2003", shape=ellipse, URL="RFC3605.html", target="_top", tooltip="The Session Description Protocol (SDP) is used to describe the parameters of media streams used in multimedia sessions.  When a session requires multiple ports, SDP assumes that these ports have consecutive numbers.  However, when the session crosses a network address translation device that also uses port mapping, the ordering of ports can be destroyed by the translation.  To handle this, we propose an extension attribute to SDP."];
+  cites -> RFC3605;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC1337 [label="RFC1337
+TIME-WAIT Assassination Hazards in TCP
+1992", shape=ellipse, URL="RFC1337.html", target="_top", tooltip="This note describes some theoretically-possible failure modes for TCP connections and discusses possible remedies.  In particular, one very simple fix is identified.  This memo provides information for the Internet community.  It does not specify an Internet standard."];
+  cites -> RFC1337;
+  RFC4086 [label="RFC4086
+Randomness Requirements for Security
+2005", shape=ellipse, URL="RFC4086.html", target="_top", tooltip="Security systems are built on strong cryptographic algorithms that foil pattern analysis attempts. However, the security of these systems is dependent on generating secret quantities for passwords, cryptographic keys, and similar quantities. The use of pseudo-random processes to generate secret quantities can result in pseudo-security. A sophisticated attacker may find it easier to reproduce the environment that produced the secret quantities and to search the resulting small set of possibilities than to locate the quantities in the whole of the potential number space. Choosing random quantities to foil a resourceful and motivated adversary is surprisingly difficult. This document points out many pitfalls in using poor entropy sources or traditional pseudo-random number generation techniques for generating such quantities. It recommends the use of truly random hardware techniques and shows that the existing hardware on many systems can be used for this purpose. It provides suggestions to ameliorate the problem when a hardware solution is not available, and it gives examples of how large such quantities need to be for some applications. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4086;
+  RFC2663 [label="RFC2663
+IP Network Address Translator (NAT)
+Terminology and Considerations
+1999", shape=ellipse, URL="RFC2663.html", target="_top", tooltip="This document attempts to describe the operation of NAT devices and the associated considerations in general, and to define the terminology used to identify various flavors of NAT.  This memo provides information for the Internet community."];
+  cites -> RFC2663;
+  RFC1321 [label="RFC1321
+The MD5 Message-Digest Algorithm
+1992", shape=ellipse, URL="RFC1321.html", target="_top", tooltip="This document describes the MD5 message-digest algorithm.  The algorithm takes as input a message of arbitrary length and produces as output a 128-bit fingerprint or message digest of the input.  This memo provides information for the Internet community.  It does not specify an Internet standard."];
+  cites -> RFC1321;
+  RFC4787 [label="RFC4787
+Network Address Translation (NAT)
+Behavioral Requirements for Unicast UDP
+2007", shape=ellipse, URL="RFC4787.html", target="_top", tooltip="This document defines basic terminology for describing different types of Network Address Translation (NAT) behavior when handling Unicast UDP and also defines a set of requirements that would allow many applications, such as multimedia communications or online gaming, to work consistently.  Developing NATs that meet this set of requirements will greatly increase the likelihood that these applications will function properly.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4787;
+  RFC5382 [label="RFC5382
+NAT Behavioral Requirements for TCP
+2008", shape=ellipse, URL="RFC5382.html", target="_top", tooltip="This document defines a set of requirements for NATs that handle TCP that would allow many applications, such as peer-to-peer applications and online games to work consistently.  Developing NATs that meet this set of requirements will greatly increase the likelihood that these applications will function properly.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5382;
+  RFC1948 [label="RFC1948
+Defending Against Sequence Number
+Attacks
+1996", shape=ellipse, URL="RFC1948.html", target="_top", tooltip="IP spoofing attacks based on sequence number spoofing have become a serious threat on the Internet (CERT Advisory CA-95:01).  While ubiquitous crypgraphic authentication is the right answer, we propose a simple modification to TCP implementations that should be a very substantial block to the current wave of attacks.  This memo provides information for the Internet community.  This memo does not specify an Internet standard of any kind."];
+  cites -> RFC1948;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6056;
+  RFC6013 [label="RFC6013
+TCP Cookie Transactions (TCPCT)
+2011", shape=ellipse, URL="RFC6013.html", target="_top", tooltip="TCP Cookie Transactions (TCPCT) deter spoofing of connections and prevent resource exhaustion, eliminating Responder (server) state during the initial handshake.  The Initiator (client) has sole responsibility for ensuring required delays between connections.  The cookie exchange may carry data, limited to inhibit amplification and reflection denial of service attacks.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6013 -> rev_cites;
+  RFC6169 [label="RFC6169
+Security Concerns with IP Tunneling
+2011", shape=ellipse, URL="RFC6169.html", target="_top", tooltip="A number of security concerns with IP tunnels are documented in this memo.  The intended audience of this document includes network administrators and future protocol developers.  The primary intent of this document is to raise the awareness level regarding the security issues with IP tunnels as deployed and propose strategies for the mitigation of those issues. [STANDARDS-TRACK]"];
+  RFC6169 -> rev_cites;
+  RFC6269 [label="RFC6269
+Issues with IP Address Sharing
+2011", shape=ellipse, URL="RFC6269.html", target="_top", tooltip="The completion of IPv4 address allocations from IANA and the Regional Internet Registries (RIRs) is causing service providers around the world to question how they will continue providing IPv4 connectivity service to their subscribers when there are no longer sufficient IPv4 addresses to allocate them one per subscriber. Several possible solutions to this problem are now emerging based around the idea of shared IPv4 addressing. These solutions give rise to a number of issues, and this memo identifies those common to all such address sharing approaches. Such issues include application failures, additional service monitoring complexity, new security vulnerabilities, and so on. Solution-specific discussions are out of scope. Deploying IPv6 is the only perennial way to ease pressure on the public IPv4 address pool without the need for address sharing mechanisms that give rise to the issues identified herein. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6269 -> rev_cites;
+  RFC6431 [label="RFC6431
+Huawei Port Range Configuration Options
+for PPP IP Control Protocol (IPCP)
+2011", shape=ellipse, URL="RFC6431.html", target="_top", tooltip="This document defines two Huawei IPCP (IP Control Protocol) options used to convey a set of ports.  These options can be used in the context of port range-based solutions or NAT-based solutions for port delegation and forwarding purposes.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6431 -> rev_cites;
+  RFC6528 [label="RFC6528
+Defending against Sequence Number
+Attacks
+2012", shape=ellipse, URL="RFC6528.html", target="_top", tooltip="This document specifies an algorithm for the generation of TCP Initial Sequence Numbers (ISNs), such that the chances of an off-path attacker guessing the sequence numbers in use by a target connection are reduced.  This document revises (and formally obsoletes) RFC 1948, and takes the ISN generation algorithm originally proposed in that document to Standards Track, formally updating RFC 793. [STANDARDS-TRACK]"];
+  RFC6528 -> rev_cites;
+  RFC6887 [label="RFC6887
+Port Control Protocol (PCP)
+2013", shape=ellipse, URL="RFC6887.html", target="_top", tooltip="The Port Control Protocol allows an IPv6 or IPv4 host to control how incoming IPv6 or IPv4 packets are translated and forwarded by a Network Address Translator (NAT) or simple firewall, and also allows a host to optimize its outgoing NAT keepalive messages."];
+  RFC6887 -> rev_cites;
+  RFC6888 [label="RFC6888
+Common Requirements for Carrier-Grade
+NATs (CGNs)
+2013", shape=ellipse, URL="RFC6888.html", target="_top", tooltip="This document defines common requirements for Carrier-Grade NATs (CGNs).  It updates RFC 4787."];
+  RFC6888 -> rev_cites;
+  RFC6967 [label="RFC6967
+Analysis of Potential Solutions for
+Revealing a Host Identifier (HOST_ID) in
+Shared Address Deployments
+2013", shape=ellipse, URL="RFC6967.html", target="_top", tooltip="This document is a collection of potential solutions for revealing a host identifier (denoted as HOST_ID) when a Carrier Grade NAT (CGN) or application proxies are involved in the path. This host identifier could be used by a remote server to sort packets according to the sending host. The host identifier must be unique to each host under the same shared IP address. This document analyzes a set of potential solutions for revealing a host identifier and does not recommend a particular solution, although it does highlight the hazards of some approaches."];
+  RFC6967 -> rev_cites;
+  RFC6978 [label="RFC6978
+A TCP Authentication Option Extension
+for NAT Traversal
+2013", shape=ellipse, URL="RFC6978.html", target="_top", tooltip="This document describes an extension to the TCP Authentication Option (TCP-AO) to support its use over connections that pass through Network Address Translators and/or Network Address and Port Translators (NATs/NAPTs).  This extension changes the data used to compute traffic keys, but it does not alter TCP-AO's packet processing or key generation algorithms."];
+  RFC6978 -> rev_cites;
+  RFC7269 [label="RFC7269
+NAT64 Deployment Options and Experience
+2014", shape=ellipse, URL="RFC7269.html", target="_top", tooltip="This document summarizes NAT64 function deployment scenarios and operational experience.  Both NAT64 Carrier-Grade NAT (NAT64-CGN) and NAT64 server Front End (NAT64-FE) are considered in this document."];
+  RFC7269 -> rev_cites;
+  RFC7414 [label="RFC7414
+A Roadmap for Transmission Control
+Protocol (TCP) Specification Documents
+2015", shape=ellipse, URL="RFC7414.html", target="_top", tooltip="This document contains a roadmap to the Request for Comments (RFC) documents relating to the Internet's Transmission Control Protocol (TCP). This roadmap provides a brief summary of the documents defining TCP and various TCP extensions that have accumulated in the RFC series. This serves as a guide and quick reference for both TCP implementers and other parties who desire information contained in the TCP-related RFCs. This document obsoletes RFC 4614."];
+  RFC7414 -> rev_cites;
+  RFC7430 [label="RFC7430
+Analysis of Residual Threats and
+Possible Fixes for Multipath TCP (MPTCP)
+2015", shape=ellipse, URL="RFC7430.html", target="_top", tooltip="This document analyzes the residual threats for Multipath TCP (MPTCP) and explores possible solutions to address them."];
+  RFC7430 -> rev_cites;
+  RFC7597 [label="RFC7597
+Mapping of Address and Port with
+Encapsulation (MAP-E)
+2015", shape=ellipse, URL="RFC7597.html", target="_top", tooltip="This document describes a mechanism for transporting IPv4 packets across an IPv6 network using IP encapsulation.  It also describes a generic mechanism for mapping between IPv6 addresses and IPv4 addresses as well as transport-layer ports."];
+  RFC7597 -> rev_cites;
+  RFC7599 [label="RFC7599
+Mapping of Address and Port using
+Translation (MAP-T)
+2015", shape=ellipse, URL="RFC7599.html", target="_top", tooltip="This document specifies the solution architecture based on Mapping of Address and Port stateless IPv6-IPv4 Network Address Translation (NAT64) for providing shared or non-shared IPv4 address connectivity to and across an IPv6 network."];
+  RFC7599 -> rev_cites;
+  RFC7618 [label="RFC7618
+Dynamic Allocation of Shared IPv4
+Addresses
+2015", shape=ellipse, URL="RFC7618.html", target="_top", tooltip="This memo describes the dynamic allocation of shared IPv4 addresses to clients using DHCPv4. Address sharing allows a single IPv4 address to be allocated to multiple active clients simultaneously, with each client being differentiated by a unique set of transport- layer source port numbers. The necessary changes to existing DHCPv4 client and server behavior are described, and a new DHCPv4 option for provisioning clients with shared IPv4 addresses is included. Due to the nature of IP address sharing, some limitations to its applicability are necessary. This memo describes these limitations and recommends suitable architectures and technologies where address sharing may be utilized."];
+  RFC7618 -> rev_cites;
+  RFC7739 [label="RFC7739
+Security Implications of Predictable
+Fragment Identification Values
+2016", shape=ellipse, URL="RFC7739.html", target="_top", tooltip="IPv6 specifies the Fragment Header, which is employed for the fragmentation and reassembly mechanisms.  The Fragment Header contains an Identification field that, together with the IPv6 Source Address and the IPv6 Destination Address of a packet, identifies fragments that correspond to the same original datagram, such that they can be reassembled together by the receiving host.  The only requirement for setting the Identification field is that the corresponding value must be different than that employed for any other fragmented datagram sent recently with the same Source Address and Destination Address.  Some implementations use a simple global counter for setting the Identification field, thus leading to predictable Identification values.  This document analyzes the security implications of predictable Identification values, and provides implementation guidance for setting the Identification field of the Fragment Header, such that the aforementioned security implications are mitigated."];
+  RFC7739 -> rev_cites;
+  RFC7768 [label="RFC7768
+Port Management to Reduce Logging in
+Large-Scale NATs
+2016", shape=ellipse, URL="RFC7768.html", target="_top", tooltip="Various IPv6 transition strategies require the introduction of large- scale NATs (e.g., AFTR and NAT64) to share the limited supply of IPv4 addresses available in the network until transition is complete.  There has recently been debate over how to manage the sharing of ports between different subscribers sharing the same IPv4 address.  One factor in the discussion is the operational requirement to log the assignment of transport addresses to subscribers.  It has been argued that dynamic assignment of individual ports between subscribers requires the generation of an excessive volume of logs.  This document suggests a way to achieve dynamic port sharing while keeping log volumes low."];
+  RFC7768 -> rev_cites;
+  RFC7857 [label="RFC7857
+Updates to Network Address Translation
+(NAT) Behavioral Requirements
+2016", shape=ellipse, URL="RFC7857.html", target="_top", tooltip="This document clarifies and updates several requirements of RFCs 4787, 5382, and 5508 based on operational and development experience. The focus of this document is Network Address Translation from IPv4 to IPv4 (NAT44). This document updates RFCs 4787, 5382, and 5508."];
+  RFC7857 -> rev_cites;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  RFC8085 -> rev_cites;
+  RFC8086 [label="RFC8086
+GRE-in-UDP Encapsulation
+2017", shape=ellipse, URL="RFC8086.html", target="_top", tooltip="This document specifies a method of encapsulating network protocol packets within GRE and UDP headers.  This GRE-in-UDP encapsulation allows the UDP source port field to be used as an entropy field.  This may be used for load-balancing of GRE traffic in transit networks using existing Equal-Cost Multipath (ECMP) mechanisms.  There are two applicability scenarios for GRE-in-UDP with different requirements: (1) general Internet and (2) a traffic-managed controlled environment.  The controlled environment has less restrictive requirements than the general Internet."];
+  RFC8086 -> rev_cites;
+  RFC8095 [label="RFC8095
+Services Provided by IETF Transport
+Protocols and Congestion Control
+Mechanisms
+2017", shape=ellipse, URL="RFC8095.html", target="_top", tooltip="This document describes, surveys, and classifies the protocol mechanisms provided by existing IETF protocols, as background for determining a common set of transport services.  It examines the Transmission Control Protocol (TCP), Multipath TCP, the Stream Control Transmission Protocol (SCTP), the User Datagram Protocol (UDP), UDP-Lite, the Datagram Congestion Control Protocol (DCCP), the Internet Control Message Protocol (ICMP), the Real-Time Transport Protocol (RTP), File Delivery over Unidirectional Transport / Asynchronous Layered Coding (FLUTE/ALC) for Reliable Multicast, NACK- Oriented Reliable Multicast (NORM), Transport Layer Security (TLS), Datagram TLS (DTLS), and the Hypertext Transport Protocol (HTTP), when HTTP is used as a pseudotransport.  This survey provides background for the definition of transport services within the TAPS working group."];
+  RFC8095 -> rev_cites;
+  RFC8656 [label="RFC8656
+Traversal Using Relays around NAT
+(TURN): Relay Extensions to Session
+Traversal Utilities for NAT (STUN)
+2020", shape=ellipse, URL="RFC8656.html", target="_top", tooltip="If a host is located behind a NAT, it can be impossible for that host to communicate directly with other hosts (peers) in certain situations. In these situations, it is necessary for the host to use the services of an intermediate node that acts as a communication relay. This specification defines a protocol, called Traversal Using Relays around NAT (TURN), that allows the host to control the operation of the relay and to exchange packets with its peers using the relay. TURN differs from other relay control protocols in that it allows a client to communicate with multiple peers using a single relay address. The TURN protocol was designed to be used as part of the Interactive Connectivity Establishment (ICE) approach to NAT traversal, though it can also be used without ICE. This document obsoletes RFCs 5766 and 6156."];
+  RFC8656 -> rev_cites;
+  RFC9065 [label="RFC9065
+Considerations around Transport Header
+Confidentiality, Network Operations, and
+the Evolution of Internet Transport
+Protocols
+2021", shape=ellipse, URL="RFC9065.html", target="_top", tooltip="To protect user data and privacy, Internet transport protocols have supported payload encryption and authentication for some time. Such encryption and authentication are now also starting to be applied to the transport protocol headers. This helps avoid transport protocol ossification by middleboxes, mitigate attacks against the transport protocol, and protect metadata about the communication. Current operational practice in some networks inspect transport header information within the network, but this is no longer possible when those transport headers are encrypted. This document discusses the possible impact when network traffic uses a protocol with an encrypted transport header. It suggests issues to consider when designing new transport protocols or features."];
+  RFC9065 -> rev_cites;
+  RFC9109 [label="RFC9109
+Network Time Protocol Version 4: Port
+Randomization
+2021", shape=ellipse, URL="RFC9109.html", target="_top", tooltip="The Network Time Protocol (NTP) can operate in several modes.  Some of these modes are based on the receipt of unsolicited packets and therefore require the use of a well-known port as the local port.  However, in the case of NTP modes where the use of a well-known port is not required, employing such a well-known port unnecessarily facilitates the ability of attackers to perform blind/off-path attacks.  This document formally updates RFC 5905, recommending the use of transport-protocol ephemeral port randomization for those modes where use of the NTP well-known port is not required."];
+  RFC9109 -> rev_cites;
+  RFC9414 [label="RFC9414
+Unfortunate History of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9414.html", target="_top", tooltip="This document analyzes the timeline of the specification and implementation of different types of transient numeric identifiers used in IETF protocols and how the security and privacy properties of such protocols have been affected as a result of it.  It provides empirical evidence that advice in this area is warranted.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9414 -> rev_cites;
+  RFC9415 [label="RFC9415
+On the Generation of Transient Numeric
+Identifiers
+2023", shape=ellipse, URL="RFC9415.html", target="_top", tooltip="This document performs an analysis of the security and privacy implications of different types of transient numeric identifiers used in IETF protocols and tries to categorize them based on their interoperability requirements and their associated failure severity when such requirements are not met.  Subsequently, it provides advice on possible algorithms that could be employed to satisfy the interoperability requirements of each identifier category while minimizing the negative security and privacy implications, thus providing guidance to protocol designers and protocol implementers.  Finally, it describes a number of algorithms that have been employed in real implementations to generate transient numeric identifiers and analyzes their security and privacy properties.  This document is a product of the Privacy Enhancements and Assessments Research Group (PEARG) in the IRTF."];
+  RFC9415 -> rev_cites;
+  RFC9416 [label="RFC9416
+Security Considerations for Transient
+Numeric Identifiers Employed in Network
+Protocols
+2023", shape=ellipse, URL="RFC9416.html", target="_top", tooltip="Poor selection of transient numerical identifiers in protocols such as the TCP/IP suite has historically led to a number of attacks on implementations, ranging from Denial of Service (DoS) or data injection to information leakages that can be exploited by pervasive monitoring.  Due diligence in the specification of transient numeric identifiers is required even when cryptographic techniques are employed, since these techniques might not mitigate all the associated issues.  This document formally updates RFC 3552, incorporating requirements for transient numeric identifiers, to prevent flaws in future protocols and implementations."];
+  RFC9416 -> rev_cites;
+  RFC9643 [label="RFC9643
+YANG Groupings for TCP Clients and TCP
+Servers
+2024", shape=ellipse, URL="RFC9643.html", target="_top", tooltip="This document presents three YANG 1.1 modules to support the configuration of TCP clients and TCP servers.  The modules include basic parameters of a TCP connection relevant for client or server applications, as well as client configuration required for traversing proxies.  The data models defined by these modules may be used directly (e.g., to define a specific TCP client or TCP server) or in conjunction with the configuration defined for higher level protocols that depend on TCP (e.g., SSH, TLS, etc.).  Examples of higher level protocol configuration designed to be used in conjunction with this configuration are in RFCs 9644 and 9645."];
+  RFC9643 -> rev_cites;
+}

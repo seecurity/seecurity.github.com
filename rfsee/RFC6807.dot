@@ -1,0 +1,54 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6807 [label="RFC6807
+Population Count Extensions to Protocol
+Independent Multicast (PIM)
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="This specification defines a method for providing multicast distribution-tree accounting data.  Simple extensions to the Protocol Independent Multicast (PIM) protocol allow a rough approximation of tree-based data in a scalable fashion.  This document defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6807;
+
+  obs [label="obsoletes", shape=box];
+  RFC6807 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6807 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6807;
+
+  cites [label="cites", shape=box];
+  RFC6807 -> cites;
+  RFC4601 [label="RFC4601
+Protocol Independent Multicast - Sparse
+Mode (PIM-SM): Protocol Specification
+(Revised)
+2006", shape=ellipse, URL="RFC4601.html", target="_top", tooltip="This document specifies Protocol Independent Multicast - Sparse Mode (PIM-SM). PIM-SM is a multicast routing protocol that can use the underlying unicast routing information base or a separate multicast-capable routing information base. It builds unidirectional shared trees rooted at a Rendezvous Point (RP) per group, and optionally creates shortest-path trees per source. This document obsoletes RFC 2362, an Experimental version of PIM-SM. [STANDARDS-TRACK]"];
+  cites -> RFC4601;
+  RFC5015 [label="RFC5015
+Bidirectional Protocol Independent
+Multicast (BIDIR-PIM)
+2007", shape=ellipse, URL="RFC5015.html", target="_top", tooltip="This document discusses Bidirectional PIM (BIDIR-PIM), a variant of PIM Sparse-Mode that builds bidirectional shared trees connecting multicast sources and receivers.  Bidirectional trees are built using a fail-safe Designated Forwarder (DF) election mechanism operating on each link of a multicast topology.  With the assistance of the DF, multicast data is natively forwarded from sources to the Rendezvous-Point (RP) and hence along the shared tree to receivers without requiring source-specific state.  The DF election takes place at RP discovery time and provides the route to the RP, thus eliminating the requirement for data-driven protocol events. [STANDARDS-TRACK]"];
+  cites -> RFC5015;
+  RFC5384 [label="RFC5384
+The Protocol Independent Multicast (PIM)
+Join Attribute Format
+2008", shape=ellipse, URL="RFC5384.html", target="_top", tooltip="A Protocol Independent Multicast - Sparse Mode Join message sent by a given node identifies one or more multicast distribution trees that that node wishes to join.  Each tree is identified by the combination of a multicast group address and a source address (where the source address is possibly a wild card).  Under certain conditions it can be useful, when joining a tree, to specify additional information related to the construction of the tree.  However, there has been no way to do so until now.  This document describes a modification of the Join message that allows a node to associate attributes with a particular tree.  The attributes are encoded in Type-Length-Value format. [STANDARDS-TRACK]"];
+  cites -> RFC5384;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6807;
+  RFC8085 [label="RFC8085
+UDP Usage Guidelines
+2017", shape=ellipse, URL="RFC8085.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms. This document provides guidelines on the use of UDP for the designers of applications, tunnels, and other protocols that use UDP. Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, middlebox traversal, the use of Explicit Congestion Notification (ECN), Differentiated Services Code Points (DSCPs), and ports. Because congestion control is critical to the stable operation of the Internet, applications and other protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic. They may also need to implement additional mechanisms, depending on how they use UDP. Some guidance is also applicable to the design of other protocols (e.g., protocols layered directly on IP or via IP-based tunnels), especially when these protocols do not themselves provide congestion control. This document obsoletes RFC 5405 and adds guidelines for multicast UDP usage."];
+  RFC8085 -> rev_cites;
+}

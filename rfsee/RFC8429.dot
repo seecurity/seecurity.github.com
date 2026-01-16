@@ -1,0 +1,87 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8429 [label="RFC8429
+Deprecate Triple-DES (3DES) and RC4 in
+Kerberos
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="The triple-DES (3DES) and RC4 encryption types are steadily weakening in cryptographic strength, and the deprecation process should begin for their use in Kerberos.  Accordingly, RFC 4757 has been moved to Historic status, as none of the encryption types it specifies should be used, and RFC 3961 has been updated to note the deprecation of the triple-DES encryption types.  RFC 4120 is likewise updated to remove the recommendation to implement triple-DES encryption and checksum types."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8429;
+
+  obs [label="obsoletes", shape=box];
+  RFC8429 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8429 -> updates;
+  RFC3961 [label="RFC3961
+Encryption and Checksum Specifications
+for Kerberos 5
+2005", shape=ellipse, URL="RFC3961.html", target="_top", tooltip="This document describes a framework for defining encryption and checksum mechanisms for use with the Kerberos protocol, defining an abstraction layer between the Kerberos protocol and related protocols, and the actual mechanisms themselves.  The document also defines several mechanisms.  Some are taken from RFC 1510, modified in form to fit this new framework and occasionally modified in content when the old specification was incorrect.  New mechanisms are presented here as well.  This document does NOT indicate which mechanisms may be considered required to implement. [STANDARDS-TRACK]"];
+  updates -> RFC3961;
+  RFC4120 [label="RFC4120
+The Kerberos Network Authentication
+Service (V5)
+2005", shape=ellipse, URL="RFC4120.html", target="_top", tooltip="This document provides an overview and specification of Version 5 of the Kerberos protocol, and it obsoletes RFC 1510 to clarify aspects of the protocol and its intended use that require more detailed or clearer explanation than was provided in RFC 1510.  This document is intended to provide a detailed description of the protocol, suitable for implementation, together with descriptions of the appropriate use of protocol messages and fields within those messages. [STANDARDS-TRACK]"];
+  updates -> RFC4120;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8429;
+
+  cites [label="cites", shape=box];
+  RFC8429 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC4757 [label="RFC4757
+The RC4-HMAC Kerberos Encryption Types
+Used by Microsoft Windows
+2006", shape=ellipse, URL="RFC4757.html", target="_top", tooltip="The Microsoft Windows 2000 implementation of Kerberos introduces a new encryption type based on the RC4 encryption algorithm and using an MD5 HMAC for checksum. This is offered as an alternative to using the existing DES-based encryption types. The RC4-HMAC encryption types are used to ease upgrade of existing Windows NT environments, provide strong cryptography (128-bit key lengths), and provide exportable (meet United States government export restriction requirements) encryption. This document describes the implementation of those encryption types. This memo provides information for the Internet community."];
+  cites -> RFC4757;
+  RFC3961 [label="RFC3961
+Encryption and Checksum Specifications
+for Kerberos 5
+2005", shape=ellipse, URL="RFC3961.html", target="_top", tooltip="This document describes a framework for defining encryption and checksum mechanisms for use with the Kerberos protocol, defining an abstraction layer between the Kerberos protocol and related protocols, and the actual mechanisms themselves.  The document also defines several mechanisms.  Some are taken from RFC 1510, modified in form to fit this new framework and occasionally modified in content when the old specification was incorrect.  New mechanisms are presented here as well.  This document does NOT indicate which mechanisms may be considered required to implement. [STANDARDS-TRACK]"];
+  cites -> RFC3961;
+  RFC4120 [label="RFC4120
+The Kerberos Network Authentication
+Service (V5)
+2005", shape=ellipse, URL="RFC4120.html", target="_top", tooltip="This document provides an overview and specification of Version 5 of the Kerberos protocol, and it obsoletes RFC 1510 to clarify aspects of the protocol and its intended use that require more detailed or clearer explanation than was provided in RFC 1510.  This document is intended to provide a detailed description of the protocol, suitable for implementation, together with descriptions of the appropriate use of protocol messages and fields within those messages. [STANDARDS-TRACK]"];
+  cites -> RFC4120;
+  RFC7465 [label="RFC7465
+Prohibiting RC4 Cipher Suites
+2015", shape=ellipse, URL="RFC7465.html", target="_top", tooltip="This document requires that Transport Layer Security (TLS) clients and servers never negotiate the use of RC4 cipher suites when they establish connections.  This applies to all TLS versions.  This document updates RFCs 5246, 4346, and 2246."];
+  cites -> RFC7465;
+  RFC6150 [label="RFC6150
+MD4 to Historic Status
+2011", shape=ellipse, URL="RFC6150.html", target="_top", tooltip="This document retires RFC 1320, which documents the MD4 algorithm, and discusses the reasons for doing so.  This document moves RFC 1320 to Historic status.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6150;
+  RFC6649 [label="RFC6649
+Deprecate DES, RC4-HMAC-EXP, and Other
+Weak Cryptographic Algorithms in
+Kerberos
+2012", shape=ellipse, URL="RFC6649.html", target="_top", tooltip="The Kerberos 5 network authentication protocol, originally specified in RFC 1510, can use the Data Encryption Standard (DES) for encryption.  Almost 30 years after first publishing DES, the National Institute of Standards and Technology (NIST) finally withdrew the standard in 2005, reflecting a long-established consensus that DES is insufficiently secure.  By 2008, commercial hardware costing less than USD 15,000 could break DES keys in less than a day on average.  DES is long past its sell-by date.  Accordingly, this document updates RFC 1964, RFC 4120, RFC 4121, and RFC 4757 to deprecate the use of DES, RC4-HMAC-EXP, and other weak cryptographic algorithms in Kerberos.  Because RFC 1510 (obsoleted by RFC 4120) supports only DES, this document recommends the reclassification of RFC 1510 as Historic.  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6649;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8429;
+  RFC8758 [label="RFC8758
+Deprecating RC4 in Secure Shell (SSH)
+2020", shape=ellipse, URL="RFC8758.html", target="_top", tooltip="This document deprecates RC4 in Secure Shell (SSH).  Therefore, this document formally moves RFC 4345 to Historic status."];
+  RFC8758 -> rev_cites;
+  RFC8963 [label="RFC8963
+Evaluation of a Sample of RFCs Produced
+in 2018
+2021", shape=ellipse, URL="RFC8963.html", target="_top", tooltip="This document presents the author's effort to understand the delays involved in publishing an idea in the IETF or through the Independent Stream, from the first individual draft to the publication of the RFC. We analyze a set of randomly chosen RFCs approved in 2018, looking for history and delays. We also use two randomly chosen sets of RFCs published in 2008 and 1998 for comparing delays seen in 2018 to those observed 10 or 20 years ago. The average RFC in the 2018 sample was produced in 3 years and 4 months, of which 2 years and 10 months were spent in the working group, 3 to 4 months for IETF consensus and IESG review, and 3 to 4 months in RFC production. The main variation in RFC production delays comes from the AUTH48 phase. We also measure the number of citations of the chosen RFC using Semantic Scholar, and compare citation counts with what we know about deployment. We show that citation counts indicate academic interest, but correlate only loosely with deployment or usage of the specifications. Counting web references could complement that."];
+  RFC8963 -> rev_cites;
+}

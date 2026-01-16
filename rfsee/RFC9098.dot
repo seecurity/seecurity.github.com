@@ -1,0 +1,157 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9098 [label="RFC9098
+Operational Implications of IPv6 Packets
+with Extension Headers
+2021", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document summarizes the operational implications of IPv6 extension headers specified in the IPv6 protocol specification (RFC 8200) and attempts to analyze reasons why packets with IPv6 extension headers are often dropped in the public Internet."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9098;
+
+  obs [label="obsoletes", shape=box];
+  RFC9098 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9098 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9098;
+
+  cites [label="cites", shape=box];
+  RFC9098 -> cites;
+  RFC8200 [label="RFC8200
+Internet Protocol, Version 6 (IPv6)
+Specification
+2017", shape=ellipse, URL="RFC8200.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6).  It obsoletes RFC 2460."];
+  cites -> RFC8200;
+  RFC7113 [label="RFC7113
+Implementation Advice for IPv6 Router
+Advertisement Guard (RA-Guard)
+2014", shape=ellipse, URL="RFC7113.html", target="_top", tooltip="The IPv6 Router Advertisement Guard (RA-Guard) mechanism is commonly employed to mitigate attack vectors based on forged ICMPv6 Router Advertisement messages.  Many existing IPv6 deployments rely on RA-Guard as the first line of defense against the aforementioned attack vectors.  However, some implementations of RA-Guard have been found to be prone to circumvention by employing IPv6 Extension Headers.  This document describes the evasion techniques that affect the aforementioned implementations and formally updates RFC 6105, such that the aforementioned RA-Guard evasion vectors are eliminated."];
+  cites -> RFC7113;
+  RFC8900 [label="RFC8900
+IP Fragmentation Considered Fragile
+2020", shape=ellipse, URL="RFC8900.html", target="_top", tooltip="This document describes IP fragmentation and explains how it introduces fragility to Internet communication. This document also proposes alternatives to IP fragmentation and provides recommendations for developers and network operators."];
+  cites -> RFC8900;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC8504 [label="RFC8504
+IPv6 Node Requirements
+2019", shape=ellipse, URL="RFC8504.html", target="_top", tooltip="This document defines requirements for IPv6 nodes. It is expected that IPv6 will be deployed in a wide range of devices and situations. Specifying the requirements for IPv6 nodes allows IPv6 to function well and interoperate in a large number of situations and deployments. This document obsoletes RFC 6434, and in turn RFC 4294."];
+  cites -> RFC8504;
+  RFC5095 [label="RFC5095
+Deprecation of Type 0 Routing Headers in
+IPv6
+2007", shape=ellipse, URL="RFC5095.html", target="_top", tooltip="The functionality provided by IPv6's Type 0 Routing Header can be exploited in order to achieve traffic amplification over a remote path for the purposes of generating denial-of-service traffic.  This document updates the IPv6 specification to deprecate the use of IPv6 Type 0 Routing Headers, in light of this security concern. [STANDARDS-TRACK]"];
+  cites -> RFC5095;
+  RFC5722 [label="RFC5722
+Handling of Overlapping IPv6 Fragments
+2009", shape=ellipse, URL="RFC5722.html", target="_top", tooltip="The fragmentation and reassembly algorithm specified in the base IPv6 specification allows fragments to overlap.  This document demonstrates the security issues associated with allowing overlapping fragments and updates the IPv6 specification to explicitly forbid overlapping fragments. [STANDARDS-TRACK]"];
+  cites -> RFC5722;
+  RFC7045 [label="RFC7045
+Transmission and Processing of IPv6
+Extension Headers
+2013", shape=ellipse, URL="RFC7045.html", target="_top", tooltip="Various IPv6 extension headers have been standardised since the IPv6 standard was first published.  This document updates RFC 2460 to clarify how intermediate nodes should deal with such extension headers and with any that are defined in the future.  It also specifies how extension headers should be registered by IANA, with a corresponding minor update to RFC 2780."];
+  cites -> RFC7045;
+  RFC7112 [label="RFC7112
+Implications of Oversized IPv6 Header
+Chains
+2014", shape=ellipse, URL="RFC7112.html", target="_top", tooltip="The IPv6 specification allows IPv6 Header Chains of an arbitrary size.  The specification also allows options that can, in turn, extend each of the headers.  In those scenarios in which the IPv6 Header Chain or options are unusually long and packets are fragmented, or scenarios in which the fragment size is very small, the First Fragment of a packet may fail to include the entire IPv6 Header Chain.  This document discusses the interoperability and security problems of such traffic, and updates RFC 2460 such that the First Fragment of a packet is required to contain the entire IPv6 Header Chain."];
+  cites -> RFC7112;
+  RFC6946 [label="RFC6946
+Processing of IPv6 Atomic Fragments
+2013", shape=ellipse, URL="RFC6946.html", target="_top", tooltip="The IPv6 specification allows packets to contain a Fragment Header without the packet being actually fragmented into multiple pieces (we refer to these packets as atomic fragments).  Such packets are typically sent by hosts that have received an ICMPv6 Packet Too Big error message that advertises a Next-Hop MTU smaller than 1280 bytes, and are currently processed by some implementations as normal fragmented traffic (i.e., they are reassembled with any other queued fragments that supposedly correspond to the same original packet).  Thus, an attacker can cause hosts to employ atomic fragments by forging ICMPv6 Packet Too Big error messages, and then launch any fragmentation-based attacks against such traffic.  This document discusses the generation of the aforementioned atomic fragments and the corresponding security implications.  Additionally, this document formally updates RFC 2460 and RFC 5722, such that IPv6 atomic fragments are processed independently of any other fragments, thus completely eliminating the aforementioned attack vector."];
+  cites -> RFC6946;
+  RFC8021 [label="RFC8021
+Generation of IPv6 Atomic Fragments
+Considered Harmful
+2017", shape=ellipse, URL="RFC8021.html", target="_top", tooltip="This document discusses the security implications of the generation of IPv6 atomic fragments and a number of interoperability issues associated with IPv6 atomic fragments.  It concludes that the aforementioned functionality is undesirable and thus documents the motivation for removing this functionality from an upcoming revision of the core IPv6 protocol specification (RFC 2460)."];
+  cites -> RFC8021;
+  RFC7739 [label="RFC7739
+Security Implications of Predictable
+Fragment Identification Values
+2016", shape=ellipse, URL="RFC7739.html", target="_top", tooltip="IPv6 specifies the Fragment Header, which is employed for the fragmentation and reassembly mechanisms.  The Fragment Header contains an Identification field that, together with the IPv6 Source Address and the IPv6 Destination Address of a packet, identifies fragments that correspond to the same original datagram, such that they can be reassembled together by the receiving host.  The only requirement for setting the Identification field is that the corresponding value must be different than that employed for any other fragmented datagram sent recently with the same Source Address and Destination Address.  Some implementations use a simple global counter for setting the Identification field, thus leading to predictable Identification values.  This document analyzes the security implications of predictable Identification values, and provides implementation guidance for setting the Identification field of the Fragment Header, such that the aforementioned security implications are mitigated."];
+  cites -> RFC7739;
+  RFC6980 [label="RFC6980
+Security Implications of IPv6
+Fragmentation with IPv6 Neighbor
+Discovery
+2013", shape=ellipse, URL="RFC6980.html", target="_top", tooltip="This document analyzes the security implications of employing IPv6 fragmentation with Neighbor Discovery (ND) messages.  It updates RFC 4861 such that use of the IPv6 Fragmentation Header is forbidden in all Neighbor Discovery messages, thus allowing for simple and effective countermeasures for Neighbor Discovery attacks.  Finally, it discusses the security implications of using IPv6 fragmentation with SEcure Neighbor Discovery (SEND) and formally updates RFC 3971 to provide advice regarding how the aforementioned security implications can be mitigated."];
+  cites -> RFC6980;
+  RFC7872 [label="RFC7872
+Observations on the Dropping of Packets
+with IPv6 Extension Headers in the Real
+World
+2016", shape=ellipse, URL="RFC7872.html", target="_top", tooltip="This document presents real-world data regarding the extent to which packets with IPv6 Extension Headers (EHs) are dropped in the Internet (as originally measured in August 2014 and later in June 2015, with similar results) and where in the network such dropping occurs.  The aforementioned results serve as a problem statement that is expected to trigger operational advice on the filtering of IPv6 packets carrying IPv6 EHs so that the situation improves over time.  This document also explains how the results were obtained, such that the corresponding measurements can be reproduced by other members of the community and repeated over time to observe changes in the handling of packets with IPv6 EHs."];
+  cites -> RFC7872;
+  RFC6437 [label="RFC6437
+IPv6 Flow Label Specification
+2011", shape=ellipse, URL="RFC6437.html", target="_top", tooltip="This document specifies the IPv6 Flow Label field and the minimum requirements for IPv6 nodes labeling flows, IPv6 nodes forwarding labeled packets, and flow state establishment methods. Even when mentioned as examples of possible uses of the flow labeling, more detailed requirements for specific use cases are out of the scope for this document. The usage of the Flow Label field enables efficient IPv6 flow classification based only on IPv6 main header fields in fixed positions. [STANDARDS-TRACK]"];
+  cites -> RFC6437;
+  RFC7098 [label="RFC7098
+Using the IPv6 Flow Label for Load
+Balancing in Server Farms
+2014", shape=ellipse, URL="RFC7098.html", target="_top", tooltip="This document describes how the currently specified IPv6 flow label can be used to enhance layer 3/4 (L3/4) load distribution and balancing for large server farms."];
+  cites -> RFC7098;
+  RFC6438 [label="RFC6438
+Using the IPv6 Flow Label for Equal Cost
+Multipath Routing and Link Aggregation
+in Tunnels
+2011", shape=ellipse, URL="RFC6438.html", target="_top", tooltip="The IPv6 flow label has certain restrictions on its use.  This document describes how those restrictions apply when using the flow label for load balancing by equal cost multipath routing and for link aggregation, particularly for IP-in-IPv6 tunneled traffic. [STANDARDS-TRACK]"];
+  cites -> RFC6438;
+  RFC8955 [label="RFC8955
+Dissemination of Flow Specification
+Rules
+2020", shape=ellipse, URL="RFC8955.html", target="_top", tooltip="This document defines a Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute (intra-domain and inter-domain) traffic Flow Specifications for IPv4 unicast and IPv4 BGP/MPLS VPN services. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. It also specifies BGP Extended Community encoding formats, which can be used to propagate Traffic Filtering Actions along with the Flow Specification NLRI. Those Traffic Filtering Actions encode actions a routing system can take if the packet matches the Flow Specification. This document obsoletes both RFC 5575 and RFC 7674."];
+  cites -> RFC8955;
+  RFC8956 [label="RFC8956
+Dissemination of Flow Specification
+Rules for IPv6
+2020", shape=ellipse, URL="RFC8956.html", target="_top", tooltip="Dissemination of Flow Specification Rules (RFC 8955) provides a Border Gateway Protocol (BGP) extension for the propagation of traffic flow information for the purpose of rate limiting or filtering IPv4 protocol data packets. This document extends RFC 8955 with IPv6 functionality. It also updates RFC 8955 by changing the IANA Flow Spec Component Types registry."];
+  cites -> RFC8956;
+  RFC5635 [label="RFC5635
+Remote Triggered Black Hole Filtering
+with Unicast Reverse Path Forwarding
+(uRPF)
+2009", shape=ellipse, URL="RFC5635.html", target="_top", tooltip="Remote Triggered Black Hole (RTBH) filtering is a popular and effective technique for the mitigation of denial-of-service attacks.  This document expands upon destination-based RTBH filtering by outlining a method to enable filtering by source address as well.  This memo provides information for the Internet community."];
+  cites -> RFC5635;
+  RFC6192 [label="RFC6192
+Protecting the Router Control Plane
+2011", shape=ellipse, URL="RFC6192.html", target="_top", tooltip="This memo provides a method for protecting a router's control plane from undesired or malicious traffic. In this approach, all legitimate router control plane traffic is identified. Once legitimate traffic has been identified, a filter is deployed in the router's forwarding plane. That filter prevents traffic not specifically identified as legitimate from reaching the router's control plane, or rate-limits such traffic to an acceptable level. Note that the filters described in this memo are applied only to traffic that is destined for the router, and not to all traffic that is passing through the router. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6192;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9098;
+  RFC9288 [label="RFC9288
+Recommendations on the Filtering of IPv6
+Packets Containing IPv6 Extension
+Headers at Transit Routers
+2022", shape=ellipse, URL="RFC9288.html", target="_top", tooltip="This document analyzes the security implications of IPv6 Extension Headers and associated IPv6 options.  Additionally, it discusses the operational and interoperability implications of discarding packets based on the IPv6 Extension Headers and IPv6 options they contain.  Finally, it provides advice on the filtering of such IPv6 packets at transit routers for traffic not directed to them, for those cases where such filtering is deemed as necessary."];
+  RFC9288 -> rev_cites;
+  RFC9386 [label="RFC9386
+IPv6 Deployment Status
+2023", shape=ellipse, URL="RFC9386.html", target="_top", tooltip="This document provides an overview of the status of IPv6 deployment in 2022.  Specifically, it looks at the degree of adoption of IPv6 in the industry, analyzes the remaining challenges, and proposes further investigations in areas where the industry has not yet taken a clear and unified approach in the transition to IPv6.  It obsoletes RFC 6036."];
+  RFC9386 -> rev_cites;
+  RFC9486 [label="RFC9486
+IPv6 Options for In Situ Operations,
+Administration, and Maintenance (IOAM)
+2023", shape=ellipse, URL="RFC9486.html", target="_top", tooltip="In situ Operations, Administration, and Maintenance (IOAM) records operational and telemetry information in the packet while the packet traverses a path between two points in the network.  This document outlines how IOAM Data-Fields are encapsulated in IPv6."];
+  RFC9486 -> rev_cites;
+  RFC9673 [label="RFC9673
+IPv6 Hop-by-Hop Options Processing
+Procedures
+2024", shape=ellipse, URL="RFC9673.html", target="_top", tooltip="This document specifies procedures for processing IPv6 Hop-by-Hop options in IPv6 routers and hosts.  It modifies the procedures specified in the IPv6 Protocol Specification (RFC 8200) to make processing of the IPv6 Hop-by-Hop Options header practical with the goal of making IPv6 Hop-by-Hop options useful to deploy and use at IPv6 routers and hosts.  This document updates RFC 8200."];
+  RFC9673 -> rev_cites;
+  RFC9740 [label="RFC9740
+New IPFIX Information Elements for TCP
+Options and IPv6 Extension Headers
+2025", shape=ellipse, URL="RFC9740.html", target="_top", tooltip="This document specifies new IP Flow Information Export (IPFIX) Information Elements (IEs) to solve issues with existing ipv6ExtensionHeaders and tcpOptions IPFIX IEs, especially the ability to export any observed IPv6 extension headers or TCP options."];
+  RFC9740 -> rev_cites;
+}

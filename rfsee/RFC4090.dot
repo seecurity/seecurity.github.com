@@ -1,0 +1,359 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4090 [label="RFC4090
+Fast Reroute Extensions to RSVP-TE for
+LSP Tunnels
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines RSVP-TE extensions to establish backup label-switched path (LSP) tunnels for local repair of LSP tunnels. These mechanisms enable the re-direction of traffic onto backup LSP tunnels in 10s of milliseconds, in the event of a failure. Two methods are defined here. The one-to-one backup method creates detour LSPs for each protected LSP at each potential point of local repair. The facility backup method creates a bypass tunnel to protect a potential failure point; by taking advantage of MPLS label stacking, this bypass tunnel can protect a set of LSPs that have similar backup constraints. Both methods can be used to protect links and nodes during network failure. The described behavior and extensions to RSVP allow nodes to implement either method or both and to interoperate in a mixed network. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4090;
+
+  obs [label="obsoletes", shape=box];
+  RFC4090 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4090 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4090;
+  RFC8271 [label="RFC8271
+Updates to the Resource Reservation
+Protocol for Fast Reroute of Traffic
+Engineering GMPLS Label Switched Paths
+(LSPs)
+2017", shape=ellipse, URL="RFC8271.html", target="_top", tooltip="This document updates the Resource Reservation Protocol - Traffic Engineering (RSVP-TE) Fast Reroute (FRR) procedures defined in RFC 4090 to support Packet Switch Capable (PSC) Generalized Multiprotocol Label Switching (GMPLS) Label Switched Paths (LSPs).  These updates allow the coordination of a bidirectional bypass tunnel assignment protecting a common facility in both forward and reverse directions of a co-routed bidirectional LSP.  In addition, these updates enable the redirection of bidirectional traffic onto bypass tunnels that ensure the co-routing of data paths in the forward and reverse directions after FRR and avoid RSVP soft-state timeout in the control plane."];
+  RFC8271 -> updated_by;
+  RFC8537 [label="RFC8537
+Updates to the Fast Reroute Procedures
+for Co-routed Associated Bidirectional
+Label Switched Paths (LSPs)
+2019", shape=ellipse, URL="RFC8537.html", target="_top", tooltip="Resource Reservation Protocol (RSVP) association signaling can be used to bind two unidirectional Label Switched Paths (LSPs) into an associated bidirectional LSP.  When an associated bidirectional LSP is co-routed, the reverse LSP follows the same path as its forward LSP.  This document updates the fast reroute procedures defined in RFC 4090 to support both single-sided and double-sided provisioned associated bidirectional LSPs.  This document also updates the procedure for associating two reverse LSPs defined in RFC 7551 to support co-routed bidirectional LSPs.  The fast reroute procedures can ensure that, for the co-routed LSPs, traffic flows on co-routed paths in the forward and reverse directions after a failure event."];
+  RFC8537 -> updated_by;
+  RFC8796 [label="RFC8796
+RSVP-TE Summary Fast Reroute Extensions
+for Label Switched Path (LSP) Tunnels
+2020", shape=ellipse, URL="RFC8796.html", target="_top", tooltip="This document updates RFC 4090 for the Resource Reservation Protocol (RSVP) Traffic Engineering (TE) procedures defined for facility backup protection.  The updates include extensions that reduce the amount of signaling and processing that occurs during Fast Reroute (FRR); as a result, scalability when undergoing FRR convergence after a link or node failure is improved.  These extensions allow the RSVP message exchange between the Point of Local Repair (PLR) and the Merge Point (MP) nodes to be independent of the number of protected Label Switched Paths (LSPs) traversing between them when facility bypass FRR protection is used.  The signaling extensions are fully backwards compatible with nodes that do not support them."];
+  RFC8796 -> updated_by;
+  RFC9705 [label="RFC9705
+Refresh-Interval Independent RSVP Fast
+Reroute Facility Protection
+2025", shape=ellipse, URL="RFC9705.html", target="_top", tooltip="The RSVP-TE Fast Reroute (FRR) extensions specified in RFC 4090 define two local repair techniques to reroute Label Switched Path (LSP) traffic over pre-established backup tunnels.  Facility backup method allows one or more LSPs traversing a connected link or node to be protected using a bypass tunnel.  The many-to-one nature of local repair technique is attractive from a scalability point of view.  This document enumerates facility backup procedures in RFC 4090 that rely on refresh timeout, hence, making facility backup method refresh-interval dependent.  The RSVP-TE extensions defined in this document will enhance the facility backup protection mechanism by making the corresponding procedures refresh-interval independent, and hence, compatible with the Refresh-Interval Independent RSVP (RI-RSVP) capability specified in RFC 8370.  Hence, this document updates RFC 4090 in order to support the RI-RSVP capability specified in RFC 8370."];
+  RFC9705 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4090 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4090;
+  RFC4420 [label="RFC4420
+Encoding of Attributes for Multiprotocol
+Label Switching (MPLS) Label Switched
+Path (LSP) Establishment Using Resource
+ReserVation Protocol-Traffic Engineering
+(RSVP-TE)
+2006", shape=ellipse, URL="RFC4420.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs) may be established using the Resource Reservation Protocol Traffic Engineering (RSVP-TE) extensions. This protocol includes an object (the SESSION_ATTRIBUTE object) that carries a Flags field used to indicate options and attributes of the LSP. That Flags field has eight bits allowing for eight options to be set. Recent proposals in many documents that extend RSVP-TE have suggested uses for each of the previously unused bits. This document defines a new object for RSVP-TE messages that allows the signaling of further attribute bits and also the carriage of arbitrary attribute parameters to make RSVP-TE easily extensible to support new requirements. Additionally, this document defines a way to record the attributes applied to the LSP on a hop-by-hop basis. The object mechanisms defined in this document are equally applicable to Generalized MPLS (GMPLS) Packet Switch Capable (PSC) LSPs and to GMPLS non-PSC LSPs. [STANDARDS-TRACK]"];
+  RFC4420 -> rev_cites;
+  RFC4461 [label="RFC4461
+Signaling Requirements for Point-to-
+Multipoint Traffic-Engineered MPLS Label
+Switched Paths (LSPs)
+2006", shape=ellipse, URL="RFC4461.html", target="_top", tooltip="This document presents a set of requirements for the establishment and maintenance of Point-to-Multipoint (P2MP) Traffic-Engineered (TE) Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). There is no intent to specify solution-specific details or application-specific requirements in this document. The requirements presented in this document not only apply to packet-switched networks under the control of MPLS protocols, but also encompass the requirements of Layer Two Switching (L2SC), Time Division Multiplexing (TDM), lambda, and port switching networks managed by Generalized MPLS (GMPLS) protocols. Protocol solutions developed to meet the requirements set out in this document must attempt to be equally applicable to MPLS and GMPLS. This memo provides information for the Internet community."];
+  RFC4461 -> rev_cites;
+  RFC4726 [label="RFC4726
+A Framework for Inter-Domain
+Multiprotocol Label Switching Traffic
+Engineering
+2006", shape=ellipse, URL="RFC4726.html", target="_top", tooltip="This document provides a framework for establishing and controlling Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineered (TE) Label Switched Paths (LSPs) in multi-domain networks. For the purposes of this document, a domain is considered to be any collection of network elements within a common sphere of address management or path computational responsibility. Examples of such domains include Interior Gateway Protocol (IGP) areas and Autonomous Systems (ASes). This memo provides information for the Internet community."];
+  RFC4726 -> rev_cites;
+  RFC4859 [label="RFC4859
+Codepoint Registry for the Flags Field
+in the Resource Reservation Protocol-
+Traffic Engineering (RSVP-TE) Session
+Attribute Object
+2007", shape=ellipse, URL="RFC4859.html", target="_top", tooltip="This document provides instructions to IANA for the creation of a new codepoint registry for the flags field in the Session Attribute object of the Resource Reservation Protocol Traffic Engineering (RSVP-TE) signaling messages used in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) signaling.  This memo provides information for the Internet community."];
+  RFC4859 -> rev_cites;
+  RFC4872 [label="RFC4872
+RSVP-TE Extensions in Support of End-to-
+End Generalized Multi-Protocol Label
+Switching (GMPLS) Recovery
+2007", shape=ellipse, URL="RFC4872.html", target="_top", tooltip="This document describes protocol-specific procedures and extensions for Generalized Multi-Protocol Label Switching (GMPLS) Resource ReSerVation Protocol - Traffic Engineering (RSVP-TE) signaling to support end-to-end Label Switched Path (LSP) recovery that denotes protection and restoration.  A generic functional description of GMPLS recovery can be found in a companion document, RFC 4426. [STANDARDS-TRACK]"];
+  RFC4872 -> rev_cites;
+  RFC4873 [label="RFC4873
+GMPLS Segment Recovery
+2007", shape=ellipse, URL="RFC4873.html", target="_top", tooltip="This document describes protocol specific procedures for GMPLS (Generalized Multi-Protocol Label Switching) RSVP-TE (Resource ReserVation Protocol - Traffic Engineering) signaling extensions to support label switched path (LSP) segment protection and restoration.  These extensions are intended to complement and be consistent with the RSVP-TE Extensions for End-to-End GMPLS Recovery (RFC 4872).  Implications and interactions with fast reroute are also addressed.  This document also updates the handling of NOTIFY_REQUEST objects. [STANDARDS-TRACK]"];
+  RFC4873 -> rev_cites;
+  RFC4875 [label="RFC4875
+Extensions to Resource Reservation
+Protocol - Traffic Engineering (RSVP-TE)
+for Point-to-Multipoint TE Label
+Switched Paths (LSPs)
+2007", shape=ellipse, URL="RFC4875.html", target="_top", tooltip="This document describes extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for the set up of Traffic Engineered (TE) point-to-multipoint (P2MP) Label Switched Paths (LSPs) in Multi- Protocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. The solution relies on RSVP-TE without requiring a multicast routing protocol in the Service Provider core. Protocol elements and procedures for this solution are described. There can be various applications for P2MP TE LSPs such as IP multicast. Specification of how such applications will use a P2MP TE LSP is outside the scope of this document. [STANDARDS-TRACK]"];
+  RFC4875 -> rev_cites;
+  RFC4920 [label="RFC4920
+Crankback Signaling Extensions for MPLS
+and GMPLS RSVP-TE
+2007", shape=ellipse, URL="RFC4920.html", target="_top", tooltip="In a distributed, constraint-based routing environment, the information used to compute a path may be out of date. This means that Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineered (TE) Label Switched Path (LSP) setup requests may be blocked by links or nodes without sufficient resources. Crankback is a scheme whereby setup failure information is returned from the point of failure to allow new setup attempts to be made avoiding the blocked resources. Crankback can also be applied to LSP recovery to indicate the location of the failed link or node. This document specifies crankback signaling extensions for use in MPLS signaling using RSVP-TE as defined in RSVP-TE: Extensions to RSVP for LSP Tunnels, RFC 3209, and GMPLS signaling as defined in Generalized Multi-Protocol Label Switching (GMPLS) Signaling Functional Description, RFC 3473. These extensions mean that the LSP setup request can be retried on an alternate path that detours around blocked links or nodes. This offers significant improvements in the successful setup and recovery ratios for LSPs, especially in situations where a large number of setup requests are triggered at the same time. [STANDARDS-TRACK]"];
+  RFC4920 -> rev_cites;
+  RFC5029 [label="RFC5029
+Definition of an IS-IS Link Attribute
+Sub-TLV
+2007", shape=ellipse, URL="RFC5029.html", target="_top", tooltip="This document defines a sub-TLV called Link-attributes carried within the TLV 22 and used to flood some link characteristics. [STANDARDS-TRACK]"];
+  RFC5029 -> rev_cites;
+  RFC5146 [label="RFC5146
+Interworking Requirements to Support
+Operation of MPLS-TE over GMPLS Networks
+2008", shape=ellipse, URL="RFC5146.html", target="_top", tooltip="Operation of a Multiprotocol Label Switching (MPLS) traffic engineering (TE) network as a client network to a Generalized MPLS (GMPLS) network has enhanced operational capabilities compared to those provided by a coexistent protocol model (i.e., operation of MPLS-TE over an independently managed transport layer). The GMPLS network may be a packet or a non-packet network, and may itself be a multi-layer network supporting both packet and non-packet technologies. An MPLS-TE Label Switched Path (LSP) originates and terminates on an MPLS Label Switching Router (LSR). The GMPLS network provides transparent transport for the end-to-end MPLS-TE LSP. This document describes a framework and Service Provider requirements for operating MPLS-TE networks over GMPLS networks. This memo provides information for the Internet community."];
+  RFC5146 -> rev_cites;
+  RFC5151 [label="RFC5151
+Inter-Domain MPLS and GMPLS Traffic
+Engineering -- Resource Reservation
+Protocol-Traffic Engineering (RSVP-TE)
+Extensions
+2008", shape=ellipse, URL="RFC5151.html", target="_top", tooltip="This document describes procedures and protocol extensions for the use of Resource Reservation Protocol-Traffic Engineering (RSVP-TE) signaling in Multiprotocol Label Switching-Traffic Engineering (MPLS-TE) packet networks and Generalized MPLS (GMPLS) packet and non-packet networks to support the establishment and maintenance of Label Switched Paths that cross domain boundaries. For the purpose of this document, a domain is considered to be any collection of network elements within a common realm of address space or path computation responsibility. Examples of such domains include Autonomous Systems, Interior Gateway Protocol (IGP) routing areas, and GMPLS overlay networks. [STANDARDS-TRACK]"];
+  RFC5151 -> rev_cites;
+  RFC5152 [label="RFC5152
+A Per-Domain Path Computation Method for
+Establishing Inter-Domain Traffic
+Engineering (TE) Label Switched Paths
+(LSPs)
+2008", shape=ellipse, URL="RFC5152.html", target="_top", tooltip="This document specifies a per-domain path computation technique for establishing inter-domain Traffic Engineering (TE) Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Label Switched Paths (LSPs). In this document, a domain refers to a collection of network elements within a common sphere of address management or path computational responsibility such as Interior Gateway Protocol (IGP) areas and Autonomous Systems. Per-domain computation applies where the full path of an inter-domain TE LSP cannot be or is not determined at the ingress node of the TE LSP, and is not signaled across domain boundaries. This is most likely to arise owing to TE visibility limitations. The signaling message indicates the destination and nodes up to the next domain boundary. It may also indicate further domain boundaries or domain identifiers. The path through each domain, possibly including the choice of exit point from the domain, must be determined within the domain. [STANDARDS-TRACK]"];
+  RFC5152 -> rev_cites;
+  RFC5298 [label="RFC5298
+Analysis of Inter-Domain Label Switched
+Path (LSP) Recovery
+2008", shape=ellipse, URL="RFC5298.html", target="_top", tooltip="Protection and recovery are important features of service offerings in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. Increasingly, MPLS and GMPLS networks are being extended from single domain scope to multi-domain environments. Various schemes and processes have been developed to establish Label Switched Paths (LSPs) in multi-domain environments. These are discussed in RFC 4726: A Framework for Inter-Domain Multiprotocol Label Switching Traffic Engineering. This document analyzes the application of these techniques to protection and recovery in multi-domain networks. The main focus for this document is on establishing end-to-end diverse Traffic Engineering (TE) LSPs in multi-domain networks. This memo provides information for the Internet community."];
+  RFC5298 -> rev_cites;
+  RFC5330 [label="RFC5330
+A Link-Type sub-TLV to Convey the Number
+of Traffic Engineering Label Switched
+Paths Signalled with Zero Reserved
+Bandwidth across a Link
+2008", shape=ellipse, URL="RFC5330.html", target="_top", tooltip="Several Link-type sub-Type-Length-Values (sub-TLVs) have been defined for Open Shortest Path First (OSPF) and Intermediate System to Intermediate System (IS-IS) in the context of Multiprotocol Label Switching (MPLS) Traffic Engineering (TE), in order to advertise some link characteristics such as the available bandwidth, traffic engineering metric, administrative group, and so on.  By making statistical assumptions about the aggregated traffic carried onto a set of TE Label Switched Paths (LSPs) signalled with zero bandwidth (referred to as unconstrained TE LSP in this document), algorithms can be designed to load balance (existing or newly configured) unconstrained TE LSP across a set of equal cost paths.  This requires knowledge of the number of unconstrained TE LSPs signalled across a link.  This document specifies a new Link-type Traffic Engineering sub-TLV used to advertise the number of unconstrained TE LSPs signalled across a link. [STANDARDS-TRACK]"];
+  RFC5330 -> rev_cites;
+  RFC5420 [label="RFC5420
+Encoding of Attributes for MPLS LSP
+Establishment Using Resource Reservation
+Protocol Traffic Engineering (RSVP-TE)
+2009", shape=ellipse, URL="RFC5420.html", target="_top", tooltip="Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs) may be established using the Resource Reservation Protocol Traffic Engineering (RSVP-TE) extensions. This protocol includes an object (the SESSION_ATTRIBUTE object) that carries a Flags field used to indicate options and attributes of the LSP. That Flags field has eight bits, allowing for eight options to be set. Recent proposals in many documents that extend RSVP-TE have suggested uses for each of the previously unused bits. This document defines a new object for RSVP-TE messages that allows the signaling of further attribute bits and also the carriage of arbitrary attribute parameters to make RSVP-TE easily extensible to support new requirements. Additionally, this document defines a way to record the attributes applied to the LSP on a hop-by-hop basis. The object mechanisms defined in this document are equally applicable to Generalized MPLS (GMPLS) Packet Switch Capable (PSC) LSPs and to GMPLS non-PSC LSPs. This document replaces and obsoletes the previous version of this work, published as RFC 4420. The only change is in the encoding of the Type-Length-Variable (TLV) data structures. [STANDARDS-TRACK]"];
+  RFC5420 -> rev_cites;
+  RFC5439 [label="RFC5439
+An Analysis of Scaling Issues in MPLS-TE
+Core Networks
+2009", shape=ellipse, URL="RFC5439.html", target="_top", tooltip="Traffic engineered Multiprotocol Label Switching (MPLS-TE) is deployed in providers' core networks. As providers plan to grow these networks, they need to understand whether existing protocols and implementations can support the network sizes that they are planning. This document presents an analysis of some of the scaling concerns for the number of Label Switching Paths (LSPs) in MPLS-TE core networks, and examines the value of two techniques (LSP hierarchies and multipoint-to-point LSPs) for improving scaling. The intention is to motivate the development of appropriate deployment techniques and protocol extensions to enable the application of MPLS-TE in large networks. This document only considers the question of achieving scalability for the support of point-to-point MPLS-TE LSPs. Point-to-multipoint MPLS-TE LSPs are for future study. This memo provides information for the Internet community."];
+  RFC5439 -> rev_cites;
+  RFC5440 [label="RFC5440
+Path Computation Element (PCE)
+Communication Protocol (PCEP)
+2009", shape=ellipse, URL="RFC5440.html", target="_top", tooltip="This document specifies the Path Computation Element (PCE) Communication Protocol (PCEP) for communications between a Path Computation Client (PCC) and a PCE, or between two PCEs.  Such interactions include path computation requests and path computation replies as well as notifications of specific states related to the use of a PCE in the context of Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic Engineering.  PCEP is designed to be flexible and extensible so as to easily allow for the addition of further messages and objects, should further requirements be expressed in the future. [STANDARDS-TRACK]"];
+  RFC5440 -> rev_cites;
+  RFC5468 [label="RFC5468
+Performance Analysis of Inter-Domain
+Path Computation Methodologies
+2009", shape=ellipse, URL="RFC5468.html", target="_top", tooltip="This document presents a performance comparison between the per-domain path computation method and the Path Computation Element (PCE) Architecture-based Backward Recursive Path Computation (BRPC) procedure.  Metrics to capture the significant performance aspects are identified, and detailed simulations are carried out on realistic scenarios.  A performance analysis for each of the path computation methods is then undertaken.  This memo provides information for the Internet community."];
+  RFC5468 -> rev_cites;
+  RFC5481 [label="RFC5481
+Packet Delay Variation Applicability
+Statement
+2009", shape=ellipse, URL="RFC5481.html", target="_top", tooltip="Packet delay variation metrics appear in many different standards documents. The metric definition in RFC 3393 has considerable flexibility, and it allows multiple formulations of delay variation through the specification of different packet selection functions. Although flexibility provides wide coverage and room for new ideas, it can make comparisons of independent implementations more difficult. Two different formulations of delay variation have come into wide use in the context of active measurements. This memo examines a range of circumstances for active measurements of delay variation and their uses, and recommends which of the two forms is best matched to particular conditions and tasks. This memo provides information for the Internet community."];
+  RFC5481 -> rev_cites;
+  RFC5695 [label="RFC5695
+MPLS Forwarding Benchmarking Methodology
+for IP Flows
+2009", shape=ellipse, URL="RFC5695.html", target="_top", tooltip="This document describes a methodology specific to the benchmarking of Multiprotocol Label Switching (MPLS) forwarding devices, limited to the most common MPLS packet forwarding scenarios and delay measurements for each, considering IP flows.  It builds upon the tenets set forth in RFC 2544, RFC 1242, and other IETF Benchmarking Methodology Working Group (BMWG) efforts.  This document seeks to extend these efforts to the MPLS paradigm.  This memo provides information for the Internet community."];
+  RFC5695 -> rev_cites;
+  RFC5714 [label="RFC5714
+IP Fast Reroute Framework
+2010", shape=ellipse, URL="RFC5714.html", target="_top", tooltip="This document provides a framework for the development of IP fast- reroute mechanisms that provide protection against link or router failure by invoking locally determined repair paths.  Unlike MPLS fast-reroute, the mechanisms are applicable to a network employing conventional IP routing and forwarding.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5714 -> rev_cites;
+  RFC5715 [label="RFC5715
+A Framework for Loop-Free Convergence
+2010", shape=ellipse, URL="RFC5715.html", target="_top", tooltip="A micro-loop is a packet forwarding loop that may occur transiently among two or more routers in a hop-by-hop packet forwarding paradigm. This framework provides a summary of the causes and consequences of micro-loops and enables the reader to form a judgement on whether micro-looping is an issue that needs to be addressed in specific networks. It also provides a survey of the currently proposed mechanisms that may be used to prevent or to suppress the formation of micro-loops when an IP or MPLS network undergoes topology change due to failure, repair, or management action. When sufficiently fast convergence is not available and the topology is susceptible to micro-loops, use of one or more of these mechanisms may be desirable. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5715 -> rev_cites;
+  RFC5824 [label="RFC5824
+Requirements for Supporting Customer
+Resource ReSerVation Protocol (RSVP) and
+RSVP Traffic Engineering (RSVP-TE) over
+a BGP/MPLS IP-VPN
+2010", shape=ellipse, URL="RFC5824.html", target="_top", tooltip="Today, customers expect to run triple-play services through BGP/MPLS IP-VPNs. Some service providers will deploy services that request Quality of Service (QoS) guarantees from a local Customer Edge (CE) to a remote CE across the network. As a result, the application (e.g., voice, video, bandwidth-guaranteed data pipe, etc.) requirements for an end-to-end QoS and reserving an adequate bandwidth continue to increase. Service providers can use both an MPLS and an MPLS Traffic Engineering (MPLS-TE) Label Switched Path (LSP) to meet their service objectives. This document describes service-provider requirements for supporting a customer Resource ReSerVation Protocol (RSVP) and RSVP-TE over a BGP/MPLS IP-VPN. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5824 -> rev_cites;
+  RFC5884 [label="RFC5884
+Bidirectional Forwarding Detection (BFD)
+for MPLS Label Switched Paths (LSPs)
+2010", shape=ellipse, URL="RFC5884.html", target="_top", tooltip="One desirable application of Bidirectional Forwarding Detection (BFD) is to detect a Multiprotocol Label Switching (MPLS) Label Switched Path (LSP) data plane failure.  LSP Ping is an existing mechanism for detecting MPLS data plane failures and for verifying the MPLS LSP data plane against the control plane.  BFD can be used for the former, but not for the latter.  However, the control plane processing required for BFD Control packets is relatively smaller than the processing required for LSP Ping messages.  A combination of LSP Ping and BFD can be used to provide faster data plane failure detection and/or make it possible to provide such detection on a greater number of LSPs.  This document describes the applicability of BFD in relation to LSP Ping for this application.  It also describes procedures for using BFD in this environment. [STANDARDS-TRACK]"];
+  RFC5884 -> rev_cites;
+  RFC5921 [label="RFC5921
+A Framework for MPLS in Transport
+Networks
+2010", shape=ellipse, URL="RFC5921.html", target="_top", tooltip="This document specifies an architectural framework for the application of Multiprotocol Label Switching (MPLS) to the construction of packet-switched transport networks. It describes a common set of protocol functions -- the MPLS Transport Profile (MPLS-TP) -- that supports the operational models and capabilities typical of such networks, including signaled or explicitly provisioned bidirectional connection-oriented paths, protection and restoration mechanisms, comprehensive Operations, Administration, and Maintenance (OAM) functions, and network operation in the absence of a dynamic control plane or IP forwarding support. Some of these functions are defined in existing MPLS specifications, while others require extensions to existing specifications to meet the requirements of the MPLS-TP. This document defines the subset of the MPLS-TP applicable in general and to point-to-point transport paths. The remaining subset, applicable specifically to point-to-multipoint transport paths, is outside the scope of this document. This document is a product of a joint Internet Engineering Task Force (IETF) / International Telecommunication Union Telecommunication Standardization Sector (ITU-T) effort to include an MPLS Transport Profile within the IETF MPLS and Pseudowire Emulation Edge-to-Edge (PWE3) architectures to support the capabilities and functionalities of a packet transport network as defined by the ITU-T. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC5921 -> rev_cites;
+  RFC6391 [label="RFC6391
+Flow-Aware Transport of Pseudowires over
+an MPLS Packet Switched Network
+2011", shape=ellipse, URL="RFC6391.html", target="_top", tooltip="Where the payload of a pseudowire comprises a number of distinct flows, it can be desirable to carry those flows over the Equal Cost Multiple Paths (ECMPs) that exist in the packet switched network. Most forwarding engines are able to generate a hash of the MPLS label stack and use this mechanism to balance MPLS flows over ECMPs. This document describes a method of identifying the flows, or flow groups, within pseudowires such that Label Switching Routers can balance flows at a finer granularity than individual pseudowires. The mechanism uses an additional label in the MPLS label stack. [STANDARDS-TRACK]"];
+  RFC6391 -> rev_cites;
+  RFC6411 [label="RFC6411
+Applicability of Keying Methods for RSVP
+Security
+2011", shape=ellipse, URL="RFC6411.html", target="_top", tooltip="The Resource reSerVation Protocol (RSVP) allows hop-by-hop integrity protection of RSVP neighbors.  This requires messages to be cryptographically protected using a shared secret between participating nodes.  This document compares group keying for RSVP with per-neighbor or per-interface keying, and discusses the associated key provisioning methods as well as applicability and limitations of these approaches.  This document also discusses applicability of encrypting RSVP messages.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6411 -> rev_cites;
+  RFC6445 [label="RFC6445
+Multiprotocol Label Switching (MPLS)
+Traffic Engineering Management
+Information Base for Fast Reroute
+2011", shape=ellipse, URL="RFC6445.html", target="_top", tooltip="This memo defines a portion of the Management Information Base for use with network management protocols in the Internet community.  In particular, it describes managed objects used to support two fast reroute (FRR) methods for Multiprotocol Label Switching (MPLS)-based traffic engineering (TE).  The two methods are the one-to-one backup method and the facility backup method. [STANDARDS-TRACK]"];
+  RFC6445 -> rev_cites;
+  RFC6601 [label="RFC6601
+Generic Connection Admission Control
+(GCAC) Algorithm Specification for
+IP/MPLS Networks
+2012", shape=ellipse, URL="RFC6601.html", target="_top", tooltip="This document presents a generic connection admission control (GCAC) reference model and algorithm for IP-/MPLS-based networks.  Service provider (SP) IP/MPLS networks need an MPLS GCAC mechanism, as one motivational example, to reject Voice over IP (VoIP) calls when additional calls would adversely affect calls already in progress.  Without MPLS GCAC, connections on congested links will suffer degraded quality.  The MPLS GCAC algorithm can be optionally implemented in vendor equipment and deployed by service providers.  MPLS GCAC interoperates between vendor equipment and across multiple service provider domains.  The MPLS GCAC algorithm uses available standard mechanisms for MPLS-based networks, such as RSVP, Diffserv-aware MPLS Traffic Engineering (DS-TE), Path Computation Element (PCE), Next Steps in Signaling (NSIS), Diffserv, and OSPF.  The MPLS GCAC algorithm does not include aspects of CAC that might be considered vendor proprietary implementations, such as detailed path selection mechanisms.  MPLS GCAC functions are implemented in a distributed manner to deliver the objective Quality of Service (QoS) for specified QoS constraints.  The objective is that the source is able to compute a source route with high likelihood that via-elements along the selected path will in fact admit the request.  In some cases (e.g., multiple Autonomous Systems (ASes)), this objective cannot always be met, but this document summarizes methods that partially meet this objective.  MPLS GCAC is applicable to any service or flow that must meet an objective QoS (delay, jitter, packet loss rate) for a specified quantity of traffic.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6601 -> rev_cites;
+  RFC6894 [label="RFC6894
+Methodology for Benchmarking MPLS
+Traffic Engineered (MPLS-TE) Fast
+Reroute Protection
+2013", shape=ellipse, URL="RFC6894.html", target="_top", tooltip="This document describes the methodology for benchmarking MPLS Fast Reroute (FRR) protection mechanisms for link and node protection.  This document provides test methodologies and testbed setup for measuring failover times of Fast Reroute techniques while considering factors (such as underlying links) that might impact recovery times for real-time applications bound to MPLS Traffic Engineered (MPLS-TE) tunnels."];
+  RFC6894 -> rev_cites;
+  RFC6974 [label="RFC6974
+Applicability of MPLS Transport Profile
+for Ring Topologies
+2013", shape=ellipse, URL="RFC6974.html", target="_top", tooltip="This document presents an applicability of existing MPLS protection mechanisms, both local and end-to-end, to the MPLS Transport Profile (MPLS-TP) in ring topologies.  This document does not propose any new mechanisms or protocols.  Requirements for MPLS-TP protection especially for protection in ring topologies are discussed in Requirements of an MPLS Transport Profile (RFC 5654) and MPLS Transport Profile (MPLS-TP) Survivability Framework (RFC 6372).  This document discusses how most of the requirements are met by applying linear protection as defined in RFC 6378 in a ring topology."];
+  RFC6974 -> rev_cites;
+  RFC6976 [label="RFC6976
+Framework for Loop-Free Convergence
+Using the Ordered Forwarding Information
+Base (oFIB) Approach
+2013", shape=ellipse, URL="RFC6976.html", target="_top", tooltip="This document describes an illustrative framework of a mechanism for use in conjunction with link-state routing protocols that prevents the transient loops that would otherwise occur during topology changes. It does this by correctly sequencing the forwarding information base (FIB) updates on the routers. This mechanism can be used in the case of non-urgent (management action) link or node shutdowns and restarts or link metric changes. It can also be used in conjunction with a fast reroute mechanism that converts a sudden link or node failure into a non-urgent topology change. This is possible where a complete repair path is provided for all affected destinations. After a non-urgent topology change, each router computes a rank that defines the time at which it can safely update its FIB. A method for accelerating this loop-free convergence process by the use of completion messages is also described. The technology described in this document has been subject to extensive simulation using pathological convergence behavior and real network topologies and costs. However, the mechanisms described in this document are purely illustrative of the general approach and do not constitute a protocol specification. This document represents a snapshot of the work of the Routing Area Working Group at the time of publication and is published as a document of record. Further work is needed before implementation or deployment."];
+  RFC6976 -> rev_cites;
+  RFC7267 [label="RFC7267
+Dynamic Placement of Multi-Segment
+Pseudowires
+2014", shape=ellipse, URL="RFC7267.html", target="_top", tooltip="RFC 5254 describes the service provider requirements for extending the reach of pseudowires (PWs) across multiple Packet Switched Network domains.  A multi-segment PW is defined as a set of two or more contiguous PW segments that behave and function as a single point-to-point PW.  This document describes extensions to the PW control protocol to dynamically place the segments of the multi-segment pseudowire among a set of Provider Edge (PE) routers.  This document also updates RFC 6073 by updating the value of the Length field of the PW Switching Point PE Sub-TLV Type 0x06 to 14."];
+  RFC7267 -> rev_cites;
+  RFC7297 [label="RFC7297
+IP Connectivity Provisioning Profile
+(CPP)
+2014", shape=ellipse, URL="RFC7297.html", target="_top", tooltip="This document describes the Connectivity Provisioning Profile (CPP) and proposes a CPP template to capture IP/MPLS connectivity requirements to be met within a service delivery context (e.g., Voice over IP or IP TV). The CPP defines the set of IP transfer parameters to be supported by the underlying transport network together with a reachability scope and bandwidth/capacity needs. Appropriate performance metrics, such as one-way delay or one-way delay variation, are used to characterize an IP transfer service. Both global and restricted reachability scopes can be captured in the CPP. Such a generic CPP template is meant to (1) facilitate the automation of the service negotiation and activation procedures, thus accelerating service provisioning, (2) set (traffic) objectives of Traffic Engineering functions and service management functions, and (3) improve service and network management systems with 'decision- making' capabilities based upon negotiated/offered CPPs."];
+  RFC7297 -> rev_cites;
+  RFC7325 [label="RFC7325
+MPLS Forwarding Compliance and
+Performance Requirements
+2014", shape=ellipse, URL="RFC7325.html", target="_top", tooltip="This document provides guidelines for implementers regarding MPLS forwarding and a basis for evaluations of forwarding implementations.  Guidelines cover many aspects of MPLS forwarding.  Topics are highlighted where implementers might otherwise overlook practical requirements which are unstated or under emphasized or are optional for conformance to RFCs but are often considered mandatory by providers."];
+  RFC7325 -> rev_cites;
+  RFC7439 [label="RFC7439
+Gap Analysis for Operating IPv6-Only
+MPLS Networks
+2015", shape=ellipse, URL="RFC7439.html", target="_top", tooltip="This document reviews the Multiprotocol Label Switching (MPLS) protocol suite in the context of IPv6 and identifies gaps that must be addressed in order to allow MPLS-related protocols and applications to be used with IPv6-only networks. This document is intended to focus on gaps in the standards defining the MPLS suite, and is not intended to highlight particular vendor implementations (or lack thereof) in the context of IPv6-only MPLS functionality. In the data plane, MPLS fully supports IPv6, and MPLS labeled packets can be carried over IPv6 packets in a variety of encapsulations. However, support for IPv6 among MPLS control-plane protocols, MPLS applications, MPLS Operations, Administration, and Maintenance (OAM), and MIB modules is mixed, with some protocols having major gaps. For most major gaps, work is in progress to upgrade the relevant protocols."];
+  RFC7439 -> rev_cites;
+  RFC7715 [label="RFC7715
+Multipoint LDP (mLDP) Node Protection
+2016", shape=ellipse, URL="RFC7715.html", target="_top", tooltip="This document describes procedures to support node protection for Point-to-Multipoint and Multipoint-to-Multipoint Label Switched Paths (P2MP and MP2MP LSPs) that have been built by the Multipoint Label Distribution Protocol (mLDP).  In order to protect a node N, the Point of Local Repair (PLR) Label Switching Router (LSR) of N must learn the Merge Point (MPT) LSR(s) of node N such that traffic can be redirected to them in case node N fails.  Redirecting the traffic around the failed node N depends on existing Point-to-Point (P2P) Label Switched Paths (LSPs).  The pre-established LSPs originate from the PLR LSR and terminate on the MPT LSRs while bypassing LSR N."];
+  RFC7715 -> rev_cites;
+  RFC7965 [label="RFC7965
+LDP Extensions for Pseudowire Binding to
+Label Switched Path (LSP) Tunnels
+2016", shape=ellipse, URL="RFC7965.html", target="_top", tooltip="Many transport services require that user traffic, in the form of Pseudowires (PWs), be delivered via either a single co-routed bidirectional tunnel or two unidirectional tunnels that share the same routes.  This document defines an optional extension to the Label Distribution Protocol (LDP) that enables the binding between PWs and the underlying Traffic Engineering (TE) tunnels.  The extension applies to both single-segment and multi-segment PWs."];
+  RFC7965 -> rev_cites;
+  RFC8104 [label="RFC8104
+Pseudowire (PW) Endpoint Fast Failure
+Protection
+2017", shape=ellipse, URL="RFC8104.html", target="_top", tooltip="This document specifies a fast mechanism for protecting pseudowires (PWs) transported by IP/MPLS tunnels against egress endpoint failures, including egress attachment circuit (AC) failure, egress provider edge (PE) failure, multi-segment PW terminating PE failure, and multi-segment PW switching PE failure.  Operating on the basis of multihomed customer edge (CE), redundant PWs, upstream label assignment, and context-specific label switching, the mechanism enables local repair to be performed by the router upstream adjacent to a failure.  The router can restore a PW in the order of tens of milliseconds, by rerouting traffic around the failure to a protector through a pre-established bypass tunnel.  Therefore, the mechanism can be used to reduce traffic loss before global repair reacts to the failure and the network converges on the topology changes due to the failure."];
+  RFC8104 -> rev_cites;
+  RFC8271 [label="RFC8271
+Updates to the Resource Reservation
+Protocol for Fast Reroute of Traffic
+Engineering GMPLS Label Switched Paths
+(LSPs)
+2017", shape=ellipse, URL="RFC8271.html", target="_top", tooltip="This document updates the Resource Reservation Protocol - Traffic Engineering (RSVP-TE) Fast Reroute (FRR) procedures defined in RFC 4090 to support Packet Switch Capable (PSC) Generalized Multiprotocol Label Switching (GMPLS) Label Switched Paths (LSPs).  These updates allow the coordination of a bidirectional bypass tunnel assignment protecting a common facility in both forward and reverse directions of a co-routed bidirectional LSP.  In addition, these updates enable the redirection of bidirectional traffic onto bypass tunnels that ensure the co-routing of data paths in the forward and reverse directions after FRR and avoid RSVP soft-state timeout in the control plane."];
+  RFC8271 -> rev_cites;
+  RFC8283 [label="RFC8283
+An Architecture for Use of PCE and the
+PCE Communication Protocol (PCEP) in a
+Network with Central Control
+2017", shape=ellipse, URL="RFC8283.html", target="_top", tooltip="The Path Computation Element (PCE) is a core component of Software- Defined Networking (SDN) systems. It can compute optimal paths for traffic across a network and can also update the paths to reflect changes in the network or traffic demands. PCE was developed to derive paths for MPLS Label Switched Paths (LSPs), which are supplied to the head end of the LSP using the Path Computation Element Communication Protocol (PCEP). SDN has a broader applicability than signaled MPLS traffic-engineered (TE) networks, and the PCE may be used to determine paths in a range of use cases including static LSPs, segment routing, Service Function Chaining (SFC), and most forms of a routed or switched network. It is, therefore, reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. This document briefly introduces the architecture for PCE as a central controller, examines the motivations and applicability for PCEP as a control protocol in this environment, and introduces the implications for the protocol. A PCE-based central controller can simplify the processing of a distributed control plane by blending it with elements of SDN and without necessarily completely replacing it. This document does not describe use cases in detail and does not define protocol extensions: that work is left for other documents."];
+  RFC8283 -> rev_cites;
+  RFC8400 [label="RFC8400
+Extensions to RSVP-TE for Label Switched
+Path (LSP) Egress Protection
+2018", shape=ellipse, URL="RFC8400.html", target="_top", tooltip="This document describes extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for locally protecting the egress node(s) of a Point-to-Point (P2P) or Point-to-Multipoint (P2MP) Traffic Engineered (TE) Label Switched Path (LSP)."];
+  RFC8400 -> rev_cites;
+  RFC8424 [label="RFC8424
+Extensions to RSVP-TE for Label Switched
+Path (LSP) Ingress Fast Reroute (FRR)
+Protection
+2018", shape=ellipse, URL="RFC8424.html", target="_top", tooltip="This document describes extensions to Resource Reservation Protocol - Traffic Engineering (RSVP-TE) for locally protecting the ingress node of a Point-to-Point (P2P) or Point-to-Multipoint (P2MP) Traffic Engineered (TE) Label Switched Path (LSP).  It extends the Fast Reroute (FRR) protection for transit nodes of an LSP to the ingress node of the LSP.  The procedures described in this document are experimental."];
+  RFC8424 -> rev_cites;
+  RFC8537 [label="RFC8537
+Updates to the Fast Reroute Procedures
+for Co-routed Associated Bidirectional
+Label Switched Paths (LSPs)
+2019", shape=ellipse, URL="RFC8537.html", target="_top", tooltip="Resource Reservation Protocol (RSVP) association signaling can be used to bind two unidirectional Label Switched Paths (LSPs) into an associated bidirectional LSP.  When an associated bidirectional LSP is co-routed, the reverse LSP follows the same path as its forward LSP.  This document updates the fast reroute procedures defined in RFC 4090 to support both single-sided and double-sided provisioned associated bidirectional LSPs.  This document also updates the procedure for associating two reverse LSPs defined in RFC 7551 to support co-routed bidirectional LSPs.  The fast reroute procedures can ensure that, for the co-routed LSPs, traffic flows on co-routed paths in the forward and reverse directions after a failure event."];
+  RFC8537 -> rev_cites;
+  RFC8577 [label="RFC8577
+Signaling RSVP-TE Tunnels on a Shared
+MPLS Forwarding Plane
+2019", shape=ellipse, URL="RFC8577.html", target="_top", tooltip="As the scale of MPLS RSVP-TE networks has grown, the number of Label Switched Paths (LSPs) supported by individual network elements has increased. Various implementation recommendations have been proposed to manage the resulting increase in the amount of control-plane state information. However, those changes have had no effect on the number of labels that a transit Label Switching Router (LSR) has to support in the forwarding plane. That number is governed by the number of LSPs transiting or terminated at the LSR and is directly related to the total LSP state in the control plane. This document defines a mechanism to prevent the maximum size of the label space limit on an LSR from being a constraint to control-plane scaling on that node. It introduces the notion of preinstalled 'per-TE link labels' that can be shared by MPLS RSVP-TE LSPs that traverse these TE links. This approach significantly reduces the forwarding-plane state required to support a large number of LSPs. This couples the feature benefits of the RSVP-TE control plane with the simplicity of the Segment Routing (SR) MPLS forwarding plane."];
+  RFC8577 -> rev_cites;
+  RFC8679 [label="RFC8679
+MPLS Egress Protection Framework
+2019", shape=ellipse, URL="RFC8679.html", target="_top", tooltip="This document specifies a fast reroute framework for protecting IP/MPLS services and MPLS transport tunnels against egress node and egress link failures.  For each type of egress failure, it defines the roles of Point of Local Repair (PLR), protector, and backup egress router and the procedures of establishing a bypass tunnel from a PLR to a protector.  It describes the behaviors of these routers in handling an egress failure, including local repair on the PLR and context-based forwarding on the protector.  The framework can be used to develop egress protection mechanisms to reduce traffic loss before global repair reacts to an egress failure and control-plane protocols converge on the topology changes due to the egress failure."];
+  RFC8679 -> rev_cites;
+  RFC8694 [label="RFC8694
+Applicability of the Path Computation
+Element to Inter-area and Inter-AS MPLS
+and GMPLS Traffic Engineering
+2019", shape=ellipse, URL="RFC8694.html", target="_top", tooltip="The Path Computation Element (PCE) may be used for computing services that traverse multi-area and multi-Autonomous System (multi-AS) Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) Traffic-Engineered (TE) networks. This document examines the applicability of the PCE architecture, protocols, and protocol extensions for computing multi-area and multi-AS paths in MPLS and GMPLS networks."];
+  RFC8694 -> rev_cites;
+  RFC8776 [label="RFC8776
+Common YANG Data Types for Traffic
+Engineering
+2020", shape=ellipse, URL="RFC8776.html", target="_top", tooltip="This document defines a collection of common data types and groupings in YANG data modeling language.  These derived common types and groupings are intended to be imported by modules that model Traffic Engineering (TE) configuration and state capabilities."];
+  RFC8776 -> rev_cites;
+  RFC8796 [label="RFC8796
+RSVP-TE Summary Fast Reroute Extensions
+for Label Switched Path (LSP) Tunnels
+2020", shape=ellipse, URL="RFC8796.html", target="_top", tooltip="This document updates RFC 4090 for the Resource Reservation Protocol (RSVP) Traffic Engineering (TE) procedures defined for facility backup protection.  The updates include extensions that reduce the amount of signaling and processing that occurs during Fast Reroute (FRR); as a result, scalability when undergoing FRR convergence after a link or node failure is improved.  These extensions allow the RSVP message exchange between the Point of Local Repair (PLR) and the Merge Point (MP) nodes to be independent of the number of protected Label Switched Paths (LSPs) traversing between them when facility bypass FRR protection is used.  The signaling extensions are fully backwards compatible with nodes that do not support them."];
+  RFC8796 -> rev_cites;
+  RFC8960 [label="RFC8960
+A YANG Data Model for MPLS Base
+2020", shape=ellipse, URL="RFC8960.html", target="_top", tooltip="This document contains a specification of the MPLS base YANG data model.  The MPLS base YANG data model serves as a base framework for configuring and managing an MPLS switching subsystem on an MPLS-enabled router.  It is expected that other MPLS YANG data models (e.g., MPLS Label Switched Path (LSP) static, LDP, or RSVP-TE YANG data models) will augment the MPLS base YANG data model."];
+  RFC8960 -> rev_cites;
+  RFC9026 [label="RFC9026
+Multicast VPN Fast Upstream Failover
+2021", shape=ellipse, URL="RFC9026.html", target="_top", tooltip="This document defines Multicast Virtual Private Network (VPN) extensions and procedures that allow fast failover for upstream failures by allowing downstream Provider Edges (PEs) to consider the status of Provider-Tunnels (P-tunnels) when selecting the Upstream PE for a VPN multicast flow.  The fast failover is enabled by using Bidirectional Forwarding Detection (BFD) for Multipoint Networks (RFC 8562) and the new BGP Attribute, BFD Discriminator.  Also, this document introduces a new BGP Community, Standby PE, extending BGP Multicast VPN (MVPN) routing so that a C-multicast route can be advertised toward a Standby Upstream PE."];
+  RFC9026 -> rev_cites;
+  RFC9130 [label="RFC9130
+YANG Data Model for the IS-IS Protocol
+2022", shape=ellipse, URL="RFC9130.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage the IS-IS protocol on network elements."];
+  RFC9130 -> rev_cites;
+  RFC9488 [label="RFC9488
+Local Protection Enforcement in the Path
+Computation Element Communication
+Protocol (PCEP)
+2023", shape=ellipse, URL="RFC9488.html", target="_top", tooltip="This document updates RFC 5440 to clarify usage of the Local Protection Desired bit signaled in the Path Computation Element Communication Protocol (PCEP).  This document also introduces a new flag for signaling protection enforcement in PCEP."];
+  RFC9488 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+  RFC9705 [label="RFC9705
+Refresh-Interval Independent RSVP Fast
+Reroute Facility Protection
+2025", shape=ellipse, URL="RFC9705.html", target="_top", tooltip="The RSVP-TE Fast Reroute (FRR) extensions specified in RFC 4090 define two local repair techniques to reroute Label Switched Path (LSP) traffic over pre-established backup tunnels.  Facility backup method allows one or more LSPs traversing a connected link or node to be protected using a bypass tunnel.  The many-to-one nature of local repair technique is attractive from a scalability point of view.  This document enumerates facility backup procedures in RFC 4090 that rely on refresh timeout, hence, making facility backup method refresh-interval dependent.  The RSVP-TE extensions defined in this document will enhance the facility backup protection mechanism by making the corresponding procedures refresh-interval independent, and hence, compatible with the Refresh-Interval Independent RSVP (RI-RSVP) capability specified in RFC 8370.  Hence, this document updates RFC 4090 in order to support the RI-RSVP capability specified in RFC 8370."];
+  RFC9705 -> rev_cites;
+  RFC9730 [label="RFC9730
+Interworking of GMPLS Control and
+Centralized Controller Systems
+2025", shape=ellipse, URL="RFC9730.html", target="_top", tooltip="Generalized Multiprotocol Label Switching (GMPLS) control allows each network element (NE) to perform local resource discovery, routing, and signaling in a distributed manner. The advancement of software-defined transport networking technology enables a group of NEs to be managed through centralized controller hierarchies. This helps to tackle challenges arising from multiple domains, vendors, and technologies. An example of such a centralized architecture is the Abstraction and Control of Traffic-Engineered Networks (ACTN) controller hierarchy, as described in RFC 8453. Both the distributed and centralized control planes have their respective advantages and should complement each other in the system, rather than compete. This document outlines how the GMPLS distributed control plane can work together with a centralized controller system in a transport network."];
+  RFC9730 -> rev_cites;
+  RFC9791 [label="RFC9791
+Use Cases for MPLS Network Action
+Indicators and Ancillary Data
+2025", shape=ellipse, URL="RFC9791.html", target="_top", tooltip="This document presents use cases that have a common feature that may be addressed by encoding network action indicators and associated ancillary data within MPLS packets. There is community interest in extending the MPLS data plane to carry such indicators and ancillary data to address these use cases. The use cases described in this document are not an exhaustive set but rather the ones that have been actively discussed by members of the IETF MPLS, PALS, and DetNet Working Groups from the beginning of work on MPLS Network Action (MNA) until the publication of this document."];
+  RFC9791 -> rev_cites;
+}

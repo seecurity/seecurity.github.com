@@ -1,0 +1,82 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9589 [label="RFC9589
+On the Use of the Cryptographic Message
+Syntax (CMS) Signing-Time Attribute in
+Resource Public Key Infrastructure
+(RPKI) Signed Objects
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="In the Resource Public Key Infrastructure (RPKI), Signed Objects are defined as Cryptographic Message Syntax (CMS) protected content types.  A Signed Object contains a signing-time attribute, representing the purported time at which the object was signed by its issuer.  RPKI repositories are accessible using the rsync and RPKI Repository Delta protocols, allowing Relying Parties (RPs) to synchronize a local copy of the RPKI repository used for validation with the remote repositories.  This document describes how the CMS signing-time attribute can be used to avoid needless retransfers of data when switching between different synchronization protocols.  This document updates RFC 6488 by mandating the presence of the CMS signing-time attribute and disallowing the use of the binary-signing-time attribute."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9589;
+
+  obs [label="obsoletes", shape=box];
+  RFC9589 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9589 -> updates;
+  RFC6488 [label="RFC6488
+Signed Object Template for the Resource
+Public Key Infrastructure (RPKI)
+2012", shape=ellipse, URL="RFC6488.html", target="_top", tooltip="This document defines a generic profile for signed objects used in the Resource Public Key Infrastructure (RPKI).  These RPKI signed objects make use of Cryptographic Message Syntax (CMS) as a standard encapsulation format. [STANDARDS-TRACK]"];
+  updates -> RFC6488;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9589;
+
+  cites [label="cites", shape=box];
+  RFC9589 -> cites;
+  RFC6480 [label="RFC6480
+An Infrastructure to Support Secure
+Internet Routing
+2012", shape=ellipse, URL="RFC6480.html", target="_top", tooltip="This document describes an architecture for an infrastructure to support improved security of Internet routing.  The foundation of this architecture is a Resource Public Key Infrastructure (RPKI) that represents the allocation hierarchy of IP address space and Autonomous System (AS) numbers; and a distributed repository system for storing and disseminating the data objects that comprise the RPKI, as well as other signed objects necessary for improved routing security.  As an initial application of this architecture, the document describes how a legitimate holder of IP address space can explicitly and verifiably authorize one or more ASes to originate routes to that address space.  Such verifiable authorizations could be used, for example, to more securely construct BGP route filters.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6480;
+  RFC5652 [label="RFC5652
+Cryptographic Message Syntax (CMS)
+2009", shape=ellipse, URL="RFC5652.html", target="_top", tooltip="This document describes the Cryptographic Message Syntax (CMS).  This syntax is used to digitally sign, digest, authenticate, or encrypt arbitrary message content. [STANDARDS-TRACK]"];
+  cites -> RFC5652;
+  RFC6268 [label="RFC6268
+Additional New ASN.1 Modules for the
+Cryptographic Message Syntax (CMS) and
+the Public Key Infrastructure Using
+X.509 (PKIX)
+2011", shape=ellipse, URL="RFC6268.html", target="_top", tooltip="The Cryptographic Message Syntax (CMS) format, and many associated formats, are expressed using ASN.1.  The current ASN.1 modules conform to the 1988 version of ASN.1.  This document updates some auxiliary ASN.1 modules to conform to the 2008 version of ASN.1; the 1988 ASN.1 modules remain the normative version.  There are no bits- on-the-wire changes to any of the formats; this is simply a change to the syntax.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6268;
+  RFC6488 [label="RFC6488
+Signed Object Template for the Resource
+Public Key Infrastructure (RPKI)
+2012", shape=ellipse, URL="RFC6488.html", target="_top", tooltip="This document defines a generic profile for signed objects used in the Resource Public Key Infrastructure (RPKI).  These RPKI signed objects make use of Cryptographic Message Syntax (CMS) as a standard encapsulation format. [STANDARDS-TRACK]"];
+  cites -> RFC6488;
+  RFC8182 [label="RFC8182
+The RPKI Repository Delta Protocol
+(RRDP)
+2017", shape=ellipse, URL="RFC8182.html", target="_top", tooltip="In the Resource Public Key Infrastructure (RPKI), Certificate Authorities (CAs) publish certificates, including end-entity certificates, Certificate Revocation Lists (CRLs), and RPKI signed objects to repositories.  Relying Parties retrieve the published information from those repositories.  This document specifies a new RPKI Repository Delta Protocol (RRDP) for this purpose.  RRDP was specifically designed for scaling.  It relies on an Update Notification File which lists the current Snapshot and Delta Files that can be retrieved using HTTPS (HTTP over Transport Layer Security (TLS)), and it enables the use of Content Distribution Networks (CDNs) or other caching infrastructures for the retrieval of these files."];
+  cites -> RFC8182;
+  RFC6481 [label="RFC6481
+A Profile for Resource Certificate
+Repository Structure
+2012", shape=ellipse, URL="RFC6481.html", target="_top", tooltip="This document defines a profile for the structure of the Resource Public Key Infrastructure (RPKI) distributed repository.  Each individual repository publication point is a directory that contains files that correspond to X.509/PKIX Resource Certificates, Certificate Revocation Lists and signed objects.  This profile defines the object (file) naming scheme, the contents of repository publication points (directories), and a suggested internal structure of a local repository cache that is intended to facilitate synchronization across a distributed collection of repository publication points and to facilitate certification path construction. [STANDARDS-TRACK]"];
+  cites -> RFC6481;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC6019 [label="RFC6019
+BinaryTime: An Alternate Format for
+Representing Date and Time in ASN.1
+2010", shape=ellipse, URL="RFC6019.html", target="_top", tooltip="This document specifies a new ASN.1 type for representing time: BinaryTime.  This document also specifies an alternate to the signing-time attribute for use with the Cryptographic Message Syntax (CMS) SignedData and AuthenticatedData content types; the binary-signing-time attribute uses BinaryTime.  CMS and the signing-time attribute are defined in RFC 5652. [STANDARDS-TRACK]"];
+  cites -> RFC6019;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9589;
+}

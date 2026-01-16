@@ -1,0 +1,108 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5614 [label="RFC5614
+Mobile Ad Hoc Network (MANET) Extension
+of OSPF Using Connected Dominating Set
+(CDS) Flooding
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies an extension of OSPFv3 to support mobile ad hoc networks (MANETs).  The extension, called OSPF-MDR, is designed as a new OSPF interface type for MANETs.  OSPF-MDR is based on the selection of a subset of MANET routers, consisting of MANET Designated Routers (MDRs) and Backup MDRs.  The MDRs form a connected dominating set (CDS), and the MDRs and Backup MDRs together form a biconnected CDS for robustness.  This CDS is exploited in two ways.  First, to reduce flooding overhead, an optimized flooding procedure is used in which only (Backup) MDRs flood new link state advertisements (LSAs) back out the receiving interface; reliable flooding is ensured by retransmitting LSAs along adjacencies.  Second, adjacencies are formed only between (Backup) MDRs and a subset of their neighbors, allowing for much better scaling in dense networks.  The CDS is constructed using 2-hop neighbor information provided in a Hello protocol extension.  The Hello protocol is further optimized by allowing differential Hellos that report only changes in neighbor states.  Options are specified for originating router-LSAs that provide full or partial topology information, allowing overhead to be reduced by advertising less topology information.  This memo defines an Experimental Protocol for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5614;
+
+  obs [label="obsoletes", shape=box];
+  RFC5614 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5614 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5614;
+  RFC7038 [label="RFC7038
+Use of OSPF-MDR in Single-Hop Broadcast
+Networks
+2013", shape=ellipse, URL="RFC7038.html", target="_top", tooltip="RFC 5614 (OSPF-MDR) extends OSPF to support mobile ad hoc networks (MANETs) by specifying its operation on the new OSPF interface of type MANET.  This document describes the use of OSPF-MDR (MANET Designated Router) in a single-hop broadcast network, which is a special case of a MANET in which each router is a (one-hop) neighbor of each other router.  Unlike an OSPF broadcast interface, such an interface can have a different cost associated with each neighbor.  The document includes configuration recommendations and simplified mechanisms that can be used in single-hop broadcast networks."];
+  RFC7038 -> updated_by;
+  RFC9454 [label="RFC9454
+Update to OSPF Terminology
+2023", shape=ellipse, URL="RFC9454.html", target="_top", tooltip="This document updates some OSPF terminology to be in line with inclusive language used in the industry. The IETF has designated Guidance for NIST Staff on Using Inclusive Language in Documentary Standards by the US National Institute of Standards and Technology (NIST) for its inclusive language guidelines. It is intended that all future OSPF documents use this revised terminology even when they reference the RFCs updated by this document. This document updates RFCs 2328, 4222, 4811, 5243, 5340, 5614, and 5838."];
+  RFC9454 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5614 -> cites;
+  RFC5340 [label="RFC5340
+OSPF for IPv6
+2008", shape=ellipse, URL="RFC5340.html", target="_top", tooltip="This document describes the modifications to OSPF to support version 6 of the Internet Protocol (IPv6). The fundamental mechanisms of OSPF (flooding, Designated Router (DR) election, area support, Short Path First (SPF) calculations, etc.) remain unchanged. However, some changes have been necessary, either due to changes in protocol semantics between IPv4 and IPv6, or simply to handle the increased address size of IPv6. These modifications will necessitate incrementing the protocol version from version 2 to version 3. OSPF for IPv6 is also referred to as OSPF version 3 (OSPFv3). Changes between OSPF for IPv4, OSPF Version 2, and OSPF for IPv6 as described herein include the following. Addressing semantics have been removed from OSPF packets and the basic Link State Advertisements (LSAs). New LSAs have been created to carry IPv6 addresses and prefixes. OSPF now runs on a per-link basis rather than on a per-IP-subnet basis. Flooding scope for LSAs has been generalized. Authentication has been removed from the OSPF protocol and instead relies on IPv6's Authentication Header and Encapsulating Security Payload (ESP). Even with larger IPv6 addresses, most packets in OSPF for IPv6 are almost as compact as those in OSPF for IPv4. Most fields and packet- size limitations present in OSPF for IPv4 have been relaxed. In addition, option handling has been made more flexible. All of OSPF for IPv4's optional capabilities, including demand circuit support and Not-So-Stubby Areas (NSSAs), are also supported in OSPF for IPv6. [STANDARDS-TRACK]"];
+  cites -> RFC5340;
+  RFC2328 [label="RFC2328
+OSPF Version 2
+1998", shape=ellipse, URL="RFC2328.html", target="_top", tooltip="This memo documents version 2 of the OSPF protocol.  OSPF is a link- state routing protocol. [STANDARDS-TRACK]"];
+  cites -> RFC2328;
+  RFC5613 [label="RFC5613
+OSPF Link-Local Signaling
+2009", shape=ellipse, URL="RFC5613.html", target="_top", tooltip="OSPF is a link-state intra-domain routing protocol.  OSPF routers exchange information on a link using packets that follow a well-defined fixed format.  The format is not flexible enough to enable new features that need to exchange arbitrary data.  This document describes a backward-compatible technique to perform link-local signaling, i.e., exchange arbitrary data on a link.  This document replaces the experimental specification published in RFC 4813 to bring it on the Standards Track."];
+  cites -> RFC5613;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5243 [label="RFC5243
+OSPF Database Exchange Summary List
+Optimization
+2008", shape=ellipse, URL="RFC5243.html", target="_top", tooltip="This document describes a backward-compatible optimization for the Database Exchange process in OSPFv2 and OSPFv3.  In this optimization, a router does not list a Link State Advertisement (LSA) in Database Description packets sent to a neighbor, if the same or a more recent instance of the LSA was listed in a Database Description packet already received from the neighbor.  This optimization reduces Database Description overhead by about 50% in large networks.  This optimization does not affect synchronization, since it only omits unnecessary information from Database Description packets.  This memo provides information for the Internet community."];
+  cites -> RFC5243;
+  RFC4302 [label="RFC4302
+IP Authentication Header
+2005", shape=ellipse, URL="RFC4302.html", target="_top", tooltip="This document describes an updated version of the IP Authentication Header (AH), which is designed to provide authentication services in IPv4 and IPv6.  This document obsoletes RFC 2402 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4302;
+  RFC4303 [label="RFC4303
+IP Encapsulating Security Payload (ESP)
+2005", shape=ellipse, URL="RFC4303.html", target="_top", tooltip="This document describes an updated version of the Encapsulating Security Payload (ESP) protocol, which is designed to provide a mix of security services in IPv4 and IPv6.  ESP is used to provide confidentiality, data origin authentication, connectionless integrity, an anti-replay service (a form of partial sequence integrity), and limited traffic flow confidentiality.  This document obsoletes RFC 2406 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4303;
+  RFC4552 [label="RFC4552
+Authentication/Confidentiality for
+OSPFv3
+2006", shape=ellipse, URL="RFC4552.html", target="_top", tooltip="This document describes means and mechanisms to provide authentication/confidentiality to OSPFv3 using an IPv6 Authentication Header/Encapsulating Security Payload (AH/ESP) extension header. [STANDARDS-TRACK]"];
+  cites -> RFC4552;
+  RFC4593 [label="RFC4593
+Generic Threats to Routing Protocols
+2006", shape=ellipse, URL="RFC4593.html", target="_top", tooltip="Routing protocols are subject to attacks that can harm individual users or network operations as a whole.  This document provides a description and a summary of generic threats that affect routing protocols in general.  This work describes threats, including threat sources and capabilities, threat actions, and threat consequences, as well as a breakdown of routing functions that might be attacked separately.  This memo provides information for the Internet community."];
+  cites -> RFC4593;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5614;
+  RFC6621 [label="RFC6621
+Simplified Multicast Forwarding
+2012", shape=ellipse, URL="RFC6621.html", target="_top", tooltip="This document describes a Simplified Multicast Forwarding (SMF) mechanism that provides basic Internet Protocol (IP) multicast forwarding suitable for limited wireless mesh and mobile ad hoc network (MANET) use.  It is mainly applicable in situations where efficient flooding represents an acceptable engineering design trade-off.  It defines techniques for multicast duplicate packet detection (DPD), to be applied in the forwarding process, for both IPv4 and IPv6 protocol use.  This document also specifies optional mechanisms for using reduced relay sets to achieve more efficient multicast data distribution within a mesh topology as compared to Classic Flooding.  Interactions with other protocols, such as use of information provided by concurrently running unicast routing protocols or interaction with other multicast protocols, as well as multiple deployment approaches are also described.  Distributed algorithms for selecting reduced relay sets and related discussion are provided in the appendices.  Basic issues relating to the operation of multicast MANET border routers are discussed, but ongoing work remains in this area and is beyond the scope of this document.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6621 -> rev_cites;
+  RFC7038 [label="RFC7038
+Use of OSPF-MDR in Single-Hop Broadcast
+Networks
+2013", shape=ellipse, URL="RFC7038.html", target="_top", tooltip="RFC 5614 (OSPF-MDR) extends OSPF to support mobile ad hoc networks (MANETs) by specifying its operation on the new OSPF interface of type MANET.  This document describes the use of OSPF-MDR (MANET Designated Router) in a single-hop broadcast network, which is a special case of a MANET in which each router is a (one-hop) neighbor of each other router.  Unlike an OSPF broadcast interface, such an interface can have a different cost associated with each neighbor.  The document includes configuration recommendations and simplified mechanisms that can be used in single-hop broadcast networks."];
+  RFC7038 -> rev_cites;
+  RFC7367 [label="RFC7367
+Definition of Managed Objects for the
+Mobile Ad Hoc Network (MANET) Simplified
+Multicast Framework Relay Set Process
+2014", shape=ellipse, URL="RFC7367.html", target="_top", tooltip="This memo defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it describes objects for configuring aspects of the Simplified Multicast Forwarding (SMF) process for Mobile Ad Hoc Networks (MANETs).  The SMF-MIB module also reports state information, performance information, and notifications.  In addition to configuration, the additional state and performance information is useful to operators troubleshooting multicast forwarding problems."];
+  RFC7367 -> rev_cites;
+  RFC7985 [label="RFC7985
+Security Threats to Simplified Multicast
+Forwarding (SMF)
+2016", shape=ellipse, URL="RFC7985.html", target="_top", tooltip="This document analyzes security threats to Simplified Multicast Forwarding (SMF), including vulnerabilities of duplicate packet detection and relay set selection mechanisms. This document is not intended to propose solutions to the threats described. In addition, this document updates RFC 7186 regarding threats to the relay set selection mechanisms using the Mobile Ad Hoc Network (MANET) Neighborhood Discovery Protocol (NHDP) (RFC 6130)."];
+  RFC7985 -> rev_cites;
+  RFC9365 [label="RFC9365
+IPv6 Wireless Access in Vehicular
+Environments (IPWAVE): Problem Statement
+and Use Cases
+2023", shape=ellipse, URL="RFC9365.html", target="_top", tooltip="This document discusses the problem statement and use cases of IPv6-based vehicular networking for Intelligent Transportation Systems (ITS).  The main scenarios of vehicular communications are vehicle-to-vehicle (V2V), vehicle-to-infrastructure (V2I), and vehicle-to-everything (V2X) communications.  First, this document explains use cases using V2V, V2I, and V2X networking.  Next, for IPv6-based vehicular networks, it makes a gap analysis of current IPv6 protocols (e.g., IPv6 Neighbor Discovery, mobility management, as well as security and privacy)."];
+  RFC9365 -> rev_cites;
+  RFC9454 [label="RFC9454
+Update to OSPF Terminology
+2023", shape=ellipse, URL="RFC9454.html", target="_top", tooltip="This document updates some OSPF terminology to be in line with inclusive language used in the industry. The IETF has designated Guidance for NIST Staff on Using Inclusive Language in Documentary Standards by the US National Institute of Standards and Technology (NIST) for its inclusive language guidelines. It is intended that all future OSPF documents use this revised terminology even when they reference the RFCs updated by this document. This document updates RFCs 2328, 4222, 4811, 5243, 5340, 5614, and 5838."];
+  RFC9454 -> rev_cites;
+}

@@ -1,0 +1,731 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7252;
+
+  obs [label="obsoletes", shape=box];
+  RFC7252 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7252 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7252;
+  RFC7959 [label="RFC7959
+Block-Wise Transfers in the Constrained
+Application Protocol (CoAP)
+2016", shape=ellipse, URL="RFC7959.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful transfer protocol for constrained nodes and networks. Basic CoAP messages work well for small payloads from sensors and actuators; however, applications will need to transfer larger payloads occasionally -- for instance, for firmware updates. In contrast to HTTP, where TCP does the grunt work of segmenting and resequencing, CoAP is based on datagram transports such as UDP or Datagram Transport Layer Security (DTLS). These transports only offer fragmentation, which is even more problematic in constrained nodes and networks, limiting the maximum size of resource representations that can practically be transferred. Instead of relying on IP fragmentation, this specification extends basic CoAP with a pair of Block options for transferring multiple blocks of information from a resource representation in multiple request-response pairs. In many important cases, the Block options enable a server to be truly stateless: the server can handle each block transfer separately, with no need for a connection setup or other server-side memory of previous block transfers. Essentially, the Block options provide a minimal way to transfer larger representations in a block-wise fashion. A CoAP implementation that does not support these options generally is limited in the size of the representations that can be exchanged, so there is an expectation that the Block options will be widely used in CoAP implementations. Therefore, this specification updates RFC 7252."];
+  RFC7959 -> updated_by;
+  RFC8613 [label="RFC8613
+Object Security for Constrained RESTful
+Environments (OSCORE)
+2019", shape=ellipse, URL="RFC8613.html", target="_top", tooltip="This document defines Object Security for Constrained RESTful Environments (OSCORE), a method for application-layer protection of the Constrained Application Protocol (CoAP), using CBOR Object Signing and Encryption (COSE). OSCORE provides end-to-end protection between endpoints communicating using CoAP or CoAP-mappable HTTP. OSCORE is designed for constrained nodes and networks supporting a range of proxy operations, including translation between different transport protocols. Although an optional functionality of CoAP, OSCORE alters CoAP options processing and IANA registration. Therefore, this document updates RFC 7252."];
+  RFC8613 -> updated_by;
+  RFC8974 [label="RFC8974
+Extended Tokens and Stateless Clients in
+the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, URL="RFC8974.html", target="_top", tooltip="This document provides considerations for alleviating Constrained Application Protocol (CoAP) clients and intermediaries of keeping per-request state. To facilitate this, this document additionally introduces a new, optional CoAP protocol extension for extended token lengths. This document updates RFCs 7252 and 8323 with an extended definition of the TKL field in the CoAP message header."];
+  RFC8974 -> updated_by;
+  RFC9175 [label="RFC9175
+Constrained Application Protocol (CoAP):
+Echo, Request-Tag, and Token Processing
+2022", shape=ellipse, URL="RFC9175.html", target="_top", tooltip="This document specifies enhancements to the Constrained Application Protocol (CoAP) that mitigate security issues in particular use cases.  The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address.  The Request-Tag option allows the CoAP server to match block-wise message fragments belonging to the same request.  This document updates RFC 7252 with respect to the following: processing requirements for client Tokens, forbidding non-secure reuse of Tokens to ensure response-to-request binding when CoAP is used with a security protocol, and amplification mitigation (where the use of the Echo option is now recommended)."];
+  RFC9175 -> updated_by;
+  RFC9876 [label="RFC9876
+Updates to the IANA Registration
+Procedures for Constrained Application
+Protocol (CoAP) Content-Formats
+2025", shape=ellipse, URL="RFC9876.html", target="_top", tooltip="This document updates RFC 7252 by modifying the registration procedures for the CoAP Content-Formats IANA registry, within the Constrained RESTful Environments (CoRE) Parameters registry group.  This document also introduces a new column, Media Type, to the registry.  Furthermore, this document reserves Content-Format identifiers 64998 and 64999 for use in documentation."];
+  RFC9876 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC7252 -> cites;
+  RFC4944 [label="RFC4944
+Transmission of IPv6 Packets over IEEE
+802.15.4 Networks
+2007", shape=ellipse, URL="RFC4944.html", target="_top", tooltip="This document describes the frame format for transmission of IPv6 packets and the method of forming IPv6 link-local addresses and statelessly autoconfigured addresses on IEEE 802.15.4 networks.  Additional specifications include a simple header compression scheme using shared context and provisions for packet delivery in IEEE 802.15.4 meshes. [STANDARDS-TRACK]"];
+  cites -> RFC4944;
+  RFC2616 [label="RFC2616
+Hypertext Transfer Protocol -- HTTP/1.1
+1999", shape=ellipse, URL="RFC2616.html", target="_top", tooltip="HTTP has been in use by the World-Wide Web global information initiative since 1990.  This specification defines the protocol referred to as HTTP/1.1, and is an update to RFC 2068. [STANDARDS-TRACK]"];
+  cites -> RFC2616;
+  RFC6347 [label="RFC6347
+Datagram Transport Layer Security
+Version 1.2
+2012", shape=ellipse, URL="RFC6347.html", target="_top", tooltip="This document specifies version 1.2 of the Datagram Transport Layer Security (DTLS) protocol.  The DTLS protocol provides communications privacy for datagram protocols.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery.  The DTLS protocol is based on the Transport Layer Security (TLS) protocol and provides equivalent security guarantees.  Datagram semantics of the underlying transport are preserved by the DTLS protocol.  This document updates DTLS 1.0 to work with TLS version 1.2. [STANDARDS-TRACK]"];
+  cites -> RFC6347;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC7228 [label="RFC7228
+Terminology for Constrained-Node
+Networks
+2014", shape=ellipse, URL="RFC7228.html", target="_top", tooltip="The Internet Protocol Suite is increasingly used on small devices with severe constraints on power, memory, and processing resources, creating constrained-node networks.  This document provides a number of basic terms that have been useful in the standardization work for constrained-node networks."];
+  cites -> RFC7228;
+  RFC6690 [label="RFC6690
+Constrained RESTful Environments (CoRE)
+Link Format
+2012", shape=ellipse, URL="RFC6690.html", target="_top", tooltip="This specification defines Web Linking using a link format for use by constrained web servers to describe hosted resources, their attributes, and other relationships between links.  Based on the HTTP Link Header field defined in RFC 5988, the Constrained RESTful Environments (CoRE) Link Format is carried as a payload and is assigned an Internet media type. RESTful refers to the Representational State Transfer (REST) architecture.  A well-known URI is defined as a default entry point for requesting the links hosted by a server. [STANDARDS-TRACK]"];
+  cites -> RFC6690;
+  RFC3828 [label="RFC3828
+The Lightweight User Datagram Protocol
+(UDP-Lite)
+2004", shape=ellipse, URL="RFC3828.html", target="_top", tooltip="This document describes the Lightweight User Datagram Protocol (UDP-Lite), which is similar to the User Datagram Protocol (UDP) (RFC 768), but can also serve applications in error-prone network environments that prefer to have partially damaged payloads delivered rather than discarded.  If this feature is not used, UDP-Lite is semantically identical to UDP. [STANDARDS-TRACK]"];
+  cites -> RFC3828;
+  RFC6936 [label="RFC6936
+Applicability Statement for the Use of
+IPv6 UDP Datagrams with Zero Checksums
+2013", shape=ellipse, URL="RFC6936.html", target="_top", tooltip="This document provides an applicability statement for the use of UDP transport checksums with IPv6.  It defines recommendations and requirements for the use of IPv6 UDP datagrams with a zero UDP checksum.  It describes the issues and design principles that need to be considered when UDP is used with IPv6 to support tunnel encapsulations, and it examines the role of the IPv6 UDP transport checksum.  The document also identifies issues and constraints for deployment on network paths that include middleboxes.  An appendix presents a summary of the trade-offs that were considered in evaluating the safety of the update to RFC 2460 that changes the use of the UDP checksum with IPv6."];
+  cites -> RFC6936;
+  RFC3629 [label="RFC3629
+UTF-8, a transformation format of ISO
+10646
+2003", shape=ellipse, URL="RFC3629.html", target="_top", tooltip="ISO/IEC 10646-1 defines a large character set called the Universal Character Set (UCS) which encompasses most of the world's writing systems.  The originally proposed encodings of the UCS, however, were not compatible with many current applications and protocols, and this has led to the development of UTF-8, the object of this memo.  UTF-8 has the characteristic of preserving the full US-ASCII range, providing compatibility with file systems, parsers and other software that rely on US-ASCII values but are transparent to other values.  This memo obsoletes and replaces RFC 2279."];
+  cites -> RFC3629;
+  RFC5198 [label="RFC5198
+Unicode Format for Network Interchange
+2008", shape=ellipse, URL="RFC5198.html", target="_top", tooltip="The Internet today is in need of a standardized form for the transmission of internationalized text information, paralleling the specifications for the use of ASCII that date from the early days of the ARPANET.  This document specifies that format, using UTF-8 with normalization and specific line-ending sequences. [STANDARDS-TRACK]"];
+  cites -> RFC5198;
+  RFC4443 [label="RFC4443
+Internet Control Message Protocol
+(ICMPv6) for the Internet Protocol
+Version 6 (IPv6) Specification
+2006", shape=ellipse, URL="RFC4443.html", target="_top", tooltip="This document describes the format of a set of control messages used in ICMPv6 (Internet Control Message Protocol).  ICMPv6 is the Internet Control Message Protocol for Internet Protocol version 6 (IPv6). [STANDARDS-TRACK]"];
+  cites -> RFC4443;
+  RFC4821 [label="RFC4821
+Packetization Layer Path MTU Discovery
+2007", shape=ellipse, URL="RFC4821.html", target="_top", tooltip="This document describes a robust method for Path MTU Discovery (PMTUD) that relies on TCP or some other Packetization Layer to probe an Internet path with progressively larger packets.  This method is described as an extension to RFC 1191 and RFC 1981, which specify ICMP-based Path MTU Discovery for IP versions 4 and 6, respectively. [STANDARDS-TRACK]"];
+  cites -> RFC4821;
+  RFC5405 [label="RFC5405
+Unicast UDP Usage Guidelines for
+Application Designers
+2008", shape=ellipse, URL="RFC5405.html", target="_top", tooltip="The User Datagram Protocol (UDP) provides a minimal message-passing transport that has no inherent congestion control mechanisms.  Because congestion control is critical to the stable operation of the Internet, applications and upper-layer protocols that choose to use UDP as an Internet transport must employ mechanisms to prevent congestion collapse and to establish some degree of fairness with concurrent traffic.  This document provides guidelines on the use of UDP for the designers of unicast applications and upper-layer protocols.  Congestion control guidelines are a primary focus, but the document also provides guidance on other topics, including message sizes, reliability, checksums, and middlebox traversal.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5405;
+  RFC4086 [label="RFC4086
+Randomness Requirements for Security
+2005", shape=ellipse, URL="RFC4086.html", target="_top", tooltip="Security systems are built on strong cryptographic algorithms that foil pattern analysis attempts. However, the security of these systems is dependent on generating secret quantities for passwords, cryptographic keys, and similar quantities. The use of pseudo-random processes to generate secret quantities can result in pseudo-security. A sophisticated attacker may find it easier to reproduce the environment that produced the secret quantities and to search the resulting small set of possibilities than to locate the quantities in the whole of the potential number space. Choosing random quantities to foil a resourceful and motivated adversary is surprisingly difficult. This document points out many pitfalls in using poor entropy sources or traditional pseudo-random number generation techniques for generating such quantities. It recommends the use of truly random hardware techniques and shows that the existing hardware on many systems can be used for this purpose. It provides suggestions to ameliorate the problem when a hardware solution is not available, and it gives examples of how large such quantities need to be for some applications. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4086;
+  RFC3986 [label="RFC3986
+Uniform Resource Identifier (URI):
+Generic Syntax
+2005", shape=ellipse, URL="RFC3986.html", target="_top", tooltip="A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource.  This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet.  The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier.  This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme. [STANDARDS-TRACK]"];
+  cites -> RFC3986;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+  RFC5785 [label="RFC5785
+Defining Well-Known Uniform Resource
+Identifiers (URIs)
+2010", shape=ellipse, URL="RFC5785.html", target="_top", tooltip="This memo defines a path prefix for well-known locations, /.well-known/, in selected Uniform Resource Identifier (URI) schemes. [STANDARDS-TRACK]"];
+  cites -> RFC5785;
+  RFC5952 [label="RFC5952
+A Recommendation for IPv6 Address Text
+Representation
+2010", shape=ellipse, URL="RFC5952.html", target="_top", tooltip="As IPv6 deployment increases, there will be a dramatic increase in the need to use IPv6 addresses in text.  While the IPv6 address architecture in Section 2.2 of RFC 4291 describes a flexible model for text representation of an IPv6 address, this flexibility has been causing problems for operators, system engineers, and users.  This document defines a canonical textual representation format.  It does not define a format for internal storage, such as within an application or database.  It is expected that the canonical format will be followed by humans and systems when representing IPv6 addresses as text, but all implementations must accept and be able to handle any legitimate RFC 4291 format. [STANDARDS-TRACK]"];
+  cites -> RFC5952;
+  RFC6282 [label="RFC6282
+Compression Format for IPv6 Datagrams
+over IEEE 802.15.4-Based Networks
+2011", shape=ellipse, URL="RFC6282.html", target="_top", tooltip="This document updates RFC 4944, Transmission of IPv6 Packets over IEEE 802.15.4 Networks.  This document specifies an IPv6 header compression format for IPv6 packet delivery in Low Power Wireless Personal Area Networks (6LoWPANs).  The compression format relies on shared context to allow compression of arbitrary prefixes.  How the information is maintained in that shared context is out of scope.  This document specifies compression of multicast addresses and a framework for compressing next headers.  UDP header compression is specified within this framework. [STANDARDS-TRACK]"];
+  cites -> RFC6282;
+  RFC5988 [label="RFC5988
+Web Linking
+2010", shape=ellipse, URL="RFC5988.html", target="_top", tooltip="This document specifies relation types for Web links, and defines a registry for them.  It also defines the use of such links in HTTP headers with the Link header field. [STANDARDS-TRACK]"];
+  cites -> RFC5988;
+  RFC3542 [label="RFC3542
+Advanced Sockets Application Program
+Interface (API) for IPv6
+2003", shape=ellipse, URL="RFC3542.html", target="_top", tooltip="This document provides sockets Application Program Interface (API) to support advanced IPv6 applications, as a supplement to a separate specification, RFC 3493.  The expected applications include Ping, Traceroute, routing daemons and the like, which typically use raw sockets to access IPv6 or ICMPv6 header fields.  This document proposes some portable interfaces for applications that use raw sockets under IPv6.  There are other features of IPv6 that some applications will need to access: interface identification (specifying the outgoing interface and determining the incoming interface), IPv6 extension headers, and path Maximum Transmission Unit (MTU) information.  This document provides API access to these features too.  Additionally, some extended interfaces to libraries for the r commands are defined.  The extension will provide better backward compatibility to existing implementations that are not IPv6-capable.  This memo provides information for the Internet community."];
+  cites -> RFC3542;
+  RFC4279 [label="RFC4279
+Pre-Shared Key Ciphersuites for
+Transport Layer Security (TLS)
+2005", shape=ellipse, URL="RFC4279.html", target="_top", tooltip="This document specifies three sets of new ciphersuites for the Transport Layer Security (TLS) protocol to support authentication based on pre-shared keys (PSKs).  These pre-shared keys are symmetric keys, shared in advance among the communicating parties.  The first set of ciphersuites uses only symmetric key operations for authentication.  The second set uses a Diffie-Hellman exchange authenticated with a pre-shared key, and the third set combines public key authentication of the server with pre-shared key authentication of the client. [STANDARDS-TRACK]"];
+  cites -> RFC4279;
+  RFC7250 [label="RFC7250
+Using Raw Public Keys in Transport Layer
+Security (TLS) and Datagram Transport
+Layer Security (DTLS)
+2014", shape=ellipse, URL="RFC7250.html", target="_top", tooltip="This document specifies a new certificate type and two TLS extensions for exchanging raw public keys in Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS).  The new certificate type allows raw public keys to be used for authentication."];
+  cites -> RFC7250;
+  RFC5280 [label="RFC5280
+Internet X.509 Public Key Infrastructure
+Certificate and Certificate Revocation
+List (CRL) Profile
+2008", shape=ellipse, URL="RFC5280.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 certificate revocation list (CRL) for use in the Internet.  An overview of this approach and model is provided as an introduction.  The X.509 v3 certificate format is described in detail, with additional information regarding the format and semantics of Internet name forms.  Standard certificate extensions are described and two Internet-specific extensions are defined.  A set of required certificate extensions is specified.  The X.509 v2 CRL format is described in detail along with standard and Internet-specific extensions.  An algorithm for X.509 certification path validation is described.  An ASN.1 module and examples are provided in the appendices. [STANDARDS-TRACK]"];
+  cites -> RFC5280;
+  RFC6655 [label="RFC6655
+AES-CCM Cipher Suites for Transport
+Layer Security (TLS)
+2012", shape=ellipse, URL="RFC6655.html", target="_top", tooltip="This memo describes the use of the Advanced Encryption Standard (AES) in the Counter with Cipher Block Chaining - Message Authentication Code (CBC-MAC) Mode (CCM) of operation within Transport Layer Security (TLS) and Datagram TLS (DTLS) to provide confidentiality and data origin authentication.  The AES-CCM algorithm is amenable to compact implementations, making it suitable for constrained environments. [STANDARDS-TRACK]"];
+  cites -> RFC6655;
+  RFC6066 [label="RFC6066
+Transport Layer Security (TLS)
+Extensions: Extension Definitions
+2011", shape=ellipse, URL="RFC6066.html", target="_top", tooltip="This document provides specifications for existing TLS extensions.  It is a companion document for RFC 5246, The Transport Layer Security (TLS) Protocol Version 1.2.  The extensions specified are server_name, max_fragment_length, client_certificate_url, trusted_ca_keys, truncated_hmac, and status_request. [STANDARDS-TRACK]"];
+  cites -> RFC6066;
+  RFC7251 [label="RFC7251
+AES-CCM Elliptic Curve Cryptography
+(ECC) Cipher Suites for TLS
+2014", shape=ellipse, URL="RFC7251.html", target="_top", tooltip="This memo describes the use of the Advanced Encryption Standard (AES) in the Counter and CBC-MAC Mode (CCM) of operation within Transport Layer Security (TLS) to provide confidentiality and data-origin authentication.  The AES-CCM algorithm is amenable to compact implementations, making it suitable for constrained environments, while at the same time providing a high level of security.  The cipher suites defined in this document use Elliptic Curve Cryptography (ECC) and are advantageous in networks with limited bandwidth."];
+  cites -> RFC7251;
+  RFC5246 [label="RFC5246
+The Transport Layer Security (TLS)
+Protocol Version 1.2
+2008", shape=ellipse, URL="RFC5246.html", target="_top", tooltip="This document specifies Version 1.2 of the Transport Layer Security (TLS) protocol.  The TLS protocol provides communications security over the Internet.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery. [STANDARDS-TRACK]"];
+  cites -> RFC5246;
+  RFC4492 [label="RFC4492
+Elliptic Curve Cryptography (ECC) Cipher
+Suites for Transport Layer Security
+(TLS)
+2006", shape=ellipse, URL="RFC4492.html", target="_top", tooltip="This document describes new key exchange algorithms based on Elliptic Curve Cryptography (ECC) for the Transport Layer Security (TLS) protocol.  In particular, it specifies the use of Elliptic Curve Diffie-Hellman (ECDH) key agreement in a TLS handshake and the use of Elliptic Curve Digital Signature Algorithm (ECDSA) as a new authentication mechanism.  This memo provides information for the Internet community."];
+  cites -> RFC4492;
+  RFC6090 [label="RFC6090
+Fundamental Elliptic Curve Cryptography
+Algorithms
+2011", shape=ellipse, URL="RFC6090.html", target="_top", tooltip="This note describes the fundamental algorithms of Elliptic Curve Cryptography (ECC) as they were defined in some seminal references from 1994 and earlier.  These descriptions may be useful for implementing the fundamental algorithms without using any of the specialized methods that were developed in following years.  Only elliptic curves defined over fields of characteristic greater than three are in scope; these curves are those used in Suite B.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6090;
+  RFC6920 [label="RFC6920
+Naming Things with Hashes
+2013", shape=ellipse, URL="RFC6920.html", target="_top", tooltip="This document defines a set of ways to identify a thing (a digital object in this case) using the output from a hash function.  It specifies a new URI scheme for this purpose, a way to map these to HTTP URLs, and binary and human-speakable formats for these names.  The various formats are designed to support, but not require, a strong link to the referenced object, such that the referenced object may be authenticated to the same degree as the reference to it.  The reason for this work is to standardise current uses of hash outputs in URLs and to support new information-centric applications and other uses of hash outputs in protocols."];
+  cites -> RFC6920;
+  RFC5480 [label="RFC5480
+Elliptic Curve Cryptography Subject
+Public Key Information
+2009", shape=ellipse, URL="RFC5480.html", target="_top", tooltip="This document specifies the syntax and semantics for the Subject Public Key Information field in certificates that support Elliptic Curve Cryptography.  This document updates Sections 2.3.5 and 5, and the ASN.1 module of Algorithms and Identifiers for the Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile, RFC 3279. [STANDARDS-TRACK]"];
+  cites -> RFC5480;
+  RFC3280 [label="RFC3280
+Internet X.509 Public Key Infrastructure
+Certificate and Certificate Revocation
+List (CRL) Profile
+2002", shape=ellipse, URL="RFC3280.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 Certificate Revocation List (CRL) for use in the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC3280;
+  RFC6960 [label="RFC6960
+X.509 Internet Public Key Infrastructure
+Online Certificate Status Protocol -
+OCSP
+2013", shape=ellipse, URL="RFC6960.html", target="_top", tooltip="This document specifies a protocol useful in determining the current status of a digital certificate without requiring Certificate Revocation Lists (CRLs).  Additional mechanisms addressing PKIX operational requirements are specified in separate documents.  This document obsoletes RFCs 2560 and 6277.  It also updates RFC 5912."];
+  cites -> RFC6960;
+  RFC6961 [label="RFC6961
+The Transport Layer Security (TLS)
+Multiple Certificate Status Request
+Extension
+2013", shape=ellipse, URL="RFC6961.html", target="_top", tooltip="This document defines the Transport Layer Security (TLS) Certificate Status Version 2 Extension to allow clients to specify and support several certificate status methods. (The use of the Certificate Status extension is commonly referred to as OCSP stapling.) Also defined is a new method based on the Online Certificate Status Protocol (OCSP) that servers can use to provide status information about not only the server's own certificate but also the status of intermediate certificates in the chain."];
+  cites -> RFC6961;
+  RFC5489 [label="RFC5489
+ECDHE_PSK Cipher Suites for Transport
+Layer Security (TLS)
+2009", shape=ellipse, URL="RFC5489.html", target="_top", tooltip="This document extends RFC 4279, RFC 4492, and RFC 4785 and specifies a set of cipher suites that use a pre-shared key (PSK) to authenticate an Elliptic Curve Diffie-Hellman exchange with Ephemeral keys (ECDHE).  These cipher suites provide Perfect Forward Secrecy (PFS).  This memo provides information for the Internet community."];
+  cites -> RFC5489;
+  RFC6120 [label="RFC6120
+Extensible Messaging and Presence
+Protocol (XMPP): Core
+2011", shape=ellipse, URL="RFC6120.html", target="_top", tooltip="The Extensible Messaging and Presence Protocol (XMPP) is an application profile of the Extensible Markup Language (XML) that enables the near-real-time exchange of structured yet extensible data between any two or more network entities.  This document defines XMPP's core protocol methods: setup and teardown of XML streams, channel encryption, authentication, error handling, and communication primitives for messaging, network availability (presence), and request-response interactions.  This document obsoletes RFC 3920. [STANDARDS-TRACK]"];
+  cites -> RFC6120;
+  RFC3264 [label="RFC3264
+An Offer/Answer Model with Session
+Description Protocol (SDP)
+2002", shape=ellipse, URL="RFC3264.html", target="_top", tooltip="This document defines a mechanism by which two entities can make use of the Session Description Protocol (SDP) to arrive at a common view of a multimedia session between them.  In the model, one participant offers the other a description of the desired session from their perspective, and the other participant answers with the desired session from their perspective.  This offer/answer model is most useful in unicast sessions where information from both participants is needed for the complete view of the session.  The offer/answer model is used by protocols like the Session Initiation Protocol (SIP). [STANDARDS-TRACK]"];
+  cites -> RFC3264;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC5226 [label="RFC5226
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2008", shape=ellipse, URL="RFC5226.html", target="_top", tooltip="Many protocols make use of identifiers consisting of constants and other well-known values. Even after a protocol has been defined and deployment has begun, new values may need to be assigned (e.g., for a new option type in DHCP, or a new encryption or authentication transform for IPsec). To ensure that such quantities have consistent values and interpretations across all implementations, their assignment must be administered by a central authority. For IETF protocols, that role is provided by the Internet Assigned Numbers Authority (IANA). In order for IANA to manage a given namespace prudently, it needs guidelines describing the conditions under which new values can be assigned or when modifications to existing values can be made. If IANA is expected to play a role in the management of a namespace, IANA must be given clear and concise instructions describing that role. This document discusses issues that should be considered in formulating a policy for assigning values to a namespace and provides guidelines for authors on the specific text that must be included in documents that place demands on IANA. This document obsoletes RFC 2434. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC5226;
+  RFC2046 [label="RFC2046
+Multipurpose Internet Mail Extensions
+(MIME) Part Two: Media Types
+1996", shape=ellipse, URL="RFC2046.html", target="_top", tooltip="This second document defines the general structure of the MIME media typing system and defines an initial set of media types. [STANDARDS-TRACK]"];
+  cites -> RFC2046;
+  RFC3676 [label="RFC3676
+The Text/Plain Format and DelSp
+Parameters
+2004", shape=ellipse, URL="RFC3676.html", target="_top", tooltip="This specification establishes two parameters (Format and DelSP) to be used with the Text/Plain media type.  In the presence of these parameters, trailing whitespace is used to indicate flowed lines and a canonical quote indicator is used to indicate quoted lines.  This results in an encoding which appears as normal Text/Plain in older implementations, since it is in fact normal Text/Plain, yet provides for superior wrapping/flowing, and quoting.  This document supersedes the one specified in RFC 2646, The Text/Plain Format Parameter, and adds the DelSp parameter to accommodate languages/coded character sets in which ASCII spaces are not used or appear rarely. [STANDARDS-TRACK]"];
+  cites -> RFC3676;
+  RFC5147 [label="RFC5147
+URI Fragment Identifiers for the
+text/plain Media Type
+2008", shape=ellipse, URL="RFC5147.html", target="_top", tooltip="This memo defines URI fragment identifiers for text/plain MIME entities.  These fragment identifiers make it possible to refer to parts of a text/plain MIME entity, either identified by character position or range, or by line position or range.  Fragment identifiers may also contain information for integrity checks to make them more robust. [STANDARDS-TRACK]"];
+  cites -> RFC5147;
+  RFC3023 [label="RFC3023
+XML Media Types
+2001", shape=ellipse, URL="RFC3023.html", target="_top", tooltip="This document standardizes five new media types -- text/xml, application/xml, text/xml-external-parsed-entity, application/xml- external-parsed-entity, and application/xml-dtd -- for use in exchanging network entities that are related to the Extensible Markup Language (XML).  This document also standardizes a convention (using the suffix '+xml') for naming media types outside of these five types when those media types represent XML MIME (Multipurpose Internet Mail Extensions) entities. [STANDARDS-TRACK]"];
+  cites -> RFC3023;
+  RFC2045 [label="RFC2045
+Multipurpose Internet Mail Extensions
+(MIME) Part One: Format of Internet
+Message Bodies
+1996", shape=ellipse, URL="RFC2045.html", target="_top", tooltip="This initial document specifies the various headers used to describe the structure of MIME messages. [STANDARDS-TRACK]"];
+  cites -> RFC2045;
+  RFC7159 [label="RFC7159
+The JavaScript Object Notation (JSON)
+Data Interchange Format
+2014", shape=ellipse, URL="RFC7159.html", target="_top", tooltip="JavaScript Object Notation (JSON) is a lightweight, text-based, language-independent data interchange format. It was derived from the ECMAScript Programming Language Standard. JSON defines a small set of formatting rules for the portable representation of structured data. This document removes inconsistencies with other specifications of JSON, repairs specification errors, and offers experience-based interoperability guidance."];
+  cites -> RFC7159;
+  RFC4395 [label="RFC4395
+Guidelines and Registration Procedures
+for New URI Schemes
+2006", shape=ellipse, URL="RFC4395.html", target="_top", tooltip="This document provides guidelines and recommendations for the definition of Uniform Resource Identifier (URI) schemes.  It also updates the process and IANA registry for URI schemes.  It obsoletes both RFC 2717 and RFC 2718.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4395;
+  RFC6335 [label="RFC6335
+Internet Assigned Numbers Authority
+(IANA) Procedures for the Management of
+the Service Name and Transport Protocol
+Port Number Registry
+2011", shape=ellipse, URL="RFC6335.html", target="_top", tooltip="This document defines the procedures that the Internet Assigned Numbers Authority (IANA) uses when handling assignment and other requests related to the Service Name and Transport Protocol Port Number registry. It also discusses the rationale and principles behind these procedures and how they facilitate the long-term sustainability of the registry. This document updates IANA's procedures by obsoleting the previous UDP and TCP port assignment procedures defined in Sections 8 and 9.1 of the IANA Allocation Guidelines, and it updates the IANA service name and port assignment procedures for UDP-Lite, the Datagram Congestion Control Protocol (DCCP), and the Stream Control Transmission Protocol (SCTP). It also updates the DNS SRV specification to clarify what a service name is and how it is registered. This memo documents an Internet Best Current Practice."];
+  cites -> RFC6335;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7252;
+  RFC7368 [label="RFC7368
+IPv6 Home Networking Architecture
+Principles
+2014", shape=ellipse, URL="RFC7368.html", target="_top", tooltip="This text describes evolving networking technology within residential home networks with increasing numbers of devices and a trend towards increased internal routing.  The goal of this document is to define a general architecture for IPv6-based home networking, describing the associated principles, considerations, and requirements.  The text briefly highlights specific implications of the introduction of IPv6 for home networking, discusses the elements of the architecture, and suggests how standard IPv6 mechanisms and addressing can be employed in home networking.  The architecture describes the need for specific protocol extensions for certain additional functionality.  It is assumed that the IPv6 home network is not actively managed and runs as an IPv6-only or dual-stack network.  There are no recommendations in this text for the IPv4 part of the network."];
+  RFC7368 -> rev_cites;
+  RFC7388 [label="RFC7388
+Definition of Managed Objects for IPv6
+over Low-Power Wireless Personal Area
+Networks (6LoWPANs)
+2014", shape=ellipse, URL="RFC7388.html", target="_top", tooltip="This document defines a portion of the Management Information Base (MIB) for use with network management protocols in the Internet community.  In particular, it defines objects for managing IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs)."];
+  RFC7388 -> rev_cites;
+  RFC7390 [label="RFC7390
+Group Communication for the Constrained
+Application Protocol (CoAP)
+2014", shape=ellipse, URL="RFC7390.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for constrained devices and constrained networks.  It is anticipated that constrained devices will often naturally operate in groups (e.g., in a building automation scenario, all lights in a given room may need to be switched on/off as a group).  This specification defines how CoAP should be used in a group communication context.  An approach for using CoAP on top of IP multicast is detailed based on existing CoAP functionality as well as new features introduced in this specification.  Also, various use cases and corresponding protocol flows are provided to illustrate important concepts.  Finally, guidance is provided for deployment in various network topologies."];
+  RFC7390 -> rev_cites;
+  RFC7452 [label="RFC7452
+Architectural Considerations in Smart
+Object Networking
+2015", shape=ellipse, URL="RFC7452.html", target="_top", tooltip="The term Internet of Things (IoT) denotes a trend where a large number of embedded devices employ communication services offered by Internet protocols. Many of these devices, often called smart objects, are not directly operated by humans but exist as components in buildings or vehicles, or are spread out in the environment. Following the theme Everything that can be connected will be connected, engineers and researchers designing smart object networks need to decide how to achieve this in practice. This document offers guidance to engineers designing Internet- connected smart objects."];
+  RFC7452 -> rev_cites;
+  RFC7547 [label="RFC7547
+Management of Networks with Constrained
+Devices: Problem Statement and
+Requirements
+2015", shape=ellipse, URL="RFC7547.html", target="_top", tooltip="This document provides a problem statement, deployment and management topology options, as well as requirements addressing the different use cases of the management of networks where constrained devices are involved."];
+  RFC7547 -> rev_cites;
+  RFC7554 [label="RFC7554
+Using IEEE 802.15.4e Time-Slotted
+Channel Hopping (TSCH) in the Internet
+of Things (IoT): Problem Statement
+2015", shape=ellipse, URL="RFC7554.html", target="_top", tooltip="This document describes the environment, problem statement, and goals for using the Time-Slotted Channel Hopping (TSCH) Medium Access Control (MAC) protocol of IEEE 802.14.4e in the context of Low-Power and Lossy Networks (LLNs).  The set of goals enumerated in this document form an initial set only."];
+  RFC7554 -> rev_cites;
+  RFC7641 [label="RFC7641
+Observing Resources in the Constrained
+Application Protocol (CoAP)
+2015", shape=ellipse, URL="RFC7641.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful application protocol for constrained nodes and networks.  The state of a resource on a CoAP server can change over time.  This document specifies a simple protocol extension for CoAP that enables CoAP clients to observe resources, i.e., to retrieve a representation of a resource and keep this representation updated by the server over a period of time.  The protocol follows a best-effort approach for sending new representations to clients and provides eventual consistency between the state observed by each client and the actual resource state at the server."];
+  RFC7641 -> rev_cites;
+  RFC7650 [label="RFC7650
+A Constrained Application Protocol
+(CoAP) Usage for REsource LOcation And
+Discovery (RELOAD)
+2015", shape=ellipse, URL="RFC7650.html", target="_top", tooltip="This document defines a Constrained Application Protocol (CoAP) Usage for REsource LOcation And Discovery (RELOAD).  The CoAP Usage provides the functionality to federate Wireless Sensor Networks (WSNs) in a peer-to-peer fashion.  The CoAP Usage for RELOAD allows CoAP nodes to store resources in a RELOAD peer-to-peer overlay, provides a lookup service, and enables the use of RELOAD overlay as a cache for sensor data.  This functionality is implemented in the RELOAD overlay itself, without the use of centralized servers.  The RELOAD AppAttach method is used to establish a direct connection between nodes through which CoAP messages are exchanged."];
+  RFC7650 -> rev_cites;
+  RFC7744 [label="RFC7744
+Use Cases for Authentication and
+Authorization in Constrained
+Environments
+2016", shape=ellipse, URL="RFC7744.html", target="_top", tooltip="Constrained devices are nodes with limited processing power, storage space, and transmission capacities. In many cases, these devices do not provide user interfaces, and they are often intended to interact without human intervention. This document includes a collection of representative use cases for authentication and authorization in constrained environments. These use cases aim at identifying authorization problems that arise during the life cycle of a constrained device and are intended to provide a guideline for developing a comprehensive authentication and authorization solution for this class of scenarios. Where specific details are relevant, it is assumed that the devices use the Constrained Application Protocol (CoAP) as a communication protocol. However, most conclusions apply generally."];
+  RFC7744 -> rev_cites;
+  RFC7925 [label="RFC7925
+Transport Layer Security (TLS) /
+Datagram Transport Layer Security (DTLS)
+Profiles for the Internet of Things
+2016", shape=ellipse, URL="RFC7925.html", target="_top", tooltip="A common design pattern in Internet of Things (IoT) deployments is the use of a constrained device that collects data via sensors or controls actuators for use in home automation, industrial control systems, smart cities, and other IoT deployments. This document defines a Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS) 1.2 profile that offers communications security for this data exchange thereby preventing eavesdropping, tampering, and message forgery. The lack of communication security is a common vulnerability in IoT products that can easily be solved by using these well-researched and widely deployed Internet security protocols."];
+  RFC7925 -> rev_cites;
+  RFC7959 [label="RFC7959
+Block-Wise Transfers in the Constrained
+Application Protocol (CoAP)
+2016", shape=ellipse, URL="RFC7959.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a RESTful transfer protocol for constrained nodes and networks. Basic CoAP messages work well for small payloads from sensors and actuators; however, applications will need to transfer larger payloads occasionally -- for instance, for firmware updates. In contrast to HTTP, where TCP does the grunt work of segmenting and resequencing, CoAP is based on datagram transports such as UDP or Datagram Transport Layer Security (DTLS). These transports only offer fragmentation, which is even more problematic in constrained nodes and networks, limiting the maximum size of resource representations that can practically be transferred. Instead of relying on IP fragmentation, this specification extends basic CoAP with a pair of Block options for transferring multiple blocks of information from a resource representation in multiple request-response pairs. In many important cases, the Block options enable a server to be truly stateless: the server can handle each block transfer separately, with no need for a connection setup or other server-side memory of previous block transfers. Essentially, the Block options provide a minimal way to transfer larger representations in a block-wise fashion. A CoAP implementation that does not support these options generally is limited in the size of the representations that can be exchanged, so there is an expectation that the Block options will be widely used in CoAP implementations. Therefore, this specification updates RFC 7252."];
+  RFC7959 -> rev_cites;
+  RFC7967 [label="RFC7967
+Constrained Application Protocol (CoAP)
+Option for No Server Response
+2016", shape=ellipse, URL="RFC7967.html", target="_top", tooltip="There can be machine-to-machine (M2M) scenarios where server responses to client requests are redundant. This kind of open-loop exchange (with no response path from the server to the client) may be desired to minimize resource consumption in constrained systems while updating many resources simultaneously or performing high-frequency updates. CoAP already provides Non-confirmable (NON) messages that are not acknowledged by the recipient. However, the request/response semantics still require the server to respond with a status code indicating the result of the attempt to understand and satisfy the request, per RFC 7252. This specification introduces a CoAP option called 'No-Response'. Using this option, the client can explicitly express to the server its disinterest in all responses against the particular request. This option also provides granular control to enable expression of disinterest to a particular response class or a combination of response classes. The server MAY decide to suppress the response by not transmitting it back to the client according to the value of the No-Response option in the request. This option may be effective for both unicast and multicast requests. This document also discusses a few examples of applications that benefit from this option."];
+  RFC7967 -> rev_cites;
+  RFC8075 [label="RFC8075
+Guidelines for Mapping Implementations:
+HTTP to the Constrained Application
+Protocol (CoAP)
+2017", shape=ellipse, URL="RFC8075.html", target="_top", tooltip="This document provides reference information for implementing a cross-protocol network proxy that performs translation from the HTTP protocol to the Constrained Application Protocol (CoAP).  This will enable an HTTP client to access resources on a CoAP server through the proxy.  This document describes how an HTTP request is mapped to a CoAP request and how a CoAP response is mapped back to an HTTP response.  This includes guidelines for status code, URI, and media type mappings, as well as additional interworking advice."];
+  RFC8075 -> rev_cites;
+  RFC8132 [label="RFC8132
+PATCH and FETCH Methods for the
+Constrained Application Protocol (CoAP)
+2017", shape=ellipse, URL="RFC8132.html", target="_top", tooltip="The methods defined in RFC 7252 for the Constrained Application Protocol (CoAP) only allow access to a complete resource, not to parts of a resource. In case of resources with larger or complex data, or in situations where resource continuity is required, replacing or requesting the whole resource is undesirable. Several applications using CoAP need to access parts of the resources. This specification defines the new CoAP methods, FETCH, PATCH, and iPATCH, which are used to access and update parts of a resource."];
+  RFC8132 -> rev_cites;
+  RFC8152 [label="RFC8152
+CBOR Object Signing and Encryption
+(COSE)
+2017", shape=ellipse, URL="RFC8152.html", target="_top", tooltip="Concise Binary Object Representation (CBOR) is a data format designed for small code size and small message size.  There is a need for the ability to have basic security services defined for this data format.  This document defines the CBOR Object Signing and Encryption (COSE) protocol.  This specification describes how to create and process signatures, message authentication codes, and encryption using CBOR for serialization.  This specification additionally describes how to represent cryptographic keys using CBOR."];
+  RFC8152 -> rev_cites;
+  RFC8307 [label="RFC8307
+Well-Known URIs for the WebSocket
+Protocol
+2018", shape=ellipse, URL="RFC8307.html", target="_top", tooltip="RFC 5785 defines a path prefix, /.well-known/, that can be used by well-known URIs.  It was specifically defined for the http and https URI schemes.  The present memo formally updates RFC 6455, which defines the URI schemes defined for the WebSocket Protocol, to extend the use of these well-known URIs to those URI schemes."];
+  RFC8307 -> rev_cites;
+  RFC8323 [label="RFC8323
+CoAP (Constrained Application Protocol)
+over TCP, TLS, and WebSockets
+2018", shape=ellipse, URL="RFC8323.html", target="_top", tooltip="The Constrained Application Protocol (CoAP), although inspired by HTTP, was designed to use UDP instead of TCP. The message layer of CoAP over UDP includes support for reliable delivery, simple congestion control, and flow control. Some environments benefit from the availability of CoAP carried over reliable transports such as TCP or Transport Layer Security (TLS). This document outlines the changes required to use CoAP over TCP, TLS, and WebSockets transports. It also formally updates RFC 7641 for use with these transports and RFC 7959 to enable the use of larger messages over a reliable transport."];
+  RFC8323 -> rev_cites;
+  RFC8352 [label="RFC8352
+Energy-Efficient Features of Internet of
+Things Protocols
+2018", shape=ellipse, URL="RFC8352.html", target="_top", tooltip="This document describes the challenges for energy-efficient protocol operation on constrained devices and the current practices used to overcome those challenges.  It summarizes the main link-layer techniques used for energy-efficient networking, and it highlights the impact of such techniques on the upper-layer protocols so that they can together achieve an energy-efficient behavior.  The document also provides an overview of energy-efficient mechanisms available at each layer of the IETF protocol suite specified for constrained-node networks."];
+  RFC8352 -> rev_cites;
+  RFC8376 [label="RFC8376
+Low-Power Wide Area Network (LPWAN)
+Overview
+2018", shape=ellipse, URL="RFC8376.html", target="_top", tooltip="Low-Power Wide Area Networks (LPWANs) are wireless technologies with characteristics such as large coverage areas, low bandwidth, possibly very small packet and application-layer data sizes, and long battery life operation.  This memo is an informational overview of the set of LPWAN technologies being considered in the IETF and of the gaps that exist between the needs of those technologies and the goal of running IP in LPWANs."];
+  RFC8376 -> rev_cites;
+  RFC8387 [label="RFC8387
+Practical Considerations and
+Implementation Experiences in Securing
+Smart Object Networks
+2018", shape=ellipse, URL="RFC8387.html", target="_top", tooltip="This memo describes challenges associated with securing resource- constrained smart object devices.  The memo describes a possible deployment model where resource-constrained devices sign message objects, discusses the availability of cryptographic libraries for resource-constrained devices, and presents some preliminary experiences with those libraries for message signing on resource- constrained devices.  Lastly, the memo discusses trade-offs involving different types of security approaches."];
+  RFC8387 -> rev_cites;
+  RFC8428 [label="RFC8428
+Sensor Measurement Lists (SenML)
+2018", shape=ellipse, URL="RFC8428.html", target="_top", tooltip="This specification defines a format for representing simple sensor measurements and device parameters in Sensor Measurement Lists (SenML).  Representations are defined in JavaScript Object Notation (JSON), Concise Binary Object Representation (CBOR), Extensible Markup Language (XML), and Efficient XML Interchange (EXI), which share the common SenML data model.  A simple sensor, such as a temperature sensor, could use one of these media types in protocols such as HTTP or the Constrained Application Protocol (CoAP) to transport the measurements of the sensor or to be configured."];
+  RFC8428 -> rev_cites;
+  RFC8442 [label="RFC8442
+ECDHE_PSK with AES-GCM and AES-CCM
+Cipher Suites for TLS 1.2 and DTLS 1.2
+2018", shape=ellipse, URL="RFC8442.html", target="_top", tooltip="This document defines several new cipher suites for version 1.2 of the Transport Layer Security (TLS) protocol and version 1.2 of the Datagram Transport Layer Security (DTLS) protocol.  These cipher suites are based on the Ephemeral Elliptic Curve Diffie-Hellman with Pre-Shared Key (ECDHE_PSK) key exchange together with the Authenticated Encryption with Associated Data (AEAD) algorithms AES-GCM and AES-CCM.  PSK provides light and efficient authentication, ECDHE provides forward secrecy, and AES-GCM and AES-CCM provide encryption and integrity protection."];
+  RFC8442 -> rev_cites;
+  RFC8516 [label="RFC8516
+Too Many Requests Response Code for the
+Constrained Application Protocol
+2019", shape=ellipse, URL="RFC8516.html", target="_top", tooltip="A Constrained Application Protocol (CoAP) server can experience temporary overload because one or more clients are sending requests to the server at a higher rate than the server is capable or willing to handle.  This document defines a new CoAP response code for a server to indicate that a client should reduce the rate of requests."];
+  RFC8516 -> rev_cites;
+  RFC8520 [label="RFC8520
+Manufacturer Usage Description
+Specification
+2019", shape=ellipse, URL="RFC8520.html", target="_top", tooltip="This memo specifies a component-based architecture for Manufacturer Usage Descriptions (MUDs). The goal of MUD is to provide a means for end devices to signal to the network what sort of access and network functionality they require to properly function. The initial focus is on access control. Later work can delve into other aspects. This memo specifies two YANG modules, IPv4 and IPv6 DHCP options, a Link Layer Discovery Protocol (LLDP) TLV, a URL, an X.509 certificate extension, and a means to sign and verify the descriptions."];
+  RFC8520 -> rev_cites;
+  RFC8568 [label="RFC8568
+Network Virtualization Research
+Challenges
+2019", shape=ellipse, URL="RFC8568.html", target="_top", tooltip="This document describes open research challenges for network virtualization.  Network virtualization is following a similar path as previously taken by cloud computing.  Specifically, cloud computing popularized migration of computing functions (e.g., applications) and storage from local, dedicated, physical resources to remote virtual functions accessible through the Internet.  In a similar manner, network virtualization is encouraging migration of networking functions from dedicated physical hardware nodes to a virtualized pool of resources.  However, network virtualization can be considered to be a more complex problem than cloud computing as it not only involves virtualization of computing and storage functions but also involves abstraction of the network itself.  This document describes current research and engineering challenges in network virtualization including the guarantee of quality of service, performance improvement, support for multiple domains, network slicing, service composition, device virtualization, privacy and security, separation of control concerns, network function placement, and testing.  In addition, some proposals are made for new activities in the IETF and IRTF that could address some of these challenges.  This document is a product of the Network Function Virtualization Research Group (NFVRG)."];
+  RFC8568 -> rev_cites;
+  RFC8576 [label="RFC8576
+Internet of Things (IoT) Security: State
+of the Art and Challenges
+2019", shape=ellipse, URL="RFC8576.html", target="_top", tooltip="The Internet of Things (IoT) concept refers to the usage of standard Internet protocols to allow for human-to-thing and thing-to-thing communication. The security needs for IoT systems are well recognized, and many standardization steps to provide security have been taken -- for example, the specification of the Constrained Application Protocol (CoAP) secured with Datagram Transport Layer Security (DTLS). However, security challenges still exist, not only because there are some use cases that lack a suitable solution, but also because many IoT devices and systems have been designed and deployed with very limited security capabilities. In this document, we first discuss the various stages in the lifecycle of a thing. Next, we document the security threats to a thing and the challenges that one might face to protect against these threats. Lastly, we discuss the next steps needed to facilitate the deployment of secure IoT systems. This document can be used by implementers and authors of IoT specifications as a reference for details about security considerations while documenting their specific security challenges, threat models, and mitigations. This document is a product of the IRTF Thing-to-Thing Research Group (T2TRG)."];
+  RFC8576 -> rev_cites;
+  RFC8613 [label="RFC8613
+Object Security for Constrained RESTful
+Environments (OSCORE)
+2019", shape=ellipse, URL="RFC8613.html", target="_top", tooltip="This document defines Object Security for Constrained RESTful Environments (OSCORE), a method for application-layer protection of the Constrained Application Protocol (CoAP), using CBOR Object Signing and Encryption (COSE). OSCORE provides end-to-end protection between endpoints communicating using CoAP or CoAP-mappable HTTP. OSCORE is designed for constrained nodes and networks supporting a range of proxy operations, including translation between different transport protocols. Although an optional functionality of CoAP, OSCORE alters CoAP options processing and IANA registration. Therefore, this document updates RFC 7252."];
+  RFC8613 -> rev_cites;
+  RFC8615 [label="RFC8615
+Well-Known Uniform Resource Identifiers
+(URIs)
+2019", shape=ellipse, URL="RFC8615.html", target="_top", tooltip="This memo defines a path prefix for well-known locations, /.well-known/, in selected Uniform Resource Identifier (URI) schemes. In doing so, it obsoletes RFC 5785 and updates the URI schemes defined in RFC 7230 to reserve that space. It also updates RFC 7595 to track URI schemes that support well-known URIs in their registry."];
+  RFC8615 -> rev_cites;
+  RFC8710 [label="RFC8710
+Multipart Content-Format for the
+Constrained Application Protocol (CoAP)
+2020", shape=ellipse, URL="RFC8710.html", target="_top", tooltip="This memo defines application/multipart-core, an application-independent media type that can be used to combine representations of zero or more different media types (each with a Constrained Application Protocol (CoAP) Content-Format identifier) into a single representation, with minimal framing overhead."];
+  RFC8710 -> rev_cites;
+  RFC8763 [label="RFC8763
+Deployment Considerations for
+Information-Centric Networking (ICN)
+2020", shape=ellipse, URL="RFC8763.html", target="_top", tooltip="Information-Centric Networking (ICN) is now reaching technological maturity after many years of fundamental research and experimentation.  This document provides a number of deployment considerations in the interest of helping the ICN community move forward to the next step of live deployments.  First, the major deployment configurations for ICN are described, including the key overlay and underlay approaches.  Then, proposed deployment migration paths are outlined to address major practical issues, such as network and application migration.  Next, selected ICN trial experiences are summarized.  Finally, protocol areas that require further standardization are identified to facilitate future interoperable ICN deployments.  This document is a product of the Information-Centric Networking Research Group (ICNRG)."];
+  RFC8763 -> rev_cites;
+  RFC8768 [label="RFC8768
+Constrained Application Protocol (CoAP)
+Hop-Limit Option
+2020", shape=ellipse, URL="RFC8768.html", target="_top", tooltip="The presence of Constrained Application Protocol (CoAP) proxies may lead to infinite forwarding loops, which is undesirable.  To prevent and detect such loops, this document specifies the Hop-Limit CoAP option."];
+  RFC8768 -> rev_cites;
+  RFC8782 [label="RFC8782
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2020", shape=ellipse, URL="RFC8782.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes."];
+  RFC8782 -> rev_cites;
+  RFC8790 [label="RFC8790
+FETCH and PATCH with Sensor Measurement
+Lists (SenML)
+2020", shape=ellipse, URL="RFC8790.html", target="_top", tooltip="The Sensor Measurement Lists (SenML) media type and data model can be used to send collections of resources, such as batches of sensor data or configuration parameters.  The Constrained Application Protocol (CoAP) FETCH, PATCH, and iPATCH methods enable accessing and updating parts of a resource or multiple resources with one request.  This document defines new media types for the CoAP FETCH, PATCH, and iPATCH methods for resources represented using the SenML data model."];
+  RFC8790 -> rev_cites;
+  RFC8824 [label="RFC8824
+Static Context Header Compression (SCHC)
+for the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, URL="RFC8824.html", target="_top", tooltip="This document defines how to compress Constrained Application Protocol (CoAP) headers using the Static Context Header Compression and fragmentation (SCHC) framework.  SCHC defines a header compression mechanism adapted for Constrained Devices.  SCHC uses a static description of the header to reduce the header's redundancy and size.  While RFC 8724 describes the SCHC compression and fragmentation framework, and its application for IPv6/UDP headers, this document applies SCHC to CoAP headers.  The CoAP header structure differs from IPv6 and UDP, since CoAP uses a flexible header with a variable number of options, themselves of variable length.  The CoAP message format is asymmetric: the request messages have a header format different from the format in the response messages.  This specification gives guidance on applying SCHC to flexible headers and how to leverage the asymmetry for more efficient compression Rules."];
+  RFC8824 -> rev_cites;
+  RFC8974 [label="RFC8974
+Extended Tokens and Stateless Clients in
+the Constrained Application Protocol
+(CoAP)
+2021", shape=ellipse, URL="RFC8974.html", target="_top", tooltip="This document provides considerations for alleviating Constrained Application Protocol (CoAP) clients and intermediaries of keeping per-request state. To facilitate this, this document additionally introduces a new, optional CoAP protocol extension for extended token lengths. This document updates RFCs 7252 and 8323 with an extended definition of the TKL field in the CoAP message header."];
+  RFC8974 -> rev_cites;
+  RFC9006 [label="RFC9006
+TCP Usage Guidance in the Internet of
+Things (IoT)
+2021", shape=ellipse, URL="RFC9006.html", target="_top", tooltip="This document provides guidance on how to implement and use the Transmission Control Protocol (TCP) in Constrained-Node Networks (CNNs), which are a characteristic of the Internet of Things (IoT).  Such environments require a lightweight TCP implementation and may not make use of optional functionality.  This document explains a number of known and deployed techniques to simplify a TCP stack as well as corresponding trade-offs.  The objective is to help embedded developers with decisions on which TCP features to use."];
+  RFC9006 -> rev_cites;
+  RFC9030 [label="RFC9030
+An Architecture for IPv6 over the Time-
+Slotted Channel Hopping Mode of IEEE
+802.15.4 (6TiSCH)
+2021", shape=ellipse, URL="RFC9030.html", target="_top", tooltip="This document describes a network architecture that provides low-latency, low-jitter, and high-reliability packet delivery.  It combines a high-speed powered backbone and subnetworks using IEEE 802.15.4 time-slotted channel hopping (TSCH) to meet the requirements of low-power wireless deterministic applications."];
+  RFC9030 -> rev_cites;
+  RFC9031 [label="RFC9031
+Constrained Join Protocol (CoJP) for
+6TiSCH
+2021", shape=ellipse, URL="RFC9031.html", target="_top", tooltip="This document describes the minimal framework required for a new device, called a pledge, to securely join a 6TiSCH (IPv6 over the Time-Slotted Channel Hopping mode of IEEE 802.15.4) network.  The framework requires that the pledge and the JRC (Join Registrar/Coordinator, a central entity), share a symmetric key.  How this key is provisioned is out of scope of this document.  Through a single CoAP (Constrained Application Protocol) request-response exchange secured by OSCORE (Object Security for Constrained RESTful Environments), the pledge requests admission into the network, and the JRC configures it with link-layer keying material and other parameters.  The JRC may at any time update the parameters through another request-response exchange secured by OSCORE.  This specification defines the Constrained Join Protocol and its CBOR (Concise Binary Object Representation) data structures, and it describes how to configure the rest of the 6TiSCH communication stack for this join process to occur in a secure manner.  Additional security mechanisms may be added on top of this minimal framework."];
+  RFC9031 -> rev_cites;
+  RFC9039 [label="RFC9039
+Uniform Resource Names for Device
+Identifiers
+2021", shape=ellipse, URL="RFC9039.html", target="_top", tooltip="This document describes a new Uniform Resource Name (URN) namespace for hardware device identifiers.  A general representation of device identity can be useful in many applications, such as in sensor data streams and storage or in equipment inventories.  A URN-based representation can be passed along in applications that need the information."];
+  RFC9039 -> rev_cites;
+  RFC9052 [label="RFC9052
+CBOR Object Signing and Encryption
+(COSE): Structures and Process
+2022", shape=ellipse, URL="RFC9052.html", target="_top", tooltip="Concise Binary Object Representation (CBOR) is a data format designed for small code size and small message size. There is a need to be able to define basic security services for this data format. This document defines the CBOR Object Signing and Encryption (COSE) protocol. This specification describes how to create and process signatures, message authentication codes, and encryption using CBOR for serialization. This specification additionally describes how to represent cryptographic keys using CBOR. This document, along with RFC 9053, obsoletes RFC 8152."];
+  RFC9052 -> rev_cites;
+  RFC9053 [label="RFC9053
+CBOR Object Signing and Encryption
+(COSE): Initial Algorithms
+2022", shape=ellipse, URL="RFC9053.html", target="_top", tooltip="Concise Binary Object Representation (CBOR) is a data format designed for small code size and small message size. There is a need to be able to define basic security services for this data format. This document defines a set of algorithms that can be used with the CBOR Object Signing and Encryption (COSE) protocol (RFC 9052). This document, along with RFC 9052, obsoletes RFC 8152."];
+  RFC9053 -> rev_cites;
+  RFC9132 [label="RFC9132
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Specification
+2021", shape=ellipse, URL="RFC9132.html", target="_top", tooltip="This document specifies the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel, a protocol for signaling the need for protection against Distributed Denial-of-Service (DDoS) attacks to a server capable of enabling network traffic mitigation on behalf of the requesting client. A companion document defines the DOTS data channel, a separate reliable communication layer for DOTS management and configuration purposes. This document obsoletes RFC 8782."];
+  RFC9132 -> rev_cites;
+  RFC9139 [label="RFC9139
+Information-Centric Networking (ICN)
+Adaptation to Low-Power Wireless
+Personal Area Networks (LoWPANs)
+2021", shape=ellipse, URL="RFC9139.html", target="_top", tooltip="This document defines a convergence layer for Content-Centric Networking (CCNx) and Named Data Networking (NDN) over IEEE 802.15.4 Low-Power Wireless Personal Area Networks (LoWPANs). A new frame format is specified to adapt CCNx and NDN packets to the small MTU size of IEEE 802.15.4. For that, syntactic and semantic changes to the TLV-based header formats are described. To support compatibility with other LoWPAN technologies that may coexist on a wireless medium, the dispatching scheme provided by IPv6 over LoWPAN (6LoWPAN) is extended to include new dispatch types for CCNx and NDN. Additionally, the fragmentation component of the 6LoWPAN dispatching framework is applied to Information-Centric Network (ICN) chunks. In its second part, the document defines stateless and stateful compression schemes to improve efficiency on constrained links. Stateless compression reduces TLV expressions to static header fields for common use cases. Stateful compression schemes elide states local to the LoWPAN and replace names in Data packets by short local identifiers. This document is a product of the IRTF Information-Centric Networking Research Group (ICNRG)."];
+  RFC9139 -> rev_cites;
+  RFC9148 [label="RFC9148
+EST-coaps: Enrollment over Secure
+Transport with the Secure Constrained
+Application Protocol
+2022", shape=ellipse, URL="RFC9148.html", target="_top", tooltip="Enrollment over Secure Transport (EST) is used as a certificate provisioning protocol over HTTPS.  Low-resource devices often use the lightweight Constrained Application Protocol (CoAP) for message exchanges.  This document defines how to transport EST payloads over secure CoAP (EST-coaps), which allows constrained devices to use existing EST functionality for provisioning certificates."];
+  RFC9148 -> rev_cites;
+  RFC9175 [label="RFC9175
+Constrained Application Protocol (CoAP):
+Echo, Request-Tag, and Token Processing
+2022", shape=ellipse, URL="RFC9175.html", target="_top", tooltip="This document specifies enhancements to the Constrained Application Protocol (CoAP) that mitigate security issues in particular use cases.  The Echo option enables a CoAP server to verify the freshness of a request or to force a client to demonstrate reachability at its claimed network address.  The Request-Tag option allows the CoAP server to match block-wise message fragments belonging to the same request.  This document updates RFC 7252 with respect to the following: processing requirements for client Tokens, forbidding non-secure reuse of Tokens to ensure response-to-request binding when CoAP is used with a security protocol, and amplification mitigation (where the use of the Echo option is now recommended)."];
+  RFC9175 -> rev_cites;
+  RFC9176 [label="RFC9176
+Constrained RESTful Environments (CoRE)
+Resource Directory
+2022", shape=ellipse, URL="RFC9176.html", target="_top", tooltip="In many Internet of Things (IoT) applications, direct discovery of resources is not practical due to sleeping nodes or networks where multicast traffic is inefficient.  These problems can be solved by employing an entity called a Resource Directory (RD), which contains information about resources held on other servers, allowing lookups to be performed for those resources.  The input to an RD is composed of links, and the output is composed of links constructed from the information stored in the RD.  This document specifies the web interfaces that an RD supports for web servers to discover the RD and to register, maintain, look up, and remove information on resources.  Furthermore, new target attributes useful in conjunction with an RD are defined."];
+  RFC9176 -> rev_cites;
+  RFC9177 [label="RFC9177
+Constrained Application Protocol (CoAP)
+Block-Wise Transfer Options Supporting
+Robust Transmission
+2022", shape=ellipse, URL="RFC9177.html", target="_top", tooltip="This document specifies alternative Constrained Application Protocol (CoAP) block-wise transfer options: Q-Block1 and Q-Block2. These options are similar to, but distinct from, the CoAP Block1 and Block2 options defined in RFC 7959. The Q-Block1 and Q-Block2 options are not intended to replace the Block1 and Block2 options but rather have the goal of supporting Non-confirmable (NON) messages for large amounts of data with fewer packet interchanges. Also, the Q-Block1 and Q-Block2 options support faster recovery should any of the blocks get lost in transmission."];
+  RFC9177 -> rev_cites;
+  RFC9178 [label="RFC9178
+Building Power-Efficient Constrained
+Application Protocol (CoAP) Devices for
+Cellular Networks
+2022", shape=ellipse, URL="RFC9178.html", target="_top", tooltip="This memo discusses the use of the Constrained Application Protocol (CoAP) in building sensors and other devices that employ cellular networks as a communications medium.  Building communicating devices that employ these networks is obviously well known, but this memo focuses specifically on techniques necessary to minimize power consumption."];
+  RFC9178 -> rev_cites;
+  RFC9193 [label="RFC9193
+Sensor Measurement Lists (SenML) Fields
+for Indicating Data Value Content-Format
+2022", shape=ellipse, URL="RFC9193.html", target="_top", tooltip="The Sensor Measurement Lists (SenML) media types support multiple types of values, from numbers to text strings and arbitrary binary Data Values.  In order to facilitate processing of binary Data Values, this document specifies a pair of new SenML fields for indicating the content format of those binary Data Values, i.e., their Internet media type, including parameters as well as any content codings applied."];
+  RFC9193 -> rev_cites;
+  RFC9200 [label="RFC9200
+Authentication and Authorization for
+Constrained Environments Using the OAuth
+2.0 Framework (ACE-OAuth)
+2022", shape=ellipse, URL="RFC9200.html", target="_top", tooltip="This specification defines a framework for authentication and authorization in Internet of Things (IoT) environments called ACE-OAuth.  The framework is based on a set of building blocks including OAuth 2.0 and the Constrained Application Protocol (CoAP), thus transforming a well-known and widely used authorization solution into a form suitable for IoT devices.  Existing specifications are used where possible, but extensions are added and profiles are defined to better serve the IoT use cases."];
+  RFC9200 -> rev_cites;
+  RFC9201 [label="RFC9201
+Additional OAuth Parameters for
+Authentication and Authorization for
+Constrained Environments (ACE)
+2022", shape=ellipse, URL="RFC9201.html", target="_top", tooltip="This specification defines new parameters and encodings for the OAuth 2.0 token and introspection endpoints when used with the framework for Authentication and Authorization for Constrained Environments (ACE).  These are used to express the proof-of-possession (PoP) key the client wishes to use, the PoP key that the authorization server has selected, and the PoP key the resource server uses to authenticate to the client."];
+  RFC9201 -> rev_cites;
+  RFC9202 [label="RFC9202
+Datagram Transport Layer Security (DTLS)
+Profile for Authentication and
+Authorization for Constrained
+Environments (ACE)
+2022", shape=ellipse, URL="RFC9202.html", target="_top", tooltip="This specification defines a profile of the Authentication and Authorization for Constrained Environments (ACE) framework that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS version 1.2 or later for communication security between entities in a constrained network using either raw public keys or pre-shared keys.  A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less-severe limitations regarding processing power and memory."];
+  RFC9202 -> rev_cites;
+  RFC9203 [label="RFC9203
+The Object Security for Constrained
+RESTful Environments (OSCORE) Profile of
+the Authentication and Authorization for
+Constrained Environments (ACE) Framework
+2022", shape=ellipse, URL="RFC9203.html", target="_top", tooltip="This document specifies a profile for the Authentication and Authorization for Constrained Environments (ACE) framework.  It utilizes Object Security for Constrained RESTful Environments (OSCORE) to provide communication security and proof-of-possession for a key owned by the client and bound to an OAuth 2.0 access token."];
+  RFC9203 -> rev_cites;
+  RFC9237 [label="RFC9237
+An Authorization Information Format
+(AIF) for Authentication and
+Authorization for Constrained
+Environments (ACE)
+2022", shape=ellipse, URL="RFC9237.html", target="_top", tooltip="Information about which entities are authorized to perform what operations on which constituents of other entities is a crucial component of producing an overall system that is secure. Conveying precise authorization information is especially critical in highly automated systems with large numbers of entities, such as the Internet of Things. This specification provides a generic information model and format for representing such authorization information, as well as two variants of a specific instantiation of that format for use with Representational State Transfer (REST) resources identified by URI path."];
+  RFC9237 -> rev_cites;
+  RFC9244 [label="RFC9244
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Telemetry
+2022", shape=ellipse, URL="RFC9244.html", target="_top", tooltip="This document aims to enrich the Distributed Denial-of-Service Open Threat Signaling (DOTS) signal channel protocol with various telemetry attributes, allowing for optimal Distributed Denial-of-Service (DDoS) attack mitigation. It specifies the normal traffic baseline and attack traffic telemetry attributes a DOTS client can convey to its DOTS server in the mitigation request, the mitigation status telemetry attributes a DOTS server can communicate to a DOTS client, and the mitigation efficacy telemetry attributes a DOTS client can communicate to a DOTS server. The telemetry attributes can assist the mitigator in choosing the DDoS mitigation techniques and performing optimal DDoS attack mitigation. This document specifies two YANG modules: one for representing DOTS telemetry message types and one for sharing the attack mapping details over the DOTS data channel."];
+  RFC9244 -> rev_cites;
+  RFC9254 [label="RFC9254
+Encoding of Data Modeled with YANG in
+the Concise Binary Object Representation
+(CBOR)
+2022", shape=ellipse, URL="RFC9254.html", target="_top", tooltip="YANG (RFC 7950) is a data modeling language used to model configuration data, state data, parameters and results of Remote Procedure Call (RPC) operations or actions, and notifications. This document defines encoding rules for YANG in the Concise Binary Object Representation (CBOR) (RFC 8949)."];
+  RFC9254 -> rev_cites;
+  RFC9277 [label="RFC9277
+On Stable Storage for Items in Concise
+Binary Object Representation (CBOR)
+2022", shape=ellipse, URL="RFC9277.html", target="_top", tooltip="This document defines a stored (file) format for Concise Binary Object Representation (CBOR) data items that is friendly to common systems that recognize file types, such as the Unix file(1) command."];
+  RFC9277 -> rev_cites;
+  RFC9290 [label="RFC9290
+Concise Problem Details for Constrained
+Application Protocol (CoAP) APIs
+2022", shape=ellipse, URL="RFC9290.html", target="_top", tooltip="This document defines a concise problem detail as a way to carry machine-readable details of errors in a Representational State Transfer (REST) response to avoid the need to define new error response formats for REST APIs for constrained environments.  The format is inspired by, but intended to be more concise than, the problem details for HTTP APIs defined in RFC 7807."];
+  RFC9290 -> rev_cites;
+  RFC9338 [label="RFC9338
+CBOR Object Signing and Encryption
+(COSE): Countersignatures
+2022", shape=ellipse, URL="RFC9338.html", target="_top", tooltip="Concise Binary Object Representation (CBOR) is a data format designed for small code size and small message size.  CBOR Object Signing and Encryption (COSE) defines a set of security services for CBOR.  This document defines a countersignature algorithm along with the needed header parameters and CBOR tags for COSE.  This document updates RFC 9052."];
+  RFC9338 -> rev_cites;
+  RFC9362 [label="RFC9362
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Configuration Attributes for Robust
+Block Transmission
+2023", shape=ellipse, URL="RFC9362.html", target="_top", tooltip="This document specifies new DDoS Open Threat Signaling (DOTS) signal channel configuration parameters that can be negotiated between DOTS peers to enable the use of Q-Block1 and Q-Block2 Constrained Application Protocol (CoAP) options. These options enable robust and faster transmission rates for large amounts of data with less packet interchanges as well as support for faster recovery should any of the blocks get lost in transmission (especially during DDoS attacks). Also, this document defines a YANG data model for representing these new DOTS signal channel configuration parameters. This model augments the DOTS signal YANG module (ietf-dots-signal-channel) defined in RFC 9132."];
+  RFC9362 -> rev_cites;
+  RFC9363 [label="RFC9363
+A YANG Data Model for Static Context
+Header Compression (SCHC)
+2023", shape=ellipse, URL="RFC9363.html", target="_top", tooltip="This document describes a YANG data model for the Static Context Header Compression (SCHC) compression and fragmentation Rules. This document formalizes the description of the Rules for better interoperability between SCHC instances either to exchange a set of Rules or to modify the parameters of some Rules."];
+  RFC9363 -> rev_cites;
+  RFC9393 [label="RFC9393
+Concise Software Identification Tags
+2023", shape=ellipse, URL="RFC9393.html", target="_top", tooltip="ISO/IEC 19770-2:2015 Software Identification (SWID) tags provide an extensible XML-based structure to identify and describe individual software components, patches, and installation bundles.  SWID tag representations can be too large for devices with network and storage constraints.  This document defines a concise representation of SWID tags: Concise SWID (CoSWID) tags.  CoSWID supports a set of semantics and features that are similar to those for SWID tags, as well as new semantics that allow CoSWIDs to describe additional types of information, all in a more memory-efficient format."];
+  RFC9393 -> rev_cites;
+  RFC9423 [label="RFC9423
+Constrained RESTful Environments (CoRE)
+Target Attributes Registry
+2024", shape=ellipse, URL="RFC9423.html", target="_top", tooltip="The Constrained RESTful Environments (CoRE) specifications apply web technologies to constrained environments. One such important technology is Web Linking (RFC 8288), which CoRE specifications use as the basis for a number of discovery protocols, such as the Link Format (RFC 6690) in the Constrained Application Protocol's (CoAP's) resource discovery process (Section 7.2 of RFC 7252) and the Resource Directory (RD) (RFC 9176). Web Links can have target attributes, the names of which are not generally coordinated by the Web Linking specification (Section 2.2 of RFC 8288). This document introduces an IANA registry for coordinating names of target attributes when used in CoRE. It updates the RD Parameters IANA registry created by RFC 9176 to coordinate with this registry."];
+  RFC9423 -> rev_cites;
+  RFC9430 [label="RFC9430
+Extension of the Datagram Transport
+Layer Security (DTLS) Profile for
+Authentication and Authorization for
+Constrained Environments (ACE) to
+Transport Layer Security (TLS)
+2023", shape=ellipse, URL="RFC9430.html", target="_top", tooltip="This document updates Datagram Transport Layer Security (DTLS) Profile for Authentication and Authorization for Constrained Environments (ACE) (RFC 9202) by specifying that the profile applies to TLS as well as DTLS."];
+  RFC9430 -> rev_cites;
+  RFC9431 [label="RFC9431
+Message Queuing Telemetry Transport
+(MQTT) and Transport Layer Security
+(TLS) Profile of Authentication and
+Authorization for Constrained
+Environments (ACE) Framework
+2023", shape=ellipse, URL="RFC9431.html", target="_top", tooltip="This document specifies a profile for the Authentication and Authorization for Constrained Environments (ACE) framework to enable authorization in a publish-subscribe messaging system based on Message Queuing Telemetry Transport (MQTT).  Proof-of-Possession keys, bound to OAuth 2.0 access tokens, are used to authenticate and authorize MQTT Clients.  The protocol relies on TLS for confidentiality and MQTT server (Broker) authentication."];
+  RFC9431 -> rev_cites;
+  RFC9442 [label="RFC9442
+Static Context Header Compression (SCHC)
+over Sigfox Low-Power Wide Area Network
+(LPWAN)
+2023", shape=ellipse, URL="RFC9442.html", target="_top", tooltip="The Static Context Header Compression (SCHC) and fragmentation specification (RFC 8724) describes a generic framework for application header compression and fragmentation modes designed for Low-Power Wide Area Network (LPWAN) technologies.  This document defines a profile of SCHC over Sigfox LPWAN and provides optimal parameter values and modes of operation."];
+  RFC9442 -> rev_cites;
+  RFC9472 [label="RFC9472
+A YANG Data Model for Reporting Software
+Bills of Materials (SBOMs) and
+Vulnerability Information
+2023", shape=ellipse, URL="RFC9472.html", target="_top", tooltip="To improve cybersecurity posture, automation is necessary to locate the software a device is using, whether that software has known vulnerabilities, and what, if any, recommendations suppliers may have.  This memo extends the Manufacturer User Description (MUD) YANG schema to provide the locations of software bills of materials (SBOMs) and vulnerability information by introducing a transparency schema."];
+  RFC9472 -> rev_cites;
+  RFC9482 [label="RFC9482
+Constrained Application Protocol (CoAP)
+Transfer for the Certificate Management
+Protocol
+2023", shape=ellipse, URL="RFC9482.html", target="_top", tooltip="This document specifies the use of the Constrained Application Protocol (CoAP) as a transfer mechanism for the Certificate Management Protocol (CMP).  CMP defines the interaction between various PKI entities for the purpose of certificate creation and management.  CoAP is an HTTP-like client-server protocol used by various constrained devices in the Internet of Things space."];
+  RFC9482 -> rev_cites;
+  RFC9483 [label="RFC9483
+Lightweight Certificate Management
+Protocol (CMP) Profile
+2023", shape=ellipse, URL="RFC9483.html", target="_top", tooltip="This document aims at simple, interoperable, and automated PKI management operations covering typical use cases of industrial and Internet of Things (IoT) scenarios.  This is achieved by profiling the Certificate Management Protocol (CMP), the related Certificate Request Message Format (CRMF), and transfer based on HTTP or Constrained Application Protocol (CoAP) in a succinct but sufficiently detailed and self-contained way.  To make secure certificate management for simple scenarios and constrained devices as lightweight as possible, only the most crucial types of operations and options are specified as mandatory.  More specialized or complex use cases are supported with optional features."];
+  RFC9483 -> rev_cites;
+  RFC9528 [label="RFC9528
+Ephemeral Diffie-Hellman Over COSE
+(EDHOC)
+2024", shape=ellipse, URL="RFC9528.html", target="_top", tooltip="This document specifies Ephemeral Diffie-Hellman Over COSE (EDHOC), a very compact and lightweight authenticated Diffie-Hellman key exchange with ephemeral keys.  EDHOC provides mutual authentication, forward secrecy, and identity protection.  EDHOC is intended for usage in constrained scenarios, and a main use case is to establish an Object Security for Constrained RESTful Environments (OSCORE) security context.  By reusing CBOR Object Signing and Encryption (COSE) for cryptography, Concise Binary Object Representation (CBOR) for encoding, and Constrained Application Protocol (CoAP) for transport, the additional code size can be kept very low."];
+  RFC9528 -> rev_cites;
+  RFC9556 [label="RFC9556
+Internet of Things (IoT) Edge Challenges
+and Functions
+2024", shape=ellipse, URL="RFC9556.html", target="_top", tooltip="Many Internet of Things (IoT) applications have requirements that cannot be satisfied by centralized cloud-based systems (i.e., cloud computing).  These include time sensitivity, data volume, connectivity cost, operation in the face of intermittent services, privacy, and security.  As a result, IoT is driving the Internet toward edge computing.  This document outlines the requirements of the emerging IoT edge and its challenges.  It presents a general model and major components of the IoT edge to provide a common basis for future discussions in the Thing-to-Thing Research Group (T2TRG) and other IRTF and IETF groups.  This document is a product of the IRTF T2TRG."];
+  RFC9556 -> rev_cites;
+  RFC9594 [label="RFC9594
+Key Provisioning for Group Communication
+Using Authentication and Authorization
+for Constrained Environments (ACE)
+2024", shape=ellipse, URL="RFC9594.html", target="_top", tooltip="This document defines how to use the Authentication and Authorization for Constrained Environments (ACE) framework to distribute keying material and configuration parameters for secure group communication.  Candidate group members that act as Clients and are authorized to join a group can do so by interacting with a Key Distribution Center (KDC) acting as the Resource Server, from which they obtain the keying material to communicate with other group members.  While defining general message formats as well as the interface and operations available at the KDC, this document supports different approaches and protocols for secure group communication.  Therefore, details are delegated to separate application profiles of this document as specialized instances that target a particular group communication approach and define how communications in the group are protected.  Compliance requirements for such application profiles are also specified."];
+  RFC9594 -> rev_cites;
+  RFC9668 [label="RFC9668
+Using Ephemeral Diffie-Hellman Over COSE
+(EDHOC) with the Constrained Application
+Protocol (CoAP) and Object Security for
+Constrained RESTful Environments
+(OSCORE)
+2024", shape=ellipse, URL="RFC9668.html", target="_top", tooltip="The lightweight authenticated key exchange protocol Ephemeral Diffie-Hellman Over COSE (EDHOC) can be run over the Constrained Application Protocol (CoAP) and used by two peers to establish a Security Context for the security protocol Object Security for Constrained RESTful Environments (OSCORE).  This document details this use of the EDHOC protocol by specifying a number of additional and optional mechanisms, including an optimization approach for combining the execution of EDHOC with the first OSCORE transaction.  This combination reduces the number of round trips required to set up an OSCORE Security Context and to complete an OSCORE transaction using that Security Context."];
+  RFC9668 -> rev_cites;
+  RFC9675 [label="RFC9675
+Delay-Tolerant Networking Management
+Architecture (DTNMA)
+2024", shape=ellipse, URL="RFC9675.html", target="_top", tooltip="The Delay-Tolerant Networking (DTN) architecture describes a type of challenged network in which communications may be significantly affected by long signal propagation delays, frequent link disruptions, or both. The unique characteristics of this environment require a unique approach to network management that supports asynchronous transport, autonomous local control, and a small footprint (in both resources and dependencies) so as to deploy on constrained devices. This document describes a DTN Management Architecture (DTNMA) suitable for managing devices in any challenged environment but, in particular, those communicating using the DTN Bundle Protocol (BP). Operating over BP requires an architecture that neither presumes synchronized transport behavior nor relies on query-response mechanisms. Implementations compliant with this DTNMA should expect to successfully operate in extremely challenging conditions, such as over unidirectional links and other places where BP is the preferred transport."];
+  RFC9675 -> rev_cites;
+  RFC9711 [label="RFC9711
+The Entity Attestation Token (EAT)
+2025", shape=ellipse, URL="RFC9711.html", target="_top", tooltip="An Entity Attestation Token (EAT) provides an attested claims set that describes the state and characteristics of an entity, a device such as a smartphone, an Internet of Things (IoT) device, network equipment, or such. This claims set is used by a relying party, server, or service to determine the type and degree of trust placed in the entity. An EAT is either a CBOR Web Token (CWT) or a JSON Web Token (JWT) with attestation-oriented claims."];
+  RFC9711 -> rev_cites;
+  RFC9770 [label="RFC9770
+Notification of Revoked Access Tokens in
+the Authentication and Authorization for
+Constrained Environments (ACE) Framework
+2025", shape=ellipse, URL="RFC9770.html", target="_top", tooltip="This document specifies a method of the Authentication and Authorization for Constrained Environments (ACE) framework, which allows an authorization server to notify clients and resource servers (i.e., registered devices) about revoked access tokens.  As specified in this document, the method allows clients and resource servers (RSs) to access a Token Revocation List (TRL) on the authorization server by using the Constrained Application Protocol (CoAP), with the possible additional use of resource observation.  Resulting (unsolicited) notifications of revoked access tokens complement alternative approaches such as token introspection, while not requiring additional endpoints on clients and RSs."];
+  RFC9770 -> rev_cites;
+  RFC9820 [label="RFC9820
+Authentication Service Based on the
+Extensible Authentication Protocol (EAP)
+for Use with the Constrained Application
+Protocol (CoAP)
+2025", shape=ellipse, URL="RFC9820.html", target="_top", tooltip="This document specifies an authentication service that uses the Constrained Application Protocol (CoAP) as a transport method to carry the Extensible Authentication Protocol (EAP).  As such, it defines an EAP lower layer based on CoAP called CoAP-EAP.  One of the main goals is to authenticate a CoAP-enabled Internet of Things (IoT) device (EAP peer) that intends to join a security domain managed by a Controller (EAP authenticator).  Secondly, it allows deriving key material to protect CoAP messages exchanged between them based on Object Security for Constrained RESTful Environments (OSCORE), enabling the establishment of a security association between them."];
+  RFC9820 -> rev_cites;
+  RFC9876 [label="RFC9876
+Updates to the IANA Registration
+Procedures for Constrained Application
+Protocol (CoAP) Content-Formats
+2025", shape=ellipse, URL="RFC9876.html", target="_top", tooltip="This document updates RFC 7252 by modifying the registration procedures for the CoAP Content-Formats IANA registry, within the Constrained RESTful Environments (CoRE) Parameters registry group.  This document also introduces a new column, Media Type, to the registry.  Furthermore, this document reserves Content-Format identifiers 64998 and 64999 for use in documentation."];
+  RFC9876 -> rev_cites;
+}

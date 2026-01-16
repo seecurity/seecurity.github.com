@@ -1,0 +1,124 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8374 [label="RFC8374
+BGPsec Design Choices and Summary of
+Supporting Discussions
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document captures the design rationale of the initial draft version of what became RFC 8205 (the BGPsec protocol specification).  The designers needed to balance many competing factors, and this document lists the decisions that were made in favor of or against each design choice.  This document also presents brief summaries of the arguments that aided the decision process.  Where appropriate, this document also provides brief notes on design decisions that changed as the specification was reviewed and updated by the IETF SIDR Working Group and that resulted in RFC 8205.  These notes highlight the differences and provide pointers to details and rationale regarding those design changes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8374;
+
+  obs [label="obsoletes", shape=box];
+  RFC8374 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8374 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8374;
+
+  cites [label="cites", shape=box];
+  RFC8374 -> cites;
+  RFC6480 [label="RFC6480
+An Infrastructure to Support Secure
+Internet Routing
+2012", shape=ellipse, URL="RFC6480.html", target="_top", tooltip="This document describes an architecture for an infrastructure to support improved security of Internet routing.  The foundation of this architecture is a Resource Public Key Infrastructure (RPKI) that represents the allocation hierarchy of IP address space and Autonomous System (AS) numbers; and a distributed repository system for storing and disseminating the data objects that comprise the RPKI, as well as other signed objects necessary for improved routing security.  As an initial application of this architecture, the document describes how a legitimate holder of IP address space can explicitly and verifiably authorize one or more ASes to originate routes to that address space.  Such verifiable authorizations could be used, for example, to more securely construct BGP route filters.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6480;
+  RFC6482 [label="RFC6482
+A Profile for Route Origin
+Authorizations (ROAs)
+2012", shape=ellipse, URL="RFC6482.html", target="_top", tooltip="This document defines a standard profile for Route Origin Authorizations (ROAs).  A ROA is a digitally signed object that provides a means of verifying that an IP address block holder has authorized an Autonomous System (AS) to originate routes to one or more prefixes within the address block. [STANDARDS-TRACK]"];
+  cites -> RFC6482;
+  RFC6483 [label="RFC6483
+Validation of Route Origination Using
+the Resource Certificate Public Key
+Infrastructure (PKI) and Route Origin
+Authorizations (ROAs)
+2012", shape=ellipse, URL="RFC6483.html", target="_top", tooltip="This document defines the semantics of a Route Origin Authorization (ROA) in terms of the context of an application of the Resource Public Key Infrastructure to validate the origination of routes advertised in the Border Gateway Protocol.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6483;
+  RFC6487 [label="RFC6487
+A Profile for X.509 PKIX Resource
+Certificates
+2012", shape=ellipse, URL="RFC6487.html", target="_top", tooltip="This document defines a standard profile for X.509 certificates for the purpose of supporting validation of assertions of right-of-use of Internet Number Resources (INRs).  The certificates issued under this profile are used to convey the issuer's authorization of the subject to be regarded as the current holder of a right-of-use of the INRs that are described in the certificate.  This document contains the normative specification of Certificate and Certificate Revocation List (CRL) syntax in the Resource Public Key Infrastructure (RPKI).  This document also specifies profiles for the format of certificate requests and specifies the Relying Party RPKI certificate path validation procedure. [STANDARDS-TRACK]"];
+  cites -> RFC6487;
+  RFC6811 [label="RFC6811
+BGP Prefix Origin Validation
+2013", shape=ellipse, URL="RFC6811.html", target="_top", tooltip="To help reduce well-known threats against BGP including prefix mis- announcing and monkey-in-the-middle attacks, one of the security requirements is the ability to validate the origination Autonomous System (AS) of BGP routes.  More specifically, one needs to validate that the AS number claiming to originate an address prefix (as derived from the AS_PATH attribute of the BGP route) is in fact authorized by the prefix holder to do so.  This document describes a simple validation mechanism to partially satisfy this requirement. [STANDARDS-TRACK]"];
+  cites -> RFC6811;
+  RFC7132 [label="RFC7132
+Threat Model for BGP Path Security
+2014", shape=ellipse, URL="RFC7132.html", target="_top", tooltip="This document describes a threat model for the context in which External Border Gateway Protocol (EBGP) path security mechanisms will be developed. The threat model includes an analysis of the Resource Public Key Infrastructure (RPKI) and focuses on the ability of an Autonomous System (AS) to verify the authenticity of the AS path info received in a BGP update. We use the term PATHSEC to refer to any BGP path security technology that makes use of the RPKI. PATHSEC will secure BGP, consistent with the inter-AS security focus of the RPKI. The document characterizes classes of potential adversaries that are considered to be threats and examines classes of attacks that might be launched against PATHSEC. It does not revisit attacks against unprotected BGP, as that topic has already been addressed in the BGP-4 standard. It concludes with a brief discussion of residual vulnerabilities."];
+  cites -> RFC7132;
+  RFC7353 [label="RFC7353
+Security Requirements for BGP Path
+Validation
+2014", shape=ellipse, URL="RFC7353.html", target="_top", tooltip="This document describes requirements for a BGP security protocol design to provide cryptographic assurance that the origin Autonomous System (AS) has the right to announce the prefix and to provide assurance of the AS Path of the announcement."];
+  cites -> RFC7353;
+  RFC8205 [label="RFC8205
+BGPsec Protocol Specification
+2017", shape=ellipse, URL="RFC8205.html", target="_top", tooltip="This document describes BGPsec, an extension to the Border Gateway Protocol (BGP) that provides security for the path of Autonomous Systems (ASes) through which a BGP UPDATE message passes.  BGPsec is implemented via an optional non-transitive BGP path attribute that carries digital signatures produced by each AS that propagates the UPDATE message.  The digital signatures provide confidence that every AS on the path of ASes listed in the UPDATE message has explicitly authorized the advertisement of the route."];
+  cites -> RFC8205;
+  RFC4760 [label="RFC4760
+Multiprotocol Extensions for BGP-4
+2007", shape=ellipse, URL="RFC4760.html", target="_top", tooltip="This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, L3VPN, etc.).  The extensions are backward compatible - a router that supports the extensions can interoperate with a router that doesn't support the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC4760;
+  RFC2439 [label="RFC2439
+BGP Route Flap Damping
+1998", shape=ellipse, URL="RFC2439.html", target="_top", tooltip="A usage of the BGP routing protocol is described which is capable of reducing the routing traffic passed on to routing peers and therefore the load on these peers without adversely affecting route convergence time for relatively stable routes. [STANDARDS-TRACK]"];
+  cites -> RFC2439;
+  RFC8208 [label="RFC8208
+BGPsec Algorithms, Key Formats, and
+Signature Formats
+2017", shape=ellipse, URL="RFC8208.html", target="_top", tooltip="This document specifies the algorithms, algorithm parameters, asymmetric key formats, asymmetric key sizes, and signature formats used in BGPsec (Border Gateway Protocol Security). This document updates RFC 7935 (The Profile for Algorithms and Key Sizes for Use in the Resource Public Key Infrastructure). This document also includes example BGPsec UPDATE messages as well as the private keys used to generate the messages and the certificates necessary to validate those signatures."];
+  cites -> RFC8208;
+  RFC6090 [label="RFC6090
+Fundamental Elliptic Curve Cryptography
+Algorithms
+2011", shape=ellipse, URL="RFC6090.html", target="_top", tooltip="This note describes the fundamental algorithms of Elliptic Curve Cryptography (ECC) as they were defined in some seminal references from 1994 and earlier.  These descriptions may be useful for implementing the fundamental algorithms without using any of the specialized methods that were developed in following years.  Only elliptic curves defined over fields of characteristic greater than three are in scope; these curves are those used in Suite B.  This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6090;
+  RFC8207 [label="RFC8207
+BGPsec Operational Considerations
+2017", shape=ellipse, URL="RFC8207.html", target="_top", tooltip="Deployment of the BGPsec architecture and protocols has many operational considerations.  This document attempts to collect and present the most critical and universal.  Operational practices are expected to evolve as BGPsec is formalized and initially deployed."];
+  cites -> RFC8207;
+  RFC8209 [label="RFC8209
+A Profile for BGPsec Router
+Certificates, Certificate Revocation
+Lists, and Certification Requests
+2017", shape=ellipse, URL="RFC8209.html", target="_top", tooltip="This document defines a standard profile for X.509 certificates used to enable validation of Autonomous System (AS) paths in the Border Gateway Protocol (BGP), as part of an extension to that protocol known as BGPsec.  BGP is the standard for inter-domain routing in the Internet; it is the glue that holds the Internet together.  BGPsec is being developed as one component of a solution that addresses the requirement to provide security for BGP.  The goal of BGPsec is to provide full AS path validation based on the use of strong cryptographic primitives.  The end entity (EE) certificates specified by this profile are issued to routers within an AS.  Each of these certificates is issued under a Resource Public Key Infrastructure (RPKI) Certification Authority (CA) certificate.  These CA certificates and EE certificates both contain the AS Resource extension.  An EE certificate of this type asserts that the router or routers holding the corresponding private key are authorized to emit secure route advertisements on behalf of the AS(es) specified in the certificate.  This document also profiles the format of certification requests and specifies Relying Party (RP) certificate path validation procedures for these EE certificates.  This document extends the RPKI; therefore, this document updates the RPKI Resource Certificates Profile (RFC 6487)."];
+  cites -> RFC8209;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  cites -> RFC7606;
+  RFC6472 [label="RFC6472
+Recommendation for Not Using AS_SET and
+AS_CONFED_SET in BGP
+2011", shape=ellipse, URL="RFC6472.html", target="_top", tooltip="This document recommends against the use of the AS_SET and AS_CONFED_SET types of the AS_PATH in BGPv4.  This is done to simplify the design and implementation of BGP and to make the semantics of the originator of a route more clear.  This will also simplify the design, implementation, and deployment of ongoing work in the Secure Inter-Domain Routing Working Group.  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6472;
+  RFC6793 [label="RFC6793
+BGP Support for Four-Octet Autonomous
+System (AS) Number Space
+2012", shape=ellipse, URL="RFC6793.html", target="_top", tooltip="The Autonomous System number is encoded as a two-octet entity in the base BGP specification.  This document describes extensions to BGP to carry the Autonomous System numbers as four-octet entities.  This document obsoletes RFC 4893 and updates RFC 4271. [STANDARDS-TRACK]"];
+  cites -> RFC6793;
+  RFC8097 [label="RFC8097
+BGP Prefix Origin Validation State
+Extended Community
+2017", shape=ellipse, URL="RFC8097.html", target="_top", tooltip="This document defines a new BGP opaque extended community to carry the origination Autonomous System (AS) validation state inside an autonomous system.  Internal BGP (IBGP) speakers that receive this validation state can configure local policies that allow it to influence their decision process."];
+  cites -> RFC8097;
+  RFC4724 [label="RFC4724
+Graceful Restart Mechanism for BGP
+2007", shape=ellipse, URL="RFC4724.html", target="_top", tooltip="This document describes a mechanism for BGP that would help minimize the negative effects on routing caused by BGP restart. An End-of-RIB marker is specified and can be used to convey routing convergence information. A new BGP capability, termed Graceful Restart Capability, is defined that would allow a BGP speaker to express its ability to preserve forwarding state during BGP restart. Finally, procedures are outlined for temporarily retaining routing information across a TCP session termination/re-establishment. The mechanisms described in this document are applicable to all routers, both those with the ability to preserve forwarding state during BGP restart and those without (although the latter need to implement only a subset of the mechanisms described in this document). [STANDARDS-TRACK]"];
+  cites -> RFC4724;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8374;
+}

@@ -1,0 +1,101 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9570 [label="RFC9570
+Deprecating the Use of Router Alert in
+LSP Ping
+2024", shape=ellipse, fillcolor="#e8f0ff", tooltip="The MPLS echo request and MPLS echo response messages, defined in RFC 8029, Detecting Multiprotocol Label Switched (MPLS) Data-Plane Failures (usually referred to as LSP ping), are encapsulated in IP packets with headers that include a Router Alert Option (RAO). In actual deployments, the RAO was neither required nor used. Furthermore, RFC 6398 identifies security vulnerabilities associated with the RAO in non-controlled environments, e.g., the case of using the MPLS echo request/reply as inter-area Operations, Administration, and Maintenance (OAM), and recommends against its use outside of controlled environments. Therefore, this document retires the RAO for MPLS OAM and updates RFC 8029 to remove the RAO from LSP ping message encapsulations. Furthermore, this document explains why RFC 7506 has been reclassified as Historic. Also, this document recommends the use of an IPv6 loopback address (::1/128) as the IPv6 destination address for an MPLS echo request message."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9570;
+
+  obs [label="obsoletes", shape=box];
+  RFC9570 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9570 -> updates;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  updates -> RFC8029;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9570;
+
+  cites [label="cites", shape=box];
+  RFC9570 -> cites;
+  RFC8029 [label="RFC8029
+Detecting Multiprotocol Label Switched
+(MPLS) Data-Plane Failures
+2017", shape=ellipse, URL="RFC8029.html", target="_top", tooltip="This document describes a simple and efficient mechanism to detect data-plane failures in Multiprotocol Label Switching (MPLS) Label Switched Paths (LSPs). It defines a probe message called an MPLS echo request and a response message called an MPLS echo reply for returning the result of the probe. The MPLS echo request is intended to contain sufficient information to check correct operation of the data plane and to verify the data plane against the control plane, thereby localizing faults. This document obsoletes RFCs 4379, 6424, 6829, and 7537, and updates RFC 1122."];
+  cites -> RFC8029;
+  RFC6398 [label="RFC6398
+IP Router Alert Considerations and Usage
+2011", shape=ellipse, URL="RFC6398.html", target="_top", tooltip="The IP Router Alert Option is an IP option that alerts transit routers to more closely examine the contents of an IP packet.  The Resource reSerVation Protocol (RSVP), Pragmatic General Multicast (PGM), the Internet Group Management Protocol (IGMP), Multicast Listener Discovery (MLD), Multicast Router Discovery (MRD), and General Internet Signaling Transport (GIST) are some of the protocols that make use of the IP Router Alert Option.  This document discusses security aspects and usage guidelines around the use of the current IP Router Alert Option, thereby updating RFC 2113 and RFC 2711.  Specifically, it provides recommendations against using the Router Alert in the end-to-end open Internet and identifies controlled environments where protocols depending on Router Alert can be used safely.  It also provides recommendations about protection approaches for service providers.  Finally, it provides brief guidelines for Router Alert implementation on routers.  This memo documents an Internet Best Current Practice."];
+  cites -> RFC6398;
+  RFC7506 [label="RFC7506
+IPv6 Router Alert Option for MPLS
+Operations, Administration, and
+Maintenance (OAM)
+2015", shape=ellipse, URL="RFC7506.html", target="_top", tooltip="RFC 4379 defines the MPLS Label Switched Path (LSP) Ping/Traceroute mechanism in which the Router Alert Option (RAO) MUST be set in the IP header of the MPLS Echo Request messages and may conditionally be set in the IP header of the MPLS Echo Reply messages depending on the Reply Mode used. While a generic Router shall examine packet Option Value is used for the IPv4 RAO, there is no generic RAO value defined for IPv6 that can be used. This document allocates a new, generic IPv6 RAO value that can be used by MPLS Operations, Administration, and Maintenance (OAM) tools, including the MPLS Echo Request and MPLS Echo Reply messages for MPLS in IPv6 environments. Consequently, it updates RFC 4379. The initial motivation to request an IPv6 RAO value for MPLS OAM comes from the MPLS LSP Ping/Traceroute. However, this value is applicable to all MPLS OAM and not limited to MPLS LSP Ping/ Traceroute."];
+  cites -> RFC7506;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC2113 [label="RFC2113
+IP Router Alert Option
+1997", shape=ellipse, URL="RFC2113.html", target="_top", tooltip="This memo describes a new IP Option type that alerts transit routers to more closely examine the contents of an IP packet. [STANDARDS-TRACK]"];
+  cites -> RFC2113;
+  RFC1122 [label="RFC1122
+Requirements for Internet Hosts -
+Communication Layers
+1989", shape=ellipse, URL="RFC1122.html", target="_top", tooltip="This RFC is an official specification for the Internet community.  It incorporates by reference, amends, corrects, and supplements the primary protocol standards documents relating to hosts. [STANDARDS-TRACK]"];
+  cites -> RFC1122;
+  RFC4291 [label="RFC4291
+IP Version 6 Addressing Architecture
+2006", shape=ellipse, URL="RFC4291.html", target="_top", tooltip="This specification defines the addressing architecture of the IP Version 6 (IPv6) protocol. The document includes the IPv6 addressing model, text representations of IPv6 addresses, definition of IPv6 unicast addresses, anycast addresses, and multicast addresses, and an IPv6 node's required addresses. This document obsoletes RFC 3513, IP Version 6 Addressing Architecture. [STANDARDS-TRACK]"];
+  cites -> RFC4291;
+  RFC1812 [label="RFC1812
+Requirements for IP Version 4 Routers
+1995", shape=ellipse, URL="RFC1812.html", target="_top", tooltip="This memo defines and discusses requirements for devices that perform the network layer forwarding function of the Internet protocol suite. [STANDARDS-TRACK]"];
+  cites -> RFC1812;
+  RFC6790 [label="RFC6790
+The Use of Entropy Labels in MPLS
+Forwarding
+2012", shape=ellipse, URL="RFC6790.html", target="_top", tooltip="Load balancing is a powerful tool for engineering traffic across a network.  This memo suggests ways of improving load balancing across MPLS networks using the concept of entropy labels.  It defines the concept, describes why entropy labels are useful, enumerates properties of entropy labels that allow maximal benefit, and shows how they can be signaled and used for various applications.  This document updates RFCs 3031, 3107, 3209, and 5036. [STANDARDS-TRACK]"];
+  cites -> RFC6790;
+  RFC6438 [label="RFC6438
+Using the IPv6 Flow Label for Equal Cost
+Multipath Routing and Link Aggregation
+in Tunnels
+2011", shape=ellipse, URL="RFC6438.html", target="_top", tooltip="The IPv6 flow label has certain restrictions on its use.  This document describes how those restrictions apply when using the flow label for load balancing by equal cost multipath routing and for link aggregation, particularly for IP-in-IPv6 tunneled traffic. [STANDARDS-TRACK]"];
+  cites -> RFC6438;
+  RFC3032 [label="RFC3032
+MPLS Label Stack Encoding
+2001", shape=ellipse, URL="RFC3032.html", target="_top", tooltip="This document specifies the encoding to be used by an LSR in order to transmit labeled packets on Point-to-Point Protocol (PPP) data links, on LAN data links, and possibly on other data links as well.  This document also specifies rules and procedures for processing the various fields of the label stack encoding. [STANDARDS-TRACK]"];
+  cites -> RFC3032;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9570;
+  RFC9805 [label="RFC9805
+Deprecation of the IPv6 Router Alert
+Option for New Protocols
+2025", shape=ellipse, URL="RFC9805.html", target="_top", tooltip="This document deprecates the IPv6 Router Alert option. Protocols that use the IPv6 Router Alert option may continue to do so, even in future versions. However, new protocols that are standardized in the future must not use the IPv6 Router Alert option. This document updates RFC 2711."];
+  RFC9805 -> rev_cites;
+}

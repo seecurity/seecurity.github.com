@@ -1,0 +1,52 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8673 [label="RFC8673
+HTTP Random Access and Live Content
+2019", shape=ellipse, fillcolor="#e8f0ff", tooltip="To accommodate byte-range requests for content that has data appended over time, this document defines semantics that allow an HTTP client and a server to perform byte-range GET and HEAD requests that start at an arbitrary byte offset within the representation and end at an indeterminate offset."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8673;
+
+  obs [label="obsoletes", shape=box];
+  RFC8673 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8673 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8673;
+
+  cites [label="cites", shape=box];
+  RFC8673 -> cites;
+  RFC7233 [label="RFC7233
+Hypertext Transfer Protocol (HTTP/1.1):
+Range Requests
+2014", shape=ellipse, URL="RFC7233.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application- level protocol for distributed, collaborative, hypertext information systems.  This document defines range requests and the rules for constructing and combining responses to those requests."];
+  cites -> RFC7233;
+  RFC8216 [label="RFC8216
+HTTP Live Streaming
+2017", shape=ellipse, URL="RFC8216.html", target="_top", tooltip="This document describes a protocol for transferring unbounded streams of multimedia data.  It specifies the data format of the files and the actions to be taken by the server (sender) and the clients (receivers) of the streams.  It describes version 7 of this protocol."];
+  cites -> RFC8216;
+  RFC5234 [label="RFC5234
+Augmented BNF for Syntax Specifications:
+ABNF
+2008", shape=ellipse, URL="RFC5234.html", target="_top", tooltip="Internet technical specifications often need to define a formal syntax.  Over the years, a modified version of Backus-Naur Form (BNF), called Augmented BNF (ABNF), has been popular among many Internet specifications.  The current specification documents ABNF.  It balances compactness and simplicity with reasonable representational power.  The differences between standard BNF and ABNF involve naming rules, repetition, alternatives, order-independence, and value ranges.  This specification also supplies additional rule definitions and encoding for a core lexical analyzer of the type common to several Internet specifications. [STANDARDS-TRACK]"];
+  cites -> RFC5234;
+  RFC7230 [label="RFC7230
+Hypertext Transfer Protocol (HTTP/1.1):
+Message Syntax and Routing
+2014", shape=ellipse, URL="RFC7230.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems.  This document provides an overview of HTTP architecture and its associated terminology, defines the http and https Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations."];
+  cites -> RFC7230;
+  RFC7234 [label="RFC7234
+Hypertext Transfer Protocol (HTTP/1.1):
+Caching
+2014", shape=ellipse, URL="RFC7234.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless \%application- level protocol for distributed, collaborative, hypertext information systems.  This document defines HTTP caches and the associated header fields that control cache behavior or indicate cacheable response messages."];
+  cites -> RFC7234;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8673;
+}

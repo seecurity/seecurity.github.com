@@ -1,0 +1,344 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC9835 [label="RFC9835
+A Network YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies a network model for attachment circuits. The model can be used for the provisioning of attachment circuits prior or during service provisioning (e.g., VPN, Network Slice Service). A companion service model is specified in the YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS) (I-D.ietf- opsawg-teas-attachment-circuit). The module augments the base network ('ietf-network') and the Service Attachment Point (SAP) models with the detailed information for the provisioning of attachment circuits in Provider Edges (PEs)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC9835;
+
+  obs [label="obsoletes", shape=box];
+  RFC9835 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC9835 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC9835;
+
+  cites [label="cites", shape=box];
+  RFC9835 -> cites;
+  RFC7665 [label="RFC7665
+Service Function Chaining (SFC)
+Architecture
+2015", shape=ellipse, URL="RFC7665.html", target="_top", tooltip="This document describes an architecture for the specification, creation, and ongoing maintenance of Service Function Chains (SFCs) in a network.  It includes architectural concepts, principles, and components used in the construction of composite services through deployment of SFCs, with a focus on those to be standardized in the IETF.  This document does not propose solutions, protocols, or extensions to existing protocols."];
+  cites -> RFC7665;
+  RFC9543 [label="RFC9543
+A Framework for Network Slices in
+Networks Built from IETF Technologies
+2024", shape=ellipse, URL="RFC9543.html", target="_top", tooltip="This document describes network slicing in the context of networks built from IETF technologies. It defines the term IETF Network Slice to describe this type of network slice and establishes the general principles of network slicing in the IETF context. The document discusses the general framework for requesting and operating IETF Network Slices, the characteristics of an IETF Network Slice, the necessary system components and interfaces, and the mapping of abstract requests to more specific technologies. The document also discusses related considerations with monitoring and security. This document also provides definitions of related terms to enable consistent usage in other IETF documents that describe or use aspects of IETF Network Slices."];
+  cites -> RFC9543;
+  RFC9834 [label="RFC9834
+YANG Data Models for Bearers and
+Attachment Circuits as a Service (ACaaS)
+2025", shape=ellipse, URL="RFC9834.html", target="_top", tooltip="Delivery of network services assumes that appropriate setup is
+provisioned over the links that connect customer termination points
+and a provider network. The required setup to allow successful data
+exchange over these links is referred to as an attachment circuit
+(AC), while the underlying link is referred to as a bearer. This document specifies a YANG service data model for ACs. This model
+can be used for the provisioning of ACs before or during service
+provisioning (e.g., RFC 9543 Network Slice Service). The document also specifies a YANG service data model for managing
+bearers over which ACs are established."];
+  cites -> RFC9834;
+  RFC9836 [label="RFC9836
+A YANG Data Model for Augmenting VPN
+Service and Network Models with
+Attachment Circuits
+2025", shape=ellipse, URL="RFC9836.html", target="_top", tooltip="This document defines a YANG data model, referred to as the AC Glue
+model, to augment the LxVPN Service Model (LxSM) and LxVPN Network
+Model (LxNM) with references to attachment circuits (ACs).  The AC
+Glue model enables a provider to associate Layer 2/3 VPN (LxVPN)
+services with the underlying AC infrastructure, thereby facilitating
+consistent provisioning and management of new or existing ACs in
+conjunction with LxVPN services.  Specifically, by introducing an
+integrated approach to AC and LxVPN management, this model supports
+Attachment Circuit as a Service (ACaaS) and provides a standardized
+mechanism for aligning AC/VPN requests with the network
+configurations required to deliver them."];
+  cites -> RFC9836;
+  RFC9291 [label="RFC9291
+A YANG Network Data Model for Layer 2
+VPNs
+2022", shape=ellipse, URL="RFC9291.html", target="_top", tooltip="This document defines an L2VPN Network Model (L2NM) that can be used to manage the provisioning of Layer 2 Virtual Private Network (L2VPN) services within a network (e.g., a service provider network). The L2NM complements the L2VPN Service Model (L2SM) by providing a network-centric view of the service that is internal to a service provider. The L2NM is particularly meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. Also, this document defines a YANG module to manage Ethernet segments and the initial versions of two IANA-maintained modules that include a set of identities of BGP Layer 2 encapsulation types and pseudowire types."];
+  cites -> RFC9291;
+  RFC9182 [label="RFC9182
+A YANG Network Data Model for Layer 3
+VPNs
+2022", shape=ellipse, URL="RFC9182.html", target="_top", tooltip="As a complement to the Layer 3 Virtual Private Network Service Model (L3SM), which is used for communication between customers and service providers, this document defines an L3VPN Network Model (L3NM) that can be used for the provisioning of Layer 3 Virtual Private Network (L3VPN) services within a service provider network. The model provides a network-centric view of L3VPN services. The L3NM is meant to be used by a network controller to derive the configuration information that will be sent to relevant network devices. The model can also facilitate communication between a service orchestrator and a network controller/orchestrator."];
+  cites -> RFC9182;
+  RFC8345 [label="RFC8345
+A YANG Data Model for Network Topologies
+2018", shape=ellipse, URL="RFC8345.html", target="_top", tooltip="This document defines an abstract (generic, or base) YANG data model for network/service topologies and inventories.  The data model serves as a base model that is augmented with technology-specific details in other, more specific topology and inventory data models."];
+  cites -> RFC8345;
+  RFC9408 [label="RFC9408
+A YANG Network Data Model for Service
+Attachment Points (SAPs)
+2023", shape=ellipse, URL="RFC9408.html", target="_top", tooltip="This document defines a YANG data model for representing an abstract view of the provider network topology that contains the points from which its services can be attached (e.g., basic connectivity, VPN, network slices). Also, the model can be used to retrieve the points where the services are actually being delivered to customers (including peer networks). This document augments the 'ietf-network' data model defined in RFC 8345 by adding the concept of Service Attachment Points (SAPs). The SAPs are the network reference points to which network services, such as Layer 3 Virtual Private Network (L3VPN) or Layer 2 Virtual Private Network (L2VPN), can be attached. One or multiple services can be bound to the same SAP. Both User-to-Network Interface (UNI) and Network-to-Network Interface (NNI) are supported in the SAP data model."];
+  cites -> RFC9408;
+  RFC9833 [label="RFC9833
+A Common YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9833.html", target="_top", tooltip="The document specifies a common attachment circuits (ACs) YANG data
+model, which is designed to be reusable by other models.  This design
+is meant to ensure consistent AC structures among models that
+manipulate ACs.  For example, this common model can be reused by
+service models to expose ACs as a service, service models that
+require binding a service to a set of ACs, network and device models
+to provision ACs, etc."];
+  cites -> RFC9833;
+  RFC7950 [label="RFC7950
+The YANG 1.1 Data Modeling Language
+2016", shape=ellipse, URL="RFC7950.html", target="_top", tooltip="YANG is a data modeling language used to model configuration data, state data, Remote Procedure Calls, and notifications for network management protocols.  This document describes the syntax and semantics of version 1.1 of the YANG language.  YANG version 1.1 is a maintenance release of the YANG language, addressing ambiguities and defects in the original specification.  There are a small number of backward incompatibilities from YANG version 1.  This document also specifies the YANG mappings to the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC7950;
+  RFC8342 [label="RFC8342
+Network Management Datastore
+Architecture (NMDA)
+2018", shape=ellipse, URL="RFC8342.html", target="_top", tooltip="Datastores are a fundamental concept binding the data models written in the YANG data modeling language to network management protocols such as the Network Configuration Protocol (NETCONF) and RESTCONF.  This document defines an architectural framework for datastores based on the experience gained with the initial simpler model, addressing requirements that were not well supported in the initial model.  This document updates RFC 7950."];
+  cites -> RFC8342;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC8969 [label="RFC8969
+A Framework for Automating Service and
+Network Management with YANG
+2021", shape=ellipse, URL="RFC8969.html", target="_top", tooltip="Data models provide a programmatic approach to represent services and networks. Concretely, they can be used to derive configuration information for network and service components, and state information that will be monitored and tracked. Data models can be used during the service and network management life cycle (e.g., service instantiation, service provisioning, service optimization, service monitoring, service diagnosing, and service assurance). Data models are also instrumental in the automation of network management, and they can provide closed-loop control for adaptive and deterministic service creation, delivery, and maintenance. This document describes a framework for service and network management automation that takes advantage of YANG modeling technologies. This framework is drawn from a network operator perspective irrespective of the origin of a data model; thus, it can accommodate YANG modules that are developed outside the IETF."];
+  cites -> RFC8969;
+  RFC8340 [label="RFC8340
+YANG Tree Diagrams
+2018", shape=ellipse, URL="RFC8340.html", target="_top", tooltip="This document captures the current syntax used in YANG module tree diagrams.  The purpose of this document is to provide a single location for this definition.  This syntax may be updated from time to time based on the evolution of the YANG language."];
+  cites -> RFC8340;
+  RFC8466 [label="RFC8466
+A YANG Data Model for Layer 2 Virtual
+Private Network (L2VPN) Service Delivery
+2018", shape=ellipse, URL="RFC8466.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure a Layer 2 provider-provisioned VPN service. It is up to a management system to take this as an input and generate specific configuration models to configure the different network elements to deliver the service. How this configuration of network elements is done is out of scope for this document. The YANG data model defined in this document includes support for point-to-point Virtual Private Wire Services (VPWSs) and multipoint Virtual Private LAN Services (VPLSs) that use Pseudowires signaled using the Label Distribution Protocol (LDP) and the Border Gateway Protocol (BGP) as described in RFCs 4761 and 6624. The YANG data model defined in this document conforms to the Network Management Datastore Architecture defined in RFC 8342."];
+  cites -> RFC8466;
+  RFC8299 [label="RFC8299
+YANG Data Model for L3VPN Service
+Delivery
+2018", shape=ellipse, URL="RFC8299.html", target="_top", tooltip="This document defines a YANG data model that can be used for communication between customers and network operators and to deliver a Layer 3 provider-provisioned VPN service. This document is limited to BGP PE-based VPNs as described in RFCs 4026, 4110, and 4364. This model is intended to be instantiated at the management system to deliver the overall service. It is not a configuration model to be used directly on network elements. This model provides an abstracted view of the Layer 3 IP VPN service configuration components. It will be up to the management system to take this model as input and use specific configuration models to configure the different network elements to deliver the service. How the configuration of network elements is done is out of scope for this document. This document obsoletes RFC 8049; it replaces the unimplementable module in that RFC with a new module with the same name that is not backward compatible. The changes are a series of small fixes to the YANG module and some clarifications to the text."];
+  cites -> RFC8299;
+  RFC8343 [label="RFC8343
+A YANG Data Model for Interface
+Management
+2018", shape=ellipse, URL="RFC8343.html", target="_top", tooltip="This document defines a YANG data model for the management of network interfaces. It is expected that interface-type-specific data models augment the generic interfaces data model defined in this document. The data model includes definitions for configuration and system state (status information and counters for the collection of statistics). The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA) defined in RFC 8342. This document obsoletes RFC 7223."];
+  cites -> RFC8343;
+  RFC6991 [label="RFC6991
+Common YANG Data Types
+2013", shape=ellipse, URL="RFC6991.html", target="_top", tooltip="This document introduces a collection of common data types to be used with the YANG data modeling language.  This document obsoletes RFC 6021."];
+  cites -> RFC6991;
+  RFC8177 [label="RFC8177
+YANG Data Model for Key Chains
+2017", shape=ellipse, URL="RFC8177.html", target="_top", tooltip="This document describes the key chain YANG data model.  Key chains are commonly used for routing protocol authentication and other applications requiring symmetric keys.  A key chain is a list containing one or more elements containing a Key ID, key string, send/accept lifetimes, and the associated authentication or encryption algorithm.  By properly overlapping the send and accept lifetimes of multiple key chain elements, key strings and algorithms may be gracefully updated.  By representing them in a YANG data model, key distribution can be automated."];
+  cites -> RFC8177;
+  RFC8341 [label="RFC8341
+Network Configuration Access Control
+Model
+2018", shape=ellipse, URL="RFC8341.html", target="_top", tooltip="The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability. There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content. This document defines such an access control model. This document obsoletes RFC 6536."];
+  cites -> RFC8341;
+  RFC8294 [label="RFC8294
+Common YANG Data Types for the Routing
+Area
+2017", shape=ellipse, URL="RFC8294.html", target="_top", tooltip="This document defines a collection of common data types using the YANG data modeling language.  These derived common types are designed to be imported by other modules defined in the routing area."];
+  cites -> RFC8294;
+  RFC9067 [label="RFC9067
+A YANG Data Model for Routing Policy
+2021", shape=ellipse, URL="RFC9067.html", target="_top", tooltip="This document defines a YANG data model for configuring and managing routing policies in a vendor-neutral way.  The model provides a generic routing policy framework that can be extended for specific routing protocols using the YANG 'augment' mechanism."];
+  cites -> RFC9067;
+  RFC9181 [label="RFC9181
+A Common YANG Data Model for Layer 2 and
+Layer 3 VPNs
+2022", shape=ellipse, URL="RFC9181.html", target="_top", tooltip="This document defines a common YANG module that is meant to be reused by various VPN-related modules such as Layer 3 VPN and Layer 2 VPN network models."];
+  cites -> RFC9181;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC3644 [label="RFC3644
+Policy Quality of Service (QoS)
+Information Model
+2003", shape=ellipse, URL="RFC3644.html", target="_top", tooltip="This document presents an object-oriented information model for representing Quality of Service (QoS) network management policies.  This document is based on the IETF Policy Core Information Model and its extensions.  It defines an information model for QoS enforcement for differentiated and integrated services using policy.  It is important to note that this document defines an information model, which by definition is independent of any particular data storage mechanism and access protocol."];
+  cites -> RFC3644;
+  RFC5880 [label="RFC5880
+Bidirectional Forwarding Detection (BFD)
+2010", shape=ellipse, URL="RFC5880.html", target="_top", tooltip="This document describes a protocol intended to detect faults in the bidirectional path between two forwarding engines, including interfaces, data link(s), and to the extent possible the forwarding engines themselves, with potentially very low latency.  It operates independently of media, data protocols, and routing protocols. [STANDARDS-TRACK]"];
+  cites -> RFC5880;
+  RFC8077 [label="RFC8077
+Pseudowire Setup and Maintenance Using
+the Label Distribution Protocol (LDP)
+2017", shape=ellipse, URL="RFC8077.html", target="_top", tooltip="Layer 2 services (such as Frame Relay, Asynchronous Transfer Mode, and Ethernet) can be emulated over an MPLS backbone by encapsulating the Layer 2 Protocol Data Units (PDUs) and then transmitting them over pseudowires (PWs). It is also possible to use pseudowires to provide low-rate Time-Division Multiplexed and Synchronous Optical NETworking circuit emulation over an MPLS-enabled network. This document specifies a protocol for establishing and maintaining the pseudowires, using extensions to the Label Distribution Protocol (LDP). Procedures for encapsulating Layer 2 PDUs are specified in other documents. This document is a rewrite of RFC 4447 for publication as an Internet Standard."];
+  cites -> RFC8077;
+  RFC4862 [label="RFC4862
+IPv6 Stateless Address Autoconfiguration
+2007", shape=ellipse, URL="RFC4862.html", target="_top", tooltip="This document specifies the steps a host takes in deciding how to autoconfigure its interfaces in IP version 6.  The autoconfiguration process includes generating a link-local address, generating global addresses via stateless address autoconfiguration, and the Duplicate Address Detection procedure to verify the uniqueness of the addresses on a link. [STANDARDS-TRACK]"];
+  cites -> RFC4862;
+  RFC9234 [label="RFC9234
+Route Leak Prevention and Detection
+Using Roles in UPDATE and OPEN Messages
+2022", shape=ellipse, URL="RFC9234.html", target="_top", tooltip="Route leaks are the propagation of BGP prefixes that violate assumptions of BGP topology relationships, e.g., announcing a route learned from one transit provider to another transit provider or a lateral (i.e., non-transit) peer or announcing a route learned from one lateral peer to another lateral peer or a transit provider.  These are usually the result of misconfigured or absent BGP route filtering or lack of coordination between autonomous systems (ASes).  Existing approaches to leak prevention rely on marking routes by operator configuration, with no check that the configuration corresponds to that of the External BGP (eBGP) neighbor, or enforcement of the two eBGP speakers agreeing on the peering relationship.  This document enhances the BGP OPEN message to establish an agreement of the peering relationship on each eBGP session between autonomous systems in order to enforce appropriate configuration on both sides.  Propagated routes are then marked according to the agreed relationship, allowing both prevention and detection of route leaks."];
+  cites -> RFC9234;
+  RFC5701 [label="RFC5701
+IPv6 Address Specific BGP Extended
+Community Attribute
+2009", shape=ellipse, URL="RFC5701.html", target="_top", tooltip="Current specifications of BGP Extended Communities (RFC 4360) support the IPv4 Address Specific Extended Community, but do not support an IPv6 Address Specific Extended Community.  The lack of an IPv6 Address Specific Extended Community may be a problem when an application uses the IPv4 Address Specific Extended Community, and one wants to use this application in a pure IPv6 environment.  This document defines a new BGP attribute, the IPv6 Address Specific Extended Community, that addresses this problem.  The IPv6 Address Specific Extended Community is similar to the IPv4 Address Specific Extended Community, except that it carries an IPv6 address rather than an IPv4 address. [STANDARDS TRACK]"];
+  cites -> RFC5701;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC5925 [label="RFC5925
+The TCP Authentication Option
+2010", shape=ellipse, URL="RFC5925.html", target="_top", tooltip="This document specifies the TCP Authentication Option (TCP-AO), which obsoletes the TCP MD5 Signature option of RFC 2385 (TCP MD5).  TCP-AO specifies the use of stronger Message Authentication Codes (MACs), protects against replays even for long-lived TCP connections, and provides more details on the association of security with TCP connections than TCP MD5.  TCP-AO is compatible with either a static Master Key Tuple (MKT) configuration or an external, out-of-band MKT management mechanism; in either case, TCP-AO also protects connections when using the same MKT across repeated instances of a connection, using traffic keys derived from the MKT, and coordinates MKT changes between endpoints.  The result is intended to support current infrastructure uses of TCP MD5, such as to protect long-lived connections (as used, e.g., in BGP and LDP), and to support a larger set of MACs with minimal other system and operational changes.  TCP-AO uses a different option identifier than TCP MD5, even though TCP-AO and TCP MD5 are never permitted to be used simultaneously.  TCP-AO supports IPv6, and is fully compatible with the proposed requirements for the replacement of TCP MD5. [STANDARDS-TRACK]"];
+  cites -> RFC5925;
+  RFC4577 [label="RFC4577
+OSPF as the Provider/Customer Edge
+Protocol for BGP/MPLS IP Virtual Private
+Networks (VPNs)
+2006", shape=ellipse, URL="RFC4577.html", target="_top", tooltip="Many Service Providers offer Virtual Private Network (VPN) services to their customers, using a technique in which customer edge routers (CE routers) are routing peers of provider edge routers (PE routers). The Border Gateway Protocol (BGP) is used to distribute the customer's routes across the provider's IP backbone network, and Multiprotocol Label Switching (MPLS) is used to tunnel customer packets across the provider's backbone. This is known as a BGP/MPLS IP VPN. The base specification for BGP/MPLS IP VPNs presumes that the routing protocol on the interface between a PE router and a CE router is BGP. This document extends that specification by allowing the routing protocol on the PE/CE interface to be the Open Shortest Path First (OSPF) protocol. This document updates RFC 4364. [STANDARDS-TRACK]"];
+  cites -> RFC4577;
+  RFC6565 [label="RFC6565
+OSPFv3 as a Provider Edge to Customer
+Edge (PE-CE) Routing Protocol
+2012", shape=ellipse, URL="RFC6565.html", target="_top", tooltip="Many Service Providers (SPs) offer Virtual Private Network (VPN) services to their customers using a technique in which Customer Edge (CE) routers are routing peers of Provider Edge (PE) routers.  The Border Gateway Protocol (BGP) is used to distribute the customer's routes across the provider's IP backbone network, and Multiprotocol Label Switching (MPLS) is used to tunnel customer packets across the provider's backbone.  Support currently exists for both IPv4 and IPv6 VPNs; however, only Open Shortest Path First version 2 (OSPFv2) as PE-CE protocol is specified.  This document extends those specifications to support OSPF version 3 (OSPFv3) as a PE-CE routing protocol.  The OSPFv3 PE-CE functionality is identical to that of OSPFv2 except for the differences described in this document. [STANDARDS-TRACK]"];
+  cites -> RFC6565;
+  RFC5709 [label="RFC5709
+OSPFv2 HMAC-SHA Cryptographic
+Authentication
+2009", shape=ellipse, URL="RFC5709.html", target="_top", tooltip="This document describes how the National Institute of Standards and Technology (NIST) Secure Hash Standard family of algorithms can be used with OSPF version 2's built-in, cryptographic authentication mechanism.  This updates, but does not supercede, the cryptographic authentication mechanism specified in RFC 2328. [STANDARDS-TRACK]"];
+  cites -> RFC5709;
+  RFC7474 [label="RFC7474
+Security Extension for OSPFv2 When Using
+Manual Key Management
+2015", shape=ellipse, URL="RFC7474.html", target="_top", tooltip="The current OSPFv2 cryptographic authentication mechanism as defined in RFCs 2328 and 5709 is vulnerable to both inter-session and intra- session replay attacks when using manual keying. Additionally, the existing cryptographic authentication mechanism does not cover the IP header. This omission can be exploited to carry out various types of attacks. This document defines changes to the authentication sequence number mechanism that will protect OSPFv2 from both inter-session and intra- session replay attacks when using manual keys for securing OSPFv2 protocol packets. Additionally, we also describe some changes in the cryptographic hash computation that will eliminate attacks resulting from OSPFv2 not protecting the IP header."];
+  cites -> RFC7474;
+  RFC7166 [label="RFC7166
+Supporting Authentication Trailer for
+OSPFv3
+2014", shape=ellipse, URL="RFC7166.html", target="_top", tooltip="Currently, OSPF for IPv6 (OSPFv3) uses IPsec as the only mechanism for authenticating protocol packets. This behavior is different from authentication mechanisms present in other routing protocols (OSPFv2, Intermediate System to Intermediate System (IS-IS), RIP, and Routing Information Protocol Next Generation (RIPng)). In some environments, it has been found that IPsec is difficult to configure and maintain and thus cannot be used. This document defines an alternative mechanism to authenticate OSPFv3 protocol packets so that OSPFv3 does not depend only upon IPsec for authentication. The OSPFv3 Authentication Trailer was originally defined in RFC 6506. This document obsoletes RFC 6506 by providing a revised definition, including clarifications and refinements of the procedures."];
+  cites -> RFC7166;
+  RFC4552 [label="RFC4552
+Authentication/Confidentiality for
+OSPFv3
+2006", shape=ellipse, URL="RFC4552.html", target="_top", tooltip="This document describes means and mechanisms to provide authentication/confidentiality to OSPFv3 using an IPv6 Authentication Header/Encapsulating Security Payload (AH/ESP) extension header. [STANDARDS-TRACK]"];
+  cites -> RFC4552;
+  RFC2453 [label="RFC2453
+RIP Version 2
+1998", shape=ellipse, URL="RFC2453.html", target="_top", tooltip="This document specifies an extension of the Routing Information Protocol (RIP) to expand the amount of useful information carried in RIP messages and to add a measure of security. [STANDARDS-TRACK]"];
+  cites -> RFC2453;
+  RFC2080 [label="RFC2080
+RIPng for IPv6
+1997", shape=ellipse, URL="RFC2080.html", target="_top", tooltip="This document specifies a routing protocol for an IPv6 internet.  It is based on protocols and algorithms currently in wide use in the IPv4 Internet [STANDARDS-TRACK]"];
+  cites -> RFC2080;
+  RFC9568 [label="RFC9568
+Virtual Router Redundancy Protocol
+(VRRP) Version 3 for IPv4 and IPv6
+2024", shape=ellipse, URL="RFC9568.html", target="_top", tooltip="This document defines version 3 of the Virtual Router Redundancy Protocol (VRRP) for IPv4 and IPv6.  It obsoletes RFC 5798, which previously specified VRRP (version 3).  RFC 5798 obsoleted RFC 3768, which specified VRRP (version 2) for IPv4.  VRRP specifies an election protocol that dynamically assigns responsibility for a Virtual Router to one of the VRRP Routers on a LAN.  The VRRP Router controlling the IPv4 or IPv6 address(es) associated with a Virtual Router is called the Active Router, and it forwards packets routed to these IPv4 or IPv6 addresses.  Active Routers are configured with virtual IPv4 or IPv6 addresses, and Backup Routers infer the address family of the virtual addresses being advertised based on the IP protocol version.  Within a VRRP Router, the Virtual Routers in each of the IPv4 and IPv6 address families are independent of one another and always treated as separate Virtual Router instances.  The election process provides dynamic failover in the forwarding responsibility should the Active Router become unavailable.  For IPv4, the advantage gained from using VRRP is a higher-availability default path without requiring configuration of dynamic routing or router discovery protocols on every end-host.  For IPv6, the advantage gained from using VRRP for IPv6 is a quicker switchover to Backup Routers than can be obtained with standard IPv6 Neighbor Discovery mechanisms."];
+  cites -> RFC9568;
+  RFC9127 [label="RFC9127
+YANG Data Model for Bidirectional
+Forwarding Detection (BFD)
+2021", shape=ellipse, URL="RFC9127.html", target="_top", tooltip="This document defines a YANG data model that can be used to configure and manage Bidirectional Forwarding Detection (BFD). The YANG modules in this document conform to the Network Management Datastore Architecture (NMDA) (RFC 8342)."];
+  cites -> RFC9127;
+  RFC7880 [label="RFC7880
+Seamless Bidirectional Forwarding
+Detection (S-BFD)
+2016", shape=ellipse, URL="RFC7880.html", target="_top", tooltip="This document defines Seamless Bidirectional Forwarding Detection (S-BFD), a simplified mechanism for using BFD with a large proportion of negotiation aspects eliminated, thus providing benefits such as quick provisioning, as well as improved control and flexibility for network nodes initiating path monitoring. This document updates RFC 5880."];
+  cites -> RFC7880;
+  RFC6241 [label="RFC6241
+Network Configuration Protocol (NETCONF)
+2011", shape=ellipse, URL="RFC6241.html", target="_top", tooltip="The Network Configuration Protocol (NETCONF) defined in this document provides mechanisms to install, manipulate, and delete the configuration of network devices.  It uses an Extensible Markup Language (XML)-based data encoding for the configuration data as well as the protocol messages.  The NETCONF protocol operations are realized as remote procedure calls (RPCs).  This document obsoletes RFC 4741. [STANDARDS-TRACK]"];
+  cites -> RFC6241;
+  RFC8040 [label="RFC8040
+RESTCONF Protocol
+2017", shape=ellipse, URL="RFC8040.html", target="_top", tooltip="This document describes an HTTP-based protocol that provides a programmatic interface for accessing data defined in YANG, using the datastore concepts defined in the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC8040;
+  RFC4252 [label="RFC4252
+The Secure Shell (SSH) Authentication
+Protocol
+2006", shape=ellipse, URL="RFC4252.html", target="_top", tooltip="The Secure Shell Protocol (SSH) is a protocol for secure remote login and other secure network services over an insecure network.  This document describes the SSH authentication protocol framework and public key, password, and host-based client authentication methods.  Additional authentication methods are described in separate documents.  The SSH authentication protocol runs on top of the SSH transport layer protocol and provides a single authenticated tunnel for the SSH connection protocol. [STANDARDS-TRACK]"];
+  cites -> RFC4252;
+  RFC8446 [label="RFC8446
+The Transport Layer Security (TLS)
+Protocol Version 1.3
+2018", shape=ellipse, URL="RFC8446.html", target="_top", tooltip="This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery. This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations."];
+  cites -> RFC8446;
+  RFC9000 [label="RFC9000
+QUIC: A UDP-Based Multiplexed and Secure
+Transport
+2021", shape=ellipse, URL="RFC9000.html", target="_top", tooltip="This document defines the core of the QUIC transport protocol.  QUIC provides applications with flow-controlled streams for structured communication, low-latency connection establishment, and network path migration.  QUIC includes security measures that ensure confidentiality, integrity, and availability in a range of deployment circumstances.  Accompanying documents describe the integration of TLS for key negotiation, loss detection, and an exemplary congestion control algorithm."];
+  cites -> RFC9000;
+  RFC8695 [label="RFC8695
+A YANG Data Model for the Routing
+Information Protocol (RIP)
+2020", shape=ellipse, URL="RFC8695.html", target="_top", tooltip="This document describes a data model for the management of the Routing Information Protocol (RIP). Both RIP version 2 and RIPng are covered. The data model includes definitions for configuration, operational state, and Remote Procedure Calls (RPCs). The YANG data model in this document conforms to the Network Management Datastore Architecture (NMDA)."];
+  cites -> RFC8695;
+  RFC3688 [label="RFC3688
+The IETF XML Registry
+2004", shape=ellipse, URL="RFC3688.html", target="_top", tooltip="This document describes an IANA maintained registry for IETF standards which use Extensible Markup Language (XML) related items such as Namespaces, Document Type Declarations (DTDs), Schemas, and Resource Description Framework (RDF) Schemas."];
+  cites -> RFC3688;
+  RFC6020 [label="RFC6020
+YANG - A Data Modeling Language for the
+Network Configuration Protocol (NETCONF)
+2010", shape=ellipse, URL="RFC6020.html", target="_top", tooltip="YANG is a data modeling language used to model configuration and state data manipulated by the Network Configuration Protocol (NETCONF), NETCONF remote procedure calls, and NETCONF notifications. [STANDARDS-TRACK]"];
+  cites -> RFC6020;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC9835;
+  RFC9833 [label="RFC9833
+A Common YANG Data Model for Attachment
+Circuits
+2025", shape=ellipse, URL="RFC9833.html", target="_top", tooltip="The document specifies a common attachment circuits (ACs) YANG data
+model, which is designed to be reusable by other models.  This design
+is meant to ensure consistent AC structures among models that
+manipulate ACs.  For example, this common model can be reused by
+service models to expose ACs as a service, service models that
+require binding a service to a set of ACs, network and device models
+to provision ACs, etc."];
+  RFC9833 -> rev_cites;
+  RFC9834 [label="RFC9834
+YANG Data Models for Bearers and
+Attachment Circuits as a Service (ACaaS)
+2025", shape=ellipse, URL="RFC9834.html", target="_top", tooltip="Delivery of network services assumes that appropriate setup is
+provisioned over the links that connect customer termination points
+and a provider network. The required setup to allow successful data
+exchange over these links is referred to as an attachment circuit
+(AC), while the underlying link is referred to as a bearer. This document specifies a YANG service data model for ACs. This model
+can be used for the provisioning of ACs before or during service
+provisioning (e.g., RFC 9543 Network Slice Service). The document also specifies a YANG service data model for managing
+bearers over which ACs are established."];
+  RFC9834 -> rev_cites;
+  RFC9836 [label="RFC9836
+A YANG Data Model for Augmenting VPN
+Service and Network Models with
+Attachment Circuits
+2025", shape=ellipse, URL="RFC9836.html", target="_top", tooltip="This document defines a YANG data model, referred to as the AC Glue
+model, to augment the LxVPN Service Model (LxSM) and LxVPN Network
+Model (LxNM) with references to attachment circuits (ACs).  The AC
+Glue model enables a provider to associate Layer 2/3 VPN (LxVPN)
+services with the underlying AC infrastructure, thereby facilitating
+consistent provisioning and management of new or existing ACs in
+conjunction with LxVPN services.  Specifically, by introducing an
+integrated approach to AC and LxVPN management, this model supports
+Attachment Circuit as a Service (ACaaS) and provides a standardized
+mechanism for aligning AC/VPN requests with the network
+configurations required to deliver them."];
+  RFC9836 -> rev_cites;
+  RFC9889 [label="RFC9889
+A Realization of Network Slices for 5G
+Networks Using Current IP/MPLS
+Technologies
+2025", shape=ellipse, URL="RFC9889.html", target="_top", tooltip="Network slicing is a feature that was introduced by the 3rd Generation Partnership Project (3GPP) in Mobile Networks. Realization of 5G slicing implies requirements for all mobile domains, including the Radio Access Network (RAN), Core Network (CN), and Transport Network (TN). This document describes a network slice realization model for IP/MPLS networks with a focus on the Transport Network fulfilling the service objectives for 5G slicing connectivity. The realization model reuses many building blocks commonly used in service provider networks at the current time."];
+  RFC9889 -> rev_cites;
+}

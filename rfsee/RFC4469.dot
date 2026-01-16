@@ -1,0 +1,64 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4469 [label="RFC4469
+Internet Message Access Protocol (IMAP)
+CATENATE Extension
+2006", shape=ellipse, fillcolor="#e8f0ff", tooltip="The CATENATE extension to the Internet Message Access Protocol (IMAP) extends the APPEND command to allow clients to create messages on the IMAP server that may contain a combination of new data along with parts of (or entire) messages already on the server.  Using this extension, the client can catenate parts of an already existing message onto a new message without having to first download the data and then upload it back to the server. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4469;
+
+  obs [label="obsoletes", shape=box];
+  RFC4469 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4469 -> updates;
+  RFC3501 [label="RFC3501
+INTERNET MESSAGE ACCESS PROTOCOL -
+VERSION 4rev1
+2003", shape=ellipse, URL="RFC3501.html", target="_top", tooltip="The Internet Message Access Protocol, Version 4rev1 (IMAP4rev1) allows a client to access and manipulate electronic mail messages on a server.  IMAP4rev1 permits manipulation of mailboxes (remote message folders) in a way that is functionally equivalent to local folders.  IMAP4rev1 also provides the capability for an offline client to resynchronize with the server.  IMAP4rev1 includes operations for creating, deleting, and renaming mailboxes, checking for new messages, permanently removing messages, setting and clearing flags, RFC 2822 and RFC 2045 parsing, searching, and selective fetching of message attributes, texts, and portions thereof.  Messages in IMAP4rev1 are accessed by the use of numbers.  These numbers are either message sequence numbers or unique identifiers.  IMAP4rev1 supports a single server.  A mechanism for accessing configuration information to support multiple IMAP4rev1 servers is discussed in RFC 2244.  IMAP4rev1 does not specify a means of posting mail; this function is handled by a mail transfer protocol such as RFC 2821. [STANDARDS-TRACK]"];
+  updates -> RFC3501;
+  RFC3502 [label="RFC3502
+Internet Message Access Protocol (IMAP)
+- MULTIAPPEND Extension
+2003", shape=ellipse, URL="RFC3502.html", target="_top", tooltip="This document describes the multiappending extension to the Internet Message Access Protocol (IMAP) (RFC 3501).  This extension provides substantial performance improvements for IMAP clients which upload multiple messages at a time to a mailbox on the server.  A server which supports this extension indicates this with a capability name of MULTIAPPEND. [STANDARDS-TRACK]"];
+  updates -> RFC3502;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4469;
+  RFC5550 [label="RFC5550
+The Internet Email to Support Diverse
+Service Environments (Lemonade) Profile
+2009", shape=ellipse, URL="RFC5550.html", target="_top", tooltip="This document describes a profile (a set of required extensions, restrictions, and usage modes), dubbed Lemonade, of the IMAP, mail submission, and Sieve protocols. This profile allows clients (especially those that are constrained in memory, bandwidth, processing power, or other areas) to efficiently use IMAP and Submission to access and submit mail. This includes the ability to forward received mail without needing to download and upload the mail, to optimize submission, and to efficiently resynchronize in case of loss of connectivity with the server. The Lemonade Profile relies upon several extensions to IMAP, Sieve, and Mail Submission protocols. The document also defines a new IMAP extension and registers several new IMAP keywords. [STANDARDS-TRACK]"];
+  RFC5550 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC4469 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4469;
+  RFC5738 [label="RFC5738
+IMAP Support for UTF-8
+2010", shape=ellipse, URL="RFC5738.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol version 4rev1 (IMAP4rev1) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This document defines an Experimental Protocol for the Internet community."];
+  RFC5738 -> rev_cites;
+  RFC6855 [label="RFC6855
+IMAP Support for UTF-8
+2013", shape=ellipse, URL="RFC6855.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to support UTF-8 encoded international characters in user names, mail addresses, and message headers.  This specification replaces RFC 5738."];
+  RFC6855 -> rev_cites;
+  RFC7888 [label="RFC7888
+IMAP4 Non-synchronizing Literals
+2016", shape=ellipse, URL="RFC7888.html", target="_top", tooltip="The Internet Message Access Protocol (RFC 3501) contains the literal syntactic construct for communicating strings. When sending a literal from client to server, IMAP requires the client to wait for the server to send a command continuation request between sending the octet count and the string data. This document specifies an alternate form of literal that does not require this network round trip. This document specifies 2 IMAP extensions: LITERAL+ and LITERAL-. LITERAL+ allows the alternate form of literals in all IMAP commands. LITERAL- is the same as LITERAL+, but it disallows the alternate form of literals unless they are 4096 bytes or less. This document obsoletes RFC 2088."];
+  RFC7888 -> rev_cites;
+  RFC7889 [label="RFC7889
+The IMAP APPENDLIMIT Extension
+2016", shape=ellipse, URL="RFC7889.html", target="_top", tooltip="This document defines an extension to the IMAP service whereby a server can inform the client about maximum message upload sizes, allowing the client to avoid sending APPEND commands that will fail because the messages are too large."];
+  RFC7889 -> rev_cites;
+  RFC8508 [label="RFC8508
+IMAP REPLACE Extension
+2019", shape=ellipse, URL="RFC8508.html", target="_top", tooltip="This document defines an IMAP extension that can be used to replace an existing message in a message store with a new message.  Message replacement is a common operation for clients that automatically save drafts or notes as a user composes them."];
+  RFC8508 -> rev_cites;
+}

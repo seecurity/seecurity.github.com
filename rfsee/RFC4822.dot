@@ -1,0 +1,81 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4822 [label="RFC4822
+RIPv2 Cryptographic Authentication
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="This note describes a revision to the RIPv2 Cryptographic Authentication mechanism originally specified in RFC 2082.  This document obsoletes RFC 2082 and updates RFC 2453.  This document adds details of how the SHA family of hash algorithms can be used with RIPv2 Cryptographic Authentication, whereas the original document only specified the use of Keyed-MD5.  Also, this document clarifies a potential issue with an active attack on this mechanism and adds significant text to the Security Considerations section. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4822;
+
+  obs [label="obsoletes", shape=box];
+  RFC4822 -> obs;
+  RFC2082 [label="RFC2082
+RIP-2 MD5 Authentication
+1997", shape=ellipse, URL="RFC2082.html", target="_top", tooltip="Growth in the Internet has made us aware of the need for improved authentication of routing information.  RIP-2 provides for unauthenticated service (as in classical RIP), or password authentication. [STANDARDS-TRACK]"];
+  obs -> RFC2082;
+
+  updates [label="updates", shape=box];
+  RFC4822 -> updates;
+  RFC2453 [label="RFC2453
+RIP Version 2
+1998", shape=ellipse, URL="RFC2453.html", target="_top", tooltip="This document specifies an extension of the Routing Information Protocol (RIP) to expand the amount of useful information carried in RIP messages and to add a measure of security. [STANDARDS-TRACK]"];
+  updates -> RFC2453;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4822;
+
+  cites [label="cites", shape=box];
+  RFC4822 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4822;
+  RFC5310 [label="RFC5310
+IS-IS Generic Cryptographic
+Authentication
+2009", shape=ellipse, URL="RFC5310.html", target="_top", tooltip="This document proposes an extension to Intermediate System to Intermediate System (IS-IS) to allow the use of any cryptographic authentication algorithm in addition to the already-documented authentication schemes, described in the base specification and RFC 5304. IS-IS is specified in International Standards Organization (ISO) 10589, with extensions to support Internet Protocol version 4 (IPv4) described in RFC 1195. Although this document has been written specifically for using the Hashed Message Authentication Code (HMAC) construct along with the Secure Hash Algorithm (SHA) family of cryptographic hash functions, the method described in this document is generic and can be used to extend IS-IS to support any cryptographic hash function in the future. [STANDARDS-TRACK]"];
+  RFC5310 -> rev_cites;
+  RFC5709 [label="RFC5709
+OSPFv2 HMAC-SHA Cryptographic
+Authentication
+2009", shape=ellipse, URL="RFC5709.html", target="_top", tooltip="This document describes how the National Institute of Standards and Technology (NIST) Secure Hash Standard family of algorithms can be used with OSPF version 2's built-in, cryptographic authentication mechanism.  This updates, but does not supercede, the cryptographic authentication mechanism specified in RFC 2328. [STANDARDS-TRACK]"];
+  RFC5709 -> rev_cites;
+  RFC6039 [label="RFC6039
+Issues with Existing Cryptographic
+Protection Methods for Routing Protocols
+2010", shape=ellipse, URL="RFC6039.html", target="_top", tooltip="Routing protocols have been extended over time to use cryptographic mechanisms to ensure that data received from a neighboring router has not been modified in transit and actually originated from an authorized neighboring router. The cryptographic mechanisms defined to date and described in this document rely on a digest produced with a hash algorithm applied to the payload encapsulated in the routing protocol packet. This document outlines some of the limitations of the current mechanism, problems with manual keying of these cryptographic algorithms, and possible vectors for the exploitation of these limitations. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6039 -> rev_cites;
+  RFC6094 [label="RFC6094
+Summary of Cryptographic Authentication
+Algorithm Implementation Requirements
+for Routing Protocols
+2011", shape=ellipse, URL="RFC6094.html", target="_top", tooltip="The routing protocols Open Shortest Path First version 2 (OSPFv2), Intermediate System to Intermediate System (IS-IS), and Routing Information Protocol (RIP) currently define cleartext and MD5 (Message Digest 5) methods for authenticating protocol packets. Recently, effort has been made to add support for the SHA (Secure Hash Algorithm) family of hash functions for the purpose of authenticating routing protocol packets for RIP, IS-IS, and OSPF. To encourage interoperability between disparate implementations, it is imperative that we specify the expected minimal set of algorithms, thereby ensuring that there is at least one algorithm that all implementations will have in common. Similarly, RIP for IPv6 (RIPng) and OSPFv3 support IPsec algorithms for authenticating their protocol packets. This document examines the current set of available algorithms, with interoperability and effective cryptographic authentication protection being the principal considerations. Cryptographic authentication of these routing protocols requires the availability of the same algorithms in disparate implementations. It is desirable that newly specified algorithms should be implemented and available in routing protocol implementations because they may be promoted to requirements at some future time. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  RFC6094 -> rev_cites;
+  RFC6862 [label="RFC6862
+Keying and Authentication for Routing
+Protocols (KARP) Overview, Threats, and
+Requirements
+2013", shape=ellipse, URL="RFC6862.html", target="_top", tooltip="Different routing protocols employ different mechanisms for securing protocol packets on the wire.  While most already have some method for accomplishing cryptographic message authentication, in many cases the existing methods are dated, vulnerable to attack, and employ cryptographic algorithms that have been deprecated.  The Keying and Authentication for Routing Protocols (KARP) effort aims to overhaul and improve these mechanisms.  This document does not contain protocol specifications.  Instead, it defines the areas where protocol specification work is needed.  This document is a companion document to RFC 6518, Keying and Authentication for Routing Protocols (KARP) Design Guidelines; together they form the guidance and instruction KARP design teams will use to review and overhaul routing protocol transport security."];
+  RFC6862 -> rev_cites;
+  RFC7166 [label="RFC7166
+Supporting Authentication Trailer for
+OSPFv3
+2014", shape=ellipse, URL="RFC7166.html", target="_top", tooltip="Currently, OSPF for IPv6 (OSPFv3) uses IPsec as the only mechanism for authenticating protocol packets. This behavior is different from authentication mechanisms present in other routing protocols (OSPFv2, Intermediate System to Intermediate System (IS-IS), RIP, and Routing Information Protocol Next Generation (RIPng)). In some environments, it has been found that IPsec is difficult to configure and maintain and thus cannot be used. This document defines an alternative mechanism to authenticate OSPFv3 protocol packets so that OSPFv3 does not depend only upon IPsec for authentication. The OSPFv3 Authentication Trailer was originally defined in RFC 6506. This document obsoletes RFC 6506 by providing a revised definition, including clarifications and refinements of the procedures."];
+  RFC7166 -> rev_cites;
+  RFC7474 [label="RFC7474
+Security Extension for OSPFv2 When Using
+Manual Key Management
+2015", shape=ellipse, URL="RFC7474.html", target="_top", tooltip="The current OSPFv2 cryptographic authentication mechanism as defined in RFCs 2328 and 5709 is vulnerable to both inter-session and intra- session replay attacks when using manual keying. Additionally, the existing cryptographic authentication mechanism does not cover the IP header. This omission can be exploited to carry out various types of attacks. This document defines changes to the authentication sequence number mechanism that will protect OSPFv2 from both inter-session and intra- session replay attacks when using manual keys for securing OSPFv2 protocol packets. Additionally, we also describe some changes in the cryptographic hash computation that will eliminate attacks resulting from OSPFv2 not protecting the IP header."];
+  RFC7474 -> rev_cites;
+  RFC7492 [label="RFC7492
+Analysis of Bidirectional Forwarding
+Detection (BFD) Security According to
+the Keying and Authentication for
+Routing Protocols (KARP) Design
+Guidelines
+2015", shape=ellipse, URL="RFC7492.html", target="_top", tooltip="This document analyzes the Bidirectional Forwarding Detection (BFD) protocol according to the guidelines set forth in Section 4.2 of RFC 6518, Keying and Authentication for Routing Protocols (KARP) Design Guidelines."];
+  RFC7492 -> rev_cites;
+}

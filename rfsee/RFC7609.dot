@@ -1,0 +1,38 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7609 [label="RFC7609
+IBM's Shared Memory Communications over
+RDMA (SMC-R) Protocol
+2015", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes IBM's Shared Memory Communications over RDMA (SMC-R) protocol.  This protocol provides Remote Direct Memory Access (RDMA) communications to TCP endpoints in a manner that is transparent to socket applications.  It further provides for dynamic discovery of partner RDMA capabilities and dynamic setup of RDMA connections, as well as transparent high availability and load balancing when redundant RDMA network paths are available.  It maintains many of the traditional TCP/IP qualities of service such as filtering that enterprise users demand, as well as TCP socket semantics such as urgent data."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7609;
+
+  obs [label="obsoletes", shape=box];
+  RFC7609 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7609 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7609;
+
+  cites [label="cites", shape=box];
+  RFC7609 -> cites;
+  RFC6994 [label="RFC6994
+Shared Use of Experimental TCP Options
+2013", shape=ellipse, URL="RFC6994.html", target="_top", tooltip="This document describes how the experimental TCP option codepoints can concurrently support multiple TCP extensions, even within the same connection, using a new IANA TCP experiment identifier.  This approach is robust to experiments that are not registered and to those that do not use this sharing mechanism.  It is recommended for all new TCP options that use these codepoints."];
+  cites -> RFC6994;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7609;
+  RFC9740 [label="RFC9740
+New IPFIX Information Elements for TCP
+Options and IPv6 Extension Headers
+2025", shape=ellipse, URL="RFC9740.html", target="_top", tooltip="This document specifies new IP Flow Information Export (IPFIX) Information Elements (IEs) to solve issues with existing ipv6ExtensionHeaders and tcpOptions IPFIX IEs, especially the ability to export any observed IPv6 extension headers or TCP options."];
+  RFC9740 -> rev_cites;
+}

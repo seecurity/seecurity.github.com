@@ -1,0 +1,88 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7863 [label="RFC7863
+Network File System (NFS) Version 4
+Minor Version 2 External Data
+Representation Standard (XDR)
+Description
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document provides the External Data Representation (XDR) description for NFS version 4 minor version 2."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7863;
+
+  obs [label="obsoletes", shape=box];
+  RFC7863 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7863 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7863;
+
+  cites [label="cites", shape=box];
+  RFC7863 -> cites;
+  RFC4506 [label="RFC4506
+XDR: External Data Representation
+Standard
+2006", shape=ellipse, URL="RFC4506.html", target="_top", tooltip="This document describes the External Data Representation Standard (XDR) protocol as it is currently deployed and accepted.  This document obsoletes RFC 1832. [STANDARDS-TRACK]"];
+  cites -> RFC4506;
+  RFC7862 [label="RFC7862
+Network File System (NFS) Version 4
+Minor Version 2 Protocol
+2016", shape=ellipse, URL="RFC7862.html", target="_top", tooltip="This document describes NFS version 4 minor version 2; it describes the protocol extensions made from NFS version 4 minor version 1.  Major extensions introduced in NFS version 4 minor version 2 include the following: Server-Side Copy, Application Input/Output (I/O) Advise, Space Reservations, Sparse Files, Application Data Blocks, and Labeled NFS."];
+  cites -> RFC7862;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC7531 [label="RFC7531
+Network File System (NFS) Version 4
+External Data Representation Standard
+(XDR) Description
+2015", shape=ellipse, URL="RFC7531.html", target="_top", tooltip="The Network File System (NFS) version 4 protocol is a distributed file system protocol that owes its heritage to NFS protocol version 2 (RFC 1094) and version 3 (RFC 1813). Unlike earlier versions, the NFS version 4 protocol supports traditional file access while integrating support for file locking and the MOUNT protocol. In addition, support for strong security (and its negotiation), COMPOUND operations, client caching, and internationalization has been added. Of course, attention has been applied to making NFS version 4 operate well in an Internet environment. RFC 7530 formally obsoletes RFC 3530. This document, together with RFC 7530, replaces RFC 3530 as the definition of the NFS version 4 protocol."];
+  cites -> RFC7531;
+  RFC5662 [label="RFC5662
+Network File System (NFS) Version 4
+Minor Version 1 External Data
+Representation Standard (XDR)
+Description
+2010", shape=ellipse, URL="RFC5662.html", target="_top", tooltip="This document provides the External Data Representation Standard (XDR) description for Network File System version 4 (NFSv4) minor version 1. [STANDARDS-TRACK]"];
+  cites -> RFC5662;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7863;
+  RFC7862 [label="RFC7862
+Network File System (NFS) Version 4
+Minor Version 2 Protocol
+2016", shape=ellipse, URL="RFC7862.html", target="_top", tooltip="This document describes NFS version 4 minor version 2; it describes the protocol extensions made from NFS version 4 minor version 1.  Major extensions introduced in NFS version 4 minor version 2 include the following: Server-Side Copy, Application Input/Output (I/O) Advise, Space Reservations, Sparse Files, Application Data Blocks, and Labeled NFS."];
+  RFC7862 -> rev_cites;
+  RFC8275 [label="RFC8275
+Allowing Inheritable NFSv4 Access
+Control Entries to Override the Umask
+2017", shape=ellipse, URL="RFC8275.html", target="_top", tooltip="In many environments, inheritable NFSv4 Access Control Entries (ACEs) can be rendered ineffective by the application of the per-process file mode creation mask (umask).  This can be addressed by transmitting the umask and create mode as separate pieces of data, allowing the server to make more intelligent decisions about the permissions to set on new files.  This document proposes a protocol extension to accomplish that."];
+  RFC8275 -> rev_cites;
+  RFC8276 [label="RFC8276
+File System Extended Attributes in NFSv4
+2017", shape=ellipse, URL="RFC8276.html", target="_top", tooltip="This document describes an optional feature extending the NFSv4 protocol.  This feature allows extended attributes (hereinafter also referred to as xattrs) to be interrogated and manipulated using NFSv4 clients.  Xattrs are provided by a file system to associate opaque metadata, not interpreted by the file system, with files and directories.  Such support is present in many modern local file systems.  New file attributes are provided to allow clients to query the server for xattr support, with that support consisting of new operations to get and set xattrs on file system objects."];
+  RFC8276 -> rev_cites;
+  RFC9737 [label="RFC9737
+Reporting Errors in NFSv4.2 via
+LAYOUTRETURN
+2025", shape=ellipse, URL="RFC9737.html", target="_top", tooltip="The Parallel Network File System (pNFS) allows for a file's metadata and data to be on different servers (i.e., the metadata server (MDS) and the data server (DS)).  When the MDS is restarted, the client can still modify the data file component.  During the recovery phase of startup, the MDS and the DSs work together to recover state.  If the client has not encountered errors with the data files, then the state can be recovered and the resilvering of the data files can be avoided.  With any errors, there is no means by which the client can report errors to the MDS.  As such, the MDS has to assume that a file needs resilvering.  This document presents an extension to RFC 8435 to allow the client to update the metadata via LAYOUTRETURN and avoid the resilvering."];
+  RFC9737 -> rev_cites;
+  RFC9754 [label="RFC9754
+Extensions for Opening and Delegating
+Files in NFSv4.2
+2025", shape=ellipse, URL="RFC9754.html", target="_top", tooltip="The Network File System v4 (NFSv4) allows a client to both open a file and be granted a delegation of that file.  This delegation provides the client the right to authoritatively cache metadata on the file locally.  This document presents several extensions for both opening the file and delegating it to the client.  This document extends NFSv4.2 (see RFC 7863)."];
+  RFC9754 -> rev_cites;
+  RFC9766 [label="RFC9766
+Extensions for Weak Cache Consistency in
+NFSv4.2's Flexible File Layout
+2025", shape=ellipse, URL="RFC9766.html", target="_top", tooltip="This document specifies extensions to NFSv4.2 for improving Weak Cache Consistency (WCC).  These extensions introduce mechanisms that ensure partial writes performed under a Parallel NFS (pNFS) layout remain coherent and correctly tracked.  The solution addresses concurrency and data integrity concerns that may arise when multiple clients write to the same file through separate data servers.  By defining additional interactions among clients, metadata servers, and data servers, this specification enhances the reliability of NFSv4 in parallel-access environments and ensures consistency across diverse deployment scenarios."];
+  RFC9766 -> rev_cites;
+}

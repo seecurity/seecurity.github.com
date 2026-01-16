@@ -1,0 +1,75 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7746 [label="RFC7746
+Label Switched Path (LSP) Self-Ping
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="When certain RSVP-TE optimizations are implemented, ingress Label Switching Router (LSRs) can receive RSVP RESV messages before forwarding state has been installed on all downstream nodes. According to the RSVP-TE specification, the ingress LSR can forward traffic through a Label Switched Path (LSP) as soon as it receives a RESV message. However, if the ingress LSR forwards traffic through the LSP before forwarding state has been installed on all downstream nodes, traffic can be lost. This document describes LSP Self-ping. When an ingress LSR receives an RESV message, it can invoke LSP Self-ping procedures to ensure that forwarding state has been installed on all downstream nodes. LSP Self-ping is a new protocol. It is not an extension of LSP Ping. Although LSP Ping and LSP Self-ping are named similarly, each is designed for a unique purpose. Each protocol listens on its own UDP port and executes its own procedures. LSP Self-ping is an extremely lightweight mechanism. It does not consume control-plane resources on transit or egress LSRs."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7746;
+
+  obs [label="obsoletes", shape=box];
+  RFC7746 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7746 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7746;
+
+  cites [label="cites", shape=box];
+  RFC7746 -> cites;
+  RFC3209 [label="RFC3209
+RSVP-TE: Extensions to RSVP for LSP
+Tunnels
+2001", shape=ellipse, URL="RFC3209.html", target="_top", tooltip="This document describes the use of RSVP (Resource Reservation Protocol), including all the necessary extensions, to establish label-switched paths (LSPs) in MPLS (Multi-Protocol Label Switching).  Since the flow along an LSP is completely identified by the label applied at the ingress node of the path, these paths may be treated as tunnels.  A key application of LSP tunnels is traffic engineering with MPLS as specified in RFC 2702. [STANDARDS-TRACK]"];
+  cites -> RFC3209;
+  RFC6383 [label="RFC6383
+Advice on When It Is Safe to Start
+Sending Data on Label Switched Paths
+Established Using RSVP-TE
+2011", shape=ellipse, URL="RFC6383.html", target="_top", tooltip="The Resource Reservation Protocol (RSVP) has been extended to support Traffic Engineering (TE) in Multiprotocol Label Switching (MPLS) and Generalized MPLS (GMPLS) networks. The protocol enables signaling exchanges to establish Label Switched Paths (LSPs) that traverse nodes and link to provide end-to-end data paths. Each node is programmed with cross-connect information as the signaling messages are processed. The cross-connection information instructs the node how to forward data that it receives. End points of an LSP need to know when it is safe to start sending data so that it is not misdelivered, and so that safety issues specific to optical data-plane technology are satisfied. Likewise, all label switching routers along the path of the LSP need to know when to program their data planes relative to sending and receiving control-plane messages. This document clarifies and summarizes the RSVP-TE protocol exchanges with relation to the programming of cross-connects along an LSP for both unidirectional and bidirectional LSPs. This document does not define any new procedures or protocol extensions, and defers completely to the documents that provide normative references. The clarifications set out in this document may also be used to help interpret LSP establishment performance figures for MPLS-TE and GMPLS devices. This document is not an Internet Standards Track specification; it is published for informational purposes."];
+  cites -> RFC6383;
+  RFC4379 [label="RFC4379
+Detecting Multi-Protocol Label Switched
+(MPLS) Data Plane Failures
+2006", shape=ellipse, URL="RFC4379.html", target="_top", tooltip="This document describes a simple and efficient mechanism that can be used to detect data plane failures in Multi-Protocol Label Switching (MPLS) Label Switched Paths (LSPs).  There are two parts to this document: information carried in an MPLS echo request and echo reply for the purposes of fault detection and isolation, and mechanisms for reliably sending the echo reply. [STANDARDS-TRACK]"];
+  cites -> RFC4379;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5036 [label="RFC5036
+LDP Specification
+2007", shape=ellipse, URL="RFC5036.html", target="_top", tooltip="The architecture for Multiprotocol Label Switching (MPLS) is described in RFC 3031.  A fundamental concept in MPLS is that two Label Switching Routers (LSRs) must agree on the meaning of the labels used to forward traffic between and through them.  This common understanding is achieved by using a set of procedures, called a label distribution protocol, by which one LSR informs another of label bindings it has made.  This document defines a set of such procedures called LDP (for Label Distribution Protocol) by which LSRs distribute labels to support MPLS forwarding along normally routed paths. [STANDARDS-TRACK]"];
+  cites -> RFC5036;
+  RFC3704 [label="RFC3704
+Ingress Filtering for Multihomed
+Networks
+2004", shape=ellipse, URL="RFC3704.html", target="_top", tooltip="BCP 38, RFC 2827, is designed to limit the impact of distributed denial of service attacks, by denying traffic with spoofed addresses access to the network, and to help ensure that traffic is traceable to its correct source network.  As a side effect of protecting the Internet against such attacks, the network implementing the solution also protects itself from this and other attacks, such as spoofed management access to networking equipment.  There are cases when this may create problems, e.g., with multihoming.  This document describes the current ingress filtering operational mechanisms, examines generic issues related to ingress filtering, and delves into the effects on multihoming in particular.  This memo updates RFC 2827.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC3704;
+  RFC2460 [label="RFC2460
+Internet Protocol, Version 6 (IPv6)
+Specification
+1998", shape=ellipse, URL="RFC2460.html", target="_top", tooltip="This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. [STANDARDS-TRACK]"];
+  cites -> RFC2460;
+  RFC4594 [label="RFC4594
+Configuration Guidelines for DiffServ
+Service Classes
+2006", shape=ellipse, URL="RFC4594.html", target="_top", tooltip="This document describes service classes configured with Diffserv and recommends how they can be used and how to construct them using Differentiated Services Code Points (DSCPs), traffic conditioners, Per-Hop Behaviors (PHBs), and Active Queue Management (AQM) mechanisms.  There is no intrinsic requirement that particular DSCPs, traffic conditioners, PHBs, and AQM be used for a certain service class, but as a policy and for interoperability it is useful to apply them consistently.  This memo provides information for the Internet community."];
+  cites -> RFC4594;
+  RFC6335 [label="RFC6335
+Internet Assigned Numbers Authority
+(IANA) Procedures for the Management of
+the Service Name and Transport Protocol
+Port Number Registry
+2011", shape=ellipse, URL="RFC6335.html", target="_top", tooltip="This document defines the procedures that the Internet Assigned Numbers Authority (IANA) uses when handling assignment and other requests related to the Service Name and Transport Protocol Port Number registry. It also discusses the rationale and principles behind these procedures and how they facilitate the long-term sustainability of the registry. This document updates IANA's procedures by obsoleting the previous UDP and TCP port assignment procedures defined in Sections 8 and 9.1 of the IANA Allocation Guidelines, and it updates the IANA service name and port assignment procedures for UDP-Lite, the Datagram Congestion Control Protocol (DCCP), and the Stream Control Transmission Protocol (SCTP). It also updates the DNS SRV specification to clarify what a service name is and how it is registered. This memo documents an Internet Best Current Practice."];
+  cites -> RFC6335;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7746;
+}

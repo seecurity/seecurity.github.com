@@ -1,0 +1,51 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7164 [label="RFC7164
+RTP and Leap Seconds
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document discusses issues that arise when RTP sessions span Coordinated Universal Time (UTC) leap seconds.  It updates RFC 3550 by describing how RTP senders and receivers should behave in the presence of leap seconds."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7164;
+
+  obs [label="obsoletes", shape=box];
+  RFC7164 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7164 -> updates;
+  RFC3550 [label="RFC3550
+RTP: A Transport Protocol for Real-Time
+Applications
+2003", shape=ellipse, URL="RFC3550.html", target="_top", tooltip="This memorandum describes RTP, the real-time transport protocol.  RTP provides end-to-end network transport functions suitable for applications transmitting real-time data, such as audio, video or simulation data, over multicast or unicast network services.  RTP does not address resource reservation and does not guarantee quality-of- service for real-time services.  The data transport is augmented by a control protocol (RTCP) to allow monitoring of the data delivery in a manner scalable to large multicast networks, and to provide minimal control and identification functionality.  RTP and RTCP are designed to be independent of the underlying transport and network layers.  The protocol supports the use of RTP-level translators and mixers.  Most of the text in this memorandum is identical to RFC 1889 which it obsoletes.  There are no changes in the packet formats on the wire, only changes to the rules and algorithms governing how the protocol is used.  The biggest change is an enhancement to the scalable timer algorithm for calculating when to send RTCP packets in order to minimize transmission in excess of the intended rate when many participants join a session simultaneously. [STANDARDS-TRACK]"];
+  updates -> RFC3550;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7164;
+
+  cites [label="cites", shape=box];
+  RFC7164 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7164;
+  RFC7272 [label="RFC7272
+Inter-Destination Media Synchronization
+(IDMS) Using the RTP Control Protocol
+(RTCP)
+2014", shape=ellipse, URL="RFC7272.html", target="_top", tooltip="This document defines a new RTP Control Protocol (RTCP) Packet Type and an RTCP Extended Report (XR) Block Type to be used for achieving Inter-Destination Media Synchronization (IDMS). IDMS is the process of synchronizing playout across multiple media receivers. Using the RTCP XR IDMS Report Block defined in this document, media playout information from participants in a synchronization group can be collected. Based on the collected information, an RTCP IDMS Settings Packet can then be sent to distribute a common target playout point to which all the distributed receivers, sharing a media experience, can synchronize. Typical use cases in which IDMS is useful are social TV, shared service control (i.e., applications where two or more geographically separated users are watching a media stream together), distance learning, networked video walls, networked loudspeakers, etc."];
+  RFC7272 -> rev_cites;
+  RFC7273 [label="RFC7273
+RTP Clock Source Signalling
+2014", shape=ellipse, URL="RFC7273.html", target="_top", tooltip="NTP format timestamps are used by several RTP protocols for synchronisation and statistical measurements.  This memo specifies Session Description Protocol (SDP) signalling that identifies timestamp reference clock sources and SDP signalling that identifies the media clock sources in a multimedia session."];
+  RFC7273 -> rev_cites;
+  RFC8088 [label="RFC8088
+How to Write an RTP Payload Format
+2017", shape=ellipse, URL="RFC8088.html", target="_top", tooltip="This document contains information on how best to write an RTP payload format specification.  It provides reading tips, design practices, and practical tips on how to produce an RTP payload format specification quickly and with good results.  A template is also included with instructions."];
+  RFC8088 -> rev_cites;
+  RFC8834 [label="RFC8834
+Media Transport and Use of RTP in WebRTC
+2021", shape=ellipse, URL="RFC8834.html", target="_top", tooltip="The framework for Web Real-Time Communication (WebRTC) provides support for direct interactive rich communication using audio, video, text, collaboration, games, etc.  between two peers' web browsers.  This memo describes the media transport aspects of the WebRTC framework.  It specifies how the Real-time Transport Protocol (RTP) is used in the WebRTC context and gives requirements for which RTP features, profiles, and extensions need to be supported."];
+  RFC8834 -> rev_cites;
+}

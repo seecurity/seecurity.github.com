@@ -1,0 +1,60 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8459 [label="RFC8459
+Hierarchical Service Function Chaining
+(hSFC)
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="Hierarchical Service Function Chaining (hSFC) is a network architecture allowing an organization to decompose a large-scale network into multiple domains of administration. The goals of hSFC are to make a large-scale network easier to design, simpler to control, and supportive of independent functional groups within large network operators."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8459;
+
+  obs [label="obsoletes", shape=box];
+  RFC8459 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8459 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8459;
+
+  cites [label="cites", shape=box];
+  RFC8459 -> cites;
+  RFC7665 [label="RFC7665
+Service Function Chaining (SFC)
+Architecture
+2015", shape=ellipse, URL="RFC7665.html", target="_top", tooltip="This document describes an architecture for the specification, creation, and ongoing maintenance of Service Function Chains (SFCs) in a network.  It includes architectural concepts, principles, and components used in the construction of composite services through deployment of SFCs, with a focus on those to be standardized in the IETF.  This document does not propose solutions, protocols, or extensions to existing protocols."];
+  cites -> RFC7665;
+  RFC8300 [label="RFC8300
+Network Service Header (NSH)
+2018", shape=ellipse, URL="RFC8300.html", target="_top", tooltip="This document describes a Network Service Header (NSH) imposed on packets or frames to realize Service Function Paths (SFPs).  The NSH also provides a mechanism for metadata exchange along the instantiated service paths.  The NSH is the Service Function Chaining (SFC) encapsulation required to support the SFC architecture (defined in RFC 7665)."];
+  cites -> RFC8300;
+  RFC3443 [label="RFC3443
+Time To Live (TTL) Processing in Multi-
+Protocol Label Switching (MPLS) Networks
+2003", shape=ellipse, URL="RFC3443.html", target="_top", tooltip="This document describes Time To Live (TTL) processing in hierarchical Multi-Protocol Label Switching (MPLS) networks and is motivated by the need to formalize a TTL-transparent mode of operation for an MPLS label-switched path.  It updates RFC 3032, MPLS Label Stack Encoding.  TTL processing in both Pipe and Uniform Model hierarchical tunnels are specified with examples for both push and pop cases.  The document also complements RFC 3270, MPLS Support of Differentiated Services and ties together the terminology introduced in that document with TTL processing in hierarchical MPLS networks. [STANDARDS-TRACK]"];
+  cites -> RFC3443;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8459;
+  RFC8595 [label="RFC8595
+An MPLS-Based Forwarding Plane for
+Service Function Chaining
+2019", shape=ellipse, URL="RFC8595.html", target="_top", tooltip="This document describes how Service Function Chaining (SFC) can be achieved in an MPLS network by means of a logical representation of the Network Service Header (NSH) in an MPLS label stack.  That is, the NSH is not used, but the fields of the NSH are mapped to fields in the MPLS label stack.  This approach does not deprecate or replace the NSH, but it acknowledges that there may be a need for an interim deployment of SFC functionality in brownfield networks."];
+  RFC8595 -> rev_cites;
+  RFC8924 [label="RFC8924
+Service Function Chaining (SFC)
+Operations, Administration, and
+Maintenance (OAM) Framework
+2020", shape=ellipse, URL="RFC8924.html", target="_top", tooltip="This document provides a reference framework for Operations, Administration, and Maintenance (OAM) for Service Function Chaining (SFC)."];
+  RFC8924 -> rev_cites;
+  RFC9145 [label="RFC9145
+Integrity Protection for the Network
+Service Header (NSH) and Encryption of
+Sensitive Context Headers
+2021", shape=ellipse, URL="RFC9145.html", target="_top", tooltip="This specification presents an optional method to add integrity protection directly to the Network Service Header (NSH) used for Service Function Chaining (SFC).  Also, this specification allows for the encryption of sensitive metadata (MD) that is carried in the NSH."];
+  RFC9145 -> rev_cites;
+}

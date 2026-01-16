@@ -1,0 +1,65 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5267 [label="RFC5267
+Contexts for IMAP4
+2008", shape=ellipse, fillcolor="#e8f0ff", tooltip="The IMAP4rev1 protocol has powerful search facilities as part of the core protocol, but lacks the ability to create live, updated results that can be easily handled.  This memo provides such an extension, and shows how it can be used to provide a facility similar to virtual mailboxes. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5267;
+
+  obs [label="obsoletes", shape=box];
+  RFC5267 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5267 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5267;
+  RFC5465 [label="RFC5465
+The IMAP NOTIFY Extension
+2009", shape=ellipse, URL="RFC5465.html", target="_top", tooltip="This document defines an IMAP extension that allows a client to request specific kinds of unsolicited notifications for specified mailboxes, such as messages being added to or deleted from such mailboxes. [STANDARDS-TRACK]"];
+  RFC5465 -> updated_by;
+  RFC9394 [label="RFC9394
+IMAP PARTIAL Extension for Paged SEARCH
+and FETCH
+2023", shape=ellipse, URL="RFC9394.html", target="_top", tooltip="The PARTIAL extension of the Internet Message Access Protocol (see RFCs 3501 and 9051) allows clients to limit the number of SEARCH results returned, as well as to perform incremental (paged) searches. This also helps servers to optimize resource usage when performing searches. This document extends the PARTIAL SEARCH return option originally specified in RFC 5267. It also clarifies some interactions between RFC 5267 and RFCs 4731 and 9051. This document updates RFCs 4731 and 5267."];
+  RFC9394 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC5267 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5267;
+  RFC5465 [label="RFC5465
+The IMAP NOTIFY Extension
+2009", shape=ellipse, URL="RFC5465.html", target="_top", tooltip="This document defines an IMAP extension that allows a client to request specific kinds of unsolicited notifications for specified mailboxes, such as messages being added to or deleted from such mailboxes. [STANDARDS-TRACK]"];
+  RFC5465 -> rev_cites;
+  RFC6237 [label="RFC6237
+IMAP4 Multimailbox SEARCH Extension
+2011", shape=ellipse, URL="RFC6237.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the round trips and waiting for various searches to complete, and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466.  This document defines an Experimental Protocol for the Internet community."];
+  RFC6237 -> rev_cites;
+  RFC7162 [label="RFC7162
+IMAP Extensions: Quick Flag Changes
+Resynchronization (CONDSTORE) and Quick
+Mailbox Resynchronization (QRESYNC)
+2014", shape=ellipse, URL="RFC7162.html", target="_top", tooltip="Often, multiple IMAP (RFC 3501) clients need to coordinate changes to a common IMAP mailbox. Examples include different clients working on behalf of the same user and multiple users accessing shared mailboxes. These clients need a mechanism to efficiently synchronize state changes for messages within the mailbox. Initially defined in RFC 4551, the Conditional Store facility provides a protected update mechanism for message state information and a mechanism for requesting only changes to the message state. This memo updates that mechanism and obsoletes RFC 4551, based on operational experience. This document additionally updates another IMAP extension, Quick Resynchronization, which builds on the Conditional STORE extension to provide an IMAP client the ability to fully resynchronize a mailbox as part of the SELECT/EXAMINE command, without the need for additional server-side state or client round trips. Hence, this memo obsoletes RFC 5162. Finally, this document also updates the line-length recommendation in Section 3.2.1.5 of RFC 2683."];
+  RFC7162 -> rev_cites;
+  RFC7377 [label="RFC7377
+IMAP4 Multimailbox SEARCH Extension
+2014", shape=ellipse, URL="RFC7377.html", target="_top", tooltip="The IMAP4 specification allows the searching of only the selected mailbox.  A user often wants to search multiple mailboxes, and a client that wishes to support this must issue a series of SELECT and SEARCH commands, waiting for each to complete before moving on to the next.  This extension allows a client to search multiple mailboxes with one command, limiting the delays caused by many round trips and not requiring disruption of the currently selected mailbox.  This extension also uses MAILBOX, UIDVALIDITY, and TAG fields in ESEARCH responses, allowing a client to pipeline the searches if it chooses.  This document updates RFC 4466 and obsoletes RFC 6237."];
+  RFC7377 -> rev_cites;
+  RFC8437 [label="RFC8437
+IMAP UNAUTHENTICATE Extension for
+Connection Reuse
+2018", shape=ellipse, URL="RFC8437.html", target="_top", tooltip="This specification extends the Internet Message Access Protocol (IMAP) to allow an administrative client to reuse the same IMAP connection on behalf of multiple IMAP user identities."];
+  RFC8437 -> rev_cites;
+  RFC9394 [label="RFC9394
+IMAP PARTIAL Extension for Paged SEARCH
+and FETCH
+2023", shape=ellipse, URL="RFC9394.html", target="_top", tooltip="The PARTIAL extension of the Internet Message Access Protocol (see RFCs 3501 and 9051) allows clients to limit the number of SEARCH results returned, as well as to perform incremental (paged) searches. This also helps servers to optimize resource usage when performing searches. This document extends the PARTIAL SEARCH return option originally specified in RFC 5267. It also clarifies some interactions between RFC 5267 and RFCs 4731 and 9051. This document updates RFCs 4731 and 5267."];
+  RFC9394 -> rev_cites;
+}

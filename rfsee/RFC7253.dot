@@ -1,0 +1,54 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7253 [label="RFC7253
+The OCB Authenticated-Encryption
+Algorithm
+2014", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies OCB, a shared-key blockcipher-based encryption scheme that provides confidentiality and authenticity for plaintexts and authenticity for associated data.  This document is a product of the Crypto Forum Research Group (CFRG)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7253;
+
+  obs [label="obsoletes", shape=box];
+  RFC7253 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7253 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7253;
+
+  cites [label="cites", shape=box];
+  RFC7253 -> cites;
+  RFC5116 [label="RFC5116
+An Interface and Algorithms for
+Authenticated Encryption
+2008", shape=ellipse, URL="RFC5116.html", target="_top", tooltip="This document defines algorithms for Authenticated Encryption with Associated Data (AEAD), and defines a uniform interface and a registry for such algorithms.  The interface and registry can be used as an application-independent set of cryptoalgorithm suites.  This approach provides advantages in efficiency and security, and promotes the reuse of crypto implementations. [STANDARDS-TRACK]"];
+  cites -> RFC5116;
+  RFC4107 [label="RFC4107
+Guidelines for Cryptographic Key
+Management
+2005", shape=ellipse, URL="RFC4107.html", target="_top", tooltip="The question often arises of whether a given security system requires some form of automated key management, or whether manual keying is sufficient.  This memo provides guidelines for making such decisions.  When symmetric cryptographic mechanisms are used in a protocol, the presumption is that automated key management is generally but not always needed.  If manual keying is proposed, the burden of proving that automated key management is not required falls to the proposer.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC4107;
+  RFC5297 [label="RFC5297
+Synthetic Initialization Vector (SIV)
+Authenticated Encryption Using the
+Advanced Encryption Standard (AES)
+2008", shape=ellipse, URL="RFC5297.html", target="_top", tooltip="This memo describes SIV (Synthetic Initialization Vector), a block cipher mode of operation.  SIV takes a key, a plaintext, and multiple variable-length octet strings that will be authenticated but not encrypted.  It produces a ciphertext having the same length as the plaintext and a synthetic initialization vector.  Depending on how it is used, SIV achieves either the goal of deterministic authenticated encryption or the goal of nonce-based, misuse-resistant authenticated encryption.  This memo provides information for the Internet community."];
+  cites -> RFC5297;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7253;
+  RFC9580 [label="RFC9580
+OpenPGP
+2024", shape=ellipse, URL="RFC9580.html", target="_top", tooltip="This document specifies the message formats used in OpenPGP. OpenPGP provides encryption with public key or symmetric cryptographic algorithms, digital signatures, compression, and key management. This document is maintained in order to publish all necessary information needed to develop interoperable applications based on the OpenPGP format. It is not a step-by-step cookbook for writing an application. It describes only the format and methods needed to read, check, generate, and write conforming packets crossing any network. It does not deal with storage and implementation questions. It does, however, discuss implementation issues necessary to avoid security flaws. This document obsoletes RFCs 4880 (OpenPGP Message Format), 5581 (The Camellia Cipher in OpenPGP), and 6637 (Elliptic Curve Cryptography (ECC) in OpenPGP)."];
+  RFC9580 -> rev_cites;
+  RFC9771 [label="RFC9771
+Properties of Authenticated Encryption
+with Associated Data (AEAD) Algorithms
+2025", shape=ellipse, URL="RFC9771.html", target="_top", tooltip="Authenticated Encryption with Associated Data (AEAD) algorithms provide both confidentiality and integrity of data.  The widespread use of AEAD algorithms in various applications has led to an increased demand for AEAD algorithms with additional properties, driving research in the field.  This document provides definitions for the most common of those properties and aims to improve consistency in the terminology used in documentation.  This document is a product of the Crypto Forum Research Group."];
+  RFC9771 -> rev_cites;
+}

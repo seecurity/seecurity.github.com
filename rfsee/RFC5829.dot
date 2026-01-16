@@ -1,0 +1,51 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5829 [label="RFC5829
+Link Relation Types for Simple Version
+Navigation between Web Resources
+2010", shape=ellipse, fillcolor="#e8f0ff", tooltip="This specification defines a set of link relation types that may be used on Web resources for navigation between a resource and other resources related to version control, such as past versions and working copies.  This document is not an Internet Standards Track specification; it is published for informational purposes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5829;
+
+  obs [label="obsoletes", shape=box];
+  RFC5829 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5829 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5829;
+
+  cites [label="cites", shape=box];
+  RFC5829 -> cites;
+  RFC5023 [label="RFC5023
+The Atom Publishing Protocol
+2007", shape=ellipse, URL="RFC5023.html", target="_top", tooltip="The Atom Publishing Protocol (AtomPub) is an application-level protocol for publishing and editing Web resources.  The protocol is based on HTTP transfer of Atom-formatted representations.  The Atom format is documented in the Atom Syndication Format. [STANDARDS-TRACK]"];
+  cites -> RFC5023;
+  RFC3253 [label="RFC3253
+Versioning Extensions to WebDAV (Web
+Distributed Authoring and Versioning)
+2002", shape=ellipse, URL="RFC3253.html", target="_top", tooltip="This document specifies a set of methods, headers, and resource types that define the WebDAV (Web Distributed Authoring and Versioning) versioning extensions to the HTTP/1.1 protocol. [STANDARDS-TRACK]"];
+  cites -> RFC3253;
+  RFC4287 [label="RFC4287
+The Atom Syndication Format
+2005", shape=ellipse, URL="RFC4287.html", target="_top", tooltip="This document specifies Atom, an XML-based Web content and metadata syndication format. [STANDARDS-TRACK]"];
+  cites -> RFC4287;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5829;
+  RFC5988 [label="RFC5988
+Web Linking
+2010", shape=ellipse, URL="RFC5988.html", target="_top", tooltip="This document specifies relation types for Web links, and defines a registry for them.  It also defines the use of such links in HTTP headers with the Link header field. [STANDARDS-TRACK]"];
+  RFC5988 -> rev_cites;
+  RFC7089 [label="RFC7089
+HTTP Framework for Time-Based Access to
+Resource States -- Memento
+2013", shape=ellipse, URL="RFC7089.html", target="_top", tooltip="The HTTP-based Memento framework bridges the present and past Web.  It facilitates obtaining representations of prior states of a given resource by introducing datetime negotiation and TimeMaps.  Datetime negotiation is a variation on content negotiation that leverages the given resource's URI and a user agent's preferred datetime.  TimeMaps are lists that enumerate URIs of resources that encapsulate prior states of the given resource.  The framework also facilitates recognizing a resource that encapsulates a frozen prior state of another resource."];
+  RFC7089 -> rev_cites;
+}

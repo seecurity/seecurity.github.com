@@ -1,0 +1,41 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5469 [label="RFC5469
+DES and IDEA Cipher Suites for Transport
+Layer Security (TLS)
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="Transport Layer Security (TLS) versions 1.0 (RFC 2246) and 1.1 (RFC 4346) include cipher suites based on DES (Data Encryption Standard) and IDEA (International Data Encryption Algorithm) algorithms.  DES (when used in single-DES mode) and IDEA are no longer recommended for general use in TLS, and have been removed from TLS version 1.2 (RFC 5246).  This document specifies these cipher suites for completeness and discusses reasons why their use is no longer recommended.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5469;
+  RFC8996 [label="RFC8996
+Deprecating TLS 1.0 and TLS 1.1
+2021", shape=ellipse, URL="RFC8996.html", target="_top", tooltip="This document formally deprecates Transport Layer Security (TLS) versions 1.0 (RFC 2246) and 1.1 (RFC 4346). Accordingly, those documents have been moved to Historic status. These versions lack support for current and recommended cryptographic algorithms and mechanisms, and various government and industry profiles of applications using TLS now mandate avoiding these old TLS versions. TLS version 1.2 became the recommended version for IETF protocols in 2008 (subsequently being obsoleted by TLS version 1.3 in 2018), providing sufficient time to transition away from older versions. Removing support for older versions from implementations reduces the attack surface, reduces opportunity for misconfiguration, and streamlines library and product maintenance. This document also deprecates Datagram TLS (DTLS) version 1.0 (RFC 4347) but not DTLS version 1.2, and there is no DTLS version 1.1. This document updates many RFCs that normatively refer to TLS version 1.0 or TLS version 1.1, as described herein. This document also updates the best practices for TLS usage in RFC 7525; hence, it is part of BCP 195."];
+  RFC8996 -> obs_by;
+
+  obs [label="obsoletes", shape=box];
+  RFC5469 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC5469 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5469;
+
+  cites [label="cites", shape=box];
+  RFC5469 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5469;
+  RFC8996 [label="RFC8996
+Deprecating TLS 1.0 and TLS 1.1
+2021", shape=ellipse, URL="RFC8996.html", target="_top", tooltip="This document formally deprecates Transport Layer Security (TLS) versions 1.0 (RFC 2246) and 1.1 (RFC 4346). Accordingly, those documents have been moved to Historic status. These versions lack support for current and recommended cryptographic algorithms and mechanisms, and various government and industry profiles of applications using TLS now mandate avoiding these old TLS versions. TLS version 1.2 became the recommended version for IETF protocols in 2008 (subsequently being obsoleted by TLS version 1.3 in 2018), providing sufficient time to transition away from older versions. Removing support for older versions from implementations reduces the attack surface, reduces opportunity for misconfiguration, and streamlines library and product maintenance. This document also deprecates Datagram TLS (DTLS) version 1.0 (RFC 4347) but not DTLS version 1.2, and there is no DTLS version 1.1. This document updates many RFCs that normatively refer to TLS version 1.0 or TLS version 1.1, as described herein. This document also updates the best practices for TLS usage in RFC 7525; hence, it is part of BCP 195."];
+  RFC8996 -> rev_cites;
+  RFC9847 [label="RFC9847
+IANA Registry Updates for TLS and DTLS
+2025", shape=ellipse, URL="RFC9847.html", target="_top", tooltip="This document updates the changes to the TLS and DTLS IANA registries made in RFC 8447. It adds a new value, D for discouraged, to the Recommended column of the selected TLS registries and adds a Comment column to all active registries that do not already have a Comment column. Finally, it updates the registration request instructions. This document updates RFC 8447."];
+  RFC9847 -> rev_cites;
+}

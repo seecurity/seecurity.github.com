@@ -1,0 +1,58 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4043 [label="RFC4043
+Internet X.509 Public Key Infrastructure
+Permanent Identifier
+2005", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a new form of name, called permanent identifier, that may be included in the subjectAltName extension of a public key certificate issued to an entity. The permanent identifier is an optional feature that may be used by a CA to indicate that two or more certificates relate to the same entity, even if they contain different subject name (DNs) or different names in the subjectAltName extension, or if the name or the affiliation of that entity stored in the subject or another name form in the subjectAltName extension has changed. The subject name, carried in the subject field, is only unique for each subject entity certified by the one CA as defined by the issuer name field. However, the new name form can carry a name that is unique for each subject entity certified by a CA. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4043;
+
+  obs [label="obsoletes", shape=box];
+  RFC4043 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4043 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4043;
+
+  cites [label="cites", shape=box];
+  RFC4043 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC3280 [label="RFC3280
+Internet X.509 Public Key Infrastructure
+Certificate and Certificate Revocation
+List (CRL) Profile
+2002", shape=ellipse, URL="RFC3280.html", target="_top", tooltip="This memo profiles the X.509 v3 certificate and X.509 v2 Certificate Revocation List (CRL) for use in the Internet. [STANDARDS-TRACK]"];
+  cites -> RFC3280;
+  RFC3852 [label="RFC3852
+Cryptographic Message Syntax (CMS)
+2004", shape=ellipse, URL="RFC3852.html", target="_top", tooltip="This document describes the Cryptographic Message Syntax (CMS).  This syntax is used to digitally sign, digest, authenticate, or encrypt arbitrary message content. [STANDARDS-TRACK]"];
+  cites -> RFC3852;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4043;
+  RFC4683 [label="RFC4683
+Internet X.509 Public Key Infrastructure
+Subject Identification Method (SIM)
+2006", shape=ellipse, URL="RFC4683.html", target="_top", tooltip="This document defines the Subject Identification Method (SIM) for including a privacy-sensitive identifier in the subjectAltName extension of a certificate. The SIM is an optional feature that may be used by relying parties to determine whether the subject of a particular certificate is also the person corresponding to a particular sensitive identifier. [STANDARDS-TRACK]"];
+  RFC4683 -> rev_cites;
+  RFC5697 [label="RFC5697
+Other Certificates Extension
+2009", shape=ellipse, URL="RFC5697.html", target="_top", tooltip="Some applications that associate state information with public key certificates can benefit from a way to link together a set of certificates that belong to the same end entity and that can safely be considered equivalent to one another for the purposes of referencing that application-state information.  This memo defines a certificate extension that allows applications to establish the required linkage without introducing a new application protocol data unit.  This memo defines an Experimental Protocol for the Internet community."];
+  RFC5697 -> rev_cites;
+  RFC7299 [label="RFC7299
+Object Identifier Registry for the PKIX
+Working Group
+2014", shape=ellipse, URL="RFC7299.html", target="_top", tooltip="When the Public-Key Infrastructure using X.509 (PKIX) Working Group was chartered, an object identifier arc was allocated by IANA for use by that working group.  This document describes the object identifiers that were assigned in that arc, returns control of that arc to IANA, and establishes IANA allocation policies for any future assignments within that arc."];
+  RFC7299 -> rev_cites;
+}

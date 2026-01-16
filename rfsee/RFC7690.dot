@@ -1,0 +1,54 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7690 [label="RFC7690
+Close Encounters of the ICMP Type 2 Kind
+(Near Misses with ICMPv6 Packet Too Big
+(PTB))
+2016", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document calls attention to the problem of delivering ICMPv6 type 2 Packet Too Big (PTB) messages to the intended destination (typically the server) in ECMP load-balanced or anycast network architectures.  It discusses operational mitigations that can be employed to address this class of failures."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7690;
+
+  obs [label="obsoletes", shape=box];
+  RFC7690 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7690 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7690;
+
+  cites [label="cites", shape=box];
+  RFC7690 -> cites;
+  RFC1981 [label="RFC1981
+Path MTU Discovery for IP version 6
+1996", shape=ellipse, URL="RFC1981.html", target="_top", tooltip="This document describes Path MTU Discovery for IP version 6.  It is largely derived from RFC 1191, which describes Path MTU Discovery for IP version 4. [STANDARDS-TRACK]"];
+  cites -> RFC1981;
+  RFC2991 [label="RFC2991
+Multipath Issues in Unicast and
+Multicast Next-Hop Selection
+2000", shape=ellipse, URL="RFC2991.html", target="_top", tooltip="The effect of multipath routing on a forwarder is that the forwarder potentially has several next-hops for any given destination and must use some method to choose which next-hop should be used for a given data packet.  This memo summarizes current practices, problems, and solutions.  This memo provides information for the Internet community."];
+  cites -> RFC2991;
+  RFC6555 [label="RFC6555
+Happy Eyeballs: Success with Dual-Stack
+Hosts
+2012", shape=ellipse, URL="RFC6555.html", target="_top", tooltip="When a server's IPv4 path and protocol are working, but the server's IPv6 path and protocol are not working, a dual-stack client application experiences significant connection delay compared to an IPv4-only client.  This is undesirable because it causes the dual- stack client to have a worse user experience.  This document specifies requirements for algorithms that reduce this user-visible delay and provides an algorithm. [STANDARDS-TRACK]"];
+  cites -> RFC6555;
+  RFC4821 [label="RFC4821
+Packetization Layer Path MTU Discovery
+2007", shape=ellipse, URL="RFC4821.html", target="_top", tooltip="This document describes a robust method for Path MTU Discovery (PMTUD) that relies on TCP or some other Packetization Layer to probe an Internet path with progressively larger packets.  This method is described as an extension to RFC 1191 and RFC 1981, which specify ICMP-based Path MTU Discovery for IP versions 4 and 6, respectively. [STANDARDS-TRACK]"];
+  cites -> RFC4821;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7690;
+  RFC8517 [label="RFC8517
+An Inventory of Transport-Centric
+Functions Provided by Middleboxes: An
+Operator Perspective
+2019", shape=ellipse, URL="RFC8517.html", target="_top", tooltip="This document summarizes an operator's perception of the benefits that may be provided by intermediary devices that execute functions beyond normal IP forwarding. Such intermediary devices are often called middleboxes. RFC 3234 defines a taxonomy of middleboxes and issues in the Internet. Most of those middleboxes utilize or modify application- layer data. This document primarily focuses on devices that observe and act on information carried in the transport layer, and especially information carried in TCP packets."];
+  RFC8517 -> rev_cites;
+}

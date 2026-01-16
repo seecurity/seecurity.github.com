@@ -1,0 +1,50 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8125 [label="RFC8125
+Requirements for Password-Authenticated
+Key Agreement (PAKE) Schemes
+2017", shape=ellipse, fillcolor="#e8f0ff", tooltip="Password-Authenticated Key Agreement (PAKE) schemes are interactive protocols that allow the participants to authenticate each other and derive shared cryptographic keys using a (weaker) shared password.  This document reviews different types of PAKE schemes.  Furthermore, it presents requirements and gives recommendations to designers of new schemes.  It is a product of the Crypto Forum Research Group (CFRG)."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8125;
+
+  obs [label="obsoletes", shape=box];
+  RFC8125 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8125 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8125;
+
+  cites [label="cites", shape=box];
+  RFC8125 -> cites;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC5246 [label="RFC5246
+The Transport Layer Security (TLS)
+Protocol Version 1.2
+2008", shape=ellipse, URL="RFC5246.html", target="_top", tooltip="This document specifies Version 1.2 of the Transport Layer Security (TLS) protocol.  The TLS protocol provides communications security over the Internet.  The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery. [STANDARDS-TRACK]"];
+  cites -> RFC5246;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8125;
+  RFC9588 [label="RFC9588
+Kerberos Simple Password-Authenticated
+Key Exchange (SPAKE) Pre-authentication
+2024", shape=ellipse, URL="RFC9588.html", target="_top", tooltip="This document defines a new pre-authentication mechanism for the Kerberos protocol.  The mechanism uses a password-authenticated key exchange (PAKE) to prevent brute-force password attacks, and it may incorporate a second factor."];
+  RFC9588 -> rev_cites;
+  RFC9807 [label="RFC9807
+The OPAQUE Augmented Password-
+Authenticated Key Exchange (aPAKE)
+Protocol
+2025", shape=ellipse, URL="RFC9807.html", target="_top", tooltip="This document describes the OPAQUE protocol, an Augmented (or Asymmetric) Password-Authenticated Key Exchange (aPAKE) protocol that supports mutual authentication in a client-server setting without reliance on PKI and with security against pre-computation attacks upon server compromise.  In addition, the protocol provides forward secrecy and the ability to hide the password from the server, even during password registration.  This document specifies the core OPAQUE protocol and one instantiation based on 3DH.  This document is a product of the Crypto Forum Research Group (CFRG) in the IRTF."];
+  RFC9807 -> rev_cites;
+}

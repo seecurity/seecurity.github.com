@@ -1,0 +1,51 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6921 [label="RFC6921
+Design Considerations for Faster-Than-
+Light (FTL) Communication
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="We are approaching the time when we will be able to communicate faster than the speed of light.  It is well known that as we approach the speed of light, time slows down.  Logically, it is reasonable to assume that as we go faster than the speed of light, time will reverse.  The major consequence of this for Internet protocols is that packets will arrive before they are sent.  This will have a major impact on the way we design Internet protocols.  This paper outlines some of the issues and suggests some directions for additional analysis of these issues."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6921;
+
+  obs [label="obsoletes", shape=box];
+  RFC6921 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6921 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6921;
+
+  cites [label="cites", shape=box];
+  RFC6921 -> cites;
+  RFC4838 [label="RFC4838
+Delay-Tolerant Networking Architecture
+2007", shape=ellipse, URL="RFC4838.html", target="_top", tooltip="This document describes an architecture for delay-tolerant and disruption-tolerant networks, and is an evolution of the architecture originally designed for the Interplanetary Internet, a communication system envisioned to provide Internet-like services across interplanetary distances in support of deep space exploration.  This document describes an architecture that addresses a variety of problems with internetworks having operational and performance characteristics that make conventional (Internet-like) networking approaches either unworkable or impractical.  We define a message- oriented overlay that exists above the transport (or other) layers of the networks it interconnects.  The document presents a motivation for the architecture, an architectural overview, review of state management required for its operation, and a discussion of application design issues.  This document represents the consensus of the IRTF DTN research group and has been widely reviewed by that group.  This memo provides information for the Internet community."];
+  cites -> RFC4838;
+  RFC2679 [label="RFC2679
+A One-way Delay Metric for IPPM
+1999", shape=ellipse, URL="RFC2679.html", target="_top", tooltip="This memo defines a metric for one-way delay of packets across Internet paths. [STANDARDS-TRACK]"];
+  cites -> RFC2679;
+  RFC3248 [label="RFC3248
+A Delay Bound alternative revision of
+RFC 2598
+2002", shape=ellipse, URL="RFC3248.html", target="_top", tooltip="For historical interest, this document captures the EF Design Team's proposed solution, preferred by the original authors of RFC 2598 but not adopted by the working group in December 2000.  The original definition of EF was based on comparison of forwarding on an unloaded network.  This experimental Delay Bound (DB) PHB requires a bound on the delay of packets due to other traffic in the network.  At the Pittsburgh IETF meeting in August 2000, the Differentiated Services working group faced serious questions regarding RFC 2598 - the group's standards track definition of the Expedited Forwarding (EF) Per Hop Behavior (PHB).  An 'EF Design Team' volunteered to develop a re-expression of RFC 2598, bearing in mind the issues raised in the DiffServ group.  At the San Diego IETF meeting in December 2000 the DiffServ working group decided to pursue an alternative re-expression of the EF PHB.  This memo provides information for the Internet community."];
+  cites -> RFC3248;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6921;
+  RFC7679 [label="RFC7679
+A One-Way Delay Metric for IP
+Performance Metrics (IPPM)
+2016", shape=ellipse, URL="RFC7679.html", target="_top", tooltip="This memo defines a metric for one-way delay of packets across Internet paths.  It builds on notions introduced and discussed in the IP Performance Metrics (IPPM) Framework document, RFC 2330; the reader is assumed to be familiar with that document.  This memo makes RFC 2679 obsolete."];
+  RFC7679 -> rev_cites;
+  RFC8774 [label="RFC8774
+The Quantum Bug
+2020", shape=ellipse, URL="RFC8774.html", target="_top", tooltip="The age of quantum networking is upon us, and with it comes entanglement: a procedure in which a state (i.e., a bit) can be transferred instantly, with no measurable delay between peers.  This will lead to a perceived round-trip time of zero seconds on some Internet paths, a capability which was not predicted and so not included as a possibility in many protocol specifications.  Worse than the millennium bug, this unexpected value is bound to cause serious Internet failures unless the specifications are fixed in time."];
+  RFC8774 -> rev_cites;
+}

@@ -1,0 +1,62 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8307 [label="RFC8307
+Well-Known URIs for the WebSocket
+Protocol
+2018", shape=ellipse, fillcolor="#e8f0ff", tooltip="RFC 5785 defines a path prefix, /.well-known/, that can be used by well-known URIs.  It was specifically defined for the http and https URI schemes.  The present memo formally updates RFC 6455, which defines the URI schemes defined for the WebSocket Protocol, to extend the use of these well-known URIs to those URI schemes."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8307;
+
+  obs [label="obsoletes", shape=box];
+  RFC8307 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC8307 -> updates;
+  RFC6455 [label="RFC6455
+The WebSocket Protocol
+2011", shape=ellipse, URL="RFC6455.html", target="_top", tooltip="The WebSocket Protocol enables two-way communication between a client running untrusted code in a controlled environment to a remote host that has opted-in to communications from that code.  The security model used for this is the origin-based security model commonly used by web browsers.  The protocol consists of an opening handshake followed by basic message framing, layered over TCP.  The goal of this technology is to provide a mechanism for browser-based applications that need two-way communication with servers that does not rely on opening multiple HTTP connections (e.g., using XMLHttpRequest or <iframe>s and long polling). [STANDARDS-TRACK]"];
+  updates -> RFC6455;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8307;
+
+  cites [label="cites", shape=box];
+  RFC8307 -> cites;
+  RFC5785 [label="RFC5785
+Defining Well-Known Uniform Resource
+Identifiers (URIs)
+2010", shape=ellipse, URL="RFC5785.html", target="_top", tooltip="This memo defines a path prefix for well-known locations, /.well-known/, in selected Uniform Resource Identifier (URI) schemes. [STANDARDS-TRACK]"];
+  cites -> RFC5785;
+  RFC7230 [label="RFC7230
+Hypertext Transfer Protocol (HTTP/1.1):
+Message Syntax and Routing
+2014", shape=ellipse, URL="RFC7230.html", target="_top", tooltip="The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems.  This document provides an overview of HTTP architecture and its associated terminology, defines the http and https Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations."];
+  cites -> RFC7230;
+  RFC7252 [label="RFC7252
+The Constrained Application Protocol
+(CoAP)
+2014", shape=ellipse, URL="RFC7252.html", target="_top", tooltip="The Constrained Application Protocol (CoAP) is a specialized web transfer protocol for use with constrained nodes and constrained (e.g., low-power, lossy) networks. The nodes often have 8-bit microcontrollers with small amounts of ROM and RAM, while constrained networks such as IPv6 over Low-Power Wireless Personal Area Networks (6LoWPANs) often have high packet error rates and a typical throughput of 10s of kbit/s. The protocol is designed for machine- to-machine (M2M) applications such as smart energy and building automation. CoAP provides a request/response interaction model between application endpoints, supports built-in discovery of services and resources, and includes key concepts of the Web such as URIs and Internet media types. CoAP is designed to easily interface with HTTP for integration with the Web while meeting specialized requirements such as multicast support, very low overhead, and simplicity for constrained environments."];
+  cites -> RFC7252;
+  RFC6455 [label="RFC6455
+The WebSocket Protocol
+2011", shape=ellipse, URL="RFC6455.html", target="_top", tooltip="The WebSocket Protocol enables two-way communication between a client running untrusted code in a controlled environment to a remote host that has opted-in to communications from that code.  The security model used for this is the origin-based security model commonly used by web browsers.  The protocol consists of an opening handshake followed by basic message framing, layered over TCP.  The goal of this technology is to provide a mechanism for browser-based applications that need two-way communication with servers that does not rely on opening multiple HTTP connections (e.g., using XMLHttpRequest or <iframe>s and long polling). [STANDARDS-TRACK]"];
+  cites -> RFC6455;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8307;
+  RFC8323 [label="RFC8323
+CoAP (Constrained Application Protocol)
+over TCP, TLS, and WebSockets
+2018", shape=ellipse, URL="RFC8323.html", target="_top", tooltip="The Constrained Application Protocol (CoAP), although inspired by HTTP, was designed to use UDP instead of TCP. The message layer of CoAP over UDP includes support for reliable delivery, simple congestion control, and flow control. Some environments benefit from the availability of CoAP carried over reliable transports such as TCP or Transport Layer Security (TLS). This document outlines the changes required to use CoAP over TCP, TLS, and WebSockets transports. It also formally updates RFC 7641 for use with these transports and RFC 7959 to enable the use of larger messages over a reliable transport."];
+  RFC8323 -> rev_cites;
+  RFC8615 [label="RFC8615
+Well-Known Uniform Resource Identifiers
+(URIs)
+2019", shape=ellipse, URL="RFC8615.html", target="_top", tooltip="This memo defines a path prefix for well-known locations, /.well-known/, in selected Uniform Resource Identifier (URI) schemes. In doing so, it obsoletes RFC 5785 and updates the URI schemes defined in RFC 7230 to reserve that space. It also updates RFC 7595 to track URI schemes that support well-known URIs in their registry."];
+  RFC8615 -> rev_cites;
+}

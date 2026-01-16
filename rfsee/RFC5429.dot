@@ -1,0 +1,72 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC5429 [label="RFC5429
+Sieve Email Filtering: Reject and
+Extended Reject Extensions
+2009", shape=ellipse, fillcolor="#e8f0ff", tooltip="This memo updates the definition of the Sieve mail filtering language reject extension, originally defined in RFC 3028. A Joe-job is a spam run forged to appear as though it came from an innocent party, who is then generally flooded by automated bounces, Message Disposition Notifications (MDNs), and personal messages with complaints. The original Sieve reject action defined in RFC 3028 required use of MDNs for rejecting messages, thus contributing to the flood of Joe-job spam to victims of Joe-jobs. This memo updates the definition of the reject action to allow messages to be refused during the SMTP transaction, and defines the ereject action to require messages to be refused during the SMTP transaction, if possible. The ereject action is intended to replace the reject action wherever possible. The ereject action is similar to reject, but will always favor protocol-level message rejection. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC5429;
+
+  obs [label="obsoletes", shape=box];
+  RFC5429 -> obs;
+  RFC3028 [label="RFC3028
+Sieve: A Mail Filtering Language
+2001", shape=ellipse, URL="RFC3028.html", target="_top", tooltip="This document describes a language for filtering e-mail messages at time of final delivery. [STANDARDS-TRACK]"];
+  obs -> RFC3028;
+
+  updates [label="updates", shape=box];
+  RFC5429 -> updates;
+  RFC5228 [label="RFC5228
+Sieve: An Email Filtering Language
+2008", shape=ellipse, URL="RFC5228.html", target="_top", tooltip="This document describes a language for filtering email messages at time of final delivery.  It is designed to be implementable on either a mail client or mail server.  It is meant to be extensible, simple, and independent of access protocol, mail architecture, and operating system.  It is suitable for running on a mail server where users may not be allowed to execute arbitrary programs, such as on black box Internet Message Access Protocol (IMAP) servers, as the base language has no variables, loops, or ability to shell out to external programs. [STANDARDS-TRACK]"];
+  updates -> RFC5228;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC5429;
+
+  cites [label="cites", shape=box];
+  RFC5429 -> cites;
+  RFC3028 [label="RFC3028
+Sieve: A Mail Filtering Language
+2001", shape=ellipse, URL="RFC3028.html", target="_top", tooltip="This document describes a language for filtering e-mail messages at time of final delivery. [STANDARDS-TRACK]"];
+  cites -> RFC3028;
+  RFC3834 [label="RFC3834
+Recommendations for Automatic Responses
+to Electronic Mail
+2004", shape=ellipse, URL="RFC3834.html", target="_top", tooltip="This memo makes recommendations for software that automatically responds to incoming electronic mail messages, including out of the office or vacation response generators, mail filtering software, email-based information services, and other automatic responders.  The purpose of these recommendations is to discourage undesirable behavior which is caused or aggravated by such software, to encourage uniform behavior (where appropriate) among automatic mail responders, and to clear up some sources of confusion among implementors of automatic email responders. [STANDARDS-TRACK]"];
+  cites -> RFC3834;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC5429;
+  RFC6609 [label="RFC6609
+Sieve Email Filtering: Include Extension
+2012", shape=ellipse, URL="RFC6609.html", target="_top", tooltip="The Sieve Email Filtering include extension permits users to include one Sieve script inside another.  This can make managing large scripts or multiple sets of scripts much easier, and allows a site and its users to build up libraries of scripts.  Users are able to include their own personal scripts or site-wide scripts. [STANDARDS-TRACK]"];
+  RFC6609 -> rev_cites;
+  RFC6785 [label="RFC6785
+Support for Internet Message Access
+Protocol (IMAP) Events in Sieve
+2012", shape=ellipse, URL="RFC6785.html", target="_top", tooltip="Sieve defines an email filtering language that can, in principle, plug into any point in the processing of an email message.  As defined in the base specification, it plugs into mail delivery.  This document defines how Sieve can plug into points in IMAP where messages are created or changed, adding the option of user-defined or installation-defined filtering (or, with Sieve extensions, features such as notifications).  Because this requires future Sieve extensions to specify their interactions with this one, this document updates the base Sieve specification, RFC 5228. [STANDARDS-TRACK]"];
+  RFC6785 -> rev_cites;
+  RFC8098 [label="RFC8098
+Message Disposition Notification
+2017", shape=ellipse, URL="RFC8098.html", target="_top", tooltip="This memo defines a MIME content type that may be used by a Mail User Agent (MUA) or electronic mail gateway to report the disposition of a message after it has been successfully delivered to a recipient. This content type is intended to be machine processable. Additional message header fields are also defined to permit Message Disposition Notifications (MDNs) to be requested by the sender of a message. The purpose is to extend Internet Mail to support functionality often found in other messaging systems, such as X.400 and the proprietary LAN-based systems, and are often referred to as read receipts, acknowledgements, or receipt notifications. The intention is to do this while respecting privacy concerns, which have often been expressed when such functions have been discussed in the past. Because many messages are sent between the Internet and other messaging systems (such as X.400 or the proprietary LAN-based systems), the MDN protocol is designed to be useful in a multiprotocol messaging environment. To this end, the protocol described in this memo provides for the carriage of foreign addresses, in addition to those normally used in Internet Mail. Additional attributes may also be defined to support tunneling of foreign notifications through Internet Mail. This document is an Internet Standard. It obsoletes RFC 3798 and updates RFC 2046 (message/partial media type handling) and RFC 3461 (Original-Recipient header field generation requirement)."];
+  RFC8098 -> rev_cites;
+  RFC8580 [label="RFC8580
+Sieve Extension: File Carbon Copy (FCC)
+2019", shape=ellipse, URL="RFC8580.html", target="_top", tooltip="The Sieve email filtering language provides a number of action commands, some of which can generate additional messages on behalf of the user. This document defines an extension to such commands to allow a copy of any generated message to be filed into a target mailbox. This document updates RFCs 5230 and 5435 by adding a new tagged argument to the Vacation and Notify actions, respectively."];
+  RFC8580 -> rev_cites;
+  RFC9122 [label="RFC9122
+IANA Registry for Sieve Actions
+2023", shape=ellipse, URL="RFC9122.html", target="_top", tooltip="The Sieve Email Filtering Language (RFC 5228) is a popular email filtering language used upon final mail delivery.  This document creates a registry for Sieve actions to help developers and Sieve extension writers track interactions between different extensions."];
+  RFC9122 -> rev_cites;
+  RFC9671 [label="RFC9671
+Sieve Email Filtering: Extension for
+Processing Calendar Attachments
+2024", shape=ellipse, URL="RFC9671.html", target="_top", tooltip="This document describes the processcalendar extension to the Sieve email filtering language.  The processcalendar extension gives Sieve the ability to process machine-readable calendar data that is encapsulated in an email message using Multipurpose Internet Mail Extensions (MIME)."];
+  RFC9671 -> rev_cites;
+}

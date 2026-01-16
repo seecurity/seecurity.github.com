@@ -1,0 +1,44 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC3906 [label="RFC3906
+Calculating Interior Gateway Protocol
+(IGP) Routes Over Traffic Engineering
+Tunnels
+2004", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document describes how conventional hop-by-hop link-state routing protocols interact with new Traffic Engineering capabilities to create Interior Gateway Protocol (IGP) shortcuts.  In particular, this document describes how Dijkstra's Shortest Path First (SPF) algorithm can be adapted so that link-state IGPs will calculate IP routes to forward traffic over tunnels that are set up by Traffic Engineering.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC3906;
+
+  obs [label="obsoletes", shape=box];
+  RFC3906 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC3906 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC3906;
+
+  cites [label="cites", shape=box];
+  RFC3906 -> cites;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC3906;
+  RFC8333 [label="RFC8333
+Micro-loop Prevention by Introducing a
+Local Convergence Delay
+2018", shape=ellipse, URL="RFC8333.html", target="_top", tooltip="This document describes a mechanism for link-state routing protocols that prevents local transient forwarding loops in case of link failure. This mechanism proposes a two-step convergence by introducing a delay between the convergence of the node adjacent to the topology change and the network-wide convergence. Because this mechanism delays the IGP convergence, it may only be used for planned maintenance or when Fast Reroute (FRR) protects the traffic during the time between the link failure and the IGP convergence. The mechanism is limited to the link-down event in order to keep the mechanism simple. Simulations using real network topologies have been performed and show that local loops are a significant portion (>50%) of the total forwarding loops."];
+  RFC8333 -> rev_cites;
+  RFC8687 [label="RFC8687
+OSPF Routing with Cross-Address Family
+Traffic Engineering Tunnels
+2019", shape=ellipse, URL="RFC8687.html", target="_top", tooltip="When using Traffic Engineering (TE) in a dual-stack IPv4/IPv6 network, the Multiprotocol Label Switching (MPLS) TE Label Switched Path (LSP) infrastructure may be duplicated, even if the destination IPv4 and IPv6 addresses belong to the same remote router. In order to achieve an integrated MPLS TE LSP infrastructure, OSPF routes must be computed over MPLS TE tunnels created using information propagated in another OSPF instance. This issue is solved by advertising cross-address family (X-AF) OSPF TE information. This document describes an update to RFC 5786 that allows for the easy identification of a router's local X-AF IP addresses."];
+  RFC8687 -> rev_cites;
+  RFC9350 [label="RFC9350
+IGP Flexible Algorithm
+2023", shape=ellipse, URL="RFC9350.html", target="_top", tooltip="IGP protocols historically compute the best paths over the network based on the IGP metric assigned to the links.  Many network deployments use RSVP-TE or Segment Routing - Traffic Engineering (SR-TE) to steer traffic over a path that is computed using different metrics or constraints than the shortest IGP path.  This document specifies a solution that allows IGPs themselves to compute constraint-based paths over the network.  This document also specifies a way of using Segment Routing (SR) Prefix-SIDs and SRv6 locators to steer packets along the constraint-based paths."];
+  RFC9350 -> rev_cites;
+}

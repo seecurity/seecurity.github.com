@@ -1,0 +1,213 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC8955 [label="RFC8955
+Dissemination of Flow Specification
+Rules
+2020", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines a Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute (intra-domain and inter-domain) traffic Flow Specifications for IPv4 unicast and IPv4 BGP/MPLS VPN services. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. It also specifies BGP Extended Community encoding formats, which can be used to propagate Traffic Filtering Actions along with the Flow Specification NLRI. Those Traffic Filtering Actions encode actions a routing system can take if the packet matches the Flow Specification. This document obsoletes both RFC 5575 and RFC 7674."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC8955;
+
+  obs [label="obsoletes", shape=box];
+  RFC8955 -> obs;
+  RFC5575 [label="RFC5575
+Dissemination of Flow Specification
+Rules
+2009", shape=ellipse, URL="RFC5575.html", target="_top", tooltip="This document defines a new Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute traffic flow specifications. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. Additionally, it defines two applications of that encoding format: one that can be used to automate inter-domain coordination of traffic filtering, such as what is required in order to mitigate (distributed) denial-of-service attacks, and a second application to provide traffic filtering in the context of a BGP/MPLS VPN service. The information is carried via the BGP, thereby reusing protocol algorithms, operational experience, and administrative processes such as inter-provider peering agreements. [STANDARDS-TRACK]"];
+  obs -> RFC5575;
+  RFC7674 [label="RFC7674
+Clarification of the Flowspec Redirect
+Extended Community
+2015", shape=ellipse, URL="RFC7674.html", target="_top", tooltip="This document updates RFC 5575 (Dissemination of Flow Specification Rules) to clarify the formatting of the BGP Flowspec Redirect Extended Community."];
+  obs -> RFC7674;
+
+  updates [label="updates", shape=box];
+  RFC8955 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC8955;
+  RFC8956 [label="RFC8956
+Dissemination of Flow Specification
+Rules for IPv6
+2020", shape=ellipse, URL="RFC8956.html", target="_top", tooltip="Dissemination of Flow Specification Rules (RFC 8955) provides a Border Gateway Protocol (BGP) extension for the propagation of traffic flow information for the purpose of rate limiting or filtering IPv4 protocol data packets. This document extends RFC 8955 with IPv6 functionality. It also updates RFC 8955 by changing the IANA Flow Spec Component Types registry."];
+  RFC8956 -> updated_by;
+  RFC9117 [label="RFC9117
+Revised Validation Procedure for BGP
+Flow Specifications
+2021", shape=ellipse, URL="RFC9117.html", target="_top", tooltip="This document describes a modification to the validation procedure defined for the dissemination of BGP Flow Specifications. The dissemination of BGP Flow Specifications as specified in RFC 8955 requires that the originator of the Flow Specification match the originator of the best-match unicast route for the destination prefix embedded in the Flow Specification. For an Internal Border Gateway Protocol (iBGP) received route, the originator is typically a border router within the same autonomous system (AS). The objective is to allow only BGP speakers within the data forwarding path to originate BGP Flow Specifications. Sometimes it is desirable to originate the BGP Flow Specification from any place within the autonomous system itself, for example, from a centralized BGP route controller. However, the validation procedure described in RFC 8955 will fail in this scenario. The modification proposed herein relaxes the validation rule to enable Flow Specifications to be originated within the same autonomous system as the BGP speaker performing the validation. Additionally, this document revises the AS_PATH validation rules so Flow Specifications received from an External Border Gateway Protocol (eBGP) peer can be validated when such a peer is a BGP route server. This document updates the validation procedure in RFC 8955."];
+  RFC9117 -> updated_by;
+  RFC9184 [label="RFC9184
+BGP Extended Community Registries Update
+2022", shape=ellipse, URL="RFC9184.html", target="_top", tooltip="This document updates several BGP Extended Community registries in order to replace the Experimental Use registration procedure in some entries, since their use is clearly not experimental and is thus misleading. This document updates RFCs 7153 and 8955."];
+  RFC9184 -> updated_by;
+
+  cites [label="cites", shape=box];
+  RFC8955 -> cites;
+  RFC5575 [label="RFC5575
+Dissemination of Flow Specification
+Rules
+2009", shape=ellipse, URL="RFC5575.html", target="_top", tooltip="This document defines a new Border Gateway Protocol Network Layer Reachability Information (BGP NLRI) encoding format that can be used to distribute traffic flow specifications. This allows the routing system to propagate information regarding more specific components of the traffic aggregate defined by an IP destination prefix. Additionally, it defines two applications of that encoding format: one that can be used to automate inter-domain coordination of traffic filtering, such as what is required in order to mitigate (distributed) denial-of-service attacks, and a second application to provide traffic filtering in the context of a BGP/MPLS VPN service. The information is carried via the BGP, thereby reusing protocol algorithms, operational experience, and administrative processes such as inter-provider peering agreements. [STANDARDS-TRACK]"];
+  cites -> RFC5575;
+  RFC7674 [label="RFC7674
+Clarification of the Flowspec Redirect
+Extended Community
+2015", shape=ellipse, URL="RFC7674.html", target="_top", tooltip="This document updates RFC 5575 (Dissemination of Flow Specification Rules) to clarify the formatting of the BGP Flowspec Redirect Extended Community."];
+  cites -> RFC7674;
+  RFC4271 [label="RFC4271
+A Border Gateway Protocol 4 (BGP-4)
+2006", shape=ellipse, URL="RFC4271.html", target="_top", tooltip="This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network class within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. [STANDARDS-TRACK]"];
+  cites -> RFC4271;
+  RFC8956 [label="RFC8956
+Dissemination of Flow Specification
+Rules for IPv6
+2020", shape=ellipse, URL="RFC8956.html", target="_top", tooltip="Dissemination of Flow Specification Rules (RFC 8955) provides a Border Gateway Protocol (BGP) extension for the propagation of traffic flow information for the purpose of rate limiting or filtering IPv4 protocol data packets. This document extends RFC 8955 with IPv6 functionality. It also updates RFC 8955 by changing the IANA Flow Spec Component Types registry."];
+  cites -> RFC8956;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+  RFC8174 [label="RFC8174
+Ambiguity of Uppercase vs Lowercase in
+RFC 2119 Key Words
+2017", shape=ellipse, URL="RFC8174.html", target="_top", tooltip="RFC 2119 specifies common key words that may be used in protocol specifications.  This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings."];
+  cites -> RFC8174;
+  RFC4760 [label="RFC4760
+Multiprotocol Extensions for BGP-4
+2007", shape=ellipse, URL="RFC4760.html", target="_top", tooltip="This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, L3VPN, etc.).  The extensions are backward compatible - a router that supports the extensions can interoperate with a router that doesn't support the extensions. [STANDARDS-TRACK]"];
+  cites -> RFC4760;
+  RFC4303 [label="RFC4303
+IP Encapsulating Security Payload (ESP)
+2005", shape=ellipse, URL="RFC4303.html", target="_top", tooltip="This document describes an updated version of the Encapsulating Security Payload (ESP) protocol, which is designed to provide a mix of security services in IPv4 and IPv6.  ESP is used to provide confidentiality, data origin authentication, connectionless integrity, an anti-replay service (a form of partial sequence integrity), and limited traffic flow confidentiality.  This document obsoletes RFC 2406 (November 1998). [STANDARDS-TRACK]"];
+  cites -> RFC4303;
+  RFC2474 [label="RFC2474
+Definition of the Differentiated
+Services Field (DS Field) in the IPv4
+and IPv6 Headers
+1998", shape=ellipse, URL="RFC2474.html", target="_top", tooltip="This document defines the IP header field, called the DS (for differentiated services) field. [STANDARDS-TRACK]"];
+  cites -> RFC2474;
+  RFC4456 [label="RFC4456
+BGP Route Reflection: An Alternative to
+Full Mesh Internal BGP (IBGP)
+2006", shape=ellipse, URL="RFC4456.html", target="_top", tooltip="The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for TCP/IP internets. Typically, all BGP speakers within a single AS must be fully meshed so that any external routing information must be re-distributed to all other routers within that Autonomous System (AS). This represents a serious scaling problem that has been well documented with several alternatives proposed. This document describes the use and design of a method known as route reflection to alleviate the need for full mesh Internal BGP (IBGP). This document obsoletes RFC 2796 and RFC 1966. [STANDARDS-TRACK]"];
+  cites -> RFC4456;
+  RFC4360 [label="RFC4360
+BGP Extended Communities Attribute
+2006", shape=ellipse, URL="RFC4360.html", target="_top", tooltip="This document describes the extended community BGP-4 attribute.  This attribute provides a mechanism for labeling information carried in BGP-4.  These labels can be used to control the distribution of this information, or for other applications. [STANDARDS-TRACK]"];
+  cites -> RFC4360;
+  RFC5668 [label="RFC5668
+4-Octet AS Specific BGP Extended
+Community
+2009", shape=ellipse, URL="RFC5668.html", target="_top", tooltip="This document defines a new type of a BGP extended community, which carries a 4-octet Autonomous System (AS) number. [STANDARDS-TRACK]"];
+  cites -> RFC5668;
+  RFC4364 [label="RFC4364
+BGP/MPLS IP Virtual Private Networks
+(VPNs)
+2006", shape=ellipse, URL="RFC4364.html", target="_top", tooltip="This document describes a method by which a Service Provider may use an IP backbone to provide IP Virtual Private Networks (VPNs) for its customers.  This method uses a peer model, in which the customers' edge routers (CE routers) send their routes to the Service Provider's edge routers (PE routers); there is no overlay visible to the customer's routing algorithm, and CE routers at different sites do not peer with each other.  Data packets are tunneled through the backbone, so that the core routers do not need to know the VPN routes. [STANDARDS-TRACK]"];
+  cites -> RFC4364;
+  RFC7606 [label="RFC7606
+Revised Error Handling for BGP UPDATE
+Messages
+2015", shape=ellipse, URL="RFC7606.html", target="_top", tooltip="According to the base BGP specification, a BGP speaker that receives an UPDATE message containing a malformed attribute is required to reset the session over which the offending attribute was received. This behavior is undesirable because a session reset would impact not only routes with the offending attribute but also other valid routes exchanged over the session. This document partially revises the error handling for UPDATE messages and provides guidelines for the authors of documents defining new attributes. Finally, it revises the error handling procedures for a number of existing attributes. This document updates error handling for RFCs 1997, 4271, 4360, 4456, 4760, 5543, 5701, and 6368."];
+  cites -> RFC7606;
+  RFC7153 [label="RFC7153
+IANA Registries for BGP Extended
+Communities
+2014", shape=ellipse, URL="RFC7153.html", target="_top", tooltip="This document reorganizes the IANA registries for the type values and sub-type values of the BGP Extended Communities attribute and the BGP IPv6-Address-Specific Extended Communities attribute.  This is done in order to remove interdependencies among the registries, thus making it easier for IANA to determine which codepoints are available for assignment in which registries.  This document also clarifies the information that must be provided to IANA when requesting an allocation from one or more of these registries.  These changes are compatible with the existing allocations and thus do not affect protocol implementations.  The changes will, however, impact the IANA Considerations sections of future protocol specifications.  This document updates RFC 4360 and RFC 5701."];
+  cites -> RFC7153;
+  RFC7950 [label="RFC7950
+The YANG 1.1 Data Modeling Language
+2016", shape=ellipse, URL="RFC7950.html", target="_top", tooltip="YANG is a data modeling language used to model configuration data, state data, Remote Procedure Calls, and notifications for network management protocols.  This document describes the syntax and semantics of version 1.1 of the YANG language.  YANG version 1.1 is a maintenance release of the YANG language, addressing ambiguities and defects in the original specification.  There are a small number of backward incompatibilities from YANG version 1.  This document also specifies the YANG mappings to the Network Configuration Protocol (NETCONF)."];
+  cites -> RFC7950;
+  RFC8294 [label="RFC8294
+Common YANG Data Types for the Routing
+Area
+2017", shape=ellipse, URL="RFC8294.html", target="_top", tooltip="This document defines a collection of common data types using the YANG data modeling language.  These derived common types are designed to be imported by other modules defined in the routing area."];
+  cites -> RFC8294;
+  RFC8126 [label="RFC8126
+Guidelines for Writing an IANA
+Considerations Section in RFCs
+2017", shape=ellipse, URL="RFC8126.html", target="_top", tooltip="Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA). To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry. This is the third edition of this document; it obsoletes RFC 5226."];
+  cites -> RFC8126;
+  RFC6811 [label="RFC6811
+BGP Prefix Origin Validation
+2013", shape=ellipse, URL="RFC6811.html", target="_top", tooltip="To help reduce well-known threats against BGP including prefix mis- announcing and monkey-in-the-middle attacks, one of the security requirements is the ability to validate the origination Autonomous System (AS) of BGP routes.  More specifically, one needs to validate that the AS number claiming to originate an address prefix (as derived from the AS_PATH attribute of the BGP route) is in fact authorized by the prefix holder to do so.  This document describes a simple validation mechanism to partially satisfy this requirement. [STANDARDS-TRACK]"];
+  cites -> RFC6811;
+  RFC8205 [label="RFC8205
+BGPsec Protocol Specification
+2017", shape=ellipse, URL="RFC8205.html", target="_top", tooltip="This document describes BGPsec, an extension to the Border Gateway Protocol (BGP) that provides security for the path of Autonomous Systems (ASes) through which a BGP UPDATE message passes.  BGPsec is implemented via an optional non-transitive BGP path attribute that carries digital signatures produced by each AS that propagates the UPDATE message.  The digital signatures provide confidence that every AS on the path of ASes listed in the UPDATE message has explicitly authorized the advertisement of the route."];
+  cites -> RFC8205;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC8955;
+  RFC8956 [label="RFC8956
+Dissemination of Flow Specification
+Rules for IPv6
+2020", shape=ellipse, URL="RFC8956.html", target="_top", tooltip="Dissemination of Flow Specification Rules (RFC 8955) provides a Border Gateway Protocol (BGP) extension for the propagation of traffic flow information for the purpose of rate limiting or filtering IPv4 protocol data packets. This document extends RFC 8955 with IPv6 functionality. It also updates RFC 8955 by changing the IANA Flow Spec Component Types registry."];
+  RFC8956 -> rev_cites;
+  RFC9015 [label="RFC9015
+BGP Control Plane for the Network
+Service Header in Service Function
+Chaining
+2021", shape=ellipse, URL="RFC9015.html", target="_top", tooltip="This document describes the use of BGP as a control plane for networks that support service function chaining. The document introduces a new BGP address family called the Service Function Chain (SFC) Address Family Identifier / Subsequent Address Family Identifier (SFC AFI/SAFI) with two Route Types. One Route Type is originated by a node to advertise that it hosts a particular instance of a specified service function. This Route Type also provides instructions on how to send a packet to the hosting node in a way that indicates that the service function has to be applied to the packet. The other Route Type is used by a controller to advertise the paths of chains of service functions and give a unique designator to each such path so that they can be used in conjunction with the Network Service Header (NSH) defined in RFC 8300. This document adopts the service function chaining architecture described in RFC 7665."];
+  RFC9015 -> rev_cites;
+  RFC9066 [label="RFC9066
+Distributed Denial-of-Service Open
+Threat Signaling (DOTS) Signal Channel
+Call Home
+2021", shape=ellipse, URL="RFC9066.html", target="_top", tooltip="This document specifies the Denial-of-Service Open Threat Signaling (DOTS) signal channel Call Home, which enables a Call Home DOTS server to initiate a secure connection to a Call Home DOTS client and to receive attack traffic information from the Call Home DOTS client. The Call Home DOTS server in turn uses the attack traffic information to identify compromised devices launching outgoing DDoS attacks and take appropriate mitigation action(s). The DOTS signal channel Call Home is not specific to home networks; the solution targets any deployment in which it is required to block DDoS attack traffic closer to the source(s) of a DDoS attack."];
+  RFC9066 -> rev_cites;
+  RFC9098 [label="RFC9098
+Operational Implications of IPv6 Packets
+with Extension Headers
+2021", shape=ellipse, URL="RFC9098.html", target="_top", tooltip="This document summarizes the operational implications of IPv6 extension headers specified in the IPv6 protocol specification (RFC 8200) and attempts to analyze reasons why packets with IPv6 extension headers are often dropped in the public Internet."];
+  RFC9098 -> rev_cites;
+  RFC9117 [label="RFC9117
+Revised Validation Procedure for BGP
+Flow Specifications
+2021", shape=ellipse, URL="RFC9117.html", target="_top", tooltip="This document describes a modification to the validation procedure defined for the dissemination of BGP Flow Specifications. The dissemination of BGP Flow Specifications as specified in RFC 8955 requires that the originator of the Flow Specification match the originator of the best-match unicast route for the destination prefix embedded in the Flow Specification. For an Internal Border Gateway Protocol (iBGP) received route, the originator is typically a border router within the same autonomous system (AS). The objective is to allow only BGP speakers within the data forwarding path to originate BGP Flow Specifications. Sometimes it is desirable to originate the BGP Flow Specification from any place within the autonomous system itself, for example, from a centralized BGP route controller. However, the validation procedure described in RFC 8955 will fail in this scenario. The modification proposed herein relaxes the validation rule to enable Flow Specifications to be originated within the same autonomous system as the BGP speaker performing the validation. Additionally, this document revises the AS_PATH validation rules so Flow Specifications received from an External Border Gateway Protocol (eBGP) peer can be validated when such a peer is a BGP route server. This document updates the validation procedure in RFC 8955."];
+  RFC9117 -> rev_cites;
+  RFC9168 [label="RFC9168
+Path Computation Element Communication
+Protocol (PCEP) Extension for Flow
+Specification
+2022", shape=ellipse, URL="RFC9168.html", target="_top", tooltip="The Path Computation Element (PCE) is a functional component capable of selecting paths through a traffic engineering (TE) network. These paths may be supplied in response to requests for computation or may be unsolicited requests issued by the PCE to network elements. Both approaches use the PCE Communication Protocol (PCEP) to convey the details of the computed path. Traffic flows may be categorized and described using Flow Specifications. RFC 8955 defines the Flow Specification and describes how Flow Specification components are used to describe traffic flows. RFC 8955 also defines how Flow Specifications may be distributed in BGP to allow specific traffic flows to be associated with routes. This document specifies a set of extensions to PCEP to support dissemination of Flow Specifications. This allows a PCE to indicate what traffic should be placed on each path that it is aware of. The extensions defined in this document include the creation, update, and withdrawal of Flow Specifications via PCEP and can be applied to tunnels initiated by the PCE or to tunnels where control is delegated to the PCE by the Path Computation Client (PCC). Furthermore, a PCC requesting a new path can include Flow Specifications in the request to indicate the purpose of the tunnel allowing the PCE to factor this into the path computation."];
+  RFC9168 -> rev_cites;
+  RFC9184 [label="RFC9184
+BGP Extended Community Registries Update
+2022", shape=ellipse, URL="RFC9184.html", target="_top", tooltip="This document updates several BGP Extended Community registries in order to replace the Experimental Use registration procedure in some entries, since their use is clearly not experimental and is thus misleading. This document updates RFCs 7153 and 8955."];
+  RFC9184 -> rev_cites;
+  RFC9199 [label="RFC9199
+Considerations for Large Authoritative
+DNS Server Operators
+2022", shape=ellipse, URL="RFC9199.html", target="_top", tooltip="Recent research work has explored the deployment characteristics and configuration of the Domain Name System (DNS). This document summarizes the conclusions from these research efforts and offers specific, tangible considerations or advice to authoritative DNS server operators. Authoritative server operators may wish to follow these considerations to improve their DNS services. It is possible that the results presented in this document could be applicable in a wider context than just the DNS protocol, as some of the results may generically apply to any stateless/short-duration anycasted service. This document is not an IETF consensus document: it is published for informational purposes."];
+  RFC9199 -> rev_cites;
+  RFC9387 [label="RFC9387
+Use Cases for DDoS Open Threat Signaling
+(DOTS) Telemetry
+2023", shape=ellipse, URL="RFC9387.html", target="_top", tooltip="DDoS Open Threat Signaling (DOTS) telemetry enriches the base DOTS protocols to assist the mitigator in using efficient DDoS attack mitigation techniques in a network.  This document presents sample use cases for DOTS telemetry.  It discusses what components are deployed in the network, how they cooperate, and what information is exchanged to effectively use these techniques."];
+  RFC9387 -> rev_cites;
+  RFC9494 [label="RFC9494
+Long-Lived Graceful Restart for BGP
+2023", shape=ellipse, URL="RFC9494.html", target="_top", tooltip="This document introduces a BGP capability called the Long-Lived Graceful Restart Capability (or LLGR Capability). The benefit of this capability is that stale routes can be retained for a longer time upon session failure than is provided for by BGP Graceful Restart (as described in RFC 4724). A well-known BGP community called LLGR_STALE is introduced for marking stale routes retained for a longer time. A second well-known BGP community called NO_LLGR is introduced for marking routes for which these procedures should not be applied. We also specify that such long-lived stale routes be treated as the least preferred and that their advertisements be limited to BGP speakers that have advertised the capability. Use of this extension is not advisable in all cases, and we provide guidelines to help determine if it is. This memo updates RFC 6368 by specifying that the LLGR_STALE community must be propagated into, or out of, the path attributes exchanged between the Provider Edge (PE) and Customer Edge (CE) routers."];
+  RFC9494 -> rev_cites;
+  RFC9522 [label="RFC9522
+Overview and Principles of Internet
+Traffic Engineering
+2024", shape=ellipse, URL="RFC9522.html", target="_top", tooltip="This document describes the principles of traffic engineering (TE) in the Internet. The document is intended to promote better understanding of the issues surrounding traffic engineering in IP networks and the networks that support IP networking and to provide a common basis for the development of traffic-engineering capabilities for the Internet. The principles, architectures, and methodologies for performance evaluation and performance optimization of operational networks are also discussed. This work was first published as RFC 3272 in May 2002. This document obsoletes RFC 3272 by making a complete update to bring the text in line with best current practices for Internet traffic engineering and to include references to the latest relevant work in the IETF."];
+  RFC9522 -> rev_cites;
+  RFC9689 [label="RFC9689
+Use Cases for a PCE as a Central
+Controller (PCECC)
+2024", shape=ellipse, URL="RFC9689.html", target="_top", tooltip="The PCE is a core component of a Software-Defined Networking (SDN) system. It can be used to compute optimal paths for network traffic and update existing paths to reflect changes in the network or traffic demands. The PCE was developed to derive Traffic Engineering (TE) paths in MPLS networks, which are supplied to the headend of the paths using the Path Computation Element Communication Protocol (PCEP). SDN has much broader applicability than signalled MPLS TE networks, and the PCE may be used to determine paths in a range of use cases including static Label-Switched Paths (LSPs), Segment Routing (SR), Service Function Chaining (SFC), and most forms of a routed or switched network. Therefore, it is reasonable to consider PCEP as a control protocol for use in these environments to allow the PCE to be fully enabled as a central controller. A PCE as a Central Controller (PCECC) can simplify the processing of a distributed control plane by blending it with elements of SDN without necessarily completely replacing it. This document describes general considerations for PCECC deployment and examines its applicability and benefits, as well as its challenges and limitations, through a number of use cases. PCEP extensions, which are required for the PCECC use cases, are covered in separate documents."];
+  RFC9689 -> rev_cites;
+  RFC9899 [label="RFC9899
+Extensions to the YANG Data Model for
+Access Control Lists (ACLs)
+2025", shape=ellipse, URL="RFC9899.html", target="_top", tooltip="RFC 8519 defines a YANG data model for Access Control Lists (ACLs). This document specifies a set of extensions that fix many of the limitations of the ACL model as initially defined in RFC 8519. Specifically, it introduces augmentations to the ACL base model to enhance its functionality and applicability. This document also creates initial versions of IANA-maintained modules for ICMP types and IPv6 extension headers."];
+  RFC9899 -> rev_cites;
+}

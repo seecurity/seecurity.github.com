@@ -1,0 +1,37 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC6579 [label="RFC6579
+The 'disclosure' Link Relation Type
+2012", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document specifies the 'disclosure' link relation type.  It designates a list of IPR disclosures made with respect to the material for which such a relation type is specified. [STANDARDS-TRACK]"]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC6579;
+
+  obs [label="obsoletes", shape=box];
+  RFC6579 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC6579 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC6579;
+
+  cites [label="cites", shape=box];
+  RFC6579 -> cites;
+  RFC5988 [label="RFC5988
+Web Linking
+2010", shape=ellipse, URL="RFC5988.html", target="_top", tooltip="This document specifies relation types for Web links, and defines a registry for them.  It also defines the use of such links in HTTP headers with the Link header field. [STANDARDS-TRACK]"];
+  cites -> RFC5988;
+  RFC2119 [label="RFC2119
+Key words for use in RFCs to Indicate
+Requirement Levels
+1997", shape=ellipse, URL="RFC2119.html", target="_top", tooltip="In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized.  This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements."];
+  cites -> RFC2119;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC6579;
+}

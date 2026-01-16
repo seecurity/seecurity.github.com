@@ -1,0 +1,75 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC7071 [label="RFC7071
+A Media Type for Reputation Interchange
+2013", shape=ellipse, fillcolor="#e8f0ff", tooltip="This document defines the format of reputation response data (reputons), the media type for packaging it, and definition of a registry for the names of reputation applications and response sets."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC7071;
+
+  obs [label="obsoletes", shape=box];
+  RFC7071 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC7071 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC7071;
+
+  cites [label="cites", shape=box];
+  RFC7071 -> cites;
+  RFC7072 [label="RFC7072
+A Reputation Query Protocol
+2013", shape=ellipse, URL="RFC7072.html", target="_top", tooltip="This document defines a mechanism to conduct queries for reputation information over the HyperText Transfer Protocol (HTTP) using JavaScript Object Notation (JSON) as the payload meta-format."];
+  cites -> RFC7072;
+  RFC7070 [label="RFC7070
+An Architecture for Reputation Reporting
+2013", shape=ellipse, URL="RFC7070.html", target="_top", tooltip="This document describes a general architecture for a reputation-based service, allowing one to request reputation-related data over the Internet, where reputation refers to predictions or expectations about an entity or an identifier such as a domain name.  The document roughly follows the recommendations of RFC 4101 for describing a protocol model."];
+  cites -> RFC7070;
+  RFC7073 [label="RFC7073
+A Reputation Response Set for Email
+Identifiers
+2013", shape=ellipse, URL="RFC7073.html", target="_top", tooltip="This document defines a response set for describing assertions a reputation service provider can make about email identifiers, for use in generating reputons."];
+  cites -> RFC7073;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC7071;
+  RFC7070 [label="RFC7070
+An Architecture for Reputation Reporting
+2013", shape=ellipse, URL="RFC7070.html", target="_top", tooltip="This document describes a general architecture for a reputation-based service, allowing one to request reputation-related data over the Internet, where reputation refers to predictions or expectations about an entity or an identifier such as a domain name.  The document roughly follows the recommendations of RFC 4101 for describing a protocol model."];
+  RFC7070 -> rev_cites;
+  RFC7072 [label="RFC7072
+A Reputation Query Protocol
+2013", shape=ellipse, URL="RFC7072.html", target="_top", tooltip="This document defines a mechanism to conduct queries for reputation information over the HyperText Transfer Protocol (HTTP) using JavaScript Object Notation (JSON) as the payload meta-format."];
+  RFC7072 -> rev_cites;
+  RFC7073 [label="RFC7073
+A Reputation Response Set for Email
+Identifiers
+2013", shape=ellipse, URL="RFC7073.html", target="_top", tooltip="This document defines a response set for describing assertions a reputation service provider can make about email identifiers, for use in generating reputons."];
+  RFC7073 -> rev_cites;
+  RFC7484 [label="RFC7484
+Finding the Authoritative Registration
+Data (RDAP) Service
+2015", shape=ellipse, URL="RFC7484.html", target="_top", tooltip="This document specifies a method to find which Registration Data Access Protocol (RDAP) server is authoritative to answer queries for a requested scope, such as domain names, IP addresses, or Autonomous System numbers."];
+  RFC7484 -> rev_cites;
+  RFC8610 [label="RFC8610
+Concise Data Definition Language (CDDL):
+A Notational Convention to Express
+Concise Binary Object Representation
+(CBOR) and JSON Data Structures
+2019", shape=ellipse, URL="RFC8610.html", target="_top", tooltip="This document proposes a notational convention to express Concise Binary Object Representation (CBOR) data structures (RFC 7049).  Its main goal is to provide an easy and unambiguous way to express structures for protocol messages and data formats that use CBOR or JSON."];
+  RFC8610 -> rev_cites;
+  RFC8927 [label="RFC8927
+JSON Type Definition
+2020", shape=ellipse, URL="RFC8927.html", target="_top", tooltip="This document proposes a format, called JSON Type Definition (JTD), for describing the shape of JavaScript Object Notation (JSON) messages. Its main goals are to enable code generation from schemas as well as portable validation with standardized error indicators. To this end, JTD is intentionally limited to be no more expressive than the type systems of mainstream programming languages. This intentional limitation, as well as the decision to make JTD schemas be JSON documents, makes tooling atop of JTD easier to build. This document does not have IETF consensus and is presented here to facilitate experimentation with the concept of JTD."];
+  RFC8927 -> rev_cites;
+  RFC9224 [label="RFC9224
+Finding the Authoritative Registration
+Data Access Protocol (RDAP) Service
+2022", shape=ellipse, URL="RFC9224.html", target="_top", tooltip="This document specifies a method to find which Registration Data Access Protocol (RDAP) server is authoritative to answer queries for a requested scope, such as domain names, IP addresses, or Autonomous System numbers.  This document obsoletes RFC 7484."];
+  RFC9224 -> rev_cites;
+}

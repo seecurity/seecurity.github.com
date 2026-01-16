@@ -1,0 +1,65 @@
+digraph Flow {
+  rankdir=LR;
+  splines=true;
+  concentrate=true;   // merge parallel edges / reduce clutter
+  nodesep=0.25;       // horizontal/vertical separation between nodes
+  ranksep=0.35;       // separation between ranks (columns in LR)
+  RFC4892 [label="RFC4892
+Requirements for a Mechanism Identifying
+a Name Server Instance
+2007", shape=ellipse, fillcolor="#e8f0ff", tooltip="With the increased use of DNS anycast, load balancing, and other mechanisms allowing more than one DNS name server to share a single IP address, it is sometimes difficult to tell which of a pool of name servers has answered a particular query.  A standardized mechanism to determine the identity of a name server responding to a particular query would be useful, particularly as a diagnostic aid for administrators.  Existing ad hoc mechanisms for addressing this need have some shortcomings, not the least of which is the lack of prior analysis of exactly how such a mechanism should be designed and deployed.  This document describes the existing convention used in some widely deployed implementations of the DNS protocol, including advantages and disadvantages, and discusses some attributes of an improved mechanism.  This memo provides information for the Internet community."]; 
+
+  obs_by [label="obsoletes", shape=box];
+  obs_by -> RFC4892;
+
+  obs [label="obsoletes", shape=box];
+  RFC4892 -> obs;
+
+  updates [label="updates", shape=box];
+  RFC4892 -> updates;
+
+  updated_by [label="updates", shape=box];
+  updated_by -> RFC4892;
+
+  cites [label="cites", shape=box];
+  RFC4892 -> cites;
+  RFC3258 [label="RFC3258
+Distributing Authoritative Name Servers
+via Shared Unicast Addresses
+2002", shape=ellipse, URL="RFC3258.html", target="_top", tooltip="This memo describes a set of practices intended to enable an authoritative name server operator to provide access to a single named server in multiple locations.  The primary motivation for the development and deployment of these practices is to increase the distribution of Domain Name System (DNS) servers to previously under- served areas of the network topology and to reduce the latency for DNS query responses in those areas.  This memo provides information for the Internet community."];
+  cites -> RFC3258;
+  RFC1034 [label="RFC1034
+Domain names - concepts and facilities
+1987", shape=ellipse, URL="RFC1034.html", target="_top", tooltip="This RFC is the revised basic definition of The Domain Name System.  It obsoletes RFC-882.  This memo describes the domain style names and their used for host address look up and electronic mail forwarding.  It discusses the clients and servers in the domain name system and the protocol used between them."];
+  cites -> RFC1034;
+  RFC1035 [label="RFC1035
+Domain names - implementation and
+specification
+1987", shape=ellipse, URL="RFC1035.html", target="_top", tooltip="This RFC is the revised specification of the protocol and format used in the implementation of the Domain Name System.  It obsoletes RFC-883.  This memo documents the details of the domain name client - server communication."];
+  cites -> RFC1035;
+  RFC4033 [label="RFC4033
+DNS Security Introduction and
+Requirements
+2005", shape=ellipse, URL="RFC4033.html", target="_top", tooltip="The Domain Name System Security Extensions (DNSSEC) add data origin authentication and data integrity to the Domain Name System.  This document introduces these extensions and describes their capabilities and limitations.  This document also discusses the services that the DNS security extensions do and do not provide.  Last, this document describes the interrelationships between the documents that collectively describe DNSSEC. [STANDARDS-TRACK]"];
+  cites -> RFC4033;
+
+  rev_cites [label="cites", shape=box];
+  rev_cites -> RFC4892;
+  RFC6382 [label="RFC6382
+Unique Origin Autonomous System Numbers
+(ASNs) per Node for Globally Anycasted
+Services
+2011", shape=ellipse, URL="RFC6382.html", target="_top", tooltip="This document makes recommendations regarding the use of unique origin autonomous system numbers (ASNs) per node for globally anycasted critical infrastructure services in order to provide routing system discriminators for a given anycasted prefix.  Network management and monitoring techniques, or other operational mechanisms, may employ this new discriminator in whatever manner best accommodates their operating environment.  This memo documents an Internet Best Current Practice."];
+  RFC6382 -> rev_cites;
+  RFC7094 [label="RFC7094
+Architectural Considerations of IP
+Anycast
+2014", shape=ellipse, URL="RFC7094.html", target="_top", tooltip="This memo discusses architectural implications of IP anycast and provides some historical analysis of anycast use by various IETF protocols."];
+  RFC7094 -> rev_cites;
+  RFC7108 [label="RFC7108
+A Summary of Various Mechanisms Deployed
+at L-Root for the Identification of
+Anycast Nodes
+2014", shape=ellipse, URL="RFC7108.html", target="_top", tooltip="Anycast is a deployment technique commonly employed for authoritative-only servers in the Domain Name System (DNS). L-Root, one of the thirteen root servers, is deployed in this fashion. Various techniques have been used to map deployed anycast infrastructure externally, i.e., without reference to inside knowledge about where and how such infrastructure has been deployed. Motivations for performing such measurement exercises include operational troubleshooting and infrastructure risk assessment. In the specific case of L-Root, the ability to measure and map anycast infrastructure using the techniques mentioned in this document is provided for reasons of operational transparency. This document describes all facilities deployed at L-Root to facilitate mapping of its infrastructure and serves as documentation for L-Root as a measurable service."];
+  RFC7108 -> rev_cites;
+}
